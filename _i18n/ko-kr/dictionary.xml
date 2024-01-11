@@ -2652,7 +2652,6 @@ I/O 중단 없음.</block>
   <block id="4adf016da96258b45a1cf762298729b5" category="inline-image-macro">ONTAP 툴 VVol 대시보드, 400</block>
   <block id="73c1e14ddf3f32984f869ac3f122b2ca" category="paragraph"><block ref="73c1e14ddf3f32984f869ac3f122b2ca" category="inline-image-macro-rx" type="image"></block></block>
   <block id="cd47dd01745339787e4c7300389401f2" category="section-title">모범 사례</block>
-  <block id="e359caf0e19df1a0e93e8e30cbef2100" category="paragraph">이 섹션에서는 다른 정보와 함께 ONTAP에서 VVOL을 사용하기 위한 알려진 모범 사례를 수집합니다.</block>
   <block id="9ae938622297e9d4b14dd0006a8f0bf4" category="paragraph">* 제한 *</block>
   <block id="b4f52a4fd0b07c9d904b95fc98a1cd45" category="inline-link">최대 구성</block>
   <block id="bc8259e306c73b2969e7ac6297000e64" category="paragraph">일반적으로 ONTAP는 VMware에서 정의한 VVOL 한계를 지원합니다(참조<block ref="a6efdd9b1a19df6105024b4869e0582b" category="inline-link-rx"></block>)를 클릭합니다. 다음 표에는 VVOL의 크기 및 개수에 대한 특정 ONTAP 제한이 요약되어 있습니다. 항상 을 확인하십시오<block ref="bb9c67b5a4c15a85b5e6aa6c9afd0285" category="inline-link-rx"></block> 업데이트된 LUN 및 파일 수 및 크기 제한</block>
@@ -2676,9 +2675,7 @@ I/O 중단 없음.</block>
   <block id="26890bd9dcb27c05f1ab5bcc859501b8" category="cell">12,000 ~ ONTAP 9.3, 40,000(ONTAP 9.4 이상)</block>
   <block id="0e38f856cb713ce9eea79fa1c6b7dc32" category="list-text">ONTAP 9.12.1P2 이상을 실행하는 ASA 시스템 또는 AFF 및 FAS 시스템에 따른 크기 제한.</block>
   <block id="d27c43bb3cdcbfa3852bb91192ffb849" category="list-text">SAN VVOL(NVMe 네임스페이스 또는 LUN)의 수는 플랫폼에 따라 다릅니다. 항상 을 확인하십시오<block ref="bb9c67b5a4c15a85b5e6aa6c9afd0285" category="inline-link-rx"></block> 업데이트된 LUN 및 파일 수 및 크기 제한</block>
-  <block id="304d5a3dcf64bf05141ead00f7ec768a" category="paragraph">* 모범 사례 *</block>
   <block id="72e0ee397942f7233122887584f94b8b" category="paragraph">vSphere에서 ONTAP VVOL을 사용하는 것은 간단하며 게시된 vSphere 방법을 따릅니다(사용 중인 ESXi 버전에 대한 VMware 설명서의 vSphere 스토리지 아래에서 가상 볼륨 작업 참조). 다음은 ONTAP와 관련하여 고려해야 할 몇 가지 추가 사례입니다.</block>
-  <block id="d7c0472e9975808c3f2c3ea3a1cdd812" category="paragraph">ONTAP에서 VVOL을 사용하기 위한 모범 사례</block>
   <block id="83583580d98b69cb8317f9b285f3c8df" category="cell">* VMware vSphere의 UI 확장 또는 REST API용 ONTAP 툴을 사용하여 VVOL 데이터 저장소 * * 및 프로토콜 엔드포인트 프로비저닝 *</block>
   <block id="9507d4f97aceb8d05fc962dd53f082af" category="cell">일반 vSphere 인터페이스를 통해 VVOL 데이터 저장소를 생성할 수도 있지만, ONTAP 툴을 사용하면 필요에 따라 프로토콜 엔드포인트를 자동으로 생성하고, ONTAP 모범 사례와 정의된 스토리지 용량 프로필을 준수하여 FlexVol 볼륨을 생성할 수 있습니다. 호스트/클러스터/데이터 센터를 마우스 오른쪽 버튼으로 클릭하고 _ONTAP tools_and_provision datastore_를 선택합니다. 마법사에서 원하는 VVOL 옵션을 선택하기만 하면 됩니다.</block>
   <block id="e8d5f9dc0bff953a9e59755813c7e8bf" category="cell">* ONTAP 툴 어플라이언스 또는 VCSA(vCenter Server Appliance)를 관리하는 VVol 데이터 저장소에 저장하지 마십시오. *</block>
@@ -2689,36 +2686,13 @@ I/O 중단 없음.</block>
   <block id="cd7bf0e1e61341c1aa3fa23401af8a27" category="inline-image-macro">4개 노드인 400을 포함하는 단일 이니시에이터 조닝</block>
   <block id="51591d05b7e084ba8e5ae7f63172177e" category="inline-link">_TR-4080 최신 SAN ONTAP 9_에 대한 모범 사례</block>
   <block id="c1723e6a0e1d3dd28232b33e0cb6e61d" category="inline-link">_TR-4684 NVMe-oF_로 최신 SAN 구현 및 구성</block>
-  <block id="9d25011ed03b51fddde47a3c3a337cc8" category="cell">ONTAP 툴 VASA Provider는 관리되는 ESXi 호스트의 검색된 이니시에이터를 기반으로 ONTAP에서 FCP 및 iSCSI igroup과 NVMe 서브시스템을 관리합니다. 그러나 조닝을 관리하기 위해 파이버 채널 스위치와 통합되지 않습니다. 조닝은 Best Practice에 따라 수행해야 프로비저닝이 수행될 수 있습니다. 다음은 4개의 ONTAP 시스템에 대한 단일 이니시에이터 조닝의 예입니다.
-
-단일 이니시에이터 조닝:
-
-<block ref="17ccf64e30cb518fd7ca87ce752ad738" category="inline-image-macro-rx" type="image"></block>
-
-자세한 모범 사례는 다음 문서를 참조하십시오.
-
-<block ref="fc9e4d789d968936f8ff5ae5a99847e0" category="inline-link-rx"></block>
-
-<block ref="d748a2834a7220eef4ec4775a51632f9" category="inline-link-rx"></block></block>
   <block id="9a36c8f0464a7ffce114044f1859c7ff" category="cell">* 필요에 따라 지원 FlexVols를 계획합니다. *</block>
   <block id="03d2e894fa9a05efefa4e8d6b2008a19" category="cell">ONTAP 클러스터에 워크로드를 분산하거나, 다양한 정책 옵션을 지원하거나, 허용되는 LUN 또는 파일 수를 늘리기 위해 VVOL 데이터 저장소에 여러 백업 볼륨을 추가하는 것이 좋습니다. 하지만 최대 스토리지 효율성이 필요한 경우에는 모든 백업 볼륨을 단일 Aggregate에 배치하십시오. 또는 최대 클론 복제 성능이 필요한 경우 단일 FlexVol 볼륨을 사용하고 템플릿 또는 콘텐츠 라이브러리를 동일한 볼륨에 유지하는 것을 고려해 보십시오. VASA Provider는 마이그레이션, 클론 생성 및 스냅샷을 비롯한 다양한 VVOL 스토리지 작업을 ONTAP로 오프로드합니다. 단일 FlexVol 볼륨 내에서 이 작업을 수행할 경우 공간 효율적인 파일 클론이 사용되며 거의 즉시 사용할 수 있습니다. FlexVol 볼륨 전체에 걸쳐 복사본을 빠르게 생성하여 인라인 중복제거 및 압축을 사용할 수 있지만, 백그라운드 작업이 백그라운드 중복제거 및 압축을 사용하는 볼륨에서 실행될 때까지 최대 스토리지 효율성이 복구되지 않을 수 있습니다. 소스 및 타겟에 따라 일부 효율성이 저하될 수 있습니다.</block>
   <block id="80b15469535d95a1690f308427545c7e" category="cell">* SCP(스토리지 기능 프로필)를 간단하게 유지합니다. *</block>
   <block id="33e2905cb722c14575a9bff81ba78b39" category="cell">필요하지 않은 기능은 ANY 로 설정하여 지정하지 마십시오. 이렇게 하면 FlexVol 볼륨을 선택하거나 생성할 때 발생하는 문제를 최소화할 수 있습니다. 예를 들어 VASA Provider 7.1 이전 버전에서는 압축이 기본 SCP 설정인 No로 설정되어 있으면 AFF 시스템에서도 압축을 해제하려고 시도합니다.</block>
   <block id="5a6d5fdddf6fbd82f1952b532b03c9ef" category="cell">* 기본 SCP를 예제 템플릿으로 사용하여 고유한 템플릿을 만듭니다. *</block>
-  <block id="9ab96500ef87d6c0457f87322f3b0d05" category="cell">포함된 CP는 대부분의 범용 용도에 적합하지만, 요구 사항은 다를 수 있습니다.
-
-* 최대 IOPS를 사용하여 알 수 없는 VM을 제어하거나 VM을 테스트하는 것을 고려해 보십시오. *</block>
-  <block id="c0905f7932cce129e5491ca16a6f00a8" category="cell">VASA Provider 7.1에서 처음 사용할 수 있는 Max IOPS를 사용하면 알 수 없는 워크로드를 위해 IOPS를 특정 VVOL으로 제한하여 다른 중요한 워크로드에 미치는 영향을 방지할 수 있습니다. 성능 관리에 대한 자세한 내용은 표 4를 참조하십시오.
-
-* 충분한 데이터 LIF가 있는지 확인하십시오. *</block>
-  <block id="f5a3607cd11e645cf22997a47fc7a5d5" category="cell">HA 쌍당 최소 2개의 LIF를 생성합니다. 작업 부하에 따라 더 많은 작업이 필요할 수 있습니다.</block>
   <block id="ee3cbda1c3c4a14ae024478c7ada6d11" category="cell">* 모든 프로토콜 모범 사례를 따르십시오. *</block>
   <block id="6a2c1ac1da51eca0c1a65afffab8dfab" category="inline-image-macro">NFS v3,500을 통해 VVOL을 사용한 네트워크 구성</block>
-  <block id="47d7186fd54c7409af85f706bd49bb21" category="cell">선택한 프로토콜에 관련된 NetApp 및 VMware의 기타 모범 사례 가이드를 참조하십시오. 일반적으로 이미 언급한 것 이외의 다른 변경 사항은 없습니다.
-[[Figure_6]]
-NFS v3를 통한 VVOL을 사용한 네트워크 구성의 예:
-
-<block ref="c80b3cc8b5013bd4039769fb0f783e60" category="inline-image-macro-rx" type="image"></block></block>
   <block id="6cacb3f1edd09835a2ad07d72f488e2a" category="paragraph">NetApp ONTAP 소프트웨어는 20년 이상 VMware vSphere 환경을 위한 업계 최고의 스토리지 솔루션으로, 관리를 단순화하는 동시에 비용을 절감할 수 있는 혁신적인 기능을 지속적으로 추가하고 있습니다.</block>
   <block id="918febfed3d070cf1250909e5cdcf31d" category="paragraph">본 문서에서는 구축 간소화 및 오류 감소를 위한 모범 사례와 함께 최신 제품 정보 및 사용 사례를 비롯하여 VMware VVOL(vSphere Virtual Volumes)의 ONTAP 기능에 대해 다룹니다.</block>
   <block id="c7448b194ba68bddce48f1d11d5d7db7" category="admonition">이 문서는 이전에 게시된 기술 보고서_TR-4400: VMware VVol(vSphere 가상 볼륨)을 NetApp ONTAP _ 로 대체합니다</block>
@@ -4062,4 +4036,18 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="62a004b95946bb97541afa471dcca73a" category="sidebar">MySQL</block>
   <block id="7f1a6761f7160e33a32105202e47303b" category="sidebar">컨테이너화</block>
   <block id="bc65796c5a1bad360243a1bbe58272c2" category="sidebar">일반 스토리지 구성입니다</block>
+  <block id="bd57f4f74ca087a92a48b23d45753729" category="paragraph">ONTAP 툴 VASA Provider는 관리되는 ESXi 호스트의 검색된 이니시에이터를 기반으로 ONTAP에서 FCP 및 iSCSI igroup과 NVMe 서브시스템을 관리합니다. 그러나 조닝을 관리하기 위해 파이버 채널 스위치와 통합되지 않습니다. 조닝은 Best Practice에 따라 수행해야 프로비저닝이 수행될 수 있습니다. 다음은 4개의 ONTAP 시스템에 대한 단일 이니시에이터 조닝의 예입니다.</block>
+  <block id="6b14e3f4a37881185acf7a766f8f6272" category="paragraph">단일 이니시에이터 조닝:</block>
+  <block id="17ccf64e30cb518fd7ca87ce752ad738" category="paragraph"><block ref="17ccf64e30cb518fd7ca87ce752ad738" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="58b5cd2a94730c2e044c14891f1e0e87" category="paragraph">자세한 모범 사례는 다음 문서를 참조하십시오.</block>
+  <block id="fc9e4d789d968936f8ff5ae5a99847e0" category="paragraph"><block ref="fc9e4d789d968936f8ff5ae5a99847e0" category="inline-link-rx"></block></block>
+  <block id="d748a2834a7220eef4ec4775a51632f9" category="paragraph"><block ref="d748a2834a7220eef4ec4775a51632f9" category="inline-link-rx"></block></block>
+  <block id="4047245d73abc6e3ae8bf58ec063e52e" category="paragraph">포함된 CP는 대부분의 범용 용도에 적합하지만, 요구 사항은 다를 수 있습니다.</block>
+  <block id="80dad10df0d1a031764e7c648c46aa23" category="paragraph">* 최대 IOPS를 사용하여 알 수 없는 VM을 제어하거나 VM을 테스트하는 것을 고려해 보십시오. *</block>
+  <block id="93e4f73afe8b787b33161ec273ca087f" category="paragraph">VASA Provider 7.1에서 처음 사용할 수 있는 Max IOPS를 사용하면 알 수 없는 워크로드를 위해 IOPS를 특정 VVOL으로 제한하여 다른 중요한 워크로드에 미치는 영향을 방지할 수 있습니다. 성능 관리에 대한 자세한 내용은 표 4를 참조하십시오.</block>
+  <block id="bdbd10905a1446f944699405bca52654" category="paragraph">* 충분한 데이터 LIF가 있는지 확인하십시오. *
+HA 쌍당 최소 2개의 LIF를 생성합니다. 작업 부하에 따라 더 많은 작업이 필요할 수 있습니다.</block>
+  <block id="4e0d7e0587bf99c9b7a64a84fd42f6bd" category="paragraph">선택한 프로토콜에 관련된 NetApp 및 VMware의 기타 모범 사례 가이드를 참조하십시오. 일반적으로 이미 언급한 것 이외의 다른 변경 사항은 없습니다.</block>
+  <block id="97f87e9ab1d660463c63beb8745fd9e5" category="paragraph">* NFS v3을 통한 VVol을 사용한 네트워크 구성의 예 *</block>
+  <block id="c80b3cc8b5013bd4039769fb0f783e60" category="paragraph"><block ref="c80b3cc8b5013bd4039769fb0f783e60" category="inline-image-macro-rx" type="image"></block></block>
 </blocks>
