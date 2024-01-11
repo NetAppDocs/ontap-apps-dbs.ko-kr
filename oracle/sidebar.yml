@@ -1,0 +1,198 @@
+---
+section: oracle
+title: Oracle 데이터베이스
+entries:
+- title: 개요
+  url: "/oracle/overview.html"
+- title: ONTAP 구성
+  entries:
+  - title: RAID
+    url: "/oracle/ontap-configuration/raid-oracle.html"
+  - title: 용량 제한
+    url: "/oracle/ontap-configuration/oracle-capacity-limits.html"
+  - title: 스토리지 가상 머신
+    url: "/oracle/ontap-configuration/oracle-svm.html"
+  - title: 서비스 품질(QoS)
+    url: "/oracle/ontap-configuration/oracle-qos.html"
+  - title: 효율성
+    url: "/oracle/ontap-configuration/oracle-efficiency.html"
+  - title: 씬 프로비저닝
+    url: "/oracle/ontap-configuration/oracle-thin-provisioning.html"
+  - title: 페일오버 및 전환
+    url: "/oracle/ontap-configuration/oracle-and-ontap-failover.html"
+- title: 데이터베이스 구성
+  entries:
+  - title: 데이터 파일 및 재실행 블록 크기
+    url: "/oracle/oracle-configuration/oracle-block-sizes.html"
+  - title: db_file_multiblock_read_count입니다
+    url: "/oracle/oracle-configuration/mbr.html"
+  - title: filesystemio_options 를 참조하십시오
+    url: "/oracle/oracle-configuration/filesystemio_options.html"
+  - title: Oracle RAC를 참조하십시오
+    url: "/oracle/oracle-configuration/rac.html"
+- title: 호스트 구성
+  entries:
+  - title: AIX
+    url: "/oracle/host-configuration/aix.html"
+  - title: HP-UX를 참조하십시오
+    url: "/oracle/host-configuration/hp-ux.html"
+  - title: 리눅스
+    url: "/oracle/host-configuration/linux.html"
+  - title: Linux 및 ASMlib 및 AFD를 지원합니다
+    url: "/oracle/host-configuration/asmlib-afd.html"
+  - title: Microsoft Windows
+    url: "/oracle/host-configuration/windows.html"
+  - title: Solaris
+    url: "/oracle/host-configuration/solaris.html"
+- title: 네트워크 구성
+  entries:
+  - title: 논리 인터페이스
+    url: "/oracle/network-configuration/oracle-lif.html"
+  - title: 이더넷 구성
+    url: "/oracle/network-configuration/oracle-ethernet.html"
+  - title: FC SAN 구성
+    url: "/oracle/network-configuration/oracle-fc.html"
+- title: 스토리지 구성
+  entries:
+  - title: FC SAN
+    entries:
+    - title: LUN 정렬
+      url: "/oracle/storage-configuration/oracle-lun-alignment.html"
+    - title: LUN 개수 및 LUN 크기
+      url: "/oracle/storage-configuration/oracle-lun-sizing.html"
+    - title: LUN 크기 조정 중
+      url: "/oracle/storage-configuration/oracle-lun-resizing.html"
+    - title: LVM 스트라이핑
+      url: "/oracle/storage-configuration/oracle-lvm-striping.html"
+  - title: NFS 를 참조하십시오
+    entries:
+    - title: 구성
+      url: "/oracle/storage-configuration/oracle-nfs-configuration.html"
+    - title: Oracle Direct NFS(dNFS)
+      url: "/oracle/storage-configuration/oracle-direct-nfs.html"
+    - title: NFS 리스 및 잠금
+      url: "/oracle/storage-configuration/oracle-leases-and-locks.html"
+    - title: NFS 캐싱
+      url: "/oracle/storage-configuration/oracle-nfs-caching.html"
+    - title: NFS 전송 크기
+      url: "/oracle/storage-configuration/oracle-nfs-transfer-sizes.html"
+  - title: Oracle 및 NVFAIL
+    url: "/oracle/dp/oracle_and_nvfail.html"
+  - title: ASM 재확보 유틸리티
+    url: "/oracle/storage-configuration/asmru.html"
+- title: 포함되었습니다
+  url: "/oracle/virtualization/intro.html"
+- title: 계층화
+  entries:
+  - title: 개요
+    url: "/oracle/tiering/oracle-tiering-overview.html"
+  - title: 계층화 정책
+    entries:
+    - title: 오브젝트 저장소로 데이터를 전송하는 중입니다
+      url: "/oracle/tiering/oracle-tiering-policies.html"
+    - title: 오브젝트 저장소에서 데이터를 검색하는 중입니다
+      url: "/oracle/tiering/oracle-retrieval-policies.html"
+  - title: 계층화 전략
+    entries:
+    - title: 전체 파일
+      url: "/oracle/tiering/oracle-whole-file-tiering.html"
+    - title: 부분 파일
+      url: "/oracle/tiering/oracle-partial-file-tiering.html"
+    - title: 파일을 선택합니다
+      url: "/oracle/tiering/oracle-partial-file-tiering.html"
+    - title: 스냅샷 수
+      url: "/oracle/tiering/snapshots.html"
+    - title: 백업
+      url: "/oracle/tiering/oracle-backup-tiering.html"
+  - title: 오브젝트 저장소 액세스가 중단됩니다
+    url: "/oracle/tiering/oracle-object-store-access-interruptions.html"
+- title: Oracle 데이터 보호
+  entries:
+  - title: 개요
+    url: "/oracle/dp/oracle-data-protection-introduction.html"
+  - title: RPO, TRO 및 SLA
+    url: "/oracle/dp/oracle-data-protection-slas.html"
+  - title: 데이터 가용성
+    url: "/oracle/dp/oracle-data-availability.html"
+  - title: 데이터 무결성
+    url: "/oracle/dp/oracle-data-integrity.html"
+  - title: 백업 및 복구 기본 사항 을 참조하십시오
+    entries:
+    - title: 스냅샷 수
+      url: "/oracle/dp/snapshots.html"
+    - title: SnapRestore
+      url: "/oracle/dp/snaprestore.html"
+    - title: 스냅샷 기반 온라인 백업
+      url: "/oracle/dp/oracle-online-backups.html"
+    - title: 스토리지 스냅샷 최적화된 백업
+      url: "/oracle/dp/oracle-storage-snapshot-optimized-backups.html"
+    - title: SnapCenter 및 기타 도구
+      url: "/oracle/dp/oracle-backup-tools.html"
+- title: Oracle 재해 복구
+  entries:
+  - title: 개요
+    url: "/oracle/dr/oracle-dr-overview.html"
+  - title: MetroCluster
+    entries:
+    - title: 물리적 아키텍처
+      url: "/oracle/dr/metrocluster/oracle-physical-metrocluster.html"
+    - title: 논리적 아키텍처
+      url: "/oracle/dr/metrocluster/oracle-logical-metrocluster.html"
+    - title: SyncMirror
+      url: "/oracle/dr/metrocluster/oracle-and-syncmirror.html"
+    - title: Oracle 페일오버
+      url: "/oracle/dr/metrocluster/oracle-failover-on-metrocluster.html"
+    - title: NVFAIL(* NVFAIL
+      url: "/oracle/dr/metrocluster/oracle-nvfail.html"
+    - title: MetroCluster에 단일 인스턴스
+      url: "/oracle/dr/metrocluster/mcc-si.html"
+    - title: MetroCluster 기반 Oracle RAC
+      url: "/oracle/dr/metrocluster/mcc-rac.html"
+  - title: SnapMirror 비즈니스 연속성
+    entries:
+    - title: 있습니다
+      url: "/oracle/dr/smbc/oracle-smbc-architecture.html"
+    - title: 페일오버
+      url: "/oracle/dr/smbc/oracle-smbc-failover.html"
+    - title: SM-BC에 단일 인스턴스
+      url: "/oracle/dr/smbc/smbc-si.html"
+    - title: SM-BC 기반 Oracle RAC
+      url: "/oracle/dr/smbc/smbc-rac.html"
+    - title: 실패 시나리오
+      url: "/oracle/dr/smbc/oracle-smbc-failure-scenarios.html"
+- title: Oracle 데이터베이스 마이그레이션
+  entries:
+  - title: 개요
+    url: "/oracle/migration/oracle-migration-overview.html"
+  - title: 계획 수립
+    url: "/oracle/migration/oracle-migration-planning.html"
+  - title: 절차를 참조하십시오
+    entries:
+    - title: 개요
+      url: "/oracle/migration/oracle-migration-procedures-overview.html"
+    - title: 데이터 파일 이동
+      url: "/oracle/migration/oracle-datafile-move.html"
+    - title: 로그 전달
+      url: "/oracle/migration/oracle-log-shipping.html"
+    - title: 호스트 데이터 복사
+      url: "/oracle/migration/oracle-host-data-copy.html"
+    - title: 외부 LUN 임포트
+      entries:
+      - title: 계획 수립
+        url: "/oracle/migration/oracle-fli-planning.html"
+      - title: 컷오버
+        url: "/oracle/migration/oracle-fli-cutover.html"
+      - title: 완료
+        url: "/oracle/migration/oracle-fli-completion.html"
+      - title: 프로토콜 변환
+        url: "/oracle/migration/oracle-protocol-conversion.html"
+  - title: 샘플 스크립트
+    url: "/oracle/migration/oracle-migration-sample-scripts.html"
+- title: 추가 참고 사항
+  entries:
+  - title: 성능 최적화 및 벤치마킹
+    url: "/oracle/notes/optimization_and_benchmarking.html"
+  - title: 부실 NFS 잠금입니다
+    url: "/oracle/notes/stale_nfs_locks.html"
+  - title: WAFL 정렬 확인
+    url: "/oracle/notes/wafl_alignment_verification.html"

@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: oracle/dp/overview-dr.html 
+keywords: oracle, database, ontap 
+summary: NetApp ONTAP는 즉각적인 백업, 복원 및 클로닝 기능, 인라인 압축, 무중단 하드웨어 업그레이드, 외부 스토리지 어레이에서 LUN 가져오기 등과 같은 효율성 기능 등 모든 기본 기능을 갖춘 강력한 데이터 관리 플랫폼입니다. 
+---
+= Oracle 재해 복구
+:allow-uri-read: 
+
+
+[role="lead"]
+NetApp MetroCluster는 미션 크리티컬 Oracle 워크로드에 대해 데이터 손실이 없는 고가용성 솔루션을 제공합니다.
+
+또한 MetroCluster와 같은 통합 솔루션은 오늘날의 복잡한 스케일 아웃 Oracle 데이터베이스, 애플리케이션 및 가상화 인프라를 단순화합니다. MetroCluster는 여러 외부 데이터 보호 제품 및 전략을 하나의 단순한 중앙 스토리지 어레이로 대체합니다. 단일 클러스터 스토리지 시스템 내에서 통합 백업, 복구, 재해 복구 및 고가용성(HA)을 제공합니다.
+
+
+NOTE: 이 문서는 이전에 게시된 기술 보고서_TR-4592: MetroCluster 기반 Oracle._ 을(를) 대체합니다

@@ -1,0 +1,47 @@
+---
+sidebar: sidebar 
+permalink: mysql/configuration.html 
+keywords: MySQL,MariaDB 
+summary: MySQL 구성 
+---
+= 구성 개요
+:allow-uri-read: 
+
+
+[role="lead"]
+NetApp은 최적의 성능을 얻기 위해 몇 가지 중요한 MySQL 구성 매개 변수(표 1 참조)를 권장합니다.
+
+[cols="1,1"]
+|===
+
+
+| 매개 변수 | 값 
+
+
+| InnoDB_log_file_size입니다 | 256M 
+
+
+| InnoDB_flush_log_at_TRx_commit입니다 | 2 
+
+
+| inoDB_doublewrite입니다 | 0 
+
+
+| InnoDB_flush_method 를 참조하십시오 | fsync를 참조하십시오 
+
+
+| InnoDB_buffer_pool_size입니다 | 11g 
+
+
+| InnoDB_IO_capacity의 약어입니다 | 8192 
+
+
+| InnoDB_buffer_pool_instances입니다 | 8 
+
+
+| InnoDB_LRU_scan_depth 를 선택합니다 | 8192 
+
+
+| open_file_limit를 선택합니다 | 65535 
+|===
+이 섹션에 설명된 매개 변수를 설정하려면 MySQL 구성 파일(my.cnf)에서 변경해야 합니다. NetApp 모범 사례는 사내에서 수행된 테스트의 결과입니다.

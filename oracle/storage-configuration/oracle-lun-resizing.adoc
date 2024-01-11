@@ -1,0 +1,23 @@
+---
+sidebar: sidebar 
+permalink: oracle/storage-configuration/oracle-lun-resizing.html 
+keywords: SAN, ASM, LVM 
+summary: Oracle 데이터베이스를 사용한 LUN 및 LVM 크기 조정 
+---
+= LUN 리사이징과 LVM 기반 리사이징
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+SAN 기반 파일 시스템이 용량 제한에 도달하면 사용 가능한 공간을 늘리기 위한 두 가지 옵션이 있습니다.
+
+* LUN의 크기를 늘립니다.
+* 기존 볼륨 그룹에 LUN을 추가하고 포함된 논리적 볼륨을 늘립니다.
+
+
+LUN 리사이징이 용량을 증대하는 옵션이기는 하지만 Oracle ASM을 포함한 LVM을 사용하는 것이 대체로 더 낫습니다. LVM이 존재하는 주된 이유 중 하나는 LUN 리사이징이 필요하지 않도록 하는 것입니다. LVM은 여러 개의 LUN을 스토리지 가상 풀에 함께 바인딩합니다. 이 풀에서 생성된 논리적 볼륨은 LVM이 관리하며 쉽게 리사이징할 수 있습니다. 이 외에도 특정 논리적 볼륨을 가용 LUN 전반에 분산하여 특정 드라이브의 핫스폿을 피할 수 있다는 이점이 있습니다. 일반적으로 볼륨 관리자를 사용하여 투명한 마이그레이션을 수행함으로써 논리적 볼륨의 기본 익스텐트를 새 LUN에 재배치할 수 있습니다.

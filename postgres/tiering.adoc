@@ -1,0 +1,12 @@
+---
+permalink: postgres/tiering.html 
+sidebar: sidebar 
+keywords: storage, tiering, fabricpool 
+summary: FabricPool 개요 
+---
+= 계층화
+:allow-uri-read: 
+
+
+[role="lead"]
+FabricPool 계층화가 애플리케이션과 데이터베이스에 미치는 영향을 이해하려면 낮은 수준의 FabricPool 아키텍처에 대한 이해가 필요합니다.

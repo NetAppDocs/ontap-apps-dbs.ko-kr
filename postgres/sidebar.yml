@@ -1,0 +1,32 @@
+---
+section: postgres
+title: PostgreSQL
+entries:
+- title: 개요
+  url: "/postgres/overview.html"
+- title: ONTAP 구성
+  url: "/postgres/ontap.html"
+- title: 데이터베이스 구성
+  entries:
+  - title: 있습니다
+    url: "/postgres/architecture.html"
+  - title: 초기화
+    url: "/postgres/initialization.html"
+  - title: 설정
+    url: "/postgres/db-config.html"
+  - title: 테이블스페이스
+    url: "/postgres/tablespaces.html"
+- title: 스토리지 구성
+  entries:
+  - title: 파일 시스템 구성
+    url: "/postgres/filesystems.html"
+  - title: 계층화
+    url: "/postgres/tiering.html"
+- title: 데이터 보호
+  entries:
+  - title: 네이티브 데이터 보호
+    url: "/postgres/native-dp.html"
+  - title: 스냅샷 기술
+    url: "/postgres/snapshot-dp.html"
+  - title: 데이터 보호 소프트웨어
+    url: "/postgres/snapcenter-dp.html"

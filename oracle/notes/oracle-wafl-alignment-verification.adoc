@@ -1,0 +1,203 @@
+---
+sidebar: sidebar 
+permalink: oracle/notes/oracle-wafl-alignment-verification.html 
+keywords: oracle, database, ontap, wafl, alignment 
+summary: Oracle 데이터베이스에 대한 WAFL 조정 
+---
+= Oracle 데이터베이스에 대한 WAFL 정렬 검증
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+올바른 WAFL 정렬은 우수한 성능을 얻는 데 매우 중요합니다. ONTAP이 4KB 유닛의 블록을 관리하기는 하나 ONTAP 4KB 유닛의 모든 작업을 수행하는 것은 아닙니다. 실제로 ONTAP은 다양한 크기의 블록 작업을 지원하지만 기본 계산은 4KB 유닛의 WAFL이 관리합니다.
+
+'정렬'이라는 용어는 Oracle I/O가 이러한 4KB 유닛에 대응하는 방식을 의미합니다. 최적의 성능을 얻으려면 Oracle 8KB 블록이 드라이브의 4KB WAFL 물리적 블록 2개에 상주해야 합니다. 블록이 2KB로 오프셋되면 이 블록은 4KB 블록 1개의 절반에 상주하며, 별도의 4KB 블록 전체 그리고 4KB 블록 1/3의 절반에 상주합니다. 이 방식은 성능 저하를 초래합니다.
+
+NAS 파일 시스템에서는 정렬이 문제가 되지 않습니다. Oracle 데이터 파일은 Oracle 블록 크기에 기반을 둔 파일의 시작에 맞춰 정렬됩니다. 따라서 블록 크기 8KB, 16KB, 32KB가 항상 정렬됩니다. 모든 블록 작업은 4킬로바이트 유닛에서 파일의 시작으로부터 오프셋됩니다.
+
+이와 반대로, LUN의 경우 일반적으로 오프셋을 생성하는 일종의 드라이버 헤더 또는 파일 시스템 메타데이터가 시작 부분에 포함되어 있습니다. 최신 운영 체제는 기본 4KB 섹터를 사용할 수 있는 물리적 드라이브를 위해 설계되었기 때문에 정렬이 문제가 되는 경우는 드물며, 여기서도 최적의 성능을 위해서는 I/O를 4KB 경계에 맞춰 정렬해야 합니다.
+
+그러나 몇 가지 예외가 있습니다. 데이터베이스가 4KB I/O에 최적화되지 않은 기존 운영 체제에서 마이그레이션되었을 수도 있고, 파티션이 생성될 때 사용자 오류에 의해 4KB 크기의 유닛이 아닌 오프셋이 발생했을 수도 있습니다.
+
+다음 예는 Linux에만 해당되며 모든 운영 체제에 맞게 절차를 조정할 수 있습니다.
+
+
+
+== 정렬
+
+다음 예는 단일 파티션의 단일 LUN에서의 정렬 점검을 보여줍니다.
+
+먼저 드라이브에서 사용 가능한 모든 파티션을 사용하는 파티션을 만듭니다.
+
+....
+[root@host0 iscsi]# fdisk /dev/sdb
+Device contains neither a valid DOS partition table, nor Sun, SGI or OSF disklabel
+Building a new DOS disklabel with disk identifier 0xb97f94c1.
+Changes will remain in memory only, until you decide to write them.
+After that, of course, the previous content won't be recoverable.
+The device presents a logical sector size that is smaller than
+the physical sector size. Aligning to a physical sector (or optimal
+I/O) size boundary is recommended, or performance may be impacted.
+Command (m for help): n
+Command action
+   e   extended
+   p   primary partition (1-4)
+p
+Partition number (1-4): 1
+First cylinder (1-10240, default 1):
+Using default value 1
+Last cylinder, +cylinders or +size{K,M,G} (1-10240, default 10240):
+Using default value 10240
+Command (m for help): w
+The partition table has been altered!
+Calling ioctl() to re-read partition table.
+Syncing disks.
+[root@host0 iscsi]#
+....
+다음 명령을 사용하여 정렬을 수학적으로 점검할 수 있습니다.
+
+....
+[root@host0 iscsi]# fdisk -u -l /dev/sdb
+Disk /dev/sdb: 10.7 GB, 10737418240 bytes
+64 heads, 32 sectors/track, 10240 cylinders, total 20971520 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 65536 bytes
+Disk identifier: 0xb97f94c1
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdb1              32    20971519    10485744   83  Linux
+....
+출력은 유닛이 512바이트이고 파티션의 시작이 32유닛이라는 것을 보여줍니다. 전체 32 x 512 = 16,834바이트이며 이는 모두 4KB WAFL 블록의 배수입니다. 이 파티션은 올바르게 정렬되었습니다.
+
+올바른 정렬을 확인하려면 다음 단계를 완료하십시오.
+
+. LUN의 UUID(Universally Unique Identifier)를 식별합니다.
++
+....
+FAS8040SAP::> lun show -v /vol/jfs_luns/lun0
+              Vserver Name: jfs
+                  LUN UUID: ed95d953-1560-4f74-9006-85b352f58fcd
+                    Mapped: mapped`                `
+....
+. ONTAP 컨트롤러의 노드 쉘에 들어갑니다.
++
+....
+FAS8040SAP::> node run -node FAS8040SAP-02
+Type 'exit' or 'Ctrl-D' to return to the CLI
+FAS8040SAP-02> set advanced
+set not found.  Type '?' for a list of commands
+FAS8040SAP-02> priv set advanced
+Warning: These advanced commands are potentially dangerous; use
+         them only when directed to do so by NetApp
+         personnel.
+....
+. 첫 번째 단계에서 식별된 타겟 UUID의 통계적 수집을 시작합니다.
++
+....
+FAS8040SAP-02*> stats start lun:ed95d953-1560-4f74-9006-85b352f58fcd
+Stats identifier name is 'Ind0xffffff08b9536188'
+FAS8040SAP-02*>
+....
+. 몇 가지 I/O를 수행합니다 를 사용하는 것이 중요합니다 `iflag` 동기식이고 버퍼링되지 않도록 하는 인수입니다.
++
+
+NOTE: 이 명령을 사용할 때는 매우 주의해야 합니다. 의 후진 `if` 및 `of` 인수가 데이터를 삭제합니다.
+
++
+....
+[root@host0 iscsi]# dd if=/dev/sdb1 of=/dev/null iflag=dsync count=1000 bs=4096
+1000+0 records in
+1000+0 records out
+4096000 bytes (4.1 MB) copied, 0.0186706 s, 219 MB/s
+....
+. 통계를 정지하고 정렬 히스토그램을 확인합니다. 모든 I/O는 에 있어야 합니다 `.0` 버킷: I/O가 4KB 블록 경계에 맞춰 정렬되었음을 나타냅니다.
++
+....
+FAS8040SAP-02*> stats stop
+StatisticsID: Ind0xffffff08b9536188
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:instance_uuid:ed95d953-1560-4f74-9006-85b352f58fcd
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:read_align_histo.0:186%
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:read_align_histo.1:0%
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:read_align_histo.2:0%
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:read_align_histo.3:0%
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:read_align_histo.4:0%
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:read_align_histo.5:0%
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:read_align_histo.6:0%
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:read_align_histo.7:0%
+....
+
+
+
+
+== 잘못 정렬됨
+
+다음 예는 잘못 정렬된 I/O를 보여줍니다.
+
+. 4KB 경계에 맞춰 정렬되지 않은 파티션을 생성합니다. 최신 운영 체제에서 이는 기본 동작이 아닙니다.
++
+....
+[root@host0 iscsi]# fdisk -u /dev/sdb
+Command (m for help): n
+Command action
+   e   extended
+   p   primary partition (1-4)
+p
+Partition number (1-4): 1
+First sector (32-20971519, default 32): 33
+Last sector, +sectors or +size{K,M,G} (33-20971519, default 20971519):
+Using default value 20971519
+Command (m for help): w
+The partition table has been altered!
+Calling ioctl() to re-read partition table.
+Syncing disks.
+....
+. 파티션이 기본값 32섹터 대신 33섹터 오프셋으로 생성되었습니다. 에 설명된 절차를 반복합니다 link:./oracle-wafl-alignment-verification.html#aligned["정렬"]. 히스토그램은 다음과 같이 나타납니다.
++
+....
+FAS8040SAP-02*> stats stop
+StatisticsID: Ind0xffffff0468242e78
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:instance_uuid:ed95d953-1560-4f74-9006-85b352f58fcd
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:read_align_histo.0:0%
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:read_align_histo.1:136%
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:read_align_histo.2:4%
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:read_align_histo.3:0%
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:read_align_histo.4:0%
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:read_align_histo.5:0%
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:read_align_histo.6:0%
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:read_align_histo.7:0%
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:read_partial_blocks:31%
+....
++
+명확히 정렬 불량입니다. I/O는 대부분 * 에 속합니다 *`.1` 버킷 - 예상 오프셋과 일치합니다. 파티션이 생성되었을 때 최적화된 기본값보다 장치로 512바이트 더 멀리 이동했으며 이는 히스토그램이 512바이트로 오프셋된다는 뜻입니다.
+
++
+또한 `read_partial_blocks` 통계는 0이 아닙니다. 즉, I/O가 수행되었지만 4KB 블록 전체를 채우지는 않았습니다.
+
+
+
+
+
+== 로깅 재실행
+
+여기에 설명된 절차는 데이터 파일에 적용할 수 있습니다. Oracle 재실행 로그와 아카이브 로그는 I/O 패턴이 다릅니다. 예를 들어, 로깅 재실행은 단일 파일의 순환 덮어쓰기입니다. 기본값인 512바이트 블록 크기가 사용되는 경우 쓰기 통계는 다음과 같습니다.
+
+....
+FAS8040SAP-02*> stats stop
+StatisticsID: Ind0xffffff0468242e78
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:instance_uuid:ed95d953-1560-4f74-9006-85b352f58fcd
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:write_align_histo.0:12%
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:write_align_histo.1:8%
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:write_align_histo.2:4%
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:write_align_histo.3:10%
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:write_align_histo.4:13%
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:write_align_histo.5:6%
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:write_align_histo.6:8%
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:write_align_histo.7:10%
+lun:ed95d953-1560-4f74-9006-85b352f58fcd:write_partial_blocks:85%
+....
+I/O가 모든 히스토그램 버킷 전체에 분산되나 이것으로 인해 성능이 저하되지는 않습니다. 하지만 로깅 재실행 속도가 매우 높다면 4KB 블록 크기를 사용하여 이점을 얻을 수 있습니다. 이 경우에는 로깅 재실행 LUN이 제대로 정렬되었는지 확인하는 것이 좋습니다. 그러나 데이터 파일 정렬에서처럼 우수한 성능을 얻는 데 있어 이 작업이 반드시 필요한 것은 아닙니다.

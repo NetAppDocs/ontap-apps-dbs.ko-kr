@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: oracle/tiering/oracle-backup-tiering.html 
+keywords: tiering, fabricpool 
+summary: Oracle 백업 계층화 
+---
+= Oracle 백업 계층화
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+기존 애플리케이션 백업에는 원래 데이터베이스의 위치 외부에서 파일 기반 백업을 생성하는 Oracle Recovery Manager 같은 제품이 포함됩니다.
+
+ `tiering-minimum-cooling-days` policy of a few days preserves the most recent backups, and therefore the backups most likely to be required for an urgent recovery situation, on the performance tier. The data blocks of the older files are then moved to the capacity tier.
+를 클릭합니다 `auto` 정책은 백업 데이터에 가장 적합한 정책입니다. 이렇게 하면 파일이 삭제되었거나 운영 파일 시스템에 계속 존재하는지에 관계없이 냉각 임계값에 도달한 경우 프롬프트 계층화가 보장됩니다. 액티브 파일 시스템의 한 위치에 잠재적으로 필요한 모든 파일을 저장하면 관리가 간편해집니다. 복원해야 하는 파일을 찾기 위해 스냅샷을 검색할 이유가 없습니다.
+
+를 클릭합니다 `snapshot-only` 정책을 적용할 수 있지만 이 정책은 더 이상 액티브 파일 시스템에 없는 블록에만 적용됩니다. 따라서 데이터를 계층화하기 전에 NFS 또는 SMB 공유의 파일을 먼저 삭제해야 합니다.
+
+LUN에서 파일을 삭제하면 파일 시스템 메타데이터에서 파일 참조만 제거되기 때문에 이 정책은 LUN 구성에서는 훨씬 효율적입니다. LUN의 실제 블록은 덮어쓸 때까지 그대로 유지됩니다. 이 경우 파일이 삭제된 시간과 블록이 덮어써지고 계층화 대상이 되는 시간 사이에 긴 지연이 발생할 수 있습니다. 을(를) 옮기면 몇 가지 이점이 있습니다 `snapshot-only` 블록을 용량 계층으로 이동하지만 백업 데이터의 FabricPool 관리는 에서 가장 잘 작동합니다 `auto` 정책.
+
+
+NOTE: 이러한 접근 방식은 사용자가 백업에 필요한 공간을 보다 효율적으로 관리하는 데 도움이 되지만 FabricPool 자체는 백업 기술이 아닙니다. 백업 파일을 오브젝트 저장소로 계층화하면 파일이 원래 스토리지 시스템에 계속 표시되지만 오브젝트 저장소 대상의 데이터 블록은 원본 스토리지 시스템에 따라 다르므로 관리가 간소화됩니다. 소스 볼륨이 손실되면 오브젝트 저장소 데이터를 더 이상 사용할 수 없습니다.

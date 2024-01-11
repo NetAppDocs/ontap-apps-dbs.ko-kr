@@ -1,0 +1,121 @@
+---
+sidebar: sidebar 
+permalink: mssql/Memoryconfiguration.html 
+keywords: MS-SQL,mssql,SQL Server 
+summary: ONTAP 기반 Microsoft SQL Server 
+---
+= Microsoft SQL Server 메모리 구성
+:allow-uri-read: 
+:firstname: [.lead]
+:author: [.lead]
+:authorinitials: [
+:authors: [.lead]
+
+
+
+
+== 최대 서버 메모리
+
+최대 서버 메모리 옵션은 SQL Server 인스턴스가 사용할 수 있는 최대 메모리 양을 설정합니다.
+
+일반적으로 SQL Server가 실행 중인 동일한 서버에서 여러 응용 프로그램이 실행되고 있고 이러한 응용 프로그램이 제대로 작동할 수 있는 충분한 메모리를 확보하려는 경우에 사용됩니다.
+
+일부 응용 프로그램은 시작할 때 사용 가능한 메모리만 사용하고 필요한 경우에도 더 이상 요청하지 않습니다. 최대 서버 메모리 설정이 재생되는 위치입니다.
+
+SQL Server 인스턴스가 여러 개 있는 SQL Server 클러스터에서 각 인스턴스가 리소스를 놓고 경쟁할 수 있습니다. 각 SQL Server 인스턴스에 대한 메모리 제한을 설정하면 각 인스턴스에 대해 최상의 성능을 보장할 수 있습니다.
+
+
+TIP: *NetApp는 성능 문제를 방지하기 위해 운영 체제에 최소 4GB~6GB의 RAM을 남겨 둘 것을 권장합니다.
+
+image:./media/max-server-memory.png["오류: 그래픽 이미지가 없습니다"]
+
+
+
+=== SQL Server Management Studio를 사용하여 최소 및 최대 서버 메모리 조정
+
+SQL Server Management Studio를 사용하여 최소 또는 최대 서버 메모리를 조정하려면 SQL Server 서비스를 다시 시작해야 합니다. 다음 코드를 사용하여 Transact SQL(T-SQL)을 사용하여 서버 메모리를 조정할 수 있습니다.
+
+....
+EXECUTE sp_configure 'show advanced options', 1
+
+GO
+
+EXECUTE sp_configure 'min server memory (MB)', 2048
+
+GO
+
+EXEC sp_configure 'max server memory (MB)', 120832
+
+GO
+
+RECONFIGURE WITH OVERRIDE
+....
+
+
+== 비균일 메모리 액세스
+
+NUMA(Uniform Memory Access)는 프로세서 버스의 부하를 늘리지 않고 프로세서 속도를 높이는 메모리 액세스 최적화 방법입니다.
+
+NUMA가 SQL Server가 설치된 서버에 구성되어 있는 경우 SQL Server가 NUMA를 인식하며 NUMA 하드웨어에서 잘 수행되므로 추가 구성이 필요하지 않습니다.
+
+
+
+== 인덱스가 메모리를 만듭니다
+
+색인 메모리 만들기 옵션은 일반적으로 변경하지 말아야 하는 또 다른 고급 옵션입니다.
+
+인덱스 생성을 위해 처음에 할당된 최대 RAM 양을 제어합니다. 이 옵션의 기본값은 0입니다. 즉, 이 옵션은 SQL Server에서 자동으로 관리됩니다. 그러나 인덱스를 만드는 데 문제가 발생하면 이 옵션의 값을 늘리는 것이 좋습니다.
+
+
+
+== 쿼리당 최소 메모리
+
+쿼리가 실행되면 SQL Server는 효율적으로 실행되도록 최적의 메모리 양을 할당하려고 합니다.
+
+기본적으로 쿼리당 최소 메모리 설정은 실행할 각 쿼리에 대해 > 또는 =를 1024KB를 할당합니다. SQL Server에서 인덱스 생성 작업에 할당된 메모리 양을 동적으로 관리할 수 있도록 이 설정을 기본값 0으로 유지하는 것이 가장 좋습니다. 그러나 SQL Server의 RAM이 효율적으로 실행하는 데 필요한 것보다 많은 경우 이 설정을 높이면 일부 쿼리의 성능이 향상될 수 있습니다. 따라서 SQL Server, 다른 응용 프로그램 또는 운영 체제에서 사용하지 않는 서버에서 메모리를 사용할 수 있는 한 이 설정을 높이면 SQL Server의 전반적인 성능이 향상될 수 있습니다. 사용 가능한 메모리가 없는 경우 이 설정을 늘리면 전체 성능이 저하될 수 있습니다.
+
+image:./media/min-memory-per-query.png["오류: 그래픽 이미지가 없습니다"]
+
+
+
+== 버퍼 풀 확장
+
+버퍼 풀 확장을 통해 NVRAM 확장을 데이터베이스 엔진 버퍼 풀과 원활하게 통합하여 I/O 처리량을 크게 향상합니다.
+
+일부 SQL Server 버전에서는 버퍼 풀 확장을 사용할 수 없습니다. 64비트 SQL Server Standard, Business Intelligence 및 Enterprise 버전에서만 사용할 수 있습니다.
+
+버퍼 풀 확장 기능은 비휘발성 스토리지(일반적으로 SSD)를 통해 버퍼 풀 캐시를 확장합니다. 확장 기능을 통해 버퍼 풀이 더 큰 데이터베이스 작업 세트를 수용하여 RAM과 SSD 간의 입출력 페이징을 수행하고 소규모 랜덤 I/O를 기계 디스크에서 SSD로 효과적으로 오프로드할 수 있습니다. SSD의 지연 시간이 짧고 랜덤 I/O 성능이 뛰어남 때문에 버퍼 풀 확장을 통해 I/O 처리량을 크게 높일 수 있습니다.
+
+버퍼 풀 확장 기능은 다음과 같은 이점을 제공합니다.
+
+* 랜덤 I/O 처리량 향상
+* I/O 지연 시간 단축
+* 트랜잭션 처리량 향상
+* 더 큰 하이브리드 버퍼 풀로 읽기 성능 개선
+* 기존 및 향후 저비용 메모리를 활용할 수 있는 캐싱 아키텍처입니다
+
+
+[TIP]
+====
+* NetApp는 * 버퍼 풀 확장을 다음과 같이 구성할 것을 권장합니다.
+
+* SSD 지원 LUN(예: NetApp AFF)이 버퍼 풀 확장 대상 디스크로 사용될 수 있도록 SQL Server 호스트에 제공되는지 확인합니다.
+* 확장 파일은 버퍼 풀과 크기가 같거나 커야 합니다.
+
+
+====
+다음 예에서는 버퍼 풀 확장을 32GB로 설정하기 위한 T-SQL 명령을 보여 줍니다.
+
+....
+USE master
+
+GO
+
+ALTER SERVER CONFIGURATION
+
+SET BUFFER POOL EXTENSION ON
+
+  (FILENAME = ‘P:\BUFFER POOL EXTENSION\SQLServerCache.BUFFER POOL EXTENSION', SIZE = 32 GB);
+
+GO
+....

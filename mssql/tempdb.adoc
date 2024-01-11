@@ -1,0 +1,67 @@
+---
+sidebar: sidebar 
+permalink: mssql/tempdb.html 
+keywords: MS-SQL,mssql,SQL Server 
+summary: ONTAP 기반 Microsoft SQL Server 
+---
+= Microsoft SQL Server tempdb 파일
+:allow-uri-read: 
+
+
+[role="lead"]
+NetApp에서는 디스크 조각화를 방지하기 위해 tempdb 파일을 전체 크기로 미리 확장하는 것이 좋습니다.
+
+페이지 경합은 SQL Server가 새 개체를 할당하기 위해 특수 시스템 페이지에 써야 하는 경우 전역 할당 맵(GAM), 공유 전역 할당 맵(SGAM) 또는 페이지 사용 가능 공간(PFS) 페이지에서 발생할 수 있습니다. 래치는 이러한 페이지를 메모리에서 보호(잠금)합니다. 사용 중인 SQL Server 인스턴스의 경우 tempdb의 시스템 페이지에 래치가 표시되는 데 시간이 오래 걸릴 수 있습니다. 이로 인해 쿼리 실행 시간이 느려지며 래치 경합이라고 합니다. tempdb 데이터 파일을 생성하는 방법은 다음 Best Practice를 참조하십시오.
+
+* 또는 = 8코어: tempdb 데이터 파일 = 코어 수입니다
+* 8코어 이상의 경우: 8tempdb 데이터 파일
+
+
+다음 예제 스크립트는 tempdb 파일 8개를 생성하고 tempdb를 마운트 지점으로 이동하여 tempdb를 수정합니다 `C:\MSSQL\tempdb` SQL Server 2012 이상
+
+....
+use master
+
+go
+
+-- Change logical tempdb file name first since SQL Server shipped with logical file name called tempdev
+
+alter database tempdb modify file (name = 'tempdev', newname = 'tempdev01');
+
+
+
+-- Change location of tempdev01 and log file
+
+alter database tempdb modify file (name = 'tempdev01', filename = 'C:\MSSQL\tempdb\tempdev01.mdf');
+
+alter database tempdb modify file (name = 'templog', filename = 'C:\MSSQL\tempdb\templog.ldf');
+
+GO
+
+-- Assign proper size for tempdev01
+
+ALTER DATABASE [tempdb] MODIFY FILE ( NAME = N'tempdev01', SIZE = 10GB );
+
+ALTER DATABASE [tempdb] MODIFY FILE ( NAME = N'templog', SIZE = 10GB );
+
+GO
+
+-- Add more tempdb files
+
+ALTER DATABASE [tempdb] ADD FILE ( NAME = N'tempdev02', FILENAME = N'C:\MSSQL\tempdb\tempdev02.ndf' , SIZE = 10GB , FILEGROWTH = 10%);
+
+ALTER DATABASE [tempdb] ADD FILE ( NAME = N'tempdev03', FILENAME = N'C:\MSSQL\tempdb\tempdev03.ndf' , SIZE = 10GB , FILEGROWTH = 10%);
+
+ALTER DATABASE [tempdb] ADD FILE ( NAME = N'tempdev04', FILENAME = N'C:\MSSQL\tempdb\tempdev04.ndf' , SIZE = 10GB , FILEGROWTH = 10%);
+
+ALTER DATABASE [tempdb] ADD FILE ( NAME = N'tempdev05', FILENAME = N'C:\MSSQL\tempdb\tempdev05.ndf' , SIZE = 10GB , FILEGROWTH = 10%);
+
+ALTER DATABASE [tempdb] ADD FILE ( NAME = N'tempdev06', FILENAME = N'C:\MSSQL\tempdb\tempdev06.ndf' , SIZE = 10GB , FILEGROWTH = 10%);
+
+ALTER DATABASE [tempdb] ADD FILE ( NAME = N'tempdev07', FILENAME = N'C:\MSSQL\tempdb\tempdev07.ndf' , SIZE = 10GB , FILEGROWTH = 10%);
+
+ALTER DATABASE [tempdb] ADD FILE ( NAME = N'tempdev08', FILENAME = N'C:\MSSQL\tempdb\tempdev08.ndf' , SIZE = 10GB , FILEGROWTH = 10%);
+
+GO
+....
+SQL Server 2016부터 운영 체제에 표시되는 CPU 코어 수가 설치 중에 자동으로 감지되며, 이 수에 따라 SQL Server는 최적의 성능을 위해 필요한 tempdb 파일 수를 계산 및 구성합니다.

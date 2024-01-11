@@ -1,0 +1,31 @@
+---
+sidebar: sidebar 
+permalink: mysql/slot-tables.html 
+keywords: MySQL,MariaDB,TR-4722 
+summary: ONTAP 기반 MySQL 
+---
+= 슬롯 테이블
+:allow-uri-read: 
+
+
+[role="lead"]
+Linux에서 NFS 성능은 라는 매개 변수에 달려 있습니다 `tcp_max_slot_table_entries`.
+
+이 매개 변수는 Linux 운영 체제에서 허용되는 최대 NFS 작업의 수를 규제합니다.
+
+RH5 및 OL5를 포함한 대다수 2.6-파생 커널의 기본값은 16입니다. 그러나 이 기본값은 성능 문제를 자주 발생시킵니다. 반대의 문제는 이 있는 최신 커널에서 발생합니다 `tcp_max_slot_table_entries` 값은 기본적으로 65536이며 과도한 요청으로 인해 시스템에 홍수로 인해 스토리지 문제가 발생할 수 있습니다. RHEL 7 및 RHEL 8의 기본값은 65536입니다. 해결책은 이 값을 통계적으로 설정하는 것입니다. MySQL 데이터베이스와 함께 NetApp NFS 스토리지를 사용하는 모든 Linux 운영 체제에 128의 값을 사용하십시오. Red Hat Enterprise Linux에서 이 값을 설정하려면 /etc/sysctl.conf에 다음 항목을 넣으십시오.
+
+설정 `tcp_max_slot_table_entries`:
+
+....
+[root@host1 ~]# echo "sunrpc.tcp_max_slot_table_entries = 128" >> /etc/sysctl.conf
+[root@host1 ~]# sysctl -p
+....
+값이 설정되었는지 확인합니다.
+
+....
+[root@host1 ~]# sysctl sunrpc.tcp_max_slot_table_entries
+sunrpc.tcp_max_slot_table_entries = 128
+....
+
+NOTE: 매우 유사한 이름의 다른 매개 변수가 있습니다 `tcp_slot_table_entries`. 이 값은 처음 설정할 때 TCP 세션에 할당되는 슬롯 수를 정의합니다. 이 값은 수정할 필요가 없습니다.

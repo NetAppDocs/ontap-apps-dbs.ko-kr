@@ -1,0 +1,36 @@
+---
+sidebar: sidebar 
+permalink: vmware/srm/appendix_a__troubleshooting_srm_when_using_vvols_replication.html 
+keywords: vmware, site, recovery manager, vsrm, hybrid, cloud, srm, vvols, replication 
+summary: SRA 및 기존 데이터스토어에 사용되는 것과 VVol 복제를 사용할 때는 SRM 내 워크플로우가 크게 다릅니다. 
+---
+= VVOL 복제 사용 시 SRM 문제 해결
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+SRA 및 기존 데이터스토어에 사용되는 것과 VVol 복제를 사용할 때는 SRM 내 워크플로우가 크게 다릅니다. 예를 들어, 어레이 관리자 개념은 없습니다. 따라서, `discoverarrays` 및 `discoverdevices` 명령은 표시되지 않습니다.
+
+문제 해결 시 아래 나열된 새 워크플로를 이해하는 것이 좋습니다.
+
+. queryReplicationPeer: 두 오류 도메인 간의 복제 계약을 검색합니다.
+. queryFaultDomain: 오류 도메인 계층을 검색합니다.
+. queryReplicationGroup: 소스 또는 타겟 도메인에 있는 복제 그룹을 검색합니다.
+. SyncReplicationGroup: 소스와 대상 간의 데이터를 동기화합니다.
+. queryPointInTimeReplica: 타겟의 시점 복제본을 검색합니다.
+. testFailoverReplicationGroupStart: 테스트 대체 작동을 시작합니다.
+. testFailoverReplicationGroupStop: 테스트 대체 작동을 종료합니다.
+. PromoteReplicationGroup: 현재 테스트 중인 그룹을 프로덕션 환경으로 승격합니다.
+. prepareFailoverReplicationGroup: 재해 복구를 준비합니다.
+. failoverReplicationGroup: 재해 복구를 실행합니다.
+. reverseReplicateGroup: 역방향 복제를 시작합니다.
+. queryMatchingContainer: 지정된 정책으로 프로비저닝 요청을 충족할 수 있는 컨테이너(호스트 또는 복제 그룹과 함께)를 찾습니다.
+. queryResourceMetadata: VASA 공급자에서 모든 리소스의 메타데이터를 검색하며 리소스 사용률을 queryMatchingContainer 함수에 대한 응답으로 반환할 수 있습니다.
+
+
+VVOL 복제 구성 시 가장 일반적인 오류는 SnapMirror 관계를 검색하지 못하는 것입니다. 이 문제는 볼륨 및 SnapMirror 관계가 ONTAP 도구 모음 외부에서 생성되기 때문에 발생합니다. 따라서 항상 SnapMirror 관계가 완전히 초기화되었는지, 그리고 복제된 VVol 데이터 저장소를 생성하기 전에 두 사이트의 ONTAP 도구에서 재검색을 실행하는 것이 좋습니다.

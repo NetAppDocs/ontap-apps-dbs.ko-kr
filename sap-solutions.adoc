@@ -1,0 +1,19 @@
+---
+sidebar: sidebar 
+permalink: sap-solutions.html 
+keywords: sap,hana,anydb 
+summary: SAP HANA 및 AnyDB용 솔루션 
+---
+= SAP HANA 및 SAP with AnyDB
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+SAP 솔루션의 구성, 관리 및 자동화에 대한 Best Practice는 NetApp SAP 솔루션 페이지에서 확인할 수 있습니다.
+
+을 클릭하십시오 link:https://docs.netapp.com/us-en/netapp-solutions-sap/["여기"] 더 보기.

@@ -1,0 +1,33 @@
+---
+sidebar: sidebar 
+permalink: vmware/vsphere/sdrs.html 
+keywords: Data protection, Space reclamation, VM and datastore cloning, Storage efficiency, thin provisioning, QoS, SIOC, Storage Distributed Resource Scheduler, DRS, Active IQ Unified Manager, Encryption 
+summary: SnapCenter를 사용하면 여러 작업에 적용할 수 있는 백업 정책을 생성할 수 있습니다. 이러한 정책은 스케줄, 보존, 복제 및 기타 기능을 정의할 수 있습니다. 또한 VM 정합성 보장 스냅샷의 선택 옵션을 계속 허용하므로 VMware 스냅샷을 생성하기 전에 하이퍼바이저의 입출력 중지 기능을 활용할 수 있습니다. 
+---
+= VMware 스토리지 분산 리소스 스케줄러입니다
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+VMware SDRS(Storage Distributed Resource Scheduler)는 현재 입출력 지연 시간 및 공간 사용량을 기반으로 스토리지에 VM을 배치하는 vSphere 기능입니다.
+
+그런 다음 데이터 저장소 클러스터(Pod라고도 함)의 데이터 저장소 간에 VM 또는 VMDK를 중단 없이 이동하여 VM 또는 VMDK를 데이터 저장소 클러스터에 배치할 최상의 데이터 저장소를 선택합니다. 데이터 저장소 클러스터는 vSphere 관리자의 관점에서 단일 사용 단위로 집계되는 유사한 데이터 저장소의 모음입니다.
+
+SDRS를 VMware vSphere용 NetApp ONTAP 툴과 함께 사용하는 경우 먼저 플러그인을 사용하여 데이터 저장소를 생성한 다음 vCenter를 사용하여 데이터 저장소 클러스터를 생성한 다음 여기에 데이터 저장소를 추가해야 합니다. 데이터 저장소 클러스터가 생성된 후 세부 정보 페이지의 프로비저닝 마법사에서 추가 데이터 저장소를 데이터 저장소 클러스터에 직접 추가할 수 있습니다.
+
+SDRS에 대한 기타 ONTAP 모범 사례는 다음과 같습니다.
+
+* 클러스터의 모든 데이터 저장소는 동일한 유형의 스토리지(예: SAS, SATA 또는 SSD)를 사용하고 모든 VMFS 또는 NFS 데이터 저장소이며 복제 및 보호 설정이 동일해야 합니다.
+* 기본(수동) 모드에서 SDRS 사용을 고려하십시오. 이 접근 방식을 통해 권장 사항을 검토하고 적용 여부를 결정할 수 있습니다. VMDK 마이그레이션의 영향을 숙지하십시오.
++
+** SDRS에서 VMDK를 데이터 저장소 간에 이동할 경우 ONTAP 클론 생성 또는 중복 제거를 통한 공간 절약이 손실됩니다. 중복제거를 재실행하여 이러한 절약 효과를 다시 실현할 수 있습니다.
+** SDRS가 VMDK를 이동한 후 NetApp는 소스 데이터 저장소에서 스냅샷을 다시 생성하는 것이 좋습니다. 그렇지 않으면 공간이 이동된 VM에 의해 잠기기 때문입니다.
+** 동일한 애그리게이트에서 데이터 저장소 간에 VMDK를 이동하는 것은 효과가 거의 없으며 SDRS는 애그리게이트를 공유할 수 있는 다른 워크로드를 파악할 수 없습니다.
+
+
+

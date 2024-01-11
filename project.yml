@@ -1,0 +1,24 @@
+---
+settings:
+  name: Enterprise applications
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: false
+  langs: ko-kr,us-en,ja-jp,zh-cn,zh-tw,de-de,es-es,fr-fr,it-it
+sidebar:
+  entries:
+  - title: 엔터프라이즈 애플리케이션
+    url: "/index.html"
+  - section: mssql
+  - section: mysql
+  - section: oracle
+  - section: postgres
+  - title: 제공합니다
+    entries:
+    - title: SAP HANA 및 AnyDB
+      url: sap-solutions.html
+  - section: vmware
+  - title: 법적 고지
+    url: "/legal-notices.html"

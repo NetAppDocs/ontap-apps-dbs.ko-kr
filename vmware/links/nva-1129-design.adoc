@@ -1,0 +1,14 @@
+---
+sidebar: sidebar 
+permalink: vmware/links/nva-1129-design.html 
+keywords: design, HCI, computing, vmware, cloud 
+summary: NetApp HCI를 사용하는 VMware 최종 사용자 컴퓨팅은 사전 검증된 모범 사례 데이터 센터 아키텍처로, 엔터프라이즈 규모로 가상 데스크톱 워크로드를 구축할 수 있습니다. 
+---
+= NVA-1129-design: NetApp HCI 및 NVIDIA GPU를 사용한 VMware 최종 사용자 컴퓨팅
+:allow-uri-read: 
+
+
+[role="lead"]
+NetApp HCI를 사용하는 VMware 최종 사용자 컴퓨팅은 사전 검증된 모범 사례 데이터 센터 아키텍처로, 엔터프라이즈 규모로 가상 데스크톱 워크로드를 구축할 수 있습니다. 이 문서에서는 안정적이고 위험 없는 방식으로 운영 환경에서 솔루션을 구축하기 위한 아키텍처 설계와 모범 사례에 대해 설명합니다.
+
+link:https://www.netapp.com/pdf.html?item=/media/7121-nva1132designpdf.pdf["NVA-1129-design: NetApp HCI 및 NVIDIA GPU를 사용한 VMware 최종 사용자 컴퓨팅"^]

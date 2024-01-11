@@ -1,0 +1,22 @@
+---
+sidebar: sidebar 
+permalink: oracle/dp/oracle_and_nvfail.html 
+keywords: oracle, metrocluster, nvfail 
+summary: Oracle 데이터베이스를 보호하기 위한 NVFAIL 구성 
+---
+= Oracle 및 NVFAIL
+:allow-uri-read: 
+
+
+[role="lead"]
+NVFAIL은 대규모 페일오버 시나리오 중에 무결성을 보장하는 ONTAP의 기능입니다.
+
+데이터베이스는 대규모 내부 캐시를 유지하기 때문에 스토리지 페일오버 중에 손상에 취약합니다. 재앙적인 이벤트에서 ONTAP 페일오버를 강제 적용하거나 MetroCluster 스위치오버를 강제 적용해야 하는 경우, 전체 구성 상태와 관계없이 이전에 승인된 변경 사항을 효과적으로 삭제할 수 있기 때문입니다. 스토리지 어레이의 콘텐츠가 시간 뒤로 이동하며, 데이터베이스 캐시의 상태는 디스크에 있는 데이터의 상태를 더 이상 반영하지 않습니다. 이러한 불일치로 인해 데이터가 손상됩니다.
+
+캐싱은 애플리케이션이나 서버 계층에서 발생할 수 있습니다. 예를 들어, 운영 사이트와 원격 사이트 모두에서 서버가 활성 상태인 Oracle RAC(Real Application Cluster) 구성은 Oracle SGA 내의 데이터를 캐시합니다. 강제 전환 작업으로 인해 데이터가 손실되면 SGA에 저장된 블록이 디스크의 블록과 일치하지 않을 수도 있기 때문에 데이터베이스가 손상될 위험에 처하게 됩니다.
+
+운영 체제 파일 시스템 계층에서의 캐싱 사용은 이보다 덜 명확합니다. 마운트된 NFS 파일 시스템의 블록이 운영 체제에 캐싱될 수 있습니다. 또는 운영 사이트에 있는 LUN 기반의 클러스터된 파일 시스템을 원격 사이트의 서버에 마운트하여 데이터를 다시 캐시할 수 있습니다. 이러한 상황에서 NVRAM 장애 또는 강제 적용 테이크오버 또는 강제 적용 스위치오버로 인해 파일 시스템이 손상될 수 있습니다.
+
+ONTAP는 NVFAIL 및 관련 설정을 통해 이 시나리오로부터 데이터베이스와 운영 체제를 보호합니다.
+
+중요한 추가 정보는 를 참조하십시오 link:../../common/dp/integrity.html#hardware-failure-protection-nvfail["HA 쌍을 포함한 NVFAIL"] 및 link:../../common/metrocluster/nvfail.html["MetroCluster 사용 NVFAIL"]

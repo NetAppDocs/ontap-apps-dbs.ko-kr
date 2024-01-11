@@ -1,0 +1,68 @@
+---
+sidebar: sidebar 
+permalink: vmware/srm/overview.html 
+keywords: ontap, vsphere, srm, srm, hybrid, cloud, migration, vmware, site, recovery manager, vsrm 
+summary: NetApp ONTAP는 2002년 현대적인 데이터 센터에 도입된 이후 VMware vSphere 환경을 위한 업계 최고의 스토리지 솔루션이며, 비용을 절감하는 동시에 관리를 단순화하는 혁신적인 기능을 지속적으로 추가하고 있습니다. 
+---
+= NetApp ONTAP를 사용하는 VMware 사이트 복구 관리자
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+
+
+== vSphere용 ONTAP
+
+
+NOTE: 이 문서는 이전에 게시된 기술 보고서 _TR-4900: VMware 사이트 복구 관리자를 ONTAP_ 로 대체합니다
+
+NetApp ONTAP는 2002년 현대적인 데이터 센터에 도입된 이후 VMware vSphere 환경을 위한 업계 최고의 스토리지 솔루션이며, 비용을 절감하는 동시에 관리를 단순화하는 혁신적인 기능을 지속적으로 추가하고 있습니다. 이 문서에서는 VMware의 업계 최고 수준의 DR(재해 복구) 소프트웨어인 VMware SRM(Site Recovery Manager)용 ONTAP 솔루션에 대해 소개합니다. 최신 제품 정보와 Best Practice를 통해 배포를 간소화하고 위험을 줄이며 지속적인 관리를 간소화할 수 있습니다.
+
+모범 사례는 가이드 및 호환성 도구와 같은 다른 문서를 보완합니다. 이러한 전문 분야는 연구소 테스트와 NetApp 엔지니어 및 고객의 광범위한 현장 경험을 기반으로 합니다. 권장 모범 사례가 귀사의 환경에 적합하지 않은 경우도 있지만, 일반적으로 대부분의 고객 요구사항을 충족하는 가장 간단한 솔루션입니다.
+
+이 문서는 VMware vSphere 9.12용 ONTAP 툴(NetApp 스토리지 복제 어댑터[SRA] 및 VASA 공급자[VP] 포함)과 함께 사용되는 ONTAP 9의 최신 릴리즈와 VMware Site Recovery Manager 8.7의 기능에 중점을 둡니다.
+
+
+
+== SRM에 ONTAP를 사용해야 하는 이유
+
+ONTAP 소프트웨어로 구동되는 NetApp 데이터 관리 플랫폼은 SRM을 위해 가장 널리 채택된 스토리지 솔루션 중 일부입니다. 그 이유는 다양합니다. 업계에서 정의한 스토리지 효율성, 멀티 테넌시, 서비스 품질 제어, 공간 효율적인 스냅샷을 통한 데이터 보호, SnapMirror를 통한 복제를 제공하는 안전하고 뛰어난 성능의 유니파이드 프로토콜(NAS와 SAN을 함께 사용) 데이터 관리 플랫폼을 사용하기 때문입니다. 이 모든 기능은 기본 하이브리드 멀티 클라우드 통합을 활용하여 VMware 워크로드를 보호하고 다양한 자동화 및 오케스트레이션 툴을 손쉽게 사용할 수 있도록 지원합니다.
+
+어레이 기반 복제에 SnapMirror를 사용하면 ONTAP의 가장 검증되고 성숙한 기술 중 하나를 활용할 수 있습니다. SnapMirror를 사용하면 전체 VM 또는 데이터 저장소가 아닌 변경된 파일 시스템 블록만 복제하여 안전하고 효율성이 높은 데이터 전송을 이용할 수 있습니다. 이러한 블록조차도 중복제거, 압축, 컴팩션과 같은 공간 절약 효과를 활용합니다. 최신 ONTAP 시스템은 이제 버전에 상관없이 SnapMirror를 사용하므로 소스 및 타겟 클러스터를 유연하게 선택할 수 있습니다. SnapMirror는 실제로 재해 복구에 사용할 수 있는 가장 강력한 툴 중 하나가 되었습니다.
+
+기존 NFS, iSCSI 또는 파이버 채널 연결 데이터 저장소(VVOL 데이터 저장소 지원)를 사용하는 경우 SRM은 재해 복구 또는 데이터 센터 마이그레이션 계획 및 오케스트레이션을 위해 최상의 ONTAP 기능을 활용하는 강력한 타사 오퍼링을 제공합니다.
+
+
+
+== SRM이 ONTAP 9를 활용하는 방법
+
+SRM은 세 가지 주요 구성 요소가 포함된 가상 어플라이언스인 ONTAP for VMware vSphere와 통합하여 ONTAP 시스템의 고급 데이터 관리 기술을 활용합니다.
+
+* vCenter 플러그인을 사용하면 이전에 VSC(Virtual Storage Console)라고 부르던 기능을 통해 SAN 또는 NAS를 사용하든지 스토리지 관리 및 효율성 기능을 단순화하고, 가용성을 높이며, 스토리지 비용과 운영 오버헤드를 줄일 수 있습니다. Best Practice를 사용하여 데이터 저장소를 프로비저닝하고 NFS 및 블록 스토리지 환경에 대한 ESXi 호스트 설정을 최적화합니다. 이러한 모든 이점을 누리게 하려면 ONTAP 소프트웨어를 실행하는 시스템에서 vSphere를 사용할 때 이 플러그인을 사용하는 것이 좋습니다.
+* VASA Provider for ONTAP는 VMware VASA(vStorage APIs for Storage Awareness) 프레임워크를 지원합니다. VASA Provider는 vCenter Server를 ONTAP와 연결하여 VM 스토리지를 프로비저닝하고 모니터링할 수 있도록 지원합니다. VVOL(VMware Virtual Volumes)을 통해 스토리지 기능 프로필(VVOL 복제 기능 포함)과 개별 VM VVol 성능을 지원하고 관리할 수 있습니다. 또한 용량을 모니터링하고 프로파일 준수를 위한 알람을 제공합니다. SRM과 함께 VASA Provider for ONTAP를 사용하면 SRM 서버에 SRA 어댑터를 설치할 필요 없이 VVOL 기반 가상 머신을 지원할 수 있습니다.
+* SRA는 SRM과 함께 사용되어 기존 VMFS 및 NFS 데이터 저장소의 프로덕션 및 재해 복구 사이트 간에 VM 데이터 복제를 관리하고 DR 복제본의 무중단 테스트를 수행합니다. 검색, 복구 및 재보호 작업을 자동화할 수 있습니다. SRA 서버 어플라이언스와 Windows SRM 서버용 SRA 어댑터 및 SRM 어플라이언스가 모두 포함됩니다.
+
+
+VASA Provider 설정에서 비 VVol 데이터 저장소 및/또는 활성화된 VVol 복제를 보호하기 위해 SRM 서버에 SRA 어댑터를 설치 및 구성한 후에는 재해 복구를 위해 vSphere 환경을 구성하는 작업을 시작할 수 있습니다.
+
+SRA 및 VASA Provider는 SRM 서버에 대한 명령 및 제어 인터페이스를 제공하여 VMware VM(가상 시스템)이 포함된 ONTAP FlexVol과 이들을 보호하는 SnapMirror 복제를 관리합니다.
+
+SRM 8.3부터 SRM 서버에 새로운 SRM VVol Provider 제어 경로가 도입되어 vCenter Server와 통신하고 SRA를 사용하지 않고도 VASA Provider와 통신할 수 있게 되었습니다. 따라서 VASA는 긴밀한 통합을 위한 완벽한 API를 제공하므로 SRM 서버가 ONTAP 클러스터에 대한 훨씬 더 깊은 제어를 활용할 수 있게 되었습니다.
+
+SRM은 NetApp의 독점 FlexClone 기술을 사용하여 DR 계획을 중단 없이 테스트하여 DR 사이트에 있는 보호된 데이터 저장소의 거의 즉각적인 클론을 생성할 수 있습니다. SRM은 안전한 테스트를 위한 샌드박스를 생성하여 실제 재해 발생 시 조직 및 고객이 보호를 받을 수 있도록 함으로써 재해 발생 시 조직의 장애 조치 실행 능력을 확실히 제공합니다.
+
+실제 재해 또는 계획된 마이그레이션이 있는 경우 SRM을 사용하면 최종 SnapMirror 업데이트(선택한 경우)를 통해 데이터 세트에 대한 최신 변경 사항을 보낼 수 있습니다. 그런 다음 미러를 해제하고 데이터 저장소를 DR 호스트에 마운트합니다. 이 시점에서 사전 계획된 전략에 따라 임의의 순서로 VM을 자동으로 켤 수 있습니다.
+
+
+
+== ONTAP 및 기타 사용 사례를 지원하는 SRM: 하이브리드 클라우드 및 마이그레이션
+
+SRM 배포를 ONTAP 고급 데이터 관리 기능과 통합하면 로컬 스토리지 옵션에 비해 확장성과 성능이 크게 향상됩니다. 그 이상의 것은 하이브리드 클라우드의 유연성을 제공합니다. 하이브리드 클라우드를 사용하면 FabricPool StorageGRID와 같은 사내 S3 저장소일 수 있는를 사용하여 고성능 어레이에서 선호하는 하이퍼스케일러를 사용하여 사용하지 않는 데이터 블록을 계층화하여 비용을 절감할 수 있습니다. 또한 CVO(Cloud Volumes ONTAP) 또는 를 사용하여 소프트웨어 정의 ONTAP Select 또는 클라우드 기반 DR이 있는 에지 기반 시스템에 SnapMirror를 사용할 수도 있습니다 https://www.equinix.com/partners/netapp["Equinix의 NetApp 프라이빗 스토리지"^] AWS(Amazon Web Services), Microsoft Azure 및 GCP(Google Cloud Platform)를 이용하여 클라우드에 완전히 통합된 스토리지, 네트워킹 및 컴퓨팅 서비스 스택을 구축할 수 있습니다.
+
+그런 다음, FlexClone을 통해 스토리지 설치 공간이 거의 0에 가까운 클라우드 서비스 공급자의 데이터 센터 내에서 테스트 페일오버를 수행할 수 있습니다. 이제 조직을 보호하는 데 드는 비용이 그 어느 때보다 줄어듭니다.
+
+또한 SRM은 SnapMirror를 활용하여 VM을 하나의 데이터 센터에서 다른 데이터 센터로 효율적으로 전송하거나 자체 또는 NetApp 파트너 서비스 공급자의 수를 통해 동일한 데이터 센터 내에서 효율적으로 전송하여 계획된 마이그레이션을 실행하는 데 사용할 수 있습니다.

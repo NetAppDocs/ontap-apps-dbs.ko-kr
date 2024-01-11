@@ -1,0 +1,35 @@
+---
+sidebar: sidebar 
+permalink: oracle/migration/oracle-datafile-move.html 
+keywords: migration, oracle, move datafile 
+summary: 개별 Oracle 데이터 파일 마이그레이션 
+---
+= 데이터 파일 이동
+:allow-uri-read: 
+
+
+[role="lead"]
+단일 명령으로 개별 Oracle 데이터 파일을 이동할 수 있습니다.
+
+예를 들어, 다음 명령은 파일 시스템에서 데이터 파일 IOPST.dbf를 이동합니다 `/oradata2` 파일 시스템으로 `/oradata3`.
+
+....
+SQL> alter database move datafile  '/oradata2/NTAP/IOPS002.dbf' to '/oradata3/NTAP/IOPS002.dbf';
+Database altered.
+....
+이 방법으로 데이터 파일을 이동하는 것은 느릴 수 있지만 일반적으로는 일상적인 데이터베이스 워크로드에 지장을 줄 만큼 I/O가 충분히 생성하지 않아야 합니다. 반면 ASM 재조정을 통한 마이그레이션은 훨씬 빠르게 실행할 수 있지만 데이터가 이동되는 동안 전체 데이터베이스의 속도가 느려질 수 있습니다.
+
+데이터 파일을 이동한 시간은 테스트 데이터 파일을 만든 다음 이동하는 방법으로 손쉽게 측정할 수 있습니다. 작업에 대해 경과된 시간은 v$ 세션 데이터에 기록됩니다.
+
+....
+SQL> set linesize 300;
+SQL> select elapsed_seconds||':'||message from v$session_longops;
+ELAPSED_SECONDS||':'||MESSAGE
+-----------------------------------------------------------------------------------------
+351:Online data file move: data file 8: 22548578304 out of 22548578304 bytes done
+SQL> select bytes / 1024 / 1024 /1024 as GB from dba_data_files where FILE_ID = 8;
+        GB
+----------
+        21
+....
+이 예에서는 데이터 파일 8로 이동했습니다. 데이터 파일 8은 21GB이며 마이그레이션하는 데 6분 정도 걸렸습니다. 필요한 시간은 스토리지 시스템의 기능, 스토리지 네트워크 및 마이그레이션 시 발생하는 전체 데이터베이스 활동에 따라 달라집니다.

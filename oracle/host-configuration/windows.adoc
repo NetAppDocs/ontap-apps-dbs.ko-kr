@@ -1,0 +1,24 @@
+---
+sidebar: sidebar 
+permalink: oracle/host-configuration/windows.html 
+keywords: oracle, database, ontap, windows 
+summary: Microsoft Windows를 사용하는 ONTAP 기반 Oracle 
+---
+= Microsoft Windows
+:allow-uri-read: 
+
+
+[role="lead"]
+Microsoft Windows 운영 체제에만 해당되는 구성 항목
+
+
+
+== NFS 를 참조하십시오
+
+Oracle은 Microsoft Windows를 direct NFS 클라이언트와 함께 사용할 수 있도록 지원합니다. 이 기능을 통해 환경 전반의 파일을 확인하고, 볼륨 크기를 동적으로 조정하며 비용이 적게 드는 IP 프로토콜을 활용하는 것 등 NFS 관리에서 이점을 얻을 수 있습니다. DNFS를 사용하여 Microsoft Windows에 데이터베이스를 설치하고 구성하는 방법은 공식 Oracle 설명서를 참조하십시오. 특별한 모범 사례는 없습니다.
+
+
+
+== 산
+
+최적의 압축 효율성을 위해 NTFS 파일 시스템이 8K 이상의 할당 유닛을 사용하는지 확인하십시오. 일반적으로 기본값인 4K 할당 유닛을 사용하면 압축 효율성에 부정적인 영향을 줄 수 있습니다.
