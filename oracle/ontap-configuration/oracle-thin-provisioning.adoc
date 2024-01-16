@@ -10,7 +10,7 @@ summary: Oracle 및 ONTAP 씬 프로비저닝
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

@@ -10,7 +10,7 @@ summary: FLI 마이그레이션 후 SAN 프로토콜 변경
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

@@ -10,7 +10,7 @@ summary: 테이크오버와 스위치오버 작업이 Oracle 데이터베이스 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

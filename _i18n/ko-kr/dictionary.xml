@@ -525,12 +525,8 @@
   <block id="804d5b1f06570b4d242be0c2f0c3392c" category="paragraph">스트라이핑 구성의 기본적인 목표는 단일 파일 I/O를 단일 유닛으로 수행하고, 1MB 크기여야 하는 다중 블록 I/O를 스트라이핑 볼륨의 모든 LUN에 걸쳐 균등하게 병렬 처리할 수 있도록 지원하는 것입니다. 즉, 스트라이프 크기가 데이터베이스 블록 크기보다 작아서는 안 되며 스트라이프 크기를 LUN 수를 곱한 크기가 1MB여야 합니다.</block>
   <block id="0598f393baefd05d48b48076cc7df606" category="paragraph">다음 그림에서는 스트라이프 크기 및 폭 조정에 사용할 수 있는 세 가지 옵션을 보여 줍니다. 위에서 설명한 대로 성능 요구 사항을 충족하기 위해 LUN 수를 선택하지만 모든 경우에 단일 스트라이프의 총 데이터는 1MB입니다.</block>
   <block id="9ca503fae9ccd4d6d8e67806b23adfa0" category="paragraph"><block ref="9ca503fae9ccd4d6d8e67806b23adfa0" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="d36647d06b353fcd6fedc60898e43187" category="summary">ONTAP 구성</block>
   <block id="0353522b39b87d54d40d3f09ec668851" category="doc">ONTAP 구성</block>
-  <block id="ccaea53c3be76af327e8e6f9c496a3ac" category="paragraph">ONTAP은 애플리케이션 및 데이터베이스 워크로드를 위해 특별히 설계된 많은 기능을 제공합니다.</block>
   <block id="8e52de0d4b03d5fe87dc88da09616c7f" category="inline-link-macro">여기.</block>
-  <block id="0940bb4f1fb97b40821b7a3be456f149" category="paragraph">데이터 보호 기능, 스토리지 효율성 권장 사항, 재해 복구 옵션 등 모든 중요 ONTAP 기능에 대한 개요를 찾을 수 있습니다 <block ref="f7503abce54bbe0e3218519d659c8356" category="inline-link-macro-rx"></block></block>
-  <block id="99e4610a4e3d81b01970dbfd92973f0a" category="paragraph">이 정보는 ONTAP 스토리지 시스템에서 애플리케이션 환경의 아키텍처를 적절히 설계하고 관리하는 데 있어 매우 중요합니다.</block>
   <block id="9fe343788d08130f46e418bb81928479" category="summary">FabricPool 개요</block>
   <block id="337c62c6b6eb7319bae58701105e889c" category="doc">계층화</block>
   <block id="cec4b296aaf93974a98a5d3b3f27ff9e" category="paragraph">FabricPool 계층화가 애플리케이션과 데이터베이스에 미치는 영향을 이해하려면 낮은 수준의 FabricPool 아키텍처에 대한 이해가 필요합니다.</block>
@@ -612,9 +608,7 @@
   <block id="789a6c7dd865d16eb1df122bcc5c9a3a" category="admonition">* NetApp는 NFSv4 기능이 필요한 경우 NFSv4.1을 사용할 것을 권장합니다. NFSv4.1에서는 NFSv4 프로토콜의 기능이 개선되어 특정 엣지 경우 복원력을 향상할 수 있습니다.</block>
   <block id="36772d6dfc6e102eff552ffad6b98690" category="paragraph">NFS 파일 시스템을 마운트할 때 다음 마운트 옵션을 사용합니다.</block>
   <block id="8e86e0aee135afb67c6a1d3d6e0f3306" category="inline-link-macro">NFS 전송 크기</block>
-  <block id="8952190775a545f4f8fdf241a9359455" category="paragraph">NFS 성능을 개선하려면 을 참조하십시오 <block ref="4e8f03f35a599a194f36d03d2b8495dd" category="inline-link-macro-rx"></block>.</block>
   <block id="d84b41126744795c4ee82f7b256e7234" category="inline-link-macro">FC SAN</block>
-  <block id="b69b3938a2935a6c5ad8e3f696efd637" category="paragraph">SAN 구성에 대한 지침과 LVM 스트라이핑 및 LUN 수에 대한 중요 세부 정보는 를 참조하십시오 <block ref="588ec6ef762c46d35337665cf518bf6a" category="inline-link-macro-rx"></block>.</block>
   <block id="2c8c2171fc87c96e58fb40d8714f85cf" category="doc">PostgreSQL 아키텍처</block>
   <block id="ee62b4420d426c21a46d892ac084872a" category="paragraph">PostgreSQL은 클라이언트 및 서버 아키텍처를 기반으로 하는 RDBMS입니다. PostgreSQL 인스턴스는 데이터베이스 클러스터라고 하며, 이 클러스터는 서버 컬렉션이 아닌 데이터베이스의 모음입니다.</block>
   <block id="89c30c326e106773af32af40255b92a8" category="inline-image-macro">오류: 그래픽을 찾을 수 없습니다</block>
@@ -642,7 +636,6 @@
   <block id="beb3ca55ed0a53a38a2b97540b05d6e4" category="summary">ONTAP 기반 Microsoft SQL Server</block>
   <block id="7636ae91f443b605f05bed59d7d57a02" category="doc">Microsoft SQL Server 재해 복구</block>
   <block id="810304d54e0a61663cfc457b0894037b" category="paragraph">NetApp는 하드웨어, 소프트웨어 또는 사이트 장애 발생 시 데이터 가용성을 높이기 위한 다양한 접근 방식을 제공합니다.</block>
-  <block id="44665451998410d7d5e3e61e1785d112" category="paragraph">NetApp은 MetroCluster, SnapMirror 비즈니스 연속성(SM-BC), SnapMirror와 같은 기술을 제공합니다. 이러한 기능에 대한 설명을 찾을 수 있습니다 <block ref="08de3f734af11bdee4de0329d4acad67" category="inline-link-macro-rx"></block>.</block>
   <block id="9c1e9d82d3220658621f72dca978adb0" category="section-title">NetApp SnapMirror 를 참조하십시오</block>
   <block id="46983273062fdc8ce8561a9ce89cdc5b" category="paragraph">NetApp SnapMirror 기술은 LAN 및 WAN을 통해 데이터를 미러링 또는 복제할 수 있는 빠르고 유연한 엔터프라이즈 솔루션을 제공합니다. SnapMirror 기술은 초기 기본 전송 후에 수정된 4KB 데이터 블록만 타겟으로 전송하므로 네트워크 대역폭 요구사항을 크게 줄여줍니다. SnapMirror는 구성된 복제 업데이트 간격을 기반으로 하는 비동기 볼륨 수준 복제를 제공합니다.
 다음은 SQL Server용 SnapMirror에 대한 권장사항입니다.</block>
@@ -657,7 +650,6 @@
   <block id="3f0ff45bcce968caef3a216a79681533" category="paragraph">랜섬웨어 또는 내부 위협이 증가함에 따라 비즈니스 데이터 및 백업을 보호해야 하며 악의적인 공격으로부터 일관된 순서대로 신속하게 복구할 수 있어야 합니다. 공격자는 여전히 데이터를 가로채는 방법을 찾을 수 있습니다.
 ONTAP은 NAS 및 SAN에서 데이터를 보호하는 다양한 기능을 제공합니다.</block>
   <block id="8b64c006213e96766bdb598b57396083" category="paragraph">ONTAP에서는 FlexVol 볼륨을 소스로, SnapLock 볼륨 간에 SnapMirror 관계를 생성하여 유연한 볼륨을 SnapLock Enterprise 또는 SnapLock Compliance 볼륨에 백업할 수 있습니다. 보조 스토리지에 백업된 스냅샷 복사본은 SnapLock 기술을 사용하여 보존 날짜까지 수정 또는 삭제로부터 보호됩니다 스냅샷 복사본 수가 대상 SnapLock 볼륨에 유지되는 특정 SnapMirror 레이블에 대해 정의된 것과 관련된 SnapMirror 정책입니다. LUN 데이터가 포함된 스냅샷을 복원하려면 SnapMirror 복원 작업을 통해 SnapLock이 아닌 볼륨에 대해 수행할 수 있습니다. ONTAP 9.13.1에서 SnapLock 유형을 비 SnapLock으로 지정하여 FlexClone 복사본을 생성할 수 있습니다. SnapLock에 대한 자세한 내용은 를 참조하십시오 <block ref="ef172f6fa5e7e0d1ce81bd97ee5f82e3" category="inline-link-macro-rx"></block>.</block>
-  <block id="ccad2a7107c9ef5d1565c269187f32ef" category="paragraph"><block ref="ccad2a7107c9ef5d1565c269187f32ef" category="inline-image-macro-rx" type="image"></block></block>
   <block id="0b6dbdd1b25ffa8aa9efcccb98bb3fbe" category="paragraph">변조 방지 스냅샷 복사본 또는 스냅샷 복사본 잠금: 스냅샷 복사본은 데이터베이스를 빠르게 보호 및 복원할 수 있는 방법입니다. 공격자가 데이터 손상 시 데이터베이스를 복원하는 마지막 옵션이었던 스냅샷 복사본을 삭제할 수 있습니다. 변조 방지 스냅샷 복사본을 사용하면 기본 또는 보조 ONTAP 시스템의 스냅샷 복사본이 잠겨져 라우팅 관리자 또는 신뢰할 수 없는 관리자가 지정된 기간 동안 스냅샷을 삭제하지 못하도록 예방합니다. 변조 방지 스냅샷 복사 기능은 ONTAP 9.12.1에서 사용할 수 있으며 SnapLock 라이센스와 규정 준수 클록의 초기화가 필요합니다.</block>
   <block id="310ba850db6109a11c606bdc5224be97" category="paragraph">ONTAP에는 MAV(다중 관리자 검증) 기능이 있어 단일 관리자가 스냅샷 복사본을 삭제하거나 볼륨을 수정할 수 있는 전체 권한을 보유하지 않습니다. 이는 신뢰할 수 없는 관리자가 볼륨 또는 스냅샷 복사본을 다시 무단으로 변경하지 않도록 하는 추가 보안 기능을 제공할 수 있습니다.</block>
   <block id="77641f4a3e4406855e878235cbd89b87" category="doc">CPU 구성</block>
@@ -667,7 +659,6 @@ ONTAP은 NAS 및 SAN에서 데이터를 보호하는 다양한 기능을 제공�
   <block id="673c216e20d1cf8827f347c01dace664" category="paragraph">여기서 주의해야 할 점은 각 SQL Server 버전에는 사용할 수 있는 컴퓨팅 성능에 대한 제한이 있다는 것입니다. 자세한 내용은 SQL Server Edition별 계산 용량 제한 을 참조하십시오.</block>
   <block id="932a9271c08db114962ce3791480f371" category="paragraph">SQL Server 라이선스를 취득할 때 두 가지 주요 고려 사항이 있습니다. 첫 번째는 서버 + 클라이언트 액세스 라이센스(CAL) 모델이며 두 번째는 프로세서당 코어 모델입니다. 서버 + CAL 전략을 통해 SQL Server에서 사용할 수 있는 모든 제품 기능에 액세스할 수 있지만 소켓당 20개의 CPU 코어로 하드웨어 제한이 있습니다. 소켓당 20개가 넘는 CPU 코어가 있는 서버에 대해 SQL Server Enterprise Edition + CAL을 사용하는 경우에도 응용 프로그램은 해당 인스턴스에서 이러한 모든 코어를 한 번에 사용할 수 없습니다. 그림 에서는 시작 후 코어 제한 적용을 나타내는 SQL Server 로그 메시지를 보여 줍니다.</block>
   <block id="d06fce44fdcf20791141e7585205a477" category="section-title">로그 항목은 SQL Server 시작 후 사용 중인 코어 수를 나타냅니다.</block>
-  <block id="f172c98eb1173f29e1d98efffb0e63f9" category="paragraph"><block ref="f172c98eb1173f29e1d98efffb0e63f9" category="inline-image-macro-rx" type="image"></block></block>
   <block id="cf0e2551e639758cc3c4d82df655eccd" category="inline-link-macro">SQL Server 2022: 최신 데이터 플랫폼</block>
   <block id="809c9e1f6ce0bc82bf42fae361c6f43e" category="paragraph">따라서 모든 CPU를 사용하려면 프로세서당 코어 라이센스를 사용해야 합니다. SQL Server 라이센스에 대한 자세한 내용은 을 참조하십시오 <block ref="457abfaf1083b1cbfc49f2783069c6cd" category="inline-link-macro-rx"></block>.</block>
   <block id="cb8d56a3511d402b7355db8502a54c5a" category="section-title">CPU 선호도</block>
@@ -687,7 +678,6 @@ ONTAP은 NAS 및 SAN에서 데이터를 보호하는 다양한 기능을 제공�
   <block id="decd79137325e1efbc7b994f946ea24f" category="paragraph">기본값은 0입니다. 이 값을 사용하면 SQL Server가 시작 시 작업자 스레드 수를 자동으로 구성할 수 있습니다. 이는 대부분의 시스템에서 작동합니다. Max worker 스레드는 고급 옵션이므로 숙련된 데이터베이스 관리자(DBA)의 도움 없이 변경할 수 없습니다.</block>
   <block id="030a270970f70c1bd91d3689b6f95f3f" category="inline-link-macro">최대 작업자 스레드 서버 구성 옵션을 구성합니다</block>
   <block id="2a0c648df721b9bc2643d59c4a3a310a" category="paragraph">작업자 스레드를 더 많이 사용하도록 SQL Server를 구성해야 하는 경우는 언제입니까? 각 스케줄러의 평균 작업 대기열 길이가 1을 초과하면 시스템에 더 많은 스레드를 추가할 수 있습니다. 단, 로드가 CPU에 바인딩되지 않거나 다른 과중한 대기가 발생하는 경우에만 가능합니다. 이러한 상황이 발생하는 경우 스레드를 더 추가해도 다른 시스템 병목 현상이 발생하기 때문에 도움이 되지 않습니다. 최대 작업자 스레드에 대한 자세한 내용은 을 참조하십시오 <block ref="77c391df5f9f06cdf367c2a7314ce351" category="inline-link-macro-rx"></block>.</block>
-  <block id="67028b81f2fa3e41f3a791718fec0fc7" category="paragraph"><block ref="67028b81f2fa3e41f3a791718fec0fc7" category="inline-image-macro-rx" type="image"></block></block>
   <block id="29d04e616d2293c4c7538dd6226feac5" category="section-title">SQL Server Management Studio를 사용하여 최대 작업자 스레드 구성</block>
   <block id="5962130d833e0408cf58a87e342bc1f9" category="doc">Microsoft SQL Server tempdb 파일</block>
   <block id="625156cc6cef9a3c56b1b535579bd2c9" category="paragraph">NetApp에서는 디스크 조각화를 방지하기 위해 tempdb 파일을 전체 크기로 미리 확장하는 것이 좋습니다.</block>
@@ -764,7 +754,6 @@ ONTAP은 NAS 및 SAN에서 데이터를 보호하는 다양한 기능을 제공�
   <block id="1ceeb5f5f18aefbc39e34d0d3c7b7e1c" category="paragraph">일부 응용 프로그램은 시작할 때 사용 가능한 메모리만 사용하고 필요한 경우에도 더 이상 요청하지 않습니다. 최대 서버 메모리 설정이 재생되는 위치입니다.</block>
   <block id="6e345f11e9b2856a7ac40d6cf283606b" category="paragraph">SQL Server 인스턴스가 여러 개 있는 SQL Server 클러스터에서 각 인스턴스가 리소스를 놓고 경쟁할 수 있습니다. 각 SQL Server 인스턴스에 대한 메모리 제한을 설정하면 각 인스턴스에 대해 최상의 성능을 보장할 수 있습니다.</block>
   <block id="318b34a3511a1be6d179a73303da2077" category="admonition">*NetApp는 성능 문제를 방지하기 위해 운영 체제에 최소 4GB~6GB의 RAM을 남겨 둘 것을 권장합니다.</block>
-  <block id="bc34e8cb14e602c11eab57e5d4131989" category="paragraph"><block ref="bc34e8cb14e602c11eab57e5d4131989" category="inline-image-macro-rx" type="image"></block></block>
   <block id="cd151dbdf946ad6bd27e1d55ea1cd029" category="section-title">SQL Server Management Studio를 사용하여 최소 및 최대 서버 메모리 조정</block>
   <block id="2e0d4de7d927936246f5537ba48015d2" category="paragraph">SQL Server Management Studio를 사용하여 최소 또는 최대 서버 메모리를 조정하려면 SQL Server 서비스를 다시 시작해야 합니다. 다음 코드를 사용하여 Transact SQL(T-SQL)을 사용하여 서버 메모리를 조정할 수 있습니다.</block>
   <block id="998c5e632fa0f987c20c182fc9322f67" category="section-title">비균일 메모리 액세스</block>
@@ -776,7 +765,6 @@ ONTAP은 NAS 및 SAN에서 데이터를 보호하는 다양한 기능을 제공�
   <block id="8c91aa3f5264c57bd2d2e66bd70f2ad1" category="section-title">쿼리당 최소 메모리</block>
   <block id="027d5a3eabe88aa0ab705b9c4a2fe096" category="paragraph">쿼리가 실행되면 SQL Server는 효율적으로 실행되도록 최적의 메모리 양을 할당하려고 합니다.</block>
   <block id="4c7836a7e63c3ecb3f6860ec19643561" category="paragraph">기본적으로 쿼리당 최소 메모리 설정은 실행할 각 쿼리에 대해 &gt; 또는 =를 1024KB를 할당합니다. SQL Server에서 인덱스 생성 작업에 할당된 메모리 양을 동적으로 관리할 수 있도록 이 설정을 기본값 0으로 유지하는 것이 가장 좋습니다. 그러나 SQL Server의 RAM이 효율적으로 실행하는 데 필요한 것보다 많은 경우 이 설정을 높이면 일부 쿼리의 성능이 향상될 수 있습니다. 따라서 SQL Server, 다른 응용 프로그램 또는 운영 체제에서 사용하지 않는 서버에서 메모리를 사용할 수 있는 한 이 설정을 높이면 SQL Server의 전반적인 성능이 향상될 수 있습니다. 사용 가능한 메모리가 없는 경우 이 설정을 늘리면 전체 성능이 저하될 수 있습니다.</block>
-  <block id="280cb8402bda4f652caf7bab6f9d2c6d" category="paragraph"><block ref="280cb8402bda4f652caf7bab6f9d2c6d" category="inline-image-macro-rx" type="image"></block></block>
   <block id="d2a88da9a0fcc96168f8f051909d5599" category="section-title">버퍼 풀 확장</block>
   <block id="11a3fdcfeb0715eaf26e855034f6ab9a" category="paragraph">버퍼 풀 확장을 통해 NVRAM 확장을 데이터베이스 엔진 버퍼 풀과 원활하게 통합하여 I/O 처리량을 크게 향상합니다.</block>
   <block id="c722da593d2f37b2c1ffc91a10c03dad" category="paragraph">일부 SQL Server 버전에서는 버퍼 풀 확장을 사용할 수 없습니다. 64비트 SQL Server Standard, Business Intelligence 및 Enterprise 버전에서만 사용할 수 있습니다.</block>
@@ -793,10 +781,6 @@ ONTAP은 NAS 및 SAN에서 데이터를 보호하는 다양한 기능을 제공�
   <block id="c7e0d87e723625072015431887edf349" category="paragraph">다음 예에서는 버퍼 풀 확장을 32GB로 설정하기 위한 T-SQL 명령을 보여 줍니다.</block>
   <block id="7ef20d2374bc8b734222e4ec2f0f3643" category="doc">ONTAP를 통한 Microsoft SQL Server의 스토리지 효율성</block>
   <block id="e5bc122522e9ae1409590d9944ec4421" category="paragraph">스토리지 효율성 은 전체 시스템 성능에 거의 또는 전혀 영향을 주지 않고 최소한의 스토리지 공간을 사용하는 방식으로 SQL Server 데이터를 저장하고 관리하는 기능입니다.</block>
-  <block id="c2a147b6be5d033c4eb55813488dbcc1" category="inline-link-macro">프로비저닝 권장 사항</block>
-  <block id="ff824cee2c3b7ec7f7581d5dc93d1444" category="paragraph">스토리지 효율성은 RAID, 프로비저닝(전체 레이아웃 및 활용률), 미러링, 기타 데이터 보호 기술의 조합입니다. Snapshot 복사본, 씬 프로비저닝, FlexClone과 같은 NetApp 기술은 인프라의 기존 스토리지를 최적화하고 향후 스토리지 지출을 연기하거나 피할 수 있도록 함으로써 비용 이점을 만드는 데 도움이 됩니다. 이러한 기술을 함께 사용할수록 더 많은 비용을 절감할 수 있습니다. 자세한 내용은 을 참조하십시오 <block ref="b5384d52b6e3305a2c57340dbe087476" category="inline-link-macro-rx"></block></block>
-  <block id="6a10562f7a321860904cbd17167319df" category="inline-link-macro">효율성 모범 사례</block>
-  <block id="5c7e263278e678895b97dc11f2a3cc36" category="paragraph">스토리지 압축, 컴팩션, 중복제거는 특정 양의 물리적 스토리지에 적합한 논리적 데이터의 양을 개선하는 기타 스토리지 효율성 옵션입니다. 자세한 내용은 을 참조하십시오 <block ref="2f4d6c4cfae5ce39369594d1e1758c5d" category="inline-link-macro-rx"></block>.</block>
   <block id="2d3c9d6f03cd640c224f5daf9c2352b0" category="paragraph">SQL Server에는 데이터를 압축하고 효율적으로 관리하는 기능도 있습니다. SQL Server는 현재 행 압축과 페이지 압축이라는 두 가지 유형의 데이터 압축을 지원합니다.</block>
   <block id="181341700086c5e2f2259774b2aaa59c" category="inline-link-macro">페이지 압축 구현</block>
   <block id="46c6aaf21d639d23d4f297a1f6922d9a" category="paragraph">행 압축은 데이터 저장소 형식을 변경합니다. 예를 들어, 정수와 소수를 네이티브 고정 길이 형식 대신 가변 길이 형식으로 변경합니다. 또한 빈 공백을 제거하여 고정 길이 문자 문자열을 가변 길이 형식으로 변경합니다. 페이지 압축은 행 압축과 두 가지 다른 압축 전략(접두사 압축 및 사전 압축)을 구현합니다. 페이지 압축에 대한 자세한 내용은 에서 확인할 수 있습니다 <block ref="88eab602b149fe360da37498ad5cdeae" category="inline-link-macro-rx"></block>.</block>
@@ -810,7 +794,6 @@ ONTAP은 NAS 및 SAN에서 데이터를 보호하는 다양한 기능을 제공�
   <block id="aa864feb1e600aa376e91ac119da387b" category="paragraph">공간 재확보를 실행해야 하는 경우 이 프로세스는 처음에 호스트의 주기를 소비하기 때문에 작업이 적은 기간 동안 실행해야 합니다.</block>
   <block id="a356c94dff23a233551ff221e74a144d" category="summary">ONTAP을 통한 Microsoft SQL Server 데이터 보호</block>
   <block id="731c00fe6475fb22aece82ffa9d74ef3" category="paragraph">데이터베이스 보호는 모든 조직에 매우 중요합니다. 데이터베이스의 데이터 크기와 수가 증가함에 따라 복구 시간 목표(RTO) 및 복구 시점 목표(RPO)를 유지하는 것이 매우 중요합니다.</block>
-  <block id="5cf56e0e8b1ff5cffb383d58615265e0" category="paragraph">데이터베이스 백업의 주요 고려사항은 NetApp 스냅샷 기술을 활용하는 것입니다. ONTAP의 데이터 보호 계획을 설명합니다 <block ref="8f339e5651f846037d94f72580710268" category="inline-link-macro-rx"></block>. NetApp SnapCenter로 조정할 수 있는 RTO 및 RPO를 달성하기 위해 애플리케이션 정합성이 보장되는 백업 및 데이터베이스 레이아웃을 고려해야 합니다.</block>
   <block id="5c014f8939a89da0166a347a0237cf4f" category="section-title">SnapCenter</block>
   <block id="2ddb1872f6c378e74cb7269e9de4c4e5" category="paragraph">SnapCenter는 엔터프라이즈 애플리케이션을 위한 NetApp 데이터 보호 소프트웨어입니다. SQL Server 데이터베이스는 SQL Server용 플러그인 및 Microsoft Windows용 플러그인이 있는 NetApp SnapCenter 소프트웨어를 사용하여 빠르고 쉽게 보호할 수 있습니다.</block>
   <block id="bdc6c0cf646d837838203c2980eba84a" category="paragraph">이 제품을 사용하면 SQL Server 데이터베이스, 인스턴스 또는 가용성 그룹의 애플리케이션 정합성이 보장되는 백업, 자동화된 클론 생성, 복원 및 복구가 가능합니다.</block>
@@ -852,7 +835,6 @@ ONTAP은 NAS 및 SAN에서 데이터를 보호하는 다양한 기능을 제공�
   <block id="9a3f42cec243006996ab4580d3ce5d56" category="paragraph">각 데이터베이스는 하나 이상의 데이터 파일과 하나 이상의 트랜잭션 로그 파일로 구성됩니다. 트랜잭션 로그에는 데이터베이스 트랜잭션에 대한 정보와 각 세션에서 수행한 모든 데이터 수정에 대한 정보가 저장됩니다. 데이터가 수정될 때마다 SQL Server는 작업을 실행 취소(롤백)하거나 다시 실행(재생)할 수 있는 충분한 정보를 트랜잭션 로그에 저장합니다. SQL Server 트랜잭션 로그는 데이터 무결성과 견고성에 대한 SQL Server의 평판에 필수적인 부분입니다. 트랜잭션 로그는 SQL Server의 원자성, 일관성, 격리 및 내구성(ACID) 기능에 매우 중요합니다. SQL Server는 데이터 페이지가 변경되는 즉시 트랜잭션 로그에 기록합니다. 모든 DML(Data Manipulation Language) 문(예: SELECT, INSERT, UPDATE 또는 DELETE)은 완전한 트랜잭션이며, 트랜잭션 로그에서는 전체 집합 기반 작업이 수행되도록 하여 트랜잭션의 원자성을 확인합니다.</block>
   <block id="cbe6958e46fbab53cdbdb9deb2d75938" category="paragraph">각 데이터베이스에는 기본 데이터 파일이 하나 있으며 기본적으로 확장명은 .mdf입니다. 또한 각 데이터베이스에는 보조 데이터베이스 파일이 있을 수 있습니다. 이러한 파일의 확장명은 기본적으로 .ndf입니다.</block>
   <block id="811b578b6dfbb4a4ca16ba0c0911e3df" category="paragraph">모든 데이터베이스 파일은 파일 그룹으로 그룹화됩니다. 파일 그룹은 논리적 단위로, 데이터베이스 관리를 간소화합니다. 논리 객체 배치와 물리적 데이터베이스 파일 간의 구분이 가능합니다. 데이터베이스 개체 테이블을 만들 때 기본 데이터 파일 구성에 대해 걱정하지 않고 파일 그룹을 배치할 파일 그룹을 지정합니다.</block>
-  <block id="cd2f60511a1a153b21b89b7c5c3ca326" category="paragraph"><block ref="cd2f60511a1a153b21b89b7c5c3ca326" category="inline-image-macro-rx" type="image"></block></block>
   <block id="3717596742d438a1c8e77b0aeb58fcec" category="paragraph">파일 그룹 내에 여러 데이터 파일을 배치할 수 있으므로 여러 스토리지 디바이스에 로드를 분산시킬 수 있으므로 시스템의 입출력 성능을 향상시킬 수 있습니다. 반면 SQL Server는 트랜잭션 로그에 순차적으로 기록하므로 트랜잭션 로그는 여러 파일의 이점을 얻지 못합니다.</block>
   <block id="c136ffb510a6a465d338ab0affc16641" category="paragraph">파일 그룹에서 논리적 객체 배치와 물리적 데이터베이스 파일 간의 구분을 통해 데이터베이스 파일 레이아웃을 세밀하게 조정하여 스토리지 서브시스템에서 최대한 활용할 수 있습니다. 예를 들어, 서로 다른 고객에게 제품을 배포하는 ISV(Independent Software Vendor)는 기본 I/O 구성과 구축 단계에서 예상되는 데이터 양에 따라 데이터베이스 파일 수를 조정할 수 있습니다. 이러한 변경 사항은 데이터베이스 파일이 아닌 파일 그룹에 데이터베이스 개체를 배치하는 응용 프로그램 개발자에게 영향을 주지 않습니다.</block>
   <block id="3ac46c2f04dec9d215efbe44d307a020" category="admonition">* NetApp는 * 시스템 객체를 제외한 모든 항목에 대해 기본 파일 그룹을 사용하지 않을 것을 권장합니다. 사용자 객체에 대해 별도의 파일 그룹 또는 파일 그룹 집합을 만들면 특히 대규모 데이터베이스의 경우 데이터베이스 관리 및 재해 복구가 간소화됩니다.</block>
@@ -862,12 +844,9 @@ ONTAP은 NAS 및 SAN에서 데이터를 보호하는 다양한 기능을 제공�
   <block id="54db492ee9e4d356cc8722d1f4126f77" category="paragraph">SQL Server는 항상 트랜잭션 로그를 0으로 설정하며 이 동작은 변경할 수 없습니다. 그러나 인스턴트 파일 초기화를 사용하거나 사용하지 않도록 설정하여 데이터 파일의 제로화 여부를 제어할 수 있습니다. 즉각적인 파일 초기화를 사용하면 데이터 파일 증가 속도를 높이고 데이터베이스를 만들거나 복원하는 데 필요한 시간을 줄일 수 있습니다.</block>
   <block id="92208bd4d9c6fec3f7c1dedeca62e135" category="paragraph">즉각적인 파일 초기화와 관련된 보안 위험이 작습니다. 이 옵션을 활성화하면 데이터 파일의 할당되지 않은 부분에 이전에 삭제된 OS 파일의 정보가 포함될 수 있습니다. 데이터베이스 관리자가 이러한 데이터를 검토할 수 있습니다.</block>
   <block id="2b222ad4000e6e966783fd7bc480180e" category="paragraph">SQL Server 시작 계정에 "볼륨 유지 관리 작업 수행"이라고도 하는 SA_MANAGE_VOLUME_NAME 권한을 추가하여 즉각적인 파일 초기화를 활성화할 수 있습니다. 이 작업은 다음 그림과 같이 로컬 보안 정책 관리 응용 프로그램(secpol.msc)에서 수행할 수 있습니다. "볼륨 유지 관리 작업 수행" 권한에 대한 속성을 열고 SQL Server 시작 계정을 사용자 목록에 추가합니다.</block>
-  <block id="f5127c997811da26d32c454a19000117" category="paragraph"><block ref="f5127c997811da26d32c454a19000117" category="inline-image-macro-rx" type="image"></block></block>
   <block id="c622e0142ed854a10f98fcaa8b3487f8" category="paragraph">사용 권한이 설정되어 있는지 확인하려면 다음 예제의 코드를 사용합니다. 이 코드는 SQL Server가 오류 로그에 추가 정보를 쓰고, 작은 데이터베이스를 만들고, 로그 내용을 읽도록 하는 두 개의 추적 플래그를 설정합니다.</block>
   <block id="eba8c32bde087b29aaa1fe0d3bb32ef3" category="paragraph">인스턴트 파일 초기화가 사용되지 않는 경우 SQL Server 오류 로그는 다음 예와 같이 SQL Server가 MDF 데이터 파일을 제로화하는 것 외에 LDF 로그 파일을 제로화하는 것을 보여 줍니다. 인스턴트 파일 초기화가 설정된 경우 로그 파일의 제로화만 표시됩니다.</block>
-  <block id="b38fa7baf9ceb53ef15ca3677d3cdfa5" category="paragraph"><block ref="b38fa7baf9ceb53ef15ca3677d3cdfa5" category="inline-image-macro-rx" type="image"></block></block>
   <block id="cf346325be0652c6b6e9a04b9352bda3" category="paragraph">볼륨 유지 관리 수행 작업은 SQL Server 2016에서 간소화되며 나중에 설치 프로세스 중에 옵션으로 제공됩니다. 다음 그림에서는 SQL Server 데이터베이스 엔진 서비스에 볼륨 유지 관리 작업을 수행할 수 있는 권한을 부여하는 옵션을 보여 줍니다.</block>
-  <block id="aea48caa289e2e488286fae0515eb9d9" category="paragraph"><block ref="aea48caa289e2e488286fae0515eb9d9" category="inline-image-macro-rx" type="image"></block></block>
   <block id="638b283700120d26a838f9cb56fca59d" category="paragraph">데이터베이스 파일 크기를 제어하는 또 다른 중요한 데이터베이스 옵션은 자동 축소입니다. 이 옵션을 사용하면 SQL Server에서 정기적으로 데이터베이스 파일을 축소하고 크기를 줄이며 운영 체제에 공간을 해제합니다. 이 작업은 리소스를 많이 사용하며 새 데이터가 시스템에 유입될 때 일정 시간이 지난 후에 데이터베이스 파일이 다시 증가하기 때문에 거의 유용하지 않습니다. 데이터베이스에서 자동 축소를 사용하지 않아야 합니다.</block>
   <block id="3b6c913908f5844ccb31a4d3775cb34e" category="doc">Microsoft SQL Server 공유 인스턴스와 전용 인스턴스 비교</block>
   <block id="8b58192b54b5dc25444ace0536a34893" category="paragraph">응용 프로그램에 스키마와 저장 프로시저가 많은 경우 SQL Server 인스턴스를 공유하는 다른 응용 프로그램에 영향을 줄 수 있습니다.</block>
@@ -1029,7 +1008,6 @@ ONTAP은 NAS 및 SAN에서 데이터를 보호하는 다양한 기능을 제공�
   <block id="edc9f0a5a5d57797bf68e37364743831" category="doc">리눅스</block>
   <block id="dfc95ed5e895617bbd0d4b1a8bfba8ca" category="paragraph">Linux 운영 체제에만 해당되는 구성 항목</block>
   <block id="5ecd4a6f4aedfdd45cce80a18b1a7942" category="section-title">슬롯 테이블</block>
-  <block id="cb0b01337e8f6bf9d06b70a95f74501e" category="paragraph">Linux에서 NFS 성능은 라는 매개 변수에 달려 있습니다<block ref="453f2cc2326f82af1053f4aa4b75400b" prefix=" " category="inline-code"></block>. 을 참조하십시오 <block ref="77039a327377cbf65e33c7c5d3766672" category="inline-link-macro-rx"></block> 참조하십시오.</block>
   <block id="2518e65e64213437c921c39a097db167" category="section-title">Linux NFS 마운트 옵션</block>
   <block id="29cd2e6d4fc96e749c4a0e622cad7f50" category="paragraph">다음 표에는 단일 인스턴스의 Linux NFS 마운트 옵션이 나와 있습니다.</block>
   <block id="9fafd031075cede0e8a5a796ec45fbff" category="paragraph">다음 표에는 RAC에 대한 Linux NFS 마운트 옵션이 나와 있습니다.</block>
@@ -2100,7 +2078,6 @@ I/O 중단 없음.</block>
   <block id="c4cb2c6af5d7b6c38cd7e588d846e8b4" category="doc">Oracle 입출력에 대한 LUN 정렬</block>
   <block id="3e00e4d28b17eedd6f6c2c38233e06a8" category="paragraph">LUN 정렬은 기본 파일 시스템 레이아웃과 관련하여 I/O를 최적화하는 것을 칭합니다.</block>
   <block id="a6c7e85d51ae3b98197ceb3eafa3686a" category="inline-link-macro">효율성</block>
-  <block id="8b91f52c07f84050ec607efaba519342" category="paragraph">또한 압축 블록 정렬에 대한 내용은 섹션을 참조하십시오 <block ref="507b43f44c8d150acacbc8cc7264d717" category="inline-link-macro-rx"></block>. 8KB 압축 블록 경계에 맞춰 정렬된 레이아웃은 4KB 경계에도 맞춰집니다.</block>
   <block id="6e2524d5663b2bdc0c7985fa3e57cc55" category="section-title">정렬 불량 경고</block>
   <block id="79e721357e358d77c4700c25c863fc37" category="inline-link">ONTAP SAN 호스트 구성</block>
   <block id="268b1da3f1ff11d32e385d0223101718" category="paragraph">Solaris 환경에서는 정렬이 더 복잡합니다. 을 참조하십시오<block ref="2d33e0364c07dc165b4079892340d4fe" category="inline-link-rx"></block> 를 참조하십시오.</block>
@@ -2131,9 +2108,6 @@ I/O 중단 없음.</block>
   <block id="68114defc717054e7e3b02df438cdbe1" category="paragraph">캐싱은 애플리케이션이나 서버 계층에서 발생할 수 있습니다. 예를 들어, 운영 사이트와 원격 사이트 모두에서 서버가 활성 상태인 Oracle RAC(Real Application Cluster) 구성은 Oracle SGA 내의 데이터를 캐시합니다. 강제 전환 작업으로 인해 데이터가 손실되면 SGA에 저장된 블록이 디스크의 블록과 일치하지 않을 수도 있기 때문에 데이터베이스가 손상될 위험에 처하게 됩니다.</block>
   <block id="162de6d405c04ce8f152f1d246ed9187" category="paragraph">운영 체제 파일 시스템 계층에서의 캐싱 사용은 이보다 덜 명확합니다. 마운트된 NFS 파일 시스템의 블록이 운영 체제에 캐싱될 수 있습니다. 또는 운영 사이트에 있는 LUN 기반의 클러스터된 파일 시스템을 원격 사이트의 서버에 마운트하여 데이터를 다시 캐시할 수 있습니다. 이러한 상황에서 NVRAM 장애 또는 강제 적용 테이크오버 또는 강제 적용 스위치오버로 인해 파일 시스템이 손상될 수 있습니다.</block>
   <block id="04ca8d9ad570a3bdf1d76e23bc108ae5" category="paragraph">ONTAP는 NVFAIL 및 관련 설정을 통해 이 시나리오로부터 데이터베이스와 운영 체제를 보호합니다.</block>
-  <block id="41392c0810a247913390639ac55b02f3" category="inline-link-macro">HA 쌍을 포함한 NVFAIL</block>
-  <block id="c85e3cf60aca3604436a612414b4862b" category="inline-link-macro">MetroCluster 사용 NVFAIL</block>
-  <block id="4c81a151f262848af64b7c3617f2957f" category="paragraph">중요한 추가 정보는 를 참조하십시오 <block ref="7dd171303802b4fd88eb6286775f7e90" category="inline-link-macro-rx"></block> 및 <block ref="d70bba050e7743789ce865415fea7eaf" category="inline-link-macro-rx"></block></block>
   <block id="45293b650c7dacd88d269bebf219b8ef" category="summary">NetApp SnapRestore 기술을 통해 ONTAP에서 스냅샷 복사본으로 신속하게 Oracle 데이터베이스 복구 수행</block>
   <block id="82ef718f4ebe0c276814ee3d51e33361" category="doc">SnapRestore</block>
   <block id="863696626734d6591db8be57b41c7eec" category="paragraph">ONTAP의 빠른 스냅샷 데이터 복원은 NetApp SnapRestore 기술을 통해 수행됩니다.</block>
@@ -2831,7 +2805,6 @@ I/O 중단 없음.</block>
   <block id="04e7bb0411c1c8f56ca4fc8000c62ad8" category="inline-link">VMware vSphere용 SnapCenter 플러그인 구축</block>
   <block id="d4ba0aa084ae1145248006481c881d29" category="paragraph"><block ref="d4ba0aa084ae1145248006481c881d29" category="inline-link-rx"></block></block>
   <block id="231cf4c70d866b616c21baddaeed0696" category="doc">문제 해결</block>
-  <block id="87e6f97c8ec2f31df616ef84401ffaf4" category="paragraph">추가 정보와 함께 여러 문제 해결 리소스를 사용할 수 있습니다.</block>
   <block id="9d2169c1c2855b78a7aeaa4f42d27dc7" category="section-title">NetApp Support 사이트</block>
   <block id="ed9018b2e8611a3d2c03bb6a205b9715" category="inline-link">VMware vSphere용 ONTAP 툴</block>
   <block id="890eb741924c425abbb11e4618560181" category="paragraph">NetApp Support 사이트은 NetApp 가상화 제품에 대한 다양한 기술 자료 문서 외에도 에 대한 편리한 랜딩 페이지 도 제공합니다<block ref="6e90053136fd326e5d581844ca21966d" category="inline-link-rx"></block> 제품. 이 포털은 NetApp 커뮤니티에서 기사, 다운로드, 기술 보고서 및 VMware Solutions 토론에 대한 링크를 제공합니다. 이 제품은 다음 위치에서 사용할 수 있습니다.</block>
@@ -2850,7 +2823,6 @@ I/O 중단 없음.</block>
   <block id="3152add163cd8aaf116a259d85ebf8fb" category="section-title">Unified Appliance를 Mount ISO로 업그레이드하지 못했습니다</block>
   <block id="ffaa56a3f5a1157f2eb3955773bb41da" category="paragraph">vCenter의 버그로 인해 Unified Appliance를 한 릴리즈에서 다음 릴리즈로 업그레이드하는 데 사용되는 ISO가 마운트되지 않을 수 있습니다. vCenter에서 ISO를 어플라이언스에 연결할 수 있는 경우 이 Knowledgebase의 프로세스를 따르십시오<block ref="9839383ed04f777c0132b57ad0cb14ac" category="inline-link-rx"></block> 를 눌러 해결합니다.</block>
   <block id="cacba1b456347ce8f32c7f5ed0d81e64" category="doc">VVOL 스토리지 구축</block>
-  <block id="4adcd8d9323839ff088dc4f8f0bdcce2" category="paragraph">VM용 VVol 스토리지를 생성하는 단계는 여러 가지가 있습니다.</block>
   <block id="2a5f3dc8d46246216b293c9e41979269" category="paragraph">기존 데이터 저장소에 ONTAP를 사용하는 기존 vSphere 환경에서는 처음 두 단계가 필요하지 않을 수 있습니다. 이미 ONTAP 툴을 사용하여 VMFS 또는 기존 NFS 기반 스토리지를 관리, 자동화 및 보고할 수 있습니다. 이러한 단계는 다음 섹션에서 자세히 설명합니다.</block>
   <block id="841db3655338a0c3dc36cf2761bfdafd" category="list-text">SVM(Storage Virtual Machine)과 프로토콜 구성을 생성합니다. NVMe/FC, NFSv3, NFSv4.1, iSCSI, FCP, 여러 옵션을 함께 사용할 수도 있습니다. ONTAP System Manager 마법사 또는 클러스터 셸 명령줄을 사용할 수 있습니다.</block>
   <block id="10818a8ad4f650a48d78d728278d4cb3" category="list-text">각 스위치/패브릭 연결마다 노드당 하나 이상의 LIF가 있어야 합니다. 모범 사례로서, FCP, iSCSI 또는 NVMe 기반 프로토콜에 대해 노드당 두 개 이상의 를 생성합니다.</block>
@@ -2978,7 +2950,6 @@ I/O 중단 없음.</block>
   <block id="2902acda09b9786460c2dd928a2d8f1a" category="paragraph">ONTAP은 스토리지 업계에서 VVOL을 선도하여 단일 클러스터에서 수십만 개의 VVOL을 지원하는 반면, 엔터프라이즈 어레이와 소규모 플래시 어레이 공급업체는 어레이당 수백 개의 VVOL을 지원합니다. NetApp은 또한 VVOL 3.0을 지원함으로써 VM 세부 관리의 발전을 이끌고 있습니다.</block>
   <block id="fda9c21a4aefd4a1f42ad0b195e6ef0a" category="inline-link">TR-4400: ONTAP를 포함한 VMware vSphere 가상 볼륨</block>
   <block id="69173613658292fc2adeb513b12f29ca" category="admonition">VMware vSphere 가상 볼륨, SPBM 및 ONTAP에 대한 자세한 내용은 을 참조하십시오<block ref="354226c2546b1aed39f1c0c484e6a98a" category="inline-link-rx"></block>.</block>
-  <block id="4f46fffb0ac7017fd2b42c10d6aa03fc" category="paragraph">VM을 백업하고 신속하게 복구하는 것은 ONTAP for vSphere의 탁월한 강점 중 하나로서, vCenter에서 VMware vSphere용 SnapCenter 플러그인을 사용하여 이러한 기능을 쉽게 관리할 수 있습니다.</block>
   <block id="61823c0f572643e0ce2e4edcb74cae51" category="paragraph">스냅샷을 사용하여 성능에 영향을 주지 않고 VM 또는 데이터 저장소를 신속하게 복사한 다음, SnapMirror를 사용하여 보조 시스템으로 전송하여 장기적인 오프 사이트 데이터 보호를 실현합니다. 이러한 접근 방식은 변경된 정보만 저장하여 스토리지 공간과 네트워크 대역폭을 최소화합니다.</block>
   <block id="0aef2da721f0ab14676f8d6ffb9e7e8c" category="inline-link">권장</block>
   <block id="022e604112aa3d1870f0da5e7806f48b" category="paragraph">SnapCenter를 사용하면 여러 작업에 적용할 수 있는 백업 정책을 생성할 수 있습니다. 이러한 정책은 스케줄, 보존, 복제 및 기타 기능을 정의할 수 있습니다. 또한 VM 정합성 보장 스냅샷의 선택 옵션을 계속 허용하므로 VMware 스냅샷을 생성하기 전에 하이퍼바이저의 입출력 중지 기능을 활용할 수 있습니다. 그러나 VMware 스냅샷의 성능 때문에 게스트 파일 시스템을 중지해야 하는 경우가 아니면 일반적으로 이러한 스냅샷을 사용하지 않는 것이 좋습니다. 대신 일반적인 보호를 위해 스냅샷을 사용하고 SnapCenter 플러그인과 같은 애플리케이션 툴을 사용하여 SQL Server 또는 Oracle과 같은 트랜잭션 데이터를 보호하십시오. 이러한 스냅샷은 VMware(정합성 보장) 스냅샷과는 다르며 장기간 보호에 적합합니다.  VMware 스냅샷은 전용입니다<block ref="75f5ad475d959e2ecb55267e1a9a54f1" category="inline-link-rx"></block> 성능 및 기타 효과로 인한 단기 사용.</block>
@@ -3118,7 +3089,6 @@ vSphere 8을 사용하는 FCP 및 iSCSI의 경우 자세한 내용은 을 참조
 vSphere 7을 사용하는 NVMe-oF의 경우 자세한 내용은 을 참조하십시오<block ref="6c040a6e611e78bb9d0ad92946e613ea" category="inline-link-rx"></block>
 vSphere 8을 사용하는 NVMe-oF의 경우 자세한 내용은 을 참조하십시오<block ref="030788e4c7bbe3137759b534ea62d7d9" category="inline-link-rx"></block></block>
   <block id="99a66df20e19a8e18fae37a7f714750a" category="doc">VM 및 데이터 저장소 클론 생성</block>
-  <block id="2438f6a80b933cf058ad052d26ac0703" category="paragraph">스토리지 객체를 클론 복제하면 추가 VM 프로비저닝, 백업/복구 작업 등과 같은 추가 사용을 위한 복사본을 빠르게 생성할 수 있습니다.</block>
   <block id="fe12a277656562082ad50b980c227a84" category="paragraph">vSphere에서 VM, 가상 디스크, VVOL 또는 데이터 저장소를 복제할 수 있습니다. 복제된 개체는 대개 자동화된 프로세스를 통해 추가로 사용자 지정할 수 있습니다. vSphere는 전체 복제본 클론과 연결된 클론을 모두 지원하며, 이 클론에서는 원래 객체와 별도로 변경 사항을 추적합니다.</block>
   <block id="883a97a36ab0c59ec785b03161a1cc32" category="paragraph">연결된 클론은 공간을 절약하는 데 좋지만 vSphere에서 VM에 대해 처리하는 I/O 양을 늘려 해당 VM 및 호스트의 성능에 영향을 줄 수 있습니다. 따라서 NetApp 고객은 스토리지 시스템 기반 복제본을 사용하여 두 가지 이점을 모두 최대한 활용할 수 있습니다. 즉, 효율적인 스토리지 사용과 향상된 성능을 모두 활용할 수 있습니다.</block>
   <block id="17e1a153b5d05c5a642c93ba9ce3c6de" category="paragraph">다음 그림은 ONTAP 클론을 보여 줍니다.</block>
@@ -3132,7 +3102,6 @@ vSphere 8을 사용하는 NVMe-oF의 경우 자세한 내용은 을 참조하십
   <block id="f3968368501d882b3969da59138db6e2" category="paragraph">ONTAP 내에서 직접 볼륨 또는 LUN을 복제하여 데이터 저장소를 복제할 수도 있습니다. NFS 데이터 저장소를 사용하면 FlexClone 기술을 통해 전체 볼륨을 클론 복제할 수 있으며, ONTAP에서 클론을 내보내고 ESXi에서 다른 데이터 저장소로 마운트할 수 있습니다. VMFS 데이터 저장소의 경우 ONTAP는 LUN 내에 하나 이상의 LUN을 포함하여 볼륨 또는 전체 볼륨 내에서 LUN을 클론 복제할 수 있습니다. VMFS를 포함하는 LUN은 ESXi 이니시에이터 그룹(igroup)에 매핑한 다음 ESXi에 의해 재서명하여 일반 데이터 저장소로 마운트하고 사용해야 합니다. 일부 임시 사용 사례에서는 재서명 없이 클론 생성된 VMFS를 마운트할 수 있습니다. 데이터 저장소의 클론을 생성한 후에는 해당 데이터 저장소 내의 VM을 개별적으로 클론 복제된 VM처럼 등록, 재구성 및 사용자 지정할 수 있습니다.</block>
   <block id="2d506b6088a383ccf08479b0f80c0ff4" category="paragraph">경우에 따라 라이센스가 부여된 추가 기능을 사용하여 백업용 SnapRestore 또는 FlexClone과 같은 복제를 향상시킬 수 있습니다. 이러한 라이센스는 라이센스 번들에 추가 비용 없이 포함되는 경우가 많습니다. VVOL 클론 복제 작업에는 FlexClone 라이센스가 필요하며, 하이퍼바이저에서 ONTAP로 오프로드되는 VVOL의 관리형 스냅샷을 지원하기 위해서는 FlexClone 라이센스가 필요합니다. FlexClone 라이센스는 데이터 저장소/볼륨 내에서 사용할 때 특정 VAAI 기반 클론을 개선할 수도 있습니다. 블록 복사본 대신 즉각적이고 공간 효율적인 복사본을 생성합니다.  또한 SRA에서는 DR 복제본의 복구를 테스트할 때, 클론 작업을 위한 SnapCenter 및 개별 파일을 복원할 백업 복사본을 찾아볼 때 사용됩니다.</block>
   <block id="5dd57c2a315d3af44c2eb40eefc47111" category="doc">네트워크 구성</block>
-  <block id="2b6203f34def274ff7424bf1d64a9bca" category="paragraph">ONTAP 소프트웨어를 실행하는 시스템에서 vSphere를 사용할 때 네트워크 설정을 구성하는 것은 다른 네트워크 구성과 마찬가지로 간단합니다.</block>
   <block id="66507f357c74ee12194270cfe053b98d" category="paragraph">다음은 고려해야 할 몇 가지 사항입니다.</block>
   <block id="b3752ab8dec37db2e30f4bf37fbdc112" category="list-text">스토리지 네트워크 트래픽을 다른 네트워크와 분리합니다. 전용 VLAN 또는 스토리지에 개별 스위치를 사용하면 별도의 네트워크를 구축할 수 있습니다. 스토리지 네트워크가 업링크와 같은 물리적 경로를 공유하는 경우 충분한 대역폭을 확보하기 위해 QoS 또는 추가 업링크 포트가 필요할 수 있습니다. 호스트를 스토리지에 직접 연결하지 말고, 스위치를 사용하여 중복 경로를 확보하고 VMware HA가 개입 없이 작동할 수 있도록 하십시오.</block>
   <block id="7c4904daaa282388097ad83bf382e1a5" category="list-text">원하는 경우 점보 프레임을 사용할 수 있으며 네트워크에서 지원됩니다(특히 iSCSI 사용 시). 사용하는 경우 스토리지와 ESXi 호스트 간 경로에서 모든 네트워크 디바이스, VLAN 등에 동일하게 구성되었는지 확인합니다. 그렇지 않으면 성능 또는 연결 문제가 나타날 수 있습니다. MTU는 ESXi 가상 스위치, VMkernel 포트 및 각 ONTAP 노드의 물리적 포트 또는 인터페이스 그룹에서도 동일하게 설정되어야 합니다.</block>
@@ -3240,7 +3209,6 @@ vSphere 8을 사용하는 NVMe-oF의 경우 자세한 내용은 을 참조하십
   <block id="45701e6ef9bc09dca07f8f4abe661dc6" category="cell">예(AES, krb5i를 지원하도록 vSphere 6.5 이상에서 향상)</block>
   <block id="76969a36155d2f41fc6cc3bd3faff244" category="cell">다중 경로 지원</block>
   <block id="8a18e0a50dc5755c294477cb16507a6c" category="doc">FlexGroups의 약자입니다</block>
-  <block id="b6cd969550b5501b0f62a149fb7964ce" category="paragraph">ONTAP 9.8은 vSphere에서 FlexGroup 데이터 저장소를 지원하며, VMware vSphere 9.8 릴리즈용 ONTAP 툴도 추가로 지원합니다.</block>
   <block id="f9ac230f370c7937167d25093c4ce9b9" category="paragraph">FlexGroup은 대규모 데이터 저장소의 생성을 간소화하고 여러 구성 볼륨을 자동으로 생성하여 ONTAP 시스템의 성능을 극대화합니다. 전체 ONTAP 클러스터의 강력한 기능을 갖춘 확장 가능한 단일 vSphere 데이터 저장소에 FlexGroup with vSphere를 사용하십시오.</block>
   <block id="6829bc8d3038be0130fd2b409ad5e560" category="paragraph">ONTAP 9.8은 vSphere 워크로드를 사용한 광범위한 시스템 테스트 외에도 FlexGroup 데이터 저장소를 위한 새로운 복제 오프로드 메커니즘도 추가합니다. 이렇게 하면 향상된 복제 엔진을 사용하여 소스 및 대상 모두에서 액세스할 수 있도록 하면서 백그라운드에서 구성 요소간에 파일을 복사할 수 있습니다. 여러 복사본은 필요할 때 규모에 따라 구성 요소 내에서 즉시 사용 가능한 공간 효율적인 파일 클론을 사용합니다.</block>
   <block id="760383437e8e5cbe4a2560753da783fb" category="paragraph">또한 ONTAP 9.8은 FlexGroup 파일에 대한 새로운 파일 기반 성능 메트릭(IOPS, 처리량, 지연 시간)을 추가하며, 이러한 메트릭은 VMware vSphere 대시보드 및 VM 보고서용 ONTAP 툴에서 확인할 수 있습니다. VMware vSphere 플러그인용 ONTAP 툴을 사용하면 최대 및/또는 최소 IOPS의 조합을 사용하여 서비스 품질(QoS) 규칙을 설정할 수도 있습니다. 데이터 저장소의 모든 VM에 대해 또는 특정 VM에 대해 개별적으로 설정할 수 있습니다.</block>
@@ -3255,7 +3223,6 @@ vSphere 8을 사용하는 NVMe-oF의 경우 자세한 내용은 을 참조하십
   <block id="ad971da24ec0a38449ebf31e4e2c9332" category="list-text">QoS(최대/최소 IOPS)는 개별 VM 또는 해당 시점에 데이터 저장소의 모든 VM에 설정할 수 있습니다. 모든 VM에서 QoS를 설정하면 별도의 VM별 설정이 대체됩니다. 설정은 향후 새 VM이나 마이그레이션된 VM으로 확장되지 않습니다. 새 VM에 QoS를 설정하거나 데이터 저장소의 모든 VM에 QoS를 다시 적용하십시오.</block>
   <block id="3c9d41390700cbdfb2c273f00df0d6fd" category="list-text">SnapCenter Plug-in for VMware vSphere 릴리즈 4.4는 운영 스토리지 시스템의 FlexGroup 데이터 저장소에 있는 VM의 백업 및 복구를 지원합니다. FlexGroup를 보조 시스템에 복제하기 위해 SnapMirror를 수동으로 사용할 수 있지만 SCV 4.4는 보조 복사본을 관리하지 않습니다.</block>
   <block id="be0ec3d9251292dd856ea0924ecc6873" category="doc">서비스 품질(QoS)</block>
-  <block id="f437881fa7e42bf0e4563bbec8176f81" category="paragraph">ONTAP 소프트웨어를 실행하는 시스템에서는 ONTAP 스토리지 QoS 기능을 사용하여 파일, LUN, 볼륨 또는 전체 SVM과 같은 다양한 스토리지 개체에 대해 Mbps 또는 IOPS 단위로 처리량을 제한할 수 있습니다.</block>
   <block id="8fdd6138f63aa45f1c51b48d9a01b19d" category="paragraph">처리량 제한은 배포 전에 알 수 없는 워크로드 또는 테스트 워크로드를 제어하여 다른 워크로드에 영향을 미치지 않도록 하는 데 유용합니다. 이러한 워크로드는 식별된 후 대규모 워크로드를 제한하는 데 사용할 수도 있습니다. ONTAP 9.2의 SAN 오브젝트 및 ONTAP 9.3의 NAS 오브젝트에 대해 일관된 성능을 제공하기 위해 IOPS를 기반으로 하는 최소 서비스 레벨도 지원됩니다.</block>
   <block id="3e4a2dc31acddb628ba286d25b1bd36e" category="paragraph">NFS 데이터 저장소를 사용하면 QoS 정책을 전체 FlexVol 볼륨 또는 해당 볼륨 내의 개별 VMDK 파일에 적용할 수 있습니다. ONTAP LUN을 사용하는 VMFS 데이터 저장소의 경우 FlexVol가 VMFS 파일 시스템을 인식하지 못하기 때문에 QoS 정책을 LUN 또는 개별 LUN을 포함하는 ONTAP 볼륨에 적용할 수 있지만 개별 VMDK 파일은 적용할 수 없습니다. VVOL을 사용할 경우 스토리지 용량 프로파일 및 VM 스토리지 정책을 사용하여 개별 VM에 최소 및/또는 최대 QoS를 설정할 수 있습니다.</block>
   <block id="534ecd446aac2f9c809eef9064f44aab" category="paragraph">개체에 대한 QoS 최대 처리량 제한은 Mbps 및/또는 IOPS로 설정할 수 있습니다. 둘 다 사용되는 경우 첫 번째 제한에 도달한 값은 ONTAP에 의해 적용됩니다. 워크로드에는 여러 개체가 포함될 수 있으며 QoS 정책을 하나 이상의 워크로드에 적용할 수 있습니다. 정책이 여러 워크로드에 적용될 경우 워크로드는 정책의 총 한도를 공유합니다. 중첩된 개체는 지원되지 않습니다(예: 볼륨 내의 파일은 각각 고유한 정책을 가질 수 없음). QoS 최소값을 IOPS에서만 설정할 수 있습니다.</block>
@@ -3328,7 +3295,6 @@ vSphere 8을 사용하는 NVMe-oF의 경우 자세한 내용은 을 참조하십
   <block id="d8a78b994fcd4e04901203a2e7bc6414" category="paragraph">다음 스크린샷은 AIQUM 확장 토폴로지를 보여줍니다.</block>
   <block id="e9659be2b7d3d69eccdb443ed2acec75" category="paragraph"><block ref="e9659be2b7d3d69eccdb443ed2acec75" category="inline-image-macro-rx" type="image"></block></block>
   <block id="f02207fb26160d7e47cf5ea35d07df03" category="doc">데이터 저장소 및 프로토콜</block>
-  <block id="ff53ee8001042abcefe5c912d0b5012f" category="section-title">vSphere 데이터 저장소 및 프로토콜 기능</block>
   <block id="af8dcb8c7a1e8b7e614e570806d8dcee" category="paragraph">7개의 프로토콜을 사용하여 ONTAP 소프트웨어를 실행하는 시스템의 데이터 저장소에 VMware vSphere를 연결합니다.</block>
   <block id="a7c815fafe60ae637d38216fa6300395" category="list-text">FCP</block>
   <block id="14eae6ee278098bfad4f8a10fd6c1195" category="list-text">FCoE 를 참조하십시오</block>
@@ -3497,7 +3463,6 @@ VAAI를 사용하지 않는 경우 NFS에서 모든 VM에 대해 이 설정이 �
   <block id="0065ce57adc813187a8e9c640ba6223a" category="paragraph">이제 REST API를 통해 SRA 서버 구성을 관리할 수 있습니다. 자동화 워크플로 구축을 지원하기 위해 Swagger UI가 추가되었으며 ONTAP 툴 어플라이언스 에서 확인할 수 있습니다<block ref="579ce3ee0a7c1521f3dce6a507ea64a0" prefix=" " category="inline-code"></block>.</block>
   <block id="dcaf091737df278b1b4bdd2e37c10a75" category="summary">NetApp ONTAP는 2002년 현대적인 데이터 센터에 도입된 이후 VMware vSphere 환경을 위한 업계 최고의 스토리지 솔루션이며, 비용을 절감하는 동시에 관리를 단순화하는 혁신적인 기능을 지속적으로 추가하고 있습니다.</block>
   <block id="0a0e655ee9ba6467857ebf014a268f29" category="doc">NetApp ONTAP를 사용하는 VMware 사이트 복구 관리자</block>
-  <block id="60398bdc931fc67a9b6d781434c3a15a" category="section-title">vSphere용 ONTAP</block>
   <block id="5bdb12cbb14efa98a61e7c5e3b4de108" category="admonition">이 문서는 이전에 게시된 기술 보고서 _TR-4900: VMware 사이트 복구 관리자를 ONTAP_ 로 대체합니다</block>
   <block id="7659430738ccf1c5b8c8084a4003c709" category="paragraph">NetApp ONTAP는 2002년 현대적인 데이터 센터에 도입된 이후 VMware vSphere 환경을 위한 업계 최고의 스토리지 솔루션이며, 비용을 절감하는 동시에 관리를 단순화하는 혁신적인 기능을 지속적으로 추가하고 있습니다. 이 문서에서는 VMware의 업계 최고 수준의 DR(재해 복구) 소프트웨어인 VMware SRM(Site Recovery Manager)용 ONTAP 솔루션에 대해 소개합니다. 최신 제품 정보와 Best Practice를 통해 배포를 간소화하고 위험을 줄이며 지속적인 관리를 간소화할 수 있습니다.</block>
   <block id="e3445c3aa798f5ad98665e33d34dd952" category="paragraph">모범 사례는 가이드 및 호환성 도구와 같은 다른 문서를 보완합니다. 이러한 전문 분야는 연구소 테스트와 NetApp 엔지니어 및 고객의 광범위한 현장 경험을 기반으로 합니다. 권장 모범 사례가 귀사의 환경에 적합하지 않은 경우도 있지만, 일반적으로 대부분의 고객 요구사항을 충족하는 가장 간단한 솔루션입니다.</block>
@@ -3778,7 +3743,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="2c87609dbbc3630573c64e271de8207d" category="list-text">모든 자격 증명 정보는 SHA256 해싱을 사용하여 저장됩니다.</block>
   <block id="0f1a6fa0a65f9d5c3c4a16b070104d7a" category="list-text">*기본 운영 체제 이미지.* 이 제품은 제한된 액세스 및 쉘 액세스가 비활성화된 OVA용 Debian Base OS와 함께 제공됩니다. 이렇게 하면 공격 발생 가능성이 줄어듭니다. 모든 SnapCenter 릴리스 기본 운영 체제는 보안 범위를 극대화하기 위해 최신 보안 패치로 업데이트됩니다.</block>
   <block id="83cd5867ba912e517fa1100299fd1cf3" category="paragraph">NetApp은 VMware vSphere 어플라이언스인 SnapCenter 플러그인과 관련된 소프트웨어 기능 및 보안 패치를 개발한 다음 고객에게 번들 소프트웨어 플랫폼으로 배포합니다. 이러한 어플라이언스에는 특정 Linux 하위 운영 체제 종속성 및 NetApp의 독점 소프트웨어가 포함되어 있으므로 하위 운영 체제를 변경하지 않는 것이 좋습니다. 이 경우 NetApp 어플라이언스에 영향을 줄 가능성이 매우 높기 때문입니다. 이는 NetApp의 어플라이언스 지원 기능에 영향을 미칠 수 있습니다. 보안 관련 문제를 해결하기 위해 NetApp은 어플라이언스의 최신 코드 버전을 테스트하고 구축할 것을 권장합니다.</block>
-  <block id="5afeee4e3c6d47363e83195b12c74872" category="paragraph">데이터 보호 기능, 스토리지 효율성 권장 사항, 재해 복구 옵션 등 모든 중요 ONTAP 기능에 대한 개요를 찾을 수 있습니다 <block ref="f7503abce54bbe0e3218519d659c8356" category="inline-link-macro-rx"></block> 이 정보는 ONTAP 스토리지 시스템에서 애플리케이션 환경의 아키텍처를 적절히 설계하고 관리하는 데 있어 매우 중요합니다.</block>
   <block id="c7eca250a9863785d63364853c46c00d" category="doc">FabricPool를 통한 MySQL 계층화</block>
   <block id="1bc6cee680286aae1b12889369b7f18a" category="summary">ONTAP 기반 MySQL</block>
   <block id="dac8ea4fbfd87a535663c227b91f50e3" category="doc">I/O 스케줄러</block>
@@ -3787,8 +3751,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="6def78482bd1915cb81f0f5c19ee8fe6" category="paragraph">MySQL의 InnoDB 스토리지 엔진은 Linux의 비동기 I/O 하위 시스템(네이티브 AIO)을 사용하여 데이터 파일 페이지에 대한 읽기 및 쓰기 요청을 수행합니다. 이 동작은 에 의해 제어됩니다<block ref="2c03186a22d036ce7dad84be5de2f2ce" prefix=" " category="inline-code"></block> 구성 옵션 - 기본적으로 활성화되어 있습니다. 기본 AIO를 사용할 경우 입출력 스케줄러 유형이 입출력 성능에 더 큰 영향을 미칩니다. 벤치마크를 수행하여 워크로드 및 환경에 가장 적합한 결과를 제공하는 I/O 스케줄러를 결정합니다.</block>
   <block id="e7b09beaf26efc7d8bee91786cf794b5" category="paragraph">I/O 스케줄러 구성에 관한 관련 Linux 및 MySQL 설명서를 참조하십시오.</block>
   <block id="6e8775bd755a8835ce86806d669677ea" category="doc">스토리지 구성</block>
-  <block id="f2d5298faec5552ae38d966f7d72f836" category="inline-link-macro">ONTAP 스토리지 구성의 엔터프라이즈 애플리케이션</block>
-  <block id="7ed6bedda4cf07c9134434f7ec06939a" category="paragraph">MySQL 데이터베이스에 사용되는 스토리지를 구성하는 방법에 대한 자세한 내용은 을 참조하십시오 <block ref="43de4a40eabec5647493f6e009ce9cb1" category="inline-link-macro-rx"></block></block>
   <block id="2f09ac000b4a1808cb795b7bdbb20ecc" category="doc">InnoDB_log_file_size입니다</block>
   <block id="b8674b2897b288ca55b74328df4780b3" category="paragraph">InnoDB 로그 파일 크기에 적합한 크기를 선택하는 것은 쓰기 작업과 서버 충돌 후 적절한 복구 시간을 갖는 데 중요합니다.</block>
   <block id="b61bad6f7bf48bf9abda0c86c9beed79" category="paragraph">많은 트랜잭션이 파일에 로그인되기 때문에 로그 파일 크기는 쓰기 작업에 중요합니다. 레코드가 수정되면 변경 내용이 테이블스페이스에 즉시 다시 기록되지 않습니다. 대신 변경 내용이 로그 파일 끝에 기록되고 페이지가 더티(dirty)로 표시됩니다. InnoDB는 로그를 사용하여 랜덤 I/O를 순차적 I/O로 변환합니다</block>
@@ -3907,11 +3869,9 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="5713a921d815fd7d19875846450f8ea8" category="doc">파일 구조</block>
   <block id="4955922857da5499a2f1be602a96b0ff" category="paragraph">InnoDB는 스토리지와 MySQL 서버 사이의 중간 계층 역할을 하며 데이터를 드라이브에 저장합니다.</block>
   <block id="8a6fab0b8bb36427eda4071adfd7780b" category="inline-image-macro">오류: 그래픽 이미지를 찾을 수 없습니다</block>
-  <block id="ca9f55f63ab99a97723ebf2d32c2516c" category="paragraph"><block ref="ca9f55f63ab99a97723ebf2d32c2516c" category="inline-image-macro-rx" type="image"></block></block>
   <block id="5d416cf65dd1e2c908bf430f957c89f8" category="paragraph">MySQL I/O는 두 가지 유형으로 분류됩니다.</block>
   <block id="e8a320970c929abda9ae744b0b9e8f5f" category="list-text">랜덤 파일 I/O</block>
   <block id="85430c0aa096ec282f2a14156baa312e" category="list-text">순차적 파일 I/O</block>
-  <block id="9251924a311c0050a0cc5b44a82c2b29" category="paragraph"><block ref="9251924a311c0050a0cc5b44a82c2b29" category="inline-image-macro-rx" type="image"></block></block>
   <block id="b7b9a4c6983139a2673988826094a3cf" category="paragraph">데이터 파일을 무작위로 읽고 덮어써서 IOPS가 높아집니다. 따라서 SSD 스토리지를 사용하는 것이 좋습니다.</block>
   <block id="322f79fd77365edecd173807cb429ca2" category="paragraph">재실행 로그 파일과 바이너리 로그 파일은 트랜잭션 로그입니다. 순차적으로 작성되므로 쓰기 캐시가 있는 HDD에서 우수한 성능을 얻을 수 있습니다. 순차적 읽기는 복구 시 발생하지만, 일반적으로 로그 파일 크기가 데이터 파일보다 작고 순차 읽기가 랜덤 읽기(데이터 파일에서 발생)보다 빠르므로 성능 문제가 발생하는 경우는 거의 없습니다.</block>
   <block id="a898d206a27508975fea2e241af2f04e" category="paragraph">이중 쓰기 버퍼는 InnoDB의 특별한 기능입니다. InnoDB는 먼저 플러시된 페이지를 이중 쓰기 버퍼에 쓴 다음 데이터 파일의 올바른 위치에 페이지를 씁니다. 이 프로세스는 페이지 손상을 방지합니다. 이중 쓰기 버퍼가 없으면 드라이브에 쓰기 프로세스 중에 전원 오류가 발생하면 페이지가 손상될 수 있습니다. 이중 쓰기 버퍼에 쓰는 작업이 순차적이기 때문에 HDD에 맞게 고도로 최적화되어 있습니다. 복구 시 순차적 읽기가 발생합니다.</block>
@@ -3923,11 +3883,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="7fd750411093ebd1faa0d99dd2608514" category="list-text">MySQL의 순수 순차 I/O 중심 파일을 저장하는 또 다른 볼륨입니다</block>
   <block id="0561a3b014eef0e5125fa63e1626cf57" category="paragraph">또한 이 레이아웃은 데이터 보호 정책 및 전략을 설계하는 데 도움이 됩니다.</block>
   <block id="a53db665fd1a9734a7a0e119671a0cd0" category="paragraph">Linux에서 NFS 성능은 라는 매개 변수에 달려 있습니다<block ref="453f2cc2326f82af1053f4aa4b75400b" prefix=" " category="inline-code"></block>.</block>
-  <block id="ffb6da058affe733896beb9aa49ecac8" category="paragraph">이 매개 변수는 Linux 운영 체제에서 허용되는 최대 NFS 작업의 수를 규제합니다.</block>
-  <block id="61b7a3955d9b57d4216605991a54fb5b" category="paragraph">RH5 및 OL5를 포함한 대다수 2.6-파생 커널의 기본값은 16입니다. 그러나 이 기본값은 성능 문제를 자주 발생시킵니다. 반대의 문제는 이 있는 최신 커널에서 발생합니다<block ref="453f2cc2326f82af1053f4aa4b75400b" prefix=" " category="inline-code"></block> 값은 기본적으로 65536이며 과도한 요청으로 인해 시스템에 홍수로 인해 스토리지 문제가 발생할 수 있습니다. RHEL 7 및 RHEL 8의 기본값은 65536입니다. 해결책은 이 값을 통계적으로 설정하는 것입니다. MySQL 데이터베이스와 함께 NetApp NFS 스토리지를 사용하는 모든 Linux 운영 체제에 128의 값을 사용하십시오. Red Hat Enterprise Linux에서 이 값을 설정하려면 /etc/sysctl.conf에 다음 항목을 넣으십시오.</block>
-  <block id="0dc9054baf963698b15466653cd51cae" category="paragraph">설정<block ref="453f2cc2326f82af1053f4aa4b75400b" prefix=" " category="inline-code"></block>:</block>
-  <block id="2e7b2d8e38618228d5ef0f9f8709c045" category="paragraph">값이 설정되었는지 확인합니다.</block>
-  <block id="1fabb1810f890946d2e0967a8f855598" category="admonition">매우 유사한 이름의 다른 매개 변수가 있습니다<block ref="9efd3427cde637b95ad2d74946670fee" prefix=" " category="inline-code"></block>. 이 값은 처음 설정할 때 TCP 세션에 할당되는 슬롯 수를 정의합니다. 이 값은 수정할 필요가 없습니다.</block>
   <block id="9166d970028a28a614af39e6286371b7" category="paragraph">을 사용하여 이 매개 변수를 끌 수 있습니다<block ref="8cafbd8d9096941261e87f4f9152ab92" prefix=" " category="inline-code"></block> 벤치마크용 또는 데이터 무결성 또는 가능한 오류보다 최고 성능에 더 관심이 있는 경우. InnoDB는 double-write라는 파일 플러시 기술을 사용합니다. InnoDB는 데이터 파일에 페이지를 쓰기 전에 이중 쓰기 버퍼라는 인접 영역에 페이지를 씁니다. 이중 쓰기 버퍼에 대한 쓰기 및 플러시가 완료된 후 InnoDB는 데이터 파일의 적절한 위치에 페이지를 씁니다. 페이지 쓰기 중에 운영 체제 또는 mysqld 프로세스가 충돌하는 경우 InnoDB는 나중에 충돌 복구 중에 이중 쓰기 버퍼에서 올바른 페이지 복사본을 찾을 수 있습니다.</block>
   <block id="3dfd4b9a526f8a8cf17021e34638b375" category="admonition">* NetApp는 이중 쓰기 버퍼를 비활성화 * 할 것을 권장합니다. ONTAP NVRAM은 동일한 기능을 제공한다. 이중 버퍼링은 불필요하게 성능을 저하시킵니다.</block>
   <block id="dd5a2a602f713562e0f9f0fd8385660e" category="doc">NFS를 통한 MySQL</block>
@@ -4034,7 +3989,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="3390e3575b3e341afa2b7172ff5b33a7" category="sidebar">VMware vSphere용 SnapCenter 플러그인</block>
   <block id="62a004b95946bb97541afa471dcca73a" category="sidebar">MySQL</block>
   <block id="7f1a6761f7160e33a32105202e47303b" category="sidebar">컨테이너화</block>
-  <block id="bc65796c5a1bad360243a1bbe58272c2" category="sidebar">일반 스토리지 구성입니다</block>
   <block id="bd57f4f74ca087a92a48b23d45753729" category="paragraph">ONTAP 툴 VASA Provider는 관리되는 ESXi 호스트의 검색된 이니시에이터를 기반으로 ONTAP에서 FCP 및 iSCSI igroup과 NVMe 서브시스템을 관리합니다. 그러나 조닝을 관리하기 위해 파이버 채널 스위치와 통합되지 않습니다. 조닝은 Best Practice에 따라 수행해야 프로비저닝이 수행될 수 있습니다. 다음은 4개의 ONTAP 시스템에 대한 단일 이니시에이터 조닝의 예입니다.</block>
   <block id="6b14e3f4a37881185acf7a766f8f6272" category="paragraph">단일 이니시에이터 조닝:</block>
   <block id="17ccf64e30cb518fd7ca87ce752ad738" category="paragraph"><block ref="17ccf64e30cb518fd7ca87ce752ad738" category="inline-image-macro-rx" type="image"></block></block>
@@ -4049,5 +4003,23 @@ HA 쌍당 최소 2개의 LIF를 생성합니다. 작업 부하에 따라 더 많
   <block id="4e0d7e0587bf99c9b7a64a84fd42f6bd" category="paragraph">선택한 프로토콜에 관련된 NetApp 및 VMware의 기타 모범 사례 가이드를 참조하십시오. 일반적으로 이미 언급한 것 이외의 다른 변경 사항은 없습니다.</block>
   <block id="97f87e9ab1d660463c63beb8745fd9e5" category="paragraph">* NFS v3을 통한 VVol을 사용한 네트워크 구성의 예 *</block>
   <block id="c80b3cc8b5013bd4039769fb0f783e60" category="paragraph"><block ref="c80b3cc8b5013bd4039769fb0f783e60" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="d81c587aad705c1101db78ffea8e5bc3" category="paragraph"><block ref="d81c587aad705c1101db78ffea8e5bc3" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="dee28dd6d1a9ef7bf399f642fd9d588f" category="section-title">NFS 전송 크기</block>
+  <block id="d8299d00f914e35b80644e5781e47a77" category="paragraph"><block ref="d8299d00f914e35b80644e5781e47a77" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="14ce62ac76fa34a51093e6bcf11a2fd1" category="paragraph">데이터베이스 백업의 주요 고려사항은 NetApp 스냅샷 기술을 활용하는 것입니다. NetApp SnapCenter로 조정할 수 있는 RTO 및 RPO를 달성하기 위해 애플리케이션 정합성이 보장되는 백업 및 데이터베이스 레이아웃을 고려해야 합니다.</block>
+  <block id="08ec4f226440b636860c1faf0bd1b98c" category="paragraph"><block ref="08ec4f226440b636860c1faf0bd1b98c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2c024bdc7d0e87e8ba0f473024d45a4e" category="paragraph">서버 및 데이터베이스 설정을 수정하면 데이터베이스 성능을 향상시키고 효율성을 높일 수 있습니다.</block>
+  <block id="861f074a1ecd9d1cc088d2fe81903565" category="paragraph"><block ref="861f074a1ecd9d1cc088d2fe81903565" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="710e9cd79e3865d47122a799f425b31f" category="paragraph"><block ref="710e9cd79e3865d47122a799f425b31f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="5a656ddcc72bacc3a5900c23edf7a08e" category="paragraph"><block ref="5a656ddcc72bacc3a5900c23edf7a08e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="073ce0a0568adc64d52dd9b1d8c02c54" category="paragraph"><block ref="073ce0a0568adc64d52dd9b1d8c02c54" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d5e31e9b7075c2926dba10053509346b" category="paragraph">스토리지 효율성은 RAID, 프로비저닝(전체 레이아웃 및 활용률), 미러링, 기타 데이터 보호 기술의 조합입니다. Snapshot 복사본, 씬 프로비저닝, FlexClone과 같은 NetApp 기술은 인프라의 기존 스토리지를 최적화하고 향후 스토리지 지출을 연기하거나 피할 수 있도록 함으로써 비용 이점을 만드는 데 도움이 됩니다. 이러한 기술을 함께 사용할수록 더 많은 비용을 절감할 수 있습니다.</block>
+  <block id="3401a9880dfc322da8a56c4d632361f6" category="paragraph"><block ref="3401a9880dfc322da8a56c4d632361f6" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="87f823f4f3b4258445d5af029afe5ad9" category="paragraph"><block ref="87f823f4f3b4258445d5af029afe5ad9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="9213fe9d391179276ff6c03552486255" category="paragraph"><block ref="9213fe9d391179276ff6c03552486255" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3105b4c0642b9710179c18edcf8e8718" category="paragraph"><block ref="3105b4c0642b9710179c18edcf8e8718" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="1a43000eb9893bff7ab7b1ce1d3fd6a8" category="paragraph"><block ref="1a43000eb9893bff7ab7b1ce1d3fd6a8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4b7a8562c98b8c652bdfb6aa79788222" category="paragraph"><block ref="4b7a8562c98b8c652bdfb6aa79788222" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="25cec91f17a8619119f76c8adbace583" category="paragraph">또한 압축 블록 정렬에 대한 내용은 섹션을 참조하십시오 <block ref="0faffd62be034c86d531acfee84d252e" category="inline-link-macro-rx"></block>. 8KB 압축 블록 경계에 맞춰 정렬된 레이아웃은 4KB 경계에도 맞춰집니다.</block>
+  <block id="38ac6f4e1538397bd4f659237ec03ebf" category="paragraph"><block ref="38ac6f4e1538397bd4f659237ec03ebf" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f01518e5f3b18a9ea241bc63a3475dbd" category="paragraph"><block ref="f01518e5f3b18a9ea241bc63a3475dbd" category="inline-image-macro-rx" type="image"></block></block>
 </blocks>

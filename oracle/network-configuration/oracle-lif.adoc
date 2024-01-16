@@ -10,7 +10,7 @@ summary: Oracle 데이터베이스용 논리 인터페이스 설계
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

@@ -10,7 +10,7 @@ summary: Oracle 데이터베이스에 대한 WAFL 조정
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

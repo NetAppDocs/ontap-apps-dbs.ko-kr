@@ -10,7 +10,7 @@ summary: 'ONTAP는 SAN 환경을 위한 iSCSI, FC(파이버 채널), FCoE(Fibre 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

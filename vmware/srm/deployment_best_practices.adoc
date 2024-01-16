@@ -10,7 +10,7 @@ summary: 'ONTAP를 사용하면 SVM(스토리지 가상 머신)이라는 개념�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../../media/
 
 
 

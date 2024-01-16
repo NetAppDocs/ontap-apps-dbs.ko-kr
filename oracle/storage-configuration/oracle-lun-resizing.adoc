@@ -10,7 +10,7 @@ summary: Oracle 데이터베이스를 사용한 LUN 및 LVM 크기 조정
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

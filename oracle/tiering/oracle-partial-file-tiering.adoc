@@ -10,7 +10,7 @@ summary: FabricPool를 통한 부분 파일 계층화
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

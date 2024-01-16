@@ -10,12 +10,13 @@ summary: 가능하면 항상 ONTAP 툴을 사용하여 데이터 저장소와 �
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../../media/
+:firstname: [.lead]
+:author: [.lead]
+:authorinitials: [
+:authors: [.lead]
+:revdate: == Datastores and protocols
 
-
-
-
-== 데이터 저장소 및 프로토콜
 
 가능하면 항상 ONTAP 툴을 사용하여 데이터 저장소와 볼륨을 프로비저닝하십시오. 이렇게 하면 볼륨, 접합 경로, LUN, igroup, 엑스포트 정책이 및 기타 설정은 호환되는 방식으로 구성됩니다.
 

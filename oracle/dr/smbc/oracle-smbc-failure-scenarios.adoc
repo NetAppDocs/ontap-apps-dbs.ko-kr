@@ -10,7 +10,7 @@ summary: Oracle SM-BC 장애 시나리오
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../../media/
 
 
 [role="lead"]

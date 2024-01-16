@@ -10,7 +10,7 @@ summary: Oracle 백업 계층화
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

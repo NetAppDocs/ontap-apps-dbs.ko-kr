@@ -6,12 +6,11 @@ summary: ONTAP 기반 Microsoft SQL Server
 ---
 = CPU 구성
 :allow-uri-read: 
-:firstname: [.lead]
-:author: [.lead]
-:authorinitials: [
-:authors: [.lead]
-:revdate: Modifying server and database settings can help achieve better and more efficient database performance.
+:imagesdir: ../media/
 
+
+[role="lead"]
+서버 및 데이터베이스 설정을 수정하면 데이터베이스 성능을 향상시키고 효율성을 높일 수 있습니다.
 
 
 
@@ -29,7 +28,7 @@ SQL Server 라이선스를 취득할 때 두 가지 주요 고려 사항이 있�
 
 === 로그 항목은 SQL Server 시작 후 사용 중인 코어 수를 나타냅니다.
 
-image:./media/hyperthreading.png["오류: 그래픽 이미지가 없습니다"]
+image:mssql-hyperthreading.png["오류: 그래픽 이미지가 없습니다"]
 
 따라서 모든 CPU를 사용하려면 프로세서당 코어 라이센스를 사용해야 합니다. SQL Server 라이센스에 대한 자세한 내용은 을 참조하십시오 link:https://www.microsoft.com/en-us/sql-server/sql-server-2022-comparison["SQL Server 2022: 최신 데이터 플랫폼"^].
 
@@ -72,7 +71,7 @@ TIP: * NetApp는 데이터 웨어하우스와 같은 DSS에 대해 이 설정을
 
 작업자 스레드를 더 많이 사용하도록 SQL Server를 구성해야 하는 경우는 언제입니까? 각 스케줄러의 평균 작업 대기열 길이가 1을 초과하면 시스템에 더 많은 스레드를 추가할 수 있습니다. 단, 로드가 CPU에 바인딩되지 않거나 다른 과중한 대기가 발생하는 경우에만 가능합니다. 이러한 상황이 발생하는 경우 스레드를 더 추가해도 다른 시스템 병목 현상이 발생하기 때문에 도움이 되지 않습니다. 최대 작업자 스레드에 대한 자세한 내용은 을 참조하십시오 link:https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/configure-the-max-worker-threads-server-configuration-option?view=sql-server-ver16&redirectedfrom=MSDN["최대 작업자 스레드 서버 구성 옵션을 구성합니다"^].
 
-image:./media/max-worker-threads.png["오류: 그래픽 이미지가 없습니다"]
+image:mssql-max-worker-threads.png["오류: 그래픽 이미지가 없습니다"]
 
 
 

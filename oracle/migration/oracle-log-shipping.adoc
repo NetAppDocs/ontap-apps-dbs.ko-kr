@@ -10,7 +10,7 @@ summary: 로그 전달을 통한 Oracle 마이그레이션
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

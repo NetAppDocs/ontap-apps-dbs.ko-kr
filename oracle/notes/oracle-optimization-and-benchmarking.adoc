@@ -10,7 +10,7 @@ summary: Oracle 성능 테스트
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

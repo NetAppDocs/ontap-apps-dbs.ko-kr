@@ -10,7 +10,7 @@ summary: Oracle 데이터베이스와의 LUN 정렬
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]
@@ -22,7 +22,7 @@ ONTAP 시스템에서 스토리지는 4KB 장치로 구성됩니다. 데이터�
 
 Linux 환경에서는 전체 드라이브 장치에 논리적 볼륨 그룹이 구축됩니다. 파티션이 필요하면 를 실행하여 정렬을 점검합니다 `fdisk –u` 각 파티션의 시작이 8의 배수인지 확인합니다. 이는 8개의 512바이트 섹터를 곱한 값인 4KB에서 파티션이 시작된다는 뜻입니다.
 
-또한 압축 블록 정렬에 대한 내용은 섹션을 참조하십시오 link:/oracle/ontap-configuration/oracle-efficiency.html["효율성"]. 8KB 압축 블록 경계에 맞춰 정렬된 레이아웃은 4KB 경계에도 맞춰집니다.
+또한 압축 블록 정렬에 대한 내용은 섹션을 참조하십시오 link:../ontap-configuration/oracle-efficiency.html["효율성"]. 8KB 압축 블록 경계에 맞춰 정렬된 레이아웃은 4KB 경계에도 맞춰집니다.
 
 
 

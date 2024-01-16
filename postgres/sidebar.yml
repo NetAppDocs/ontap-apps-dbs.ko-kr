@@ -4,8 +4,6 @@ title: PostgreSQL
 entries:
 - title: 개요
   url: "/postgres/overview.html"
-- title: ONTAP 구성
-  url: "/postgres/ontap.html"
 - title: 데이터베이스 구성
   entries:
   - title: 있습니다

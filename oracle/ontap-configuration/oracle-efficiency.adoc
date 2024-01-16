@@ -10,7 +10,7 @@ summary: Oracle 데이터베이스 및 스토리지 효율성
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

@@ -10,11 +10,14 @@ summary: NetApp ONTAP 소프트웨어는 약 20년 동안 VMware vSphere 환경�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../../media/
+:firstname: [.lead]
+:author: [.lead]
+:authorinitials: [
+:authors: [.lead]
+:revnumber: 
+:revdate: and simplify management.
 
-
-[role="lead"]
-NetApp ONTAP 소프트웨어는 약 20년 동안 VMware vSphere 환경을 위한 최고의 스토리지 솔루션으로, 혁신적인 기능을 지속적으로 추가하여 관리를 단순화하는 동시에 비용을 절감했습니다. 이 문서에서는 구축을 간소화하고 위험을 줄이며 관리를 단순화하는 최신 제품 정보 및 모범 사례를 비롯하여 vSphere용 ONTAP 솔루션에 대해 소개합니다.
 
 
 NOTE: 이 문서는 이전에 게시된 기술 보고서_TR-4597: VMware vSphere for ONTAP _ 을(를) 대체합니다

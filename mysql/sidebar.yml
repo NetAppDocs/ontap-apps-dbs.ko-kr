@@ -4,8 +4,6 @@ title: MySQL
 entries:
 - title: 개요
   url: "/mysql/overview.html"
-- title: ONTAP 구성
-  url: "/mysql/ontap.html"
 - title: 데이터베이스 구성
   entries:
   - title: 파일 구조
@@ -40,8 +38,6 @@ entries:
     url: "/mysql/file-descriptors.html"
 - title: 스토리지 구성
   entries:
-  - title: 일반 스토리지 구성입니다
-    url: "/mysql/storage.html"
   - title: NFS를 통한 MySQL
     url: "/mysql/mysql-over-nfs.html"
   - title: SAN을 통한 MySQL

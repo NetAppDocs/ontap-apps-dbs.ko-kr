@@ -10,7 +10,7 @@ summary: Oracle 데이터 보호 SLA
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

@@ -10,7 +10,7 @@ summary: Oracle 및 TCP/IP 및 이더넷 구성
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

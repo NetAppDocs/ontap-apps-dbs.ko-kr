@@ -10,7 +10,7 @@ summary: Oracle 계층화 정책
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

@@ -10,7 +10,7 @@ summary: Oracle 및 NetApp 백업 툴
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

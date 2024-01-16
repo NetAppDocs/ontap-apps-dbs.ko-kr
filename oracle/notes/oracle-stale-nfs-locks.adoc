@@ -10,7 +10,7 @@ summary: Oracle 및 오래된 NFSv3 잠금
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

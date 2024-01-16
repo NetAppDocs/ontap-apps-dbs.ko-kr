@@ -10,7 +10,7 @@ summary: Oracle 스냅샷 계층화
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

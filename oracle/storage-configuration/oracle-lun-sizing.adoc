@@ -10,7 +10,7 @@ summary: Oracle 데이터베이스 LUN 사이징 및 LUN 수 지침
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

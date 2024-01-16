@@ -10,7 +10,7 @@ summary: 호스트 측 스토리지 스택을 사용한 Oracle 마이그레이�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

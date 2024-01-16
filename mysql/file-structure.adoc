@@ -11,7 +11,7 @@ summary: MySQL 파일 구조
 [role="lead"]
 InnoDB는 스토리지와 MySQL 서버 사이의 중간 계층 역할을 하며 데이터를 드라이브에 저장합니다.
 
-image:./media/file-structure1.png["오류: 그래픽 이미지를 찾을 수 없습니다"]
+image:mysql-file-structure1.png["오류: 그래픽 이미지를 찾을 수 없습니다"]
 
 MySQL I/O는 두 가지 유형으로 분류됩니다.
 
@@ -19,7 +19,7 @@ MySQL I/O는 두 가지 유형으로 분류됩니다.
 * 순차적 파일 I/O
 
 
-image:./media/file-structure2.png["오류: 그래픽 이미지를 찾을 수 없습니다"]
+image:mysql-file-structure2.png["오류: 그래픽 이미지를 찾을 수 없습니다"]
 
 데이터 파일을 무작위로 읽고 덮어써서 IOPS가 높아집니다. 따라서 SSD 스토리지를 사용하는 것이 좋습니다.
 

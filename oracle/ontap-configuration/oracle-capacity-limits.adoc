@@ -10,7 +10,7 @@ summary: 데이터베이스 및 ONTAP 스토리지 용량과 여유 공간
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

@@ -10,6 +10,7 @@ summary: ONTAP 기반 Microsoft SQL Server
 :author: [.lead]
 :authorinitials: [
 :authors: [.lead]
+:imagesdir: ../media/
 
 
 
@@ -27,7 +28,7 @@ SQL Server 인스턴스가 여러 개 있는 SQL Server 클러스터에서 각 �
 
 TIP: *NetApp는 성능 문제를 방지하기 위해 운영 체제에 최소 4GB~6GB의 RAM을 남겨 둘 것을 권장합니다.
 
-image:./media/max-server-memory.png["오류: 그래픽 이미지가 없습니다"]
+image:mssql-max-server-memory.png["오류: 그래픽 이미지가 없습니다"]
 
 
 
@@ -74,7 +75,7 @@ NUMA가 SQL Server가 설치된 서버에 구성되어 있는 경우 SQL Server�
 
 기본적으로 쿼리당 최소 메모리 설정은 실행할 각 쿼리에 대해 > 또는 =를 1024KB를 할당합니다. SQL Server에서 인덱스 생성 작업에 할당된 메모리 양을 동적으로 관리할 수 있도록 이 설정을 기본값 0으로 유지하는 것이 가장 좋습니다. 그러나 SQL Server의 RAM이 효율적으로 실행하는 데 필요한 것보다 많은 경우 이 설정을 높이면 일부 쿼리의 성능이 향상될 수 있습니다. 따라서 SQL Server, 다른 응용 프로그램 또는 운영 체제에서 사용하지 않는 서버에서 메모리를 사용할 수 있는 한 이 설정을 높이면 SQL Server의 전반적인 성능이 향상될 수 있습니다. 사용 가능한 메모리가 없는 경우 이 설정을 늘리면 전체 성능이 저하될 수 있습니다.
 
-image:./media/min-memory-per-query.png["오류: 그래픽 이미지가 없습니다"]
+image:mssql-min-memory-per-query.png["오류: 그래픽 이미지가 없습니다"]
 
 
 

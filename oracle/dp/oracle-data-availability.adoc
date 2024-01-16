@@ -10,7 +10,7 @@ summary: ONTAP 기반의 Oracle을 통해 가용성 극대화
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

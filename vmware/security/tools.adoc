@@ -10,7 +10,7 @@ summary: 이 문서에서는 VMware vSphere용 ONTAP 툴의 제품 보안에 대
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../../media/
 
 
 

@@ -10,7 +10,7 @@ summary: ONTAP을 사용한 Oracle 재해 복구
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

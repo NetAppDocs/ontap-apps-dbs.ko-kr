@@ -10,7 +10,7 @@ summary: Pracle 계층화 검색 정책
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

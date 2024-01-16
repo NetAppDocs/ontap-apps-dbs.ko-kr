@@ -10,7 +10,7 @@ summary: 기존 가상 어플라이언스로 전환한 ONTAP 툴은 다양한 �
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

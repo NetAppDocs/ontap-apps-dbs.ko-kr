@@ -10,7 +10,7 @@ summary: 오브젝트 저장소의 액세스가 중단되는 동안 데이터베
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

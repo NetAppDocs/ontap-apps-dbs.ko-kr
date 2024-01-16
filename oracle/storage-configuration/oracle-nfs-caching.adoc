@@ -10,7 +10,7 @@ summary: NFS 속성 데이터베이스 캐싱
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

@@ -6,6 +6,7 @@ summary: ONTAP 기반 Microsoft SQL Server
 ---
 = Microsoft SQL Server 공유 인스턴스와 전용 인스턴스 비교
 :allow-uri-read: 
+:imagesdir: ../media/
 
 
 [role="lead"]

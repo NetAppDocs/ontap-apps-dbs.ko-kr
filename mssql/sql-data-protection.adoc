@@ -1,17 +1,18 @@
 ---
 sidebar: sidebar 
-permalink: mssql/Data-protection.html 
+permalink: mssql/sql-data-protection.html 
 keywords: MS-SQL,mssql,SQL Server, SnapCenter, data protection 
 summary: ONTAP을 통한 Microsoft SQL Server 데이터 보호 
 ---
 = ONTAP을 통한 Microsoft SQL Server 데이터 보호
 :allow-uri-read: 
+:imagesdir: ../media/
 
 
 [role="lead"]
 데이터베이스 보호는 모든 조직에 매우 중요합니다. 데이터베이스의 데이터 크기와 수가 증가함에 따라 복구 시간 목표(RTO) 및 복구 시점 목표(RPO)를 유지하는 것이 매우 중요합니다.
 
-데이터베이스 백업의 주요 고려사항은 NetApp 스냅샷 기술을 활용하는 것입니다. ONTAP의 데이터 보호 계획을 설명합니다 link:../common/dp/overview.html["여기"]. NetApp SnapCenter로 조정할 수 있는 RTO 및 RPO를 달성하기 위해 애플리케이션 정합성이 보장되는 백업 및 데이터베이스 레이아웃을 고려해야 합니다.
+데이터베이스 백업의 주요 고려사항은 NetApp 스냅샷 기술을 활용하는 것입니다. NetApp SnapCenter로 조정할 수 있는 RTO 및 RPO를 달성하기 위해 애플리케이션 정합성이 보장되는 백업 및 데이터베이스 레이아웃을 고려해야 합니다.
 
 
 

@@ -6,6 +6,7 @@ summary: ONTAP 기반 Microsoft SQL Server
 ---
 = Microsoft SQL Server 스토리지 고려 사항
 :allow-uri-read: 
+:imagesdir: ../media/
 
 
 [role="lead"]

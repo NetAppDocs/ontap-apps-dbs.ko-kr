@@ -18,5 +18,3 @@ NVFAIL은 대규모 페일오버 시나리오 중에 무결성을 보장하는 O
 운영 체제 파일 시스템 계층에서의 캐싱 사용은 이보다 덜 명확합니다. 마운트된 NFS 파일 시스템의 블록이 운영 체제에 캐싱될 수 있습니다. 또는 운영 사이트에 있는 LUN 기반의 클러스터된 파일 시스템을 원격 사이트의 서버에 마운트하여 데이터를 다시 캐시할 수 있습니다. 이러한 상황에서 NVRAM 장애 또는 강제 적용 테이크오버 또는 강제 적용 스위치오버로 인해 파일 시스템이 손상될 수 있습니다.
 
 ONTAP는 NVFAIL 및 관련 설정을 통해 이 시나리오로부터 데이터베이스와 운영 체제를 보호합니다.
-
-중요한 추가 정보는 를 참조하십시오 link:../../common/dp/integrity.html#hardware-failure-protection-nvfail["HA 쌍을 포함한 NVFAIL"] 및 link:../../common/metrocluster/nvfail.html["MetroCluster 사용 NVFAIL"]

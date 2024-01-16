@@ -10,12 +10,13 @@ summary: NetApp ONTAP는 2002년 현대적인 데이터 센터에 도입된 이�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../../media/
+:firstname: [.lead]
+:author: [.lead]
+:authorinitials: [
+:authors: [.lead]
+:revdate: == ONTAP for vSphere
 
-
-
-
-== vSphere용 ONTAP
 
 
 NOTE: 이 문서는 이전에 게시된 기술 보고서 _TR-4900: VMware 사이트 복구 관리자를 ONTAP_ 로 대체합니다
