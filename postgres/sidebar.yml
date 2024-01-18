@@ -18,8 +18,10 @@ entries:
 - title: 스토리지 구성
   pdf-filename: PostgreSQL에 대한 스토리지 구성입니다
   entries:
-  - title: 파일 시스템 구성
-    url: "/postgres/postgres-filesystems.html"
+  - title: NFS 를 참조하십시오
+    url: "/postgres/postgres-nfs-filesystems.html"
+  - title: 산
+    url: "/postgres/postgres-san-filesystems.html"
 - title: 데이터 보호
   pdf-filename: PostgreSQL에 대한 데이터 보호
   entries:

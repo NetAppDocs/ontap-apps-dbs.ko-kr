@@ -602,10 +602,7 @@
   <block id="8fcd14822a5b94d212898fe3e006526e" category="paragraph">PostgreSQL의 모든 데이터베이스 개체는 해당 OID에 의해 내부적으로 관리됩니다. 테이블 및 인덱스도 개별 OID에 의해 관리됩니다. 데이터베이스 개체와 해당 OID 간의 관계는 개체 유형에 따라 적절한 시스템 카탈로그 테이블에 저장됩니다. 예를 들어 데이터베이스 및 힙 테이블의 OID는 에 저장됩니다<block ref="d0fcebb608269edbd5d67486884ebed7" prefix=" " category="inline-code"></block> 및 ``pg_class. PostgreSQL 클라이언트에서 쿼리를 실행하여 OID를 확인할 수 있습니다.</block>
   <block id="d0e97e34fe92edd2facd0f7377b6340b" category="paragraph">모든 데이터베이스에는 1GB로 제한된 고유한 개별 테이블 및 인덱스 파일이 있습니다. 각 테이블에는 각각 접미사가 붙은 두 개의 관련 파일이 있습니다<block ref="7b9b00c45b01f7b7c6d3a3c8ba2e9275" prefix=" " category="inline-code"></block> 및<block ref="a1d869a79e2f43693a6a416fcbdc2724" prefix=" " category="inline-code"></block>. 이를 여유 공간 지도와 가시성 지도라고 합니다. 이러한 파일은 사용 가능한 공간 용량에 대한 정보를 저장하며 테이블 파일의 각 페이지를 볼 수 있습니다. 인덱스에는 개별 가용 공간 맵만 있으며 가시성 맵은 없습니다.</block>
   <block id="048a7ed79caf84bb5c725efc5f474911" category="paragraph">를 클릭합니다<block ref="c28f4f32219f5ff99fb4b116980b8549" prefix=" " category="inline-code"></block> 디렉토리에는 미리 쓰기 로그가 포함됩니다. 미리 쓰기 로그는 데이터베이스의 안정성과 성능을 개선하는 데 사용됩니다. 테이블의 행을 업데이트할 때마다 PostgreSQL은 먼저 미리 쓰기 로그에 변경 내용을 쓰고 나중에 실제 데이터 페이지에 대한 수정 내용을 디스크에 씁니다. 를 클릭합니다<block ref="f7223cfaa9416056a91e259e326ac5cf" prefix=" " category="inline-code"></block> 디렉터리에는 일반적으로 여러 파일이 포함되어 있지만 initdb는 첫 번째 파일만 만듭니다. 필요에 따라 추가 파일이 추가됩니다. 각 xlog 파일의 길이는 16MB입니다.</block>
-  <block id="2bd2440a8b5fed6660918b5f10f685bb" category="doc">파일 시스템</block>
-  <block id="81d00501c34ba5f161f685a99dce0d13" category="paragraph">PostgreSQL은 NFS 또는 SAN 파일 시스템에서 호스팅할 수 있습니다.</block>
   <block id="789a6c7dd865d16eb1df122bcc5c9a3a" category="admonition">* NetApp는 NFSv4 기능이 필요한 경우 NFSv4.1을 사용할 것을 권장합니다. NFSv4.1에서는 NFSv4 프로토콜의 기능이 개선되어 특정 엣지 경우 복원력을 향상할 수 있습니다.</block>
-  <block id="36772d6dfc6e102eff552ffad6b98690" category="paragraph">NFS 파일 시스템을 마운트할 때 다음 마운트 옵션을 사용합니다.</block>
   <block id="8e86e0aee135afb67c6a1d3d6e0f3306" category="inline-link-macro">NFS 전송 크기</block>
   <block id="d84b41126744795c4ee82f7b256e7234" category="inline-link-macro">FC SAN</block>
   <block id="2c8c2171fc87c96e58fb40d8714f85cf" category="doc">PostgreSQL 아키텍처</block>
@@ -3889,7 +3886,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="2d2eef88dbdd0c34bde24e2632d9944f" category="sidebar">SAP HANA 및 AnyDB</block>
   <block id="399bd1ee587245ecac6f39beaa99886f" category="sidebar">PostgreSQL</block>
   <block id="f4f70727dc34561dfde1a3c529b6205c" category="sidebar">설정</block>
-  <block id="3dd7c32443d5846be0a8fd75cb08b70e" category="sidebar">파일 시스템 구성</block>
   <block id="c476a4701643b158f9f5d57bcc91951d" category="sidebar">스냅샷 기술</block>
   <block id="35084d885dea7b061e6894c1cf3036d9" category="sidebar">워크로드</block>
   <block id="7d219314ccabde6609510141bb175a6c" category="sidebar">공유 인스턴스와 전용 인스턴스 비교</block>
@@ -4020,4 +4016,19 @@ HA 쌍당 최소 2개의 LIF를 생성합니다. 작업 부하에 따라 더 많
   <block id="ea9cdfcbfcf1906c15b6779f0f327028" category="sidebar">MySQL용 데이터베이스 구성</block>
   <block id="308f8f580d0248ac023557cfd4b10d83" category="sidebar">MySQL의 호스트 구성</block>
   <block id="830f353b3e6055499fac447b16b0c935" category="sidebar">MySQL의 스토리지 구성입니다</block>
+  <block id="3106f8f17f2974fe05da16fb0cc50505" category="summary">ONTAP 기반 SAN을 사용한 PostgreSQL 데이터베이스</block>
+  <block id="74cacb0c34a37e2859e3b054938a344d" category="doc">SAN 파일 시스템을 사용한 PostgreSQL</block>
+  <block id="1758f5c81d60f1a0ac8600fddc99a919" category="paragraph">SAN을 사용하는 PostgreSQL 데이터베이스는 일반적으로 xfs 파일 시스템에서 호스팅되지만 다른 데이터베이스는 OS 공급업체에서 지원하는 경우 사용할 수 있습니다</block>
+  <block id="d73e7b56b7baa813a32c521ca074e7c4" category="paragraph">단일 LUN은 일반적으로 최대 100K IOPS를 지원할 수 있지만, IO 집약적인 데이터베이스는 일반적으로 LVM을 스트라이핑과 함께 사용해야 합니다.</block>
+  <block id="5c24f0d1d447c2dfc01f2f2641e1d56c" category="summary">ONTAP를 사용한 PostgreSQL 데이터베이스 NFS</block>
+  <block id="3532099588a13fbccb2af22a75936454" category="doc">NFS 파일 시스템을 사용하는 PostgreSQL</block>
+  <block id="f7cc8c4234952826818ad4d0c2050ac9" category="paragraph">PostgreSQL 데이터베이스는 NFSv3 또는 NFSv4 파일 시스템에서 호스팅할 수 있습니다. 가장 좋은 옵션은 데이터베이스 외부의 요인에 따라 달라집니다.</block>
+  <block id="1482c42acc1dd31ee8496c71a805e73c" category="paragraph">예를 들어 특정 클러스터 환경에서는 NFSv4 잠금 동작이 더 바람직할 수 있습니다. (를 참조하십시오 <block ref="bc3a7e667477b8b3590fa1451dcb924c" category="inline-link-macro-rx"></block> 참조)</block>
+  <block id="9674525687765646f35916d0e569eda9" category="paragraph">그렇지 않으면 성능을 포함하여 데이터베이스 기능이 거의 동일해야 합니다. 유일한 요구 사항은 를 사용하는 것입니다<block ref="d64a84456adc959f56de6af685d0dadd" prefix=" " category="inline-code"></block> 마운트 옵션. 소프트 타임아웃이 복구할 수 없는 입출력 오류를 생성하지 않도록 하기 위해 필요합니다.</block>
+  <block id="0c6430fad6c643c444b5d6d52b18edb4" category="paragraph">NFSv4를 프로토콜로 선택하는 경우 NetApp에서는 NFSv4.1을 사용할 것을 권장합니다. NFSv4.1에서는 NFSv4 프로토콜의 몇 가지 기능이 개선되어 NFSv4.0에 대한 복구 성능이 향상되었습니다.</block>
+  <block id="248212b04c23627e2719e106224d2eb3" category="paragraph">일반 데이터베이스 워크로드에 다음 마운트 옵션을 사용하십시오.</block>
+  <block id="6daf9da65c1180ae710d4f437b5e4edc" category="paragraph">순차적 IO가 많이 필요할 경우 NFS 전송 크기를 늘릴 수 있습니다.</block>
+  <block id="9efbdff43e91279291e95690414bec95" category="paragraph">ONTAP 레벨에서 전송 크기를 늘리면 다음과 같은 마운트 옵션이 사용됩니다.</block>
+  <block id="395201f6a339cc4cf6b345e0c259f383" category="section-title">NFSv3 TCP 슬롯 테이블</block>
+  <block id="1f8260aa2c5a5b35bf771c26828d2096" category="paragraph">NFSv3을 Linux와 함께 사용할 경우에는 TCP 슬롯 테이블을 올바르게 설정하는 것이 중요합니다.</block>
 </blocks>
