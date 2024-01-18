@@ -1,0 +1,38 @@
+---
+sidebar: sidebar 
+permalink: mssql/mssql-overview.html 
+keywords: MS-SQL,mssql,SQL Server,TR-4590 
+summary: ONTAP 기반 Microsoft SQL Server 
+---
+= Microsoft SQL Server 개요
+:allow-uri-read: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+SQL Server는 Microsoft의 데이터 플랫폼의 토대로서, 인메모리 기술을 통해 업무상 중요한 성능을 제공하고 온프레미스 또는 클라우드의 모든 데이터에 대한 보다 빠른 인사이트를 제공합니다.
+
+
+NOTE: 이 문서는 이전에 게시된 기술 보고서_TR-4590: Microsoft SQL Server에 대한 모범 사례 가이드를 ONTAP _ 로 대체합니다
+
+Microsoft SQL Server는 미션 크리티컬 응용 프로그램을 위한 탁월한 성능, 가용성 및 관리 효율성을 제공하여 이전 릴리스에서 제공된 업무상 중요한 기능을 기반으로 구축되었습니다. 스토리지 시스템은 SQL Server 데이터베이스의 전체 성능에 있어 핵심 요소입니다. NetApp은 SQL Server 데이터베이스에서 엔터프라이즈급 성능을 제공하는 동시에 환경을 관리하기 위한 세계 최고의 툴을 제공하는 여러 제품을 제공합니다.
+
+
+
+== 목적 및 범위
+
+이 섹션에서는 NetApp ONTAP 소프트웨어를 실행하는 NetApp 스토리지 시스템에 SQL Server를 구축하기 위한 설계 고려사항과 모범 사례를 설명하고, 효과적이고 효율적인 스토리지 배포와 엔드 투 엔드 데이터 보호 및 보존 계획을 달성한다는 목표를 제시합니다. 이 가이드의 범위는 NetApp에서 SQL Server를 구축할 때 스토리지 인프라에 권장하는 설계 원칙 및 기본 표준에 따른 기술 설계 지침으로 제한됩니다. 전체 구현이 이 보고서의 범위를 벗어납니다.
+
+이 가이드에 설명된 모범 사례와 권장 사항을 사용하여 SQL Server 설계자와 NetApp 스토리지 관리자는 가용성이 높고 관리하기 쉬운 SQL Server 환경을 계획하고 엄격한 SLA를 충족할 수 있습니다. NetApp는 독자가 다음에 대한 실무 지식을 보유하고 있다고 가정합니다.
+
+* NetApp ONTAP 소프트웨어
+* 백업 소프트웨어로 제공되는 NetApp SnapCenter에는 다음이 포함됩니다.
++
+** Microsoft Windows용 SnapCenter 플러그인
+** SQL Server용 SnapCenter 플러그인
+
+
+* Microsoft SQL Server 아키텍처 및 관리
+
+
+NetApp 스택 전반의 구성 호환성은 를 참조하십시오 link:http://mysupport.netapp.com/NOW/products/interoperability/["NetApp 상호 운용성 매트릭스 툴(IMT)"^].

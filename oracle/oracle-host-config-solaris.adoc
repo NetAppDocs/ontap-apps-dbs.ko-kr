@@ -1,0 +1,246 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-host-config-solaris.html 
+keywords: oracle, database, ontap, solaris, zfs 
+summary: Solaris를 사용하는 ONTAP 기반 Oracle 
+---
+= Solaris
+:allow-uri-read: 
+
+
+[role="lead"]
+Solaris OS에만 해당하는 구성 항목
+
+
+
+== Solaris NFS 마운트 옵션
+
+다음 표에는 단일 인스턴스의 Solaris NFS 마운트 옵션이 나와 있습니다.
+
+|===
+| 파일 형식 | 마운트 옵션 
+
+
+| ADR 홈 | `rw,bg,hard,[vers=3,vers=4.1], roto=tcp, timeo=600,rsize=262144,wsize=262144` 
+
+
+| 제어 파일
+데이터 파일
+다시 실행 로그 | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp, timeo=600,rsize=262144,wsize=262144, nointr,llock,suid` 
+
+
+| `ORACLE_HOME` | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp, timeo=600,rsize=262144,wsize=262144, suid` 
+|===
+의 사용 `llock` 스토리지 시스템의 잠금 획득 및 해제와 관련된 지연 시간이 사라져 고객 환경에서 성능이 대폭 개선된다는 사실이 입증되었습니다. 여러 서버가 같은 파일 시스템을 마운트하도록 구성된 환경에서 이 옵션을 사용할 때는 주의를 기울여야 하며, Oracle은 이러한 데이터베이스를 마운트하도록 구성되어 있습니다. 이러한 구성은 흔치 않으며 소수의 고객들만 사용하고 있습니다. Oracle은 외부 서버에 있는 잠금 파일을 감지할 수 없기 때문에 인스턴스가 우발적으로 재시작되는 경우 데이터 손상이 발생할 수 있습니다. NFS 버전 3처럼 NFS 잠금을 통한 보호 기능은 제공되지 않으며 이는 권고사항일 뿐입니다.
+
+왜냐하면 `llock` 및 `forcedirectio` 매개 변수는 상호 배타적이기 때문에 가 중요합니다 `filesystemio_options=setall` 가 에 있습니다 `init.ora` 파일을 클릭합니다 `directio` 사용됩니다. 이 매개 변수가 없으면 호스트 운영 체제 버퍼 캐싱이 사용되어 성능에 악영향을 미칠 수 있습니다.
+
+다음 표에는 Solaris NFS RAC 마운트 옵션이 나와 있습니다.
+
+|===
+| 파일 형식 | 마운트 옵션 
+
+
+| ADR 홈 | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
+timeo=600,rsize=262144,wsize=262144,
+noac` 
+
+
+| 제어 파일
+데이터 파일
+다시 실행 로그 | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
+timeo=600,rsize=262144,wsize=262144,
+nointr,noac,forcedirectio` 
+
+
+| CRS/투표 | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
+timeo=600,rsize=262144,wsize=262144,
+nointr,noac,forcedirectio` 
+
+
+| 전용 `ORACLE_HOME` | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
+timeo=600,rsize=262144,wsize=262144,
+suid` 
+
+
+| 공유됨 `ORACLE_HOME` | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
+timeo=600,rsize=262144,wsize=262144,
+nointr,noac,suid` 
+|===
+단일 인스턴스와 RAC 마운트 옵션 간의 주된 차이점은 을 추가한다는 것입니다 `noac` 및 `forcedirectio` 마운트 옵션으로 이동합니다. 이렇게 추가되면 호스트 운영 체제 캐싱이 비활성화되어 RAC 클러스터의 모든 인스턴스에서 데이터 상태에 관한 일관된 뷰를 얻게 됩니다. 를 사용하는 경우에도 마찬가지입니다 `init.ora` 매개 변수 `filesystemio_options=setall` 호스트 캐싱이 비활성화되는 것과 동일한 효과가 있으며, 그것도 사용해야 합니다 `noac` 및 `forcedirectio`.
+
+그 이유는 `actimeo=0` 은(는) 공유에 필요합니다 `ORACLE_HOME` 배포는 Oracle 암호 파일과 spfile 같은 파일의 일관성을 지원하기 위한 것입니다. RAC 클러스터의 각 인스턴스에 전용 이 있는 경우 `ORACLE_HOME`, 이 매개 변수는 필요하지 않습니다.
+
+
+
+== Solaris UFS 마운트 옵션
+
+NetApp은 Solaris 호스트가 충돌했거나 FC 연결이 중단된 경우 데이터 무결성을 보존할 수 있도록 로깅 마운트 옵션을 사용하는 것이 좋습니다. 로깅 마운트 옵션은 스냅샷 백업의 사용 편의성도 보존해줍니다.
+
+
+
+== Solaris ZFS입니다
+
+Solaris ZFS에서 최적의 성능을 얻으려면 신중하게 설치하고 구성해야 합니다.
+
+
+
+=== mvector입니다
+
+Solaris 11에서는 대규모 I/O 작업을 처리하는 방식이 변경되었으며 이로 인해 SAN 스토리지 어레이에 심각한 성능 문제가 초래될 수 있습니다. 이 문제는 NetApp 버그 보고서 630173, 'Solaris 11 ZFS 성능 퇴보'에서 상세히 다루고 있습니다. "해결책은 라는 OS 매개변수를 변경하는 것입니다 `zfs_mvector_max_size`.
+
+다음 명령을 루트로 실행합니다.
+
+....
+[root@host1 ~]# echo "zfs_mvector_max_size/W 0t131072" |mdb -kw
+....
+이 변경으로 인해 예기치 않은 문제가 발생하는 경우 다음 명령을 루트로 실행하면 쉽게 되돌릴 수 있습니다.
+
+....
+[root@host1 ~]# echo "zfs_mvector_max_size/W 0t1048576" |mdb -kw
+....
+
+
+== 커널
+
+안정적인 ZFS 성능을 얻으려면 LUN 정렬 문제를 방지하는 패칭이 적용된 Solaris 커널이 필요합니다. 이 픽스는 Solaris 10의 패치 147440-19와 SRU 10.5 for Solaris 11에 도입되었습니다. ZFS에는 Solaris 10 이후 버전만 사용하십시오.
+
+
+
+== LUN 구성
+
+LUN을 구성하려면 다음 단계를 완료하십시오.
+
+. 유형이 인 LUN을 생성합니다 `solaris`.
+. 에 지정된 적절한 호스트 유틸리티 키트(HUK)를 설치합니다 link:https://imt.netapp.com/matrix/#search["NetApp 상호 운용성 매트릭스 툴(IMT)"^].
+. HUK의 지침을 그대로 따릅니다. 기본 단계는 아래에 설명되어 있지만 을 참조하십시오 link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["최신 설명서"^] 를 참조하십시오.
++
+.. 를 실행합니다 `host_config` 를 업데이트하는 유틸리티입니다 `sd.conf/sdd.conf` 파일. 이렇게 하면 SCSI 드라이브가 ONTAP LUN을 정확하게 찾을 수 있습니다.
+.. 에서 제공하는 지침을 따릅니다 `host_config` 다중 경로 I/O(MPIO)를 활성화하는 유틸리티.
+.. 재부팅합니다. 이 단계는 시스템 전체에 변경사항을 적용하는 데 필요합니다.
+
+
+. LUN을 파티셔닝하고 제대로 정렬되었는지 확인합니다. 정렬을 직접 테스트하고 확인하는 방법은 "부록 B: WAFL 정렬 확인"을 참조하십시오.
+
+
+
+
+=== zpool입니다
+
+의 단계를 수행해야 zpool을 생성할 수 있습니다 link:oracle-host-config-solaris.html#lun-configuration["LUN 구성"] 수행됩니다. 절차를 정확하게 수행하지 않으면 I/O 정렬로 인해 심각한 성능 저하가 야기될 수 있습니다. ONTAP에서 최적의 성능을 얻으려면 I/O를 드라이브의 4K 경계에 맞춰 정렬해야 합니다. zpool에 생성된 파일 시스템은 라는 매개 변수를 통해 제어되는 유효 블록 크기를 사용합니다 `ashift`, 명령을 실행하여 볼 수 있습니다 `zdb -C`.
+
+의 값 `ashift` 기본값은 9이며, 이는 2(9) 또는 512바이트를 의미합니다. 최적의 성능을 위해 `ashift` 값은 12(2-12=4K)여야 합니다. 이 값은 zpool이 생성될 때 설정되며 변경할 수 없습니다. 즉, zpool 데이터의 경우 가 로 설정된다는 의미입니다 `ashift` 12가 아닌 경우 데이터를 새로 생성된 zpool으로 마이그레이션해야 합니다.
+
+zpool을 생성한 후 의 값을 확인합니다 `ashift` 계속 진행하기 전에 값이 12가 아니라면 LUN이 정확히 검색되지 않았다는 뜻입니다. zpool을 폐기하고 관련 호스트 유틸리티 설명서에 표시된 모든 단계가 정확히 수행되었는지 확인한 다음 zpool을 다시 생성하십시오.
+
+
+
+=== zpool 및 Solaris LDOM
+
+Solaris LDOM은 I/O 정렬의 정확성을 보장하기 위해 추가 요구사항을 생성합니다. LUN이 4K 장치로 제대로 검색되어도 LDOM의 가상 vdsk 장치는 I/O 도메인의 구성을 상속하지 않습니다. 이 LUN을 기반으로 하는 vdsk는 512바이트 블록으로 되돌아갑니다.
+
+추가 구성 파일이 필요합니다. 먼저, 추가 구성 옵션을 활성화하려면 개별 LDOM에 Oracle 버그 15824910 패치를 적용해야 합니다. 이 패치는 현재 사용되는 모든 Solaris 버전에 이식되었습니다. LDOM에 패치를 적용했다면 다음과 같이 제대로 정렬된 새로운 LUN을 구성할 준비가 된 것입니다.
+
+. LUN이 새 zpool에서 사용되고 있는지 확인합니다. 이 예에서는 c2d1 장치입니다.
++
+....
+[root@LDOM1 ~]# echo | format
+Searching for disks...done
+AVAILABLE DISK SELECTIONS:
+  0. c2d0 <Unknown-Unknown-0001-100.00GB>
+     /virtual-devices@100/channel-devices@200/disk@0
+  1. c2d1 <SUN-ZFS Storage 7330-1.0 cyl 1623 alt 2 hd 254 sec 254>
+     /virtual-devices@100/channel-devices@200/disk@1
+....
+. ZFS 풀에 사용할 장치의 vdc 인스턴스를 검색합니다.
++
+....
+[root@LDOM1 ~]#  cat /etc/path_to_inst
+#
+# Caution! This file contains critical kernel state
+#
+"/fcoe" 0 "fcoe"
+"/iscsi" 0 "iscsi"
+"/pseudo" 0 "pseudo"
+"/scsi_vhci" 0 "scsi_vhci"
+"/options" 0 "options"
+"/virtual-devices@100" 0 "vnex"
+"/virtual-devices@100/channel-devices@200" 0 "cnex"
+"/virtual-devices@100/channel-devices@200/disk@0" 0 "vdc"
+"/virtual-devices@100/channel-devices@200/pciv-communication@0" 0 "vpci"
+"/virtual-devices@100/channel-devices@200/network@0" 0 "vnet"
+"/virtual-devices@100/channel-devices@200/network@1" 1 "vnet"
+"/virtual-devices@100/channel-devices@200/network@2" 2 "vnet"
+"/virtual-devices@100/channel-devices@200/network@3" 3 "vnet"
+"/virtual-devices@100/channel-devices@200/disk@1" 1 "vdc" << We want this one
+....
+. 편집 `/platform/sun4v/kernel/drv/vdc.conf`:
++
+....
+block-size-list="1:4096";
+....
++
+이렇게 하면 장치 인스턴스 1이 블록 크기 4096에 할당됩니다.
+
++
+다른 예로, vdsk 인스턴스 1~6을 4K 블록 크기 및 로 구성해야 한다고 가정합니다 `/etc/path_to_inst` 는 다음과 같습니다.
+
++
+....
+"/virtual-devices@100/channel-devices@200/disk@1" 1 "vdc"
+"/virtual-devices@100/channel-devices@200/disk@2" 2 "vdc"
+"/virtual-devices@100/channel-devices@200/disk@3" 3 "vdc"
+"/virtual-devices@100/channel-devices@200/disk@4" 4 "vdc"
+"/virtual-devices@100/channel-devices@200/disk@5" 5 "vdc"
+"/virtual-devices@100/channel-devices@200/disk@6" 6 "vdc"
+....
+. 결승선입니다 `vdc.conf` 파일에는 다음이 포함되어야 합니다.
++
+....
+block-size-list="1:8192","2:8192","3:8192","4:8192","5:8192","6:8192";
+....
++
+|===
+| 주의 
+
+
+| vdc.conf를 구성하고 vdsk를 생성한 후에 LDOM을 재부팅해야 합니다. 이 단계는 반드시 수행해야 합니다. 블록 크기 변경은 재부팅 후에 적용됩니다. 계속해서 zpool을 구성합니다. 앞서 설명한 것처럼 shift가 12로 설정되었는지 확인합니다. 
+|===
+
+
+
+
+=== ZFS Intent Log(ZIL)
+
+일반적인 상황에서는 다른 장치에 ZIL(ZFS Intent Log)을 배치할 이유가 없습니다. 이 로그는 공간을 메인 풀과 공유할 수 있습니다. 개별 ZIL은 최신 스토리지 어레이에서 쓰기 캐싱 기능이 없는 물리적 드라이브를 사용할 때 주로 활용합니다.
+
+
+
+=== 로그 바이어스
+
+를 설정합니다 `logbias` Oracle 데이터를 호스팅하는 ZFS 파일 시스템의 매개 변수입니다.
+
+....
+zfs set logbias=throughput <filesystem>
+....
+이 매개 변수를 사용하면 쓰기 레벨이 전체적으로 낮아집니다. 기본값으로 설정된 경우, 작성된 데이터는 먼저 ZIL에 할당된 다음 기본 스토리지 풀에 할당됩니다. 이 접근 방식은 기본 스토리지 풀을 위한 SSD 기반 ZIL 장치와 회전식 미디어가 포함된 일반적인 드라이브 구성에 적합합니다. 이는 사용 가능한 미디어의 단일 I/O 트랜잭션에서 커밋이 발생할 수 있도록 하기 때문입니다.
+
+자체 캐싱 기능이 포함된 최신 스토리지 어레이를 사용할 때는 보통 이 접근 방식이 필요하지 않습니다. 매우 집약적이고 지연 시간에 민감한 랜덤 쓰기로 구성된 워크로드 등의 드문 상황에서 로그에 관한 단일 트랜잭션으로 쓰기를 커밋하는 것이 바람직할 때도 있습니다. 로깅된 데이터는 결국 기본 스토리지 풀에 작성되기 때문에 쓰기가 증폭되는 결과가 발생하며 이에 따라 쓰기 활동이 두 배로 늘어납니다.
+
+
+
+=== 직접 I/O
+
+Oracle 제품을 포함한 다수의 애플리케이션이 직접 I/O를 활성화하여 호스트 버퍼 캐시를 우회할 수 있으나 ZFS 파일 시스템에서는 이 전략이 예상했던 효과를 발휘하지 않습니다. 호스트 버퍼 캐시를 우회하더라도 ZFS 자체가 계속하여 데이터를 캐싱하기 때문입니다. 이 동작으로 인해 fio 또는 sio 같은 툴을 사용할 때 잘못된 결과가 발생할 수 있는데, I/O가 스토리지 시스템에 도달했는지 또는 운영 체제 내에서 로컬 I/O 캐싱이 이뤄지고 있는지를 예측하기가 어렵기 때문입니다. 또한, 이 동작은 그러한 가상 테스트를 사용하여 ZFS 성능을 다른 파일 시스템과 비교하기 힘들게 만듭니다. 현실적으로 실제 사용자 워크로드에서 파일 시스템의 성능은 거의 차이가 없습니다.
+
+
+
+=== 다중 zpool
+
+스냅샷 기반 백업, 복원, 클론, ZFS 기반 데이터 아카이빙은 zpool 레벨에서 수행되어야 하며 일반적으로 여러 개의 zpool이 필요합니다. zpool은 LVM 디스크 그룹과 비슷하며, 같은 규칙을 사용하여 구성해야 합니다. 예를 들어, 데이터베이스는 에 상주하는 데이터 파일과 함께 배치하는 것이 가장 좋습니다 `zpool1` 및 에 상주하는 아카이브 로그, 제어 파일 및 재실행 로그도 있습니다 `zpool2`. 이 접근 방식에서는 표준 핫 백업이 허용되어 데이터베이스가 핫 백업 모드로 전환되고 그 뒤에 의 스냅샷이 생성됩니다 `zpool1`. 그런 다음 핫 백업 모드에서 데이터베이스가 제거되고 로그 아카이브가 강제 적용되며 의 스냅샷이 생성됩니다 `zpool2` 이 생성됩니다. 복원 작업에서는 zfs 파일 시스템의 마운트를 해제하고 zpool 전체를 오프라인으로 만들어야 하며 그 다음으로 SnapRestore 복원 작업이 이뤄집니다. 이렇게 되면 zpool이 다시 온라인으로 전환될 수 있고 데이터베이스가 복구됩니다.
+
+
+
+=== filesystemio_options 를 참조하십시오
+
+Oracle 매개 변수 `filesystemio_options` ZFS와 다르게 작동합니다. If(경우 `setall` 또는 `directio` 사용되는 경우 쓰기 작업이 동기식이고 운영 체제 버퍼 캐시가 우회되며 ZFS에서 읽기 작업을 버퍼링합니다. 이 동작은 I/O를 가로채서 ZFS 캐시에 의해 서비스하는 경우가 있기 때문에 성능 분석에 어려움을 야기하며, 스토리지 지연 시간과 총 I/O가 실제보다 작아지기 때문입니다.

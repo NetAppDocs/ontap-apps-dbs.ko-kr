@@ -5,56 +5,56 @@ entries:
 - title: ONTAP 기반의 VMware vSphere
   entries:
   - title: 개요
-    url: "/vmware/vsphere/overview.html"
+    url: "/vmware/vmware-vsphere-overview.html"
   - title: 유니파이드 스토리지
-    url: "/vmware/vsphere/unified.html"
+    url: "/vmware/vmware-vsphere-unified.html"
   - title: 포함되었습니다
-    url: "/vmware/vsphere/vtools.html"
+    url: "/vmware/vmware-vsphere-vtools.html"
   - title: 가상 볼륨 및 스토리지 정책 기반 관리
-    url: "/vmware/vsphere/vvols_and_spbm.html"
+    url: "/vmware/vmware-vsphere-vvols_and_spbm.html"
   - title: 데이터 저장소 및 프로토콜
-    url: "/vmware/vsphere/datastores.html"
+    url: "/vmware/vmware-vsphere-datastores.html"
   - title: 네트워크 구성
-    url: "/vmware/vsphere/network.html"
+    url: "/vmware/vmware-vsphere-network.html"
   - title: 클론 복제
-    url: "/vmware/vsphere/cloning.html"
+    url: "/vmware/vmware-vsphere-cloning.html"
   - title: 데이터 보호
-    url: "/vmware/vsphere/dp.html"
+    url: "/vmware/vmware-vsphere-dp.html"
   - title: QoS를 참조하십시오
-    url: "/vmware/vsphere/qos.html"
+    url: "/vmware/vmware-vsphere-qos.html"
   - title: 관리 기반의 스토리지 정책
-    url: "/vmware/vsphere/policy-and-vvols.html"
+    url: "/vmware/vmware-vsphere-policy-and-vvols.html"
   - title: VMware 스토리지 분산 리소스 스케줄러입니다
-    url: "/vmware/vsphere/sdrs.html"
+    url: "/vmware/vmware-vsphere-sdrs.html"
   - title: 권장 설정
-    url: "/vmware/vsphere/settings.html"
+    url: "/vmware/vmware-vsphere-settings.html"
 - title: ONTAP을 사용한 VVOL(가상 볼륨
   entries:
   - title: 개요
-    url: "/vmware/vvols/overview.html"
+    url: "/vmware/vmware-vvols-overview.html"
   - title: ONTAP에서 VVOL 사용
-    url: "/vmware/vvols/ontap.html"
+    url: "/vmware/vmware-vvols-ontap.html"
   - title: VVOL 스토리지 구축
-    url: "/vmware/vvols/deploy.html"
+    url: "/vmware/vmware-vvols-deploy.html"
   - title: VVOL 보호
-    url: "/vmware/vvols/protect.html"
+    url: "/vmware/vmware-vvols-protect.html"
   - title: 문제 해결
-    url: "/vmware/vvols/resources.html"
+    url: "/vmware/vmware-vvols-resources.html"
 - title: ONTAP를 사용하는 VMware 사이트 복구 관리자
   entries:
   - title: 개요
-    url: "/vmware/srm/overview.html"
+    url: "/vmware/vmware-srm-overview.html"
   - title: 배포 모범 사례
-    url: "/vmware/srm/deployment_best_practices.html"
+    url: "/vmware/vmware-srm-deployment_best_practices.html"
   - title: 운영 모범 사례
-    url: "/vmware/srm/operational_best_practices.html"
+    url: "/vmware/vmware-srm-operational_best_practices.html"
   - title: 복제 토폴로지
-    url: "/vmware/srm/replication_topologies.html"
+    url: "/vmware/vmware-srm-replication_topologies.html"
   - title: VVOL 복제 사용 시 SRM 문제 해결
-    url: "/vmware/srm/appendix_a__troubleshooting_srm_when_using_vvols_replication.html"
+    url: "/vmware/vmware-srm-vvol-troubleshooting.html"
 - title: 제품 보안
   entries:
   - title: VMware vSphere용 ONTAP 툴
-    url: "/vmware/security/tools.html"
+    url: "/vmware/vmware-security-tools.html"
   - title: VMware vSphere용 SnapCenter 플러그인
-    url: "/vmware/security/snapcenter.html"
+    url: "/vmware/vmware-security-snapcenter.html"

@@ -1,34 +1,39 @@
 ---
 indexpage:
+  title: ONTAP 및 엔터프라이즈 애플리케이션
+  summary: ONTAP은 많은 엔터프라이즈 애플리케이션 및 데이터베이스 기술을 위한 데이터 관리 및 데이터 보호의 기초입니다. 다음 페이지에서는
+    ONTAP 및 엔터프라이즈 애플리케이션 및 인프라에 대한 모범 사례와 구현 절차에 대한 지침을 제공합니다.
+  keywords: Oracle, SAP, HANA, SAP HANA, MSSQL, SQL Server, Postgres, postgresql,
+    mysql, mariadb
   lead: ONTAP은 많은 엔터프라이즈 애플리케이션 및 데이터베이스 기술을 위한 데이터 관리 및 데이터 보호의 기초입니다. 다음 페이지에서는
     ONTAP 및 엔터프라이즈 애플리케이션 및 인프라에 대한 모범 사례와 구현 절차에 대한 지침을 제공합니다.
   tiles:
   - title: Microsoft SQL Server를 참조하십시오
     links:
     - title: ONTAP 기반 Microsoft SQL Server
-      url: "/mssql/overview.html"
+      url: "/mssql/mssql-overview.html"
     - title: Microsoft SQL Server 스토리지 고려 사항
-      url: "/mssql/Storage-considerations.html"
+      url: "/mssql/mssql-storage-considerations.html"
     - title: Microsoft SQL Server 데이터 보호
-      url: "/mssql/Data-protection.html"
+      url: "/mssql/mssql-data-protection.html"
     - title: Microsoft SQL Server 재해 복구
-      url: "/mssql/SQL-disaster-recovery.html"
+      url: "/mssql/mssql-disaster-recovery.html"
   - title: 오픈 소스 데이터베이스
     links:
     - title: ONTAP의 MariaDB 및 MySQL
-      url: "/mysql/overview.html"
+      url: "/mysql/mysql-overview.html"
     - title: ONTAP의 PostgreSQL
-      url: "/postgres/overview.html"
+      url: "/postgres/postgres-overview.html"
   - title: Oracle 데이터베이스
     links:
     - title: ONTAP 기반의 Oracle
-      url: "/oracle/overview.html"
+      url: "/oracle/oracle-overview.html"
     - title: Oracle 데이터 보호
-      url: "/oracle/dp/oracle-data-protection-introduction.html"
+      url: "/oracle/oracle-dp-overview.html"
     - title: Oracle 재해 복구
-      url: "/oracle/dr/oracle-dr-overview.html"
+      url: "/oracle/oracle-dr-overview.html"
     - title: Oracle 마이그레이션
-      url: "/oracle/migration/oracle-migration-overview.html"
+      url: "/oracle/oracle-migration-overview.html"
   - title: SAP HANA를 참조하십시오
     links:
     - title: SAP 솔루션
@@ -40,8 +45,8 @@ indexpage:
   - title: VMware
     links:
     - title: ONTAP 기반의 VMware vSphere
-      url: "/vmware/vsphere/overview.html"
+      url: "/vmware/vmware-vsphere-overview.html"
     - title: ONTAP을 사용한 VVOL(가상 볼륨
-      url: "/vmware/vvols/overview.html"
+      url: "/vmware/vmware-vvols-overview.html"
     - title: ONTAP를 사용하는 VMware 사이트 복구 관리자
-      url: "/vmware/srm/overview.html"
+      url: "/vmware/vmware-srm-overview.html"

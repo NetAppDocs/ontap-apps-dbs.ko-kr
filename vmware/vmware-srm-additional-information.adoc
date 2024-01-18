@@ -1,0 +1,33 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-srm-additional-information.html 
+keywords: vmware, site, recovery manager, vsrm, hybrid, cloud, additional, information 
+summary: 이 문서에 설명된 정보에 대해 자세히 알아보려면 다음 문서 및/또는 웹 사이트를 검토하십시오. 
+---
+= 추가 정보
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 문서에 설명된 정보에 대해 자세히 알아보려면 다음 문서 및/또는 웹 사이트를 검토하십시오.
+
+* TR-4597: ONTAP용 VMware vSphere
+https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html"^]
+* TR-4400: ONTAP를 포함한 VMware vSphere 가상 볼륨
+https://www.netapp.com/pdf.html?item=/media/13555-tr4400.pdf["https://www.netapp.com/pdf.html?item=/media/13555-tr4400.pdf"^]
+* ONTAP 9용 TR-4015 SnapMirror 구성 모범 사례 가이드
+https://www.netapp.com/media/17229-tr4015.pdf?v=127202175503P[]
+* RBAC ONTAP용 사용자 생성기
+https://mysupport.netapp.com/site/tools/tool-eula/rbac["https://mysupport.netapp.com/site/tools/tool-eula/rbac"^]
+* VMware vSphere 리소스를 위한 ONTAP 툴
+https://mysupport.netapp.com/site/products/all/details/otv/docsandkb-tab["https://mysupport.netapp.com/site/products/all/details/otv/docsandkb-tab"^]
+* VMware Site Recovery Manager 설명서
+https://docs.vmware.com/en/Site-Recovery-Manager/index.html["https://docs.vmware.com/en/Site-Recovery-Manager/index.html"^]
+
+
+을 참조하십시오 http://mysupport.netapp.com/matrix["상호 운용성 매트릭스 툴(IMT)"^] NetApp Support 사이트에서 본 문서에 기술된 제품과 기능 버전이 귀사의 환경에서 지원되는지 확인하십시오. NetApp IMT에는 NetApp이 지원하는 구성을 설계하는 데 사용할 수 있는 제품 구성요소 및 버전이 정의되어 있습니다. 구체적인 결과는 게시된 기술사양과 그에 따른 고객 설치 환경에 따라 달라집니다.

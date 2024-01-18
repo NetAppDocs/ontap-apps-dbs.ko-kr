@@ -1,0 +1,167 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-vvols-protect.html 
+keywords: tr-4400, vvols, ontap, virtual volumes, protect 
+summary:  
+---
+= VVOL 보호
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:firstname: [.lead]
+:author: [.lead]
+:authorinitials: [
+:authors: [.lead]
+
+
+
+
+== VASA 공급자 고가용성
+
+NetApp VASA Provider는 vCenter 플러그인 및 REST API 서버(이전의 VSC(Virtual Storage Console)) 및 스토리지 복제 어댑터와 함께 가상 어플라이언스의 일부로 실행됩니다. VASA Provider를 사용할 수 없는 경우 VVol을 사용하는 VM은 계속 실행됩니다. 그러나 새로운 VVOL 데이터 저장소를 생성할 수 없으며 VVol은 vSphere에서 생성하거나 바인딩할 수 없습니다. 즉, vCenter에서 VVOL의 생성을 요청할 수 없기 때문에 VVOL을 사용하는 VM의 전원을 켤 수 없습니다. 실행 중인 VM은 VVol을 새 호스트에 바인딩할 수 없으므로 vMotion을 사용하여 다른 호스트로 마이그레이션할 수 없습니다.
+
+VASA Provider 7.1 이상은 새로운 기능을 지원하여 필요할 때 서비스를 사용할 수 있도록 합니다. VASA Provider 및 통합 데이터베이스 서비스를 모니터링하는 새로운 Watchdog 프로세스가 포함되어 있습니다. 오류가 감지되면 로그 파일을 업데이트한 다음 서비스를 자동으로 다시 시작합니다.
+
+소프트웨어, 호스트 하드웨어 및 네트워크의 장애로부터 다른 미션 크리티컬 VM을 보호하는 데 사용되는 동일한 가용성 기능을 사용하여 vSphere 관리자가 추가 보호를 구성해야 합니다. 이러한 기능을 사용하기 위해 가상 어플라이언스에 추가 구성이 필요하지 않습니다. 표준 vSphere 방식을 사용하여 구성하기만 하면 됩니다. 이러한 기능은 테스트를 거쳤으며 NetApp에서 지원됩니다.
+
+장애가 발생할 경우 호스트 클러스터의 다른 호스트에서 VM을 다시 시작하도록 vSphere High Availability를 손쉽게 구성할 수 있습니다. vSphere Fault Tolerance는 지속적으로 복제되고 어느 시점에서든 인계받을 수 있는 보조 VM을 생성하여 가용성을 높여 줍니다. 이러한 기능에 대한 추가 정보는 에서 확인할 수 있습니다 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere/concepts/concept_configure_high_availability_for_ontap_tools_for_vmware_vsphere.html["VMware vSphere용 ONTAP 툴 설명서(ONTAP 툴에 대한 고가용성 구성)"]및 VMware vSphere 설명서(ESXi 및 vCenter Server에서 vSphere 가용성 확인)
+
+ONTAP 툴 VASA Provider는 FlexVol 볼륨 메타데이터 내에 VVol 정보가 저장된 관리되는 ONTAP 시스템에 VVOL 구성을 실시간으로 자동 백업합니다. 어떤 이유로든 ONTAP 도구 어플라이언스를 사용할 수 없게 되는 경우 새 도구를 쉽고 빠르게 배포하고 구성을 가져올 수 있습니다. VASA Provider 복구 단계에 대한 자세한 내용은 이 KB 문서를 참조하십시오.
+
+https://kb.netapp.com/mgmt/OTV/Virtual_Storage_Console/How_to_perform_a_VASA_Provider_Disaster_Recovery_-_Resolution_Guide["VASA Provider 재해 복구 - 해결 가이드를 수행하는 방법"]
+
+
+
+== VVOL 복제
+
+많은 ONTAP 고객은 NetApp SnapMirror를 사용하여 기존 데이터 저장소를 2차 스토리지 시스템으로 복제한 다음, 재해 발생 시 2차 시스템을 사용하여 개별 VM 또는 전체 사이트를 복구합니다. 대부분의 경우 고객은 VMware vSphere용 NetApp SnapCenter 플러그인과 같은 백업 소프트웨어 제품 또는 VMware의 사이트 복구 관리자(ONTAP 툴의 스토리지 복제 어댑터 포함)와 같은 재해 복구 솔루션과 같은 소프트웨어 툴을 사용하여 이를 관리합니다.
+
+VVOL 복제를 관리하려면 소프트웨어 툴에 대한 이 요구사항이 더 중요합니다. 일부 측면은 기본 기능(예: VMware에서 관리하는 VVOL 스냅샷)을 통해 관리할 수 있지만(예: 빠르고 효율적인 파일 또는 LUN 클론을 사용하는 ONTAP로 오프로드됨) 복제 및 복구를 관리하려면 일반적으로 오케스트레이션이 필요합니다. VVOL에 대한 메타데이터는 ONTAP와 VASA Provider에 의해 보호되지만 보조 사이트에서 이를 사용하려면 추가 처리가 필요합니다.
+
+ONTAP 툴 9.7.1 을 VMware SRM(Site Recovery Manager) 8.3 릴리스와 함께 사용하면 NetApp SnapMirror 기술을 활용하여 재해 복구 및 마이그레이션 워크플로우 오케스트레이션에 대한 지원이 추가되었습니다.
+
+ONTAP 툴 9.7.1을 사용한 SRM 지원 초기 릴리즈에서는 VFlexVol을 사전 생성하고 이를 VVOL 데이터 저장소의 백업 볼륨으로 사용하기 전에 SnapMirror 보호를 활성화해야 했습니다. ONTAP 도구 9.10부터는 더 이상 이 프로세스가 필요하지 않습니다. 이제 기존의 백업 볼륨에 SnapMirror 보호를 추가하고 VM 스토리지 정책을 업데이트하여 SRM과 통합된 재해 복구 및 마이그레이션 오케스트레이션 및 자동화 기능을 통해 정책 기반 관리를 활용할 수 있습니다.
+
+현재 VMware SRM은 NetApp에서 지원하는 VVOL을 위한 유일한 재해 복구 및 마이그레이션 자동화 솔루션이며, ONTAP 툴은 VVOL 복제를 활성화하기 전에 vCenter에 등록된 SRM 8.3 이상 서버의 존재를 ONTAP 툴 REST API를 활용하여 자체 서비스를 생성할 수 있지만
+
+
+
+=== SRM을 사용한 VVol 복제
+
+image:vvols-image17.png["SRM을 사용한 VVol 복제, 300"]
+
+
+
+== MetroCluster 지원
+
+ONTAP 툴은 MetroCluster 전환을 트리거할 수 없지만, 동일한 vMSC(vSphere Metro Storage Cluster) 구성에서 VVOL을 지원하는 볼륨을 위한 NetApp MetroCluster 시스템은 지원합니다. MetroCluster 시스템의 전환은 일반적인 방식으로 처리됩니다.
+
+NetApp SnapMirror 비즈니스 연속성(SM-BC)을 vMSC 구성의 기반으로 사용할 수도 있지만, 현재 VVOL에서 지원되지 않습니다.
+
+NetApp MetroCluster에 대한 자세한 내용은 다음 가이드를 참조하십시오.
+
+https://www.netapp.com/media/13481-tr4689.pdf["_TR-4689 MetroCluster IP 솔루션 아키텍처 및 설계 _"]
+
+https://www.netapp.com/pdf.html?item=/media/13480-tr4705.pdf["_TR-4705 NetApp MetroCluster 솔루션 아키텍처 및 설계 _"]
+
+https://kb.vmware.com/s/article/2031038["_VMware KB 2031038 NetApp MetroCluster_ 기반 VMware vSphere 지원"]
+
+
+
+== VVOL 백업 개요
+
+게스트 내 백업 에이전트 사용, 백업 프록시에 VM 데이터 파일 연결 또는 VMware VADP 같은 정의된 API 사용과 같은 VM을 보호하기 위한 몇 가지 방법이 있습니다. VVOL은 동일한 메커니즘을 사용하여 보호할 수 있으며 많은 NetApp 파트너가 VVOL을 포함한 VM 백업을 지원합니다.
+
+앞서 언급했듯이 VMware vCenter 관리 스냅샷은 공간 효율적이고 빠른 ONTAP 파일/LUN 클론으로 오프로드됩니다. 이러한 스냅샷은 빠른 수동 백업에 사용할 수 있지만 vCenter에 의해 최대 32개의 스냅샷으로 제한됩니다. 필요에 따라 vCenter를 사용하여 스냅샷을 생성하고 되돌릴 수 있습니다.
+
+SnapCenter SCV(VMware vSphere) 플러그인 4.6부터 ONTAP 도구 9.10 이상과 함께 사용할 경우 SnapMirror 및 SnapVault 복제를 지원하는 ONTAP FlexVol 볼륨 스냅샷을 활용하여 충돌 시에도 정합성이 보장되는 VVol 기반 VM 백업 및 복구를 지원합니다. 볼륨당 최대 1023개의 스냅샷이 지원됩니다. 또한 SCV는 미러 볼트 정책이 적용된 SnapMirror를 사용하여 보조 볼륨에 더 많은 스냅샷을 더 오래 보존할 수 있습니다.
+
+vSphere 8.0 지원은 격리된 로컬 플러그인 아키텍처를 사용하는 SCV 4.7에 도입되었습니다. 새로운 원격 플러그인 아키텍처로 완전히 전환된 SCV 4.8에 vSphere 8.0U1 지원이 추가되었습니다.
+
+
+
+== VMware vSphere용 SnapCenter 플러그인을 사용한 VVol 백업
+
+이제 NetApp SnapCenter를 사용하여 태그 및/또는 폴더를 기반으로 VVol용 리소스 그룹을 생성하여 VVol 기반 VM에 대해 ONTAP의 FlexVol 기반 스냅샷을 자동으로 활용할 수 있습니다. 이를 통해 환경 내에서 VM이 동적으로 프로비저닝될 때 자동으로 VM을 보호하는 백업 및 복구 서비스를 정의할 수 있습니다.
+
+VMware vSphere용 SnapCenter 플러그인은 vCenter 확장으로 등록된 독립 실행형 어플라이언스로 구축되며, vCenter UI 또는 REST API를 통해 관리되며 백업 및 복구 서비스 자동화를 지원합니다.
+
+
+
+=== SnapCenter 아키텍처
+
+image:vvols-image18.png["SnapCenter 아키텍처, 300"]
+
+다른 SnapCenter 플러그인은 이 작성 시점에 VVol을 지원하지 않으므로 이 문서의 독립 실행형 배포 모델에 대해 중점적으로 살펴보겠습니다.
+
+SnapCenter는 ONTAP FlexVol 스냅샷을 사용하기 때문에 vSphere에 오버헤드가 발생하지 않으며, vCenter 관리 스냅샷을 사용하여 기존 VM에서 볼 수 있는 성능 패널도 없습니다. 또한 SCV의 기능은 REST API를 통해 노출되기 때문에 VMware Aria Automation, Ansible, Terraform 및 거의 표준 REST API를 사용할 수 있는 기타 자동화 툴과 같은 툴을 사용하여 자동화된 워크플로우를 쉽게 생성할 수 있습니다.
+
+SnapCenter REST API에 대한 자세한 내용은 를 참조하십시오 https://docs.netapp.com/us-en/snapcenter/sc-automation/overview_rest_apis.html["REST API 개요"]
+
+VMware vSphere REST API용 SnapCenter 플러그인에 대한 자세한 내용은 을 참조하십시오 https://docs.netapp.com/us-en/sc-plugin-vmware-vsphere/scpivs44_rest_apis_overview.html["VMware vSphere REST API용 SnapCenter 플러그인"]
+
+
+
+=== 모범 사례
+
+다음 모범 사례를 사용하면 SnapCenter 배포를 최대한 활용할 수 있습니다.
+
+|===
+
+
+ a| 
+* SCV는 vCenter Server RBAC와 ONTAP RBAC를 모두 지원하며 플러그인이 등록될 때 자동으로 생성되는 사전 정의된 vCenter 역할을 포함합니다. 지원되는 RBAC 유형에 대해 자세히 알아볼 수 있습니다 https://docs.netapp.com/us-en/sc-plugin-vmware-vsphere/scpivs44_types_of_rbac_for_snapcenter_users.html["여기."]
++
+** vCenter UI를 사용하여 설명된 사전 정의된 역할을 사용하여 최소 권한 계정 액세스를 할당합니다 https://docs.netapp.com/us-en/sc-plugin-vmware-vsphere/scpivs44_predefined_roles_packaged_with_snapcenter.html["여기"].
+** SnapCenter 서버와 함께 SCV를 사용하는 경우 _SnapCenterAdmin_role을 할당해야 합니다.
+** ONTAP RBAC는 SCV에서 사용되는 스토리지 시스템을 추가 및 관리하는 데 사용되는 사용자 계정을 의미합니다. ONTAP RBAC는 VVOL 기반 백업에 적용되지 않습니다. ONTAP RBAC 및 SCV에 대해 자세히 알아보십시오 https://docs.netapp.com/us-en/sc-plugin-vmware-vsphere/scpivs44_ontap_rbac_features_in_snapcenter.html["여기"].
+
+
+
+
+
+
+ a| 
+* SnapMirror를 사용하여 소스 볼륨의 전체 복제본을 사용하여 백업 데이터 세트를 두 번째 시스템으로 복제합니다. 앞서 언급했듯이 소스 볼륨 스냅샷 보존 설정과 관계없이 백업 데이터의 장기 보존을 위해 미러 볼트(mirror-vault) 정책을 사용할 수도 있습니다. 두 가지 메커니즘 모두 VVOL에서 지원됩니다.
+
+
+
+
+ a| 
+* SCV에는 VVOL 기능을 위해 VMware vSphere용 ONTAP 툴도 필요하므로 항상 NetApp IMT(Interoperability Matrix Tool)에서 특정 버전 호환성을 확인하십시오
+
+
+
+
+ a| 
+* VMware SRM에서 VVol 복제를 사용하는 경우 정책 RPO 및 백업 일정을 고려해야 합니다
+
+
+
+
+ a| 
+* 조직에서 정의한 RPO(복구 시점 목표)를 충족하는 보존 설정으로 백업 정책 설계
+
+
+
+
+ a| 
+* 백업이 실행될 때 상태를 알리도록 리소스 그룹의 알림 설정을 구성합니다(아래 그림 10 참조).
+
+
+|===
+
+
+=== 리소스 그룹 알림 옵션
+
+image:vvols-image19.png["리소스 그룹 알림 옵션, 300"]
+
+
+
+=== 이 문서를 사용하여 SCV를 시작하십시오
+
+https://docs.netapp.com/us-en/sc-plugin-vmware-vsphere/index.html["VMware vSphere용 SnapCenter 플러그인에 대해 자세히 알아보십시오"]
+
+https://docs.netapp.com/us-en/sc-plugin-vmware-vsphere/scpivs44_deploy_snapcenter_plug-in_for_vmware_vsphere.html["VMware vSphere용 SnapCenter 플러그인 구축"]

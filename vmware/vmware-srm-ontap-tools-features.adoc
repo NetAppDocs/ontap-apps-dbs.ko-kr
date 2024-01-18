@@ -1,0 +1,89 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-srm-ontap-tools-features.html 
+keywords: vmware, site, recovery manager, vsrm, vsphere, ipv6, support, rest, api, replication, ccols, spbm, srm, appliance based 
+summary: 기존 가상 어플라이언스로 전환한 ONTAP 툴은 다양한 새로운 기능, 더 높은 제한, 새로운 VVOL 지원을 제공합니다. 
+---
+= SRM 및 ONTAP 도구의 새로운 기능
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+기존 가상 어플라이언스로 전환한 ONTAP 툴은 다양한 새로운 기능, 더 높은 제한, 새로운 VVOL 지원을 제공합니다.
+
+
+
+== vSphere 및 Site Recovery Manager의 최신 버전입니다
+
+SRM 8.7 이상 릴리즈와 ONTAP 도구 9.12 이상 릴리즈를 통해 이제 VMware vSphere 8 업데이트 1에서 실행되는 VM을 보호할 수 있습니다.
+
+NetApp은 약 20년 동안 VMware와 긴밀한 파트너 관계를 유지하고 있으며, 최대한 빠른 시일 내에 최신 릴리즈를 지원하기 위해 노력하고 있습니다. 항상 NetApp 상호 운용성 매트릭스 툴(IMT) 에서 적격 소프트웨어의 최신 조합을 확인하십시오.
+
+NetApp IMT는 에서 확인할 수 있습니다 link:https://mysupport.netapp.com/matrix["https://mysupport.netapp.com/matrix"^].
+
+
+
+== VVol 지원(그리고 SRM에서도 SPBM(Storage Policy Based Management)이 중요한 이유)
+
+8.3 릴리스부터 SRM은 이제 VVol을 활용하는 복제의 SPBM(Storage Policy Based Management)과 iSCSI, FCP 및 NFS v3을 사용하는 데이터 저장소의 스토리지 기반 복제를 지원합니다. 이를 위해 VASA 관련 작업을 위해 vCenter 서버의 SMS 서비스와 통신하는 새로운 SRM VVol 공급자 서비스를 포함하도록 SRM 서버가 업데이트되었습니다.
+
+이 아키텍처의 한 가지 이점은 모든 것이 VASA를 통해 처리되므로 SRA가 더 이상 필요하지 않는다는 것입니다.
+
+SPBM은 vSphere 툴박스에 포함된 강력한 툴로, 프라이빗 및 하이브리드 클라우드 환경의 자동화 프레임워크에서 간편하고 예측 가능하며 일관된 스토리지 서비스를 사용할 수 있습니다. 기본적으로 SPBM을 사용하면 다양한 고객 기반의 요구 사항을 충족하는 서비스 클래스를 정의할 수 있습니다. SRM을 사용하면 강력한 업계 표준 재해 복구 오케스트레이션 및 자동화가 필요한 중요 워크로드에 대한 복제 기능을 고객에게 제공할 수 있습니다.
+
+FCP 또는 iSCSI의 VVol 아키텍처 예:
+
+image:vsrm-ontap9_image1.png["오류: 그래픽 이미지가 없습니다"]
+
+
+
+== 어플라이언스 기반 SRM 서버 지원
+
+이제 Photon OS 기반 SRM 서버는 기존 Windows 기반 플랫폼뿐만 아니라 지원됩니다.
+
+이제 기본 SRM 서버 유형에 관계없이 SRA 어댑터를 설치할 수 있습니다.
+
+
+
+== IPv6를 지원합니다
+
+IPv6은 이제 다음과 같은 제한 사항으로 지원됩니다.
+
+* vCenter 6.7 이상
+* SRM 8.2(8.1, 8.3 및 8)에서는 지원되지 않습니다. 4개 지원)
+* 를 확인하십시오 https://mysupport.netapp.com/matrix/imt.jsp?components=84943;&solution=1777&isHWU&src=IMT["상호 운용성 매트릭스 툴"^] 최신 버전의 경우.
+
+
+
+
+== 향상된 성능
+
+운영 성능은 SRM 작업 실행을 위한 핵심 요구 사항입니다. 최신 RTO 및 RPO의 요구 사항을 충족하기 위해 ONTAP 도구가 포함된 SRA에 세 가지 새로운 개선 사항이 추가되었습니다.
+
+* * 동시 재보호 작업 지원. * SRA 9.7.1에서 처음 도입된 이 기능을 사용하면 두 개 이상의 복구 계획에서 동시에 재보호를 실행할 수 있으므로 페일오버 또는 마이그레이션 후 데이터 저장소를 재보호하는 데 필요한 시간을 줄이고 RTO 및 RPO 매개 변수를 계속 유지할 수 있습니다.
+* * ONTAP Tools 9.8은 NAS 전용 최적화 모드를 새로 추가했습니다. * SVM 범위 계정을 사용하고 NFS 기반 데이터 저장소만 있는 ONTAP 클러스터에 연결할 때 지원되는 환경에서 NAS 전용 최적화 모드를 사용하여 최대 성능을 실현할 수 있습니다.
+* * ONTAP 툴 9.12에 ONTAP의 SnapMirror 빠른 재동기화 기능이 추가되었습니다. * 이를 통해 프로세스 후 스토리지 효율성 절약 효과를 다시 계산할 필요 없이 미러를 빠르게 재동기화할 수 있습니다. 이 기능은 기본적으로 사용되지 않지만 기존 재동기화가 너무 오래 걸리거나 시간이 초과되는 대규모 환경에서는 사용할 수 있습니다.
+
+
+
+
+== 더 뛰어난 확장성
+
+ONTAP 도구 SRA는 이제 SRM 8.3 이상에서 사용할 경우 최대 500개의 보호 그룹(PG)을 지원할 수 있습니다.
+
+
+
+== 동기식 복제
+
+오랫동안 기다려온 새로운 기능은 미션 크리티컬 애플리케이션에 볼륨 세분화 제로 RPO 데이터 복제 솔루션을 제공하는 ONTAP 9.5 이상의 SM-S(SnapMirror Synchronous)입니다. SM-S에는 ONTAP 도구 9.8 이상이 필요합니다.
+
+
+
+== REST API 지원
+
+이제 REST API를 통해 SRA 서버 구성을 관리할 수 있습니다. 자동화 워크플로 구축을 지원하기 위해 Swagger UI가 추가되었으며 ONTAP 툴 어플라이언스 에서 확인할 수 있습니다 `https://<appliance>:8143/api/rest/swagger-ui.html#/`.

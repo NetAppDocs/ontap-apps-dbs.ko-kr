@@ -1,0 +1,189 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-vsphere-qos.html 
+keywords: Data protection, Space reclamation, VM and datastore cloning, Storage efficiency, thin provisioning, QoS, SIOC, Storage Distributed Resource Scheduler, DRS, Active IQ Unified Manager, Encryption 
+summary: SnapCenter를 사용하면 여러 작업에 적용할 수 있는 백업 정책을 생성할 수 있습니다. 이러한 정책은 스케줄, 보존, 복제 및 기타 기능을 정의할 수 있습니다. 또한 VM 정합성 보장 스냅샷의 선택 옵션을 계속 허용하므로 VMware 스냅샷을 생성하기 전에 하이퍼바이저의 입출력 중지 기능을 활용할 수 있습니다. 
+---
+= 서비스 품질(QoS)
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:firstname: [.lead]
+:author: [.lead]
+:authorinitials: [
+:authors: [.lead]
+:revnumber: 
+:revdate: or entire SVMs.
+
+
+처리량 제한은 배포 전에 알 수 없는 워크로드 또는 테스트 워크로드를 제어하여 다른 워크로드에 영향을 미치지 않도록 하는 데 유용합니다. 이러한 워크로드는 식별된 후 대규모 워크로드를 제한하는 데 사용할 수도 있습니다. ONTAP 9.2의 SAN 오브젝트 및 ONTAP 9.3의 NAS 오브젝트에 대해 일관된 성능을 제공하기 위해 IOPS를 기반으로 하는 최소 서비스 레벨도 지원됩니다.
+
+NFS 데이터 저장소를 사용하면 QoS 정책을 전체 FlexVol 볼륨 또는 해당 볼륨 내의 개별 VMDK 파일에 적용할 수 있습니다. ONTAP LUN을 사용하는 VMFS 데이터 저장소의 경우 FlexVol가 VMFS 파일 시스템을 인식하지 못하기 때문에 QoS 정책을 LUN 또는 개별 LUN을 포함하는 ONTAP 볼륨에 적용할 수 있지만 개별 VMDK 파일은 적용할 수 없습니다. VVOL을 사용할 경우 스토리지 용량 프로파일 및 VM 스토리지 정책을 사용하여 개별 VM에 최소 및/또는 최대 QoS를 설정할 수 있습니다.
+
+개체에 대한 QoS 최대 처리량 제한은 Mbps 및/또는 IOPS로 설정할 수 있습니다. 둘 다 사용되는 경우 첫 번째 제한에 도달한 값은 ONTAP에 의해 적용됩니다. 워크로드에는 여러 개체가 포함될 수 있으며 QoS 정책을 하나 이상의 워크로드에 적용할 수 있습니다. 정책이 여러 워크로드에 적용될 경우 워크로드는 정책의 총 한도를 공유합니다. 중첩된 개체는 지원되지 않습니다(예: 볼륨 내의 파일은 각각 고유한 정책을 가질 수 없음). QoS 최소값을 IOPS에서만 설정할 수 있습니다.
+
+현재 ONTAP QoS 정책을 관리하고 객체에 적용하는 데 사용할 수 있는 툴은 다음과 같습니다.
+
+* ONTAP CLI를 참조하십시오
+* ONTAP 시스템 관리자
+* OnCommand Workflow Automation
+* Active IQ Unified Manager
+* ONTAP를 위한 NetApp PowerShell Toolkit
+* VMware vSphere VASA Provider용 ONTAP 툴
+
+
+NFS에서 VMDK에 QoS 정책을 할당하려면 다음 지침을 따르십시오.
+
+* 정책을 에 적용해야 합니다 `vmname- flat.vmdk` 여기에는 가 아닌 실제 가상 디스크 이미지가 포함됩니다 `vmname.vmdk` (가상 디스크 설명자 파일) 또는 `vmname.vmx` (VM 설명자 파일).
+* 가상 스왑 파일과 같은 다른 VM 파일에 정책을 적용하지 마십시오 (`vmname.vswp`)를 클릭합니다.
+* vSphere Web Client를 사용하여 파일 경로(Datastore > Files)를 찾을 때는 의 정보가 결합되어 있다는 점을 유념하십시오 `- flat.vmdk` 및 `. vmdk` 의 이름을 가진 파일 하나가 표시됩니다 `. vmdk` 그러나 의 크기는 `- flat.vmdk`. 추가 `-flat` 파일 이름에 올바른 경로를 입력합니다.
+
+
+VMFS 및 RDM을 포함하여 LUN에 QoS 정책을 할당하려면 ONTAP vSphere용 ONTAP 툴 홈 페이지의 스토리지 시스템 메뉴에서 SVM(SVM으로 표시됨), LUN 경로 및 일련 번호를 확인할 수 있습니다. 스토리지 시스템(SVM)을 선택한 다음 관련 오브젝트 > SAN을 선택합니다.  ONTAP 툴 중 하나를 사용하여 QoS를 지정할 때 이 접근 방식을 사용합니다.
+
+VMware vSphere 또는 Virtual Storage Console 7.1 이상을 위한 ONTAP 툴을 VVOL 기반 VM에 최대 및 최소 QoS를 손쉽게 할당할 수 있습니다. VVOL 컨테이너에 대한 스토리지 기능 프로필을 생성할 때 성능 기능에서 최대 및/또는 최소 IOPS 값을 지정한 다음 이 SCP를 VM의 스토리지 정책에 참조합니다. VM을 생성하거나 기존 VM에 정책을 적용할 때 이 정책을 사용합니다.
+
+FlexGroup 데이터 저장소는 VMware vSphere 9.8 이상용 ONTAP 툴을 사용할 때 향상된 QoS 기능을 제공합니다. 데이터 저장소 또는 특정 VM의 모든 VM에 대해 QoS를 쉽게 설정할 수 있습니다. 자세한 내용은 이 보고서의 FlexGroup 섹션을 참조하십시오.
+
+
+
+== ONTAP QoS 및 VMware SIOC
+
+ONTAP QoS 및 VMware vSphere 스토리지 I/O 제어(SIOC)는 vSphere 및 스토리지 관리자가 ONTAP 소프트웨어를 실행하는 시스템에서 호스팅되는 vSphere VM의 성능을 관리하는 데 함께 사용할 수 있는 보완 기술입니다. 다음 표에 나와 있는 것처럼 각 툴마다 고유한 강점이 있습니다. VMware vCenter와 ONTAP의 범위가 서로 다르기 때문에 한 시스템에서 일부 객체를 보고 관리할 수 있으며 다른 객체는 볼 수 없습니다.
+
+|===
+| 속성 | ONTAP QoS를 참조하십시오 | VMware SIOC 
+
+
+| 활성화 시 | 정책이 항상 활성화되어 있습니다 | 경합이 있을 때 활성(데이터 저장소 지연 시간이 임계값을 초과함) 
+
+
+| 단위 유형 | IOPS, MBps | IOPS, 공유 
+
+
+| vCenter 또는 애플리케이션 범위 | 다양한 vCenter 환경, 기타 하이퍼바이저 및 애플리케이션 | 단일 vCenter Server 
+
+
+| VM에서 QoS를 설정하시겠습니까? | VMDK는 NFS에만 해당합니다 | NFS 또는 VMFS의 VMDK입니다 
+
+
+| LUN(RDM)에 QoS를 설정하시겠습니까? | 예 | 아니요 
+
+
+| LUN(VMFS)에서 QoS를 설정하시겠습니까? | 예 | 아니요 
+
+
+| 볼륨에 QoS를 설정하시겠습니까(NFS 데이터 저장소)? | 예 | 아니요 
+
+
+| SVM(테넌트)에서 QoS를 설정하시겠습니까? | 예 | 아니요 
+
+
+| 정책 기반 접근 방식? | 예. 정책의 모든 워크로드에서 공유하거나 정책의 각 워크로드에 전체적으로 적용할 수 있습니다. | 예, vSphere 6.5 이상에서 가능합니다. 
+
+
+| 라이센스가 필요합니다 | ONTAP에 포함되어 있습니다 | 엔터프라이즈급 플러스 
+|===
+
+
+== VMware 스토리지 분산 리소스 스케줄러입니다
+
+VMware SDRS(Storage Distributed Resource Scheduler)는 현재 입출력 지연 시간 및 공간 사용량을 기반으로 스토리지에 VM을 배치하는 vSphere 기능입니다. 그런 다음 데이터 저장소 클러스터(Pod라고도 함)의 데이터 저장소 간에 VM 또는 VMDK를 중단 없이 이동하여 VM 또는 VMDK를 데이터 저장소 클러스터에 배치할 최상의 데이터 저장소를 선택합니다. 데이터 저장소 클러스터는 vSphere 관리자의 관점에서 단일 사용 단위로 집계되는 유사한 데이터 저장소의 모음입니다.
+
+SDRS를 VMware vSphere용 NetApp ONTAP 툴과 함께 사용하는 경우 먼저 플러그인을 사용하여 데이터 저장소를 생성한 다음 vCenter를 사용하여 데이터 저장소 클러스터를 생성한 다음 여기에 데이터 저장소를 추가해야 합니다. 데이터 저장소 클러스터가 생성된 후 세부 정보 페이지의 프로비저닝 마법사에서 추가 데이터 저장소를 데이터 저장소 클러스터에 직접 추가할 수 있습니다.
+
+SDRS에 대한 기타 ONTAP 모범 사례는 다음과 같습니다.
+
+* 클러스터의 모든 데이터 저장소는 동일한 유형의 스토리지(예: SAS, SATA 또는 SSD)를 사용하고 모든 VMFS 또는 NFS 데이터 저장소이며 복제 및 보호 설정이 동일해야 합니다.
+* 기본(수동) 모드에서 SDRS 사용을 고려하십시오. 이 접근 방식을 통해 권장 사항을 검토하고 적용 여부를 결정할 수 있습니다. VMDK 마이그레이션의 영향을 숙지하십시오.
++
+** SDRS에서 VMDK를 데이터 저장소 간에 이동할 경우 ONTAP 클론 생성 또는 중복 제거를 통한 공간 절약이 손실됩니다. 중복제거를 재실행하여 이러한 절약 효과를 다시 실현할 수 있습니다.
+** SDRS가 VMDK를 이동한 후 NetApp는 소스 데이터 저장소에서 스냅샷을 다시 생성하는 것이 좋습니다. 그렇지 않으면 공간이 이동된 VM에 의해 잠기기 때문입니다.
+** 동일한 애그리게이트에서 데이터 저장소 간에 VMDK를 이동하는 것은 효과가 거의 없으며 SDRS는 애그리게이트를 공유할 수 있는 다른 워크로드를 파악할 수 없습니다.
+
+
+
+
+
+
+== 스토리지 정책 기반 관리 및 VVOL
+
+VASA(VMware vSphere APIs for Storage Awareness)를 사용하면 스토리지 관리자가 잘 정의된 기능을 사용하여 데이터 저장소를 쉽게 구성할 수 있으며 VM 관리자는 필요할 때마다 상호 작용하지 않고도 데이터 저장소를 사용하여 VM을 프로비저닝할 수 있습니다. 가상화 스토리지 운영을 간소화하고 사소한 작업을 많이 피하는 방법을 알아보려면 이 접근 방식을 살펴보시기 바랍니다.
+
+VASA 이전에는 VM 관리자가 VM 스토리지 정책을 정의할 수 있었지만 대개 문서 또는 명명 규칙을 사용하여 스토리지 관리자와 협력하여 적절한 데이터 저장소를 식별해야 했습니다. 스토리지 관리자는 VASA를 통해 성능, 계층화, 암호화, 복제를 비롯한 다양한 스토리지 기능을 정의할 수 있습니다. 볼륨 또는 볼륨 세트에 대한 기능 세트를 SCP(Storage Capability Profile)라고 합니다.
+
+SCP는 VM의 데이터 VVol에 대한 최소 및/또는 최대 QoS를 지원합니다. 최소 QoS는 AFF 시스템에서만 지원됩니다. VMware vSphere용 ONTAP 툴에는 ONTAP 시스템에서 VVOL을 위한 VM 레벨의 세분화된 성능과 논리적 용량을 보여주는 대시보드가 포함되어 있습니다.
+
+다음 그림은 VMware vSphere 9.8 VVol 대시보드를 위한 ONTAP 툴을 보여 줍니다.
+
+image:vsphere_ontap_image7.png["오류: 그래픽 이미지가 없습니다"]
+
+스토리지 용량 프로필을 정의한 후에는 요구 사항을 식별하는 스토리지 정책을 사용하여 VM을 프로비저닝하는 데 사용할 수 있습니다. VM 스토리지 정책과 데이터 저장소 스토리지 용량 프로파일 간의 매핑을 통해 vCenter에서 선택할 수 있는 호환 데이터 저장소 목록을 표시할 수 있습니다. 이러한 접근 방식을 스토리지 정책 기반 관리라고 합니다.
+
+VASA는 스토리지를 쿼리하고 스토리지 기능 집합을 vCenter에 반환하는 기술을 제공합니다. VASA 공급업체 공급자는 스토리지 시스템 API 및 구성 요소 및 vCenter에서 인식할 수 있는 VMware API 간의 변환을 제공합니다. NetApp의 VASA Provider for ONTAP는 VMware vSphere 어플라이언스 VM을 위한 ONTAP 툴의 일부로 제공됩니다. 또한, vCenter 플러그인은 VVOL 데이터 저장소를 프로비저닝 및 관리하기 위한 인터페이스를 제공하며 SCP(스토리지 기능 프로필)를 정의합니다.
+
+ONTAP는 VMFS 및 NFS VVOL 데이터 저장소를 모두 지원합니다. SAN 데이터 저장소와 VVOL을 함께 사용하면 VM 수준 정밀도와 같은 NFS의 몇 가지 이점이 있습니다. 다음은 고려해야 할 몇 가지 모범 사례이며 에서 추가 정보를 찾을 수 있습니다 http://www.netapp.com/us/media/tr-4400.pdf["TR-4400 을 참조하십시오"^]:
+
+* VVOL 데이터 저장소는 여러 클러스터 노드의 여러 FlexVol 볼륨으로 구성될 수 있습니다. 가장 간단한 방법은 볼륨에 기능이 다른 경우에도 단일 데이터 저장소를 사용하는 것입니다. SPBM은 호환 볼륨이 VM에 사용되는지 확인합니다. 하지만 모든 볼륨은 단일 ONTAP SVM에 속하고 단일 프로토콜을 사용하여 액세스해야 합니다. 각 프로토콜당 하나의 LIF로 충분합니다. 스토리지 기능이 릴리즈별로 다를 수 있으므로 단일 VVOL 데이터 저장소 내에서 여러 ONTAP 릴리즈를 사용하는 것은 피하십시오.
+* VMware vSphere용 ONTAP 툴을 사용하여 VVOL 데이터 저장소를 만들고 관리합니다. 데이터 저장소와 해당 프로필을 관리하는 것 외에도 필요한 경우 데이터 저장소에 액세스하기 위한 프로토콜 엔드포인트가 자동으로 생성됩니다. LUN을 사용하는 경우 LUN PES는 LUN ID 300 이상을 사용하여 매핑됩니다. ESXi 호스트 고급 시스템 설정을 확인합니다 `Disk.MaxLUN` 300보다 높은 LUN ID 번호를 허용합니다(기본값: 1,024). 이 단계를 수행하려면 vCenter에서 ESXi 호스트를 선택한 다음 구성 탭을 선택하고 을 찾습니다 `Disk.MaxLUN` 고급 시스템 설정 목록에서 선택합니다.
+* VMware vSphere를 위한 VASA Provider, vCenter Server(어플라이언스 또는 Windows 기반) 또는 ONTAP 툴을 VVOL 데이터 저장소에 설치하거나 마이그레이션하지 마십시오. 상호 의존하기 때문에 정전이 발생하거나 기타 데이터 센터가 중단될 경우 이를 관리할 수 없습니다.
+* VASA Provider VM을 정기적으로 백업합니다. VASA Provider가 포함된 기존 데이터 저장소의 시간별 스냅샷을 적어도 생성합니다. VASA Provider 보호 및 복구에 대한 자세한 내용은 다음을 참조하십시오 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Virtual_Storage_Console_for_VMware_vSphere/Virtual_volumes%3A_Protecting_and_Recovering_the_NetApp_VASA_Provider["KB 문서를 참조하십시오"^].
+
+
+다음 그림은 VVol 구성 요소를 보여줍니다.
+
+image:vsphere_ontap_image8.png["오류: 그래픽 이미지가 없습니다"]
+
+
+
+== 클라우드 마이그레이션 및 백업
+
+ONTAP의 또 다른 강점은 하이브리드 클라우드를 광범위하게 지원하여 사내 프라이빗 클라우드의 시스템을 퍼블릭 클라우드 기능과 병합하는 것입니다. 다음은 vSphere와 함께 사용할 수 있는 몇 가지 NetApp 클라우드 솔루션입니다.
+
+* * 클라우드 볼륨. * Amazon Web Services를 위한 NetApp Cloud Volumes Service 또는 Google Cloud Platform과 ANF를 위한 Azure NetApp Files는 주요 퍼블릭 클라우드 환경에서 고성능 멀티 프로토콜 관리형 스토리지 서비스를 제공합니다. VMware Cloud VM 게스트가 직접 사용할 수 있습니다.
+* * Cloud Volumes ONTAP. * NetApp Cloud Volumes ONTAP 데이터 관리 소프트웨어는 선택한 클라우드에서 데이터에 제어, 보호, 유연성 및 효율성을 제공합니다. Cloud Volumes ONTAP는 NetApp ONTAP 스토리지 소프트웨어를 기반으로 하는 클라우드 네이티브 데이터 관리 소프트웨어입니다. Cloud Manager와 함께 사용하면 사내 ONTAP 시스템과 함께 Cloud Volumes ONTAP 인스턴스를 구축하고 관리할 수 있습니다. 스냅샷과 SnapMirror 복제를 포함한 통합 데이터 관리와 함께 고급 NAS 및 iSCSI SAN 기능을 활용합니다.
+* * 클라우드 서비스. * Cloud Backup Service 또는 SnapMirror 클라우드를 사용하여 퍼블릭 클라우드 스토리지를 사용하는 사내 시스템의 데이터를 보호합니다. Cloud Sync를 사용하면 NAS, 오브젝트 저장소 및 Cloud Volumes Service 스토리지에서 데이터를 마이그레이션하고 동기화 상태를 유지할 수 있습니다.
+* * FabricPool. * FabricPool는 ONTAP 데이터를 빠르고 쉽게 계층화할 수 있도록 지원합니다. 콜드 블록은 퍼블릭 클라우드 또는 프라이빗 StorageGRID 오브젝트 저장소의 오브젝트 저장소로 마이그레이션할 수 있으며, ONTAP 데이터에 다시 액세스할 때 자동으로 호출됩니다. 또는 SnapVault에서 이미 관리하는 데이터를 보호하기 위해 개체 계층을 세 번째 수준으로 사용할 수도 있습니다. 이 접근 방식을 통해 다음을 수행할 수 있습니다 https://www.linkedin.com/pulse/rethink-vmware-backup-again-keith-aasen/["VM의 스냅샷을 더 많이 저장합니다"^] 주요 및/또는 보조 ONTAP 스토리지 시스템
+* * ONTAP Select. * NetApp 소프트웨어 정의 스토리지를 사용하여 프라이빗 클라우드를 인터넷으로 원격 시설 및 사무소로 확장할 수 있습니다. ONTAP Select를 사용하여 블록 및 파일 서비스와 엔터프라이즈 데이터 센터에서 사용하는 vSphere 데이터 관리 기능을 지원할 수 있습니다.
+
+
+VM 기반 애플리케이션을 설계할 때는 미래의 클라우드 이동성을 고려해 보십시오. 예를 들어, 애플리케이션과 데이터 파일을 함께 배치하는 대신 데이터에 대해 별도의 LUN 또는 NFS 내보내기를 사용합니다. 따라서 VM 및 데이터를 클라우드 서비스로 별도로 마이그레이션할 수 있습니다.
+
+
+
+== vSphere 데이터 암호화
+
+오늘날, 암호화를 통해 유휴 데이터를 보호해야 하는 요구가 증가하고 있습니다. 처음에는 금융 및 의료 정보에 초점을 맞추었지만 파일, 데이터베이스 또는 기타 데이터 유형에 관계없이 모든 정보를 보호하는 데 대한 관심이 높아지고 있습니다.
+
+ONTAP 소프트웨어를 실행하는 시스템을 사용하면 유휴 데이터를 쉽게 보호할 수 있습니다. NetApp 스토리지 암호화(NSE)는 ONTAP가 포함된 자체 암호화 디스크 드라이브를 사용하여 SAN 및 NAS 데이터를 보호합니다. NetApp은 또한 디스크 드라이브에서 볼륨을 암호화하는 단순한 소프트웨어 기반 접근 방식으로 NetApp 볼륨 암호화 및 NetApp 애그리게이트 Encryption도 제공합니다. 이 소프트웨어 암호화는 특수 디스크 드라이브나 외부 키 관리자가 필요하지 않으며 ONTAP 고객이 추가 비용 없이 사용할 수 있습니다. 클라이언트 또는 애플리케이션을 중단하지 않고 업그레이드하거나 사용할 수 있으며 온보드 키 관리자를 포함하여 FIPS 140-2 레벨 1 표준에 따라 검증을 받았습니다.
+
+VMware vSphere에서 실행되는 가상화된 애플리케이션의 데이터를 보호하기 위한 몇 가지 접근 방식이 있습니다. 한 가지 방법은 게스트 OS 수준에서 VM 내부의 소프트웨어로 데이터를 보호하는 것입니다. vSphere 6.5와 같은 최신 하이퍼바이저는 VM 수준에서 암호화를 지원하는 또 다른 대안으로, 그러나 NetApp 소프트웨어 암호화는 간단하고 쉬우며 다음과 같은 이점을 제공합니다.
+
+* * 가상 서버 CPU에 영향을 미치지 않습니다. * 일부 가상 서버 환경에서는 애플리케이션에 사용할 수 있는 모든 CPU 사이클이 필요하지만 하이퍼바이저 레벨 암호화를 위해서는 최대 5배의 CPU 리소스가 필요하다는 결과가 있습니다. 암호화 소프트웨어가 암호화 워크로드를 오프로드하는 인텔의 AES-NI 명령 집합을 지원하더라도(NetApp 소프트웨어 암호화처럼), 이전 서버와 호환되지 않는 새로운 CPU가 필요하기 때문에 이 접근 방식은 적합하지 않을 수 있습니다.
+* * 온보드 키 관리자가 포함되어 있습니다. * NetApp 소프트웨어 암호화는 추가 비용 없이 온보드 키 관리자를 포함하므로 구입 및 사용이 복잡한 고가용성 키 관리 서버 없이 쉽게 시작할 수 있습니다.
+* * 스토리지 효율성에 영향을 미치지 않습니다. * 데이터 중복 제거 및 압축과 같은 스토리지 효율성 기술이 현재 널리 사용되고 있으며 플래시 디스크 미디어를 비용 효율적으로 사용하는 데 핵심적인 역할을 합니다. 그러나 암호화된 데이터는 일반적으로 중복제거되거나 압축할 수 없습니다. NetApp 하드웨어 및 스토리지 암호화는 다른 접근법과는 달리 낮은 수준에서 작동하며 업계 최고의 NetApp 스토리지 효율성 기능을 충분히 활용할 수 있도록 합니다.
+* * 데이터스토어의 세분화된 암호화. * NetApp Volume Encryption을 사용하면 각 볼륨에 고유한 AES 256비트 키를 사용할 수 있습니다. 변경해야 하는 경우 단일 명령을 사용하여 변경할 수 있습니다. 이 접근 방식은 테넌트가 여러 개이거나 서로 다른 부서 또는 애플리케이션에 대해 독립적인 암호화를 증명해야 하는 경우에 유용합니다. 이 암호화는 개별 VM을 관리하는 것보다 훨씬 쉬운 데이터 저장소 수준에서 관리됩니다.
+
+
+소프트웨어 암호화를 간단하게 시작할 수 있습니다. 라이센스를 설치한 후 암호를 지정하여 온보드 키 관리자를 구성한 다음 새 볼륨을 생성하거나 스토리지 측 볼륨 이동을 수행하여 암호화를 설정합니다. NetApp은 향후 VMware 툴 릴리즈에서 암호화 기능에 대한 통합 지원을 추가하기 위해 노력하고 있습니다.
+
+
+
+== Active IQ Unified Manager
+
+Active IQ Unified Manager는 가상 인프라의 VM에 대한 가시성을 제공하고 가상 환경에서 스토리지 및 성능 문제를 모니터링하고 문제를 해결할 수 있도록 지원합니다.
+
+ONTAP 기반의 일반적인 가상 인프라 구축에는 컴퓨팅, 네트워크 및 스토리지 계층 전체에 분산된 다양한 구성 요소가 있습니다. VM 애플리케이션의 성능 지연은 각 계층의 다양한 구성 요소에 의해 발생하는 지연 시간의 조합으로 인해 발생할 수 있습니다.
+
+다음 스크린샷은 Active IQ Unified Manager 가상 머신 보기를 보여 줍니다.
+
+image:vsphere_ontap_image9.png["오류: 그래픽 이미지가 없습니다"]
+
+Unified Manager는 가상 환경의 기본 하위 시스템을 토폴로지 뷰에서 제공하므로 컴퓨팅 노드, 네트워크 또는 스토리지에서 지연 시간 문제가 발생했는지 여부를 확인할 수 있습니다. 또한 개선 단계를 수행하고 기본 문제를 해결하는 데 성능 지연이 발생하는 특정 개체를 중점적으로 보여 줍니다.
+
+다음 스크린샷은 AIQUM 확장 토폴로지를 보여줍니다.
+
+image:vsphere_ontap_image10.png["오류: 그래픽 이미지가 없습니다"]

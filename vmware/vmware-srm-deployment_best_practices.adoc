@@ -1,0 +1,56 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-srm-deployment_best_practices.html 
+keywords: vmware, site, recovery manager, vsrm, svm, layout, segmentation, smt, best, practices, deploy, ontap, tools, vvols 
+summary: 'ONTAP를 사용하면 SVM(스토리지 가상 머신)이라는 개념을 통해 보안 멀티 테넌트 환경에서 엄격한 세분화를 제공할 수 있습니다.' 
+---
+= 배포 모범 사례
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+
+
+== SMT를 위한 SVM 레이아웃 및 Segmentation
+
+ONTAP를 사용하면 SVM(스토리지 가상 머신)이라는 개념을 통해 보안 멀티 테넌트 환경에서 엄격한 세분화를 제공할 수 있습니다. 한 SVM의 SVM 사용자는 다른 SVM에서 리소스를 액세스하거나 관리할 수 없습니다. 이렇게 하면 동일한 클러스터에서 고유한 SRM 워크플로우를 관리하는 여러 사업부에 대해 별도의 SVM을 생성하여 ONTAP 기술을 활용함으로써 전반적인 스토리지 효율성을 높일 수 있습니다.
+
+보안 제어를 개선하면서 성능을 향상할 뿐만 아니라 SVM 범위 계정 및 SVM 관리 LIF를 사용하여 ONTAP를 관리하는 것을 고려해 보십시오. SRA는 물리적 리소스를 포함하여 전체 클러스터의 모든 리소스를 처리할 필요가 없으므로 SVM 범위 연결을 사용할 때 기본적으로 성능이 향상됩니다. 대신, 특정 SVM에 추상화된 논리적 자산만 이해해야 합니다.
+
+NAS 프로토콜만 사용하는 경우(SAN 액세스 없음), 다음 매개 변수를 설정하여 새로운 NAS 최적화 모드를 활용할 수도 있습니다(SRA 및 VASA는 어플라이언스에서 동일한 백엔드 서비스를 사용하기 때문에 이름이 동일함).
+
+. 의 제어판에 로그인합니다 `\https://<IP address>:9083` 웹 기반 CLI 인터페이스를 클릭합니다.
+. 명령을 실행합니다 `vp updateconfig -key=enable.qtree.discovery -value=true`.
+. 명령을 실행합니다 `vp updateconfig -key=enable.optimised.sra -value=true`.
+. 명령을 실행합니다 `vp reloadconfig`.
+
+
+
+
+== VVOL을 위한 ONTAP 툴 및 고려사항 배포
+
+VVOL이 포함된 SRM을 사용하려면 클러스터 범위 자격 증명 및 클러스터 관리 LIF를 사용하여 스토리지를 관리해야 합니다. 이는 VASA Provider가 VM 스토리지 정책에 필요한 정책을 충족하기 위해 기본 물리적 아키텍처를 이해해야 하기 때문입니다. 예를 들어, All-Flash 스토리지가 필요한 정책이 있는 경우 VASA Provider는 모든 All-Flash 시스템을 확인할 수 있어야 합니다.
+
+또 다른 구축 모범 사례는 관리 중인 VVOL 데이터 저장소에 ONTAP 툴 어플라이언스를 저장하지 않는 것입니다. 어플라이언스가 오프라인이므로 어플라이언스에 대한 스왑 VVol을 생성할 수 없으므로 VASA Provider의 전원을 켤 수 없는 상황이 발생할 수 있습니다.
+
+
+
+== ONTAP 9 시스템 관리 모범 사례
+
+앞서 언급했듯이 클러스터 또는 SVM 범위의 자격 증명 및 관리 LIF를 사용하여 ONTAP 클러스터를 관리할 수 있습니다. 최적의 성능을 위해 VVOL을 사용하지 않을 때마다 SVM 범위 자격 증명 사용을 고려할 수 있습니다. 그러나 이렇게 하면 일부 요구 사항을 인식하고 일부 기능을 사용할 수 없게 됩니다.
+
+* 기본 vsadmin SVM 계정에는 ONTAP 툴 작업을 수행하는 데 필요한 액세스 수준이 없습니다. 따라서 새 SVM 계정을 생성해야 합니다.
+* ONTAP 9.8 이상을 사용 중인 경우 NetApp은 ONTAP 시스템 관리자의 사용자 메뉴와 ONTAP 툴 어플라이언스에서 사용할 수 있는 JSON 파일을 함께 사용하여 RBAC 최소 권한 사용자 계정을 만드는 것이 좋습니다 `\https://<IP address>:9083/vsc/config/`. 관리자 암호를 사용하여 JSON 파일을 다운로드합니다. SVM 또는 클러스터 범위 어카운트에 사용할 수 있습니다.
++
+ONTAP 9.6 이하를 사용하는 경우 에서 사용할 수 있는 RBAC 사용자 작성 도구(RUC)를 사용해야 합니다 https://mysupport.netapp.com/site/tools/tool-eula/rbac["NetApp Support 사이트 Toolchest"^].
+
+* vCenter UI 플러그인, VASA Provider 및 SRA 서버는 모두 완전히 통합된 서비스이므로 ONTAP용 vCenter UI 툴에서 스토리지를 추가하는 것과 동일한 방식으로 SRM에서 SRA 어댑터에 스토리지를 추가해야 합니다. 그렇지 않으면 SRA 서버는 SRA 어댑터를 통해 SRM에서 전송되는 요청을 인식하지 못할 수 있습니다.
+* SVM 범위 자격 증명을 사용할 때는 NFS 경로 검사가 수행되지 않습니다. 물리적 위치가 SVM에서 논리적으로 추상화되기 때문입니다. 하지만 최신 ONTAP 시스템은 간접 경로를 사용할 때 눈에 띄는 성능 저하가 더 이상 발생하지 않으므로 이는 우려의 원인이 아닙니다.
+* 스토리지 효율성으로 인한 애그리게이트 공간 절약은 보고되지 않을 수 있습니다.
+* 지원되는 경우 로드 공유 미러를 업데이트할 수 없습니다.
+* SVM 범위 자격 증명으로 관리되는 ONTAP 시스템에서는 EMS 로깅이 수행되지 않을 수 있습니다.
+

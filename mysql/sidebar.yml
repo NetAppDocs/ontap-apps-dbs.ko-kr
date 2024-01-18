@@ -3,44 +3,47 @@ section: mysql
 title: MySQL
 entries:
 - title: 개요
-  url: "/mysql/overview.html"
+  url: "/mysql/mysql-overview.html"
 - title: 데이터베이스 구성
+  pdf-filename: MySQL용 데이터베이스 구성
   entries:
   - title: 파일 구조
-    url: "/mysql/file-structure.html"
+    url: "/mysql/mysql-file-structure.html"
   - title: 구성 개요
-    url: "/mysql/configuration.html"
+    url: "/mysql/mysql-configuration.html"
   - title: InnoDB_log_file_size입니다
-    url: "/mysql/innodb_log_file_size.html"
+    url: "/mysql/mysql-innodb_log_file_size.html"
   - title: InnoDB_flush_log_at_TRx_commit입니다
-    url: "/mysql/innodb_flush_log_at_trx_commit.html"
+    url: "/mysql/mysql-innodb_flush_log_at_trx_commit.html"
   - title: inoDB_doublewrite입니다
-    url: "/mysql/innodb_doublewrite.html"
+    url: "/mysql/mysql-innodb_doublewrite.html"
   - title: InnoDB_buffer_pool_size입니다
-    url: "/mysql/innodb_buffer_pool_size.html"
+    url: "/mysql/mysql-innodb_buffer_pool_size.html"
   - title: InnoDB_flush_method 를 참조하십시오
-    url: "/mysql/innodb_flush_method.html"
+    url: "/mysql/mysql-innodb_flush_method.html"
   - title: InnoDB_IO_capacity의 약어입니다
-    url: "/mysql/innodb_io_capacity.html"
+    url: "/mysql/mysql-innodb_io_capacity.html"
   - title: InnoDB_LRU_scan_depth 를 선택합니다
-    url: "/mysql/innodb_lru_scan_depth.html"
+    url: "/mysql/mysql-innodb_lru_scan_depth.html"
   - title: Open_file_limits 를 참조하십시오
-    url: "/mysql/open_file_limits.html"
+    url: "/mysql/mysql-open_file_limits.html"
 - title: 호스트 구성
+  pdf-filename: MySQL의 호스트 구성
   entries:
   - title: 컨테이너화
-    url: "/mysql/containers.html"
+    url: "/mysql/mysql-containers.html"
   - title: 슬롯 테이블
-    url: "/mysql/slot-tables.html"
+    url: "/mysql/mysql-slot-tables.html"
   - title: I/O 스케줄러
-    url: "/mysql/schedulers.html"
+    url: "/mysql/mysql-schedulers.html"
   - title: 파일 설명자
-    url: "/mysql/file-descriptors.html"
+    url: "/mysql/mysql-file-descriptors.html"
 - title: 스토리지 구성
+  pdf-filename: MySQL의 스토리지 구성입니다
   entries:
   - title: NFS를 통한 MySQL
-    url: "/mysql/mysql-over-nfs.html"
+    url: "/mysql/mysql-mysql-over-nfs.html"
   - title: SAN을 통한 MySQL
-    url: "/mysql/mysql-over-san.html"
+    url: "/mysql/mysql-mysql-over-san.html"
   - title: FabricPool를 통한 MySQL 계층화
-    url: "/mysql/tiering.html"
+    url: "/mysql/mysql-tiering.html"

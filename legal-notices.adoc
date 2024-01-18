@@ -16,9 +16,6 @@ summary:
 [role="lead"]
 법적 고지 사항은 저작권 선언, 상표, 특허 등에 대한 액세스를 제공합니다.
 
-[role="lead"]
-법적 고지 사항은 저작권 선언, 상표, 특허 등에 대한 액세스를 제공합니다.
-
 
 
 == 저작권
@@ -55,7 +52,7 @@ link:https://www.netapp.com/company/legal/privacy-policy/["https://www.netapp.co
 
 
 
-=== ONTAP
+== ONTAP
 
 link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2885801["ONTAP 9.13.1 참고 사항"^]
 link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2884813["ONTAP 9.12.1에 대한 고지 사항"^]
@@ -75,7 +72,7 @@ link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2516795["ONTAP 9.1에
 
 
 
-=== MCC IP용 ONTAP 중재자
+== MCC IP용 ONTAP 중재자
 
 link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2870521["9.9.1 MCC IP용 ONTAP mediator에 대한 Notice"^]
 link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2870521["9.8 MCC IP용 ONTAP mediator에 대한 Notice"^]

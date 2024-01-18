@@ -1,0 +1,47 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-notes-stale-nfs-locks.html 
+keywords: oracle, database, ontap, stale, nfs, locks 
+summary: Oracle 및 오래된 NFSv3 잠금 
+---
+= 부실 NFSv3 잠금 및 Oracle 데이터베이스
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Oracle 데이터베이스 서버가 충돌하는 경우 재시작했을 때 부실 NFS 잠금에서 문제가 발생할 수 있습니다. 서버에서 이름 확인을 구성할 때 특별히 주의를 기울이면 이 문제를 피할 수 있습니다.
+
+이 문제가 발생하는 것은 잠금 생성과 잠금 해제가 두 가지의 약간 다른 호스트 이름 확인 방법을 사용하기 때문입니다. 여기에는 NLM(Network Lock Manager)와 NFS 클라이언트라는 2개의 프로세스가 관련되어 있습니다. NLM은 를 사용합니다 `uname n` 를 사용하여 호스트 이름을 확인할 수 있습니다 `rpc.statd` 프로세스 사용 `gethostbyname()`. 운영 체제에서 이러한 부실 잠금을 제대로 삭제할 수 있으려면 이 호스트 이름이 일치해야 합니다. 예를 들어, 호스트가 찾고 있는 소유의 잠금이 필요할 수 있습니다 `dbserver5`그러나 잠금이 호스트에 로 등록되었습니다 `dbserver5.mydomain.org`. If(경우 `gethostbyname()` 과(와) 같은 값을 반환하지 않습니다 `uname –a`그런 다음 잠금 해제 프로세스가 성공하지 못했습니다.
+
+다음 샘플 스크립트는 이름 확인이 완전히 일관되는지 확인합니다.
+
+....
+#! /usr/bin/perl
+$uname=`uname -n`;
+chomp($uname);
+($name, $aliases, $addrtype, $length, @addrs) = gethostbyname $uname;
+print "uname -n yields: $uname\n";
+print "gethostbyname yields: $name\n";
+....
+If(경우 `gethostbyname` 일치하지 않습니다 `uname`부실 잠금일 가능성이 있습니다. 예를 들어, 이 결과는 다음과 같이 잠재적 문제를 드러냅니다.
+
+....
+uname -n yields: dbserver5
+gethostbyname yields: dbserver5.mydomain.org
+....
+일반적으로 에서 호스트가 나타나는 순서를 변경하는 것이 해결책이 됩니다 `/etc/hosts`. 예를 들어, hosts 파일에 다음 항목이 포함되어 있다고 가정합니다.
+
+....
+10.156.110.201  dbserver5.mydomain.org dbserver5 loghost
+....
+이 문제를 해결하려면 정규화된 도메인 이름과 짧은 호스트 이름이 나타나는 순서를 변경합니다.
+
+....
+10.156.110.201  dbserver5 dbserver5.mydomain.org loghost
+....
+`gethostbyname()` 이제 쇼트 값을 반환합니다 `dbserver5` 의 출력과 일치하는 호스트 이름입니다 `uname`. 이와 같이 서버 충돌이 일어나면 잠금이 자동으로 삭제됩니다.

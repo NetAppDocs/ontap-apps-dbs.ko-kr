@@ -1,0 +1,23 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-dp-consistency-group-backup.html 
+keywords: oracle, data, protection, consistency, group, backup, volume, archive, log, redo, controlfiles 
+summary: ONTAP에서 Oracle에 대한 정합성 보장 그룹 백업 
+---
+= Oracle 정합성 보장 그룹 백업
+:allow-uri-read: 
+
+
+[role="lead"]
+가장 간단한 백업을 위해서는 전체 Oracle 데이터베이스를 단일 볼륨에 배치하기만 하면 됩니다.
+
+단일 스냅샷을 사용하여 데이터 파일, 아카이브 로그, redo 로그 및 제어 파일을 보호하는 것은 유효한 백업, 복원 및 복제 방법입니다.  그러나 RPO는 백업 자체의 지점으로 제한됩니다. 1시간 이상의 RPO에 적합합니다. 데이터베이스가 여러 볼륨으로 확장되는 경우 앞에서 설명한 툴 중 하나를 사용하여 CG 스냅샷이 필요합니다.
+
+예를 들어, 전체 데이터베이스는 다음과 같은 스냅샷 스케줄로 단일 볼륨에 있을 수 있습니다.
+
+* 시간별 스냅샷 72개
+* 30개의 야간 스냅샷
+* 12개의 월별 스냅샷
+
+
+따라서 이전 72시간의 롤링 기간 동안 RPO가 1시간이며 야간 및 월별 백업이 추가로 제공됩니다. 여러 데이터베이스 또는 애플리케이션 파일을 단일 볼륨 또는 CG 스냅샷 세트에 포함하여 대규모 환경에서 일관된 백업을 제공할 수도 있습니다.

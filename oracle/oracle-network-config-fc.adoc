@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-network-config-fc.html 
+keywords: SAN, zoning 
+summary: Oracle 데이터베이스를 위한 FC 네트워크 구성 
+---
+= Oracle을 위한 FC 구성
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Oracle 데이터베이스용 FC SAN 구성은 주로 일상적인 SAN 모범 사례를 따르는 것과 관련됩니다.
+
+여기에는 호스트와 스토리지 시스템 사이에 SAN에 충분한 대역폭이 존재하는지 확인하고, FC 스위치 공급업체에서 요구하는 FC 포트 설정을 사용하여 모든 필수 디바이스 간에 모든 SAN 경로가 존재하는지 확인하는 등의 일반적인 계획 조치가 포함됩니다. ISL 경합 방지 그리고 적절한 SAN 패브릭 모니터링을 사용합니다.
+
+
+
+== 조닝
+
+FC 존은 하나 이상의 이니시에이터를 포함할 수 없습니다. 이 방식은 처음에는 효과가 있는 것처럼 보이지만 이니시에이터 간 혼선이 결국에는 성능과 안정성을 저하시킵니다.
+
+여러 공급업체의 FC 타겟 포트 동작이 드물게 문제를 일으키기도 하지만 멀티타겟 존은 일반적으로 안전하다고 간주됩니다. 예를 들어, NetApp와 NetApp이 아닌 스토리지 어레이의 타겟 포트를 같은 존에 포함하지 마십시오. 또한, NetApp 스토리지 시스템과 테이프 장치를 같은 존에 배치하면 문제가 발생할 가능성이 더 높아집니다.

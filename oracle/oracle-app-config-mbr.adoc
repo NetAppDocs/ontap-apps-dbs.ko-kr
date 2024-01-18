@@ -1,0 +1,21 @@
+---
+permalink: oracle/oracle-app-config-mbr.html 
+sidebar: sidebar 
+keywords: oracle, database, ontap, db_file_multiblock_read_count, multiblock 
+summary: Oracle 다중 블록 읽기 매개 변수 
+---
+= db_file_multiblock_read_count입니다
+:allow-uri-read: 
+
+
+[role="lead"]
+를 클릭합니다 `db_file_multiblock_read_count` 매개 변수는 Oracle이 순차적 I/O 중에 단일 작업으로 읽는 Oracle 데이터베이스 블록의 최대 수를 제어합니다
+
+하지만 이 매개 변수는 모든 읽기 작업 중에 Oracle이 읽는 블록의 수나 랜덤 I/O에 영향을 미치지 않으며 순차적 I/O의 블록 크기에만 영향을 미칩니다.
+
+Oracle은 이 매개 변수를 설정 해제 상태로 둘 것을 권장합니다. 이렇게 하면 데이터베이스 소프트웨어가 최적의 값을 자동으로 설정할 수 있습니다. 이는 일반적으로 이 매개 변수가 1MB의 I/O 크기를 생성하는 값으로 설정된다는 뜻입니다. 예를 들어, 8KB 블록의 1MB 읽기에서는 읽을 블록이 128개 필요하며 이에 따라 이 매개 변수의 기본값은 128이 됩니다.
+
+NetApp이 고객 사이트에서 관찰한 데이터베이스 성능 문제는 대부분 이 매개 변수의 잘못된 설정과 관련이 있습니다. Oracle 버전 8 및 9에서 이 값을 변경할 타당한 이유가 있었습니다. 그 결과, 매개 변수가 모르게 에 있을 수 있습니다 `init.ora` 데이터베이스가 Oracle 10 이상으로 업그레이드되었기 때문입니다. 128이라는 기본값에 비해 8 또는 16의 기존 설정은 순차적 I/O 성능을 크게 저하합니다.
+
+
+TIP: * NetApp는 * 를 설정할 것을 권장합니다 `db_file_multiblock_read_count` 매개 변수는 에 있어서는 안 됩니다 `init.ora` 파일. NetApp이 관찰한 결과 이 매개 변수를 변경하여 성능이 개선된 경우는 없었으나 순차적 I/O 처리량 저하가 사라진 사례는 많이 있습니다.

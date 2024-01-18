@@ -1,0 +1,25 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-ontap-config-raid.html 
+keywords: oracle,raid,mirroring 
+summary: RAID 및 Oracle 데이터베이스 
+---
+= Oracle RAID 요구 사항
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+RAID는 드라이브 손실로부터 데이터를 보호하기 위해 이중화를 사용하는 것을 말합니다.
+
+Oracle 데이터베이스 및 기타 엔터프라이즈 애플리케이션에 사용되는 NetApp 스토리지를 구성할 때 RAID 레벨에 관한 질문이 가끔 제기됩니다. 스토리지 어레이 구성과 관련된 기존의 여러 Oracle 모범 사례에는 RAID 미러링 사용 및/또는 특정 유형의 RAID 회피에 대한 주의사항이 포함되어 있습니다. 그러나 이러한 소스는 유효한 점을 제시하지만 ONTAP에 사용되는 NetApp RAID DP 및 RAID-TEC 기술과 RAID 4에는 적용되지 않습니다.
+
+RAID 4, RAID 5, RAID 6, RAID DP 및 RAID-TEC는 모두 패리티를 사용하여 드라이브 오류로 인해 데이터가 손실되지 않도록 합니다. 이들 RAID 옵션은 미러링에 비해 스토리지 사용률이 훨씬 뛰어나지만 대부분의 RAID 구현에서는 쓰기 작업이 영향을 받는다는 문제가 있습니다. 다른 RAID 구현에서 쓰기 작업을 완료하려면 다중 드라이브 읽기를 통해 패리티 데이터를 재생성해야 할 수 있으며, 이를 일반적으로 RAID 성능 저하라고 합니다.
+
+그러나 ONTAP에서는 이 RAID 성능 저하가 발생하지 않습니다. 이는 NetApp WAFL(Write Anywhere File Layout)과 RAID 계층의 통합 때문입니다. 쓰기 작업은 RAM에 병합되며 패리티 생성을 포함하여 전체 RAID 스트라이프로 준비됩니다. ONTAP는 쓰기를 완료하기 위해 읽기를 수행할 필요가 없으며, 이는 ONTAP 및 WAFL에서 RAID 성능 저하가 일어나지 않는다는 뜻입니다. 로깅 재실행과 같이 지연 시간이 중요한 작업의 성능은 영향을 받지 않으며, 랜덤 데이터 파일 쓰기에는 패리티를 다시 생성해야 하므로 RAID 성능 저하가 발생하지 않습니다.
+
+통계적 안정성을 고려하면 RAID DP도 RAID 미러링보다 우수한 보호 기능을 제공합니다. 기본적인 문제는 RAID 리빌드 중에 드라이브에서 발생하는 수요입니다. 미러링된 RAID 세트가 있으면 RAID 세트에서 파트너에 대해 리빌드를 하는 동안 드라이브 장애로 인해 데이터가 손실될 위험이 RAID DP 세트에서 삼중 드라이브 장애가 일어날 위험보다 훨씬 큽니다.

@@ -3,32 +3,32 @@ section: mssql
 title: Microsoft SQL Server를 참조하십시오
 entries:
 - title: 개요
-  url: "/mssql/overview.html"
+  url: "/mssql/mssql-overview.html"
 - title: 워크로드
-  url: "/mssql/workloads.html"
-- title: ONTAP 구성
-  url: "/postgres/ontap.html"
+  url: "/mssql/mssql-workloads.html"
 - title: 데이터베이스 구성
+  pdf-filename: Microsoft SQL Server에 대한 데이터베이스 구성
   entries:
   - title: 공유 인스턴스와 전용 인스턴스 비교
-    url: "/mssql/shared-vs-dedicated.html"
+    url: "/mssql/mssql-shared-vs-dedicated.html"
   - title: CPU 구성
-    url: "/mssql/CPUConfiguration.html"
+    url: "/mssql/mssql-cpu-configuration.html"
   - title: 메모리 구성
-    url: "/mssql/Memoryconfiguration.html"
+    url: "/mssql/mssql-memory-configuration.html"
 - title: 스토리지 구성
+  pdf-filename: Microsoft SQL Server에 대한 스토리지 구성
   entries:
   - title: 데이터베이스 파일 및 파일 그룹
-    url: "/mssql/files-and-filegroups.html"
+    url: "/mssql/mssql-files-and-filegroups.html"
   - title: tempdb 파일
-    url: "/mssql/tempdb.html"
+    url: "/mssql/mssql-tempdb.html"
   - title: 스토리지 고려 사항
-    url: "/mssql/Storage-considerations.html"
+    url: "/mssql/mssql-storage-considerations.html"
   - title: 스토리지 효율성
-    url: "/mssql/storage-efficiency.html"
+    url: "/mssql/mssql-storage-efficiency.html"
 - title: 데이터 보호
-  url: "/mssql/sql-data-protection.html"
+  url: "/mssql/mssql-data-protection.html"
 - title: 재해 복구
-  url: "/mssql/SQL-disaster-recovery.html"
+  url: "/mssql/mssql-disaster-recovery.html"
 - title: 데이터 보안
-  url: "/mssql/data-security.html"
+  url: "/mssql/mssql-data-security.html"
