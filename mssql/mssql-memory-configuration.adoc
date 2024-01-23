@@ -6,12 +6,11 @@ summary: ONTAP 기반 Microsoft SQL Server
 ---
 = Microsoft SQL Server 메모리 구성
 :allow-uri-read: 
-:firstname: [.lead]
-:author: [.lead]
-:authorinitials: [
-:authors: [.lead]
 :imagesdir: ../media/
 
+
+[role="lead"]
+다음 섹션에서는 몇 가지 중요 메모리 구성 설정에 대해 설명합니다.
 
 
 

@@ -139,10 +139,6 @@ ONTAP mediator는 MetroCluster IP 및 기타 특정 ONTAP 솔루션과 함께 �
 
 
 
-=== 중재자 자동 무인 전환(MAUSO)
-
-
-
 === ClusterLion이 포함된 가상 3번째 사이트
 
 ClusterLion은 가상 3차 사이트로 작동하는 고급 MetroCluster 모니터링 어플라이언스입니다. 이 접근 방식을 통해 MetroCluster는 완전 자동화된 스위치오버 기능을 통해 2개 사이트 구성으로 안전하게 구축할 수 있습니다. 또한 ClusterLion은 추가 네트워크 수준 모니터를 수행하고 전환 후 작업을 실행할 수 있습니다. ProLion에서 전체 문서를 다운로드할 수 있습니다.

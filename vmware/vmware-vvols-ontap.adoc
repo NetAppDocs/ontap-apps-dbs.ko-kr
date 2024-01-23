@@ -77,7 +77,7 @@ https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere/index.html["문서 리�
 
 제품 설명서 외에도 유용한 지원 기술 자료 문서가 있습니다.
 
-* https://kb.netapp.com/app/answers/answer_view/a_id/1031261["VASA Provider 재해 복구를 수행하는 방법"^]
+* https://kb.netapp.com/mgmt/OTV/NetApp_VASA_Provider/How_to_perform_a_VASA_Provider_Disaster_Recovery_-_Resolution_Guide["VASA Provider 재해 복구 - 해결 가이드를 수행하는 방법"^]
 
 
 
