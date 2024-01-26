@@ -62,9 +62,9 @@ entries:
     entries:
     - title: LUN 정렬
       url: "/oracle/oracle-storage-san-config-lun-alignment.html"
-    - title: LUN 개수 및 LUN 크기
+    - title: LUN 수와 LUN 크기입니다
       url: "/oracle/oracle-storage-san-config-lun-sizing.html"
-    - title: LUN 크기 조정 중
+    - title: LUN 크기 조정
       url: "/oracle/oracle-storage-san-config-lun-resizing.html"
     - title: LVM 스트라이핑
       url: "/oracle/oracle-storage-san-config-lvm-striping.html"
@@ -114,13 +114,13 @@ entries:
   entries:
   - title: 개요
     url: "/oracle/oracle-dp-overview.html"
-  - title: RPO, TRO 및 SLA
+  - title: RPO 및 SLA를 충족할 수 있습니다
     url: "/oracle/oracle-dp-slas.html"
   - title: 데이터 가용성
     url: "/oracle/oracle-dp-data-availability.html"
   - title: 데이터 무결성
     url: "/oracle/oracle-dp-data-integrity.html"
-  - title: 백업 및 복구 기본 사항 을 참조하십시오
+  - title: 백업 및 복구 기초
     entries:
     - title: 스냅샷 수
       url: "/oracle/oracle-dp-snapshots.html"

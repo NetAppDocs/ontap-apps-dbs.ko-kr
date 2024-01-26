@@ -2523,15 +2523,6 @@ I/O 중단 없음.</block>
   <block id="ff1d278a485c443dc5d8fc9f10f1a702" category="doc">VMware Horizon 7을 지원하는 NetApp HCI for Virtual Desktop Infrastructure - 3D 그래픽을 통해 파워 유저의 역량을 강화하십시오</block>
   <block id="e3162938e0d7b1bbc74111cc5b5871c5" category="paragraph">TR-4792는 NVIDIA GPU(Graphics Processing Unit) 및 가상화 소프트웨어로 구동되는 VMware Horizon 환경에서 NetApp H615C 컴퓨팅 노드를 사용하여 3D 그래픽 워크로드를 처리하는 방법에 대한 지침을 제공합니다. 또한 H615C에 대한 SPECviewperf 13의 예비 테스트에서 얻은 결과를 제공합니다.</block>
   <block id="1de37c09602b46db5de57a946efe2768" category="paragraph"><block ref="1de37c09602b46db5de57a946efe2768" category="inline-link-macro-rx"></block></block>
-  <block id="5ed492cbbbf7e6d167035a7c10478daa" category="summary">NetApp HCI를 사용하는 VMware 최종 사용자 컴퓨팅은 사전 검증된 모범 사례 데이터 센터 아키텍처로, 엔터프라이즈 규모로 가상 데스크톱 워크로드를 구축할 수 있습니다.</block>
-  <block id="36f00397200c227ebfe56599e7bafcd5" category="doc">NVA-1129-design: NetApp HCI 및 NVIDIA GPU를 사용한 VMware 최종 사용자 컴퓨팅</block>
-  <block id="52940073ac3f539b3c6d9ac1e41d5f06" category="paragraph">NetApp HCI를 사용하는 VMware 최종 사용자 컴퓨팅은 사전 검증된 모범 사례 데이터 센터 아키텍처로, 엔터프라이즈 규모로 가상 데스크톱 워크로드를 구축할 수 있습니다. 이 문서에서는 안정적이고 위험 없는 방식으로 운영 환경에서 솔루션을 구축하기 위한 아키텍처 설계와 모범 사례에 대해 설명합니다.</block>
-  <block id="8a36e2f35bf4a10959caf61f15d8df63" category="paragraph"><block ref="8a36e2f35bf4a10959caf61f15d8df63" category="inline-link-macro-rx"></block></block>
-  <block id="b4a3c2c985fcfc0d0e59c8d9c3259eb0" category="doc">NVA-1129-deploy: NetApp HCI 및 NVIDIA GPU를 이용한 VMware 최종 사용자 컴퓨팅</block>
-  <block id="8b3f1e47da9509d2edf2f21012c6ec7e" category="paragraph">NetApp HCI를 사용하는 VMware 최종 사용자 컴퓨팅은 사전 검증된 모범 사례 데이터 센터 아키텍처로, 엔터프라이즈 규모로 가상 데스크톱 워크로드를 구축할 수 있습니다. 이 문서에서는 안정적이고 위험 없는 방식으로 솔루션을 운영 규모에 구축하는 방법에 대해 설명합니다</block>
-  <block id="ba999af3664a8f6c5b43a92bc11de64a" category="paragraph"><block ref="ba999af3664a8f6c5b43a92bc11de64a" category="inline-link-macro-rx"></block></block>
-  <block id="85864e2699dfaceb7f8d1f85448939fe" category="doc">NVA-1132-design:NetApp HCI를 사용한 VMware 최종 사용자 컴퓨팅</block>
-  <block id="8c40c45c2332a47a83ae257f42af2331" category="paragraph"><block ref="8c40c45c2332a47a83ae257f42af2331" category="inline-link-macro-rx"></block></block>
   <block id="93b94e62ad8cb02a1d1a7b0944a5445d" category="summary">이 문서에서는 VMware vSphere용 ONTAP 툴의 제품 보안에 대해 설명합니다.</block>
   <block id="57a033c33a8be6110be46b2914cc4989" category="doc">ONTAP에서 VVOL 사용</block>
   <block id="69556d50c944e0a07ade0bea62f078a3" category="paragraph">ONTAP에서 VVOL을 사용하려면 VMware vSphere 가상 어플라이언스를 위한 ONTAP 툴의 일부로 포함된 VASA 공급자 소프트웨어가 필요합니다.</block>
@@ -3869,7 +3860,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="35084d885dea7b061e6894c1cf3036d9" category="sidebar">워크로드</block>
   <block id="7d219314ccabde6609510141bb175a6c" category="sidebar">공유 인스턴스와 전용 인스턴스 비교</block>
   <block id="d5363ae19ecaede49e2ced297df7737a" category="sidebar">메모리 구성</block>
-  <block id="459f656cac9c4d74b9f3f16ebb2a76c8" category="sidebar">데이터베이스 파일 및 파일 그룹</block>
   <block id="500c09aa1bb9af431f2c18348e69bfd0" category="sidebar">tempdb 파일</block>
   <block id="6fb6843bd9a214011969c02729c7d671" category="sidebar">스토리지 고려 사항</block>
   <block id="4c5d94eb4dc4bff93f6a96a08ab7b244" category="sidebar">데이터 보안</block>
@@ -3885,9 +3875,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="619615da0f93507e22a6054ef2aea4f1" category="sidebar">논리 인터페이스</block>
   <block id="aca8e861c6f30fe2d42d0310a387312b" category="sidebar">이더넷 구성</block>
   <block id="63a5b8bd41978e8124f9ccdfa9063e9e" category="sidebar">FC SAN 구성</block>
-  <block id="d63f66214ae30c5b9b10653f1e503492" category="sidebar">LUN 정렬</block>
-  <block id="f6556bc360e8c25d9e29515d2d52cd66" category="sidebar">LUN 개수 및 LUN 크기</block>
-  <block id="d552d63771786b001d365cf747f74f6a" category="sidebar">LUN 크기 조정 중</block>
   <block id="c3f378ef942f6bf228a43aaacc628fea" category="sidebar">LVM 스트라이핑</block>
   <block id="254f642527b45bc260048e30704edb39" category="sidebar">구성</block>
   <block id="f3a78e25ce9f95fc3c61ccc39f32fb4d" category="sidebar">Oracle Direct NFS(dNFS)</block>
@@ -3901,10 +3888,8 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="7fbd108e1fc6910c941094e95a677878" category="sidebar">전체 파일</block>
   <block id="eb43c2427eb06b9f561363863b4a4f0b" category="sidebar">부분 파일</block>
   <block id="1afe200fa26ba361f59b603b22ad6392" category="sidebar">파일을 선택합니다</block>
-  <block id="46880cc1d7a1624f1d6fa77e7ee02fb7" category="sidebar">RPO, TRO 및 SLA</block>
   <block id="448d15345bb99c834095da225c529b8a" category="sidebar">데이터 가용성</block>
   <block id="5869e10a9dea6d88d61bb10040557f35" category="sidebar">데이터 무결성</block>
-  <block id="e2ac7be9b8940191426986b2ca575aa2" category="sidebar">백업 및 복구 기본 사항 을 참조하십시오</block>
   <block id="7b68149402c05a52968bda6af0435c8a" category="sidebar">스냅샷 기반 온라인 백업</block>
   <block id="49ba0ee205d016d8236db9c1e8c130e5" category="sidebar">스토리지 스냅샷 최적화된 백업</block>
   <block id="2c6d98297c340e390e0783220b038545" category="sidebar">물리적 아키텍처</block>
@@ -4056,4 +4041,11 @@ HA 쌍당 최소 2개의 LIF를 생성합니다. 작업 부하에 따라 더 많
   <block id="512ee19e5020f3ee80a9e25f3f5a6468" category="paragraph">모범 사례로서, 보호된 VM 스토리지의 구성을 변경할 때마다 항상 테스트 페일오버를 수행하십시오. 이렇게 하면 재해 발생 시 Site Recovery Manager가 예상 RTO 목표 내에서 서비스를 복구할 수 있다는 것을 신뢰할 수 있습니다.</block>
   <block id="4da3f855cd505741909cfd49d743e68e" category="paragraph">또한 SRM은 VM이 복구될 때 VM의 네트워크 구성을 변경할 수 있는 기능을 제공합니다. 이러한 재구성에는 IP 주소, 게이트웨이 주소 및 DNS 서버 설정과 같은 설정이 포함됩니다. 개별 VM이 복구될 때 개별 VM에 적용되는 다양한 네트워크 설정은 복구 계획에서 VM의 속성 설정에서 지정할 수 있습니다.</block>
   <block id="e409450ce49f3558b068c69a77a9623a" category="paragraph">장애 복구 후 다시 보호 기능을 실행하기 전에 모든 이해 관계자에게 서비스가 정상으로 돌아왔는지 확인해야 합니다.</block>
+  <block id="a42cf9beb4788dddb7d317e05cc08e23" category="sidebar">데이터베이스 파일 및 파일 그룹</block>
+  <block id="8858bb6564a2efc189c9183c495ce545" category="sidebar">LUN 정렬</block>
+  <block id="02bc4ad8a694d41c8b598dfbcb12f069" category="sidebar">LUN 수와 LUN 크기입니다</block>
+  <block id="066f208a93617bd82090d42624ce63cc" category="sidebar">LUN 크기 조정</block>
+  <block id="9eeba6fd02cf3b6d8aee35e0ce9bf8fe" category="sidebar">LVM 스트라이핑</block>
+  <block id="183bdb28f19bee640319f68825827aea" category="sidebar">RPO 및 SLA를 충족할 수 있습니다</block>
+  <block id="2172b5d51273924b537842b0db78bfd4" category="sidebar">백업 및 복구 기초</block>
 </blocks>
