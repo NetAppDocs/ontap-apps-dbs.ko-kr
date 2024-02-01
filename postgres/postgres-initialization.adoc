@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: postgres/postgres-initialization.html 
 keywords: PostgreSQL,database,postgres 
-summary: PostgreSQL 초기화 
+summary: PostgreSQL 초기화 매개 변수입니다 
 ---
-= 초기화
+= PostgreSQL 초기화 매개 변수입니다
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

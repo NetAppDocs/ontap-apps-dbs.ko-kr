@@ -45,5 +45,3 @@ entries:
     url: "/mysql/mysql-mysql-over-nfs.html"
   - title: SAN을 통한 MySQL
     url: "/mysql/mysql-mysql-over-san.html"
-  - title: FabricPool를 통한 MySQL 계층화
-    url: "/mysql/mysql-tiering.html"

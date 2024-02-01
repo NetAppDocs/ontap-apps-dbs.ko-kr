@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: mysql/mysql-innodb_flush_log_at_trx_commit.html 
-keywords: MySQL,MariaDB,innodb_doublewrite 
-summary: ONTAP 기반 MySQL 
+keywords: MySQL,MariaDB,innodb_flush_log_at_trx_commi 
+summary: MySQL 및 innodb_flush_log_at_TRx_commi 
 ---
 = InnoDB_flush_log_at_TRx_commit입니다
 :allow-uri-read: 

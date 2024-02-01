@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: postgres/postgres-architecture.html 
 keywords: PostgreSQL,database,postgres 
-summary: ONTAP의 PostgreSQL 데이터베이스 
+summary: PostgreSQL 아키텍처 
 ---
 = PostgreSQL 아키텍처
 :hardbreaks:

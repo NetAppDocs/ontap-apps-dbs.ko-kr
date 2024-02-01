@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: mysql/mysql-innodb_lru_scan_depth.html 
 keywords: MySQL,MariaDB,innodb_lru_scan_depth 
-summary: ONTAP 기반 MySQL 
+summary: MySQL 및 innodb_lRU_scan_depth 
 ---
 = InnoDB_LRU_scan_depth 를 선택합니다
 :allow-uri-read: 

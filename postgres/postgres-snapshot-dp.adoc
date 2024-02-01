@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: postgres/postgres-snapshot-dp.html 
 keywords: PostgreSQL,database,postgres 
-summary: ONTAP의 PostgreSQL 데이터베이스 
+summary: PostgreSQL 데이터베이스 및 스토리지 스냅샷 
 ---
-= 스냅샷 수
+= PostgreSQL 데이터베이스 및 스토리지 스냅샷
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

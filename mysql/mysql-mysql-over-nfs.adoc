@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: mysql/mysql-mysql-over-nfs.html 
 keywords: MySQL,MariaDB,NFS 
-summary: ONTAP 기반 MySQL 
+summary: NFS와 함께 MySQL을 사용합니다 
 ---
-= NFS를 통한 MySQL
+= NFS와 함께 MySQL을 사용합니다
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

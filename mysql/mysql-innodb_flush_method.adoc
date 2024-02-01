@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: mysql/mysql-innodb_flush_method.html 
 keywords: MySQL,MariaDB,innodb_flush_method 
-summary: ONTAP 기반 MySQL 
+summary: MySQL 및 innodb_flush_method 
 ---
 = InnoDB_flush_method 를 참조하십시오
 :allow-uri-read: 

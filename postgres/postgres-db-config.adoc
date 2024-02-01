@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: postgres/postgres-db-config.html 
 keywords: PostgreSQL,database,postgres 
-summary: ONTAP의 PostgreSQL 데이터베이스 
+summary: ONTAP를 사용한 PostgreSQL 데이터베이스 구성 
 ---
-= 데이터베이스 구성
+= ONTAP를 사용한 PostgreSQL 데이터베이스 구성
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: mysql/mysql-innodb_io_capacity.html 
 keywords: MySQL,MariaDB,innodb_io_capacity 
-summary: ONTAP 기반 MySQL 
+summary: MySQL 및 innodb_io_capacity 
 ---
 = InnoDB_IO_capacity의 약어입니다
 :allow-uri-read: 

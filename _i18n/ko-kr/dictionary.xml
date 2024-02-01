@@ -526,9 +526,7 @@
   <block id="9ca503fae9ccd4d6d8e67806b23adfa0" category="paragraph"><block ref="9ca503fae9ccd4d6d8e67806b23adfa0" category="inline-image-macro-rx" type="image"></block></block>
   <block id="0353522b39b87d54d40d3f09ec668851" category="doc">ONTAP 구성</block>
   <block id="8e52de0d4b03d5fe87dc88da09616c7f" category="inline-link-macro">여기.</block>
-  <block id="9fe343788d08130f46e418bb81928479" category="summary">FabricPool 개요</block>
   <block id="337c62c6b6eb7319bae58701105e889c" category="doc">계층화</block>
-  <block id="cec4b296aaf93974a98a5d3b3f27ff9e" category="paragraph">FabricPool 계층화가 애플리케이션과 데이터베이스에 미치는 영향을 이해하려면 낮은 수준의 FabricPool 아키텍처에 대한 이해가 필요합니다.</block>
   <block id="3493794b3ccb587f71a663f51f4484ef" category="summary">ONTAP의 PostgreSQL 데이터베이스</block>
   <block id="2d3298c651b356a82db5d664ce68e65e" category="doc">네이티브 데이터 보호</block>
   <block id="31c6611c8e0bd237a3ee51db1728a440" category="paragraph">스토리지 설계의 주요 측면 중 하나는 PostgreSQL 볼륨을 보호하는 것입니다. 고객은 덤프 방식을 사용하거나 파일 시스템 백업을 사용하여 PostgreSQL 데이터베이스를 보호할 수 있습니다. 이 섹션에서는 개별 데이터베이스 또는 전체 클러스터를 백업하는 다양한 접근 방식에 대해 설명합니다.</block>
@@ -541,19 +539,6 @@
   <block id="10907e7ac5ab6e5235a23898a2331b31" category="doc">ONTAP의 PostgreSQL 데이터베이스</block>
   <block id="b5f477e959f26421a80e1eebdadbdd71" category="paragraph">PostgreSQL에는 PostgreSQL, PostgreSQL Plus 및 EDB Postgres Advanced Server(EPAS)가 포함된 변종이 함께 제공됩니다. PostgreSQL은 일반적으로 다중 계층 애플리케이션을 위한 백엔드 데이터베이스로 구축됩니다. 일반적인 미들웨어 패키지(PHP, Java, Python, Tcl/Tk, ODBC, 또한 JDBC는 오픈 소스 데이터베이스 관리 시스템에서 널리 사용되고 있습니다. NetApp ONTAP는 PostgreSQL 데이터베이스를 실행할 때 탁월한 선택으로 신뢰성, 고성능 및 효율적인 데이터 관리 기능을 제공합니다.</block>
   <block id="841a21e58e7c22a71c07b89a4362d2b6" category="admonition">ONTAP 및 PostgreSQL 데이터베이스에 대한 이 문서는 이전에 게시된 _TR-4770:PostgreSQL 데이터베이스를 ONTAP 모범 사례에 대한 데이터베이스로 대체합니다</block>
-  <block id="23dc28a190980aa339329235e8b66434" category="paragraph">데이터가 기하급수적으로 늘어남에 따라 데이터 관리가 기업의 복잡성이 더욱더 복잡해지고 있습니다. 이러한 복잡성으로 인해 라이센스, 운영, 지원 및 유지 관리 비용이 증가합니다. 전체 TCO를 절감하려면 안정적인 고성능 백엔드 스토리지를 사용하여 상용 데이터베이스에서 오픈 소스 데이터베이스로 전환하는 것을 고려해 보십시오. PostgreSQL은 학술, 상업 및 대기업에서 널리 사용되는 고급 오픈 소스 데이터베이스입니다. 다른 RDBMS(관계형 데이터베이스 관리 시스템)의 차이를 해결하는 새로운 기능 집합이 함께 제공됩니다.</block>
-  <block id="595e7195ec732ff0042e8b03492176cc" category="admonition">물리적 또는 가상화 환경에서 PostgreSQL 데이터베이스를 사용하는 NetApp 고객은 ONTAP에서 PostgreSQL 데이터베이스를 성공적으로 구축하고 관리하기 위한 Best Practice를 이해함으로써 이점을 얻을 수 있습니다. 권장 사항은 일반적이므로 어떤 구성에도 특정되지 않습니다. 비즈니스 요구 사항에 따라 일부 제안에는 변경이 필요할 수 있습니다. PostgreSQL, 하이퍼바이저, OS 및 ONTAP 스토리지에 대한 공식 문서를 기준으로 환경을 평가해야 합니다.</block>
-  <block id="6c1ea8a6f96c812bdbee4a788f8282dc" category="doc">부록 A: 호스트 구성</block>
-  <block id="c3ef6436e8acdba8ced1def7d29a99b8" category="paragraph">부록 내용:</block>
-  <block id="873bf9c2fc74dd3fc39aa67a16b51d6a" category="list-text">ESX 호스트의 FC HBA(호스트 버스 어댑터)가 업데이트된 드라이버, 펌웨어 및 올바른 BIOS 버전과 함께 실행되고 있는지 확인합니다.</block>
-  <block id="b6d348f60c7c0e3bb221591b67518d1c" category="list-text">호스트에 NetApp Host Utilities를 설치하여 지정된 LUN의 직접 및 간접 경로를 확인합니다. LUN SVM 정보에 대한 확장 정보도 제공합니다.</block>
-  <block id="4a1afd4a3d39c7e385017e01816d721f" category="list-text">항상 호스트에서 rescan SCSI 버스 스크립트를 사용하여 다음을 수행합니다.</block>
-  <block id="6d1436a6f6bda3b3ce87df91aaf6fb56" category="list-text">새 LUN을 찾습니다</block>
-  <block id="897dc659ee2dd9f0dd17af82c47259bd" category="list-text">오래된 LUN을 삭제합니다</block>
-  <block id="ecef9cf88b8cf100d1a489f3acdd4732" category="list-text">LUN에 대한 새 경로를 업데이트합니다</block>
-  <block id="c7b133bd977e02fc973a2df60786e7a8" category="list-text">경로 장애가 있는 경우 스토리지에 대한 다중 경로를 설정하려면 호스트 운영 체제에 다중 경로 소프트웨어를 설치하고 구성합니다.</block>
-  <block id="3617da17b3368e5730bf10cdacf54a18" category="list-text">다중 경로 소프트웨어를 사용하지 않는 경우 각 LUN을 단일 경로로 제한해야 합니다.</block>
-  <block id="6dff2f8361cdca0bbb6cfa1d162de499" category="list-text">Linux 커널은 블록 장치에 대한 I/O 예약을 낮은 수준으로 제어할 수 있습니다. Linux 버전의 기본값은 상당히 다를 수 있습니다. 일반적으로 NetApp 고객 및 내부 테스트를 통해 데이터베이스에 대한 NoOps 스케줄러의 결과가 더 우수함을 알 수 있습니다. 벤치마킹을 수행하여 사용 사례에 가장 적합한 I/O 스케줄러를 결정해야 합니다.</block>
   <block id="9147e5e61a7b9260dec09f3a6eb3e5be" category="doc">스냅샷 수</block>
   <block id="0b9d99167191c5d9ad23ca07bc6a9b38" category="paragraph">PostgreSQL을 사용한 스냅샷 기반 백업에는 전체 또는 시점 복구를 제공하기 위해 데이터 파일, Wal 파일 및 보관된 Wal 파일에 대한 스냅샷 구성이 필요합니다.</block>
   <block id="8c6a53edc4449a4cc3983d47ecffa851" category="paragraph">PostgreSQL 데이터베이스의 경우 스냅샷을 사용하는 평균 백업 시간은 몇 초에서 몇 분 사이입니다. 이 백업 속도는 보다 60 ~ 100배 빠릅니다<block ref="35679fc424d9eec0c30f38459fd9b322" prefix=" " category="inline-code"></block> 다양한 파일 시스템 기반 백업 방법을 알아봅니다.</block>
@@ -566,7 +551,6 @@
   <block id="55ca4b30c6f7c3ef975a6d1e1fb222a2" category="inline-link-macro">NetApp 정합성 보장 그룹 개요</block>
   <block id="69dd5879aee425e37fdd5796a8e06a56" category="paragraph">일관성 그룹에 대한 자세한 내용은 를 참조하십시오 <block ref="112c5744a39904facdbc5fab385d9fe1" category="inline-link-macro-rx"></block>.</block>
   <block id="7e7397a7b79323762c61941fc0e6b5f9" category="doc">데이터 보호</block>
-  <block id="90b0d8da95f7f5935481bc7e648c111e" category="summary">PostgreSQL 테이블스페이스</block>
   <block id="16a49d0bc0249ef3dd42949589a0ed4e" category="doc">테이블스페이스</block>
   <block id="d6d544de56c329d9f68bb176c6245e7c" category="paragraph">데이터베이스 클러스터가 초기화될 때 두 개의 테이블스페이스가 자동으로 생성됩니다.</block>
   <block id="6df924905e21856e4e8b8f936767cdd6" category="paragraph">를 클릭합니다<block ref="bd676cbef0d168a62a062c8709af1824" prefix=" " category="inline-code"></block> 테이블스페이스는 공유 시스템 카탈로그에 사용됩니다. 를 클릭합니다<block ref="3224684b8e7208962a73daeb0bb24110" prefix=" " category="inline-code"></block> 테이블스페이스는 Template1 및 template0 데이터베이스의 기본 테이블스페이스입니다. 클러스터가 초기화된 파티션이나 볼륨에 공간이 부족하여 확장할 수 없는 경우 다른 파티션에 테이블스페이스를 생성하여 시스템을 재구성할 때까지 사용할 수 있습니다.</block>
@@ -594,7 +578,6 @@
   <block id="385e23b8ebe64dfd0005f6846cc8e85e" category="paragraph">일반적인 PostgreSQL 작업에서는 업데이트로 삭제되거나 폐기된 튜플은 테이블에서 물리적으로 제거되지 않으며 진공이 실행될 때까지 그대로 유지됩니다. 따라서, 특히 자주 업데이트되는 테이블에서 정기적으로 진공을 실행해야 합니다. 그런 다음 디스크 공간 중단을 방지하기 위해 새 행에서 재사용할 수 있도록 해당 공간을 재확보해야 합니다. 그러나 운영 체제에 공간을 반환하지 않습니다.</block>
   <block id="db81319c35b48ed94867775a9a1ce1d7" category="paragraph">페이지 내의 여유 공간은 조각화되지 않습니다. Vacuum은 전체 블록을 다시 쓰므로 나머지 행을 효율적으로 압축하고 페이지에 연속된 단일 여유 공간 블록을 남깁니다.</block>
   <block id="8a5c17164c9920590fc057ee01f2fcb3" category="paragraph">반면, VACUM FULL은 데드 공간 없이 완전히 새로운 버전의 테이블 파일을 작성하여 테이블을 적극적으로 압축합니다. 이렇게 하면 테이블 크기가 최소화되지만 시간이 오래 걸릴 수 있습니다. 또한 작업이 완료될 때까지 테이블의 새 복사본을 위한 추가 디스크 공간이 필요합니다. 일상적인 진공의 목적은 진공이 완전히 작동하지 않도록 하는 것입니다. 이 프로세스는 테이블을 최소 크기로 유지할 뿐만 아니라 디스크 공간의 안정적 상태 사용도 유지합니다.</block>
-  <block id="d3213224909897cac25fe1359e587293" category="summary">PostgreSQL 초기화</block>
   <block id="61bcd96a2c1f8026527cbf2019d6e9a4" category="doc">초기화</block>
   <block id="f4f9dac58f7c47e819293af5f2dd1177" category="paragraph">를 사용하여 새 데이터베이스 클러스터를 생성합니다<block ref="abc91e782cd3950bfa31202aff74ca69" prefix=" " category="inline-code"></block> 프로그램. AN<block ref="abc91e782cd3950bfa31202aff74ca69" prefix=" " category="inline-code"></block> 스크립트는 클러스터를 정의하는 데이터 파일, 시스템 테이블 및 템플릿 데이터베이스(template0 및 Template1)를 생성합니다.</block>
   <block id="b668460552732302350bbb840d57931c" category="paragraph">템플릿 데이터베이스는 재고 데이터베이스를 나타냅니다. 시스템 테이블, 표준 보기, 함수 및 데이터 형식에 대한 정의가 포함되어 있습니다.<block ref="3865cf98fe802a965570b4a10a1d894b" prefix=" " category="inline-code"></block> 에 대한 인수 역할을 합니다<block ref="abc91e782cd3950bfa31202aff74ca69" prefix=" " category="inline-code"></block> 데이터베이스 클러스터의 위치를 지정하는 스크립트입니다.</block>
@@ -2411,15 +2394,12 @@ I/O 중단 없음.</block>
   <block id="3d601b26d05eac41fc6a7eba92fdc8b9" category="admonition">이 문서는 이전에 게시된 기술 보고서_TR-4591: Oracle 데이터 보호: 백업, 복구 및 복제 _ 를 대체합니다</block>
   <block id="21d28aa03f67eb242b1c95a6a0594ff5" category="section-title">계획 수립</block>
   <block id="0bf5784d6c307e4ee0371d46053937c0" category="summary">Oracle 성능 테스트</block>
-  <block id="3993fbf2fe01237c798f68ece0b84724" category="doc">Oracle 성능 최적화 및 벤치마킹</block>
   <block id="355ba59494fea8b20be391a73cc755eb" category="paragraph">데이터베이스 스토리지 성능을 정확히 테스트한다는 것은 매우 복잡한 일입니다. 이 작업을 수행하려면 다음 문제에 대한 이해가 필요합니다.</block>
   <block id="b57041cc3b57577b5c21eff44739e3f9" category="list-text">IOPS 및 처리량</block>
   <block id="236e7fd957ada95e8094e302623980d3" category="list-text">포그라운드와 백그라운드 I/O 작업 간의 차이</block>
   <block id="902f90cc4ab59808cac5606f767f61c4" category="list-text">지연 시간이 데이터베이스에 미치는 영향</block>
   <block id="196198dbaa1d1ea17cfc478fbb2f419f" category="list-text">스토리지 성능에도 영향을 주는 수많은 OS 및 네트워크 설정</block>
   <block id="5ff18eadb2ef3fc20e13bed3e5b61d79" category="paragraph">비스토리지 데이터베이스도 고려해야 합니다. 스토리지 성능이 더 이상 성능을 제한하는 요인이 아니기 때문에 스토리지 성능 최적화가 유용한 이점을 전혀 제공하지 않는 경우도 있습니다.</block>
-  <block id="92d509b1796c0ac8e185dc559cb7e294" category="paragraph">이제 데이터베이스 고객의 대다수가 All-Flash 어레이를 선택하며 이 어레이에는 추가 고려사항이 수반됩니다. 예를 들어, 2노드 AFF8080 시스템의 성능을 테스트한다고 생각해 봅시다.</block>
-  <block id="4eb08b8b1c39980bb639a6e5890ec0de" category="list-text">75/25 읽기/쓰기 비율에서 2개의 AFF8080 노드는 지연 시간이 1ms 표시를 넘어가기도 전에 300K가 넘는 랜덤 데이터베이스 IOPS를 제공할 수 있습니다. 이는 대부분의 데이터베이스에서 현재 요구되는 성능 수준을 훨씬 뛰어넘는 것이라 어느 정도로 개선될지를 예측하기 어렵습니다. 스토리지는 병목 현상에서 제외될 것입니다</block>
   <block id="32a993d3f497a6dd4392d3348b05ebc3" category="list-text">네트워크 대역폭은 성능 한계의 공통된 원인으로 부상하고 있습니다. 예를 들어, 회전식 디스크 솔루션은 I/O 지연 시간이 매우 길기 때문에 종종 데이터베이스 성능의 병목 현상을 발생시킵니다. All-Flash 어레이를 통해 지연 시간 한계를 제거하고 나면 이번에는 네트워크가 장애물이 되는 경우가 많습니다. 이는 진정한 네트워크 연결의 시각화가 어려운 가상화 환경과 블레이드 시스템에서 특히 두드러지며 대역폭 한계로 인해 스토리지 시스템 자체를 최대한 활용할 수 없는 경우 성능 테스트가 복잡해질 수 있습니다.</block>
   <block id="8caa382fb0f5f7a8279424d306dd003d" category="list-text">All-Flash 어레이의 지연 시간이 대폭 개선되었기 때문에 All-Flash 어레이의 성능을 회전식 디스크가 포함된 어레이와 비교하는 것은 일반적으로 불가능합니다. 테스트 결과는 대체로 중요하지 않습니다.</block>
   <block id="bc2b8b37bdda467f2ce639ab28bf4646" category="list-text">데이터베이스는 스토리지 I/O에 의한 제약이 없기 때문에 최고의 IOPS 성능을 All-Flash 어레이와 비교하는 테스트는 대부분 유용하지 않습니다 한 어레이는 500K 랜덤 IOPS를 유지할 수 있고 다른 어레이는 300K를 유지할 수 있다고 가정해 봅시다. 이 차이는 데이터베이스가 실제로 99%의 시간을 CPU 처리에 사용하는 경우 아무런 상관이 없습니다. 워크로드는 스토리지 어레이의 전체 용량을 활용하지 않습니다. 이와 반대로, 최고 IOPS 용량은 스토리지 어레이가 최고 성능으로 로드될 것으로 예상되는 통합 플랫폼에서 매우 중요할 것입니다.</block>
@@ -3682,7 +3662,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="2c87609dbbc3630573c64e271de8207d" category="list-text">모든 자격 증명 정보는 SHA256 해싱을 사용하여 저장됩니다.</block>
   <block id="0f1a6fa0a65f9d5c3c4a16b070104d7a" category="list-text">*기본 운영 체제 이미지.* 이 제품은 제한된 액세스 및 쉘 액세스가 비활성화된 OVA용 Debian Base OS와 함께 제공됩니다. 이렇게 하면 공격 발생 가능성이 줄어듭니다. 모든 SnapCenter 릴리스 기본 운영 체제는 보안 범위를 극대화하기 위해 최신 보안 패치로 업데이트됩니다.</block>
   <block id="83cd5867ba912e517fa1100299fd1cf3" category="paragraph">NetApp은 VMware vSphere 어플라이언스인 SnapCenter 플러그인과 관련된 소프트웨어 기능 및 보안 패치를 개발한 다음 고객에게 번들 소프트웨어 플랫폼으로 배포합니다. 이러한 어플라이언스에는 특정 Linux 하위 운영 체제 종속성 및 NetApp의 독점 소프트웨어가 포함되어 있으므로 하위 운영 체제를 변경하지 않는 것이 좋습니다. 이 경우 NetApp 어플라이언스에 영향을 줄 가능성이 매우 높기 때문입니다. 이는 NetApp의 어플라이언스 지원 기능에 영향을 미칠 수 있습니다. 보안 관련 문제를 해결하기 위해 NetApp은 어플라이언스의 최신 코드 버전을 테스트하고 구축할 것을 권장합니다.</block>
-  <block id="c7eca250a9863785d63364853c46c00d" category="doc">FabricPool를 통한 MySQL 계층화</block>
   <block id="1bc6cee680286aae1b12889369b7f18a" category="summary">ONTAP 기반 MySQL</block>
   <block id="dac8ea4fbfd87a535663c227b91f50e3" category="doc">I/O 스케줄러</block>
   <block id="215dca219378b291ae287eb076489fdd" category="paragraph">Linux 커널은 블록 장치의 I/O를 스케줄링하여 낮은 레벨의 제어를 허용합니다.</block>
@@ -3698,14 +3677,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="d4ae77cd65c244ceb4277b27553d6931" category="doc">ONTAP의 MySQL 데이터베이스</block>
   <block id="598132a821e8cc696fbbae934047d991" category="paragraph">MySQL 및 MariaDB 및 Percona MySQL을 포함한 그 변종은 세계에서 가장 인기있는 데이터베이스입니다.</block>
   <block id="478f00c3805e92ad9e8a7cd4f335a020" category="admonition">ONTAP 및 MySQL 데이터베이스에 대한 이 문서는 이전에 게시된 _TR-4722: NetApp ONTAP 모범 사례에 기반한 MySQL 데이터베이스를 대체합니다. _</block>
-  <block id="9793e07572d1520fdffd0e4db62df588" category="paragraph">MySQL의 기능은 다음과 같습니다.</block>
-  <block id="04b90043b7bbdc843dd2b77f2014f14f" category="list-text">* 낮은 TCO. * MySQL은 수년간 사용되어 온 강력한 무료 오픈 소스 데이터베이스 관리 시스템입니다. 매우 안정적입니다. 또한 새 기능을 유지 관리하고 디버깅하고 추가하는 데 도움이 되는 커뮤니티 지원을 제공합니다. 웹 응용 프로그램에 데이터베이스 이상이 필요하거나 로드 밸런싱 또는 공유가 필요한 경우 각 인스턴스에 대해 단일 라이선스가 필요한 상용 데이터베이스가 아니라 하드웨어 비용만으로 데이터베이스 인스턴스를 쉽게 설정할 수 있습니다.</block>
-  <block id="ae129f31dc6bc29ee6e28e9dbd8bd904" category="list-text">*안정성, 성능 및 사용 편의성* MySQL의 특징 중 하나는 탁월한 성능과 확장성입니다. 그래서 많은 웹 기반 기업들이 이 기술을 사용하고 있습니다. MySQL은 몇 가지 주요 강점을 활용하여 빠른 성능을 제공합니다. 경쟁업체는 항상 마우스 클릭(또는 화면 터치)을 해야 하므로 고객 문의 및 활동에 대한 신속한 대응이 무엇보다 중요합니다. 웹 기반 애플리케이션을 지원하는 데이터베이스는 읽기(단순 쿼리 및 복잡한 쿼리) 및 쓰기 작업 모두에서 최고 성능을 제공해야 합니다.</block>
-  <block id="ce921a1775ad78848c0ef06b4c2aaff3" category="list-text">* 데이터베이스 개발, 설계 및 관리. * MySQL Workbench는 개발자와 DBA의 생산성을 높일 수 있는 통합 개발, 설계 및 관리 환경을 제공합니다. 개발자마다 데이터베이스에서 다양한 기능을 찾고 있으며 MySQL은 다양한 기능을 제공합니다. 노트북과 데스크탑에서 모두 제대로 실행될 수 있습니다. IT 부서는 환경에 쉽게 적응하여 기존 웹 서버 또는 애플리케이션과 충돌하지 않도록 할 수 있습니다.</block>
-  <block id="26ab39333494c60fdfe1fbf67fcb9c4a" category="list-text">* 포괄적인 트랜잭션 지원. * MySQL은 가장 강력한 트랜잭션 데이터베이스 엔진 중 하나입니다. 완전한 원자, 일관성, 격리, 내구성 있는 트랜잭션 지원, 다중 버전 트랜잭션 지원, 및 무제한 행 레벨 잠금. 서버 적용 참조 무결성을 통해 즉시 교착 상태 식별이 가능합니다.</block>
-  <block id="f9ab99873ba8416ec0975ef4f4fb655a" category="list-text">* 데이터 보안. * MySQL은 WordPress, Drupal, Joomla, Facebook, Google, Google, 및 Twitter. 최신 버전의 MySQL과 함께 제공되는 데이터 보안 및 트랜잭션 처리에 대한 지원은 모든 비즈니스, 특히 빈번한 자금 이체가 포함된 전자 상거래 비즈니스에 도움이 될 수 있습니다.</block>
-  <block id="2cb5bda4a8945e058ff550f4991ba8b6" category="list-text">*플러그형 아키텍처.* MySQL 플러그형 스토리지 엔진 아키텍처는 데이터베이스 전문가가 애플리케이션 코딩 요구 사항을 관리할 필요 없이 특정 애플리케이션에 필요한 특수 스토리지 엔진을 선택할 수 있도록 합니다. MySQL 서버 아키텍처는 애플리케이션 프로그래머와 DBA를 스토리지 수준에서 모든 하위 수준 구현 세부 사항으로부터 격리하여 일관되고 쉬운 애플리케이션 모델 및 API를 제공합니다. 저장 엔진마다 기능이 다르지만 이러한 차이점으로부터 응용 프로그램이 보호됩니다.</block>
-  <block id="e0780e103bd4ebcb0ee7f25b644eca40" category="paragraph">MySQL의 효율적인 모듈형 아키텍처는 하나의 스토리지 엔진과는 독립적인 인터페이스와 서비스를 사용하면서 데이터 웨어하우징, 트랜잭션 처리 또는 HA 상황과 같은 특정 애플리케이션 요구 사항을 목표로 삼으려는 경우 큰 이점을 제공합니다.</block>
   <block id="35701e1bcd40c8e1a520fc33d0e14842" category="doc">InnoDB_flush_method 를 참조하십시오</block>
   <block id="138738e11d5fda5c496edaa92e32e158" category="paragraph">innodb_flush_method 매개 변수는 InnoDB가 로그 및 데이터 파일을 열고 플러시하는 방법을 지정합니다.</block>
   <block id="c262c8cd82b96f69fbbc058d7a35683b" category="section-title">최적화</block>
@@ -3736,7 +3707,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="03f07291794c3b9cb00d04cb9f30be81" category="list-text">전용 InnoDB 전용 시스템의 경우 버퍼 풀 크기를 사용 가능한 RAM의 80% 이상으로 설정합니다.</block>
   <block id="7b0119b7fa59f87d23d5c65da456b226" category="list-text">MySQL 전용 서버가 아닌 경우 크기를 RAM의 50%로 설정합니다.</block>
   <block id="a6a9695e1464f5554c0006c55facfadf" category="doc">파일 설명자</block>
-  <block id="5ef6471f819ed2d47303473cc87d9305" category="paragraph">MySQL 서버를 실행하려면 파일 설명자가 필요합니다.</block>
   <block id="8e222c68dd214db9f8a1b5b572ee6267" category="paragraph">이를 사용하여 새 연결을 열고, 캐시에 테이블을 저장하고, 복잡한 쿼리를 해결하기 위한 임시 테이블을 만들고, 영구 테이블에 액세스합니다. 필요한 경우 mysqld가 새 파일을 열 수 없는 경우 제대로 작동하지 않을 수 있습니다. 이 문제의 일반적인 증상은 오류 24, "열려 있는 파일이 너무 많음"입니다. mysqld가 동시에 열 수 있는 파일 설명자의 수는 에 의해 정의됩니다<block ref="3d39e9c5aa2f78830dd6993cec18e93e" prefix=" " category="inline-code"></block> 구성 파일에 설정된 옵션입니다 <block ref="86d0d007043d911697753b35e2c18f35" prefix="(" category="inline-code"></block>)를 클릭합니다. 그러나<block ref="3d39e9c5aa2f78830dd6993cec18e93e" prefix=" " category="inline-code"></block> 또한 운영 체제의 제한에 따라 다릅니다. 이러한 의존성으로 인해 변수를 보다 복잡하게 설정할 수 있습니다.</block>
   <block id="07561a91f81dfe3c8e4364aac8bdbea4" category="paragraph">MySQL을 설정할 수 없습니다<block ref="3d39e9c5aa2f78830dd6993cec18e93e" prefix=" " category="inline-code"></block> 에 지정된 값보다 높은 옵션<block ref="dd1c6d8164dfd1cee0afa39b177e843b" prefix=" " category="inline-code"></block>. 따라서 필요에 따라 MySQL이 파일을 열 수 있도록 운영 체제 수준에서 이러한 제한을 명시적으로 설정해야 합니다. Linux에서 파일 제한을 확인하는 방법에는 두 가지가 있습니다.</block>
   <block id="84e705ac120a887df441f4161dc29409" category="list-text">를 클릭합니다<block ref="2eabb4efed7dffb32ea1170eab71b798" prefix=" " category="inline-code"></block> 명령어는 허용되거나 잠기는 매개변수에 대한 자세한 설명을 빠르게 제공합니다. 이 명령을 실행하여 변경한 사항은 영구적이지 않으며 시스템 재부팅 후 삭제됩니다.</block>
@@ -3783,9 +3753,7 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="86fc8cb3bf2cae621315896a94b35f67" category="paragraph">NetApp LUN은 데이터를 4KB 물리적 블록에 저장하여 8개의 512바이트 논리적 블록을 생성합니다.</block>
   <block id="5f441ceabc94de2a9cced94d9f53a2d0" category="paragraph">동일한 블록 크기를 설정하지 않을 경우 I/O가 물리적 블록과 올바르게 정렬되지 않고 RAID 그룹에 있는 두 개의 드라이브에 쓰므로 지연 시간이 발생합니다.</block>
   <block id="236ac851d05b8822524001920948f23d" category="admonition">원활한 읽기/쓰기 작업을 위해 I/O를 맞추는 것이 중요합니다. 하지만 물리적 블록의 시작이 아닌 논리적 블록에서 I/O가 시작하면 I/O가 정렬 불량이 됩니다. I/O 작업은 물리적 블록의 첫 번째 논리적 블록인 논리적 블록에서 시작할 때만 정렬됩니다.</block>
-  <block id="e6cf2549be4da18bf404cacc6100516a" category="summary">MySQL 구성</block>
   <block id="282155126a94a0702cfd80daf38d4362" category="doc">구성 개요</block>
-  <block id="13b506e9cda8a01b4cd60e08f3f1faf6" category="paragraph">NetApp은 최적의 성능을 얻기 위해 몇 가지 중요한 MySQL 구성 매개 변수(표 1 참조)를 권장합니다.</block>
   <block id="3225a10b07f1580f10dee4abc3779e6c" category="cell">매개 변수</block>
   <block id="c82a6100dace2b41087ba6cf99a5976a" category="cell">값</block>
   <block id="b10db909b8fda84e70bf9b308d0938d9" category="cell">256M</block>
@@ -3799,7 +3767,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="1006f82d8df7d2325439b28ea691737c" category="cell">open_file_limit를 선택합니다</block>
   <block id="3c9b5f1cd6a030bcb7bed9eac80589fb" category="cell">65535</block>
   <block id="c9f5a4d3ede4d084dda0a788ed06783c" category="paragraph">이 섹션에 설명된 매개 변수를 설정하려면 MySQL 구성 파일(my.cnf)에서 변경해야 합니다. NetApp 모범 사례는 사내에서 수행된 테스트의 결과입니다.</block>
-  <block id="5382aaf8b3d2fdeb6717f9805b0dd511" category="doc">컨테이너</block>
   <block id="6a554ff1dc93539a626e576bf0d28a02" category="paragraph">MySQL 데이터베이스의 컨테이너화가 갈수록 보편화되고 있습니다.</block>
   <block id="bcc002a9f2e2ade112438f50a6630498" category="paragraph">낮은 수준의 컨테이너 관리는 거의 항상 Docker를 통해 수행됩니다. OpenShift, Kubernetes와 같은 컨테이너 관리 플랫폼을 사용하면 대규모 컨테이너 환경을 더욱 간편하게 관리할 수 있습니다. 컨테이너화의 이점은 하이퍼바이저에 대한 라이센스를 부여할 필요가 없으므로 비용이 저렴합니다. 또한 컨테이너를 사용하면 여러 데이터베이스를 서로 격리하여 실행하면서 동일한 기본 커널과 운영 체제를 공유할 수 있습니다. 컨테이너는 마이크로초 단위로 프로비저닝할 수 있습니다.</block>
   <block id="14d9b10c6196045941347a9e85704b50" category="inline-link-macro">Astra Trident 문서</block>
@@ -3821,7 +3788,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="defc1bfda928f419df5e4af79c98343e" category="list-text">단일 볼륨으로 MySQL의 랜덤 및 순차적 I/O 지향 파일을 저장합니다</block>
   <block id="7fd750411093ebd1faa0d99dd2608514" category="list-text">MySQL의 순수 순차 I/O 중심 파일을 저장하는 또 다른 볼륨입니다</block>
   <block id="0561a3b014eef0e5125fa63e1626cf57" category="paragraph">또한 이 레이아웃은 데이터 보호 정책 및 전략을 설계하는 데 도움이 됩니다.</block>
-  <block id="a53db665fd1a9734a7a0e119671a0cd0" category="paragraph">Linux에서 NFS 성능은 라는 매개 변수에 달려 있습니다<block ref="453f2cc2326f82af1053f4aa4b75400b" prefix=" " category="inline-code"></block>.</block>
   <block id="9166d970028a28a614af39e6286371b7" category="paragraph">을 사용하여 이 매개 변수를 끌 수 있습니다<block ref="8cafbd8d9096941261e87f4f9152ab92" prefix=" " category="inline-code"></block> 벤치마크용 또는 데이터 무결성 또는 가능한 오류보다 최고 성능에 더 관심이 있는 경우. InnoDB는 double-write라는 파일 플러시 기술을 사용합니다. InnoDB는 데이터 파일에 페이지를 쓰기 전에 이중 쓰기 버퍼라는 인접 영역에 페이지를 씁니다. 이중 쓰기 버퍼에 대한 쓰기 및 플러시가 완료된 후 InnoDB는 데이터 파일의 적절한 위치에 페이지를 씁니다. 페이지 쓰기 중에 운영 체제 또는 mysqld 프로세스가 충돌하는 경우 InnoDB는 나중에 충돌 복구 중에 이중 쓰기 버퍼에서 올바른 페이지 복사본을 찾을 수 있습니다.</block>
   <block id="3dfd4b9a526f8a8cf17021e34638b375" category="admonition">* NetApp는 이중 쓰기 버퍼를 비활성화 * 할 것을 권장합니다. ONTAP NVRAM은 동일한 기능을 제공한다. 이중 버퍼링은 불필요하게 성능을 저하시킵니다.</block>
   <block id="dd5a2a602f713562e0f9f0fd8385660e" category="doc">NFS를 통한 MySQL</block>
@@ -3983,8 +3949,6 @@ HA 쌍당 최소 2개의 LIF를 생성합니다. 작업 부하에 따라 더 많
   <block id="74cacb0c34a37e2859e3b054938a344d" category="doc">SAN 파일 시스템을 사용한 PostgreSQL</block>
   <block id="1758f5c81d60f1a0ac8600fddc99a919" category="paragraph">SAN을 사용하는 PostgreSQL 데이터베이스는 일반적으로 xfs 파일 시스템에서 호스팅되지만 다른 데이터베이스는 OS 공급업체에서 지원하는 경우 사용할 수 있습니다</block>
   <block id="d73e7b56b7baa813a32c521ca074e7c4" category="paragraph">단일 LUN은 일반적으로 최대 100K IOPS를 지원할 수 있지만, IO 집약적인 데이터베이스는 일반적으로 LVM을 스트라이핑과 함께 사용해야 합니다.</block>
-  <block id="5c24f0d1d447c2dfc01f2f2641e1d56c" category="summary">ONTAP를 사용한 PostgreSQL 데이터베이스 NFS</block>
-  <block id="3532099588a13fbccb2af22a75936454" category="doc">NFS 파일 시스템을 사용하는 PostgreSQL</block>
   <block id="f7cc8c4234952826818ad4d0c2050ac9" category="paragraph">PostgreSQL 데이터베이스는 NFSv3 또는 NFSv4 파일 시스템에서 호스팅할 수 있습니다. 가장 좋은 옵션은 데이터베이스 외부의 요인에 따라 달라집니다.</block>
   <block id="1482c42acc1dd31ee8496c71a805e73c" category="paragraph">예를 들어 특정 클러스터 환경에서는 NFSv4 잠금 동작이 더 바람직할 수 있습니다. (를 참조하십시오 <block ref="bc3a7e667477b8b3590fa1451dcb924c" category="inline-link-macro-rx"></block> 참조)</block>
   <block id="9674525687765646f35916d0e569eda9" category="paragraph">그렇지 않으면 성능을 포함하여 데이터베이스 기능이 거의 동일해야 합니다. 유일한 요구 사항은 를 사용하는 것입니다<block ref="d64a84456adc959f56de6af685d0dadd" prefix=" " category="inline-code"></block> 마운트 옵션. 소프트 타임아웃이 복구할 수 없는 입출력 오류를 생성하지 않도록 하기 위해 필요합니다.</block>
@@ -4048,4 +4012,44 @@ HA 쌍당 최소 2개의 LIF를 생성합니다. 작업 부하에 따라 더 많
   <block id="9eeba6fd02cf3b6d8aee35e0ce9bf8fe" category="sidebar">LVM 스트라이핑</block>
   <block id="183bdb28f19bee640319f68825827aea" category="sidebar">RPO 및 SLA를 충족할 수 있습니다</block>
   <block id="2172b5d51273924b537842b0db78bfd4" category="sidebar">백업 및 복구 기초</block>
+  <block id="3403aac944f3cb6e2d2c7f7d52bc44b9" category="paragraph">데이터가 기하급수적으로 늘어남에 따라 데이터 관리가 기업의 복잡성이 더욱더 복잡해지고 있습니다. 이러한 복잡성으로 인해 라이센스, 운영, 지원 및 유지 관리 비용이 증가합니다. 전체 TCO를 절감하려면 안정적인 고성능 백엔드 스토리지를 사용하여 상용 데이터베이스에서 오픈 소스 데이터베이스로 전환하는 것을 고려해 보십시오.</block>
+  <block id="dcac08882e3396bd30210108baa1641d" category="paragraph">ONTAP는 말 그대로 데이터베이스를 위해 설계되었기 때문에 ONTAP은 이상적인 플랫폼입니다. 데이터베이스 워크로드의 요구사항을 해결하기 위해 랜덤 IO 지연 시간 최적화에서 고급 서비스 품질(QoS)과 같은 다양한 기능이 특별히 제작되었습니다.</block>
+  <block id="1429a98a71e16287326edd7fc1f999fd" category="paragraph">무중단 업그레이드(스토리지 교체 포함)와 같은 추가 기능을 통해 중요 데이터베이스의 가용성을 보장합니다. MetroCluster를 통해 대규모 환경에서 즉시 재해 복구를 수행하거나 SnapMirror 활성 동기화를 사용하여 데이터베이스를 선택할 수도 있습니다.</block>
+  <block id="8df3fb35ff15e02683bfb1bc7f852c93" category="paragraph">가장 중요한 것은 ONTAP가 고유한 요구사항에 맞게 솔루션을 사이징하는 능력과 함께 탁월한 성능을 제공한다는 것입니다. NetApp의 하이엔드 시스템은 마이크로초 단위의 지연 시간으로 1M IOPS 이상을 제공할 수 있지만, 100K IOPS만 필요한 경우, 동일한 스토리지 운영 체제를 실행하는 작은 컨트롤러로 스토리지 솔루션을 적정 크기로 조정할 수 있습니다.</block>
+  <block id="97b4cda00dd31f5be69440f48c4da149" category="summary">ONTAP를 사용한 PostgreSQL 데이터베이스 구성</block>
+  <block id="c4f52498c0db572381512887d7584e53" category="summary">PostgreSQL 데이터베이스 및 스토리지 스냅샷</block>
+  <block id="b0792163c858a7c221b236d84619b5ef" category="summary">PostgreSQL 데이터베이스 NFS with ONTAP</block>
+  <block id="189950ed46e5e8b7e92941531a5bb88b" category="doc">NFS 파일 시스템을 사용하는 PostgreSQL 데이터베이스</block>
+  <block id="504cd1fb60a8eb7918484270e743ae3a" category="summary">PostgreSQL 데이터 보호 P</block>
+  <block id="6cabd4dcf3582d38c441228705da3bda" category="doc">PostgreSQL 데이터 보호</block>
+  <block id="383a6a5241ecfc558b9fec1d7cff5239" category="summary">PostgreSQL 테이블스페이스</block>
+  <block id="20d0e2519b3555a0a2927c8914c17280" category="summary">PostgreSQL 데이터 보호 소프트웨어</block>
+  <block id="29e2aec511a8e307ecceacbd86c22f14" category="summary">PostgreSQL 초기화 매개 변수입니다</block>
+  <block id="55e3f073b1864d9281d074e5b23effca" category="doc">Oracle 성능 최적화 및 벤치마킹 절차</block>
+  <block id="035ecd1be6cacde993302b440e396bc2" category="paragraph">이제 데이터베이스 고객의 대다수가 All-Flash 어레이를 선택하며 이 어레이에는 추가 고려사항이 수반됩니다. 예를 들어, 2노드 AFF A900 시스템에서 성능 테스트를 생각해 봅시다.</block>
+  <block id="33f545d041b93838074263c0efd2e9da" category="list-text">80/20 읽기/쓰기 비율로 2개의 A900 노드는 지연 시간이 150µs 표시를 넘어가기도 전에 1M 이상의 랜덤 데이터베이스 IOPS를 제공할 수 있습니다. 이는 대부분의 데이터베이스에서 현재 요구되는 성능 수준을 훨씬 뛰어넘는 것이라 어느 정도로 개선될지를 예측하기 어렵습니다. 스토리지는 병목 현상에서 제외될 것입니다</block>
+  <block id="0445195555faac96ebff962dbff126ea" category="summary">MySQL 구성 매개변수</block>
+  <block id="c0b7708ffcd66fd65a9d2a4801091563" category="paragraph">NetApp은 최적의 성능을 얻기 위해 몇 가지 중요한 MySQL 구성 매개 변수를 권장합니다.</block>
+  <block id="10eb8b7e75da1815860da31490513841" category="summary">NFS와 함께 MySQL을 사용합니다</block>
+  <block id="5249e05857621fbfae51371a73006c44" category="summary">MySQL 및 NFSv3 슬롯 테이블</block>
+  <block id="d058f95e3a8d4b7b46802139d6b95982" category="paragraph">Linux에서 NFSv3 성능은 라는 매개 변수에 따라 다릅니다<block ref="453f2cc2326f82af1053f4aa4b75400b" prefix=" " category="inline-code"></block>.</block>
+  <block id="bf2bdc980948fb9084a63963398846b2" category="paragraph">ONTAP는 말 그대로 데이터베이스를 위해 설계되었기 때문에 ONTAP는 MySQL 데이터베이스에 이상적인 플랫폼입니다. 데이터베이스 워크로드의 요구사항을 해결하기 위해 랜덤 IO 지연 시간 최적화에서 고급 서비스 품질(QoS)과 같은 다양한 기능이 특별히 제작되었습니다.</block>
+  <block id="1b3804b7e2292e18f5e66d54f7a9fafc" category="paragraph">가장 중요한 것은 ONTAP가 고유한 요구사항에 맞게 솔루션을 사이징하는 능력과 함께 탁월한 성능을 제공한다는 것입니다. NetApp의 하이엔드 시스템은 마이크로초 단위의 지연 시간으로 1M IOPS 이상을 제공할 수 있지만, 100K IOPS만 필요한 경우 정확히 동일한 스토리지 운영 체제를 실행하는 작은 컨트롤러로 스토리지 솔루션을 적절한 크기로 조정할 수 있습니다.</block>
+  <block id="1339877637a3f7f59745a00e04f304fd" category="summary">MySQL 및 innodb_log_file_size</block>
+  <block id="c1c4e722764621d56a075e42ce48d0c0" category="summary">MySQL 및 innodb_buffer_pool_size</block>
+  <block id="ae14ab6d1e5edd0e782d8897d1721eb4" category="summary">MySQL 및 innodb_doublewrite</block>
+  <block id="689c52e3f5db5d2dafccd7d93cf1abc4" category="summary">MySQL 및 innodb_flush_log_at_TRx_commi</block>
+  <block id="639600080c225673dfdfa012fdbd6146" category="summary">MySQL 및 IO 스케줄러</block>
+  <block id="32e3724e2b54692cbef969373fbfe040" category="doc">I/O 스케줄러 및 MySQL</block>
+  <block id="72985ac51e91797345b2437088a4362e" category="summary">SAN과 함께 MySQL 제공</block>
+  <block id="d5ef0a45fe252b03f538bfd134b168db" category="summary">MySQL 및 innodb_lRU_scan_depth</block>
+  <block id="df657260453f6ef228ee0ca22dd7a415" category="summary">MySQL 컨테이너화</block>
+  <block id="885b1b5a90f898c89b664ec58a42121c" category="doc">MySQL 컨테이너화</block>
+  <block id="2cbac38815d492c0afc5e7d7229601df" category="doc">MySQL 및 InnoDB</block>
+  <block id="1115aaa86f0065e0a105795d33ef4731" category="summary">MySQL 파일 설명</block>
+  <block id="2828450fc6669c8df75f937e227996f1" category="doc">MySQL 파일 설명자</block>
+  <block id="9420010a756fb6d3ddeadfa63d2170f6" category="paragraph">MySQL 서버를 실행하려면 파일 설명자가 필요하며 기본값이 충분하지 않습니다.</block>
+  <block id="62414a5a9c0e2fc12a8d028ad29164b8" category="summary">MySQL 및 innodb_io_capacity</block>
+  <block id="6219c45bc8c26437c0b7e1a69d4cbe58" category="summary">MySQL 및 innodb_flush_method</block>
+  <block id="35d1a5d7b12999ec27f5233dccba043f" category="summary">MySQL 및 open_file_limits</block>
 </blocks>

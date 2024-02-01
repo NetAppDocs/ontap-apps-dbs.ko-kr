@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: mysql/mysql-mysql-over-san.html 
 keywords: MySQL,MariaDB,SAN 
-summary: ONTAP 기반 MySQL 
+summary: SAN과 함께 MySQL 제공 
 ---
-= SAN을 통한 MySQL
+= SAN과 함께 MySQL 제공
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

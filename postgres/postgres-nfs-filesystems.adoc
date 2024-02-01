@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: postgres/postgres-nfs-filesystems.html 
 keywords: PostgreSQL,database,postgres 
-summary: ONTAP를 사용한 PostgreSQL 데이터베이스 NFS 
+summary: PostgreSQL 데이터베이스 NFS with ONTAP 
 ---
-= NFS 파일 시스템을 사용하는 PostgreSQL
+= NFS 파일 시스템을 사용하는 PostgreSQL 데이터베이스
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

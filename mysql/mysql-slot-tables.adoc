@@ -2,16 +2,16 @@
 sidebar: sidebar 
 permalink: mysql/mysql-slot-tables.html 
 keywords: MySQL,MariaDB,TR-4722 
-summary: ONTAP 기반 MySQL 
+summary: MySQL 및 NFSv3 슬롯 테이블 
 ---
-= 슬롯 테이블
+= MySQL 및 NFSv3 슬롯 테이블
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-Linux에서 NFS 성능은 라는 매개 변수에 달려 있습니다 `tcp_max_slot_table_entries`.
+Linux에서 NFSv3 성능은 라는 매개 변수에 따라 다릅니다 `tcp_max_slot_table_entries`.
 
 TCP 슬롯 테이블은 호스트 버스 어댑터(HBA) 큐 길이(queue depth)와 동등한 NFSv3의 기능입니다. 이들 테이블은 한 번에 수행될 수 있는 최대 NFS 작업의 수를 제어합니다. 기본값은 보통 16이며 최적의 성능을 발휘하기에 너무 낮습니다. 최신 Linux 커널에서는 반대의 문제가 발생하는데, 요청을 통해 NFS 서버를 포화시키는 수준까지 TCP 슬롯 테이블의 한계를 자동으로 높일 수 있습니다.
 

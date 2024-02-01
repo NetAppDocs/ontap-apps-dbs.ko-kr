@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: postgres/postgres-snapcenter-dp.html 
 keywords: PostgreSQL,database,postgres 
-summary: ONTAP의 PostgreSQL 데이터베이스 
+summary: PostgreSQL 데이터 보호 소프트웨어 
 ---
-= 데이터 보호 소프트웨어
+= PostgreSQL 데이터 보호 소프트웨어
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
