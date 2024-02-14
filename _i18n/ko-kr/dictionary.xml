@@ -1212,7 +1212,6 @@
   <block id="5d49a93437a42d2926c8be7eb3c7a56f" category="list-text">로그 보관 후 체크포인트를 수행하면 로그 파일을 삭제할 수 있습니다.</block>
   <block id="e3898c187d7edf64fc8e4d4e409fd244" category="list-text">그런 다음 파일 시스템에서 로그를 삭제합니다. 이 과정은 매우 세심한 주의를 기울여 수행해야 합니다.</block>
   <block id="eb290dfcb2d35cffcb49a22fd05168b5" category="summary">Oracle 마이그레이션 계획</block>
-  <block id="4e0761b3f22b38640f0d2291420d26f6" category="doc">iracle 마이그레이션 계획</block>
   <block id="dacc2a633e9981c9f91e43ac6b59e889" category="paragraph">Oracle 데이터 마이그레이션은 데이터베이스, 호스트 또는 스토리지 배열의 세 가지 레벨 중 하나에서 수행할 수 있습니다.</block>
   <block id="5153193d50d4c628312db2d5bc0132ed" category="paragraph">데이터베이스, 호스트 운영 체제 또는 스토리지 시스템 등 전체 솔루션의 어떤 구성 요소가 데이터 이동을 담당하는지에 따라 차이가 있습니다.</block>
   <block id="cc3e73ae592a355b9beb405232d08fe2" category="paragraph">아래 그림에서는 마이그레이션 수준과 데이터 흐름의 예를 보여 줍니다. 데이터베이스 레벨 마이그레이션의 경우 데이터가 원래 스토리지 시스템에서 호스트 및 데이터베이스 계층을 통해 새로운 환경으로 이동됩니다. 호스트 레벨 마이그레이션은 비슷하지만 데이터가 애플리케이션 계층을 거치지 않고 호스트 프로세스를 사용하여 새 위치에 기록됩니다. 마지막으로, 스토리지 레벨 마이그레이션을 통해 NetApp FAS 시스템과 같은 어레이가 데이터 이동을 담당합니다.</block>
@@ -4052,4 +4051,16 @@ HA 쌍당 최소 2개의 LIF를 생성합니다. 작업 부하에 따라 더 많
   <block id="62414a5a9c0e2fc12a8d028ad29164b8" category="summary">MySQL 및 innodb_io_capacity</block>
   <block id="6219c45bc8c26437c0b7e1a69d4cbe58" category="summary">MySQL 및 innodb_flush_method</block>
   <block id="35d1a5d7b12999ec27f5233dccba043f" category="summary">MySQL 및 open_file_limits</block>
+  <block id="c031febc35017c70bf3b526723756b2a" category="doc">iSCSI 및 NVMe/TCP</block>
+  <block id="4da35d461815e71b97bda03476e89b7b" category="paragraph">iSCSI 또는 NVMe/TCP를 사용하는 호스트는 스토리지 시스템에 직접 연결하여 정상적으로 작동할 수 있습니다. 그 이유는 경로 지정입니다. 두 개의 서로 다른 스토리지 컨트롤러에 직접 연결되므로 데이터 흐름을 위한 두 개의 독립적 경로가 됩니다. 경로, 포트 또는 컨트롤러가 손실되어도 다른 경로가 사용되지 않습니다.</block>
+  <block id="40715d81cea527f13cdf470773fc3a65" category="paragraph">직접 연결 NFS 스토리지를 사용할 수 있지만 중대한 제한 사항이 있는 경우 스크립팅의 상당한 노력 없이는 페일오버가 수행되지 않으며 고객의 책임입니다.</block>
+  <block id="d0b13bfd23c05f64222869de30f81000" category="paragraph">직접 연결 NFS 스토리지에서 무중단 페일오버가 복잡해지는 이유는 로컬 OS에서 발생하는 라우팅입니다. 예를 들어, 호스트의 IP 주소가 192.168.1.1/24이고 IP 주소가 192.168.1.50/24인 ONTAP 컨트롤러에 직접 연결되어 있다고 가정합니다. 장애 조치 중에 192.168.1.50 주소는 다른 컨트롤러로 장애 조치될 수 있으며 호스트에서 사용할 수 있지만 호스트는 어떻게 그 존재를 감지합니까? 원래 192.168.1.1 주소는 더 이상 운영 체제에 연결되지 않는 호스트 NIC에 계속 존재합니다. 192.168.1.50으로 향하는 트래픽은 작동하지 않는 네트워크 포트로 계속 전송됩니다.</block>
+  <block id="288a0a5ebbc70fb3b968ec58d36d71ab" category="paragraph">두 번째 OS NIC를 19로 구성할 수 있습니다 2.168.1.2 및 은 192.168.1.50을 통해 실패한 주소와 통신할 수 있지만, 로컬 라우팅 테이블은 기본적으로 192.168.1.0/24 서브넷과 통신하는 데 하나의 * 및 하나의 * 주소만 사용합니다. sysadmin은 실패한 네트워크 연결을 감지하고 로컬 라우팅 테이블을 변경하거나 인터페이스를 가동 및 중지시키는 스크립팅 프레임워크를 생성할 수 있습니다. 정확한 절차는 사용 중인 운영 체제에 따라 다릅니다.</block>
+  <block id="d6ce8522932df7ae76aa0b963ad9ef7d" category="paragraph">실제로 NetApp 고객은 직접 연결 NFS를 가지고 있지만 일반적으로 페일오버 중에 IO가 일시 중지되는 워크로드에만 해당됩니다. 하드 마운트를 사용하는 경우 이러한 일시 중지 중에는 입출력 오류가 발생하지 않아야 합니다. 호스트의 NIC 간에 IP 주소를 이동하는 장애 복구 또는 수동 작업으로 인해 서비스가 복구될 때까지 입출력이 중단되어야 합니다.</block>
+  <block id="3436a7073ac9f4071820b6720a7789fc" category="section-title">FC 직접 연결</block>
+  <block id="b7981516813a09695906aa429b07f48f" category="paragraph">호스트를 FC 프로토콜을 사용하여 ONTAP 스토리지 시스템에 직접 연결할 수는 없습니다. NPIV를 사용하기 때문입니다. FC 네트워크에 대한 ONTAP FC 포트를 식별하는 WWN은 NPIV라는 가상화 유형을 사용합니다. ONTAP 시스템에 연결된 모든 디바이스가 NPIV WWN을 인식할 수 있어야 합니다. 현재 NPIV 타겟을 지원할 수 있는 호스트에 설치할 수 있는 HBA를 제공하는 HBA 공급업체는 없습니다.</block>
+  <block id="97db606ac6781989ea3b189d7be28bf2" category="section-title">직접 연결 네트워킹</block>
+  <block id="d078ae9a339971900f939db9e82f253d" category="paragraph">스토리지 관리자는 구성에서 네트워크 스위치를 제거하여 인프라를 단순화하기를 원할 수도 있습니다. 일부 시나리오에서는 이 기능이 지원될 수 있습니다.</block>
+  <block id="14a07a9c146c886f1cf8b6ebd4b2b418" category="summary">ONTAP를 통한 직접 네트워크 연결</block>
+  <block id="a4e0be5abb980518338c55619fbfa4df" category="doc">TCP/IP 및 FC 네트워크를 사용하여 직접 연결</block>
 </blocks>

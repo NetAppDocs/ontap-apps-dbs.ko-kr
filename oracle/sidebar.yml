@@ -55,6 +55,8 @@ entries:
     url: "/oracle/oracle-network-config-ethernet.html"
   - title: FC SAN 구성
     url: "/oracle/oracle-network-config-fc.html"
+  - title: 직접 연결 네트워킹
+    url: "/oracle/oracle-network-config-direct-connect.html"
 - title: 스토리지 구성
   pdf-filename: Oracle Database용 스토리지 구성
   entries:
