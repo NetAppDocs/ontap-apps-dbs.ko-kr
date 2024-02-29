@@ -13,6 +13,9 @@ summary: 'ONTAP를 사용하면 SVM(스토리지 가상 머신)이라는 개념�
 :imagesdir: ../media/
 
 
+[role="lead"]
+다음 섹션에서는 VMware 및 ONTAP SRM에 대한 구축 Best Practice에 대해 설명합니다.
+
 
 
 == SMT를 위한 SVM 레이아웃 및 Segmentation

@@ -52,6 +52,18 @@ entries:
     url: "/vmware/vmware-srm-replication_topologies.html"
   - title: VVOL 복제 사용 시 SRM 문제 해결
     url: "/vmware/vmware-srm-vvol-troubleshooting.html"
+- title: ONTAP이 포함된 vSphere Metro 스토리지 클러스터
+  entries:
+  - title: vMSC 개요
+    url: "/vmware/vmware_vmsc_overview.html"
+  - title: vSphere HA 솔루션
+    url: "/vmware/vmware_vmsc_solution.html"
+  - title: vMSC 설계
+    url: "/vmware/vmware_vmsc_design.html"
+  - title: vMSC 복원력
+    url: "/vmware/vmware_vmsc_resiliency.html"
+  - title: MCC를 포함한 vMSC 시나리오
+    url: "/vmware/vmware_vmsc_scen_mcc.html"
 - title: 제품 보안
   entries:
   - title: VMware vSphere용 ONTAP 툴

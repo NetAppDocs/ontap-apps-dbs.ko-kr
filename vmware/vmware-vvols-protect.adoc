@@ -10,11 +10,10 @@ summary:
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
-:firstname: [.lead]
-:author: [.lead]
-:authorinitials: [
-:authors: [.lead]
 
+
+[role="lead"]
+다음 섹션에서는 ONTAP 스토리지에서 VMware VVOL을 사용하기 위한 절차 및 모범 사례를 간략히 설명합니다.
 
 
 

@@ -1,0 +1,40 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware_vmsc_resiliency.html 
+keywords: VMware, Data protection, MetroCluster, SMBC, SnapMirror active sync, vMSC 
+summary: NetApp ONTAP를 사용하는 vSphere Metro Storage Cluster에 대해 자세히 알아보십시오 
+---
+= 계획되거나 계획되지 않은 이벤트에 대한 복원력
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp MetroCluster 및 SnapMirror 활성 동기화는 NetApp 하드웨어 및 ONTAP ® 소프트웨어의 고가용성 및 무중단 운영을 개선하는 강력한 툴입니다.
+
+이러한 툴은 전체 스토리지 환경에 대해 사이트 전체를 보호하여 데이터를 항상 사용할 수 있도록 보장합니다. NetApp 기술을 사용하면 독립 실행형 서버, 고가용성 서버 클러스터, Docker 컨테이너, 가상 서버 등 무엇을 사용하든 전력, 냉각 및 네트워크 연결이 끊어지고 스토리지 어레이 중단이나 운영 오류가 발생하여 전체 중단이 발생해도 스토리지 가용성을 원활하게 유지할 수 있습니다.
+
+MetroCluster 및 SnapMirror 활성 동기화는 계획된 또는 계획되지 않은 이벤트가 발생할 경우 데이터 연속성을 위해 3가지 기본 방법을 제공합니다.
+
+* 이중 구성 요소로 단일 구성 요소 장애로부터 보호
+* 단일 컨트롤러에 영향을 주는 이벤트에 대한 로컬 HA 테이크오버
+* 완벽한 사이트 보호 – 스토리지 및 클라이언트 액세스를 소스 클러스터에서 대상 클러스터로 이동하여 신속하게 서비스를 재개합니다
+
+
+즉, 단일 구성 요소 장애 발생 시 작업을 계속 원활하게 수행하고 장애가 발생한 구성 요소를 교체하면 자동으로 중복 작업으로 되돌아갑니다.
+
+단일 노드 클러스터(일반적으로 ONTAP Select 같은 소프트웨어 정의 버전)를 제외한 모든 ONTAP 클러스터에는 Takeover 및 Giveback이라는 HA 기능이 내장되어 있습니다. 클러스터의 각 컨트롤러가 다른 컨트롤러와 페어링되어 HA 쌍을 형성합니다. 이러한 페어를 통해 각 노드가 스토리지에 로컬로 접속됩니다.
+
+Takeover는 한 노드가 다른 노드의 스토리지를 인수하여 데이터 서비스를 유지하는 자동화된 프로세스입니다. 반환 은 정상 작업을 복원하는 역 프로세스입니다. 하드웨어 유지 보수, ONTAP 업그레이드 수행 시 또는 계획되지 않은 노드 장애 또는 하드웨어 장애로 인해 테이크오버를 계획할 수 있습니다.
+
+테이크오버 중 MetroCluster 구성의 NAS(Network Attached Storage 논리 인터페이스)는 자동으로 페일오버됩니다. 그러나 SAN LIF(Storage Area Network LIF)는 페일오버되지 않으며 LUN(논리 유닛 번호)에 대한 직접 경로를 계속 사용합니다.
+
+HA 테이크오버 및 반환에 대한 자세한 내용은 를 참조하십시오 https://docs.netapp.com/us-en/ontap/high-availability/index.html["HA 쌍 관리 개요"]. 이 기능은 MetroCluster 또는 SnapMirror 활성 동기화에만 한정되지 않습니다.
+
+MetroCluster를 통한 사이트 전환은 한 사이트가 오프라인일 때 또는 사이트 전체 유지 관리를 위한 계획된 활동으로 수행됩니다. 나머지 사이트에서는 오프라인 클러스터의 스토리지 리소스(디스크 및 애그리게이트)를 소유합니다. 그러면 장애가 발생한 사이트의 SVM이 온라인으로 전환되고 재해 사이트에서 다시 시작되므로 클라이언트 및 호스트 액세스를 위해 전체 ID를 유지할 수 있습니다.
+
+SnapMirror 액티브 동기화를 사용할 때는 두 복사본이 동시에 활발하게 사용되므로 기존 호스트가 계속 작동합니다. 사이트 페일오버가 올바르게 수행되도록 하려면 NetApp 중재자가 필요합니다.

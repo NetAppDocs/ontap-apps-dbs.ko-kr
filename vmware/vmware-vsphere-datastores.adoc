@@ -4,20 +4,15 @@ permalink: vmware/vmware-vsphere-datastores.html
 keywords: vSphere, datastore, VMFS, FC, FCoE, NVMe/FC, iSCSI, NFS, vVols 
 summary: 이 페이지에서는 VMware vSphere 환경에 NetApp ONTAP 스토리지 솔루션을 구축하는 모범 사례를 설명합니다. 
 ---
-= 데이터 저장소 및 프로토콜
-:hardbreaks:
+= vSphere 데이터 저장소 및 프로토콜 기능
 :allow-uri-read: 
-:nofooter: 
-:icons: font
-:linkattrs: 
-:imagesdir: ../media/
-:firstname: [.lead]
-:author: [.lead]
-:authorinitials: [
-:authors: [.lead]
-:revdate: == vSphere datastore and protocol features
 
 
+
+
+== vSphere 데이터 저장소 및 프로토콜 기능
+
+[role="lead"]
 7개의 프로토콜을 사용하여 ONTAP 소프트웨어를 실행하는 시스템의 데이터 저장소에 VMware vSphere를 연결합니다.
 
 * FCP
@@ -86,7 +81,7 @@ FCP, FCoE, NVMe/FC, NVMe/TCP 및 iSCSI는 vSphere VMFS(Virtual Machine File Syst
 VAAI를 사용하지 않는 경우 NFS에서 모든 VM에 대해 이 설정이 기본값입니다. 
 
 
-| VMware 기본 다중 경로 | 예 | 예 | 예, 새로운 HPP(High Performance Plugin) 사용 | 해당 없음 
+| VMware 기본 다중 경로 | 예 | 예 | 예, 새로운 HPP(High Performance Plugin) 사용 | NFS v4.1 세션 트렁킹에는 ONTAP 9.14.1 이상이 필요합니다 
 |===
 다음 표에는 지원되는 ONTAP 스토리지 관리 기능이 나와 있습니다.
 
@@ -189,7 +184,7 @@ ONTAP 소프트웨어를 실행하는 시스템에서 vSphere를 사용할 때 �
 
 이 플러그인은 vSphere 환경에서 다른 ONTAP 툴을 사용하는 데에도 도움이 됩니다. VMware VAAI용 NFS 플러그인을 설치하면 VM 클론 생성 작업, 일반 가상 디스크 파일에 대한 공간 예약 및 ONTAP 스냅샷 오프로드를 위해 ONTAP로 복사 오프로드를 수행할 수 있습니다.
 
-플러그인은 또한 VASA Provider for ONTAP의 다양한 기능을 위한 관리 인터페이스로서, VVOL을 통해 스토리지 정책 기반 관리를 지원합니다. VMware vSphere용 ONTAP 툴을 등록한 후 이를 사용하여 스토리지 기능 프로필을 생성하고 이를 스토리지에 매핑하며 시간이 지남에 따라 데이터 저장소가 프로파일을 준수하는지 확인합니다. VASA Provider는 VVOL 데이터 저장소를 생성하고 관리하는 인터페이스도 제공합니다.
+플러그인은 ONTAP용 VASA Provider의 다양한 기능을 위한 관리 인터페이스이기도 하여, VVOL을 통한 스토리지 정책 기반 관리를 지원합니다. VMware vSphere용 ONTAP 툴을 등록한 후 이를 사용하여 스토리지 기능 프로필을 생성하고 이를 스토리지에 매핑하며 시간이 지남에 따라 데이터 저장소가 프로파일을 준수하는지 확인합니다. VASA Provider는 VVOL 데이터 저장소를 생성하고 관리하는 인터페이스도 제공합니다.
 
 일반적으로, vCenter 내에서 VMware vSphere 인터페이스에 ONTAP 툴을 사용하여 기존 데이터 저장소와 VVOL 데이터 저장소를 프로비저닝하면 모범 사례를 따를 수 있습니다.
 
@@ -199,7 +194,7 @@ ONTAP 소프트웨어를 실행하는 시스템에서 vSphere를 사용할 때 �
 
 ONTAP 소프트웨어를 실행하는 시스템에서 vSphere를 사용할 때 네트워크 설정을 구성하는 것은 다른 네트워크 구성과 마찬가지로 간단합니다. 다음은 고려해야 할 몇 가지 사항입니다.
 
-* 스토리지 네트워크 트래픽을 다른 네트워크와 분리합니다. 전용 VLAN 또는 스토리지에 개별 스위치를 사용하면 별도의 네트워크를 구축할 수 있습니다. 스토리지 네트워크가 업링크와 같은 물리적 경로를 공유하는 경우 충분한 대역폭을 확보하기 위해 QoS 또는 추가 업링크 포트가 필요할 수 있습니다. 호스트를 스토리지에 직접 연결하지 말고, 스위치를 사용하여 중복 경로를 확보하고 VMware HA가 개입 없이 작동할 수 있도록 하십시오. 을 참조하십시오 link:vmware-vsphere-network.html#direct-connect-networking["직접 연결 네트워킹"] 자세한 내용은 를 참조하십시오.
+* 스토리지 네트워크 트래픽을 다른 네트워크와 분리합니다. 전용 VLAN 또는 스토리지에 개별 스위치를 사용하면 별도의 네트워크를 구축할 수 있습니다. 스토리지 네트워크가 업링크와 같은 물리적 경로를 공유하는 경우 충분한 대역폭을 확보하기 위해 QoS 또는 추가 업링크 포트가 필요할 수 있습니다. 호스트를 스토리지에 직접 연결하지 말고, 스위치를 사용하여 중복 경로를 확보하고 VMware HA가 개입 없이 작동할 수 있도록 하십시오. 을 참조하십시오 link:vmware-vsphere-network.html["직접 연결 네트워킹"] 자세한 내용은 를 참조하십시오.
 * 원하는 경우 점보 프레임을 사용할 수 있으며 네트워크에서 지원됩니다(특히 iSCSI 사용 시). 사용하는 경우 스토리지와 ESXi 호스트 간 경로에서 모든 네트워크 디바이스, VLAN 등에 동일하게 구성되었는지 확인합니다. 그렇지 않으면 성능 또는 연결 문제가 나타날 수 있습니다. MTU는 ESXi 가상 스위치, VMkernel 포트 및 각 ONTAP 노드의 물리적 포트 또는 인터페이스 그룹에서도 동일하게 설정되어야 합니다.
 * ONTAP 클러스터 내의 클러스터 네트워크 포트에서 네트워크 흐름 제어를 사용하지 않도록 설정하는 것만 좋습니다. NetApp은 데이터 트래픽에 사용되는 나머지 네트워크 포트에 대한 모범 사례를 위해 다른 권장사항을 제공하지 않습니다. 필요에 따라 활성화하거나 비활성화해야 합니다. 을 참조하십시오 http://www.netapp.com/us/media/tr-4182.pdf["TR-4182 를 참조하십시오"^] 흐름 제어에 대한 자세한 배경 정보
 * ESXi 및 ONTAP 스토리지 어레이가 이더넷 스토리지 네트워크에 연결되어 있는 경우, 이러한 시스템이 RSTP(Rapid Spanning Tree Protocol) 에지 포트로 연결되거나 Cisco PortFast 기능을 사용하여 연결되는 이더넷 포트를 구성하는 것이 좋습니다. Cisco PortFast 기능을 사용하고 ESXi 서버 또는 ONTAP 스토리지 어레이에 802.1Q VLAN 트렁킹을 사용하는 환경에서는 스패닝 트리 포트패스트 트렁크 기능을 활성화하는 것이 좋습니다.
@@ -371,7 +366,7 @@ image:vsphere_ontap_image3.png["오류: 그래픽 이미지가 없습니다"]
 | Kerberos 인증 | 아니요 | 예(AES, krb5i를 지원하도록 vSphere 6.5 이상에서 향상) 
 
 
-| 다중 경로 지원 | 아니요 | 아니요 
+| 다중 경로 지원 | 아니요 | 예 
 |===
 
 
@@ -402,7 +397,7 @@ ONTAP 9.8에는 FlexGroup 볼륨 파일에 대한 새로운 파일 기반 성능
 * FlexGroup 볼륨 프로비저닝 기본값을 사용합니다. VMware vSphere용 ONTAP 툴은 vSphere 내에서 FlexGroup를 생성 및 마운트하기 때문에 권장되지만, ONTAP System Manager 또는 명령줄은 특수한 요구 사항에 사용될 수 있습니다. 심지어 vSphere에서 가장 철저하게 테스트된 항목이므로 노드당 구성 요소 구성원 수와 같은 기본값을 사용하십시오. 즉, 구성 요소의 수 또는 배치 변경과 같은 기본값이 아닌 설정은 여전히 전체 지원됩니다.
 * FlexGroup 기반 데이터 저장소의 크기를 결정할 때 FlexGroup은 더 큰 네임스페이스를 생성하는 여러 개의 작은 FlexVol 볼륨으로 구성됩니다. 따라서 8개 구성 요소와 함께 FlexGroup를 사용할 때는 데이터 저장소를 최대 가상 머신 크기의 8배 이상으로 사이징해야 합니다. 예를 들어 환경에 6TB VM이 있는 경우 48TB 이하의 크기로 FlexGroup 데이터 저장소를 구성할 수 있습니다.
 * FlexGroup에서 데이터 저장소 공간을 관리할 수 있도록 허용합니다. vSphere 데이터 저장소에서 자동 크기 조정 및 Elastic Sizing을 테스트했습니다. 데이터 저장소가 전체 용량에 근접하면 VMware vSphere용 ONTAP 툴 또는 다른 툴을 사용하여 FlexGroup 볼륨의 크기를 조정할 수 있습니다. FlexGroup는 용량 및 inode의 균형을 유지하며, 용량이 허용하는 경우 폴더(VM) 내의 파일에 우선 순위를 지정합니다.
-* VMware 및 NetApp은 현재 일반적인 다중 경로 네트워킹 접근 방식을 지원하지 않습니다. NFSv4.1에서는 NetApp이 pNFS를 지원하는 반면 VMware는 세션 트렁킹을 지원합니다. NFSv3은 볼륨에 대한 여러 물리적 경로를 지원하지 않습니다. ONTAP 9.8을 사용하는 FlexGroup의 경우 VMware vSphere용 ONTAP 툴이 FlexGroup를 생성하도록 하는 것이 좋습니다. 그런 다음 마운트 해제하고 라운드 로빈 DNS를 사용하여 다시 마운트하여 클러스터에 로드를 분산해야 합니다. ONTAP 툴에서는 데이터 저장소를 마운트할 때 하나의 LIF만 사용합니다. 데이터 저장소를 다시 마운트한 후 ONTAP 툴을 사용하여 데이터 저장소를 모니터링하고 관리할 수 있습니다.
+* VMware와 NetApp는 현재 ONTAP 9.14.1부터 NFSv4.1 세션 트렁킹을 지원합니다. 구체적인 버전에 대한 자세한 내용은 NetApp NFS 4.1 상호 운용성 매트릭스 참고 사항을 참조하십시오. NFSv3은 볼륨에 대한 여러 물리적 경로를 지원하지 않지만, vSphere 8.0U2부터 nconnect는 지원합니다. ONTAP 9.8을 사용하는 FlexGroup의 경우 VMware vSphere용 ONTAP 툴이 FlexGroup를 생성하도록 하는 것이 좋습니다. 그런 다음 마운트 해제하고 라운드 로빈 DNS를 사용하여 다시 마운트하여 클러스터에 로드를 분산해야 합니다. ONTAP 툴에서는 데이터 저장소를 마운트할 때 하나의 LIF만 사용합니다. 데이터 저장소를 다시 마운트한 후 ONTAP 툴을 사용하여 데이터 저장소를 모니터링하고 관리할 수 있습니다.
 * FlexGroup vSphere 데이터 저장소 지원은 9.8 릴리즈에서 VM 1,500대까지 테스트되었습니다.
 * 복제 오프로드에 VMware VAAI용 NFS 플러그인을 사용하십시오. 앞에서 설명한 것처럼 FlexGroup 데이터 저장소 내에서 클론 생성이 향상되지만 FlexVol 및/또는 FlexGroup 볼륨 간에 VM을 복사할 때 ONTAP는 ESXi 호스트 복사본에 비해 상당한 성능 이점을 제공하지 않습니다. 따라서 VAAI 또는 FlexGroups를 사용하기로 결정할 때 복제 워크로드를 고려하십시오. 구성 볼륨의 수를 수정하는 것이 FlexGroup 기반 클로닝을 최적화하는 한 가지 방법입니다. 와 마찬가지로 캐시 시간 초과를 튜닝합니다.
 * VMware vSphere 9.8용 ONTAP 툴을 사용하여 ONTAP 메트릭(대시보드 및 VM 보고서)을 사용하여 FlexGroup VM의 성능을 모니터링하고 개별 VM의 QoS를 관리할 수 있습니다. 이러한 메트릭은 현재 ONTAP 명령 또는 API를 통해 사용할 수 없습니다.

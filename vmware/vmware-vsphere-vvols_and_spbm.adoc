@@ -13,10 +13,7 @@ summary: 이 페이지에서는 VMware vSphere 환경에 NetApp ONTAP 스토리�
 :imagesdir: ../media/
 
 
-
-
-== VVol 및 SPBM 정보
-
+[role="lead"]
 NetApp은 VVOL(vSphere Virtual Volumes)을 개발하여 초기 설계 파트너로 VMware와 협력하여 VVOL과 VMware VASA(vSphere API for Storage Awareness)를 조기에 지원하고 아키텍처 입력을 제공했습니다. 이 접근 방식은 VM 세부 스토리지 관리를 VMFS에 제공할 뿐만 아니라 SPBM(Storage Policy Based Management)을 통한 스토리지 프로비저닝 자동화를 지원합니다.
 
 SPBM은 가상화 환경에서 사용 가능한 스토리지 서비스와 정책을 통해 프로비저닝된 스토리지 요소 간의 추상화 계층 역할을 하는 프레임워크를 제공합니다. 스토리지 설계자는 이 접근 방식을 통해 VM 관리자가 쉽게 사용할 수 있는 다양한 기능을 갖춘 스토리지 풀을 설계할 수 있습니다. 그런 다음 관리자는 프로비저닝된 스토리지 풀에 대해 가상 머신 워크로드 요구 사항을 일치시킬 수 있으므로 VM별 또는 가상 디스크 레벨의 다양한 설정을 세부적으로 제어할 수 있습니다.

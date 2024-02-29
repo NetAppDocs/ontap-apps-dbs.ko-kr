@@ -10,12 +10,10 @@ summary:
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
-:firstname: [.lead]
-:author: [.lead]
-:authorinitials: [
-:authors: [.lead]
-:revdate: There are several steps to creating vVols storage for your VMs.
 
+
+[role="lead"]
+VM용 VVol 스토리지를 생성하는 단계는 여러 가지가 있습니다.
 
 기존 데이터 저장소에 ONTAP를 사용하는 기존 vSphere 환경에서는 처음 두 단계가 필요하지 않을 수 있습니다. 이미 ONTAP 툴을 사용하여 VMFS 또는 기존 NFS 기반 스토리지를 관리, 자동화 및 보고할 수 있습니다. 이러한 단계는 다음 섹션에서 자세히 설명합니다.
 

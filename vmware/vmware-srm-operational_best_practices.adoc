@@ -11,12 +11,14 @@ summary: 가능하면 항상 ONTAP 툴을 사용하여 데이터 저장소와 �
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
-:firstname: [.lead]
-:author: [.lead]
-:authorinitials: [
-:authors: [.lead]
-:revdate: == Datastores and protocols
 
+
+[role="lead"]
+다음 섹션에서는 VMware SRM 및 ONTAP 스토리지에 대한 운영 Best Practice를 간략히 설명합니다.
+
+
+
+== 데이터 저장소 및 프로토콜
 
 * 가능하면 항상 ONTAP 툴을 사용하여 데이터 저장소와 볼륨을 프로비저닝하십시오. 이렇게 하면 볼륨, 접합 경로, LUN, igroup, 엑스포트 정책이 및 기타 설정은 호환되는 방식으로 구성됩니다.
 * SRM은 SRA를 통해 어레이 기반 복제를 사용할 때 ONTAP 9를 통해 iSCSI, 파이버 채널 및 NFS 버전 3을 지원합니다. SRM은 기존 데이터 저장소 또는 VVOL 데이터 저장소를 사용하는 NFS 버전 4.1에 대한 어레이 기반 복제를 지원하지 않습니다.
