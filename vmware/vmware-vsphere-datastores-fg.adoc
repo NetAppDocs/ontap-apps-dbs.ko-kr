@@ -1,0 +1,48 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-vsphere-datastores-fg.html 
+keywords: vSphere, datastore, VMFS, FC, FCoE, NVMe/FC, iSCSI, NFS, vVols 
+summary: 이 페이지에서는 VMware vSphere 환경에 NetApp ONTAP 스토리지 솔루션을 구축하는 모범 사례를 설명합니다. 
+---
+= FlexGroup 볼륨
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP 9.8은 VMware vSphere용 ONTAP 툴 및 VMware vSphere용 SnapCenter 플러그인과 함께 vSphere의 FlexGroup 볼륨 데이터 저장소에 대한 지원을 추가합니다. FlexGroup은 대규모 데이터 저장소의 생성을 간소화하고 여러 구성 볼륨을 자동으로 생성하여 ONTAP 시스템의 성능을 극대화합니다. 전체 ONTAP 클러스터의 성능을 지원하는 확장 가능한 단일 vSphere 데이터 저장소가 필요하거나 새로운 FlexGroup 클론 복제 메커니즘의 이점을 활용할 수 있는 클론 생성 워크로드가 매우 큰 경우 vSphere와 함께 FlexGroup를 사용하십시오.
+
+ONTAP 9.8은 vSphere 워크로드를 사용한 광범위한 시스템 테스트 외에도 FlexGroup 데이터 저장소를 위한 새로운 복제 오프로드 메커니즘도 추가합니다. 즉, 처음 몇 개의 클론을 사용하여 각 구성 볼륨의 로컬 캐시를 채우는 업데이트된 복사본 엔진을 사용합니다. 그런 다음 이 로컬 캐시를 사용하여 필요에 따라 VM 클론을 신속하게 인스턴스화합니다.
+
+다음 시나리오를 고려해 보십시오.
+
+* 8개 구성 요소로 구성된 새 FlexGroup를 만들었습니다
+* 새 FlexGroup에 대한 캐시 시간 초과는 160분으로 설정됩니다
+
+
+이 시나리오에서는 처음 8개의 클론이 로컬 파일 클론이 아닌 전체 복제본이 됩니다. 160초 시간 초과가 만료되기 전에 해당 VM을 추가로 클로닝할 경우 각 구성 요소 내의 파일 클론 엔진을 라운드 로빈 방식으로 사용하여 구성 볼륨에 거의 즉각적으로 생성되는 복사본을 생성합니다.
+
+볼륨이 수신하는 모든 새 클론 작업은 시간 초과를 재설정합니다. 예제 FlexGroup의 구성 볼륨이 시간 초과 전에 클론 요청을 수신하지 못하면 해당 특정 VM의 캐시가 지워지고 볼륨을 다시 채워야 합니다. 또한 원본 클론의 소스가 변경된 경우(예: 템플릿을 업데이트함) 충돌을 방지하기 위해 각 구성요소의 로컬 캐시가 무효화됩니다. 캐시는 튜닝 가능하며 운영 환경의 요구 사항에 맞게 설정할 수 있습니다.
+
+FlexGroup 캐시를 최대한 활용할 수 없지만 신속한 볼륨 간 클로닝이 필요한 환경에서는 VVOL을 사용하는 것이 좋습니다. VVOL을 통한 교차 볼륨 클로닝은 기존 데이터 저장소를 사용하는 것보다 훨씬 빠르며 캐시에 의존하지 않습니다.
+
+VAAI에서 FlexGroups를 사용하는 방법에 대한 자세한 내용은 다음 KB 문서를 참조하십시오. https://kb.netapp.com/?title=onprem%2Fontap%2Fdm%2FVAAI%2FVAAI%3A_How_does_caching_work_with_FlexGroups%253F["VAAI: FlexGroup 볼륨에서 캐싱은 어떻게 작동합니까?"^]
+
+ONTAP 9.8에는 FlexGroup 볼륨 파일에 대한 새로운 파일 기반 성능 메트릭(IOPS, 처리량, 지연 시간)이 추가되었으며, 이러한 메트릭은 VMware vSphere 대시보드 및 VM 보고서용 ONTAP 툴에서 확인할 수 있습니다. VMware vSphere 플러그인용 ONTAP 툴을 사용하면 최대 및/또는 최소 IOPS의 조합을 사용하여 서비스 품질(QoS) 규칙을 설정할 수도 있습니다. 데이터 저장소의 모든 VM에 대해 또는 특정 VM에 대해 개별적으로 설정할 수 있습니다.
+
+다음은 NetApp에서 개발한 몇 가지 추가 모범 사례입니다.
+
+* FlexGroup 볼륨 프로비저닝 기본값을 사용합니다. VMware vSphere용 ONTAP 툴은 vSphere 내에서 FlexGroup를 생성 및 마운트하기 때문에 권장되지만, ONTAP System Manager 또는 명령줄은 특수한 요구 사항에 사용될 수 있습니다. 심지어 vSphere에서 가장 철저하게 테스트된 항목이므로 노드당 구성 요소 구성원 수와 같은 기본값을 사용하십시오. 즉, 구성 요소의 수 또는 배치 변경과 같은 기본값이 아닌 설정은 여전히 전체 지원됩니다.
+* FlexGroup 기반 데이터 저장소의 크기를 결정할 때 FlexGroup은 더 큰 네임스페이스를 생성하는 여러 개의 작은 FlexVol 볼륨으로 구성됩니다. 따라서 8개 구성 요소와 함께 FlexGroup를 사용할 때는 데이터 저장소를 최대 가상 머신 크기의 8배 이상으로 사이징해야 합니다. 예를 들어 환경에 6TB VM이 있는 경우 48TB 이하의 크기로 FlexGroup 데이터 저장소를 구성할 수 있습니다.
+* FlexGroup에서 데이터 저장소 공간을 관리할 수 있도록 허용합니다. vSphere 데이터 저장소에서 자동 크기 조정 및 Elastic Sizing을 테스트했습니다. 데이터 저장소가 전체 용량에 근접하면 VMware vSphere용 ONTAP 툴 또는 다른 툴을 사용하여 FlexGroup 볼륨의 크기를 조정할 수 있습니다. FlexGroup는 용량 및 inode의 균형을 유지하며, 용량이 허용하는 경우 폴더(VM) 내의 파일에 우선 순위를 지정합니다.
+* VMware와 NetApp는 현재 ONTAP 9.14.1부터 NFSv4.1 세션 트렁킹을 지원합니다. 구체적인 버전에 대한 자세한 내용은 NetApp NFS 4.1 상호 운용성 매트릭스 참고 사항을 참조하십시오. NFSv3은 볼륨에 대한 여러 물리적 경로를 지원하지 않지만, vSphere 8.0U2부터 nconnect는 지원합니다. nconnect에 대한 자세한 내용은 를 참조하십시오 https://docs.netapp.com/us-en/netapp-solutions_nconnect/virtualization/vmware-vsphere8-nfsv3-nconnect.html["NFSv3 nConnect 기능을 지원하는 NetApp 및 VMware"]. ONTAP 9.8을 사용하는 FlexGroup의 경우 VMware vSphere용 ONTAP 툴이 FlexGroup를 생성하도록 하는 것이 좋습니다. 그런 다음 마운트 해제하고 라운드 로빈 DNS를 사용하여 다시 마운트하여 클러스터에 로드를 분산해야 합니다. ONTAP 툴에서는 데이터 저장소를 마운트할 때 하나의 LIF만 사용합니다. 데이터 저장소를 다시 마운트한 후 ONTAP 툴을 사용하여 데이터 저장소를 모니터링하고 관리할 수 있습니다.
+* FlexGroup vSphere 데이터 저장소 지원은 9.8 릴리즈에서 VM 1,500대까지 테스트되었습니다.
+* 복제 오프로드에 VMware VAAI용 NFS 플러그인을 사용하십시오. 앞에서 설명한 것처럼 FlexGroup 데이터 저장소 내에서 클론 생성이 향상되지만 FlexVol 및/또는 FlexGroup 볼륨 간에 VM을 복사할 때 ONTAP는 ESXi 호스트 복사본에 비해 상당한 성능 이점을 제공하지 않습니다. 따라서 VAAI 또는 FlexGroups를 사용하기로 결정할 때 복제 워크로드를 고려하십시오. 구성 볼륨의 수를 수정하는 것이 FlexGroup 기반 클로닝을 최적화하는 한 가지 방법입니다. 와 마찬가지로 캐시 시간 초과를 튜닝합니다.
+* VMware vSphere 9.8용 ONTAP 툴을 사용하여 ONTAP 메트릭(대시보드 및 VM 보고서)을 사용하여 FlexGroup VM의 성능을 모니터링하고 개별 VM의 QoS를 관리할 수 있습니다. 이러한 메트릭은 현재 ONTAP 명령 또는 API를 통해 사용할 수 없습니다.
+* QoS(최대/최소 IOPS)는 개별 VM 또는 해당 시점에 데이터 저장소의 모든 VM에 설정할 수 있습니다. 모든 VM에서 QoS를 설정하면 별도의 VM별 설정이 대체됩니다. 설정은 향후 새 VM이나 마이그레이션된 VM으로 확장되지 않습니다. 새 VM에 QoS를 설정하거나 데이터 저장소의 모든 VM에 QoS를 다시 적용하십시오. 또한 FlexGroup QoS 정책은 VM이 다른 데이터 저장소로 마이그레이션되는 경우에도 VM을 따라하지도 않습니다. 이는 다른 데이터 저장소로 마이그레이션할 경우 QoS 정책 설정을 유지할 수 있는 VVol과 다릅니다.
+* VMware vSphere 릴리즈 4.4 이상용 SnapCenter 플러그인은 운영 스토리지 시스템의 FlexGroup 데이터 저장소에 있는 VM의 백업 및 복구를 지원합니다. SCV 4.6에는 FlexGroup 기반 데이터 저장소에 대한 SnapMirror 지원이 추가되었습니다.
+

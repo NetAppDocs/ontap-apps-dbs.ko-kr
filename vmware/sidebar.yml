@@ -13,7 +13,15 @@ entries:
   - title: 가상 볼륨 및 스토리지 정책 기반 관리
     url: "/vmware/vmware-vsphere-vvols_and_spbm.html"
   - title: 데이터 저장소 및 프로토콜
-    url: "/vmware/vmware-vsphere-datastores.html"
+    entries:
+    - title: 개요
+      url: "/vmware/vmware-vsphere-datastores-top.html"
+    - title: 산
+      url: "/vmware/vmware-vsphere-datastores-san.html"
+    - title: NFS 를 참조하십시오
+      url: "/vmware/vmware-vsphere-datastores-nfs.html"
+    - title: FlexGroup 볼륨
+      url: "/vmware/vmware-vsphere-datastores-fg.html"
   - title: 네트워크 구성
     url: "/vmware/vmware-vsphere-network.html"
   - title: 클론 복제
@@ -62,7 +70,7 @@ entries:
     url: "/vmware/vmware_vmsc_design.html"
   - title: vMSC 복원력
     url: "/vmware/vmware_vmsc_resiliency.html"
-  - title: MCC를 포함한 vMSC 시나리오
+  - title: MCC와 vMSC 시나리오
     url: "/vmware/vmware_vmsc_scen_mcc.html"
 - title: 제품 보안
   entries:

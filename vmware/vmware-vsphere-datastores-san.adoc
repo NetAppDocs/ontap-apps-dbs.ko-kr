@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-vsphere-datastores-san.html 
+keywords: vSphere, datastore, VMFS, FC, FCoE, NVMe/FC, iSCSI, NFS, vVols 
+summary: 이 페이지에서는 VMware vSphere 환경에 NetApp ONTAP 스토리지 솔루션을 구축하는 모범 사례를 설명합니다. 
+---
+= SAN(FC, FCoE, NVMe/FC, iSCSI), RDM
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+vSphere에서는 블록 스토리지 LUN을 사용하는 세 가지 방법이 있습니다.
+
+* VMFS 데이터 저장소 사용
+* RDM(Raw Device Mapping) 사용
+* VM 게스트 OS에서 소프트웨어 이니시에이터에 의해 액세스 및 제어되는 LUN입니다
+
+
+VMFS는 공유 스토리지 풀인 데이터 저장소를 제공하는 고성능 클러스터 파일 시스템입니다. VMFS 데이터 저장소는 FC, iSCSI, FCoE 또는 NVMe 네임스페이스를 사용하여 액세스할 수 있는 LUN으로 구성할 수 있으며 NVMe/FC 프로토콜을 통해 액세스할 수 있습니다. VMFS를 사용하면 클러스터의 모든 ESX 서버에서 기존 LUN에 동시에 액세스할 수 있습니다. ONTAP 최대 LUN 크기는 일반적으로 16TB입니다. 따라서 64TB의 최대 크기 VMFS 5 데이터 저장소(이 섹션의 첫 번째 표 참조)는 16TB LUN 4개를 사용하여 생성됩니다(모든 SAN 어레이 시스템은 64TB의 최대 VMFS LUN 크기를 지원합니다). ONTAP LUN 아키텍처에는 작은 개별 큐 깊이가 없기 때문에 ONTAP의 VMFS 데이터 저장소는 상대적으로 간단한 방식으로 기존 스토리지 아키텍처보다 더 큰 규모로 확장할 수 있습니다.
+
+vSphere에는 NMP(기본 경로 다중화)라고 하는 여러 스토리지 디바이스 경로에 대한 기본 지원이 포함되어 있습니다. NMP는 지원되는 스토리지 시스템의 스토리지 유형을 감지하고 NMP 스택을 자동으로 구성하여 사용 중인 스토리지 시스템의 기능을 지원합니다.
+
+NMP 및 NetApp ONTAP는 모두 ALUA(Asymmetric Logical Unit Access)를 지원하여 최적화된 경로와 최적화되지 않은 경로를 협상합니다. ONTAP에서 ALUA에 최적화된 경로는 액세스하는 LUN을 호스팅하는 노드의 타겟 포트를 사용하여 직접 데이터 경로를 따릅니다. vSphere와 ONTAP 모두에서 ALUA는 기본적으로 사용하도록 설정되어 있습니다. NMP는 ONTAP 클러스터를 ALUA로 인식하며 ALUA 스토리지 어레이 유형 플러그인을 사용합니다 (`VMW_SATP_ALUA`) 및 라운드 로빈 경로 선택 플러그인을 선택합니다 (`VMW_PSP_RR`)를 클릭합니다.
+
+ESXi 6은 최대 256개의 LUN과 최대 1,024개의 LUN 총 경로를 지원합니다. 이러한 제한을 초과하는 LUN 또는 경로는 ESXi에서 표시되지 않습니다. 최대 LUN 수를 가정할 때 경로 제한에서는 LUN당 경로 수를 4개까지 지정할 수 있습니다. 대규모 ONTAP 클러스터에서는 LUN 제한보다 먼저 경로 제한에 도달할 수 있습니다. 이 제한을 해결하기 위해 ONTAP은 릴리즈 8.3 이상에서 선택적 LUN 맵(SLM)을 지원합니다.
+
+SLM은 특정 LUN에 경로를 알리는 노드를 제한합니다. NetApp 모범 사례로서, SVM당 노드당 하나 이상의 LIF를 가지고 SLM을 사용하여 LUN 및 HA 파트너를 호스팅하는 노드에 공고되는 경로를 제한하는 것입니다. 다른 경로가 존재하지만 기본적으로 알려지지 않습니다. SLM 내에서 ADD 및 REMOVE 노드 인수로 보급된 경로를 수정할 수 있습니다. 8.3 이전 릴리즈에서 생성된 LUN은 모든 경로를 광고하고 호스팅 HA 쌍의 경로만 광고하도록 수정해야 합니다. SLM에 대한 자세한 내용은 의 섹션 5.9를 참조하십시오 http://www.netapp.com/us/media/tr-4080.pdf["TR-4080 을 참조하십시오"^]. 이전 portset 방법을 사용하여 LUN에 사용 가능한 경로를 더 줄일 수도 있습니다. Portsets는 igroup의 이니시에이터가 LUN을 볼 수 있는 가시적인 경로의 수를 줄여 줍니다.
+
+* SLM은 기본적으로 활성화되어 있습니다. 포트 세트를 사용하지 않는 경우 추가 구성이 필요하지 않습니다.
+* Data ONTAP 8.3 이전에 생성된 LUN의 경우 를 실행하여 SLM을 수동으로 적용합니다 `lun mapping remove-reporting-nodes` LUN 보고 노드를 제거하고 LUN 소유 노드 및 해당 HA 파트너에 대한 LUN 액세스를 제한하는 명령입니다.
+
+
+블록 프로토콜(iSCSI, FC 및 FCoE)은 고유한 이름과 함께 LUN ID 및 일련 번호를 사용하여 LUN에 액세스합니다. FC 및 FCoE는 WWNs 및 WWPN(Worldwide Name)을 사용하며 iSCSI는 IQN(iSCSI Qualified Name)을 사용합니다. 스토리지 내 LUN의 경로는 블록 프로토콜에는 의미가 없으며 프로토콜의 어느 곳에도 표시되지 않습니다. 따라서 LUN만 포함된 볼륨은 내부적으로 마운트할 필요가 없으며, 데이터 저장소에 사용되는 LUN이 포함된 볼륨에는 접합 경로가 필요하지 않습니다. ONTAP의 NVMe 하위 시스템은 비슷하게 작동합니다.
+
+기타 모범 사례:
+
+* 가용성과 이동성을 극대화하기 위해 ONTAP 클러스터의 각 노드에서 논리 인터페이스(LIF)를 생성해야 합니다. ONTAP SAN 모범 사례는 노드당 물리적 포트 2개와 LIF를 각 패브릭에 대해 하나씩 사용하는 것입니다. ALUA는 경로를 구문 분석하고 활성 최적화(직접) 경로와 최적화되지 않은 활성 경로를 식별하는 데 사용됩니다. ALUA는 FC, FCoE 및 iSCSI에 사용됩니다.
+* iSCSI 네트워크의 경우 여러 가상 스위치가 있을 때 NIC 티밍을 사용하여 서로 다른 네트워크 서브넷에 있는 여러 VMkernel 네트워크 인터페이스를 사용합니다. 또한 여러 물리적 스위치에 연결된 여러 물리적 NIC를 사용하여 HA를 제공하고 처리량을 늘릴 수 있습니다. 다음 그림은 다중 경로 연결의 예입니다. ONTAP에서 둘 이상의 스위치에 연결된 2개 이상의 링크를 사용하여 페일오버에 단일 모드 인터페이스 그룹을 구성하거나 LACP 또는 다중 모드 인터페이스 그룹과 함께 다른 Link-Aggregation 기술을 사용하여 HA와 링크 집계의 이점을 제공합니다.
+* 대상 인증을 위해 ESXi에서 CHAP(Challenge-Handshake Authentication Protocol)를 사용하는 경우 CLI를 사용하여 ONTAP에서도 구성해야 합니다 (`vserver iscsi security create`) 또는 System Manager를 사용할 경우(스토리지 > SVM > SVM 설정 > 프로토콜 > iSCSI에서 이니시에이터 보안 편집).
+* VMware vSphere용 ONTAP 툴을 사용하여 LUN 및 igroup을 생성하고 관리합니다. 이 플러그인은 서버의 WWPN을 자동으로 확인하여 적절한 igroup을 생성합니다. 또한 모범 사례에 따라 LUN을 구성하고 올바른 igroup에 매핑합니다.
+* RDM은 관리하기가 더 어려울 수 있고 앞에서 설명한 대로 제한된 경로를 사용할 수도 있으므로 주의해서 사용합니다. ONTAP LUN은 둘 다 지원합니다 https://kb.vmware.com/s/article/2009226["물리적 및 가상 호환성 모드"^] RDM
+* vSphere 7.0에서 NVMe/FC를 사용하는 방법에 대한 자세한 내용은 다음을 참조하십시오 https://docs.netapp.com/us-en/ontap-sanhost/nvme_esxi_7.html["ONTAP NVMe/FC 호스트 구성 가이드"^] 및 http://www.netapp.com/us/media/tr-4684.pdf["TR-4684를 참조하십시오"^]다음 그림에서는 vSphere 호스트에서 ONTAP LUN으로의 다중 경로 연결을 보여 줍니다.
+
+
+image:vsphere_ontap_image2.png["오류: 그래픽 이미지가 없습니다"]

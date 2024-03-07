@@ -2472,32 +2472,13 @@ I/O 중단 없음.</block>
   <block id="e357ccd0745db58f22ea5c0947b613ee" category="paragraph"><block ref="330c4316ae6124616389eb1ca9912f7a" prefix="" category="inline-code"></block> 이제 쇼트 값을 반환합니다<block ref="c7169a6dd344d0f0a38071a1262e4973" prefix=" " category="inline-code"></block> 의 출력과 일치하는 호스트 이름입니다<block ref="4040592cec1880aa70936989f05e7c31" prefix=" " category="inline-code"></block>. 이와 같이 서버 충돌이 일어나면 잠금이 자동으로 삭제됩니다.</block>
   <block id="547b870352d8464aadbe7bee63d6f3d1" category="summary">데이터베이스 가상화 소개</block>
   <block id="ea4c55be196897a16d86999f5c16d582" category="doc">포함되었습니다</block>
-  <block id="4a478889a2e46bee771126a78eda2911" category="paragraph">가장 미션 크리티컬한 데이터베이스를 위해 가상화를 선택한 NetApp 고객들은 VMware ESX, Oracle OVM 또는 KVM을 통한 데이터베이스 가상화를 점점 더 많이 채택하고 있습니다.</block>
-  <block id="0f976e587b1e7af0949904e76d91384b" category="paragraph">가상화 지원 정책, 특히 VMware 제품 관련 정책에 관해 많은 오해가 있습니다. 사실 Oracle이 어떤 가상화도 지원하지 않는다는 말은 흔히 들립니다. 이는 틀린 생각이고, 가상화의 기회를 놓치게 되는 결과를 낳습니다. Oracle Doc ID 249212.1은 Oracle 환경의 알려진 문제를 설명하며 RAC 지원도 명시합니다.</block>
-  <block id="02ea3d7754e6bc1c99ff77393e49e373" category="paragraph">Oracle에 알려지지 않은 문제인 경우 고객은 물리적 하드웨어에서 문제를 재현하도록 요청받을 수 있습니다. 제품의 최첨단 버전을 실행하는 Oracle 고객은 새로운 버그가 발견될 가능성 때문에 가상화를 사용하려 하지 않을 수 있습니다. 그러나 가상화 고객은 일반적으로 제공되는 제품 버전을 사용하기 때문에 이 상황은 사실 문제가 아니었습니다.</block>
   <block id="9e28dbd7a4f5940eeaf6d3893c5c4b1f" category="section-title">스토리지 프레젠테이션</block>
-  <block id="8fdbc6d55014a06c15b9f130e5bedd12" category="paragraph">데이터베이스 가상화를 고려하는 고객은 비즈니스 요구사항을 근거로 스토리지 관련 결정을 내려야 합니다. 이는 모든 IT 결정에 있어 일반적으로 적용되는 사항이지만 규모와 범위의 다양성 때문에 특히 가상화 프로젝트에서 중요합니다.</block>
-  <block id="6cf53ad2948792abdf4a8668365b8396" category="paragraph">스토리지 프레젠테이션에는 다음과 같은 네 가지 기본 옵션이 있습니다.</block>
   <block id="151ae53a4100e0a6e83bde4d78083f81" category="list-text">하이퍼바이저가 아닌 VM의 iSCSI 이니시에이터에 의해 관리되는 iSCSI LUN</block>
-  <block id="73014dc1e7381cfd107ba79742a873e3" category="list-text">가상 머신 디스크(VMDK)가 아닌 VM에 의해 마운트되는 NFS 파일 시스템</block>
-  <block id="810f0004f0e8e215c676ac0621d5836b" category="list-text">하이퍼바이저 데이터 저장소</block>
-  <block id="8e2a0eba3eaebd64066d020ab225dd78" category="paragraph">일반적으로 Oracle 파일에 데이터 저장소를 사용하지 않아야 합니다. 이 권장사항에는 여러 이유가 있습니다.</block>
-  <block id="98b171e836c6656f9cf88835666c6345" category="list-text">* 투명성. * VM이 파일 시스템을 소유하고 있으면 데이터베이스 관리자나 시스템 관리자가 데이터에 대한 파일 시스템의 소스를 쉽게 식별할 수 있습니다.</block>
-  <block id="ec6a3b593d5584a2e15651852e384082" category="list-text">* 성능. * 테스트 결과 하이퍼바이저 데이터 저장소를 통해 모든 I/O를 채널링하면 성능 효과가 있는 것으로 나타났습니다.</block>
-  <block id="47464ddf615c138c6c06d3bfea555b2d" category="list-text">* 관리 효율성. * VM이 파일 시스템을 소유하는 경우 하이퍼바이저 계층을 사용하거나 사용하지 않는 것은 관리 용이성에 영향을 미칩니다. 가상화 및 비가상화 환경 모두를 포함한 전체 자산에 걸쳐 프로비저닝, 모니터링, 데이터 보호 등에 같은 절차를 사용할 수 있습니다.</block>
-  <block id="3d04d7019fbc0d27880dcc5c0881f87b" category="list-text">* 안정성 및 문제 해결. * VM이 파일 시스템을 소유할 때 전체 스토리지 스택이 VM에 있기 때문에 우수하고 안정적인 성능과 문제 해결이 훨씬 간단해집니다. 여기서 하이퍼바이저는 FC 또는 IP 프레임을 운반하는 역할만 합니다. 데이터 저장소가 구성에 포함된 경우 시간 초과, 매개 변수, 로그 파일, 잠재적 버그 문제가 발생하여 구성이 복잡해집니다.</block>
   <block id="36f9cea3dc0f65698a9fbe15460591c1" category="list-text">* 이식성. * VM이 파일 시스템을 소유하면 Oracle 환경을 이동하는 프로세스가 훨씬 간단해집니다. 가상화 게스트와 비가상화 게스트 간에 파일 시스템을 쉽게 이동할 수 있습니다.</block>
-  <block id="cb90f9e52412940f028394174f31ec2f" category="list-text">* 공급업체 종속. * 데이터 저장소에 데이터를 배치한 후에는 다른 하이퍼바이저를 사용하거나 가상화된 환경에서 데이터를 완전히 가져오는 것이 매우 어렵습니다.</block>
-  <block id="4308dde96d1bdae6ac436a611c834331" category="list-text">* Snapshot Enablement. * 상대적으로 제한된 대역폭으로 인해 가상화된 환경에서의 백업이 문제가 되는 경우가 있습니다. 예를 들어, 4포트 10GbE 트렁크는 여러 가상화 데이터베이스의 일상적인 성능 요구를 충분히 지원할 수 있습니다. 그러나 이 트렁크는 RMAN 또는 데이터의 전체 크기 복사본 스트리밍이 요구되는 기타 백업 제품을 사용하여 백업을 수행하기에는 불충분합니다.</block>
-  <block id="872c95c8713fd14a0bef21fe92a55ab7" category="paragraph">VM 소유 파일 시스템을 사용하면 스냅샷 기반 백업과 복원을 활용하기가 쉬워집니다. VM 소유 파일 시스템은 백업 수행 작업을 스토리지 시스템에 오프로드합니다. 백업 윈도우에서 순수하게 대역폭과 CPU 요구사항을 지원하기 위해 하이퍼바이저 구성을 오버 빌드할 필요는 없습니다.</block>
-  <block id="3522f960cdbaf08c375bd70214f8db2f" category="admonition">* NetApp는 최적의 성능과 관리 용이성을 얻기 위해 데이터 저장소에 Oracle 데이터를 배치하지 않을 것을 권장합니다. 게스트에 의해 또는 RDM을 통해 관리되는 NFS나 iSCSI 파일 시스템 등, 게스트 소유 파일 시스템을 사용하십시오.</block>
   <block id="f114856edc6cd8d6a9add5ec3f67656f" category="section-title">반가상화 드라이버</block>
   <block id="beeb10ceee6c9aabe178fb51edea7d22" category="paragraph">최적의 성능을 얻으려면 반가상화 네트워크 드라이버를 사용해야 합니다. 데이터 저장소를 사용할 때는 반가상화 SCSI 드라이버가 필요합니다. 에뮬레이션된 드라이버가 하이퍼바이저가 물리적 하드웨어의 동작을 모방면서 많은 CPU 시간을 사용하는 것과 대조적으로, 반가상화 장치 드라이버는 게스트가 하이퍼바이저에 더 긴밀히 통합될 수 있게 합니다.</block>
-  <block id="59b3d62404749c3e899b7e4c9ee10146" category="paragraph">대다수 데이터베이스의 성능은 스토리지의 제약을 받습니다. 따라서 네트워크나 SCSI 드라이버로 인해 지연 시간이 늘어나는 현상이 특히 뚜렷이 나타납니다. NetApp 고객 지원 팀이 보고받은 다수의 성능 문제는 반가상화 드라이버를 설치하여 해결되었습니다. 고객 POC 중에 데이터베이스는 베어 메탈처럼 동일한 하드웨어가 실행될 때보다 ESX하에서 성능이 더 높았습니다. 테스트는 매우 I/O 집약적이었으며 성능 차이는 ESX 반가상화 네트워크 드라이버 사용에 기인한 것이었습니다.</block>
-  <block id="4e27b04a271416c5701a99234f8a23e6" category="admonition">*NetApp는 항상 반가상화 네트워크 드라이버와 SCSI 드라이버를 사용할 것을 권장합니다.</block>
   <block id="7c5996fc15a24ce96b30160b60ac2b96" category="section-title">RAM 오버 커밋</block>
   <block id="5bccdd812c4af1cb5b9e36ddce656b60" category="paragraph">RAM 오버 커밋이란 물리적 하드웨어에 있는 것보다 더 많은 가상화 RAM을 다양한 호스트에 구성하는 것을 의미합니다. 오버 커밋은 예기치 않은 성능 문제를 초래할 수 있습니다. 데이터베이스를 가상화할 때 Oracle SGA의 기본 블록이 하이퍼바이저에 의해 스토리지로 교체되면 안 됩니다. 교체할 경우 성능 결과가 매우 불안정해집니다.</block>
-  <block id="31db92967e891f0a122e0329d819842e" category="admonition">* NetApp는 Oracle SGA 블록을 스왑할 수 있는 방식으로 하이퍼바이저를 구성하지 않을 것을 권장합니다.</block>
   <block id="be493f1fc0b02ae45602c7c13f7b5dc7" category="summary">TR-4792는 NVIDIA GPU(Graphics Processing Unit) 및 가상화 소프트웨어를 기반으로 하는 VMware Horizon 환경에서 NetApp HCI 615C를 사용하여 3D 그래픽 워크로드를 처리하는 방법에 대한 지침을 제공합니다.</block>
   <block id="ff1d278a485c443dc5d8fc9f10f1a702" category="doc">VMware Horizon 7을 지원하는 NetApp HCI for Virtual Desktop Infrastructure - 3D 그래픽을 통해 파워 유저의 역량을 강화하십시오</block>
   <block id="e3162938e0d7b1bbc74111cc5b5871c5" category="paragraph">TR-4792는 NVIDIA GPU(Graphics Processing Unit) 및 가상화 소프트웨어로 구동되는 VMware Horizon 환경에서 NetApp H615C 컴퓨팅 노드를 사용하여 3D 그래픽 워크로드를 처리하는 방법에 대한 지침을 제공합니다. 또한 H615C에 대한 SPECviewperf 13의 예비 테스트에서 얻은 결과를 제공합니다.</block>
@@ -3101,13 +3082,11 @@ vSphere 8을 사용하는 NVMe-oF의 경우 자세한 내용은 을 참조하십
   <block id="8065bff4940ae8d7161f926b0df47ac4" category="inline-link">NetApp 상호 운용성 매트릭스 툴</block>
   <block id="1479ddf58c038ab7d220ff734c74deaf" category="list-text">의 NFS v4.1 상호 운용성 표 노트를 참조하십시오<block ref="8813559f5b95abb5411182be29200aff" category="inline-link-rx"></block> 지원을 위해 필요한 특정 ESXi 패치 수준</block>
   <block id="24aaa4a688e881fa13d31656a85d40a9" category="list-text">NFS 내보내기 정책은 vSphere 호스트의 액세스를 제어하는 데 사용됩니다. 여러 볼륨(데이터 저장소)에 하나의 정책을 사용할 수 있습니다. NFSv3에서 ESXi는 sys(UNIX) 보안 스타일을 사용하며 VM을 실행하려면 루트 마운트 옵션이 필요합니다. ONTAP에서 이 옵션을 수퍼 유저라고 하며, 수퍼유저 옵션을 사용할 때 익명 사용자 ID를 지정할 필요가 없습니다. 에 대해 다른 값을 사용하여 정책 규칙을 내보냅니다<block ref="ea72d12ecaa06afdb0c8a3b15e485e95" prefix=" " category="inline-code"></block> 및<block ref="df809a941c1287d18c08bb5927b639dc" prefix=" " category="inline-code"></block> ONTAP 툴을 사용하여 SVM 검색 문제를 일으킬 수 있습니다. 샘플 정책은 다음과 같습니다.</block>
-  <block id="822366735aef72f1a9429ac86dda7338" category="list-text">액세스 프로토콜:NFS3</block>
   <block id="69abbd5c7cd9c1b3828b9aa5a894ff47" category="list-text">클라이언트 일치 사양: 192.168.42.21</block>
   <block id="bd6cc42f9cd65cca72cbd56d2f4bf43d" category="list-text">ro 액세스 규칙: sys</block>
   <block id="581c470a5099548fc9865a4bab8761f8" category="list-text">rw 액세스 규칙: sys</block>
   <block id="0bbc71e6a4ea49af70dd616d3807e524" category="list-text">익명 UID</block>
   <block id="59d5d8c898df18115bd4ced36c6bc0de" category="list-text">슈퍼유저: sys</block>
-  <block id="c184ce6b86d2e6fbf8681d61637c101b" category="list-text">VMware VAAI용 NetApp NFS 플러그인을 사용하는 경우 프로토콜을 로 설정해야 합니다<block ref="2521ef5d58fc027d3121662b7d8f9ac2" prefix=" " category="inline-code"></block> 엑스포트 정책 규칙이 생성되거나 수정된 경우 VAAI 복사 오프로드가 작동하고 프로토콜을 로 지정하려면 NFSv4 프로토콜이 필요합니다<block ref="2521ef5d58fc027d3121662b7d8f9ac2" prefix=" " category="inline-code"></block> 에서 NFSv3 및 NFSv4 버전을 모두 자동으로 포함합니다.</block>
   <block id="6670a317619282ec228a9ef492af0a76" category="list-text">NFS 데이터 저장소 볼륨은 SVM의 루트 볼륨에서 접합되므로 ESXi에서 루트 볼륨에 액세스하여 데이터 저장소 볼륨을 탐색하고 마운트해야 합니다. 루트 볼륨 및 데이터 저장소 볼륨의 교차점이 중첩된 다른 볼륨에 대한 내보내기 정책에는 읽기 전용 액세스를 부여하는 ESXi 서버에 대한 규칙 또는 규칙이 포함되어야 합니다. 다음은 VAAI 플러그인을 사용하는 루트 볼륨에 대한 샘플 정책입니다.</block>
   <block id="8c93fb3ff528165613797962f5a0ed9c" category="list-text">액세스 프로토콜: NFS(NFS3 및 nfs4 모두 포함)</block>
   <block id="80e6a4f964e826c69c1c62bd5ea67590" category="list-text">RW 액세스 규칙: 사용 안 함(루트 볼륨에 대한 최상의 보안)</block>
@@ -4281,7 +4260,6 @@ HA 쌍당 최소 2개의 LIF를 생성합니다. 작업 부하에 따라 더 많
   <block id="da76be2bc20d4e043d9a2019b817214f" category="inline-link">vSphere Client에서 클러스터를 생성하고 구성하는 방법</block>
   <block id="e02f3e9258a23204655bd512ec53911d" category="paragraph">을 참조하십시오<block ref="c06ae090600e7aa086edfa28514435e7" category="inline-link-rx"></block> vCenter HA를 구성합니다.</block>
   <block id="bdd88c75f085534f6e2cdc7726cf1dd6" category="paragraph">또한 을 참조하십시오<block ref="3a8301f60ad04eb873ae8dea15ee0495" category="inline-link-rx"></block>.</block>
-  <block id="7ed2d453d67762a9f20ad13c2f472fcb" category="section-title">vSphere Metro Storage Cluster란 무엇입니까?</block>
   <block id="38910d3dab2318849fd5f1a1dfbe0152" category="inline-link">VMware 스토리지 호환성 가이드 를 참조하십시오</block>
   <block id="eab65c9bc6c74eff9aee0d7f0c44276d" category="paragraph">vMSC(vSphere Metro Storage Cluster)는 VM(가상 머신) 및 컨테이너를 장애로부터 보호하는 인증 구성입니다. 이는 확장 스토리지 개념을 랙, 건물, 캠퍼스 또는 도시와 같은 여러 장애 도메인에 분산되는 ESXi 호스트 클러스터와 함께 사용하여 달성할 수 있습니다. NetApp MetroCluster 및 SnapMirror Active sync 스토리지 기술은 호스트 클러스터에 각각 RPO=0 또는 RPO=0 정도의 보호를 제공하는 데 사용됩니다. vMSC 구성은 완전한 물리적 또는 논리적 "사이트"에 장애가 발생하더라도 데이터를 항상 사용할 수 있도록 설계되었습니다. vMSC 구성에 포함된 스토리지 디바이스는 vMSC 인증 프로세스를 성공적으로 완료한 후 인증을 받아야 합니다. 지원되는 모든 저장 장치는 에서 찾을 수 있습니다<block ref="293ceee3268d7991d7fe245e02c1c5c9" category="inline-link-rx"></block>.</block>
   <block id="838b66b875df1b432ac420a98cba3db6" category="paragraph">vSphere Metro Storage Cluster의 설계 지침에 대한 자세한 내용은 다음 설명서를 참조하십시오.</block>
@@ -4304,10 +4282,8 @@ HA 쌍당 최소 2개의 LIF를 생성합니다. 작업 부하에 따라 더 많
   <block id="bca8b52c503406abc3e9e50c5352d0a2" category="paragraph">이 문서에서는 VMware의 업계 최고 수준의 DR(재해 복구) 소프트웨어인 VMware SRM(Site Recovery Manager)용 ONTAP 솔루션에 대해 소개합니다. 최신 제품 정보와 Best Practice를 통해 배포를 간소화하고 위험을 줄이며 지속적인 관리를 간소화할 수 있습니다.</block>
   <block id="4f46fffb0ac7017fd2b42c10d6aa03fc" category="paragraph">VM을 백업하고 신속하게 복구하는 것은 ONTAP for vSphere의 탁월한 강점 중 하나로서, vCenter에서 VMware vSphere용 SnapCenter 플러그인을 사용하여 이러한 기능을 쉽게 관리할 수 있습니다.</block>
   <block id="3a021eaaeb6692340890af4de2f7514a" category="paragraph">다음 섹션에서는 VMware 및 ONTAP SRM에 대한 구축 Best Practice에 대해 설명합니다.</block>
-  <block id="ff53ee8001042abcefe5c912d0b5012f" category="doc">vSphere 데이터 저장소 및 프로토콜 기능</block>
   <block id="b69cd5a82aaf0c524a71d46ec6fdd29c" category="cell">NFS v4.1 세션 트렁킹에는 ONTAP 9.14.1 이상이 필요합니다</block>
   <block id="80303385ad0f7147caa1af6d2162852b" category="paragraph">플러그인은 ONTAP용 VASA Provider의 다양한 기능을 위한 관리 인터페이스이기도 하여, VVOL을 통한 스토리지 정책 기반 관리를 지원합니다. VMware vSphere용 ONTAP 툴을 등록한 후 이를 사용하여 스토리지 기능 프로필을 생성하고 이를 스토리지에 매핑하며 시간이 지남에 따라 데이터 저장소가 프로파일을 준수하는지 확인합니다. VASA Provider는 VVOL 데이터 저장소를 생성하고 관리하는 인터페이스도 제공합니다.</block>
-  <block id="83fe2b10c55a47a84465ff5a93a3feda" category="list-text">VMware와 NetApp는 현재 ONTAP 9.14.1부터 NFSv4.1 세션 트렁킹을 지원합니다. 구체적인 버전에 대한 자세한 내용은 NetApp NFS 4.1 상호 운용성 매트릭스 참고 사항을 참조하십시오. NFSv3은 볼륨에 대한 여러 물리적 경로를 지원하지 않지만, vSphere 8.0U2부터 nconnect는 지원합니다. ONTAP 9.8을 사용하는 FlexGroup의 경우 VMware vSphere용 ONTAP 툴이 FlexGroup를 생성하도록 하는 것이 좋습니다. 그런 다음 마운트 해제하고 라운드 로빈 DNS를 사용하여 다시 마운트하여 클러스터에 로드를 분산해야 합니다. ONTAP 툴에서는 데이터 저장소를 마운트할 때 하나의 LIF만 사용합니다. 데이터 저장소를 다시 마운트한 후 ONTAP 툴을 사용하여 데이터 저장소를 모니터링하고 관리할 수 있습니다.</block>
   <block id="d9c9eb44a58ee1ce90daa68527aa8930" category="summary">MCC가 있는 vMSC에 대한 실패 시나리오</block>
   <block id="e7c7574b0826c9074f480de76c889ba8" category="paragraph">다음 섹션에서는 vMSC 및 NetApp MetroCluster 시스템의 다양한 장애 시나리오에서 예상되는 결과를 간략하게 설명합니다.</block>
   <block id="c8a2eebb480fef69e6ed917ea7f7a9d3" category="section-title">단일 스토리지 경로 오류</block>
@@ -4367,9 +4343,42 @@ HA 쌍당 최소 2개의 LIF를 생성합니다. 작업 부하에 따라 더 많
   <block id="e6364c2f5314a32cd95be04b4c2112e6" category="paragraph">다음 섹션에서는 ONTAP 스토리지에서 VMware VVOL을 사용하기 위한 절차 및 모범 사례를 간략히 설명합니다.</block>
   <block id="a9da618400fb93b20c20f5343efaefa7" category="sidebar">ONTAP이 지원되는 VMware vSphere Metro 스토리지 클러스터</block>
   <block id="2f58fa882a22b5af5f0741f03abaf611" category="sidebar">ONTAP이 포함된 vSphere Metro 스토리지 클러스터</block>
-  <block id="4ed162a87c3bbcd728e66cd9365c7660" category="sidebar">vMSC 개요</block>
-  <block id="111464465e5bb57958d189842ad5e093" category="sidebar">vSphere HA 솔루션</block>
-  <block id="422fa84cbd2dc1a741d30fa40ad8284d" category="sidebar">vMSC 설계</block>
-  <block id="f6aef7af169e3878f32a39224e7a6cb8" category="sidebar">vMSC 복원력</block>
-  <block id="dfcccfecca566c55bd84119f294cde76" category="sidebar">MCC를 포함한 vMSC 시나리오</block>
+  <block id="4a884da785a62e8b1758932191ff42de" category="paragraph">VMware, Oracle OLVM 또는 KVM을 통한 데이터베이스 가상화는 미션 크리티컬한 데이터베이스도 가상화를 선택한 NetApp 고객에게 점점 더 많이 사용되고 있습니다.</block>
+  <block id="3a8ba1ff8824968961222d6b447b4973" category="section-title">지원 가능성</block>
+  <block id="3231d83af741101eb02b16e5d7a6dffc" category="paragraph">가상화를 위한 Oracle 지원 정책, 특히 VMware 제품 관련 정책에 관해 많은 오해가 있습니다. Oracle Induight가 가상화를 지원하지 않는다는 말은 흔히 들립니다. 이는 틀린 생각이고, 가상화의 이점을 얻을 수 있는 기회를 놓치게 되는 결과를 낳습니다. Oracle Doc ID 249212.1은 실제 요구사항을 설명하며 고객이 관심사로 간주하는 경우는 거의 없습니다.</block>
+  <block id="722bd611ee4f38780607b400c8a604c0" category="paragraph">가상화된 서버에서 문제가 발생했고 이전에 Oracle Support에서 이 문제를 알려지지 않은 경우 고객은 물리적 하드웨어에서 문제를 재현하도록 요청받을 수 있습니다. 제품의 최첨단 버전을 실행하는 Oracle 고객은 지원 가능성 문제 때문에 가상화를 사용하려 하지 않을 수 있지만 일반적으로 제공되는 Oracle 제품 버전을 사용하는 가상화 고객의 경우에는 현실이 아니었습니다.</block>
+  <block id="c8a4476ecddeda66dbd2c354c8fb2c6b" category="paragraph">데이터베이스 가상화를 고려하는 고객은 비즈니스 요구사항을 근거로 스토리지 관련 결정을 내려야 합니다. 이는 모든 IT 결정에 있어 일반적으로 적용되는 사항이지만 요구 사항의 규모와 범위가 상당히 다르기 때문에 데이터베이스 프로젝트에서 특히 중요합니다.</block>
+  <block id="835ce293f862d9fb74e50f4cf928c56d" category="paragraph">스토리지 프레젠테이션에는 다음과 같은 세 가지 기본 옵션이 있습니다.</block>
+  <block id="327813abbc0ae1e9d3abe282303bf00c" category="list-text">하이퍼바이저 데이터 저장소의 가상화된 LUN</block>
+  <block id="1a1af5efffda8c766ead9f73fc782e0e" category="list-text">VM에 의해 마운트되는 NFS 파일 시스템(NFS 기반 데이터 저장소가 아님)</block>
+  <block id="f9bf9489147891f7ee7ba15126a27fda" category="list-text">직접 장치 매핑 VMware RDM은 고객이 선호하지 않지만 물리적 디바이스는 KVM 및 OLVM 가상화와 유사하게 직접 매핑되는 경우가 많습니다.</block>
+  <block id="69b0ac6bf6ea8e1ab4e4fc896294da01" category="paragraph">가상 게스트에 스토리지를 제공하는 방법은 일반적으로 성능에 영향을 미치지 않습니다. 호스트 OS, 가상화 네트워크 드라이버, 하이퍼바이저 데이터 저장소 구현은 모두 고도로 최적화되어 있으며 기본 모범 사례를 따르는 한 하이퍼바이저와 스토리지 시스템 간에 사용 가능한 FC 또는 IP 네트워크 대역폭을 모두 사용할 수 있습니다. 어떤 경우에는 다른 스토리지 프레젠테이션 방식에 비해 한 가지 스토리지 프레젠테이션 방식을 사용하면 최적의 성능을 얻는 것이 약간 더 쉬울 수 있지만 결과는 비슷해야 합니다.</block>
+  <block id="a2e8fb5328f6558e3a119d8c224a1897" category="paragraph">가상화된 게스트에 스토리지를 제공하는 방법을 결정하는 핵심 요소는 관리 능력입니다. 올바른 방법이나 잘못된 방법이 없습니다. 최상의 접근 방식은 IT 운영 요구사항, 기술 및 선호도에 따라 달라집니다.</block>
+  <block id="e4919ac0a074fa1bba5303f596a5f591" category="paragraph">고려해야 할 요소는 다음과 같습니다.</block>
+  <block id="c422e10bbf04c180f4c47f81ed9a1f7a" category="list-text">* 투명성. * VM이 파일 시스템을 관리할 때 데이터베이스 관리자나 시스템 관리자가 데이터에 대한 파일 시스템의 소스를 쉽게 식별할 수 있습니다. 파일 시스템 및 LUN은 물리적 서버와 달리 액세스됩니다.</block>
+  <block id="42de52ad09be3101fc535dea2aedce1d" category="list-text">* 정합성 보장. * VM이 파일 시스템을 소유하는 경우 하이퍼바이저 계층을 사용하거나 사용하지 않는 것은 관리 용이성에 영향을 미칩니다. 가상화 및 비가상화 환경 모두를 포함한 전체 자산에 걸쳐 프로비저닝, 모니터링, 데이터 보호 등에 같은 절차를 사용할 수 있습니다.</block>
+  <block id="0562446bc5eefe9a584e23ffb3061cbf" category="paragraph">반면에 100% 가상화된 데이터 센터라면 앞에서 언급한 것처럼 전체 설치 공간 전반에서 데이터 저장소 기반 스토리지를 사용하는 것이 더 나을 것입니다. 일관성 - 프로비저닝, 보호, 조정 및 데이터 보호에 대해서도 동일한 절차를 사용할 수 있는 능력입니다.</block>
+  <block id="7269a37b557c66664c0377693f62ec8a" category="list-text">* 안정성 및 문제 해결. * VM이 파일 시스템을 소유할 때 VM에 전체 스토리지 스택이 있기 때문에 우수하고 안정적인 성능 및 문제 해결이 간단해집니다. 여기서 하이퍼바이저는 FC 또는 IP 프레임을 운반하는 역할만 합니다. 데이터 저장소가 구성에 포함된 경우 시간 초과, 매개 변수, 로그 파일, 잠재적 버그 문제가 발생하여 구성이 복잡해집니다.</block>
+  <block id="c160b6d86853c20a432e2407b82866e6" category="list-text">* 공급업체 종속. * 데이터 저장소에 데이터를 배치한 후에는 다른 하이퍼바이저를 사용하거나 가상화된 환경에서 데이터를 완전히 가져오는 것이 어려워집니다.</block>
+  <block id="a42abd01a1e0c89cfa2112dc09378967" category="list-text">* Snapshot Enablement. * 상대적으로 제한된 대역폭으로 인해 가상화 환경의 기존 백업 절차가 문제가 될 수 있습니다. 예를 들어, 4포트 10GbE 트렁크는 여러 가상화 데이터베이스의 일상적인 성능 요구를 충분히 지원할 수 있지만 RMAN 또는 데이터의 전체 크기 복사본 스트리밍이 필요한 기타 백업 제품을 사용하여 백업을 수행하기에는 불충분합니다. 그 결과 점점 더 통합되는 가상화 환경에서 스토리지 스냅샷을 통해 백업을 수행해야 합니다. 따라서 백업 윈도우에서 순수하게 대역폭과 CPU 요구사항을 지원하기 위해 하이퍼바이저 구성을 오버 빌드할 필요가 없습니다.</block>
+  <block id="86c36175331b4a95c083fabdcca8b8a0" category="paragraph">게스트 소유 파일 시스템을 사용하면 보호가 필요한 스토리지 오브젝트를 더 쉽게 타겟팅할 수 있기 때문에 스냅샷 기반 백업과 복원을 활용하기가 어려울 수 있습니다. 그러나 데이터 저장소 및 스냅샷과 잘 통합되는 가상화 데이터 보호 제품이 점점 더 많아지고 있습니다. 가상화된 호스트에 스토리지를 제공하는 방법을 결정하기 전에 백업 전략을 완전히 고려해야 합니다.</block>
+  <block id="8c19dda4c4cab5e52edf9463f196b97d" category="section-title">데이터 저장소 스트라이핑</block>
+  <block id="8fa77493c52e71f201ccdb67db26446d" category="paragraph">데이터 저장소와 함께 데이터베이스를 사용할 때는 성능 스트라이핑과 관련하여 고려해야 할 중요한 한 가지 요소가 있습니다.</block>
+  <block id="53ab623a905e6ec84d908f0b99a8d1c8" category="paragraph">VMFS와 같은 데이터 저장소 기술은 여러 LUN을 확장할 수 있지만 스트라이핑된 디바이스는 아닙니다. LUN이 연결됩니다. 결과적으로 LUN 핫스팟이 될 수 있습니다. 예를 들어, 일반적인 Oracle 데이터베이스의 경우 8-LUN ASM 디스크 그룹이 있을 수 있습니다. 8개의 가상화된 LUN을 모두 8개의 LUN VMFS 데이터 저장소에 프로비저닝할 수 있지만 데이터가 상주할 LUN은 보장할 수 없습니다. 그 결과 VMFS 데이터 저장소 내에서 단일 LUN을 차지하는 8개의 가상화된 LUN이 모두 구성될 수 있습니다. 이로 인해 성능 병목 현상이 발생합니다.</block>
+  <block id="e6bb99e411f5495b03c1e0a4e75a1434" category="paragraph">일반적으로 스트라이핑이 필요합니다. KVM을 비롯한 일부 하이퍼바이저에서는 설명된 대로 LVM 스트라이핑을 사용하여 데이터 저장소를 구축할 수 있습니다 <block ref="dd0ff2598ebb26feb9ff73a59186b79f" category="inline-link-macro-rx"></block>. VMware를 사용하면 아키텍처가 조금 다르게 보입니다. 각 가상화된 LUN은 서로 다른 VMFS 데이터 저장소에 배치해야 합니다.</block>
+  <block id="506c2c0c7f5b70af3df68c45c46f45a7" category="paragraph">예를 들면 다음과 같습니다.</block>
+  <block id="6ec151851a31c86edd358bc49f80908c" category="paragraph"><block ref="6ec151851a31c86edd358bc49f80908c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="70ff2667d6b190dea65bae42217aa310" category="paragraph">이 접근 방식의 주요 동인은 ONTAP가 아닙니다. 단일 VM 또는 하이퍼바이저 LUN이 병렬로 처리할 수 있는 작업 수의 내재적 제한 때문입니다. 일반적으로 단일 ONTAP LUN은 호스트가 요청할 수 있는 것보다 훨씬 더 많은 IOPS를 지원할 수 있습니다. 단일 LUN 성능 제한은 거의 보편적으로 호스트 운영 체제의 결과입니다. 그 결과 대부분의 데이터베이스에서 성능 요구를 충족하기 위해 4~8개의 LUN이 필요합니다.</block>
+  <block id="59f9d8d1b212a8ff6bd3476975e17620" category="paragraph">VMware 아키텍처는 데이터 저장소 및/또는 LUN 경로 최대화가 이 접근 방식에서 발생하지 않도록 아키텍처를 신중하게 계획해야 합니다. 또한 모든 데이터베이스에 대해 고유한 VMFS 데이터 저장소 집합이 필요하지 않습니다. 각 호스트에 가상 LUN에서 스토리지 시스템 자체의 백엔드 LUN으로 연결되는 4-8개의 깨끗한 입출력 경로 세트가 있어야 합니다. 드문 경우지만 더 많은 데이터토어가 진정한 성능 요구 사항에 도움이 될 수 있지만 일반적으로 전체 데이터베이스의 95%에 대해 4-8개의 LUN으로 충분합니다. 8개의 LUN이 포함된 단일 ONTAP 볼륨은 일반적인 OS/ONTAP/네트워크 구성에서 최대 250,000개의 랜덤 Oracle 블록 IOPS를 지원할 수 있습니다.</block>
+  <block id="622b235a9123d972c612737c81eb55a1" category="inline-link">NFSv3 nConnect 기능을 지원하는 NetApp 및 VMware</block>
+  <block id="ee7dab8e6be0e4b3085e8fb1df295146" category="list-text">VMware와 NetApp는 현재 ONTAP 9.14.1부터 NFSv4.1 세션 트렁킹을 지원합니다. 구체적인 버전에 대한 자세한 내용은 NetApp NFS 4.1 상호 운용성 매트릭스 참고 사항을 참조하십시오. NFSv3은 볼륨에 대한 여러 물리적 경로를 지원하지 않지만, vSphere 8.0U2부터 nconnect는 지원합니다. nconnect에 대한 자세한 내용은 를 참조하십시오<block ref="2668e8271f58131cbbe97dab01f83475" category="inline-link-rx"></block>. ONTAP 9.8을 사용하는 FlexGroup의 경우 VMware vSphere용 ONTAP 툴이 FlexGroup를 생성하도록 하는 것이 좋습니다. 그런 다음 마운트 해제하고 라운드 로빈 DNS를 사용하여 다시 마운트하여 클러스터에 로드를 분산해야 합니다. ONTAP 툴에서는 데이터 저장소를 마운트할 때 하나의 LIF만 사용합니다. 데이터 저장소를 다시 마운트한 후 ONTAP 툴을 사용하여 데이터 저장소를 모니터링하고 관리할 수 있습니다.</block>
+  <block id="7564f732469e12963d8b416572cf4efb" category="section-title">vSphere Metro Storage Cluster란 무엇입니까?</block>
+  <block id="830d984ea50f71fa76636d0524167a3a" category="doc">vSphere 데이터 저장소 및 프로토콜 기능 개요</block>
+  <block id="7bbcbf5b4bf3f23dc1b710dfd65de967" category="list-text">VMware는 vSphere 8.0U2부터 NFSv3을 사용하여 nconnect를 지원합니다. nconnect에 대한 자세한 내용은 를 참조하십시오<block ref="2668e8271f58131cbbe97dab01f83475" category="inline-link-rx"></block></block>
+  <block id="1d1d9d816e63b6c7d3057732579e8889" category="list-text">VMware VAAI용 NetApp NFS 플러그인을 사용하는 경우 프로토콜을 로 설정해야 합니다<block ref="2521ef5d58fc027d3121662b7d8f9ac2" prefix=" " category="inline-code"></block> 대신<block ref="61a52f7a75745796f63ec9e3ea2547b4" prefix=" " category="inline-code"></block> 엑스포트 정책 규칙이 생성되거나 수정된 경우 VAAI 복사본 오프로드 기능을 사용하려면 데이터 프로토콜이 NFSv3인 경우에도 NFSv4 프로토콜이 작동되어야 합니다. 프로토콜을 로 지정합니다<block ref="2521ef5d58fc027d3121662b7d8f9ac2" prefix=" " category="inline-code"></block> NFSv3 및 NFSv4 버전을 모두 포함합니다.</block>
+  <block id="cc0f7f705e4495c607aea288505e31bf" category="sidebar">vMSC 개요</block>
+  <block id="de9a829f775bc333b77fdacbc333f7a1" category="sidebar">vSphere HA 솔루션</block>
+  <block id="70b29c8dabeb7a16884003c35e163f96" category="sidebar">vMSC 설계</block>
+  <block id="6c4755219197ce467bf892a552c8663a" category="sidebar">vMSC 복원력</block>
+  <block id="13376e3e9b02a56731aa64aeb10947b2" category="sidebar">MCC와 vMSC 시나리오</block>
 </blocks>
