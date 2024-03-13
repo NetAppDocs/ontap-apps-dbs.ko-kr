@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-ontap-config-qos.html 
 keywords: qos, bandwidth, minimum, guaranteed 
-summary: QoS를 사용한 Oracle 성능 관리 
+summary: ONTAP QoS를 사용하여 Oracle 데이터베이스 성능을 관리합니다 
 ---
-= Oracle 데이터베이스의 서비스 품질
+= ONTAP QoS를 사용하여 Oracle 데이터베이스 성능을 관리합니다
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

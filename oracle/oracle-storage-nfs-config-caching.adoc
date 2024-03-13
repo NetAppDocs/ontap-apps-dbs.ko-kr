@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-storage-nfs-config-caching.html 
 keywords: NFS 
-summary: NFS 속성 데이터베이스 캐싱 
+summary: Oracle 데이터베이스를 통한 NFS 캐싱 
 ---
-= 데이터베이스를 통한 NFS 캐싱
+= Oracle 데이터베이스를 통한 NFS 캐싱
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

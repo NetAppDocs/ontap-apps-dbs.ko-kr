@@ -1,10 +1,10 @@
 ---
 permalink: oracle/oracle-dr-smbc-failure-scenarios.html 
 sidebar: sidebar 
-keywords: SM-BC, smbc, failover 
-summary: Oracle SM-BC 장애 시나리오 
+keywords: SnapMirror active sync, smbc, failover 
+summary: Oracle 데이터베이스 및 SnapMirror 활성 동기화 실패 시나리오 
 ---
-= Oracle SM-BC 장애 시나리오
+= Oracle 데이터베이스 및 SnapMirror 활성 동기화 장애 시나리오
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: Oracle SM-BC 장애 시나리오
 
 
 [role="lead"]
-SnapMirror SM-BC(Business Continuity) 장애 시나리오마다 결과가 다를 수 있습니다.
+SnapMirror 활성 동기화(SM-AS) 장애 시나리오가 각각 다른 결과를 가지고 있습니다.
 
 [cols="1,1"]
 |===
@@ -43,7 +43,7 @@ I/O 중단 없음.
 | 디스크 손실 | 입출력은 최대 3개의 연속 디스크 장애에 대해 계속됩니다. RAID-TEC의 일부입니다. 
 
 
-| 일반적인 구축 환경에서 전체 사이트 손실 | 오류가 발생한 사이트의 서버는 더 이상 사용할 수 없습니다. 클러스터링을 지원하는 응용 프로그램은 두 사이트에서 모두 실행되고 대체 사이트에서 계속 작동하도록 구성할 수 있습니다. 하지만 대부분의 응용 프로그램에는 SM-BC가 중재자를 요구하는 것과 유사한 3차 사이트 Tiebreaker가 필요합니다.
+| 일반적인 구축 환경에서 전체 사이트 손실 | 오류가 발생한 사이트의 서버는 더 이상 사용할 수 없습니다. 클러스터링을 지원하는 응용 프로그램은 두 사이트에서 모두 실행되고 대체 사이트에서 계속 작동하도록 구성할 수 있습니다. 하지만 대부분의 응용 프로그램은 SM-AS에서 중재자가 필요한 방식과 유사한 3차 사이트 Tiebreaker가 필요합니다.
 
 애플리케이션 레벨 클러스터가 없으면 정상 사이트에서 애플리케이션을 시작해야 합니다. 이 경우 가용성에 영향을 미치지만 RPO=0은 유지됩니다. 데이터는 손실되지 않습니다. 
 |===

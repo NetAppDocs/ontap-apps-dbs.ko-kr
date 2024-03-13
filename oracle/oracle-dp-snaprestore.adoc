@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-dp-snaprestore.html 
 keywords: ontap, snaprestore 
-summary: NetApp SnapRestore 기술을 통해 ONTAP에서 스냅샷 복사본으로 신속하게 Oracle 데이터베이스 복구 수행 
+summary: SnapRestore을 사용한 신속한 Oracle 데이터베이스 복구 
 ---
-= SnapRestore
+= SnapRestore을 사용한 신속한 Oracle 데이터베이스 복구
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

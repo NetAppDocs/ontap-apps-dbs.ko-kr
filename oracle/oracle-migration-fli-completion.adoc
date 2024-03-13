@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-migration-fli-completion.html 
 keywords: migration, oracle, FLI 
-summary: FLI 컷오버 완료 - Oracle 
+summary: FLI를 사용한 Oracle 마이그레이션 완료 
 ---
-= FLI 완료 - Oracle
+= FLI를 사용한 Oracle 마이그레이션 완료
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

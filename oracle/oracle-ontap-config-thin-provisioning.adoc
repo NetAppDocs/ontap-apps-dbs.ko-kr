@@ -4,7 +4,7 @@ permalink: oracle/oracle-ontap-config-thin-provisioning.html
 keywords: thin provisioning, oracle 
 summary: Oracle 및 ONTAP 씬 프로비저닝 
 ---
-= Oracle을 사용한 씬 프로비저닝
+= Oracle 데이터베이스를 사용한 씬 프로비저닝
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

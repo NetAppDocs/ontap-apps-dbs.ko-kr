@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-host-config-asmlib-afd.html 
 keywords: oracle, database, ontap, asmlib, block size, oracleasm, multipath, afd 
-summary: Linux 및 ASMlib/ASM 필터 드라이버를 사용하는 ONTAP 기반 Oracle 
+summary: Linux 및 ASMlib/ASM Filter Driver를 사용하는 Oracle 데이터베이스 
 ---
-= ASMlib 및 ASM 필터 드라이버
+= ASMLib/AFD를 사용하는 Oracle 데이터베이스(ASM 필터 드라이버)
 :allow-uri-read: 
 
 

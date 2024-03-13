@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-dr-snapmirror-log-replay.html 
 keywords: oracle, ontap, disaster recovery, log reply, log shipping 
-summary: on ONTAP DR 절차 및 로그 전달 
+summary: 로그 전달을 통한 Oracle 데이터베이스 DR 
 ---
-= 로그 재생을 사용한 재해 복구
+= 로그 전달을 통한 Oracle 데이터베이스 DR
 :allow-uri-read: 
 
 

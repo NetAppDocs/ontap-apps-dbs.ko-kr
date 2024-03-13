@@ -2,9 +2,9 @@
 permalink: oracle/oracle-app-config-mbr.html 
 sidebar: sidebar 
 keywords: oracle, database, ontap, db_file_multiblock_read_count, multiblock 
-summary: Oracle 다중 블록 읽기 매개 변수 
+summary: Oracle 데이터베이스 매개 변수 -db_file_multiblock_read_count 
 ---
-= db_file_multiblock_read_count입니다
+= Oracle 데이터베이스 매개 변수: db_file_multiblock_read_count
 :allow-uri-read: 
 
 

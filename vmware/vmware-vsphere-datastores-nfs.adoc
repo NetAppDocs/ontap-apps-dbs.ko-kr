@@ -23,7 +23,7 @@ vSphere와 함께 ONTAP NFS를 사용할 때는 다음과 같은 Best Practice�
 +
 ** NFSv3과 NFSv4.1 간에는 자동 데이터 저장소가 변환되지 않으므로 새로운 NFSv4.1 데이터 저장소를 생성하고 Storage vMotion을 사용하여 VM을 새 데이터 저장소로 마이그레이션합니다.
 ** 의 NFS v4.1 상호 운용성 표 노트를 참조하십시오 https://mysupport.netapp.com/matrix/["NetApp 상호 운용성 매트릭스 툴"^] 지원을 위해 필요한 특정 ESXi 패치 수준
-** VMware는 vSphere 8.0U2부터 NFSv3을 사용하여 nconnect를 지원합니다. nconnect에 대한 자세한 내용은 를 참조하십시오 https://docs.netapp.com/us-en/netapp-solutions_nconnect/virtualization/vmware-vsphere8-nfsv3-nconnect.html["NFSv3 nConnect 기능을 지원하는 NetApp 및 VMware"]
+** VMware는 vSphere 8.0U2부터 NFSv3을 사용하여 nconnect를 지원합니다. nconnect에 대한 자세한 내용은 를 참조하십시오 link:vmware-vsphere-network.html#nfs["여기"].
 
 
 * NFS 내보내기 정책은 vSphere 호스트의 액세스를 제어하는 데 사용됩니다. 여러 볼륨(데이터 저장소)에 하나의 정책을 사용할 수 있습니다. NFSv3에서 ESXi는 sys(UNIX) 보안 스타일을 사용하며 VM을 실행하려면 루트 마운트 옵션이 필요합니다. ONTAP에서 이 옵션을 수퍼 유저라고 하며, 수퍼유저 옵션을 사용할 때 익명 사용자 ID를 지정할 필요가 없습니다. 에 대해 다른 값을 사용하여 정책 규칙을 내보냅니다 `-anon` 및 `-allow-suid` ONTAP 툴을 사용하여 SVM 검색 문제를 일으킬 수 있습니다. 샘플 정책은 다음과 같습니다.

@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-host-config-linux.html 
 keywords: oracle, database, ontap, linux, nfs, xfs, ext4, slot tables 
-summary: Linux를 사용하는 ONTAP 기반의 Oracle 
+summary: Oracle 데이터베이스 및 Linux 
 ---
-= 리눅스
+= Oracle 데이터베이스 및 Linux
 :allow-uri-read: 
 
 

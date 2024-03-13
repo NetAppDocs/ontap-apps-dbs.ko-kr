@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-migration-fli-planning.html 
 keywords: migration, oracle, fli 
-summary: FLI 마이그레이션을 위한 ONTAP 준비 
+summary: FLI-Planning을 사용한 Oracle 마이그레이션 
 ---
-= FLI 계획 - Oracle
+= FLI-Planning을 사용한 Oracle 마이그레이션
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

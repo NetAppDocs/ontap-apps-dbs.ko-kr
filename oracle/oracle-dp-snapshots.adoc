@@ -2,14 +2,14 @@
 sidebar: sidebar 
 permalink: oracle/oracle-dp-snapshots.html 
 keywords: oracle, database, ontap, snapshots 
-summary: ONTAP 기반 Oracle 및 스냅샷의 역할 
+summary: ONTAP 기반 Oracle 데이터베이스 및 스냅샷의 역할 
 ---
-= 스냅샷 기반 백업
+= Oracle 데이터베이스 및 스냅샷 기반 백업
 :allow-uri-read: 
 
 
 [role="lead"]
-ONTAP에서 Oracle 데이터 보호의 기반은 NetApp Snapshot 기술입니다.
+ONTAP에서 Oracle 데이터베이스 데이터 보호의 기반은 NetApp Snapshot 기술입니다.
 
 키 값은 다음과 같습니다.
 

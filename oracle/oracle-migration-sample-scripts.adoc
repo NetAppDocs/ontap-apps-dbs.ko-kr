@@ -4,7 +4,7 @@ permalink: oracle/oracle-migration-sample-scripts.html
 keywords: oracle, Scripts 
 summary: Oracle 마이그레이션 작업 자동화를 위한 샘플 스크립트 
 ---
-= 샘플 스크립트
+= Oracle 마이그레이션 절차 샘플 스크립트
 :allow-uri-read: 
 
 

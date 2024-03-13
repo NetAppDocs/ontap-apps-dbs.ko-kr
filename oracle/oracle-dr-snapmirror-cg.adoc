@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-dr-snapmirror-cg.html 
 keywords: oracle, data protection, DR, CG 
-summary: Oracle 데이터베이스에 대한 정합성 보장 그룹 복제 
+summary: Oracle 데이터베이스 및 정합성 보장 그룹 재해 복구 
 ---
-= 일관성 그룹 재해 복구
+= Oracle 데이터베이스 및 정합성 보장 그룹 재해 복구
 :allow-uri-read: 
 
 

@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-host-config-solaris.html 
 keywords: oracle, database, ontap, solaris, zfs 
-summary: Solaris를 사용하는 ONTAP 기반 Oracle 
+summary: Solaris를 사용한 Oracle 데이터베이스 
 ---
-= Solaris
+= Solaris를 사용한 Oracle 데이터베이스
 :allow-uri-read: 
 
 

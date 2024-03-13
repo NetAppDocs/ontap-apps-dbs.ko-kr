@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-virtualization-introduction.html 
 keywords: oracle, database, ontap, virtualization, esx, hyper-v, KVM 
-summary: 데이터베이스 가상화 소개 
+summary: Oracle 데이터베이스 가상화 소개 
 ---
-= 포함되었습니다
+= Oracle 데이터베이스 가상화
 :allow-uri-read: 
 
 

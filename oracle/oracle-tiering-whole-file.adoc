@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-tiering-whole-file.html 
 keywords: tiering, fabricpool 
-summary: Oracle 전체 타일 계층화 
+summary: Oracle 데이터베이스 전체 파일 FabricPool 계층화 
 ---
-= Oracle 전체 파일 계층화
+= Oracle 데이터베이스 전체 파일 FabricPool 계층화
 :allow-uri-read: 
 
 

@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-dr-mcc-physical.html 
 keywords: metrocluster, MCC, MCC-IP 
-summary: MetroCluster 물리적 아키텍처 - Oracle 
+summary: MetroCluster 물리적 아키텍처 및 Oracle 데이터베이스 
 ---
-= MetroCluster 물리적 아키텍처 - Oracle
+= MetroCluster 물리적 아키텍처 및 Oracle 데이터베이스
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

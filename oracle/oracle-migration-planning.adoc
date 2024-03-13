@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-migration-planning.html 
 keywords: migration, oracle 
-summary: Oracle 마이그레이션 계획 
+summary: Oracle 데이터베이스 마이그레이션 계획 
 ---
-= Oracle 마이그레이션 계획
+= Oracle 데이터베이스 마이그레이션 계획
 :allow-uri-read: 
 
 

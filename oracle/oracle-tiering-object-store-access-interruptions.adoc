@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-tiering-object-store-access-interruptions.html 
 keywords: tiering, fabricpool, interruption 
-summary: 오브젝트 저장소의 액세스가 중단되는 동안 데이터베이스 액세스가 가능합니다 
+summary: Oracle 데이터베이스 및 오브젝트 저장소 액세스 중단 
 ---
-= 오브젝트 저장소 액세스가 중단됩니다
+= Oracle 데이터베이스 및 오브젝트 저장소 액세스 중단
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

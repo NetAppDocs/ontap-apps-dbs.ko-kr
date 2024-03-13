@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-app-config-rac.html 
 keywords: oracle, database, ontap, rac, disktimeout, misscount 
-summary: 네트워크 스토리지가 있는 Oracle RAC 설정 
+summary: Oracle RAC 시간 초과 
 ---
-= Oracle RAC(Real Application Clusters)
+= Oracle RAC(Real Application Clusters) 시간 초과
 :allow-uri-read: 
 
 

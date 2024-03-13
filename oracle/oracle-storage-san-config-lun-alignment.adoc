@@ -4,7 +4,7 @@ permalink: oracle/oracle-storage-san-config-lun-alignment.html
 keywords: SAN, ASM, LVM 
 summary: Oracle 데이터베이스와의 LUN 정렬 
 ---
-= Oracle 입출력에 대한 LUN 정렬
+= Oracle 데이터베이스 입출력에 대한 LUN 정렬
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

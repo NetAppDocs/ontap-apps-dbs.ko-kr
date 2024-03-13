@@ -150,19 +150,19 @@ entries:
       url: "/oracle/oracle-dr-mcc-failover.html"
     - title: NVFAIL(* NVFAIL
       url: "/oracle/oracle-dr-mcc-nvfail.html"
-    - title: MetroCluster에 단일 인스턴스
+    - title: MetroCluster 기반 Oracle SI
       url: "/oracle/oracle-dr-mcc-si.html"
     - title: MetroCluster 기반 Oracle RAC
       url: "/oracle/oracle-dr-mcc-rac.html"
-  - title: SnapMirror 비즈니스 연속성
+  - title: SnapMirror 활성 동기화
     entries:
     - title: 있습니다
       url: "/oracle/oracle-dr-smbc-architecture.html"
     - title: 페일오버
       url: "/oracle/oracle-dr-smbc-failover.html"
-    - title: SM-BC에 단일 인스턴스
+    - title: SnapMirror 활성 동기화가 포함된 Oracle SI
       url: "/oracle/oracle-dr-smbc-si.html"
-    - title: SM-BC 기반 Oracle RAC
+    - title: SnapMirror 활성 동기화가 포함된 Oracle RAC
       url: "/oracle/oracle-dr-smbc-rac.html"
     - title: 실패 시나리오
       url: "/oracle/oracle-dr-smbc-failure-scenarios.html"

@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-tiering-policies.html 
 keywords: tiering, fabricpool 
-summary: Oracle 계층화 정책 
+summary: Oracle 데이터베이스 FabricPool 계층화 정책 
 ---
-= Oracle 데이터베이스 계층화 정책
+= Oracle 데이터베이스 FabricPool 계층화 정책
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

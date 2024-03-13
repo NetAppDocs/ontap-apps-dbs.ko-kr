@@ -4,7 +4,7 @@ permalink: oracle/oracle-network-config-fc.html
 keywords: SAN, zoning 
 summary: Oracle 데이터베이스를 위한 FC 네트워크 구성 
 ---
-= Oracle을 위한 FC 구성
+= Oracle 데이터베이스를 위한 FC 구성
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

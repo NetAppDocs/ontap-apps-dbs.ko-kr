@@ -76,7 +76,7 @@ ONTAP와 특정 기타 NetApp 제품은 이제 다양한 방법을 사용한 다
 
 자동화를 위해서는 API 호출이 필요하지만, 모든 툴에 전체 관리 액세스가 필요한 것은 아닙니다. 자동화 시스템의 보안을 유지하기 위해 RBAC는 API 레벨에서도 사용할 수 있습니다. 자동화 사용자 계정을 필요한 API 호출로 제한할 수 있습니다. 예를 들어, 모니터링 소프트웨어는 변경 액세스가 필요하지 않고 읽기 액세스만 있으면 됩니다. 스토리지를 프로비저닝하는 워크플로우에는 스토리지를 삭제하는 기능이 필요하지 않습니다.
 
-자세한 내용을 보려면 를 시작하십시오 link:https://docs.netapp.com/us-en/ontap-automation/rest/rbac_overview.html["여기."]
+자세한 내용을 보려면 c https://docs.netapp.com/us-en/ontap-automation/rest/rbac_overview.html[here.] 를 시작하십시오
 
 
 

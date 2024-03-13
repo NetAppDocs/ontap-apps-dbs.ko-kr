@@ -4,7 +4,7 @@ permalink: oracle/oracle-network-config-ethernet.html
 keywords: ethernet, jumbo frames, MTU 
 summary: Oracle 및 TCP/IP 및 이더넷 구성 
 ---
-= Oracle Database용 TCP/IP 및 이더넷 구성
+= Oracle 데이터베이스용 TCP/IP 및 이더넷 구성
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

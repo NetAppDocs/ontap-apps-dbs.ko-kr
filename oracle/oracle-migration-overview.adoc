@@ -4,12 +4,12 @@ permalink: oracle/oracle-migration-overview.html
 keywords: oracle, ontap, migrations, TR-4534 
 summary: Oracle 스토리지 마이그레이션 소개 
 ---
-= NetApp 스토리지 시스템으로 Oracle 데이터베이스 마이그레이션
+= Oracle 데이터베이스를 ONTAP 스토리지 시스템으로 마이그레이션
 :allow-uri-read: 
 
 
 [role="lead"]
-새로운 스토리지 플랫폼의 기능 활용에는 한 가지 필연적인 요구사항이 있으므로 데이터를 새로운 스토리지 시스템에 배치해야 합니다.
+새로운 스토리지 플랫폼의 기능 활용에는 한 가지 필연적인 요구사항이 있으므로 데이터를 새로운 스토리지 시스템에 배치해야 합니다. ONTAP를 사용하면 ONTAP에서 ONTAP로의 마이그레이션 및 업그레이드, 외부 LUN 가져오기, 호스트 운영 체제 또는 Oracle 데이터베이스 소프트웨어를 직접 사용하는 절차 등 마이그레이션 프로세스를 간소화할 수 있습니다.
 
 
 NOTE: 이 문서는 이전에 게시된 기술 보고서 _TR-4534: Oracle 데이터베이스를 NetApp 스토리지 시스템으로 마이그레이션 _ 을(를) 대체합니다

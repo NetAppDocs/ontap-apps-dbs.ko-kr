@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-tiering-partial-file.html 
 keywords: tiering, fabricpool 
-summary: FabricPool를 통한 부분 파일 계층화 
+summary: Oracle 부분 파일 FabricPool 계층화 
 ---
-= Oracle 부분 파일 계층화
+= Oracle 부분 파일 FabricPool 계층화
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

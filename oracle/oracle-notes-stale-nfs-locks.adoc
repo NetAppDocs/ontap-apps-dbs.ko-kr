@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: oracle/oracle-notes-stale-nfs-locks.html 
 keywords: oracle, database, ontap, stale, nfs, locks 
-summary: Oracle 및 오래된 NFSv3 잠금 
+summary: Oracle 데이터베이스 및 오래된 NFSv3 잠금 
 ---
 = 부실 NFSv3 잠금 및 Oracle 데이터베이스
 :hardbreaks:
