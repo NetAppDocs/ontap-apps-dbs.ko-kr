@@ -1,0 +1,4270 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head class="at-element-marker">
+  <title>서비스 품질(QoS)</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="서비스 품질(QoS)" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/ko-kr/ontap-apps-dbs/vmware/vmware-vsphere-qos.html" />
+	<meta property="og:description" content="SnapCenter를 사용하면 여러 작업에 적용할 수 있는 백업 정책을 생성할 수 있습니다. 이러한 정책은 스케줄, 보존, 복제 및 기타 기능을 정의할 수 있습니다. 또한 VM 정합성 보장 스냅샷의 선택 옵션을 계속 허용하므로 VMware 스냅샷을 생성하기 전에 하이퍼바이저의 입출..." />
+  <meta property="og:image" content="https://docs.netapp.com/ko-kr/ontap-apps-dbs/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="SnapCenter를 사용하면 여러 작업에 적용할 수 있는 백업 정책을 생성할 수 있습니다. 이러한 정책은 스케줄, 보존, 복제 및 기타 기능을 정의할 수 있습니다. 또한 VM 정합성 보장 스냅샷의 선택 옵션을 계속 허용하므로 VMware 스냅샷을 생성하기 전에 하이퍼바이저의 입출...">
+  <meta name="keywords" content=" Data protection, Space reclamation, VM and datastore cloning, Storage efficiency, thin provisioning, QoS, SIOC, Storage Distributed Resource Scheduler, DRS, Active IQ Unified Manager, Encryption"><!-- Icons -->
+  <link rel="icon" href="/ko-kr/ontap-apps-dbs/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+
+  <!-- Combined CSS -->
+  <link rel="stylesheet" type="text/css" href="/ko-kr/ontap-apps-dbs/css/ie-netappdocs.css">
+
+  
+  <link rel="stylesheet" href="/ko-kr/ontap-apps-dbs/css/ie-landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/ko-kr/ontap-apps-dbs/css/ie-tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel="canonical" href="https://docs.netapp.com/ko-kr/ontap-apps-dbs/vmware/vmware-vsphere-qos.html" />
+  <link rel="alternate" hreflang="x-default" href="https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vsphere-qos.html" />
+  <link rel="alternate" hreflang="ko" href="https://docs.netapp.com/ko-kr/ontap-apps-dbs/vmware/vmware-vsphere-qos.html" />
+  <link rel="alternate" hreflang="en" href="https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vsphere-qos.html" />
+  <link rel="alternate" hreflang="ja" href="https://docs.netapp.com/ja-jp/ontap-apps-dbs/vmware/vmware-vsphere-qos.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://docs.netapp.com/zh-cn/ontap-apps-dbs/vmware/vmware-vsphere-qos.html" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://docs.netapp.com/zh-tw/ontap-apps-dbs/vmware/vmware-vsphere-qos.html" />
+  <link rel="alternate" hreflang="de" href="https://docs.netapp.com/de-de/ontap-apps-dbs/vmware/vmware-vsphere-qos.html" />
+  <link rel="alternate" hreflang="es" href="https://docs.netapp.com/es-es/ontap-apps-dbs/vmware/vmware-vsphere-qos.html" />
+  <link rel="alternate" hreflang="fr" href="https://docs.netapp.com/fr-fr/ontap-apps-dbs/vmware/vmware-vsphere-qos.html" />
+  <link rel="alternate" hreflang="it" href="https://docs.netapp.com/it-it/ontap-apps-dbs/vmware/vmware-vsphere-qos.html" />
+  <!-- Top level site integrations -->
+<script type="text/javascript" src="https://cdn.cookielaw.org/consent/72570c5c-fe30-465f-b0e0-b77f7fb4ae34/OtAutoBlock.js"></script>
+    <script type="text/javascript" src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" charset="UTF-8" data-document-language="true" data-domain-script="72570c5c-fe30-465f-b0e0-b77f7fb4ae34"></script>
+    <script type="text/javascript">function OptanonWrapper() { }</script>
+    <script type="text/plain" class="optanon-category-C0002" src="https://assets.adobedtm.com/60287eadf1ee/c284da483c83/launch-e9ff3acac59f.min.js"></script>
+    <script class="optanon-category-C0001">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.setAttributeNode(d.createAttribute('data-ot-ignore'));j.setAttribute('class','optanon-category-C0001');j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl+'';f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-MD73T9M');</script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  
+  <script>
+    $(document).ready(function() {
+      const MASTHEAD_OFFSET = 65;
+      const SECTIONS = $("main h2, main h3");
+      // PAGE NAV - Init
+      if (SECTIONS.length == 0) {
+        // remove if there is no elements
+        /*
+        $("#ie-right-navbar").remove();
+        $("#ie-right-navbar-collapse").remove();
+        */
+      } else {
+        $(".page-nav-title").css('display', 'block');
+        for (var i = 0; i < SECTIONS.length; i++) {
+          var sectionId = $(SECTIONS[i]).attr('id');
+          var sectionName = $(SECTIONS[i]).text();
+          var subClass = $(SECTIONS[i]).is("h3") ? ' page-nav__sublink' : '';
+          $("#page-menu").append('<li class="page-nav-item"><a href="#' + sectionId + '" class="page-nav__link' + subClass + '">' + sectionName + '</a></li>');
+        }
+      }
+    });
+  </script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/ko-kr/ontap-apps-dbs/js/na-search.js'></script><script src='/ko-kr/ontap-apps-dbs/js/ie-clouddocs.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><script>
+    /*
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+      */
+  </script>
+  <script src='/ko-kr/ontap-apps-dbs/js/custom-dropdown.js'></script>
+  <script src='/ko-kr/ontap-apps-dbs/js/FileSaver.min.js'></script>
+  <script src='/ko-kr/ontap-apps-dbs/js/jszip-utils.min.js'></script>
+  <script src='/ko-kr/ontap-apps-dbs/js/jszip.min.js'></script><script src='/ko-kr/ontap-apps-dbs/js/ie-pdf-ux.js'></script></head>
+
+
+  <body class role="document" data-flavor="">
+    <div class="skip-to-main">
+      <a href="#main" >Skip to main content</a>
+    </div><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MD73T9M"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><div id="page" class="">
+      <div id="ie-phone-menu" class=""></div>
+      <div id="ie-content-wrap" class="">
+        <nav id="ie-new-header">
+    <ul>
+        <li id="ie-phone-menu-button">
+            <a href="#">
+                <image id="" src="/ko-kr/ontap-apps-dbs/images/hamburger.svg" alt="menu" />
+            </a>
+        </li>
+
+        <li>
+            <a href="https://www.netapp.com/kr">
+                <image id="ie-header-logo" src="/ko-kr/ontap-apps-dbs/images/netapp_logo.svg" alt="netapp" />
+            </a>
+        </li>
+        <li id="ie-header-docs">
+            <a href="https://www.netapp.com/support-and-training/documentation/">문서</a>
+        </li>
+
+        <!-- Empty container to push header left with or without lang selector -->
+        <li id="empty-container" style="margin-left: auto">
+        </li>
+        <!-- Start Language Selector --><li id="ie-language-dropdown">
+            <div id="language-dropdown" class="custom-dropdown custom-dropdown-lang">
+                <div class="custom-dropdown-select custom-dropdown-select-lang">
+                    <img src="/ko-kr/ontap-apps-dbs/images/language_white_24dp.svg" class="n-globe__icon" />
+                    <span class="lang-name">한국어</span>
+                    <img src="/ko-kr/ontap-apps-dbs/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown header invisible" />
+                    <img src="/ko-kr/ontap-apps-dbs/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup header" />
+                    </button>
+                </div>
+
+                <ul class="custom-dropdown-menu"><li>
+                        <a href="https://docs.netapp.com/ko-kr/ontap-apps-dbs/vmware/vmware-vsphere-qos.html"
+                            target="_self"><span translate="no" class="notranslate">한국어</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vsphere-qos.html"
+                            target="_self"><span translate="no" class="notranslate">English</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/ja-jp/ontap-apps-dbs/vmware/vmware-vsphere-qos.html"
+                            target="_self"><span translate="no" class="notranslate">日本語</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/zh-cn/ontap-apps-dbs/vmware/vmware-vsphere-qos.html"
+                            target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/zh-tw/ontap-apps-dbs/vmware/vmware-vsphere-qos.html"
+                            target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/de-de/ontap-apps-dbs/vmware/vmware-vsphere-qos.html"
+                            target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/es-es/ontap-apps-dbs/vmware/vmware-vsphere-qos.html"
+                            target="_self"><span translate="no" class="notranslate">Español</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/fr-fr/ontap-apps-dbs/vmware/vmware-vsphere-qos.html"
+                            target="_self"><span translate="no" class="notranslate">Français</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/it-it/ontap-apps-dbs/vmware/vmware-vsphere-qos.html"
+                            target="_self"><span translate="no" class="notranslate">Italiano</span></a>
+                    </li></ul>
+            </div>
+            </li>
+        <!-- End Language Selector -->
+
+
+        <li id="ie-allnetapp">
+            <div id="allnetapp-dropdown" class="custom-dropdown custom-dropdown-allnetapp">
+                <div class="custom-dropdown-select custom-dropdown-select-allnetapp">
+                    <img src="/ko-kr/ontap-apps-dbs/images/apps_white_24dp.svg" alt="" class="allnetapp-icon" />
+                    <span class="allnetapp-name">모든 NetApp</span>
+                    <img src="/ko-kr/ontap-apps-dbs/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown header invisible" />
+                    <img src="/ko-kr/ontap-apps-dbs/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup header" />
+                    </button>
+                </div>
+
+                <ul class="custom-dropdown-menu allnetapp-dropdown">
+                    <li>
+                        <a href="https://bluexp.netapp.com/"
+                            target="_self"><span translate="no" class="notranslate">BlueXP</span></a>
+                    </li>
+                    <li>
+                        <a href="https://mysupport.netapp.com/site/"
+                            target="_self"><span translate="no" class="notranslate">지원</span></a>
+                    </li>
+                    <li>
+                        <a href="https://kb.netapp.com/"
+                            target="_self"><span translate="no" class="notranslate">기술 자료</span></a>
+                    </li>
+                    <li>
+                        <a href="https://www.netapp.com/ko/support-and-training/netapp-learning-services/"
+                            target="_self"><span translate="no" class="notranslate">교육</span></a>
+                    </li>
+                </ul>
+            </div>
+
+        </li>
+
+    </ul>
+</nav>
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+
+<div id="ie-new-sidebar-collapse" style="display: none">
+    <img id="sidebar-expand" class="ie-searchbox-icon" src="/ko-kr/ontap-apps-dbs/images/double_arrow.svg" alt="" />
+</div>
+<div id="ie-new-sidebar">
+    <div id="ie-product-identity-lockup">
+        <div id="sidebar-collapse" class="">
+            <img src="/ko-kr/ontap-apps-dbs/images/double_arrow.svg" alt="" />
+        </div>
+        <div id="ie-breadcrumb" class="">
+  <ul class="ie-breadcrumb">
+    <li class="">
+      <a href="https://docs.netapp.com">모든 문서</a>
+    </li>
+    
+    
+
+    
+  </ul>
+  
+  <div class="ie-product-name" >
+    <!--<a href="/ko-kr/ontap-apps-dbs/">-->
+      Enterprise applications
+    <!--</a>-->
+  </div>
+</div>
+
+            
+
+        
+        
+
+<div id="ie-searchbox" class="ie-searchbox-sidebar ">
+    <img class="ie-searchbox-icon" src="/ko-kr/ontap-apps-dbs/images/loupe.svg" alt=""/>
+    <div id="react-search" 
+        data-search-html="/ko-kr/ontap-apps-dbs/search.html" 
+        data-type="widget"
+        data-placeholder="설명서 검색"
+        data-no-results-found="{query}에 대한 결과를 찾을 수 없습니다"
+        data-did-you-mean="{suggestion}을(를) 검색하십시오."
+        data-no-results-found-did-you-mean="{query}에 대한 결과가 없습니다. {suggestion}을(를) 찾고 계시는 건가요?"
+        data-results-found="{hitCount}개의 결과를 찾았습니다"
+        data-error-message="오류가 발생했습니다. 다시 시도해 주십시오."
+        data-error-reset="검색 재설정"
+        data-sk-es-pf-indexes="" 
+        data-flavor="">
+    </div>
+</div>
+        
+    </div>
+    <div id="ie-new-toc"><script>
+  let sidebarAccordion = true;
+
+  /* specific css rules for Mac */
+  if(navigator.platform.match('Mac') !== null) {
+    document.body.setAttribute('class', 'OSX');
+  }
+
+</script>
+
+<div id="ie-sidebar-container">
+  <ul id="ie-sidebar-list" ><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="엔터프라이즈 애플리케이션"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/index.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/ko-kr/ontap-apps-dbs/index.html">
+        엔터프라이즈 애플리케이션
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Microsoft SQL Server를 참조하십시오"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Microsoft SQL Server를 참조하십시오</div>-->
+         Microsoft SQL Server를 참조하십시오
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="개요"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mssql/mssql-overview.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/ko-kr/ontap-apps-dbs/mssql/mssql-overview.html">
+        개요
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="워크로드"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mssql/mssql-workloads.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/ko-kr/ontap-apps-dbs/mssql/mssql-workloads.html">
+        워크로드
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Microsoft SQL Server에 대한 데이터베이스 구성"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 데이터베이스 구성</div>-->
+         데이터베이스 구성
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="공유 인스턴스와 전용 인스턴스 비교"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mssql/mssql-shared-vs-dedicated.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/mssql/mssql-shared-vs-dedicated.html">
+        공유 인스턴스와 전용 인스턴스 비교
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="CPU 구성"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mssql/mssql-cpu-configuration.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/mssql/mssql-cpu-configuration.html">
+        CPU 구성
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="메모리 구성"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mssql/mssql-memory-configuration.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/mssql/mssql-memory-configuration.html">
+        메모리 구성
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Microsoft SQL Server에 대한 스토리지 구성"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 스토리지 구성</div>-->
+         스토리지 구성
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="데이터베이스 파일 및 파일 그룹"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mssql/mssql-files-and-filegroups.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/mssql/mssql-files-and-filegroups.html">
+        데이터베이스 파일 및 파일 그룹
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="tempdb 파일"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mssql/mssql-tempdb.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/mssql/mssql-tempdb.html">
+        tempdb 파일
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="스토리지 고려 사항"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mssql/mssql-storage-considerations.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/mssql/mssql-storage-considerations.html">
+        스토리지 고려 사항
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="스토리지 효율성"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mssql/mssql-storage-efficiency.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/mssql/mssql-storage-efficiency.html">
+        스토리지 효율성
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="데이터 보호"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mssql/mssql-data-protection.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/ko-kr/ontap-apps-dbs/mssql/mssql-data-protection.html">
+        데이터 보호
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="재해 복구"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mssql/mssql-disaster-recovery.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/ko-kr/ontap-apps-dbs/mssql/mssql-disaster-recovery.html">
+        재해 복구
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="데이터 보안"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mssql/mssql-data-security.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/ko-kr/ontap-apps-dbs/mssql/mssql-data-security.html">
+        데이터 보안
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="MySQL"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> MySQL</div>-->
+         MySQL
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="개요"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mysql/mysql-overview.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/ko-kr/ontap-apps-dbs/mysql/mysql-overview.html">
+        개요
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="MySQL용 데이터베이스 구성"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 데이터베이스 구성</div>-->
+         데이터베이스 구성
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="파일 구조"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mysql/mysql-file-structure.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/mysql/mysql-file-structure.html">
+        파일 구조
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="구성 개요"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mysql/mysql-configuration.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/mysql/mysql-configuration.html">
+        구성 개요
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="InnoDB_log_file_size입니다"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mysql/mysql-innodb_log_file_size.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/mysql/mysql-innodb_log_file_size.html">
+        InnoDB_log_file_size입니다
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="InnoDB_flush_log_at_TRx_commit입니다"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mysql/mysql-innodb_flush_log_at_trx_commit.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/mysql/mysql-innodb_flush_log_at_trx_commit.html">
+        InnoDB_flush_log_at_TRx_commit입니다
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="inoDB_doublewrite입니다"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mysql/mysql-innodb_doublewrite.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/mysql/mysql-innodb_doublewrite.html">
+        inoDB_doublewrite입니다
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="InnoDB_buffer_pool_size입니다"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mysql/mysql-innodb_buffer_pool_size.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/mysql/mysql-innodb_buffer_pool_size.html">
+        InnoDB_buffer_pool_size입니다
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="InnoDB_flush_method 를 참조하십시오"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mysql/mysql-innodb_flush_method.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/mysql/mysql-innodb_flush_method.html">
+        InnoDB_flush_method 를 참조하십시오
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="InnoDB_IO_capacity의 약어입니다"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mysql/mysql-innodb_io_capacity.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/mysql/mysql-innodb_io_capacity.html">
+        InnoDB_IO_capacity의 약어입니다
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="InnoDB_LRU_scan_depth 를 선택합니다"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mysql/mysql-innodb_lru_scan_depth.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/mysql/mysql-innodb_lru_scan_depth.html">
+        InnoDB_LRU_scan_depth 를 선택합니다
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Open_file_limits 를 참조하십시오"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mysql/mysql-open_file_limits.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/mysql/mysql-open_file_limits.html">
+        Open_file_limits 를 참조하십시오
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="MySQL의 호스트 구성"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 호스트 구성</div>-->
+         호스트 구성
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="컨테이너화"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mysql/mysql-containers.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/mysql/mysql-containers.html">
+        컨테이너화
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="슬롯 테이블"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mysql/mysql-slot-tables.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/mysql/mysql-slot-tables.html">
+        슬롯 테이블
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="I/O 스케줄러"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mysql/mysql-schedulers.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/mysql/mysql-schedulers.html">
+        I/O 스케줄러
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="파일 설명자"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mysql/mysql-file-descriptors.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/mysql/mysql-file-descriptors.html">
+        파일 설명자
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="MySQL의 스토리지 구성입니다"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 스토리지 구성</div>-->
+         스토리지 구성
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="NFS를 통한 MySQL"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mysql/mysql-mysql-over-nfs.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/mysql/mysql-mysql-over-nfs.html">
+        NFS를 통한 MySQL
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAN을 통한 MySQL"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/mysql/mysql-mysql-over-san.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/mysql/mysql-mysql-over-san.html">
+        SAN을 통한 MySQL
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Oracle 데이터베이스"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Oracle 데이터베이스</div>-->
+         Oracle 데이터베이스
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="개요"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-overview.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-overview.html">
+        개요
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="ONTAP 구성"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> ONTAP 구성</div>-->
+         ONTAP 구성
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="RAID"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-ontap-config-raid.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-ontap-config-raid.html">
+        RAID
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="용량 제한"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-ontap-config-capacity-limits.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-ontap-config-capacity-limits.html">
+        용량 제한
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="스토리지 가상 머신"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-ontap-config-svm.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-ontap-config-svm.html">
+        스토리지 가상 머신
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="서비스 품질(QoS)"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-ontap-config-qos.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-ontap-config-qos.html">
+        서비스 품질(QoS)
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="효율성"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-ontap-config-efficiency.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-ontap-config-efficiency.html">
+        효율성
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="씬 프로비저닝"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-ontap-config-thin-provisioning.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-ontap-config-thin-provisioning.html">
+        씬 프로비저닝
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="페일오버 및 전환"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-ontap-config-failover.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-ontap-config-failover.html">
+        페일오버 및 전환
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Oracle Database에 대한 데이터베이스 구성"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 데이터베이스 구성</div>-->
+         데이터베이스 구성
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="데이터 파일 및 재실행 블록 크기"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-app-config-block-sizes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-app-config-block-sizes.html">
+        데이터 파일 및 재실행 블록 크기
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="db_file_multiblock_read_count입니다"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-app-config-mbr.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-app-config-mbr.html">
+        db_file_multiblock_read_count입니다
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="filesystemio_options 를 참조하십시오"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-app-config-filesystemio_options.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-app-config-filesystemio_options.html">
+        filesystemio_options 를 참조하십시오
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Oracle RAC를 참조하십시오"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-app-config-rac.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-app-config-rac.html">
+        Oracle RAC를 참조하십시오
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Oracle Database에 대한 호스트 구성"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 호스트 구성</div>-->
+         호스트 구성
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="AIX"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-host-config-aix.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-host-config-aix.html">
+        AIX
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="HP-UX를 참조하십시오"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-host-config-hp-ux.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-host-config-hp-ux.html">
+        HP-UX를 참조하십시오
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="리눅스"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-host-config-linux.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-host-config-linux.html">
+        리눅스
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Linux 및 ASMlib 및 AFD를 지원합니다"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-host-config-asmlib-afd.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-host-config-asmlib-afd.html">
+        Linux 및 ASMlib 및 AFD를 지원합니다
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Microsoft Windows"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-host-config-windows.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-host-config-windows.html">
+        Microsoft Windows
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Solaris"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-host-config-solaris.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-host-config-solaris.html">
+        Solaris
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Oracle Database용 네트워크 구성"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 네트워크 구성</div>-->
+         네트워크 구성
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="논리 인터페이스"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-network-config-lifs.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-network-config-lifs.html">
+        논리 인터페이스
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="이더넷 구성"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-network-config-ethernet.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-network-config-ethernet.html">
+        이더넷 구성
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="FC SAN 구성"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-network-config-fc.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-network-config-fc.html">
+        FC SAN 구성
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="직접 연결 네트워킹"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-network-config-direct-connect.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-network-config-direct-connect.html">
+        직접 연결 네트워킹
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Oracle Database용 스토리지 구성"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 스토리지 구성</div>-->
+         스토리지 구성
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="FC SAN"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> FC SAN</div>-->
+         FC SAN
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="LUN 정렬"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-storage-san-config-lun-alignment.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-storage-san-config-lun-alignment.html">
+        LUN 정렬
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="LUN 수와 LUN 크기입니다"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-storage-san-config-lun-sizing.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-storage-san-config-lun-sizing.html">
+        LUN 수와 LUN 크기입니다
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="LUN 크기 조정"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-storage-san-config-lun-resizing.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-storage-san-config-lun-resizing.html">
+        LUN 크기 조정
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="LVM 스트라이핑"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-storage-san-config-lvm-striping.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-storage-san-config-lvm-striping.html">
+        LVM 스트라이핑
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="NFS 를 참조하십시오"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> NFS 를 참조하십시오</div>-->
+         NFS 를 참조하십시오
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="구성"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-storage-nfs-config-overview.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-storage-nfs-config-overview.html">
+        구성
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Oracle Direct NFS(dNFS)"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-storage-nfs-config-dnfs.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-storage-nfs-config-dnfs.html">
+        Oracle Direct NFS(dNFS)
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="NFS 리스 및 잠금"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-storage-nfs-config-leases-and-locks.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-storage-nfs-config-leases-and-locks.html">
+        NFS 리스 및 잠금
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="NFS 캐싱"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-storage-nfs-config-caching.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-storage-nfs-config-caching.html">
+        NFS 캐싱
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="NFS 전송 크기"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-storage-nfs-config-transfer-sizes.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-storage-nfs-config-transfer-sizes.html">
+        NFS 전송 크기
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Oracle 및 NVFAIL"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-dp-nvfail.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-dp-nvfail.html">
+        Oracle 및 NVFAIL
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="ASM 재확보 유틸리티"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-storage-san-config-asmru.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-storage-san-config-asmru.html">
+        ASM 재확보 유틸리티
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="포함되었습니다"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-virtualization-introduction.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-virtualization-introduction.html">
+        포함되었습니다
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="계층화"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 계층화</div>-->
+         계층화
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="개요"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-tiering-overview.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-tiering-overview.html">
+        개요
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="계층화 정책"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 계층화 정책</div>-->
+         계층화 정책
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="오브젝트 저장소로 데이터를 전송하는 중입니다"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-tiering-policies.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-tiering-policies.html">
+        오브젝트 저장소로 데이터를 전송하는 중입니다
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="오브젝트 저장소에서 데이터를 검색하는 중입니다"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-tiering-retrieval-policies.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-tiering-retrieval-policies.html">
+        오브젝트 저장소에서 데이터를 검색하는 중입니다
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="계층화 전략"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 계층화 전략</div>-->
+         계층화 전략
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="전체 파일"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-tiering-whole-file.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-tiering-whole-file.html">
+        전체 파일
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="부분 파일"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-tiering-partial-file.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-tiering-partial-file.html">
+        부분 파일
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="파일을 선택합니다"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-tiering-logs.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-tiering-logs.html">
+        파일을 선택합니다
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="스냅샷 수"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-tiering-snapshots.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-tiering-snapshots.html">
+        스냅샷 수
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="백업"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-tiering-backups.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-tiering-backups.html">
+        백업
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="오브젝트 저장소 액세스가 중단됩니다"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-tiering-object-store-access-interruptions.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-tiering-object-store-access-interruptions.html">
+        오브젝트 저장소 액세스가 중단됩니다
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Oracle 데이터 보호"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Oracle 데이터 보호</div>-->
+         Oracle 데이터 보호
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="개요"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-dp-overview.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-dp-overview.html">
+        개요
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="RPO 및 SLA를 충족할 수 있습니다"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-dp-slas.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-dp-slas.html">
+        RPO 및 SLA를 충족할 수 있습니다
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="데이터 가용성"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-dp-data-availability.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-dp-data-availability.html">
+        데이터 가용성
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="데이터 무결성"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-dp-data-integrity.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-dp-data-integrity.html">
+        데이터 무결성
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="백업 및 복구 기초"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 백업 및 복구 기초</div>-->
+         백업 및 복구 기초
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="스냅샷 수"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-dp-snapshots.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-dp-snapshots.html">
+        스냅샷 수
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SnapRestore"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-dp-snaprestore.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-dp-snaprestore.html">
+        SnapRestore
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="스냅샷 기반 온라인 백업"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-dp-online-backup.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-dp-online-backup.html">
+        스냅샷 기반 온라인 백업
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="스토리지 스냅샷 최적화된 백업"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-dp-storage-snapshot-optimized-backups.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-dp-storage-snapshot-optimized-backups.html">
+        스토리지 스냅샷 최적화된 백업
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SnapCenter 및 기타 도구"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-dp-backup-tools.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-dp-backup-tools.html">
+        SnapCenter 및 기타 도구
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Oracle 재해 복구"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Oracle 재해 복구</div>-->
+         Oracle 재해 복구
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="개요"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-dr-overview.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-dr-overview.html">
+        개요
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="MetroCluster"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> MetroCluster</div>-->
+         MetroCluster
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="물리적 아키텍처"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-dr-mcc-physical.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-dr-mcc-physical.html">
+        물리적 아키텍처
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="논리적 아키텍처"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-dr-mcc-logical.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-dr-mcc-logical.html">
+        논리적 아키텍처
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SyncMirror"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-dr-mcc-syncmirror.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-dr-mcc-syncmirror.html">
+        SyncMirror
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Oracle 페일오버"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-dr-mcc-failover.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-dr-mcc-failover.html">
+        Oracle 페일오버
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="NVFAIL(* NVFAIL"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-dr-mcc-nvfail.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-dr-mcc-nvfail.html">
+        NVFAIL(* NVFAIL
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="MetroCluster 기반 Oracle SI"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-dr-mcc-si.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-dr-mcc-si.html">
+        MetroCluster 기반 Oracle SI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="MetroCluster 기반 Oracle RAC"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-dr-mcc-rac.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-dr-mcc-rac.html">
+        MetroCluster 기반 Oracle RAC
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SnapMirror 활성 동기화"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> SnapMirror 활성 동기화</div>-->
+         SnapMirror 활성 동기화
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="있습니다"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-dr-smbc-architecture.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-dr-smbc-architecture.html">
+        있습니다
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="페일오버"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-dr-smbc-failover.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-dr-smbc-failover.html">
+        페일오버
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SnapMirror 활성 동기화가 포함된 Oracle SI"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-dr-smbc-si.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-dr-smbc-si.html">
+        SnapMirror 활성 동기화가 포함된 Oracle SI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SnapMirror 활성 동기화가 포함된 Oracle RAC"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-dr-smbc-rac.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-dr-smbc-rac.html">
+        SnapMirror 활성 동기화가 포함된 Oracle RAC
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="실패 시나리오"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-dr-smbc-failure-scenarios.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-dr-smbc-failure-scenarios.html">
+        실패 시나리오
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Oracle 데이터베이스 마이그레이션"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Oracle 데이터베이스 마이그레이션</div>-->
+         Oracle 데이터베이스 마이그레이션
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="개요"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-migration-overview.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-migration-overview.html">
+        개요
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="계획 수립"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-migration-planning.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-migration-planning.html">
+        계획 수립
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="절차를 참조하십시오"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 절차를 참조하십시오</div>-->
+         절차를 참조하십시오
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="개요"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-migration-procedures-overview.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-migration-procedures-overview.html">
+        개요
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="데이터 파일 이동"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-migration-datafile-move.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-migration-datafile-move.html">
+        데이터 파일 이동
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="로그 전달"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-migration-log-shipping.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-migration-log-shipping.html">
+        로그 전달
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="호스트 데이터 복사"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-migration-host-data-copy.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-migration-host-data-copy.html">
+        호스트 데이터 복사
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="외부 LUN 임포트"
+      data-li-level="4" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-4  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 외부 LUN 임포트</div>-->
+         외부 LUN 임포트
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="계획 수립"
+      data-li-level="5#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-migration-fli-planning.html" 
+    ><a class="ie-sidebar-menuitem-5 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-migration-fli-planning.html">
+        계획 수립
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="컷오버"
+      data-li-level="5#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-migration-fli-cutover.html" 
+    ><a class="ie-sidebar-menuitem-5 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-migration-fli-cutover.html">
+        컷오버
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="완료"
+      data-li-level="5#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-migration-fli-completion.html" 
+    ><a class="ie-sidebar-menuitem-5 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-migration-fli-completion.html">
+        완료
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="프로토콜 변환"
+      data-li-level="5#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-migration-fli-protocol-conversion.html" 
+    ><a class="ie-sidebar-menuitem-5 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-migration-fli-protocol-conversion.html">
+        프로토콜 변환
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="샘플 스크립트"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-migration-sample-scripts.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-migration-sample-scripts.html">
+        샘플 스크립트
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="추가 참고 사항"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 추가 참고 사항</div>-->
+         추가 참고 사항
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="성능 최적화 및 벤치마킹"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-notes-optimization-and-benchmarking.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-notes-optimization-and-benchmarking.html">
+        성능 최적화 및 벤치마킹
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="부실 NFS 잠금입니다"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-notes-stale-nfs-locks.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-notes-stale-nfs-locks.html">
+        부실 NFS 잠금입니다
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="WAFL 정렬 확인"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/oracle/oracle-notes-wafl-alignment-verification.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/oracle/oracle-notes-wafl-alignment-verification.html">
+        WAFL 정렬 확인
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="PostgreSQL"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> PostgreSQL</div>-->
+         PostgreSQL
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="개요"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/postgres/postgres-overview.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/ko-kr/ontap-apps-dbs/postgres/postgres-overview.html">
+        개요
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="PostgreSQL에 대한 호스트 구성"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 데이터베이스 구성</div>-->
+         데이터베이스 구성
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="있습니다"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/postgres/postgres-architecture.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/postgres/postgres-architecture.html">
+        있습니다
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="초기화"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/postgres/postgres-initialization.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/postgres/postgres-initialization.html">
+        초기화
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="설정"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/postgres/postgres-db-config.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/postgres/postgres-db-config.html">
+        설정
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="테이블스페이스"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/postgres/postgres-tablespaces.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/postgres/postgres-tablespaces.html">
+        테이블스페이스
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="PostgreSQL에 대한 스토리지 구성입니다"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 스토리지 구성</div>-->
+         스토리지 구성
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="NFS 를 참조하십시오"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/postgres/postgres-nfs-filesystems.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/postgres/postgres-nfs-filesystems.html">
+        NFS 를 참조하십시오
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="산"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/postgres/postgres-san-filesystems.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/postgres/postgres-san-filesystems.html">
+        산
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="PostgreSQL에 대한 데이터 보호"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 데이터 보호</div>-->
+         데이터 보호
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="네이티브 데이터 보호"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/postgres/postgres-native-dp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/postgres/postgres-native-dp.html">
+        네이티브 데이터 보호
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="스냅샷 기술"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/postgres/postgres-snapshot-dp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/postgres/postgres-snapshot-dp.html">
+        스냅샷 기술
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="데이터 보호 소프트웨어"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/postgres/postgres-snapcenter-dp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/postgres/postgres-snapcenter-dp.html">
+        데이터 보호 소프트웨어
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="제공합니다"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 제공합니다</div>-->
+         제공합니다
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="SAP HANA 및 AnyDB"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="sap-solutions.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/ko-kr/ontap-apps-dbs/sap-solutions.html">
+        SAP HANA 및 AnyDB
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="VMware"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> VMware</div>-->
+         VMware
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="ONTAP 기반의 VMware vSphere"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> ONTAP 기반의 VMware vSphere</div>-->
+         ONTAP 기반의 VMware vSphere
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="개요"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-vsphere-overview.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-vsphere-overview.html">
+        개요
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="유니파이드 스토리지"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-vsphere-unified.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-vsphere-unified.html">
+        유니파이드 스토리지
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="포함되었습니다"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-vsphere-vtools.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-vsphere-vtools.html">
+        포함되었습니다
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="가상 볼륨 및 스토리지 정책 기반 관리"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-vsphere-vvols_and_spbm.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-vsphere-vvols_and_spbm.html">
+        가상 볼륨 및 스토리지 정책 기반 관리
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="데이터 저장소 및 프로토콜"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 데이터 저장소 및 프로토콜</div>-->
+         데이터 저장소 및 프로토콜
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="개요"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-vsphere-datastores-top.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-vsphere-datastores-top.html">
+        개요
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="산"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-vsphere-datastores-san.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-vsphere-datastores-san.html">
+        산
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="NFS 를 참조하십시오"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-vsphere-datastores-nfs.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-vsphere-datastores-nfs.html">
+        NFS 를 참조하십시오
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="FlexGroup 볼륨"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-vsphere-datastores-fg.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-vsphere-datastores-fg.html">
+        FlexGroup 볼륨
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="네트워크 구성"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-vsphere-network.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-vsphere-network.html">
+        네트워크 구성
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="클론 복제"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-vsphere-cloning.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-vsphere-cloning.html">
+        클론 복제
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="데이터 보호"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-vsphere-dp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-vsphere-dp.html">
+        데이터 보호
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="QoS를 참조하십시오"
+      data-li-level="3#" 
+      class="  ie-sidebar-selected    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-vsphere-qos.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-vsphere-qos.html">
+        QoS를 참조하십시오
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="관리 기반의 스토리지 정책"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-vsphere-policy-and-vvols.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-vsphere-policy-and-vvols.html">
+        관리 기반의 스토리지 정책
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="VMware 스토리지 분산 리소스 스케줄러입니다"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-vsphere-sdrs.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-vsphere-sdrs.html">
+        VMware 스토리지 분산 리소스 스케줄러입니다
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="권장 설정"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-vsphere-settings.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-vsphere-settings.html">
+        권장 설정
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="ONTAP을 사용한 VVOL(가상 볼륨"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> ONTAP을 사용한 VVOL(가상 볼륨</div>-->
+         ONTAP을 사용한 VVOL(가상 볼륨
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="개요"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-vvols-overview.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-vvols-overview.html">
+        개요
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="ONTAP에서 VVOL 사용"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-vvols-ontap.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-vvols-ontap.html">
+        ONTAP에서 VVOL 사용
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="VVOL 스토리지 구축"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-vvols-deploy.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-vvols-deploy.html">
+        VVOL 스토리지 구축
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="VVOL 보호"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-vvols-protect.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-vvols-protect.html">
+        VVOL 보호
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="문제 해결"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-vvols-resources.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-vvols-resources.html">
+        문제 해결
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="ONTAP를 사용하는 VMware 사이트 복구 관리자"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> ONTAP를 사용하는 VMware 사이트 복구 관리자</div>-->
+         ONTAP를 사용하는 VMware 사이트 복구 관리자
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="개요"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-srm-overview.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-srm-overview.html">
+        개요
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="배포 모범 사례"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-srm-deployment_best_practices.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-srm-deployment_best_practices.html">
+        배포 모범 사례
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="운영 모범 사례"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-srm-operational_best_practices.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-srm-operational_best_practices.html">
+        운영 모범 사례
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="복제 토폴로지"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-srm-replication_topologies.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-srm-replication_topologies.html">
+        복제 토폴로지
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="VVOL 복제 사용 시 SRM 문제 해결"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-srm-vvol-troubleshooting.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-srm-vvol-troubleshooting.html">
+        VVOL 복제 사용 시 SRM 문제 해결
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="ONTAP이 포함된 vSphere Metro 스토리지 클러스터"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> ONTAP이 포함된 vSphere Metro 스토리지 클러스터</div>-->
+         ONTAP이 포함된 vSphere Metro 스토리지 클러스터
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="vMSC 개요"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware_vmsc_overview.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware_vmsc_overview.html">
+        vMSC 개요
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="vSphere HA 솔루션"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware_vmsc_solution.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware_vmsc_solution.html">
+        vSphere HA 솔루션
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="vMSC 설계"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware_vmsc_design.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware_vmsc_design.html">
+        vMSC 설계
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="vMSC 복원력"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware_vmsc_resiliency.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware_vmsc_resiliency.html">
+        vMSC 복원력
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="MCC와 vMSC 시나리오"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware_vmsc_scen_mcc.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware_vmsc_scen_mcc.html">
+        MCC와 vMSC 시나리오
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="제품 보안"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/ko-kr/ontap-apps-dbs/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/ko-kr/ontap-apps-dbs/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 제품 보안</div>-->
+         제품 보안
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="VMware vSphere용 ONTAP 툴"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-security-tools.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-security-tools.html">
+        VMware vSphere용 ONTAP 툴
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="VMware vSphere용 SnapCenter 플러그인"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/vmware/vmware-security-snapcenter.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/ko-kr/ontap-apps-dbs/vmware/vmware-security-snapcenter.html">
+        VMware vSphere용 SnapCenter 플러그인
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="법적 고지"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/vmware/vmware-vsphere-qos.html" 
+      dale-entry-url="/legal-notices.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/ko-kr/ontap-apps-dbs/legal-notices.html">
+        법적 고지
+      </a></li></ul>
+</div>
+<script>
+
+  $(".ie-sidebar-button").click(function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    expandedLI = $('li.ie-sidebar-expand')
+
+    const li = $(this).closest("li");
+
+    const parentsLI = $(li).parents('li');
+
+    expandedLI.map(element => {
+      if (sidebarAccordion && !li.hasClass('ie-sidebar-expand') && jQuery.inArray(expandedLI[element], parentsLI) == -1) {
+        $(expandedLI[element]).toggleClass('ie-sidebar-expand');
+        $(expandedLI[element]).children("ul").animate({ height: 'toggle' }, 400, function () {
+          $(li).children("ul").toggleClass('ie-sidebar-open');
+
+        })
+      }
+
+    })
+
+    $(li).toggleClass('ie-sidebar-expand');
+    $(li).children("ul").animate({ height: 'toggle' }, 400, function () {
+      $(li).children("ul").toggleClass('ie-sidebar-open');
+    })
+  });
+
+
+  
+    $("li.ie-sidebar-selected").parents('ul').toggleClass("ie-sidebar-open");
+    $("li.ie-sidebar-selected").toggleClass("ie-sidebar-expand")
+    $("ul.ie-sidebar-open").parent().toggleClass("ie-sidebar-expand");
+    $("li.ie-sidebar-selected").children('ul').toggleClass("ie-sidebar-open")
+  
+  
+</script>
+    </div>
+</div>
+<script>
+
+    
+    let sidebarScrollTopPosition = 0;
+    $("#ie-new-toc").on("scroll", function () {
+        if (sidebarScrollTopPosition == 0) {
+            $.cookie("sidebarScroll", $("#ie-new-toc").scrollTop(), {
+                path: "/ko-kr/ontap-apps-dbs"
+            });
+        }
+
+        if ($("#ie-new-toc").scrollTop() > 0) {
+            $('#ie-product-identity-lockup').addClass('ie-addShadow');
+        } else {
+            $('#ie-product-identity-lockup').removeClass('ie-addShadow');
+        }
+    });
+
+    $(function () {
+        if ($.cookie("sidebarScroll")) {
+            $("#ie-new-toc").scrollTop($.cookie("sidebarScroll"));
+        }
+    });
+
+    function setSidebarBottom() {
+        const footerGap = PXinViewport($(".n-footer"));
+        document.getElementById("ie-new-sidebar").style.bottom = Math.max(0, footerGap) + "px";
+    }
+
+    window.onscroll = () => {
+        setSidebarBottom();
+    };
+
+    $("#sidebar-collapse").click(function (e) {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        e.preventDefault();
+        const width = $(".ie-content-pane").width();
+        const marginLeft = parseInt($(".ie-content-pane").css('marginLeft'));
+
+        if ($.cookie("sidebarScroll")) {
+            sidebarScrollTopPosition = $.cookie("sidebarScroll");
+        }
+
+        $("#ie-new-sidebar").animate({ width: 'toggle' }, 350, function () {
+            $("#ie-new-sidebar-collapse").show();
+            $("#ie-new-sidebar").removeClass("open")
+            $("#ie-new-sidebar").addClass("close")
+            $("#ie-new-sidebar").removeAttr("style")
+        });
+        $(".ie-content-pane").animate({ width: (width + sidebarWidth), marginLeft: (marginLeft - sidebarWidth) }, 350, function () {
+            resizeContent()
+        })
+
+    });
+    $("#sidebar-expand").click(function (e) {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        e.preventDefault();
+        const width = $(".ie-content-pane").width();
+        const marginLeft = parseInt($(".ie-content-pane").css('marginLeft'));
+
+        $("#ie-new-sidebar").animate({ width: 'toggle' }, 250, function () {
+            $('#ie-new-sidebar').css('display', 'flex');
+            $("#ie-new-sidebar-collapse").hide();
+            $("#ie-new-sidebar").removeClass("close")
+            $("#ie-new-sidebar").addClass("open")
+            setSidebarBottom();
+
+            if (sidebarScrollTopPosition != 0) {
+                $.cookie("sidebarScroll", sidebarScrollTopPosition, {
+                    path: "/ko-kr/ontap-apps-dbs"
+                })
+                $("#ie-new-toc").scrollTop(sidebarScrollTopPosition);
+                sidebarScrollTopPosition = 0;
+            }
+        });
+        $(".ie-content-pane").animate({ width: (width - sidebarWidth), 'marginLeft': (marginLeft + sidebarWidth) }, 250, function () {
+            resizeContent()
+        })
+    });
+    function resizeContent() {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        const rightNavbarVisible =  $("#ie-right-navbar").css('display') && $("#ie-right-navbar").css('display') != 'none';
+        const sidebarVisible = $("#ie-new-sidebar").css('display') != 'none';
+        const rightNavbarWidth = $("#ie-right-navbar").width();
+        const rightNavbarCollapseWidth = $("#ie-right-navbar-collapse").width();
+        const rightNavbarCollapseVisible = $("#ie-right-navbar-collapse").css('display') && $("#ie-right-navbar-collapse").css('display') != 'none';
+        
+        if (rightNavbarVisible && sidebarVisible) {
+            $(".ie-content-pane").width(`calc(100% - ${sidebarWidth + rightNavbarWidth}px)`)
+            $(".ie-content-pane").css('marginLeft', `${sidebarWidth}px`)
+        } else if (sidebarVisible) {
+            $(".ie-content-pane").css('marginLeft', `${sidebarWidth}px`)
+            if (rightNavbarCollapseVisible) {
+                $(".ie-content-pane").width(`calc(100% - ${sidebarWidth + rightNavbarCollapseWidth}px)`)
+            } else {
+                $(".ie-content-pane").width(`calc(100% - ${$("#ie-new-sidebar").width()}px)`)
+            }
+
+        } else if (rightNavbarVisible) {
+            $(".ie-content-pane").css('marginLeft', `${$("#ie-new-sidebar-collapse").width()}px`)
+            $(".ie-content-pane").width(`calc(100% - ${rightNavbarWidth}px)`)
+        } else {
+            $(".ie-content-pane").css('marginLeft', `${$("#ie-new-sidebar-collapse").width()}px`)
+            if (rightNavbarCollapseVisible) {
+                $(".ie-content-pane").width(`calc(100% - ${rightNavbarCollapseWidth}px)`);
+            } else {
+                $(".ie-content-pane").width(`calc(100% - ${$("#ie-new-sidebar-collapse").width()}px) `);
+            }
+            
+        }
+    }
+    $(window).on("resize load", function () {
+        setSidebarBottom();
+        resizeContent()
+    });
+
+
+</script>
+
+<div class="ie-content-pane ie-component-detail-content ie-component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content" id="main">
+      <!-- include utility.html -->
+      <div class="ie-info-disclaimer">
+    <span>
+      <div class="ie-info-disclaimer-container">
+        <div class="ie-info-disclaimer-icon">
+          <img src="/ko-kr/ontap-apps-dbs/images/notification-icons.svg" class="luci-icon" alt="" />
+        </div>
+        <div class="ie-info-disclaimer-content">
+          <span> 본 한국어 번역은 사용자 편의를 위해 제공되는 기계 번역입니다. 영어 버전과 한국어 버전이 서로 어긋나는 경우에는 언제나 영어 버전이 우선합니다. </span>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+    </span>
+  </div><div class="ie-component-detail-heading-wrap">
+  <h1 class="ie-component-detail-heading">서비스 품질(QoS)</h1>
+</div>
+
+<div id="ie-byline">
+  
+<div class="page-details">
+    
+        
+            <time datetime="2024-03-07 02:48:16 +0000">03/07/2024</time>
+        
+    
+    
+        <span>기여자
+        </span>
+    
+    
+</div>
+<div class="page-controls">
+    <div id="contribute-dropdown" class="custom-dropdown custom-dropdown-contrib" >
+        <div class="custom-dropdown-select custom-dropdown-select-contrib">
+        <span class="contrib-name"><img src="/ko-kr/ontap-apps-dbs/images/discuss-sm.svg" alt="" class="github-icon" />변경 제안</span>
+        <img src="/ko-kr/ontap-apps-dbs/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown invisible" />
+        <img src="/ko-kr/ontap-apps-dbs/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup" />
+        </div>
+        <ul class="custom-dropdown-menu suggested-changes-dropdown"><li>
+                <a target="_blank" href="https://github.com/NetAppDocs/ontap-apps-dbs.ko-kr/issues/new?template=new-from-page.yml&page-url=https://docs.netapp.com/ko-kr/ontap-apps-dbs/vmware/vmware-vsphere-qos.html&page-title=서비스 품질(QoS)" class="page-nav-contribute-link" role="button">문서 변경사항 요청</a>
+            </li><li> 
+                <a target="_blank" href="https://github.com/NetAppDocs/ontap-apps-dbs/blob/main/vmware/vmware-vsphere-qos.adoc" class="page-nav-contribute-link" role="button">이 페이지 편집</a>
+            </li><li><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  >기여하는 방법 알아보기</a></li>
+        </ul>
+    </div>
+    <div id="pdf-control-container">
+        <div class="n-pdf-header">
+            <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+                <img class="adobe-icon" src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>PDF<img src="/ko-kr/ontap-apps-dbs/images/dropdown-arrow.svg" class="custom-icon" alt="" />
+            </a>
+        </div>
+        <div class="n-pdf-body-container">
+            <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+                    
+                    
+                    
+                    <a target="_blank" class="pdf-download-link" href="/ko-kr/ontap-apps-dbs/pdfs/fullsite-sidebar/ONTAP_및_엔터프라이즈_애플리케이션.pdf" >
+                    <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>이 문서 사이트의 PDF</a>
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/Microsoft_SQL_Server를_참조하십시오.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Microsoft SQL Server를 참조하십시오
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/Microsoft_SQL_Server에_대한_데이터베이스_구성.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            데이터베이스 구성
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/Microsoft_SQL_Server에_대한_스토리지_구성.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            스토리지 구성
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/MySQL.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            MySQL
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/MySQL용_데이터베이스_구성.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            데이터베이스 구성
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/MySQL의_호스트_구성.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            호스트 구성
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/MySQL의_스토리지_구성입니다.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            스토리지 구성
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/Oracle_데이터베이스.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Oracle 데이터베이스
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/ONTAP_구성.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            ONTAP 구성
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/Oracle_Database에_대한_데이터베이스_구성.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            데이터베이스 구성
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/Oracle_Database에_대한_호스트_구성.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            호스트 구성
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/Oracle_Database용_네트워크_구성.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            네트워크 구성
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/Oracle_Database용_스토리지_구성.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            스토리지 구성
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/FC_SAN.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            FC SAN
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/NFS_를_참조하십시오.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            NFS 를 참조하십시오
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/계층화.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            계층화
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/계층화_정책.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            계층화 정책
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/계층화_전략.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            계층화 전략
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/Oracle_데이터_보호.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Oracle 데이터 보호
+          </a>
+          
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/백업_및_복구_기초.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            백업 및 복구 기초
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/Oracle_재해_복구.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Oracle 재해 복구
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/MetroCluster.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            MetroCluster
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/SnapMirror_활성_동기화.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            SnapMirror 활성 동기화
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/Oracle_데이터베이스_마이그레이션.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Oracle 데이터베이스 마이그레이션
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/절차를_참조하십시오.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            절차를 참조하십시오
+          </a>
+          
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/외부_LUN_임포트.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            외부 LUN 임포트
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/추가_참고_사항.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            추가 참고 사항
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/PostgreSQL.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            PostgreSQL
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/PostgreSQL에_대한_호스트_구성.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            데이터베이스 구성
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/PostgreSQL에_대한_스토리지_구성입니다.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            스토리지 구성
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/PostgreSQL에_대한_데이터_보호.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            데이터 보호
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/제공합니다.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            제공합니다
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/VMware.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            VMware
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/ONTAP_기반의_VMware_vSphere.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            ONTAP 기반의 VMware vSphere
+          </a>
+          
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/데이터_저장소_및_프로토콜.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            데이터 저장소 및 프로토콜
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
+  
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/ONTAP을_사용한_VVOL_가상_볼륨.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            ONTAP을 사용한 VVOL(가상 볼륨
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/ONTAP를_사용하는_VMware_사이트_복구_관리자.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            ONTAP를 사용하는 VMware 사이트 복구 관리자
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/ONTAP이_포함된_vSphere_Metro_스토리지_클러스터.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            ONTAP이 포함된 vSphere Metro 스토리지 클러스터
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/ko-kr/ontap-apps-dbs/pdfs/sidebar/제품_보안.pdf" 
+            
+          >
+            <img src="/ko-kr/ontap-apps-dbs/images/pdf-icon.png" alt="" width="16" height="16"/>
+            제품 보안
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+</li></ul>
+            <div class="zip-pdf-link-container" style="display: none;">   
+                <a href="#" id="zipPdf">
+                <img src="/ko-kr/ontap-apps-dbs/images/pdf-zip.png" alt="" width="16" height="16"/>
+                <pre>별도의 PDF 문서 모음<span class="zip-size"></span></pre>
+                </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+        </div>
+    </div>        
+<script>
+$("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+$("#toggleButtonPdf").on('click', function(e){ 
+    e.stopPropagation();
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+});
+
+//hide is by clicking outside pdfcontainer
+$(document).on('click', function (e) {
+    if ($('#toggleContainerPdf').is(':visible') && !$('.n-pdf-body-container').is(e.target) && !$('.n-pdf-body-container').has(e.target).length)  {
+        
+        $("#toggleContainerPdf").toggle('display');
+        $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+        $("#toggleButtonPdf").removeClass("active");
+    }
+});
+</script>
+<script>
+    function getPdfLocation() {
+        const pdfLocation = window.scrollX + document.querySelector('#pdf-control-container').getBoundingClientRect().left
+        if (pdfLocation < 450) {
+            $(".n-pdf-body-container").addClass("block")
+        } else {
+            $(".n-pdf-body-container").removeClass("block")
+        }
+    
+    }
+    $( window ).on( "resize", function() {
+        getPdfLocation()
+} );
+</script>
+<script>
+    const pdfButtonWidth =  $(".n-pdf-header").width();
+    const pdfMenuWidth = $(".n-pdf-body-container").width();
+    $(".n-pdf-body-container").css('margin-left', `calc(${pdfButtonWidth - pdfMenuWidth}px)`);
+</script>
+</div>
+
+    
+
+</div>
+
+
+
+
+<div class="content-to-index">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>ONTAP 소프트웨어를 실행하는 시스템에서는 ONTAP 스토리지 QoS 기능을 사용하여 파일, LUN, 볼륨 또는 전체 SVM과 같은 다양한 스토리지 개체에 대해 Mbps 또는 IOPS 단위로 처리량을 제한할 수 있습니다.</p>
+</div>
+<div class="paragraph">
+<p>처리량 제한은 배포 전에 알 수 없는 워크로드 또는 테스트 워크로드를 제어하여 다른 워크로드에 영향을 미치지 않도록 하는 데 유용합니다. 이러한 워크로드는 식별된 후 대규모 워크로드를 제한하는 데 사용할 수도 있습니다. ONTAP 9.2의 SAN 오브젝트 및 ONTAP 9.3의 NAS 오브젝트에 대해 일관된 성능을 제공하기 위해 IOPS를 기반으로 하는 최소 서비스 레벨도 지원됩니다.</p>
+</div>
+<div class="paragraph">
+<p>NFS 데이터 저장소를 사용하면 QoS 정책을 전체 FlexVol 볼륨 또는 해당 볼륨 내의 개별 VMDK 파일에 적용할 수 있습니다. ONTAP LUN을 사용하는 VMFS 데이터 저장소의 경우 FlexVol가 VMFS 파일 시스템을 인식하지 못하기 때문에 QoS 정책을 LUN 또는 개별 LUN을 포함하는 ONTAP 볼륨에 적용할 수 있지만 개별 VMDK 파일은 적용할 수 없습니다. VVOL을 사용할 경우 스토리지 용량 프로파일 및 VM 스토리지 정책을 사용하여 개별 VM에 최소 및/또는 최대 QoS를 설정할 수 있습니다.</p>
+</div>
+<div class="paragraph">
+<p>개체에 대한 QoS 최대 처리량 제한은 Mbps 및/또는 IOPS로 설정할 수 있습니다. 둘 다 사용되는 경우 첫 번째 제한에 도달한 값은 ONTAP에 의해 적용됩니다. 워크로드에는 여러 개체가 포함될 수 있으며 QoS 정책을 하나 이상의 워크로드에 적용할 수 있습니다. 정책이 여러 워크로드에 적용될 경우 워크로드는 정책의 총 한도를 공유합니다. 중첩된 개체는 지원되지 않습니다(예: 볼륨 내의 파일은 각각 고유한 정책을 가질 수 없음). QoS 최소값을 IOPS에서만 설정할 수 있습니다.</p>
+</div>
+<div class="paragraph">
+<p>현재 ONTAP QoS 정책을 관리하고 객체에 적용하는 데 사용할 수 있는 툴은 다음과 같습니다.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ONTAP CLI를 참조하십시오</p>
+</li>
+<li>
+<p>ONTAP 시스템 관리자</p>
+</li>
+<li>
+<p>OnCommand Workflow Automation</p>
+</li>
+<li>
+<p>Active IQ Unified Manager</p>
+</li>
+<li>
+<p>ONTAP를 위한 NetApp PowerShell Toolkit</p>
+</li>
+<li>
+<p>VMware vSphere VASA Provider용 ONTAP 툴</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>NFS에서 VMDK에 QoS 정책을 할당하려면 다음 지침을 따르십시오.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>정책을 에 적용해야 합니다 <code>vmname- flat.vmdk</code> 여기에는 가 아닌 실제 가상 디스크 이미지가 포함됩니다 <code>vmname.vmdk</code> (가상 디스크 설명자 파일) 또는 <code>vmname.vmx</code> (VM 설명자 파일).</p>
+</li>
+<li>
+<p>가상 스왑 파일과 같은 다른 VM 파일에 정책을 적용하지 마십시오 (<code>vmname.vswp</code>)를 클릭합니다.</p>
+</li>
+<li>
+<p>vSphere Web Client를 사용하여 파일 경로(Datastore &gt; Files)를 찾을 때는 의 정보가 결합되어 있다는 점을 유념하십시오 <code>- flat.vmdk</code> 및 <code>. vmdk</code> 의 이름을 가진 파일 하나가 표시됩니다 <code>. vmdk</code> 그러나 의 크기는 <code>- flat.vmdk</code>. 추가 <code>-flat</code> 파일 이름에 올바른 경로를 입력합니다.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>VMFS 및 RDM을 포함하여 LUN에 QoS 정책을 할당하려면 ONTAP vSphere용 ONTAP 툴 홈 페이지의 스토리지 시스템 메뉴에서 SVM(SVM으로 표시됨), LUN 경로 및 일련 번호를 확인할 수 있습니다. 스토리지 시스템(SVM)을 선택한 다음 관련 오브젝트 &gt; SAN을 선택합니다.  ONTAP 툴 중 하나를 사용하여 QoS를 지정할 때 이 접근 방식을 사용합니다.</p>
+</div>
+<div class="paragraph">
+<p>VMware vSphere 또는 Virtual Storage Console 7.1 이상을 위한 ONTAP 툴을 VVOL 기반 VM에 최대 및 최소 QoS를 손쉽게 할당할 수 있습니다. VVOL 컨테이너에 대한 스토리지 기능 프로필을 생성할 때 성능 기능에서 최대 및/또는 최소 IOPS 값을 지정한 다음 이 SCP를 VM의 스토리지 정책에 참조합니다. VM을 생성하거나 기존 VM에 정책을 적용할 때 이 정책을 사용합니다.</p>
+</div>
+<div class="paragraph">
+<p>FlexGroup 데이터 저장소는 VMware vSphere 9.8 이상용 ONTAP 툴을 사용할 때 향상된 QoS 기능을 제공합니다. 데이터 저장소 또는 특정 VM의 모든 VM에 대해 QoS를 쉽게 설정할 수 있습니다. 자세한 내용은 이 보고서의 FlexGroup 섹션을 참조하십시오.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ontap-qos-및-vmware-sioc">ONTAP QoS 및 VMware SIOC</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ONTAP QoS 및 VMware vSphere 스토리지 I/O 제어(SIOC)는 vSphere 및 스토리지 관리자가 ONTAP 소프트웨어를 실행하는 시스템에서 호스팅되는 vSphere VM의 성능을 관리하는 데 함께 사용할 수 있는 보완 기술입니다. 다음 표에 나와 있는 것처럼 각 툴마다 고유한 강점이 있습니다. VMware vCenter와 ONTAP의 범위가 서로 다르기 때문에 한 시스템에서 일부 객체를 보고 관리할 수 있으며 다른 객체는 볼 수 없습니다.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">속성</th>
+<th class="tableblock halign-left valign-top">ONTAP QoS를 참조하십시오</th>
+<th class="tableblock halign-left valign-top">VMware SIOC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">활성화 시</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">정책이 항상 활성화되어 있습니다</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">경합이 있을 때 활성(데이터 저장소 지연 시간이 임계값을 초과함)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">단위 유형</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IOPS, MBps</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IOPS, 공유</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">vCenter 또는 애플리케이션 범위</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">다양한 vCenter 환경, 기타 하이퍼바이저 및 애플리케이션</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">단일 vCenter Server</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VM에서 QoS를 설정하시겠습니까?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VMDK는 NFS에만 해당합니다</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NFS 또는 VMFS의 VMDK입니다</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LUN(RDM)에 QoS를 설정하시겠습니까?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">예</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">아니요</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LUN(VMFS)에서 QoS를 설정하시겠습니까?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">예</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">아니요</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">볼륨에 QoS를 설정하시겠습니까(NFS 데이터 저장소)?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">예</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">아니요</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SVM(테넌트)에서 QoS를 설정하시겠습니까?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">예</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">아니요</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">정책 기반 접근 방식?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">예. 정책의 모든 워크로드에서 공유하거나 정책의 각 워크로드에 전체적으로 적용할 수 있습니다.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">예, vSphere 6.5 이상에서 가능합니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">라이센스가 필요합니다</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ONTAP에 포함되어 있습니다</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">엔터프라이즈급 플러스</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="vmware-스토리지-분산-리소스-스케줄러입니다">VMware 스토리지 분산 리소스 스케줄러입니다</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>VMware SDRS(Storage Distributed Resource Scheduler)는 현재 입출력 지연 시간 및 공간 사용량을 기반으로 스토리지에 VM을 배치하는 vSphere 기능입니다. 그런 다음 데이터 저장소 클러스터(Pod라고도 함)의 데이터 저장소 간에 VM 또는 VMDK를 중단 없이 이동하여 VM 또는 VMDK를 데이터 저장소 클러스터에 배치할 최상의 데이터 저장소를 선택합니다. 데이터 저장소 클러스터는 vSphere 관리자의 관점에서 단일 사용 단위로 집계되는 유사한 데이터 저장소의 모음입니다.</p>
+</div>
+<div class="paragraph">
+<p>SDRS를 VMware vSphere용 NetApp ONTAP 툴과 함께 사용하는 경우 먼저 플러그인을 사용하여 데이터 저장소를 생성한 다음 vCenter를 사용하여 데이터 저장소 클러스터를 생성한 다음 여기에 데이터 저장소를 추가해야 합니다. 데이터 저장소 클러스터가 생성된 후 세부 정보 페이지의 프로비저닝 마법사에서 추가 데이터 저장소를 데이터 저장소 클러스터에 직접 추가할 수 있습니다.</p>
+</div>
+<div class="paragraph">
+<p>SDRS에 대한 기타 ONTAP 모범 사례는 다음과 같습니다.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>클러스터의 모든 데이터 저장소는 동일한 유형의 스토리지(예: SAS, SATA 또는 SSD)를 사용하고 모든 VMFS 또는 NFS 데이터 저장소이며 복제 및 보호 설정이 동일해야 합니다.</p>
+</li>
+<li>
+<p>기본(수동) 모드에서 SDRS 사용을 고려하십시오. 이 접근 방식을 통해 권장 사항을 검토하고 적용 여부를 결정할 수 있습니다. VMDK 마이그레이션의 영향을 숙지하십시오.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>SDRS에서 VMDK를 데이터 저장소 간에 이동할 경우 ONTAP 클론 생성 또는 중복 제거를 통한 공간 절약이 손실됩니다. 중복제거를 재실행하여 이러한 절약 효과를 다시 실현할 수 있습니다.</p>
+</li>
+<li>
+<p>SDRS가 VMDK를 이동한 후 NetApp는 소스 데이터 저장소에서 스냅샷을 다시 생성하는 것이 좋습니다. 그렇지 않으면 공간이 이동된 VM에 의해 잠기기 때문입니다.</p>
+</li>
+<li>
+<p>동일한 애그리게이트에서 데이터 저장소 간에 VMDK를 이동하는 것은 효과가 거의 없으며 SDRS는 애그리게이트를 공유할 수 있는 다른 워크로드를 파악할 수 없습니다.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="스토리지-정책-기반-관리-및-vvol">스토리지 정책 기반 관리 및 VVOL</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>VASA(VMware vSphere APIs for Storage Awareness)를 사용하면 스토리지 관리자가 잘 정의된 기능을 사용하여 데이터 저장소를 쉽게 구성할 수 있으며 VM 관리자는 필요할 때마다 상호 작용하지 않고도 데이터 저장소를 사용하여 VM을 프로비저닝할 수 있습니다. 가상화 스토리지 운영을 간소화하고 사소한 작업을 많이 피하는 방법을 알아보려면 이 접근 방식을 살펴보시기 바랍니다.</p>
+</div>
+<div class="paragraph">
+<p>VASA 이전에는 VM 관리자가 VM 스토리지 정책을 정의할 수 있었지만 대개 문서 또는 명명 규칙을 사용하여 스토리지 관리자와 협력하여 적절한 데이터 저장소를 식별해야 했습니다. 스토리지 관리자는 VASA를 통해 성능, 계층화, 암호화, 복제를 비롯한 다양한 스토리지 기능을 정의할 수 있습니다. 볼륨 또는 볼륨 세트에 대한 기능 세트를 SCP(Storage Capability Profile)라고 합니다.</p>
+</div>
+<div class="paragraph">
+<p>SCP는 VM의 데이터 VVol에 대한 최소 및/또는 최대 QoS를 지원합니다. 최소 QoS는 AFF 시스템에서만 지원됩니다. VMware vSphere용 ONTAP 툴에는 ONTAP 시스템에서 VVOL을 위한 VM 레벨의 세분화된 성능과 논리적 용량을 보여주는 대시보드가 포함되어 있습니다.</p>
+</div>
+<div class="paragraph">
+<p>다음 그림은 VMware vSphere 9.8 VVol 대시보드를 위한 ONTAP 툴을 보여 줍니다.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../media/vsphere_ontap_image7.png" alt="오류: 그래픽 이미지가 없습니다"></span></p>
+</div>
+<div class="paragraph">
+<p>스토리지 용량 프로필을 정의한 후에는 요구 사항을 식별하는 스토리지 정책을 사용하여 VM을 프로비저닝하는 데 사용할 수 있습니다. VM 스토리지 정책과 데이터 저장소 스토리지 용량 프로파일 간의 매핑을 통해 vCenter에서 선택할 수 있는 호환 데이터 저장소 목록을 표시할 수 있습니다. 이러한 접근 방식을 스토리지 정책 기반 관리라고 합니다.</p>
+</div>
+<div class="paragraph">
+<p>VASA는 스토리지를 쿼리하고 스토리지 기능 집합을 vCenter에 반환하는 기술을 제공합니다. VASA 공급업체 공급자는 스토리지 시스템 API 및 구성 요소 및 vCenter에서 인식할 수 있는 VMware API 간의 변환을 제공합니다. NetApp의 VASA Provider for ONTAP는 VMware vSphere 어플라이언스 VM을 위한 ONTAP 툴의 일부로 제공됩니다. 또한, vCenter 플러그인은 VVOL 데이터 저장소를 프로비저닝 및 관리하기 위한 인터페이스를 제공하며 SCP(스토리지 기능 프로필)를 정의합니다.</p>
+</div>
+<div class="paragraph">
+<p>ONTAP는 VMFS 및 NFS VVOL 데이터 저장소를 모두 지원합니다. SAN 데이터 저장소와 VVOL을 함께 사용하면 VM 수준 정밀도와 같은 NFS의 몇 가지 이점이 있습니다. 다음은 고려해야 할 몇 가지 모범 사례이며 에서 추가 정보를 찾을 수 있습니다 <a href="http://www.netapp.com/us/media/tr-4400.pdf" target="_blank" rel="noopener">"TR-4400 을 참조하십시오"</a>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>VVOL 데이터 저장소는 여러 클러스터 노드의 여러 FlexVol 볼륨으로 구성될 수 있습니다. 가장 간단한 방법은 볼륨에 기능이 다른 경우에도 단일 데이터 저장소를 사용하는 것입니다. SPBM은 호환 볼륨이 VM에 사용되는지 확인합니다. 하지만 모든 볼륨은 단일 ONTAP SVM에 속하고 단일 프로토콜을 사용하여 액세스해야 합니다. 각 프로토콜당 하나의 LIF로 충분합니다. 스토리지 기능이 릴리즈별로 다를 수 있으므로 단일 VVOL 데이터 저장소 내에서 여러 ONTAP 릴리즈를 사용하는 것은 피하십시오.</p>
+</li>
+<li>
+<p>VMware vSphere용 ONTAP 툴을 사용하여 VVOL 데이터 저장소를 만들고 관리합니다. 데이터 저장소와 해당 프로필을 관리하는 것 외에도 필요한 경우 데이터 저장소에 액세스하기 위한 프로토콜 엔드포인트가 자동으로 생성됩니다. LUN을 사용하는 경우 LUN PES는 LUN ID 300 이상을 사용하여 매핑됩니다. ESXi 호스트 고급 시스템 설정을 확인합니다 <code>Disk.MaxLUN</code> 300보다 높은 LUN ID 번호를 허용합니다(기본값: 1,024). 이 단계를 수행하려면 vCenter에서 ESXi 호스트를 선택한 다음 구성 탭을 선택하고 을 찾습니다 <code>Disk.MaxLUN</code> 고급 시스템 설정 목록에서 선택합니다.</p>
+</li>
+<li>
+<p>VMware vSphere를 위한 VASA Provider, vCenter Server(어플라이언스 또는 Windows 기반) 또는 ONTAP 툴을 VVOL 데이터 저장소에 설치하거나 마이그레이션하지 마십시오. 상호 의존하기 때문에 정전이 발생하거나 기타 데이터 센터가 중단될 경우 이를 관리할 수 없습니다.</p>
+</li>
+<li>
+<p>VASA Provider VM을 정기적으로 백업합니다. VASA Provider가 포함된 기존 데이터 저장소의 시간별 스냅샷을 적어도 생성합니다. VASA Provider 보호 및 복구에 대한 자세한 내용은 다음을 참조하십시오 <a href="https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Virtual_Storage_Console_for_VMware_vSphere/Virtual_volumes%3A_Protecting_and_Recovering_the_NetApp_VASA_Provider" target="_blank" rel="noopener">"KB 문서를 참조하십시오"</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>다음 그림은 VVol 구성 요소를 보여줍니다.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../media/vsphere_ontap_image8.png" alt="오류: 그래픽 이미지가 없습니다"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="클라우드-마이그레이션-및-백업">클라우드 마이그레이션 및 백업</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ONTAP의 또 다른 강점은 하이브리드 클라우드를 광범위하게 지원하여 사내 프라이빗 클라우드의 시스템을 퍼블릭 클라우드 기능과 병합하는 것입니다. 다음은 vSphere와 함께 사용할 수 있는 몇 가지 NetApp 클라우드 솔루션입니다.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>* 클라우드 볼륨. * Amazon Web Services를 위한 NetApp Cloud Volumes Service 또는 Google Cloud Platform과 ANF를 위한 Azure NetApp Files는 주요 퍼블릭 클라우드 환경에서 고성능 멀티 프로토콜 관리형 스토리지 서비스를 제공합니다. VMware Cloud VM 게스트가 직접 사용할 수 있습니다.</p>
+</li>
+<li>
+<p>* Cloud Volumes ONTAP. * NetApp Cloud Volumes ONTAP 데이터 관리 소프트웨어는 선택한 클라우드에서 데이터에 제어, 보호, 유연성 및 효율성을 제공합니다. Cloud Volumes ONTAP는 NetApp ONTAP 스토리지 소프트웨어를 기반으로 하는 클라우드 네이티브 데이터 관리 소프트웨어입니다. Cloud Manager와 함께 사용하면 사내 ONTAP 시스템과 함께 Cloud Volumes ONTAP 인스턴스를 구축하고 관리할 수 있습니다. 스냅샷과 SnapMirror 복제를 포함한 통합 데이터 관리와 함께 고급 NAS 및 iSCSI SAN 기능을 활용합니다.</p>
+</li>
+<li>
+<p>* 클라우드 서비스. * Cloud Backup Service 또는 SnapMirror 클라우드를 사용하여 퍼블릭 클라우드 스토리지를 사용하는 사내 시스템의 데이터를 보호합니다. Cloud Sync를 사용하면 NAS, 오브젝트 저장소 및 Cloud Volumes Service 스토리지에서 데이터를 마이그레이션하고 동기화 상태를 유지할 수 있습니다.</p>
+</li>
+<li>
+<p>* FabricPool. * FabricPool는 ONTAP 데이터를 빠르고 쉽게 계층화할 수 있도록 지원합니다. 콜드 블록은 퍼블릭 클라우드 또는 프라이빗 StorageGRID 오브젝트 저장소의 오브젝트 저장소로 마이그레이션할 수 있으며, ONTAP 데이터에 다시 액세스할 때 자동으로 호출됩니다. 또는 SnapVault에서 이미 관리하는 데이터를 보호하기 위해 개체 계층을 세 번째 수준으로 사용할 수도 있습니다. 이 접근 방식을 통해 다음을 수행할 수 있습니다 <a href="https://www.linkedin.com/pulse/rethink-vmware-backup-again-keith-aasen/" target="_blank" rel="noopener">"VM의 스냅샷을 더 많이 저장합니다"</a> 주요 및/또는 보조 ONTAP 스토리지 시스템</p>
+</li>
+<li>
+<p>* ONTAP Select. * NetApp 소프트웨어 정의 스토리지를 사용하여 프라이빗 클라우드를 인터넷으로 원격 시설 및 사무소로 확장할 수 있습니다. ONTAP Select를 사용하여 블록 및 파일 서비스와 엔터프라이즈 데이터 센터에서 사용하는 vSphere 데이터 관리 기능을 지원할 수 있습니다.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>VM 기반 애플리케이션을 설계할 때는 미래의 클라우드 이동성을 고려해 보십시오. 예를 들어, 애플리케이션과 데이터 파일을 함께 배치하는 대신 데이터에 대해 별도의 LUN 또는 NFS 내보내기를 사용합니다. 따라서 VM 및 데이터를 클라우드 서비스로 별도로 마이그레이션할 수 있습니다.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="vsphere-데이터-암호화">vSphere 데이터 암호화</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>오늘날, 암호화를 통해 유휴 데이터를 보호해야 하는 요구가 증가하고 있습니다. 처음에는 금융 및 의료 정보에 초점을 맞추었지만 파일, 데이터베이스 또는 기타 데이터 유형에 관계없이 모든 정보를 보호하는 데 대한 관심이 높아지고 있습니다.</p>
+</div>
+<div class="paragraph">
+<p>ONTAP 소프트웨어를 실행하는 시스템을 사용하면 유휴 데이터를 쉽게 보호할 수 있습니다. NetApp 스토리지 암호화(NSE)는 ONTAP가 포함된 자체 암호화 디스크 드라이브를 사용하여 SAN 및 NAS 데이터를 보호합니다. NetApp은 또한 디스크 드라이브에서 볼륨을 암호화하는 단순한 소프트웨어 기반 접근 방식으로 NetApp 볼륨 암호화 및 NetApp 애그리게이트 Encryption도 제공합니다. 이 소프트웨어 암호화는 특수 디스크 드라이브나 외부 키 관리자가 필요하지 않으며 ONTAP 고객이 추가 비용 없이 사용할 수 있습니다. 클라이언트 또는 애플리케이션을 중단하지 않고 업그레이드하거나 사용할 수 있으며 온보드 키 관리자를 포함하여 FIPS 140-2 레벨 1 표준에 따라 검증을 받았습니다.</p>
+</div>
+<div class="paragraph">
+<p>VMware vSphere에서 실행되는 가상화된 애플리케이션의 데이터를 보호하기 위한 몇 가지 접근 방식이 있습니다. 한 가지 방법은 게스트 OS 수준에서 VM 내부의 소프트웨어로 데이터를 보호하는 것입니다. vSphere 6.5와 같은 최신 하이퍼바이저는 VM 수준에서 암호화를 지원하는 또 다른 대안으로, 그러나 NetApp 소프트웨어 암호화는 간단하고 쉬우며 다음과 같은 이점을 제공합니다.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>* 가상 서버 CPU에 영향을 미치지 않습니다. * 일부 가상 서버 환경에서는 애플리케이션에 사용할 수 있는 모든 CPU 사이클이 필요하지만 하이퍼바이저 레벨 암호화를 위해서는 최대 5배의 CPU 리소스가 필요하다는 결과가 있습니다. 암호화 소프트웨어가 암호화 워크로드를 오프로드하는 인텔의 AES-NI 명령 집합을 지원하더라도(NetApp 소프트웨어 암호화처럼), 이전 서버와 호환되지 않는 새로운 CPU가 필요하기 때문에 이 접근 방식은 적합하지 않을 수 있습니다.</p>
+</li>
+<li>
+<p>* 온보드 키 관리자가 포함되어 있습니다. * NetApp 소프트웨어 암호화는 추가 비용 없이 온보드 키 관리자를 포함하므로 구입 및 사용이 복잡한 고가용성 키 관리 서버 없이 쉽게 시작할 수 있습니다.</p>
+</li>
+<li>
+<p>* 스토리지 효율성에 영향을 미치지 않습니다. * 데이터 중복 제거 및 압축과 같은 스토리지 효율성 기술이 현재 널리 사용되고 있으며 플래시 디스크 미디어를 비용 효율적으로 사용하는 데 핵심적인 역할을 합니다. 그러나 암호화된 데이터는 일반적으로 중복제거되거나 압축할 수 없습니다. NetApp 하드웨어 및 스토리지 암호화는 다른 접근법과는 달리 낮은 수준에서 작동하며 업계 최고의 NetApp 스토리지 효율성 기능을 충분히 활용할 수 있도록 합니다.</p>
+</li>
+<li>
+<p>* 데이터스토어의 세분화된 암호화. * NetApp Volume Encryption을 사용하면 각 볼륨에 고유한 AES 256비트 키를 사용할 수 있습니다. 변경해야 하는 경우 단일 명령을 사용하여 변경할 수 있습니다. 이 접근 방식은 테넌트가 여러 개이거나 서로 다른 부서 또는 애플리케이션에 대해 독립적인 암호화를 증명해야 하는 경우에 유용합니다. 이 암호화는 개별 VM을 관리하는 것보다 훨씬 쉬운 데이터 저장소 수준에서 관리됩니다.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>소프트웨어 암호화를 간단하게 시작할 수 있습니다. 라이센스를 설치한 후 암호를 지정하여 온보드 키 관리자를 구성한 다음 새 볼륨을 생성하거나 스토리지 측 볼륨 이동을 수행하여 암호화를 설정합니다. NetApp은 향후 VMware 툴 릴리즈에서 암호화 기능에 대한 통합 지원을 추가하기 위해 노력하고 있습니다.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="active-iq-unified-manager">Active IQ Unified Manager</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Active IQ Unified Manager는 가상 인프라의 VM에 대한 가시성을 제공하고 가상 환경에서 스토리지 및 성능 문제를 모니터링하고 문제를 해결할 수 있도록 지원합니다.</p>
+</div>
+<div class="paragraph">
+<p>ONTAP 기반의 일반적인 가상 인프라 구축에는 컴퓨팅, 네트워크 및 스토리지 계층 전체에 분산된 다양한 구성 요소가 있습니다. VM 애플리케이션의 성능 지연은 각 계층의 다양한 구성 요소에 의해 발생하는 지연 시간의 조합으로 인해 발생할 수 있습니다.</p>
+</div>
+<div class="paragraph">
+<p>다음 스크린샷은 Active IQ Unified Manager 가상 머신 보기를 보여 줍니다.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../media/vsphere_ontap_image9.png" alt="오류: 그래픽 이미지가 없습니다"></span></p>
+</div>
+<div class="paragraph">
+<p>Unified Manager는 가상 환경의 기본 하위 시스템을 토폴로지 뷰에서 제공하므로 컴퓨팅 노드, 네트워크 또는 스토리지에서 지연 시간 문제가 발생했는지 여부를 확인할 수 있습니다. 또한 개선 단계를 수행하고 기본 문제를 해결하는 데 성능 지연이 발생하는 특정 개체를 중점적으로 보여 줍니다.</p>
+</div>
+<div class="paragraph">
+<p>다음 스크린샷은 AIQUM 확장 토폴로지를 보여줍니다.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../media/vsphere_ontap_image10.png" alt="오류: 그래픽 이미지가 없습니다"></span></p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  
+  <!-- Start Page Toolbar -->
+<div id="ie-right-navbar-collapse" class="close">
+  <img id="navbar-expand" class="ie-searchbox-icon" src="/ko-kr/ontap-apps-dbs/images/double_arrow.svg" alt="" />
+</div>
+<div id="ie-right-navbar" class="open">
+  <div id="right-navbar-collapse">
+    <img src="/ko-kr/ontap-apps-dbs/images/double_arrow.svg" alt="" />
+  </div>
+  <div class="page-nav-container">
+    <nav class="page-nav-fixed">
+      <div class="page-nav-title">이 페이지에서</div>
+      <div class="page-nav-links">
+        <ul class="page-nav-inner" id="page-menu"></ul>
+      </div>
+    </nav>
+  </div>
+</div>
+
+
+<script>
+  resizeContent();
+  function setRightBarHeight() {
+    var h = 0;
+
+    // header 1
+    h += PXinViewport($('.n-footer'));
+    h += PXinViewport($('#ie-new-header'));
+
+    if ($('#ie-right-navbar').length) {
+      $('#ie-right-navbar').css({ height: `calc(100vh - ${h}px)` });
+    }
+    if ($('.page-nav-links').length) {
+      h += 98;
+      $('.page-nav-links').css({ height: `calc(100vh - ${h}px)` });
+    }
+  }
+
+  $(document).ready(function () {
+    // PAGE NAV - Click
+    const MASTHEAD_OFFSET = 65;
+    const SECTIONS = $("main h2, main h3");
+    let calculateActiveSection = false;
+    setTimeout(() => {
+      calculateActiveSection = true;
+    }, 100)
+
+    $(".page-nav__link").click(function (event) {
+      calculateActiveSection = false;
+      $(".page-nav__link").removeClass('page-nav__link--active');
+      var target = $(event.target);
+      target.addClass('page-nav__link--active');
+      location.hash = event.target.hash;
+      setTimeout(() => {
+        calculateActiveSection = true;
+      }, 100)
+
+    });
+
+    // PAGE NAV - Scroll
+    $(window).on('resize scroll', function () {
+      if (calculateActiveSection) {
+        var activeSection = getActiveSection(SECTIONS, MASTHEAD_OFFSET);
+        if (activeSection) {
+          var activeHref = $(activeSection).attr('id');
+          $(".page-nav__link").removeClass('page-nav__link--active');
+          $("#page-menu a[href=#" + activeHref + "]").addClass('page-nav__link--active');
+          if (location.hash != "#" + activeHref) {
+            if (history.replaceState) {
+              history.replaceState(null, null, "#" + activeHref);
+            }
+          }
+        }
+      }
+    });
+
+    $(".n-pdf-button").click(function () {
+      $(this).toggleClass("active");
+    });
+
+    $.fn.isVisibleAndInViewport = function () {
+      var elementTop = $(this).offset().top;
+      var elementBottom = elementTop + $(this).outerHeight();
+
+      var viewportTop = $(window).scrollTop();
+      var viewportBottom = viewportTop + $(window).height();
+
+      return elementBottom > viewportTop && elementTop < viewportBottom && $(this).is(":visible");
+    };
+
+
+    $(window).on('resize scroll', function () {
+      setRightBarHeight();
+    });
+
+    $(window).trigger('resize');
+
+
+  });
+
+  $("#right-navbar-collapse").click(function (e) {
+    const rightNavbarWidth = $("#ie-right-navbar").width() - $("#ie-right-navbar-collapse").width();
+    e.preventDefault();
+    const width = $(".ie-content-pane").width();
+
+    $("#ie-right-navbar").animate({ width: 'toggle' }, 350, function () {
+      $("#ie-right-navbar-collapse").removeClass("close")
+      $("#ie-right-navbar-collapse").addClass("open")
+      $("#ie-right-navbar").removeClass("open")
+      $("#ie-right-navbar").addClass("close")
+    });
+    $(".ie-content-pane").animate({ width: (width + rightNavbarWidth) }, 350, function () {
+      resizeContent()
+      setSidebarBottom();
+    })
+
+  });
+  $("#navbar-expand").click(function (e) {
+    const rightNavbarWidth = $("#ie-right-navbar").width() - $("#ie-right-navbar-collapse").width();
+    e.preventDefault();
+    const width = $(".ie-content-pane").width();
+    $("#ie-right-navbar").animate({ width: 'toggle' }, 250, function () {
+      $("#ie-right-navbar-collapse").removeClass("open")
+      $("#ie-right-navbar-collapse").addClass("close")
+      $("#ie-right-navbar").removeClass("close")
+      $("#ie-right-navbar").addClass("open")
+      setRightBarHeight();
+      setSidebarBottom();
+    });
+    $(".ie-content-pane").animate({ width: (width - rightNavbarWidth) }, 250, function () {
+      resizeContent()
+    })
+  });
+
+  function navbarResize() {
+    const rightNavbarResized = $("#ie-right-navbar-collapse").hasClass('resized');
+    if (window.innerWidth < 1024) {
+      $("#ie-right-navbar").removeClass("open")
+      $("#ie-right-navbar").addClass("close")
+      $("#ie-right-navbar").removeAttr("style")
+      $("#ie-right-navbar-collapse").removeClass("close")
+      $("#ie-right-navbar-collapse").addClass("open")
+      $("#ie-right-navbar-collapse").addClass("resized")
+    } else {
+      if (rightNavbarResized) {
+        $('#ie-right-navbar').removeClass('close');
+        $('#ie-right-navbar').addClass('open');
+        $("#ie-right-navbar-collapse").removeClass("resized")
+        $("#ie-right-navbar-collapse").removeClass("open")
+        $("#ie-right-navbar-collapse").addClass("close")
+      }
+    }
+    resizeContent()
+  }
+  navbarResize();
+  $(window).on('resize load', function () {
+    navbarResize()
+  });
+
+  function getActiveSection(sections, offset) {
+    var scrollPosition = $(window).scrollTop() + offset + 5;
+    var activeSection;
+    for (var i = 0; i < sections.length; i++) {
+      var el = $(sections[i]);
+      var activePosition = el.offset().top;
+      if (activePosition > scrollPosition) {
+        break;
+      }
+
+      activeSection = sections[i];
+    }
+
+    return activeSection;
+  }
+
+  $("a[href*=#]:not([href=#])").click(function () {
+    setTimeout(() => {
+      $(window).trigger('scroll');
+    }, 105)
+  })
+
+  const hashOnLoad = location.href.split("#")[1];
+  setTimeout(function () {
+    if (hashOnLoad) {
+      $(".page-nav__link").removeClass('page-nav__link--active');
+      $("#page-menu a[href=#" + hashOnLoad + "]").addClass('page-nav__link--active');
+    }
+  }, 100)
+
+</script>
+
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+        <div class="n-footer__left">
+          <li class="n-footer__copyright-link">
+                    <a href="https://www.netapp.com/company/legal/copyright/">© 2024 NetApp, Inc.</a>
+          </li>
+        </div>
+        <div class="n-footer__center">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">이용 약관</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">개인 정보 보호 정책</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">쿠키 정책</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">쿠키 설정</a>
+            </li>
+          </ul>
+       </div>
+        <div class="n-footer__right">
+              <li class="n-footer__copyright-link">
+                <a target="_self" href="javascript:netapp_mailto()">이 페이지에 대한 피드백 보내기</a>
+              </li>
+        </div>
+     </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/ko-kr/ontap-apps-dbs/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/ko-kr/ontap-apps-dbs/js/prism.js'></script>
+      <script type="text/javascript" src='/ko-kr/ontap-apps-dbs/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/ko-kr/ontap-apps-dbs/js/ie-tabbed-blocks.js'></script>
+    <script src='/ko-kr/ontap-apps-dbs/js/ie-sidebar.js'></script>
+  </body>
+
+</html>
