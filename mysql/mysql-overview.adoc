@@ -14,7 +14,7 @@ summary: ONTAP 기반 MySQL
 MySQL 및 MariaDB 및 Percona MySQL을 포함한 그 변종은 세계에서 가장 인기있는 데이터베이스입니다.
 
 
-NOTE: ONTAP 및 MySQL 데이터베이스에 대한 이 문서는 이전에 게시된 _TR-4722: NetApp ONTAP 모범 사례에 기반한 MySQL 데이터베이스를 대체합니다. _
+NOTE: ONTAP 및 MySQL 데이터베이스에 대한 이 문서는 이전에 게시된 _TR-4722: ONTAP 모범 사례에 기반한 MySQL 데이터베이스를 대체합니다. _
 
 ONTAP는 말 그대로 데이터베이스를 위해 설계되었기 때문에 ONTAP는 MySQL 데이터베이스에 이상적인 플랫폼입니다. 데이터베이스 워크로드의 요구사항을 해결하기 위해 랜덤 IO 지연 시간 최적화에서 고급 서비스 품질(QoS)과 같은 다양한 기능이 특별히 제작되었습니다.
 

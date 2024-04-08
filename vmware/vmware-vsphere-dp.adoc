@@ -24,7 +24,7 @@ SnapCenter를 사용하면 여러 작업에 적용할 수 있는 백업 정책�
 
 다음 그림은 SnapCenter 구축의 예를 보여 줍니다.
 
-image:vsphere_ontap_image4.png["오류: 그래픽 이미지가 없습니다"]
+image:vsphere_ontap_image4.png["SnapCenter 구축"]
 
 향상된 재해 복구 기능을 위해 ONTAP용 NetApp SRA를 VMware Site Recovery Manager와 함께 사용하는 것이 좋습니다. 데이터 저장소를 DR 사이트로 복제할 수 있을 뿐만 아니라, 복제된 데이터 저장소를 클론 복제하여 DR 환경에서 무중단 테스트를 수행할 수도 있습니다. SRA에 내장된 자동화를 통해 운영 중단이 해결된 후 재해 복구 및 운영 재보호 작업도 쉽게 수행할 수 있습니다.
 

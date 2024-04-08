@@ -2,19 +2,19 @@
 sidebar: sidebar 
 permalink: vmware/vmware-vvols-overview.html 
 keywords: tr-4400, vvols, ontap, virtual volumes 
-summary:  
+summary: '이 개요는 ONTAP이 설치된 VMware vSphere 가상 볼륨(VVol)에 대해 개괄적으로 설명합니다' 
 ---
 = 개요
 :allow-uri-read: 
 
 
 [role="lead"]
-NetApp ONTAP 소프트웨어는 20년 이상 VMware vSphere 환경을 위한 업계 최고의 스토리지 솔루션으로, 관리를 단순화하는 동시에 비용을 절감할 수 있는 혁신적인 기능을 지속적으로 추가하고 있습니다.
+ONTAP는 20년 이상 VMware vSphere 환경을 위한 업계 최고의 스토리지 솔루션으로, 비용을 절감하는 동시에 관리를 간소화하는 혁신적인 기능을 지속적으로 추가하고 있습니다.
 
 본 문서에서는 구축 간소화 및 오류 감소를 위한 모범 사례와 함께 최신 제품 정보 및 사용 사례를 비롯하여 VMware VVOL(vSphere Virtual Volumes)의 ONTAP 기능에 대해 다룹니다.
 
 
-NOTE: 이 문서는 이전에 게시된 기술 보고서_TR-4400: VMware VVol(vSphere 가상 볼륨)을 NetApp ONTAP _ 로 대체합니다
+NOTE: 이 문서는 이전에 게시된 기술 보고서_TR-4400: VMware VVol(vSphere 가상 볼륨)을 ONTAP _ 로 대체합니다
 
 모범 사례는 가이드 및 호환성 목록 등의 다른 문서를 보완합니다. 이러한 전문 분야는 연구소 테스트와 NetApp 엔지니어 및 고객의 광범위한 현장 경험을 기반으로 합니다. 이러한 방법은 효과가 있거나 지원되는 유일한 방법이 아닐 수 있지만, 일반적으로 대부분의 고객의 요구를 충족하는 가장 간단한 솔루션입니다.
 
@@ -109,19 +109,19 @@ image::vvols-image4.png[가상 시스템 저장소 정책 준수,320,100]
 
 == NetApp VVOL을 지원합니다
 
-NetApp ONTAP는 2012년 최초 릴리즈 이후로 VASA 사양을 지원했습니다. 다른 NetApp 스토리지 시스템은 VASA를 지원할 수 있지만, 이 문서에서는 현재 지원되는 ONTAP 9 릴리즈에 대해 중점적으로 설명합니다.
+ONTAP는 2012년 최초 릴리즈부터 VASA 사양을 지원합니다. 다른 NetApp 스토리지 시스템은 VASA를 지원할 수 있지만, 이 문서에서는 현재 지원되는 ONTAP 9 릴리즈에 대해 중점적으로 설명합니다.
 
 
 
-=== NetApp ONTAP를 참조하십시오
+=== ONTAP
 
-AFF, ASA 및 FAS 시스템 기반의 ONTAP 9 외에도 NetApp은 ONTAP Select에서 VMware 워크로드, AWS에서 VMware 클라우드를 사용하는 NetApp ONTAP용 Amazon FSx, Azure VMware 솔루션을 사용하는 Azure NetApp Files, Google Cloud VMware Engine을 사용하는 Cloud Volumes Service 및 Equinix의 NetApp 프라이빗 스토리지 등을 지원합니다. 그러나 특정 기능은 서비스 공급자 및 사용 가능한 네트워크 연결에 따라 달라질 수 있습니다. vSphere 게스트에서 이러한 구성에 저장된 데이터에 액세스할 수 있을 뿐만 아니라 Cloud Volumes ONTAP도 사용할 수 있습니다.
+NetApp은 AFF, ASA, FAS 시스템 기반의 ONTAP 9 외에도 ONTAP Select에서 VMware 워크로드, AWS 기반의 Amazon FSx for NetApp, Azure VMware Solution 탑재 Azure NetApp Files, Cloud Volumes Service 및 Google Cloud VMware Engine, Equinix의 NetApp 프라이빗 스토리지를 지원합니다. 그러나 특정 기능은 서비스 제공업체 및 사용 가능한 네트워크 연결에 따라 달라질 수 있습니다. vSphere 게스트에서 이러한 구성에 저장된 데이터에 액세스할 수 있을 뿐만 아니라 Cloud Volumes ONTAP도 사용할 수 있습니다.
 
 하이퍼스케일러 환경은 기존의 NFS v3 데이터 저장소로만 제한되므로, VVOL은 온프레미스 ONTAP 시스템이나 전 세계 NetApp 파트너 및 서비스 공급자가 호스팅하는 것과 같은 온프레미스 시스템의 모든 기능을 제공하는 클라우드 연결 시스템에서만 사용할 수 있습니다.
 
 _ ONTAP에 대한 자세한 내용은 을(를) 참조하십시오 https://docs.netapp.com/us-en/ontap-family/["ONTAP 제품 설명서"^]_
 
-_ ONTAP 및 VMware vSphere Best Practice에 대한 자세한 내용은 를 참조하십시오 https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597 을 참조하십시오"^]_
+_ ONTAP 및 VMware vSphere Best Practice에 대한 자세한 내용은 를 참조하십시오 link:vmware-vsphere-overview.html["TR-4597 을 참조하십시오"^]_
 
 
 

@@ -1,0 +1,125 @@
+---
+sidebar: sidebar 
+permalink: microsoft/win_environment.html 
+keywords: Windows,Hyper-V,VHDX,VM,Virtual 
+summary: NetApp 스토리지 및 Windows Server 환경에 대해 알아보십시오 
+---
+= NetApp 스토리지 및 Windows Server 환경
+:allow-uri-read: 
+
+
+[role="lead"]
+에 언급된 대로 link:win_overview.html["개요"]NetApp 스토리지 컨트롤러는 파일, 블록, 오브젝트 프로토콜을 지원하는 진정한 통합 아키텍처를 제공합니다. 여기에는 SMB/CIFS, NFS, NVMe/TCP, NVMe/FC, iSCSI, 또한 FC(FCP) 및 S3 를 통해 통합 클라이언트 및 호스트 액세스를 생성합니다. 동일한 스토리지 컨트롤러에서 SAN LUN 형태의 블록 스토리지 서비스를 동시에 제공하고 NFS 및 SMB/CIFS로서 파일 서비스를 제공할 수 있습니다. ONTAP는 iSCSI 및 FCP를 통해 대칭 액티브-액티브 다중 경로를 통해 호스트 액세스를 최적화하는 ASA(All SAN 어레이)로도 사용할 수 있습니다. 반면에 유니파이드 ONTAP 시스템은 비대칭 액티브-액티브 다중 경로를 사용합니다. 두 모드 모두에서 ONTAP는 NVMe-oF(NVMe over Fabrics) 다중 경로 관리에 ANA를 사용합니다.
+
+ONTAP 소프트웨어를 실행하는 NetApp 스토리지 컨트롤러는 Windows Server 환경에서 다음과 같은 워크로드를 지원할 수 있습니다.
+
+* 지속적으로 사용 가능한 SMB 3.0 공유에서 호스팅되는 VM입니다
+* iSCSI 또는 FC에서 실행 중인 CSV(클러스터 공유 볼륨) LUN에 호스팅된 VM
+* SMB 3.0 공유에 실행되는 SQL Server 데이터베이스
+* NVMe-oF, iSCSI 또는 FC 기반 SQL Server 데이터베이스
+* 기타 애플리케이션 워크로드
+
+
+또한, 중복제거, NetApp FlexClone(R) 복사본, NetApp Snapshot 기술, 씬 프로비저닝, 압축, 등과 같은 NetApp 스토리지 효율성 기능뿐만 아니라 또한 스토리지 계층화는 Windows Server에서 실행되는 작업 부하에 큰 가치를 제공합니다.
+
+
+
+== ONTAP 데이터 관리
+
+ONTAP는 NetApp 스토리지 컨트롤러에서 실행되는 관리 소프트웨어입니다. 노드라고 하는 NetApp 스토리지 컨트롤러는 프로세서, RAM 및 NVRAM이 있는 하드웨어 장치입니다. 노드는 SATA, SAS 또는 SSD 디스크 드라이브 또는 이러한 드라이브의 조합에 연결할 수 있습니다.
+
+여러 노드가 클러스터된 시스템으로 집계됩니다. 클러스터의 노드가 서로 지속적으로 통신하여 클러스터 활동을 조정합니다. 또한 노드는 2개의 10Gb 이더넷 스위치로 구성된 전용 클러스터 네트워크에 대한 이중 경로를 사용하여 노드 간에 데이터를 투명하게 이동할 수 있습니다. 클러스터의 노드가 서로 넘겨받아 페일오버 시나리오 중에 고가용성을 제공할 수 있습니다. 클러스터는 노드 단위가 아닌 전체 클러스터에서 관리되며, 하나 이상의 SVM(스토리지 가상 머신)에서 데이터가 제공됩니다. 클러스터에는 데이터를 제공하는 SVM이 적어도 하나는 있어야 합니다.
+
+클러스터의 기본 유닛은 노드이며 노드는 고가용성(HA) 쌍의 일부로 클러스터에 추가됩니다. HA 쌍은 전용 클러스터 네트워크와 분리된 HA 인터커넥트를 통해 서로 통신하고 HA 쌍의 디스크에 대한 이중 연결을 유지하여 고가용성을 지원합니다. HA 쌍 간에 디스크가 공유되지 않습니다. 단, 쉘프에는 HA 쌍 중 하나에 속하는 디스크가 포함될 수 있습니다. 다음 그림에서는 Windows Server 환경에 구축된 NetApp 스토리지를 보여 줍니다.
+
+image:win_image1.png["Windows Server 환경에서 NetApp 스토리지 배포, 너비 = 624, 높이 = 479"]
+
+
+
+== 스토리지 가상 머신
+
+ONTAP SVM은 하나 이상의 논리 인터페이스(LIF)에서 LUN 및/또는 NAS 네임스페이스에 대한 데이터 액세스를 제공하는 논리 스토리지 서버입니다. 따라서 SVM은 스토리지 분할의 기본 단위로, ONTAP에서 안전한 멀티 테넌시를 지원합니다. 각 SVM은 물리적 이더넷 네트워크 또는 FC 타겟 포트에 할당된 물리적 애그리게이트와 논리 인터페이스(LIF)에서 프로비저닝된 스토리지 볼륨을 소유하도록 구성됩니다.
+
+논리 디스크(LUN) 또는 CIFS 공유는 다음 그림과 같이 SVM의 볼륨 내에 생성되고 Windows 호스트 및 클러스터에 매핑되어 스토리지 공간을 제공합니다. SVM은 노드 독립적이고 클러스터 기반이며, 클러스터 내 모든 위치에서 볼륨 또는 네트워크 포트와 같은 물리적 리소스를 사용할 수 있습니다.
+
+image:win_image2.png["ONTAP 스토리지 가상 머신, 폭 = 572, 높이 = 443"]
+
+
+
+== Windows Server용 NetApp 스토리지 용량 할당
+
+SAN 환경과 NAS 환경 모두에서 Windows Server에 스토리지를 프로비저닝할 수 있습니다. SAN 환경에서 스토리지는 NetApp 볼륨의 LUN에서 블록 스토리지로 제공되는 디스크로 제공됩니다. NAS 환경에서 스토리지는 NetApp 볼륨에 CIFS/SMB 공유로 파일 스토리지로 제공됩니다. 이러한 디스크 및 공유는 다음과 같이 Windows Server에 적용할 수 있습니다.
+
+* 애플리케이션 작업 부하용 Windows Server 호스트용 스토리지
+* Nano Server 및 컨테이너용 스토리지
+* VM을 저장할 개별 Hyper-V 호스트에 대한 스토리지입니다
+* VM을 저장할 CSV 형식의 Hyper-V 클러스터용 공유 스토리지입니다
+* SQL Server 데이터베이스를 위한 스토리지
+
+
+
+
+== NetApp 스토리지 관리
+
+Windows Server 2016에서 NetApp 스토리지를 연결, 구성 및 관리하려면 다음 방법 중 하나를 사용하십시오.
+
+* * 보안 셸(SSH). * Windows Server에서 SSH 클라이언트를 사용하여 NetApp CLI 명령을 실행합니다.
+* * System Manager. * 이것은 NetApp의 GUI 기반 관리 기능 제품입니다.
+* * NetApp PowerShell Toolkit. * 사용자 정의 스크립트와 워크플로를 자동화하고 구현하는 NetApp PowerShell Toolkit입니다.
+
+
+
+
+== NetApp PowerShell 툴킷
+
+NetApp PowerShell 툴킷(PSTK)은 엔드 투 엔드 자동화를 제공하고 NetApp ONTAP의 스토리지 관리를 지원하는 PowerShell 모듈입니다. ONTAP 모듈에는 2,000개 이상의 cmdlet이 포함되어 있으며, FAS, NetApp AFF(All Flash FAS), 일반 하드웨어 및 클라우드 리소스 관리를 지원하는 데 도움이 됩니다.
+
+
+
+=== 기억해야 할 사항
+
+* NetApp는 Windows Server 저장소 공간을 지원하지 않습니다. 스토리지 공간은 JBOD(단지 여러 개의 디스크)에만 사용되며 RAID 유형(DAS(Direct-Attached Storage) 또는 SAN)에서는 작동하지 않습니다.
+* Windows Server의 클러스터 스토리지 풀은 ONTAP에서 지원되지 않습니다.
+* NetApp는 Windows SAN 환경에서 게스트 클러스터링을 위한 공유 가상 하드 디스크 형식(VHDX)을 지원합니다.
+* Windows Server에서는 iSCSI 또는 FC LUN을 사용하는 스토리지 풀 생성을 지원하지 않습니다.
+
+
+
+
+=== 추가 참고 자료
+
+* NetApp PowerShell 툴킷에 대한 자세한 내용은 를 참조하십시오 https://mysupport.netapp.com/site/tools/tool-eula/ontap-powershell-toolkit["NetApp Support 사이트"].
+* NetApp PowerShell 툴킷 모범 사례에 대한 자세한 내용은 를 참조하십시오 https://www.netapp.com/media/16861-tr-4475.pdf?v=93202073432AM["TR-4475: NetApp PowerShell 툴킷 모범 사례 가이드 를 참조하십시오"].
+
+
+
+
+== 네트워킹 모범 사례
+
+이더넷 네트워크는 다음과 같은 그룹으로 광범위하게 분리할 수 있습니다.
+
+* VM에 대한 클라이언트 네트워크
+* 하나 이상의 스토리지 네트워크(iSCSI 또는 SMB를 스토리지 시스템에 연결)
+* 클러스터 통신 네트워크(하트비트 및 클러스터의 노드 간 기타 통신)
+* 관리 네트워크(시스템 모니터링 및 문제 해결)
+* 마이그레이션 네트워크(호스트 라이브 마이그레이션용)
+* VM 복제(Hyper-V 복제본)
+
+
+
+
+=== 모범 사례
+
+* NetApp는 네트워크 격리 및 성능을 위해 앞의 각 기능에 전용 물리적 포트를 사용할 것을 권장합니다.
+* 앞의 각 네트워크 요구 사항(스토리지 요구 사항 제외)에 대해 여러 물리적 네트워크 포트를 통합하여 로드를 분산하거나 내결함성을 제공할 수 있습니다.
+* NetApp은 VM 내의 게스트 스토리지 접속을 위해 Hyper-V 호스트에 전용 가상 스위치를 생성하는 것이 좋습니다.
+* Hyper-V 호스트 및 게스트 iSCSI 데이터 경로는 게스트와 호스트 간의 안전한 격리를 위해 서로 다른 물리적 포트와 가상 스위치를 사용해야 합니다.
+* NetApp에서는 iSCSI NIC에 대해 NIC 팀 구성을 사용하지 않는 것이 좋습니다.
+* NetApp은 스토리지용 ONTAP 다중 경로 I/O(MPIO)를 사용하도록 권장합니다.
+* NetApp는 게스트 iSCSI 이니시에이터를 사용하는 경우 게스트 VM 내에서 MPIO를 사용할 것을 권장합니다. 통과 디스크를 사용하는 경우 게스트 내에서 MPIO 사용을 피해야 합니다. 이 경우 호스트에 MPIO를 설치하면 충분합니다.
+* NetApp은 스토리지 네트워크에 할당된 가상 스위치에 QoS 정책을 적용하지 않는 것이 좋습니다.
+* NetApp는 APIPA가 라우팅할 수 없고 DNS에 등록되지 않으므로 물리적 NIC에 APIPA(자동 개인 IP 주소 지정)를 사용하지 않는 것이 좋습니다.
+* NetApp에서는 처리량을 높이고 CPU 주기를 줄이기 위해 CSV, iSCSI 및 라이브 마이그레이션 네트워크에 대해 점보 프레임을 설정하는 것이 좋습니다.
+* NetApp에서는 관리 운영 체제에서 Hyper-V 가상 스위치에 대해 이 네트워크 어댑터를 공유하도록 허용 옵션의 선택을 취소하여 VM 전용 네트워크를 생성할 것을 권장합니다.
+* NetApp에서는 실시간 마이그레이션을 위한 이중화된 네트워크 경로(다중 스위치)를 생성하고 iSCSI 네트워크를 생성하여 복원력과 QoS를 제공할 것을 권장합니다.
+

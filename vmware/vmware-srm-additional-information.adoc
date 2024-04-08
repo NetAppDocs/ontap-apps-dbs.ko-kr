@@ -17,9 +17,9 @@ summary: 이 문서에 설명된 정보에 대해 자세히 알아보려면 다�
 이 문서에 설명된 정보에 대해 자세히 알아보려면 다음 문서 및/또는 웹 사이트를 검토하십시오.
 
 * TR-4597: ONTAP용 VMware vSphere
-https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html"^]
+link:vmware-vsphere-overview.html["https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vsphere-overview.html"^]
 * TR-4400: ONTAP를 포함한 VMware vSphere 가상 볼륨
-https://www.netapp.com/pdf.html?item=/media/13555-tr4400.pdf["https://www.netapp.com/pdf.html?item=/media/13555-tr4400.pdf"^]
+link:vmware-vvols-overview.html["https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vvols-overview.html"^]
 * ONTAP 9용 TR-4015 SnapMirror 구성 모범 사례 가이드
 https://www.netapp.com/media/17229-tr4015.pdf?v=127202175503P[]
 * RBAC ONTAP용 사용자 생성기

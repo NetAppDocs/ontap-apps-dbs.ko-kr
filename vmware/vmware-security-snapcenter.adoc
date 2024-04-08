@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: vmware/vmware-security-snapcenter.html 
-keywords: WP-7355, security, snapcenter, treat modeling, dast, vulnerability scanning, penetration testing 
-summary:  
+keywords: WP-7355, security, snapcenter, treat modeling, dast, vulnerability scanning, penetration testing,SCV,VMware,vSphere 
+summary: 이 문서에서는 VMware용 SnapCenter 플러그인의 보안 측면에 대해 설명합니다. 
 ---
 = SnapCenter 플러그인 VMware vSphere
 :allow-uri-read: 
@@ -16,7 +16,7 @@ NetApp SnapCenter Plug-in for VMware vSphere 소프트웨어 엔지니어링은 
 * * 타사 코드 통화. * 소프트웨어를 개발하고 오픈 소스 소프트웨어(OSS)를 사용하는 과정에서 제품에 통합된 OSS와 관련된 보안 취약점을 해결하는 것이 중요합니다. 이는 항상 OSS 구성 요소 버전에 새로 발견된 취약점이 보고될 수 있기 때문에 지속적으로 발생하는 것입니다.
 * * 취약성 검사. * 취약성 검사의 목적은 NetApp 제품이 고객에게 공개되기 전에 NetApp 제품의 알려진 공통 보안 취약점을 감지하는 것입니다.
 * * 침투 테스트 * 침투 테스트는 시스템, 웹 응용 프로그램 또는 네트워크를 평가하여 공격자가 악용할 수 있는 보안 취약점을 찾는 프로세스입니다. NetApp의 침투 테스트(펜 테스트)는 승인되고 신뢰할 수 있는 타사 기업의 그룹에 의해 수행됩니다. 이러한 테스트 범위에는 정교한 악용 방법이나 도구를 사용하는 악의적인 침입자나 해커 같은 응용 프로그램 또는 소프트웨어에 대한 공격이 포함됩니다.
-* 제품 보안 문제의 대응 활동.* 보안 취약점은 회사 내외부에서 발견되며, 적절한 시기에 해결하지 못할 경우 NetApp의 평판에 심각한 위험을 초래할 수 있습니다. 이 프로세스를 용이하게 하기 위해 PSIRT(Product Security Incident Response Team)는 취약점을 보고 및 추적합니다.
+* * 제품 보안 문제의 대응 활동 * 보안 취약성은 사내외에서 발견되며 적시에 해결되지 않을 경우 NetApp의 평판에 심각한 위험을 초래할 수 있습니다. 이 프로세스를 용이하게 하기 위해 PSIRT(Product Security Incident Response Team)는 취약점을 보고 및 추적합니다.
 
 
 
@@ -43,7 +43,7 @@ individual files in /usr/share/doc/*/copyright.
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 ....
-* * 역할 기반 액세스 제어(RBAC). * 두 가지 유형의 RBAC 컨트롤이 NetApp ONTAP 도구에 연결되어 있습니다.
+* * 역할 기반 액세스 제어(RBAC). * 두 가지 유형의 RBAC 컨트롤이 ONTAP 도구에 연결되어 있습니다.
 +
 ** 기본 vCenter Server 권한
 ** VMware vCenter 플러그인별 권한 자세한 내용은 을 참조하십시오 https://docs.netapp.com/us-en/sc-plugin-vmware-vsphere/scpivs44_role_based_access_control.html["역할 기반 액세스 제어(RBAC)"^].

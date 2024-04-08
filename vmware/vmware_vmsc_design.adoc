@@ -47,23 +47,23 @@ HA 클러스터를 구성하려면 다음 단계를 완료하십시오.
 . 데이터 센터 개체를 마우스 오른쪽 버튼으로 클릭하고 New Cluster를 선택합니다. 기본 사항에서 vSphere DRS 및 vSphere HA를 사용하도록 설정했는지 확인합니다. 마법사를 완료합니다.
 
 
-image::../media/vmsc_3_1.png[자동으로 생성된 컴퓨터 설명 스크린샷,624,302]
+image::../media/vmsc_3_1.png[새 클러스터,624,302]
 
 . 클러스터를 선택하고 구성 탭으로 이동합니다. vSphere HA를 선택하고 Edit를 클릭합니다.
 . 호스트 모니터링 에서 호스트 모니터링 활성화 옵션을 선택합니다.
 
 
-image::../media/vmsc_3_2.png[자동으로 생성된 컴퓨터 설명 스크린샷,624,475]
+image::../media/vmsc_3_2.png[호스트 모니터링 옵션을 활성화합니다,624,475]
 
 . 오류 및 응답 탭에 있는 VM 모니터링에서 VM 모니터링만 옵션 또는 VM 및 애플리케이션 모니터링 옵션을 선택합니다.
 
 
-image::../media/vmsc_3_3.png[자동으로 생성된 컴퓨터 설명 스크린샷,624,480]
+image::../media/vmsc_3_3.png[VM 모니터링,624,480]
 
 . Admission Control에서 HA 승인 제어 옵션을 cluster resource reserve로 설정하고 50% CPU/MEM을 사용합니다.
 
 
-image::../media/vmsc_3_4.png[자동으로 생성된 컴퓨터 설명 스크린샷,624,479]
+image::../media/vmsc_3_4.png[승인 제어,624,479]
 
 . "Ok"를 클릭합니다.
 . DRS를 선택하고 편집을 클릭합니다.
@@ -236,22 +236,22 @@ image::../media/vmsc_3_8.png[자동으로 생성된 컴퓨터 설명 스크린�
 * NetApp는 관리자가 마이그레이션이 필요한 시기를 결정하고 제어할 수 있도록 Storage DRS를 수동 모드로 구성하는 것이 좋습니다.
 
 
-image::../media/vmsc_3_9.png[설명 텍스트가 자동으로 생성됩니다,528,94]
+image::../media/vmsc_3_9.png[Storage DRS를 참조하십시오,528,94]
 
 . Enable I/O Metric for SDRS Recommendations 확인란이 선택되어 있는지 확인합니다. 메트릭 설정을 기본값으로 유지할 수 있습니다.
 
 
-image::../media/vmsc_3_10.png[자동으로 생성된 컴퓨터 설명 스크린샷,624,241]
+image::../media/vmsc_3_10.png[SDRS 권장 사항,624,241]
 
 . HA 클러스터를 선택하고 Next를 클릭합니다.
 
 
-image::../media/vmsc_3_11.png[자동으로 생성된 컴퓨터 설명 스크린샷,624,149]
+image::../media/vmsc_3_11.png[HA 클러스터,624,149]
 
 . 사이트 A에 속하는 데이터 저장소를 선택하고 Next를 클릭합니다.
 
 
-image::../media/vmsc_3_12.png[자동으로 생성된 컴퓨터 설명 스크린샷,624,134]
+image::../media/vmsc_3_12.png[데이터 저장소,624,134]
 
 . 옵션을 검토하고 마침 을 클릭합니다.
 . 이 단계를 반복하여 사이트 B 데이터 저장소 클러스터를 생성하고 사이트 B의 데이터 저장소만 선택되어 있는지 확인합니다.

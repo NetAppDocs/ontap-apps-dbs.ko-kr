@@ -31,7 +31,7 @@ VMware vSphere용 ONTAP 툴은 ONTAP 스토리지를 vSphere와 함께 사용하
 
 다음 그림에서는 vSphere용 ONTAP 툴을 보여 줍니다.
 
-image:vsphere_ontap_image1.png["오류: 그래픽 이미지가 없습니다"]
+image:vsphere_ontap_image1.png["vSphere용 ONTAP 툴"]
 
 
 

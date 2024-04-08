@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: mssql/mssql-shared-vs-dedicated.html 
-keywords: MS-SQL,mssql,SQL Server 
-summary: ONTAP 기반 Microsoft SQL Server 
+keywords: MSSQL,SQL Server, multiple instances, dedicated instance, ONTAP 
+summary: Microsoft SQL Server 인스턴스 배포 
 ---
 = Microsoft SQL Server 공유 인스턴스와 전용 인스턴스 비교
 :allow-uri-read: 
@@ -10,9 +10,9 @@ summary: ONTAP 기반 Microsoft SQL Server
 
 
 [role="lead"]
-응용 프로그램에 스키마와 저장 프로시저가 많은 경우 SQL Server 인스턴스를 공유하는 다른 응용 프로그램에 영향을 줄 수 있습니다.
+여러 SQL Server를 서버당 단일 인스턴스 또는 여러 인스턴스로 구성할 수 있습니다. 적절한 결정은 일반적으로 서버가 운영 또는 개발에 사용되는지 여부, 인스턴스가 비즈니스 운영 및 성능 목표에 중요한지를 여부 등의 요인에 따라 달라집니다.
 
-인스턴스 리소스가 분할되거나 잠길 수 있으며, 이로 인해 공유 SQL Server 인스턴스에서 호스팅되는 데이터베이스가 있는 다른 앱의 성능 문제가 발생할 수 있습니다.
+처음에는 공유 인스턴스 구성이 더 쉬울 수 있지만 리소스가 나누어지거나 잠기는 문제가 발생할 수 있으며, 이로 인해 공유 SQL Server 인스턴스에서 데이터베이스가 호스팅되는 다른 앱의 성능 문제가 발생할 수 있습니다.
 
 어떤 인스턴스가 근본 원인인지 파악해야 하기 때문에 성능 문제의 해결은 복잡할 수 있습니다. 이 질문은 운영 체제 라이선스와 SQL Server 라이선스 비용을 기준으로 합니다. 애플리케이션 성능이 가장 중요한 경우에는 전용 인스턴스를 사용하는 것이 좋습니다.
 

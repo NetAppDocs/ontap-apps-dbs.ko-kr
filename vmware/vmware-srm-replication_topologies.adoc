@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: vmware/vmware-srm-replication_topologies.html 
 keywords: vmware, site, recovery manager, vsrm, replication, technologies, snapmirror layouts, array manager, snapvault, qtress, fc, iscsi, supported 
-summary: ONTAP 9에서는 클러스터의 물리적 구성 요소가 클러스터 관리자에게 표시되지만 클러스터를 사용하는 애플리케이션과 호스트에는 직접 표시되지 않습니다. 
+summary: SnapMirror 및 VMware SRM에서 ONTAP를 사용하는 복제 토폴로지 
 ---
 = 복제 토폴로지
 :hardbreaks:
@@ -36,13 +36,13 @@ ONTAP 9에서는 클러스터의 물리적 구성 요소가 클러스터 관리�
 
 다음 그림은 SRM 및 SRA에서 지원하는 SnapMirror 관계 레이아웃 시나리오를 보여 줍니다. 복제된 볼륨의 각 VM은 각 사이트의 한 SRM 어레이(SVM)에만 데이터를 소유합니다.
 
-image:vsrm-ontap9_image7.png["오류: 그래픽 이미지가 없습니다"]
+image:vsrm-ontap9_image7.png["SnapMirror 관계 레이아웃"]
 
-image:vsrm-ontap9_image8.png["오류: 그래픽 이미지가 없습니다"]
+image:vsrm-ontap9_image8.png["SnapMirror 관계 레이아웃"]
 
-image:vsrm-ontap9_image9.png["오류: 그래픽 이미지가 없습니다"]
+image:vsrm-ontap9_image9.png["SnapMirror 관계 레이아웃"]
 
-image:vsrm-ontap9_image10.png["오류: 그래픽 이미지가 없습니다"]
+image:vsrm-ontap9_image10.png["SnapMirror 관계 레이아웃"]
 
 
 
@@ -50,7 +50,7 @@ image:vsrm-ontap9_image10.png["오류: 그래픽 이미지가 없습니다"]
 
 SRM에서 ABR(스토리지 기반 복제)을 사용하면 다음 스크린샷과 같이 보호 그룹이 단일 스토리지 쌍으로 격리됩니다. 이 시나리오에서는 `SVM1` 및 `SVM2` 로 피어링됩니다 `SVM3` 및 `SVM4` Insight 설문조사에 응답해 주세요. 그러나 보호 그룹을 생성할 때는 두 스토리지 쌍 중 하나만 선택할 수 있습니다.
 
-image:vsrm-ontap9_image11.png["오류: 그래픽 이미지가 없습니다"]
+image:vsrm-ontap9_image11.png["스토리지 쌍"]
 
 
 
@@ -58,13 +58,13 @@ image:vsrm-ontap9_image11.png["오류: 그래픽 이미지가 없습니다"]
 
 지원되지 않는 구성에는 개별 VM이 소유하는 여러 SVM에 데이터(VMDK 또는 RDM)가 있습니다. 다음 그림에 표시된 예에서는 `VM1` SRM을 사용하여 보호하도록 구성할 수 없는 이유 `VM1` 에서 2개의 SVM에 데이터가 있습니다.
 
-image:vsrm-ontap9_image12.png["오류: 그래픽 이미지가 없습니다"]
+image:vsrm-ontap9_image12.png["지원되지 않는 구성입니다"]
 
-image:vsrm-ontap9_image13.png["오류: 그래픽 이미지가 없습니다"]
+image:vsrm-ontap9_image13.png["지원되지 않는 구성입니다"]
 
 개별 NetApp 볼륨이 하나의 소스 SVM에서 동일한 SVM의 여러 대상 또는 서로 다른 SVM에 복제된 모든 복제 관계를 SnapMirror 팬아웃(fan-out)이라고 합니다. SRM에서는 팬아웃이 지원되지 않습니다. 다음 그림에 표시된 예에서는 `VM1` SnapMirror를 사용하여 서로 다른 두 위치에 복제되므로 SRM에서 보호를 위해 구성할 수 없습니다.
 
-image:vsrm-ontap9_image14.png["오류: 그래픽 이미지가 없습니다"]
+image:vsrm-ontap9_image14.png["지원되지 않는 구성입니다"]
 
 
 
@@ -72,7 +72,7 @@ image:vsrm-ontap9_image14.png["오류: 그래픽 이미지가 없습니다"]
 
 SRM은 소스 볼륨이 타겟 볼륨에 복제되고 해당 타겟 볼륨도 SnapMirror를 통해 다른 타겟 볼륨으로 복제되는 SnapMirror 관계의 다중 구간 기능을 지원하지 않습니다. 다음 그림에 표시된 시나리오에서는 사이트 간 장애 조치에 SRM을 사용할 수 없습니다.
 
-image:vsrm-ontap9_image15.png["오류: 그래픽 이미지가 없습니다"]
+image:vsrm-ontap9_image15.png["계단식 SnapMirror 관계"]
 
 
 
@@ -103,11 +103,11 @@ VMware 환경에서 각 데이터 저장소에는 UUID(Universal Unique Identifi
 
 다음 그림은 SnapVault 계단식으로 구성된 SnapMirror를 보여 줍니다. SnapVault 대상이 DR 사이트 또는 운영 사이트의 운영 중단으로 인해 영향을 받지 않는 3차 사이트에 있는 경우, 페일오버 후 백업을 계속할 수 있도록 환경을 재구성할 수 있습니다.
 
-image:vsrm-ontap9_image16.png["오류: 그래픽 이미지가 없습니다"]
+image:vsrm-ontap9_image16.png["계단식 SnapMirror에서 SnapVault로 배열"]
 
 다음 그림에서는 SRM을 사용하여 SnapMirror 복제를 기본 사이트로 되돌린 후의 구성을 보여 줍니다. 또한 SnapVault 백업이 현재 SnapMirror 소스에서 발생하도록 환경이 재구성되었습니다. 이 설정은 SnapMirror SnapVault 팬아웃 구성입니다.
 
-image:vsrm-ontap9_image17.png["오류: 그래픽 이미지가 없습니다"]
+image:vsrm-ontap9_image17.png["SnapMirror에서 SnapVault로 계단식 복수는 반대의 경우도 가능합니다"]
 
 SRM이 페일백을 수행하고 SnapMirror 관계의 두 번째 반전을 수행한 후 운영 데이터가 기본 사이트로 돌아갑니다. 이 데이터는 SnapMirror 및 SnapVault 백업을 통해 DR 사이트로 페일오버 전의 방식과 동일하게 보호됩니다.
 

@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: vmware/vmware-vsphere-datastores-top.html 
 keywords: vSphere, datastore, VMFS, FC, FCoE, NVMe/FC, iSCSI, NFS, vVols 
-summary: 이 페이지에서는 VMware vSphere 환경에 NetApp ONTAP 스토리지 솔루션을 구축하는 모범 사례를 설명합니다. 
+summary: 이 페이지에서는 VMware vSphere 환경에서 ONTAP 스토리지 솔루션을 구축하기 위한 Best Practice를 설명합니다. 
 ---
 = vSphere 데이터 저장소 및 프로토콜 기능 개요
 :hardbreaks:
@@ -46,7 +46,7 @@ FCP, FCoE, NVMe/FC, NVMe/TCP 및 iSCSI는 vSphere VMFS(Virtual Machine File Syst
 | 최대 데이터 저장소 파일 크기입니다 | 62TB | 62TB | 62TB | ONTAP 9.12.1P2 이상이 설치된 62TB 
 
 
-| LUN 또는 파일 시스템당 최적의 큐 크기 | 64-256 | 64-256 | 자동 협상 | NFS.MaxQueueDepth in 을 참조하십시오 https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_recommended_esxi_host_and_other_ontap_settings.html["권장되는 ESXi 호스트 및 기타 ONTAP 설정"^]. 
+| LUN 또는 파일 시스템당 최적의 큐 크기 | 64-256 | 64-256 | 자동 협상 | NFS.MaxQueueDepth in 을 참조하십시오 link:vmware-vsphere-settings.html["권장되는 ESXi 호스트 및 기타 ONTAP 설정"^]. 
 |===
 다음 표에는 지원되는 VMware 스토리지 관련 기능이 나와 있습니다.
 

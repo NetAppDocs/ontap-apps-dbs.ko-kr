@@ -1,0 +1,31 @@
+---
+sidebar: sidebar 
+permalink: microsoft/win_additional_information.html 
+keywords: Windows,Hyper-V,VHDX,VM,Virtual 
+summary: Microsoft Windows 및 Hyper-V에 대한 추가 리소스 
+---
+= 추가 정보를 찾을 수 있는 위치
+:allow-uri-read: 
+
+
+[role="lead"]
+Microsoft Windows 및 Hyper-V에 대한 추가 리소스
+
+* ONTAP 개념
++
+https://docs.netapp.com/us-en/ontap/concepts/introducing-data-management-software-concept.html[]
+
+* 최신 SAN의 모범 사례
++
+https://www.netapp.com/media/10680-tr4080.pdf[]
+
+* NetApp All-SAN 어레이 데이터 가용성 및 NetApp ASA 무결성
++
+https://www.netapp.com/pdf.html?item=/media/85671-tr-4968.pdf[]
+
+* SMB 프로토콜 모범 사례
+* https://www.netapp.com/pdf.html?item=/media/10678-tr-4543pdf.pdfGetting[] Nano Server+로 시작되었습니다
+https://technet.microsoft.com/library/mt126167.aspx[]
+* Windows Server+의 Hyper-V의 새로운 기능
+https://technet.microsoft.com/windows-server-docs/compute/hyper-v/what-s-new-in-hyper-v-on-windows[]
+

@@ -14,7 +14,7 @@ summary: 'ONTAP를 사용하면 SVM(스토리지 가상 머신)이라는 개념�
 
 
 [role="lead"]
-다음 섹션에서는 VMware 및 ONTAP SRM에 대한 구축 Best Practice에 대해 설명합니다.
+다음 섹션에서는 ONTAP 및 VMware SRM의 구축 Best Practice를 간략히 설명합니다.
 
 
 

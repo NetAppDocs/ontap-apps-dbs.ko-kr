@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: mssql/mssql-memory-configuration.html 
-keywords: MS-SQL,mssql,SQL Server 
-summary: ONTAP 기반 Microsoft SQL Server 
+keywords: MSSQL,SQL Server, memory 
+summary: Microsoft SQL Server 메모리 구성 
 ---
 = Microsoft SQL Server 메모리 구성
 :allow-uri-read: 
@@ -10,7 +10,7 @@ summary: ONTAP 기반 Microsoft SQL Server
 
 
 [role="lead"]
-다음 섹션에서는 몇 가지 중요 메모리 구성 설정에 대해 설명합니다.
+다음 섹션에서는 데이터베이스 성능을 최적화하기 위한 SQL Server 메모리 설정을 구성하는 방법을 설명합니다.
 
 
 
@@ -37,17 +37,11 @@ SQL Server Management Studio를 사용하여 최소 또는 최대 서버 메모�
 
 ....
 EXECUTE sp_configure 'show advanced options', 1
-
 GO
-
 EXECUTE sp_configure 'min server memory (MB)', 2048
-
 GO
-
 EXEC sp_configure 'max server memory (MB)', 120832
-
 GO
-
 RECONFIGURE WITH OVERRIDE
 ....
 
@@ -70,9 +64,9 @@ NUMA가 SQL Server가 설치된 서버에 구성되어 있는 경우 SQL Server�
 
 == 쿼리당 최소 메모리
 
-쿼리가 실행되면 SQL Server는 효율적으로 실행되도록 최적의 메모리 양을 할당하려고 합니다.
+쿼리를 실행하면 SQL Server는 효율적으로 실행할 최적의 메모리 양을 할당하려고 합니다.
 
-기본적으로 쿼리당 최소 메모리 설정은 실행할 각 쿼리에 대해 > 또는 =를 1024KB를 할당합니다. SQL Server에서 인덱스 생성 작업에 할당된 메모리 양을 동적으로 관리할 수 있도록 이 설정을 기본값 0으로 유지하는 것이 가장 좋습니다. 그러나 SQL Server의 RAM이 효율적으로 실행하는 데 필요한 것보다 많은 경우 이 설정을 높이면 일부 쿼리의 성능이 향상될 수 있습니다. 따라서 SQL Server, 다른 응용 프로그램 또는 운영 체제에서 사용하지 않는 서버에서 메모리를 사용할 수 있는 한 이 설정을 높이면 SQL Server의 전반적인 성능이 향상될 수 있습니다. 사용 가능한 메모리가 없는 경우 이 설정을 늘리면 전체 성능이 저하될 수 있습니다.
+기본적으로 쿼리당 최소 메모리 설정은 실행할 각 쿼리에 대해 >=~1024KB를 할당합니다. SQL Server에서 인덱스 생성 작업에 할당된 메모리 양을 동적으로 관리할 수 있도록 이 설정을 기본값 0으로 유지하는 것이 가장 좋습니다. 그러나 SQL Server의 RAM이 효율적으로 실행하는 데 필요한 것보다 많은 경우 이 설정을 높이면 일부 쿼리의 성능이 향상될 수 있습니다. 따라서 SQL Server, 다른 응용 프로그램 또는 운영 체제에서 사용하지 않는 서버에서 메모리를 사용할 수 있는 한 이 설정을 높이면 SQL Server의 전반적인 성능이 향상될 수 있습니다. 사용 가능한 메모리가 없는 경우 이 설정을 늘리면 전체 성능이 저하될 수 있습니다.
 
 image:mssql-min-memory-per-query.png["오류: 그래픽 이미지가 없습니다"]
 
@@ -108,14 +102,9 @@ image:mssql-min-memory-per-query.png["오류: 그래픽 이미지가 없습니�
 
 ....
 USE master
-
 GO
-
 ALTER SERVER CONFIGURATION
-
 SET BUFFER POOL EXTENSION ON
-
   (FILENAME = ‘P:\BUFFER POOL EXTENSION\SQLServerCache.BUFFER POOL EXTENSION', SIZE = 32 GB);
-
 GO
 ....

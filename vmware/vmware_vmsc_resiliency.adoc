@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: vmware/vmware_vmsc_resiliency.html 
 keywords: VMware, Data protection, MetroCluster, SMBC, SnapMirror active sync, vMSC 
-summary: NetApp ONTAP를 사용하는 vSphere Metro Storage Cluster에 대해 자세히 알아보십시오 
+summary: ONTAP를 사용하는 vSphere Metro Storage Cluster에 대해 자세히 알아보십시오 
 ---
 = 계획되거나 계획되지 않은 이벤트에 대한 복원력
 :hardbreaks:

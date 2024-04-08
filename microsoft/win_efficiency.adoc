@@ -1,0 +1,63 @@
+---
+sidebar: sidebar 
+permalink: microsoft/win_efficiency.html 
+keywords: Windows,Hyper-V,VHDX,VM,Virtual 
+summary: ONTAP 스토리지를 효율적으로 활용할 수 있습니다 
+---
+= 스토리지 효율성
+:allow-uri-read: 
+
+
+[role="lead"]
+ONTAP은 Microsoft Hyper-V를 비롯한 가상화 환경을 위해 업계 최고의 스토리지 효율성을 제공합니다 NetApp은 스토리지 효율성 보장 프로그램도 제공합니다.
+
+
+
+== NetApp 중복 제거
+
+NetApp 중복제거는 스토리지 볼륨 레벨에서 중복 블록을 제거하고 논리적 복사본 수에 상관없이 하나의 물리적 복사본만 저장하는 방식으로 작동합니다. 따라서 중복 제거는 해당 블록의 복사본이 여러 개라는 환상을 생성합니다. 중복제거는 전체 볼륨에서 4KB 블록 레벨에서 중복 데이터 블록을 자동으로 제거합니다. 이 프로세스는 디스크에 대한 물리적 쓰기 횟수를 줄여 공간을 확보하고 잠재적인 성능을 절약하기 위해 스토리지를 재확보합니다. 중복 제거는 Hyper-V 환경에서 70% 이상의 공간을 절약할 수 있습니다.
+
+
+
+== 씬 프로비저닝
+
+씬 프로비저닝은 스토리지가 미리 할당되지 않기 때문에 스토리지를 효율적으로 프로비저닝할 수 있는 방법입니다. 다시 말해, 볼륨 또는 LUN이 씬 프로비저닝을 사용하여 생성될 때 스토리지 시스템의 공간이 사용되지 않습니다. 이 공간은 데이터를 LUN 또는 볼륨에 쓸 때까지 사용되지 않은 상태로 유지되고 데이터를 저장하는 데 필요한 공간만 사용됩니다. NetApp은 볼륨에 씬 프로비저닝을 설정하고 LUN 예약을 해제하는 것이 좋습니다.
+
+
+
+== 서비스 품질
+
+Clustered ONTAP의 스토리지 QoS를 사용하면 스토리지 오브젝트를 그룹화하고 그룹에 대한 처리량 제한을 설정할 수 있습니다. 스토리지 QoS를 사용하여 워크로드에 대한 처리량을 제한하고 워크로드 성능을 모니터링할 수 있습니다. 스토리지 관리자는 이 기능을 사용하여 조직, 애플리케이션, 부서 또는 운영 또는 개발 환경별로 워크로드를 분리할 수 있습니다.
+
+엔터프라이즈 환경에서 스토리지 QoS는 다음을 달성하는 데 도움이 됩니다.
+
+* 사용자 워크로드 간의 영향을 방지합니다.
+* ITaaS(ITaaS) 환경에서 특정 응답 시간을 충족해야 하는 중요 애플리케이션을 보호합니다.
+* 테넌트가 서로 영향을 미치지 않도록 합니다.
+* 각 신규 테넌트를 추가하여 성능 저하를 방지합니다.
+
+
+QoS를 사용하면 SVM, 유연한 볼륨, LUN 또는 파일에 전송되는 I/O 양을 제한할 수 있습니다. I/O는 작업 수나 물리적 처리량에 따라 제한될 수 있습니다.
+
+다음 그림에서는 자체 QoS 정책을 사용하여 최대 처리량 제한을 적용하는 SVM을 보여 줍니다.
+
+image:win_image13.png["자체 QoS 정책이 있는 스토리지 가상 머신, 너비=319, 높이=341"]
+
+SVM을 자체 QoS 정책과 모니터링 정책 그룹으로 구성하려면 ONTAP 클러스터에서 다음 명령을 실행합니다.
+
+....
+# create a new policy group pg1 with a maximum throughput of 5,000 IOPS
+cluster::> qos policy-group create pg1 -vserver vs1 -max-throughput 5000iops
+....
+....
+# create a new policy group pg2 without a maximum throughput
+cluster::> qos policy-group create pg2 -vserver vs2
+....
+....
+# monitor policy group performance
+cluster::> qos statistics performance show
+....
+....
+# monitor workload performance
+cluster::> qos statistics workload performance show
+....

@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: mssql/mssql-files-and-filegroups.html 
-keywords: MS-SQL,mssql,SQL Server 
-summary: ONTAP 기반 Microsoft SQL Server 
+keywords: MSSQL,SQL Server, backup, recovery, database file management 
+summary: Microsoft SQL Server 데이터베이스 파일 배치 
 ---
 = Microsoft SQL Server 데이터베이스 파일 및 파일 그룹
 :allow-uri-read: 
@@ -10,7 +10,7 @@ summary: ONTAP 기반 Microsoft SQL Server
 
 
 [role="lead"]
-SQL Server 데이터베이스는 데이터를 저장하고 조작할 수 있는 개체의 모음입니다.
+초기 구축 단계에서는 ONTAP에 SQL Server 데이터베이스 파일을 적절하게 배치하는 것이 중요합니다. 따라서 비즈니스 요구 사항에 맞게 구성할 수 있는 최적의 성능, 공간 관리, 백업 및 복원 시간이 보장됩니다.
 
 이론적으로 SQL Server(64비트)는 인스턴스당 32,767개의 데이터베이스와 524,272TB의 데이터베이스 크기를 지원하지만, 일반적인 설치에는 일반적으로 여러 개의 데이터베이스가 있습니다. 그러나 SQL Server에서 처리할 수 있는 데이터베이스 수는 로드 및 하드웨어에 따라 다릅니다. SQL Server 인스턴스가 수십, 수백 또는 수천 개의 소규모 데이터베이스를 호스팅하는 것은 드문 일이 아닙니다.
 
@@ -34,7 +34,7 @@ TIP: * NetApp는 * 시스템 객체를 제외한 모든 항목에 대해 기본 
 
 TIP: * NetApp는 단일 파일 그룹에 있는 모든 파일의 초기 크기 및 자동 증가 매개 변수가 같고 증가 크기가 백분율이 아닌 메가바이트로 정의됨을 * 권장합니다. 이렇게 하면 비례 채우기 알고리즘이 데이터 파일 간에 쓰기 작업의 균형을 고르게 유지할 수 있습니다.
 
-SQL Server는 파일을 늘릴 때마다 새로 할당된 파일 공간을 0으로 채웁니다. 이 프로세스는 해당 파일에 기록해야 하는 모든 세션을 차단하거나 트랜잭션 로그가 증가하는 경우 트랜잭션 로그 레코드를 생성합니다.
+SQL Server는 파일을 늘릴 때마다 새로 할당된 공간을 0으로 채웁니다. 이 프로세스는 해당 파일에 기록해야 하는 모든 세션을 차단하거나 트랜잭션 로그가 증가하는 경우 트랜잭션 로그 레코드를 생성합니다.
 
 SQL Server는 항상 트랜잭션 로그를 0으로 설정하며 이 동작은 변경할 수 없습니다. 그러나 인스턴트 파일 초기화를 사용하거나 사용하지 않도록 설정하여 데이터 파일의 제로화 여부를 제어할 수 있습니다. 즉각적인 파일 초기화를 사용하면 데이터 파일 증가 속도를 높이고 데이터베이스를 만들거나 복원하는 데 필요한 시간을 줄일 수 있습니다.
 
@@ -48,23 +48,14 @@ image:mssql-security-policy.png["오류: 그래픽 이미지가 없습니다"]
 
 ....
 DBCC TRACEON(3004,3605,-1)
-
 GO
-
 CREATE DATABASE DelMe
-
 GO
-
 EXECUTE sp_readerrorlog
-
 GO
-
 DROP DATABASE DelMe
-
 GO
-
 DBCC TRACEOFF(3004,3605,-1)
-
 GO
 ....
 인스턴트 파일 초기화가 사용되지 않는 경우 SQL Server 오류 로그는 다음 예와 같이 SQL Server가 MDF 데이터 파일을 제로화하는 것 외에 LDF 로그 파일을 제로화하는 것을 보여 줍니다. 인스턴트 파일 초기화가 설정된 경우 로그 파일의 제로화만 표시됩니다.

@@ -4,10 +4,14 @@ indexpage:
   summary: ONTAP은 많은 엔터프라이즈 애플리케이션 및 데이터베이스 기술을 위한 데이터 관리 및 데이터 보호의 기초입니다. 다음 페이지에서는
     ONTAP 및 엔터프라이즈 애플리케이션 및 인프라에 대한 모범 사례와 구현 절차에 대한 지침을 제공합니다.
   keywords: VMware, vSphere, Oracle, SAP, HANA, SAP HANA, MSSQL, SQL Server, Postgres,
-    postgresql, mysql, mariadb
+    postgresql, mysql, mariadb, Hyper-V
   lead: ONTAP은 많은 엔터프라이즈 애플리케이션 및 데이터베이스 기술을 위한 데이터 관리 및 데이터 보호의 기초입니다. 다음 페이지에서는
     ONTAP 및 엔터프라이즈 애플리케이션 및 인프라에 대한 모범 사례와 구현 절차에 대한 지침을 제공합니다.
   tiles:
+  - title: Microsoft Hyper-V를 참조하십시오
+    links:
+    - title: 배포 지침 및 스토리지 모범 사례
+      url: "/microsoft/win_overview.html"
   - title: Microsoft SQL Server를 참조하십시오
     links:
     - title: ONTAP 기반 Microsoft SQL Server

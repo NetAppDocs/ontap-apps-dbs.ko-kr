@@ -1,0 +1,36 @@
+---
+section: Hyper-V
+title: Hyper-V
+entries:
+- title: 배포 지침 및 스토리지 모범 사례
+  entries:
+  - title: 개요
+    url: "/microsoft/win_overview.html"
+  - title: NetApp 스토리지 및 Windows Server 환경
+    url: "/microsoft/win_environment.html"
+  - title: SAN 환경에서 프로비저닝
+    url: "/microsoft/win_san.html"
+  - title: SMB 환경에서의 프로비저닝
+    url: "/microsoft/win_smb.html"
+  - title: NetApp 기반의 Hyper-V 스토리지 인프라
+    url: "/microsoft/win_hyperv_infra.html"
+  - title: 스토리지 효율성
+    url: "/microsoft/win_efficiency.html"
+  - title: 보안
+    url: "/microsoft/win_security.html"
+  - title: Nano Server를 배포합니다
+    url: "/microsoft/win_deploy_nano.html"
+  - title: Hyper-V 클러스터를 구축합니다
+    url: "/microsoft/win_deploy_hyperv.html"
+  - title: 클러스터 환경에 Hyper-V Live Migration을 구축합니다
+    url: "/microsoft/win_deploy_hyperv_lmce.html"
+  - title: 클러스터 환경 외부에 Hyper-V Live Migration 구축
+    url: "/microsoft/win_deploy_hyperv_lmoce.html"
+  - title: Hyper-V Storage Live Migration 구축
+    url: "/microsoft/win_deploy_hyperv_slm.html"
+  - title: 클러스터 환경 외부에 Hyper-V 복제본을 구축합니다
+    url: "/microsoft/win_deploy_hyperv_replica_oce.html"
+  - title: 클러스터 환경에 Hyper-V 복제본을 구축합니다
+    url: "/microsoft/win_deploy_hyperv_replica_ce.html"
+  - title: 추가 정보를 찾을 수 있는 위치
+    url: "/microsoft/win_additional_information.html"

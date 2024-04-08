@@ -1,0 +1,32 @@
+---
+sidebar: sidebar 
+permalink: microsoft/win_deploy_hyperv_slm.html 
+keywords: Windows,Hyper-V,VHDX,VM,Virtual 
+summary: Hyper-V 스토리지 실시간 마이그레이션을 구성하는 방법 
+---
+= Hyper-V Storage Live Migration 구축
+:allow-uri-read: 
+
+
+[role="lead"]
+Hyper-V 스토리지 실시간 마이그레이션을 구성하는 방법에 대해 알아보십시오
+
+
+
+== 필수 구성 요소
+
+* 독립 스토리지(DAS 또는 LUN) 또는 SMB 스토리지(로컬 또는 다른 Hyper-V 서버 간에 공유)를 갖춘 독립형 Hyper-V 서버가 있어야 합니다.
+* Hyper-V 서버는 실시간 마이그레이션을 위해 구성되어야 합니다. 의 배포 섹션을 검토합니다 link:win_deploy_hyperv_replica_oce.html["클러스터 환경 외부의 라이브 마이그레이션"].
+
+
+
+
+== 구축
+
+. Hyper-V Manager를 엽니다.
+. VM을 마우스 오른쪽 버튼으로 클릭하고 Move를 클릭합니다.
+. Move the Virtual Machine's Storage를 선택합니다.
+. 기본 설정에 따라 스토리지 이동 옵션을 선택합니다.
+. VM 항목의 새 위치를 제공합니다.
+. 요약을 검토하고 OK를 클릭하여 VM의 스토리지를 이동합니다.
+

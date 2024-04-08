@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: vmware/vmware-srm-ontap-tools-features.html 
 keywords: vmware, site, recovery manager, vsrm, vsphere, ipv6, support, rest, api, replication, ccols, spbm, srm, appliance based 
-summary: 기존 가상 어플라이언스로 전환한 ONTAP 툴은 다양한 새로운 기능, 더 높은 제한, 새로운 VVOL 지원을 제공합니다. 
+summary: ONTAP 툴의 기능, 제한 및 VVOL을 지원합니다. 
 ---
 = SRM 및 ONTAP 도구의 새로운 기능
 :hardbreaks:

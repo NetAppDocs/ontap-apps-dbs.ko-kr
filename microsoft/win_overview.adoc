@@ -1,0 +1,52 @@
+---
+sidebar: sidebar 
+permalink: microsoft/win_overview.html 
+keywords: Windows,Hyper-V,VHDX,VM,Virtual 
+summary: ONTAP를 사용한 Microsoft Windows 및 Hyper-V 가상화 개요 
+---
+= 개요
+:allow-uri-read: 
+
+
+[role="lead"]
+Microsoft Windows Server는 네트워킹, 보안, 가상화, 프라이빗 클라우드, 하이브리드 클라우드, 가상 데스크톱 인프라스트럭처, 액세스 보호, 정보 보호, 웹 서비스, 애플리케이션 플랫폼 인프라스트럭처, 있습니다.
+
+
+NOTE: *이 문서는 이전에 게시된 기술 보고서_TR-4568: NetApp 배포 지침 및 Windows Server_*용 스토리지 모범 사례 대신 제공됩니다
+
+.NetApp ONTAP(R) 관리 소프트웨어는 NetApp 스토리지 컨트롤러에서 실행됩니다. 다양한 형식으로 사용할 수 있습니다.
+* 파일, 오브젝트 및 블록 프로토콜을 지원하는 통합 아키텍처 이를 통해 스토리지 컨트롤러는 NAS 및 SAN 디바이스와 오브젝트 저장소 역할을 모두 수행할 수 있습니다
+* 블록 프로토콜에만 초점을 맞추고 연결 호스트에 대한 대칭 액티브-액티브 다중 경로를 추가하여 I/O 재시작 시간(IORT)을 최적화하는 All SAN 어레이(ASA)입니다
+* 소프트웨어 정의 통합 아키텍처
++
+** VMware vSphere 또는 KVM에서 실행되는 ONTAP Select
+** 클라우드 네이티브 인스턴스로 실행되는 Cloud Volumes ONTAP
+
+
+* 하이퍼스케일 클라우드 공급자가 제공하는 최초의 타사 오퍼링
++
+** NetApp ONTAP용 Amazon FSx
+** Azure NetApp Files
+** Google Cloud NetApp 볼륨
+
+
+
+
+ONTAP은 NetApp NetApp Snapshot(R) 기술, 클론 복제, 중복제거, 씬 프로비저닝, 씬 복제, 향상된 성능 및 효율성을 제공하는 압축, 가상 스토리지 계층화 등 다양한 이점을 제공합니다.
+
+Windows Server와 ONTAP는 함께 대규모 환경에서 운영될 수 있으며 데이터 센터 통합과 프라이빗 또는 하이브리드 클라우드 구축에 큰 가치를 제공할 수 있습니다. 또한 무중단 워크로드를 효율적으로 제공하고 원활한 확장성을 지원합니다.
+
+
+
+== 대상 독자
+
+이 문서는 Windows Server용 NetApp 스토리지 솔루션을 설계하는 시스템 및 스토리지 설계자를 대상으로 합니다.
+
+본 문서에서는 다음과 같은 가정을 제시합니다.
+
+* 독자는 NetApp 하드웨어 및 소프트웨어 솔루션에 대한 일반적인 지식을 갖추고 있습니다. 를 참조하십시오 https://docs.netapp.com/us-en/ontap/cluster-admin/index.html["클러스터 관리자를 위한 시스템 관리 가이드"] 를 참조하십시오.
+* 이 판독기는 iSCSI, FC 및 파일 액세스 프로토콜 SMB/CIFS와 같은 블록 액세스 프로토콜에 대한 일반적인 지식을 갖추고 있습니다. 를 참조하십시오 https://docs.netapp.com/us-en/ontap/san-management/index.html["Clustered Data ONTAP SAN 관리"] SAN 관련 정보입니다. 를 참조하십시오 https://docs.netapp.com/us-en/ontap/nas-management/index.html["NAS 관리"] CIFS/SMB 관련 정보입니다.
+* 독자는 Windows Server OS 및 Hyper-V에 대한 일반적인 지식을 가지고 있습니다
+
+
+테스트를 거쳐 지원되는 SAN 및 NAS 구성에 대한 전체 최신 매트릭스는 을 참조하십시오 http://mysupport.netapp.com/matrix/["상호 운용성 매트릭스 툴(IMT)"] NetApp Support 사이트에 있습니다. IMT를 사용하면 특정 환경에 지원되는 정확한 제품 및 기능 버전을 확인할 수 있습니다. NetApp IMT는 NetApp 지원 구성과 호환되는 제품 구성 요소 및 버전을 정의합니다. 구체적인 결과는 게시된 기술사양과 그에 따른 고객 설치 환경에 따라 달라집니다.

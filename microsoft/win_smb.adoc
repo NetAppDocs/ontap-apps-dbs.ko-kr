@@ -1,0 +1,144 @@
+---
+sidebar: sidebar 
+permalink: microsoft/win_smb.html 
+keywords: Windows,Hyper-V,VHDX,VM,Virtual 
+summary: SMB3을 사용하는 Hyper-V용 ONTAP NAS 스토리지 
+---
+= SMB 환경에서의 프로비저닝
+:allow-uri-read: 
+
+
+[role="lead"]
+ONTAP는 SMB3 프로토콜을 사용하여 Hyper-V 가상 머신을 위한 복원력이 뛰어난 고성능 NAS 스토리지를 제공합니다.
+
+CIFS 프로토콜을 사용하여 SVM을 생성하면 CIFS 서버는 Windows Active Directory 도메인에 속한 SVM을 기반으로 실행됩니다. SMB 공유를 홈 디렉토리로 사용하거나 Hyper-V와 SQL Server 워크로드를 호스팅할 수 있습니다. ONTAP에서 지원되는 SMB 3.0 기능은 다음과 같습니다.
+
+* 영구 핸들(지속적으로 사용 가능한 파일 공유)
+* 증인 프로토콜
+* 클러스터 클라이언트 장애 조치
+* 스케일아웃 인식 기능
+* ODX를 참조하십시오
+* 원격 VSS
+
+
+
+
+== Windows Server에서 SMB 공유를 프로비저닝합니다
+
+
+
+=== 필수 구성 요소
+
+Windows Server의 NAS 환경에서 NetApp 스토리지를 사용하는 경우 다음과 같은 요구 사항이 있습니다.
+
+* ONTAP 클러스터에 유효한 CIFS 라이센스가 있습니다.
+* 하나 이상의 집계가 생성됩니다.
+* 하나의 데이터 논리 인터페이스(LIF)가 생성되고 CIFS에 대해 데이터 LIF를 구성해야 합니다.
+* DNS로 구성된 Windows Active Directory 도메인 서버 및 도메인 관리자 자격 증명이 있습니다.
+* NetApp 클러스터의 각 노드는 Windows 도메인 컨트롤러와 시간이 동기화됩니다.
+
+
+
+
+=== Active Directory 도메인 컨트롤러
+
+NetApp 스토리지 컨트롤러는 Windows Server와 유사한 Active Directory 내에서 연결 및 작동할 수 있습니다. SVM을 생성하는 동안 도메인 이름과 이름 서버의 세부 정보를 제공하여 DNS를 구성할 수 있습니다. SVM은 Windows Server와 유사한 방식으로 DNS에 Active Directory/LDAP(Lightweight Directory Access Protocol) 서버를 쿼리하여 Active Directory 도메인 컨트롤러를 검색합니다.
+
+CIFS 설정이 제대로 작동하려면 NetApp 스토리지 컨트롤러가 Windows 도메인 컨트롤러와 시간을 동기화해야 합니다. NetApp에서는 Windows 도메인 컨트롤러와 NetApp 스토리지 컨트롤러 간에 5분 이하의 시간 차이를 두는 것이 좋습니다. ONTAP 클러스터가 외부 시간 소스와 동기화되도록 NTP(네트워크 시간 프로토콜) 서버를 구성하는 것이 좋습니다. Windows 도메인 컨트롤러를 NTP 서버로 구성하려면 ONTAP 클러스터에서 다음 명령을 실행합니다.
+
+....
+$domainControllerIP = "<input IP Address of windows domain controller>"
+cluster::> system services ntp server create â€“server $domainControllerIP
+....
+
+
+=== 구축
+
+. NAS 프로토콜 CIFS를 사용하도록 설정된 새 SVM을 생성합니다. 다음 방법 중 하나로 새로운 SVM을 생성할 수 있습니다.
++
+** NetApp ONTAP의 CLI 명령
+** 시스템 관리자
+** NetApp PowerShell 툴킷
+
+
+. CIFS 프로토콜을 구성합니다
++
+.. CIFS 서버 이름을 제공하십시오.
+.. CIFS 서버를 연결해야 하는 Active Directory를 제공합니다. CIFS 서버를 Active Directory에 연결하려면 도메인 관리자 자격 증명이 있어야 합니다.
+
+
+. 각 클러스터 노드에서 SVM을 LIF로 할당합니다.
+. SVM에서 CIFS 서비스를 시작합니다.
+. Aggregate에서 NTFS 보안 스타일로 볼륨을 생성합니다.
+. 볼륨에 qtree를 생성합니다(선택 사항).
+. Windows Server에서 액세스할 수 있도록 볼륨 또는 qtree 디렉토리에 해당하는 공유를 생성합니다. 공유가 Hyper-V 스토리지에 사용되는 경우 공유를 생성하는 동안 Hyper-V에 대한 무중단 가용성 설정 을 선택합니다. 이렇게 하면 파일 공유에 대한 고가용성을 실현할 수 있습니다.
+. 생성된 공유를 편집하고 공유에 액세스하는 데 필요한 권한을 수정합니다. SMB 공유에 액세스하는 모든 서버의 컴퓨터 계정에 대한 액세스 권한을 부여하도록 SMB 공유에 대한 권한을 구성해야 합니다.
+
+
+
+
+=== 호스트 통합
+
+NAS 프로토콜 CIFS는 기본적으로 ONTAP에 통합됩니다. 따라서 Windows Server에서는 NetApp ONTAP의 데이터에 액세스하는 데 추가 클라이언트 소프트웨어가 필요하지 않습니다. NetApp 스토리지 컨트롤러는 네트워크에 기본 파일 서버로 표시되며 Microsoft Active Directory 인증을 지원합니다.
+
+Windows Server에서 이전에 생성한 CIFS 공유를 검색하려면 다음 단계를 수행하십시오.
+
+. 관리자 그룹의 구성원으로 Windows Server에 로그인합니다.
+. run.exe 으로 이동하여 공유를 액세스하기 위해 생성된 CIFS 공유의 전체 경로를 입력합니다.
+. 공유를 Windows Server에 영구적으로 매핑하려면 이 PC를 마우스 오른쪽 단추로 클릭하고 네트워크 드라이브 연결 을 클릭한 다음 CIFS 공유 경로를 제공합니다.
+. 특정 CIFS 관리 작업은 MMC(Microsoft Management Console)를 사용하여 수행할 수 있습니다. 이러한 작업을 수행하기 전에 MMC 메뉴 명령을 사용하여 MMC를 NetApp ONTAP 스토리지에 연결해야 합니다.
++
+.. Windows Server에서 MMC를 열려면 서버 관리자의 도구 섹션에서 컴퓨터 관리를 클릭합니다.
+.. 추가 작업 및 다른 컴퓨터에 연결 을 클릭하면 컴퓨터 선택 대화 상자가 열립니다.
+.. CIFS 서버에 연결할 SVM LIF의 IP 주소 또는 CIFS 서버의 이름을 입력합니다.
+.. 시스템 도구 및 공유 폴더 를 확장하여 열려 있는 파일, 세션 및 공유를 보고 관리합니다.
+
+
+
+
+
+
+=== 모범 사례
+
+* 볼륨을 한 노드에서 다른 노드로 이동할 때 다운타임이 발생하지 않도록 하거나 노드 장애가 발생한 경우 NetApp 파일 공유에서 지속적인 가용성 옵션을 활성화하는 것이 좋습니다.
+* Hyper-V-over-SMB 환경에 대해 VM을 NetApp 프로비저닝할 경우 스토리지 시스템에서 복사본 오프로드를 사용하도록 권장합니다. 이렇게 하면 VM 프로비저닝 시간이 줄어듭니다.
+* 스토리지 클러스터가 SQL Server, Hyper-V, CIFS 서버와 같은 여러 SMB 워크로드를 호스팅하는 경우, NetApp은 별도의 애그리게이트에서 별도의 SVM에서 서로 다른 SMB 워크로드를 호스팅할 것을 권장합니다. 이러한 각 워크로드는 고유한 스토리지 네트워킹 및 볼륨 레이아웃을 보장하므로 이 구성은 유용합니다.
+* NetApp은 사용 가능한 경우 10GB 네트워크를 사용하여 Hyper-V 호스트와 NetApp ONTAP 스토리지를 연결하는 것이 좋습니다. 1GB 네트워크 연결의 경우 NetApp에서는 여러 개의 1GB 포트로 구성된 인터페이스 그룹을 생성할 것을 권장합니다.
+* SMB 3.0 공유 간에 VM을 마이그레이션할 경우 NetApp은 스토리지 시스템에서 CIFS 복사본 오프로드 기능을 사용하여 마이그레이션을 보다 빠르게 수행할 것을 권장합니다.
+
+
+
+
+=== 기억해야 할 사항
+
+* SMB 환경을 위해 볼륨을 프로비저닝할 때는 NTFS 보안 스타일로 볼륨을 생성해야 합니다.
+* 그에 따라 클러스터의 노드에 대한 시간 설정을 설정해야 합니다. NetApp CIFS 서버가 Windows Active Directory 도메인에 참여해야 하는 경우 NTP를 사용합니다.
+* 영구 핸들은 HA 쌍의 노드 간에만 작동합니다.
+* 감시 프로토콜은 HA 쌍의 노드 간에만 작동합니다.
+* 지속적으로 사용 가능한 파일 공유는 Hyper-V 및 SQL Server 워크로드에만 지원됩니다.
+* SMB 멀티 채널은 ONTAP 9.4 이상에서 지원됩니다.
+* RDMA는 지원되지 않습니다.
+* Refs가 지원되지 않습니다.
+
+
+
+
+== Nano Server에서 SMB 공유를 구축하는 중입니다
+
+Nano Server는 NetApp 스토리지 컨트롤러의 CIFS 공유에 있는 데이터에 액세스하기 위해 추가 클라이언트 소프트웨어를 필요로 하지 않습니다.
+
+Nano Server에서 CIFS 공유로 파일을 복사하려면 원격 서버에서 다음 cmdlet을 실행합니다.
+
+ $ip = "<input IP Address of the Nano Server>"
+....
+# Create a New PS Session to the Nano Server
+$session = New-PSSession -ComputerName $ip -Credential ~\Administrator
+....
+ Copy-Item -FromSession $s -Path C:\Windows\Logs\DISM\dism.log -Destination \\cifsshare
+* `cifsshare` 은 NetApp 스토리지 컨트롤러의 CIFS 공유입니다.
+* 파일을 Nano Server에 복사하려면 다음 cmdlet을 실행합니다.
++
+ Copy-Item -ToSession $s -Path \\cifsshare\<file> -Destination C:\
+
+
+폴더의 전체 내용을 복사하려면 폴더 이름을 지정하고 cmdlet 끝에 -recurse 매개 변수를 사용합니다.

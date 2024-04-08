@@ -1,18 +1,18 @@
 ---
 sidebar: sidebar 
 permalink: mssql/mssql-storage-efficiency.html 
-keywords: MS-SQL,mssql,SQL Server 
-summary: ONTAP 기반 Microsoft SQL Server 
+keywords: MSSQL,SQL Server, efficiency, compression, deduplication 
+summary: Microsoft SQL Server 및 ONTAP 스토리지 효율성 
 ---
-= ONTAP를 통한 Microsoft SQL Server의 스토리지 효율성
+= Microsoft SQL Server 및 스토리지 효율성
 :allow-uri-read: 
 :imagesdir: ../media/
 
 
 [role="lead"]
-스토리지 효율성 은 전체 시스템 성능에 거의 또는 전혀 영향을 주지 않고 최소한의 스토리지 공간을 사용하는 방식으로 SQL Server 데이터를 저장하고 관리하는 기능입니다.
+ONTAP 스토리지 효율성은 전체 시스템 성능에 거의 또는 전혀 영향을 미치지 않고 최소한의 스토리지 공간을 사용하는 방식으로 SQL Server 데이터를 저장하고 관리하는 데 최적화되어 있습니다.
 
-스토리지 효율성은 RAID, 프로비저닝(전체 레이아웃 및 활용률), 미러링, 기타 데이터 보호 기술의 조합입니다. Snapshot 복사본, 씬 프로비저닝, FlexClone과 같은 NetApp 기술은 인프라의 기존 스토리지를 최적화하고 향후 스토리지 지출을 연기하거나 피할 수 있도록 함으로써 비용 이점을 만드는 데 도움이 됩니다. 이러한 기술을 함께 사용할수록 더 많은 비용을 절감할 수 있습니다.
+스토리지 효율성은 RAID, 프로비저닝(전체 레이아웃 및 활용률), 미러링, 기타 데이터 보호 기술의 조합입니다. 스냅샷, 씬 프로비저닝, 클론 복제와 같은 NetApp 기술은 인프라의 기존 스토리지를 최적화하고 향후 스토리지 지출을 연기하거나 방지합니다. 이러한 기술을 함께 사용할수록 더 많은 비용을 절감할 수 있습니다.
 
 
 
@@ -96,7 +96,7 @@ LVM 구성을 신중하게 계획하면 효율성이 향상되고 스토리지 �
 
 NOTE: 스토리지 효율성과 부분 예약 간의 상호 작용에 대한 설명은 아래의 씬 프로비저닝에 대한 섹션을 참조하십시오.
 
-SQL Server에는 데이터를 압축하고 효율적으로 관리하는 기능도 있습니다. SQL Server는 현재 행 압축과 페이지 압축이라는 두 가지 유형의 데이터 압축을 지원합니다.
+SQL Server 자체에는 데이터를 압축하고 효율적으로 관리하는 기능도 있습니다. SQL Server는 현재 행 압축과 페이지 압축이라는 두 가지 유형의 데이터 압축을 지원합니다.
 
 행 압축은 데이터 저장소 형식을 변경합니다. 예를 들어, 정수와 소수를 네이티브 고정 길이 형식 대신 가변 길이 형식으로 변경합니다. 또한 빈 공백을 제거하여 고정 길이 문자 문자열을 가변 길이 형식으로 변경합니다. 페이지 압축은 행 압축과 두 가지 다른 압축 전략(접두사 압축 및 사전 압축)을 구현합니다. 페이지 압축에 대한 자세한 내용은 에서 확인할 수 있습니다 link:https://learn.microsoft.com/en-us/sql/relational-databases/data-compression/page-compression-implementation?view=sql-server-ver16&redirectedfrom=MSDN["페이지 압축 구현"^].
 

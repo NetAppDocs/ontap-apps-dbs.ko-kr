@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: vmware/vmware-vsphere-vvols_and_spbm.html 
 keywords: vSphere, vVols, virtual volumes, SPBM, storage police based management, ONTAP 
-summary: 이 페이지에서는 VMware vSphere 환경에 NetApp ONTAP 스토리지 솔루션을 구축하는 모범 사례를 설명합니다. 
+summary: 이 페이지에서는 VMware vSphere 환경에 ONTAP 스토리지 솔루션을 구축하기 위한 Best Practice를 설명합니다. 
 ---
 = VVol(Virtual Volumes) 및 SPBM(Storage Policy Based Management)
 :hardbreaks:
@@ -21,4 +21,4 @@ SPBM은 가상화 환경에서 사용 가능한 스토리지 서비스와 정책
 ONTAP은 스토리지 업계에서 VVOL을 선도하여 단일 클러스터에서 수십만 개의 VVOL을 지원하는 반면, 엔터프라이즈 어레이와 소규모 플래시 어레이 공급업체는 어레이당 수백 개의 VVOL을 지원합니다. NetApp은 또한 VVOL 3.0을 지원함으로써 VM 세부 관리의 발전을 이끌고 있습니다.
 
 
-NOTE: VMware vSphere 가상 볼륨, SPBM 및 ONTAP에 대한 자세한 내용은 을 참조하십시오 https://www.netapp.com/pdf.html?item=/media/13555-tr4400.pdf["TR-4400: ONTAP를 포함한 VMware vSphere 가상 볼륨"^].
+NOTE: VMware vSphere 가상 볼륨, SPBM 및 ONTAP에 대한 자세한 내용은 을 참조하십시오 link:vmware-vvols-overview.html["TR-4400: ONTAP를 포함한 VMware vSphere 가상 볼륨"^].

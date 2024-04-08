@@ -4,26 +4,26 @@ title: Microsoft SQL Server를 참조하십시오
 entries:
 - title: 개요
   url: "/mssql/mssql-overview.html"
-- title: 워크로드
-  url: "/mssql/mssql-workloads.html"
 - title: 데이터베이스 구성
   pdf-filename: Microsoft SQL Server에 대한 데이터베이스 구성
   entries:
-  - title: 공유 인스턴스와 전용 인스턴스 비교
-    url: "/mssql/mssql-shared-vs-dedicated.html"
   - title: CPU 구성
     url: "/mssql/mssql-cpu-configuration.html"
   - title: 메모리 구성
     url: "/mssql/mssql-memory-configuration.html"
+  - title: 공유 인스턴스와 전용 인스턴스 비교
+    url: "/mssql/mssql-shared-vs-dedicated.html"
 - title: 스토리지 구성
   pdf-filename: Microsoft SQL Server에 대한 스토리지 구성
   entries:
+  - title: 개요
+    url: "/mssql/mssql-storage-considerations.html"
   - title: 데이터베이스 파일 및 파일 그룹
     url: "/mssql/mssql-files-and-filegroups.html"
+  - title: 로그 디렉토리
+    url: "/mssql/mssql-log-directory.html"
   - title: tempdb 파일
     url: "/mssql/mssql-tempdb.html"
-  - title: 스토리지 고려 사항
-    url: "/mssql/mssql-storage-considerations.html"
   - title: 스토리지 효율성
     url: "/mssql/mssql-storage-efficiency.html"
 - title: 데이터 보호
