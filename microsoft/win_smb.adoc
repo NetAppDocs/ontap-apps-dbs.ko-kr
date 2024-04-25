@@ -5,7 +5,12 @@ keywords: Windows,Hyper-V,VHDX,VM,Virtual
 summary: SMB3을 사용하는 Hyper-V용 ONTAP NAS 스토리지 
 ---
 = SMB 환경에서의 프로비저닝
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media
 
 
 [role="lead"]
@@ -123,7 +128,7 @@ Windows Server에서 이전에 생성한 CIFS 공유를 검색하려면 다음 �
 
 
 
-== Nano Server에서 SMB 공유를 구축하는 중입니다
+== Nano Server에서 SMB 공유를 프로비저닝합니다
 
 Nano Server는 NetApp 스토리지 컨트롤러의 CIFS 공유에 있는 데이터에 액세스하기 위해 추가 클라이언트 소프트웨어를 필요로 하지 않습니다.
 

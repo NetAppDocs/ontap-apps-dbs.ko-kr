@@ -5,7 +5,12 @@ keywords: Windows,Hyper-V,VHDX,VM,Virtual,SAN,LUN,NVMe
 summary: SAN 환경에서 Windows 및 Hyper-V용 ONTAP 스토리지를 프로비저닝합니다 
 ---
 = SAN 환경에서 프로비저닝
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media
 
 
 [role="lead"]
@@ -51,21 +56,19 @@ Windows Server의 SAN 환경에서 NetApp 스토리지를 사용하는 경우 �
 . SVM LIF를 사용하여 iSCSI 및/또는 FC 포트 세트를 생성합니다.
 . 생성된 포트 세트를 사용하여 Windows용 iSCSI 및/또는 FC 이니시에이터 그룹을 생성합니다.
 . 이니시에이터 그룹에 이니시에이터를 추가합니다. 이니시에이터는 iSCSI의 경우 IQN이고 FC의 경우 WWPN입니다. Windows Server에서 PowerShell cmdlet Get-InitiatorPort를 실행하여 쿼리할 수 있습니다.
++
+....
+# Get the IQN for iSCSI
+Get-InitiatorPort | Where \{$_.ConnectionType -eq 'iSCSI'} | Select-Object -Property NodeAddress
+....
++
+....
+# Get the WWPN for FC
+Get-InitiatorPort | Where \{$_.ConnectionType -eq 'Fibre Channel'} | Select-Object -Property PortAddress
+....
++
+ # While adding initiator to the initiator group in case of FC, make sure to provide the initiator(PortAddress) in the standard WWPN format
 
-
-
-
-= iSCSI+용 IQN을 가져옵니다
-
-Get-InitiatorPort|WHERE \{$_.ConnectionType-eq 'iSCSI'} | Select-Object - Property NodeAddress
-
-
-
-= FC+에 대한 WWPN을 가져옵니다
-
-Get-InitiatorPort|WHERE \{$_.ConnectionType-eq 'Fibre Channel'} | Select-Object-Property PortAddress+
- 를 누릅니다
-# FC의 경우 이니시에이터 그룹에 이니시에이터를 추가하는 동안 표준 WWPN 형식으로 이니시에이터(PortAddress)를 제공해야 합니다
 
 Windows Server의 iSCSI용 IQN은 iSCSI 이니시에이터 속성의 구성에서도 확인할 수 있습니다.
 
@@ -342,7 +345,7 @@ image:win_image4.png["NetApp FlexClone을 사용하여 LUN을 부팅합니다. �
 
 
 
-=== 가상 머신을 위한 SAN에서 부팅합니다
+=== 가상 머신을 위해 SAN에서 부팅합니다
 
 VM에 대해 SAN에서 부팅을 구성하려면 다음 단계를 완료합니다.
 

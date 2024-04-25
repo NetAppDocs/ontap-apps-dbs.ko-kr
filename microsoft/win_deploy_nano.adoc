@@ -4,8 +4,13 @@ permalink: microsoft/win_deploy_nano.html
 keywords: Windows,Hyper-V,VHDX,VM,Virtual 
 summary: Microsoft Windows Nano Server 배포에 대해 자세히 알아보십시오 
 ---
-= Nano Server를 배포합니다
+= Nano 서버를 배포합니다
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media
 
 
 [role="lead"]

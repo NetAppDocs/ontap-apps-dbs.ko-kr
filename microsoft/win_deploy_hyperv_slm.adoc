@@ -4,8 +4,13 @@ permalink: microsoft/win_deploy_hyperv_slm.html
 keywords: Windows,Hyper-V,VHDX,VM,Virtual 
 summary: Hyper-V 스토리지 실시간 마이그레이션을 구성하는 방법 
 ---
-= Hyper-V Storage Live Migration 구축
+= Hyper-V 스토리지 실시간 마이그레이션을 구축합니다
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media
 
 
 [role="lead"]

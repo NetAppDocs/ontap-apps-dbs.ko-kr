@@ -5,7 +5,12 @@ keywords: Windows,Hyper-V,VHDX,VM,Virtual
 summary: ONTAP를 사용한 Microsoft Windows 및 Hyper-V 가상화 개요 
 ---
 = 개요
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media
 
 
 [role="lead"]
@@ -38,7 +43,7 @@ Windows Server와 ONTAP는 함께 대규모 환경에서 운영될 수 있으며
 
 
 
-== 대상 독자
+== 대상
 
 이 문서는 Windows Server용 NetApp 스토리지 솔루션을 설계하는 시스템 및 스토리지 설계자를 대상으로 합니다.
 

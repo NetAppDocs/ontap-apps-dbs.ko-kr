@@ -4,8 +4,13 @@ permalink: microsoft/win_deploy_hyperv_lmce.html
 keywords: Windows,Hyper-V,VHDX,VM,Virtual 
 summary: 이 부록에서는 클러스터 환경에서의 실시간 마이그레이션 배포에 대해 설명합니다. 
 ---
-= 클러스터 환경에서 Hyper-V 실시간 마이그레이션을 배포합니다
+= 클러스터 환경에 Hyper-V Live Migration을 구축합니다
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media
 
 
 [role="lead"]

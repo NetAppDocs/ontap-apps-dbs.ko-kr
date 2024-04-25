@@ -5,7 +5,12 @@ keywords: Windows,Hyper-V,VHDX,VM,Virtual
 summary: 이 부록에서는 NetApp 스토리지에 고가용성 Hyper-V 클러스터를 구축하는 방법을 설명합니다. 
 ---
 = Hyper-V 클러스터를 구축합니다
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media
 
 
 [role="lead"]

@@ -26,7 +26,7 @@ SnapMirror 활성 동기화 및 SnapMirror Sync는 복제 엔진을 공유하지
 
 == 경로 액세스
 
-SnapMirror Active syncy를 사용하면 운영 스토리지와 원격 스토리지 어레이 모두에서 스토리지 디바이스를 호스트 운영 체제에 표시할 수 있습니다. 경로는 스토리지 시스템과 호스트 간에 최적화된 경로를 식별하기 위한 업계 표준 프로토콜인 ALUA(Asymmetric Logical Unit Access)를 통해 관리됩니다.
+SnapMirror Active Sync를 사용하면 운영 스토리지 및 원격 스토리지 시스템 모두에서 호스트 운영 체제에 스토리지 장치를 표시할 수 있습니다. 경로는 스토리지 시스템과 호스트 간에 최적화된 경로를 식별하기 위한 업계 표준 프로토콜인 ALUA(Asymmetric Logical Unit Access)를 통해 관리됩니다.
 
 입출력에 가장 액세스하기 위한 디바이스 경로는 활성/최적화 경로로 간주되고 나머지 경로는 활성/최적화되지 않은 경로로 간주됩니다.
 

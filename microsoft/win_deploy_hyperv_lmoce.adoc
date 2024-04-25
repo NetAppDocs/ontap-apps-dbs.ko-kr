@@ -4,8 +4,13 @@ permalink: microsoft/win_deploy_hyperv_lmoce.html
 keywords: Windows,Hyper-V,VHDX,VM,Virtual 
 summary: 이 부록에서는 클러스터 환경 외부에서 Hyper-V 실시간 마이그레이션을 사용하는 방법에 대해 설명합니다 
 ---
-= 클러스터 환경 외부에 Hyper-V 실시간 마이그레이션을 배포합니다
+= 클러스터 환경 외부에 Hyper-V Live Migration 구축
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media
 
 
 [role="lead"]

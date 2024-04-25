@@ -5,7 +5,12 @@ keywords: Windows,Hyper-V,VHDX,VM,Virtual
 summary: NetApp 스토리지 및 Windows Server 환경에 대해 알아보십시오 
 ---
 = NetApp 스토리지 및 Windows Server 환경
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media
 
 
 [role="lead"]
