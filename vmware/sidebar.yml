@@ -50,7 +50,7 @@ entries:
     url: "/vmware/vmware-vvols-resources.html"
 - title: ONTAP를 사용하는 VMware 사이트 복구 관리자
   entries:
-  - title: 개요
+  - title: SRM with ONTAP 개요
     url: "/vmware/vmware-srm-overview.html"
   - title: 배포 모범 사례
     url: "/vmware/vmware-srm-deployment_best_practices.html"
@@ -60,6 +60,8 @@ entries:
     url: "/vmware/vmware-srm-replication_topologies.html"
   - title: VVOL 복제 사용 시 SRM 문제 해결
     url: "/vmware/vmware-srm-vvol-troubleshooting.html"
+  - title: SRM에 대한 추가 정보입니다
+    url: "/vmware/vmware-srm-additional-information.html"
 - title: ONTAP이 포함된 vSphere Metro 스토리지 클러스터
   entries:
   - title: vMSC 개요
