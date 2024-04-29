@@ -2426,8 +2426,6 @@ I/O 중단 없음.</block>
   <block id="2803a799fd66056eff404a17ba640c2b" category="paragraph">ONTAP 툴 9.7.1을 사용한 SRM 지원 초기 릴리즈에서는 VFlexVol을 사전 생성하고 이를 VVOL 데이터 저장소의 백업 볼륨으로 사용하기 전에 SnapMirror 보호를 활성화해야 했습니다. ONTAP 도구 9.10부터는 더 이상 이 프로세스가 필요하지 않습니다. 이제 기존의 백업 볼륨에 SnapMirror 보호를 추가하고 VM 스토리지 정책을 업데이트하여 SRM과 통합된 재해 복구 및 마이그레이션 오케스트레이션 및 자동화 기능을 통해 정책 기반 관리를 활용할 수 있습니다.</block>
   <block id="8142fcf496d02a58ce02a17558db863e" category="paragraph">현재 VMware SRM은 NetApp에서 지원하는 VVOL을 위한 유일한 재해 복구 및 마이그레이션 자동화 솔루션이며, ONTAP 툴은 VVOL 복제를 활성화하기 전에 vCenter에 등록된 SRM 8.3 이상 서버의 존재를 ONTAP 툴 REST API를 활용하여 자체 서비스를 생성할 수 있지만</block>
   <block id="7d8e8eced8d8b1a50f20640ffb5d363a" category="section-title">SRM을 사용한 VVol 복제</block>
-  <block id="4d30574e6d5bc9a71718858eeb30774c" category="inline-image-macro">SRM을 사용한 VVol 복제, 300</block>
-  <block id="5844b0ec1ad8db5185ec67effeb9a7b7" category="paragraph"><block ref="5844b0ec1ad8db5185ec67effeb9a7b7" category="inline-image-macro-rx" type="image"></block></block>
   <block id="c95aede1de7a41511c9d962deba49054" category="section-title">MetroCluster 지원</block>
   <block id="3f15bb720adb42bd521a2ce1cb3a2974" category="paragraph">ONTAP 툴은 MetroCluster 전환을 트리거할 수 없지만, 동일한 vMSC(vSphere Metro Storage Cluster) 구성에서 VVOL을 지원하는 볼륨을 위한 NetApp MetroCluster 시스템은 지원합니다. MetroCluster 시스템의 전환은 일반적인 방식으로 처리됩니다.</block>
   <block id="cde16c5ee89c209c821e120caf65bb81" category="paragraph">NetApp SnapMirror 비즈니스 연속성(SM-BC)을 vMSC 구성의 기반으로 사용할 수도 있지만, 현재 VVOL에서 지원되지 않습니다.</block>
@@ -2447,8 +2445,6 @@ I/O 중단 없음.</block>
   <block id="02f41838319aab980999b60967d7fd53" category="paragraph">이제 NetApp SnapCenter를 사용하여 태그 및/또는 폴더를 기반으로 VVol용 리소스 그룹을 생성하여 VVol 기반 VM에 대해 ONTAP의 FlexVol 기반 스냅샷을 자동으로 활용할 수 있습니다. 이를 통해 환경 내에서 VM이 동적으로 프로비저닝될 때 자동으로 VM을 보호하는 백업 및 복구 서비스를 정의할 수 있습니다.</block>
   <block id="4549a2943666c4815098331d30a872da" category="paragraph">VMware vSphere용 SnapCenter 플러그인은 vCenter 확장으로 등록된 독립 실행형 어플라이언스로 구축되며, vCenter UI 또는 REST API를 통해 관리되며 백업 및 복구 서비스 자동화를 지원합니다.</block>
   <block id="26e2418d177df1dddb008e455ce28752" category="section-title">SnapCenter 아키텍처</block>
-  <block id="3b345c0fb5d2f0451ef84d991b21dcac" category="inline-image-macro">SnapCenter 아키텍처, 300</block>
-  <block id="af9bca7d8452705ba7f607cd036dba01" category="paragraph"><block ref="af9bca7d8452705ba7f607cd036dba01" category="inline-image-macro-rx" type="image"></block></block>
   <block id="c32197281aa44f57ae568a9a42c7b3b6" category="paragraph">다른 SnapCenter 플러그인은 이 작성 시점에 VVol을 지원하지 않으므로 이 문서의 독립 실행형 배포 모델에 대해 중점적으로 살펴보겠습니다.</block>
   <block id="6750052f2c0fb06d80a8efd7cb871190" category="paragraph">SnapCenter는 ONTAP FlexVol 스냅샷을 사용하기 때문에 vSphere에 오버헤드가 발생하지 않으며, vCenter 관리 스냅샷을 사용하여 기존 VM에서 볼 수 있는 성능 패널도 없습니다. 또한 SCV의 기능은 REST API를 통해 노출되기 때문에 VMware Aria Automation, Ansible, Terraform 및 거의 표준 REST API를 사용할 수 있는 기타 자동화 툴과 같은 툴을 사용하여 자동화된 워크플로우를 쉽게 생성할 수 있습니다.</block>
   <block id="0c889d77d71512ceb7241bd0f6d6ca23" category="inline-link">REST API 개요</block>
@@ -2466,8 +2462,6 @@ I/O 중단 없음.</block>
   <block id="604eb779cbb9af378f7bda71633b5b31" category="list-text">조직에서 정의한 RPO(복구 시점 목표)를 충족하는 보존 설정으로 백업 정책 설계</block>
   <block id="067ff91a08d3ff453b59d81993b96182" category="list-text">백업이 실행될 때 상태를 알리도록 리소스 그룹의 알림 설정을 구성합니다(아래 그림 10 참조).</block>
   <block id="c3add00693172bbbb4dd864bf0ad9116" category="section-title">리소스 그룹 알림 옵션</block>
-  <block id="c728df76dc3609672a7969e320e39e32" category="inline-image-macro">리소스 그룹 알림 옵션, 300</block>
-  <block id="45281309785094533b5880fe6d0fd1ea" category="paragraph"><block ref="45281309785094533b5880fe6d0fd1ea" category="inline-image-macro-rx" type="image"></block></block>
   <block id="6eae9510711f8df8f55a15e1761875d9" category="section-title">이 문서를 사용하여 SCV를 시작하십시오</block>
   <block id="235a656535515ab3518937c09836e60d" category="inline-link">VMware vSphere용 SnapCenter 플러그인에 대해 자세히 알아보십시오</block>
   <block id="79eb02d2a96cc634df87bec5bd511bbe" category="paragraph"><block ref="79eb02d2a96cc634df87bec5bd511bbe" category="inline-link-rx"></block></block>
@@ -5027,4 +5021,7 @@ HA 쌍당 최소 2개의 LIF를 생성합니다. 작업 부하에 따라 더 많
   <block id="8f076395fe8f8f46c03efb655db313e6" category="section-title">FC 직접 연결</block>
   <block id="722830ffc5e46dbe206670f85cd1d889" category="paragraph">이제 ONTAP 및 특정 기타 NetApp 제품은 다양한 방법을 사용하여 다단계 인증(MFA)을 지원합니다. 결과적으로 손상된 사용자 이름/암호만으로는 FOB 또는 스마트폰 앱과 같은 두 번째 요소의 데이터가 없는 보안 스레드가 아닙니다.</block>
   <block id="37c43820ab88f1340855c30955eec330" category="section-title">MAV(Multi-admin verification)</block>
+  <block id="1910dc5a02cb649cc24df5670c631e34" category="paragraph"><block ref="1910dc5a02cb649cc24df5670c631e34" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="416d0d3efc5f3919abcdaaa2364738d9" category="paragraph"><block ref="416d0d3efc5f3919abcdaaa2364738d9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="28c6217e46797f76e427c591070cf50c" category="paragraph"><block ref="28c6217e46797f76e427c591070cf50c" category="inline-image-macro-rx" type="image"></block></block>
 </blocks>

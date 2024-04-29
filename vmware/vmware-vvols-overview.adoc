@@ -6,6 +6,10 @@ summary: '이 개요는 ONTAP이 설치된 VMware vSphere 가상 볼륨(VVol)에
 ---
 = 개요
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
 
 
 [role="lead"]
