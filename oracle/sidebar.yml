@@ -66,6 +66,8 @@ entries:
       url: "/oracle/oracle-storage-san-config-lun-alignment.html"
     - title: LUN 수와 LUN 크기입니다
       url: "/oracle/oracle-storage-san-config-lun-sizing.html"
+    - title: LUN 배치
+      url: "/oracle/oracle-storage-san-config-lun-placement.html"
     - title: LUN 크기 조정
       url: "/oracle/oracle-storage-san-config-lun-resizing.html"
     - title: LVM 스트라이핑
