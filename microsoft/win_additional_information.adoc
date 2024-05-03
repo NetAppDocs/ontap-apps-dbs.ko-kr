@@ -22,8 +22,8 @@ https://docs.netapp.com/us-en/ontap/concepts/introducing-data-management-softwar
 https://www.netapp.com/media/10680-tr4080.pdf[]
 * NetApp All-SAN 어레이 데이터 가용성 및 NetApp ASA 무결성
 https://www.netapp.com/pdf.html?item=/media/85671-tr-4968.pdf[]
-* SMB 프로토콜 모범 사례
-https://www.netapp.com/pdf.html?item=/media/10678-tr-4543pdf.pdf[]
+* SMB 설명서
+https://docs.netapp.com/us-en/ontap/smb-admin/index.html[]
 * Nano Server+를 시작합니다
 https://technet.microsoft.com/library/mt126167.aspx[]
 * Windows Server+의 Hyper-V의 새로운 기능
