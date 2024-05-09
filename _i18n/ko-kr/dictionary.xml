@@ -5175,9 +5175,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="90ab4fc7a1c530bceac36bda71efbc5f" category="paragraph">기본적으로 NTP에 대한 서비스는 ntpd입니다. 이 서비스는 레거시 서비스이며 일부 경우 가상 시스템에서 제대로 작동하지 않습니다.</block>
   <block id="6801ecdb823d018c7370042d27b5ee2c" category="section-title">* 데비안 *</block>
   <block id="dc3bb5166d38d2aec53765aca7c0d24c" category="paragraph">데비안에서 사용자는 /etc/ntp.conf 파일에 액세스하여 NTP 서버 세부 정보를 확인할 수 있습니다.</block>
-  <block id="08fe6a0b481c7eba55985eb19ee19e1e" category="summary">Security Hardening Guide for ONTAP Tools for VMware vSphere, 개요 및 소개</block>
-  <block id="baecfb438214487bb004e49d325c66bf" category="doc">Security Hardening Guide for ONTAP Tools for VMware vSphere 를 참조하십시오</block>
-  <block id="8d1618af2c6a6379783e2978ba4a551c" category="paragraph">VMware vSphere용 ONTAP Tools용 보안 강화 가이드 에서는 가장 안전한 설정을 구성하기 위한 포괄적인 지침을 제공합니다.</block>
   <block id="fec65f0c33739368ce5845fadb6cb880" category="paragraph">이 가이드는 어플라이언스 자체의 애플리케이션과 게스트 OS 모두에 적용됩니다.</block>
   <block id="5aaf8fc9424d7872cf500fb7adcb3b97" category="summary">Security Hardening Guide for ONTAP Tools for VMware vSphere, 암호 정책 구성</block>
   <block id="ca80b83fb98de16af35b38476df589c3" category="doc">암호 정책</block>
@@ -5210,4 +5207,7 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="cb197b06aa92a742d01e256d58d3e34b" category="sidebar">DoS 공격</block>
   <block id="d870a4bd29f74339732a958574d2c4eb" category="sidebar">NTP 구성</block>
   <block id="339ce1d4220ba7045e3a35ef35279ad3" category="sidebar">암호 정책</block>
+  <block id="3698338a95ad1801e25ed154adaf1a70" category="summary">VMware vSphere용 ONTAP 툴에 대한 보안 강화 가이드, 개요 및 소개</block>
+  <block id="47d29daaa26fbfa9c9a069d4cd023ac1" category="doc">VMware vSphere용 ONTAP 툴에 대한 보안 강화 가이드</block>
+  <block id="fe0e23a929284a636c245a362ada6472" category="paragraph">VMware vSphere용 ONTAP 툴에 대한 보안 강화 가이드에서는 가장 안전한 설정을 구성하기 위한 포괄적인 지침을 제공합니다.</block>
 </blocks>
