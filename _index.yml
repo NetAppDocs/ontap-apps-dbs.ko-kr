@@ -51,7 +51,7 @@ indexpage:
     - title: ONTAP 기반의 VMware vSphere
       url: "/vmware/vmware-vsphere-overview.html"
     - title: VMware vSphere용 ONTAP 툴에 대한 보안 강화 가이드
-      url: "/vmware/vmware-otv-hardening-overview.html.html"
+      url: "/vmware/vmware-otv-hardening-overview.html"
     - title: ONTAP을 사용한 VVOL(가상 볼륨
       url: "/vmware/vmware-vvols-overview.html"
     - title: ONTAP를 사용하는 VMware 사이트 복구 관리자
