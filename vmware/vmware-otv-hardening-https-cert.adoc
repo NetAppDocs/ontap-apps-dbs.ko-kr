@@ -1,0 +1,24 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-otv-hardening-https-cert.html 
+keywords: VMware, Data protection, security, OTV, Hardening, ONTAP Tools 
+summary: Security Hardening Guide for ONTAP Tools for VMware vSphere, HTTPS 인증서 관리 
+---
+= ONTAP 도구 HTTPS 인증서
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+기본적으로 ONTAP 도구는 웹 UI에 대한 HTTPS 액세스를 보호하기 위해 설치 중에 자동으로 만들어진 자체 서명 인증서를 사용합니다. ONTAP 도구는 다음과 같은 기능을 제공합니다.
+
+. HTTPS 인증서를 다시 생성합니다
+
+
+ONTAP 도구를 설치하는 동안 HTTPS CA 인증서가 설치되고 인증서가 키 저장소에 저장됩니다. 사용자는 유지 관리 콘솔을 통해 HTTPS 인증서를 다시 생성할 수 있습니다.
+
+위의 옵션은 _ '응용 프로그램 구성' → '인증서 다시 생성'._으로 이동하여 _maint_console에서 액세스할 수 있습니다

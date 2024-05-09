@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-otv-hardening-mutual-tls.html 
+keywords: VMware, Data protection, security, OTV, Hardening, ONTAP Tools 
+summary: Security Hardening Guide for ONTAP Tools for VMware vSphere, 스토리지 관리 연결을 위한 상호 TLS 암호화 
+---
+= 상호 TLS(인증서 기반 인증)
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP 버전 9.7 이상에서는 상호 TLS 통신을 지원합니다. VMware 및 vSphere 9.12용 ONTAP 툴부터 상호 TLS는 새로 추가된 클러스터와의 통신에 사용됩니다(ONTAP 버전에 따라 다름).
+
+
+
+== ONTAP
+
+이전에 추가한 모든 스토리지 시스템에 대해 업그레이드 중에 추가된 모든 스토리지 시스템이 자동으로 신뢰되고 인증서 기반 인증 메커니즘이 구성됩니다.
+
+아래 스크린샷과 같이 클러스터 설정 페이지에는 각 클러스터에 대해 구성된 상호 TLS(인증서 기반 인증) 상태가 표시됩니다.
+
+image:vmware-otv-hardening-mutual-tls-image2.png["image2, width=468, height=158"]
+
+
+
+=== * 클러스터 추가 *
+
+클러스터 추가 워크플로우 중에 추가되는 클러스터가 MTLS를 지원하는 경우 MTLS는 기본적으로 구성됩니다. 사용자는 이에 대해 구성을 수행할 필요가 없습니다. 아래 스크린샷은 클러스터 추가 중 사용자에게 표시되는 화면을 보여 줍니다.
+
+image:vmware-otv-hardening-mutual-tls-image3.png["스토리지 시스템 추가, 폭 = 450, 높이 = 400"]
+
+image:vmware-otv-hardening-mutual-tls-image4.png["스토리지 시스템 추가, 너비 = 468, 높이 = 416"]
+
+image:vmware-otv-hardening-mutual-tls-image5.png["스토리지 시스템 추가, 폭 = 450, 높이 = 400"]
+
+image:vmware-otv-hardening-mutual-tls-image6.png["스토리지 시스템 추가, 너비 = 468, 높이 = 516"]
+
+
+
+=== 클러스터 편집
+
+클러스터 편집 작업 중에 다음과 같은 두 가지 시나리오가 있습니다.
+
+* ONTAP 인증서가 만료되면 사용자는 새 인증서를 얻고 업로드해야 합니다.
+* OTV 인증서가 만료되면 사용자는 확인란을 선택하여 인증서를 다시 생성할 수 있습니다.
++
+** _ONTAP에 대한 새 클라이언트 인증서를 생성합니다
+
+
+
+
+image:vmware-otv-hardening-mutual-tls-image7.png["스토리지 시스템 수정, 너비 = 468, 높이 = 461"]
+
+image:vmware-otv-hardening-mutual-tls-image8.png["스토리지 시스템 수정, 너비 = 468, 높이 = 461"]

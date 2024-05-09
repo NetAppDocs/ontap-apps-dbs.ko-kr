@@ -99,7 +99,7 @@ SLM은 특정 LUN에 경로를 알리는 노드를 제한합니다. NetApp 모�
 * vSphere 7.0에서 NVMe/FC를 사용하는 방법에 대한 자세한 내용은 다음을 참조하십시오 https://docs.netapp.com/us-en/ontap-sanhost/nvme_esxi_7.html["ONTAP NVMe/FC 호스트 구성 가이드"^] 및 http://www.netapp.com/us/media/tr-4684.pdf["TR-4684를 참조하십시오"^]. 다음 그림에서는 vSphere 호스트에서 ONTAP LUN으로의 다중 경로 연결을 보여 줍니다.
 
 
-image:vsphere_ontap_image2.png["오류: 그래픽 이미지가 없습니다"]
+image:vsphere_ontap_image2.png["다중 경로 연결"]
 
 
 

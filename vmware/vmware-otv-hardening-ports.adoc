@@ -1,0 +1,79 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-otv-hardening-ports.html 
+keywords: VMware, Data protection, security, OTV, Hardening, ONTAP Tools 
+summary: Security Hardening Guide for ONTAP Tools for VMware vSphere 를 참조하십시오. 
+---
+= 포트 및 프로토콜
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 슬라이드에는 VMware vSphere 서버용 ONTAP 툴과 관리 스토리지 시스템, 서버 및 기타 구성 요소 등의 기타 엔터티 간의 통신을 지원하는 데 필요한 포트와 프로토콜이 나와 있습니다.
+
+
+
+== OTV에 필요한 인바운드 및 아웃바운드 포트
+
+아래 표에 ONTAP 도구의 올바른 작동에 필요한 인바운드 및 아웃바운드 포트가 나열되어 있습니다. 표에 나와 있는 포트만 원격 컴퓨터에서 연결할 수 있도록 열려 있고 다른 모든 포트는 원격 컴퓨터에서 연결할 수 있도록 차단해야 합니다. 이렇게 하면 시스템의 보안 및 안전을 보장할 수 있습니다.
+
+다음 표에서는 열려 있는 포트의 세부 정보를 설명합니다.
+
+[cols="18%,21%,61%"]
+|===
+| * TCP v4/v6 포트 # * | * 방향 * | * 기능 * 
+
+
+| 8143 | 인바운드 | REST API용 HTTPS 연결 
+
+
+| 8043을 참조하십시오 | 인바운드 | HTTPS 연결 
+
+
+| 9060입니다 | 인바운드 | HTTPS 연결 +
+HTTPS 연결을 통한 SOAP+에 사용됩니다
+클라이언트가 ONTAP 도구 API 서버에 연결할 수 있도록 하려면 이 포트를 열어야 합니다. 
+
+
+| 22 | 인바운드 | SSH(기본적으로 비활성화됨) 
+
+
+| 9080입니다 | 인바운드 | HTTPS 연결 - VP 및 SRA - 루프백에서만 내부 연결 
+
+
+| 9083 | 인바운드 | HTTPS 연결 - VP 및 SRA+
+HTTPS 연결을 통한 SOAP에 사용됩니다 
+
+
+| 1162 | 인바운드 | VP SNMP 트랩 패킷입니다 
+
+
+| 8443 | 인바운드 | 원격 플러그인 
+
+
+| 1527년 | 내부 전용 | Derby 데이터베이스 포트, 이 컴퓨터와 자체 사이에서만 외부 연결이 허용되지 않음 - 내부 연결만 해당 
+
+
+| 8150입니다 | 내부 전용 | 로그 무결성 서비스가 포트에서 실행됩니다 
+
+
+| 443 | 양방향 | ONTAP 클러스터에 연결하는 데 사용됩니다 
+|===
+
+
+== Derby 데이터베이스에 대한 원격 액세스 제어
+
+관리자는 다음 명령을 사용하여 derby 데이터베이스에 액세스할 수 있습니다. ONTAP 도구 로컬 VM 및 원격 서버를 통해 다음 단계에 따라 액세스할 수 있습니다.
+
+....
+java -classpath "/opt/netapp/vpserver/lib/*" org.apache.derby.tools.ij;
+connect 'jdbc:derby://<OTV-IP>:1527//opt/netapp/vpserver/vvoldb;user=<user>;password=<password>';
+....
+*[.d밑줄]#example:# *
+
+image:vmware-otv-hardening-ports.png["더비, 너비 = 468, 높이 = 136"]

@@ -1,0 +1,38 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-otv-hardening-dos.html 
+keywords: VMware, Data protection, security, OTV, Hardening, ONTAP Tools 
+summary: Security Hardening Guide for ONTAP Tools for VMware vSphere, DOS 공격으로부터 네트워크 보안 보호 
+---
+= 사용자당 최대 동시 요청 수(네트워크 보안 보호::DOS 공격)
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+기본적으로 사용자당 최대 동시 요청 수는 48개입니다. ONTAP 도구의 루트 사용자는 해당 환경의 요구 사항에 따라 이 값을 변경할 수 있습니다. *이 값은 서비스 거부(DOS) 공격에 대한 메커니즘을 제공하므로 매우 높은 값으로 설정하지 않아야 합니다.*
+
+사용자는 *_/opt/netapp/vscserver/etc/dosfilterParams.json_ * 파일에서 최대 동시 세션 및 기타 지원되는 매개 변수의 수를 변경할 수 있습니다.
+
+다음 매개 변수를 사용하여 필터를 구성할 수 있습니다.
+
+* *_delayms_ * : 고려되기 전에 속도 제한을 초과하는 모든 요청에 주어진 지연 시간(밀리초)입니다. 요청을 거부하려면 -1을 지정합니다.
+* *_thromlems_ * : 세마포에 대한 비동기 대기 시간.
+* *_maxRequests_ *: 이 요청을 실행할 수 있는 기간입니다.
+* *_ipWhitelist_ *: 속도 제한이 없는 쉼표로 구분된 IP 주소 목록입니다. (vCenter, ESXi 및 SRA IP일 수 있음)
+* *_maxRequestsPerSec_ *: 초당 연결의 최대 요청 수입니다.
+
+
+* _dosfilterParams 파일의 기본값 _: *
+
+....
+{"delayMs":"-1",
+"throttleMs":"1800000",
+"maxRequestMs":"300000",
+"ipWhitelist":"10.224.58.52",
+"maxRequestsPerSec":"48"}
+....

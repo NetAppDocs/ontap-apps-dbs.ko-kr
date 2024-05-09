@@ -1,0 +1,31 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-otv-hardening-ntp.html 
+keywords: VMware, Data protection, security, OTV, Hardening, ONTAP Tools 
+summary: Security Hardening Guide for ONTAP Tools for VMware vSphere, NTP 구성 
+---
+= NTP(Network Time Protocol) 구성
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+경우에 따라 네트워크 시간 구성의 불일치로 인해 보안 문제가 발생할 수 있습니다. 이러한 문제를 방지하려면 네트워크 내의 모든 장치에 정확한 시간 설정이 있는지 확인하는 것이 중요합니다.
+
+
+
+== * 가상 어플라이언스 *
+
+가상 어플라이언스의 유지 관리 콘솔에서 NTP 서버를 구성할 수 있습니다.  사용자는 _시스템 구성_=>_새 NTP 서버 추가_옵션에서 NTP 서버 세부 정보를 추가할 수 있습니다
+
+기본적으로 NTP에 대한 서비스는 ntpd입니다. 이 서비스는 레거시 서비스이며 일부 경우 가상 시스템에서 제대로 작동하지 않습니다.
+
+
+
+== * 데비안 *
+
+데비안에서 사용자는 /etc/ntp.conf 파일에 액세스하여 NTP 서버 세부 정보를 확인할 수 있습니다.

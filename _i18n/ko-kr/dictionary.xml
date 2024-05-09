@@ -2797,7 +2797,6 @@ vSphere 8을 사용하는 NVMe-oF의 경우 자세한 내용은 을 참조하십
   <block id="636da39a2033c6179a718983c5ce1222" category="inline-link">ONTAP NVMe/FC 호스트 구성 가이드</block>
   <block id="81ef6507a13da5635951bc5b533deb59" category="inline-link">TR-4684를 참조하십시오</block>
   <block id="15483b0826bb9a4b11d1c89af2029c5c" category="list-text">vSphere 7.0에서 NVMe/FC를 사용하는 방법에 대한 자세한 내용은 다음을 참조하십시오<block ref="6b4ed262d14e47ef641cd57b65c32c38" category="inline-link-rx"></block> 및<block ref="7a29b2f31035a451d5b068728d2b79a7" category="inline-link-rx"></block>다음 그림에서는 vSphere 호스트에서 ONTAP LUN으로의 다중 경로 연결을 보여 줍니다.</block>
-  <block id="f9fd9ea22ea7a2e8ec9e95254a449831" category="paragraph"><block ref="f9fd9ea22ea7a2e8ec9e95254a449831" category="inline-image-macro-rx" type="image"></block></block>
   <block id="f2a693e1f056b96566c4551fcab418f2" category="paragraph">vSphere를 사용하면 엔터프라이즈급 NFS 스토리지를 사용하여 ESXi 클러스터의 모든 노드에 대한 데이터 저장소에 대한 동시 액세스를 제공할 수 있습니다. 데이터 저장소 섹션에서 언급한 것처럼, NFS를 vSphere와 함께 사용할 경우 사용 편의성과 스토리지 효율성 가시성의 이점이 있습니다.</block>
   <block id="743fa5a7bc7d4ba215b096e34779d298" category="paragraph">vSphere와 함께 ONTAP NFS를 사용할 때는 다음과 같은 Best Practice를 따르는 것이 좋습니다.</block>
   <block id="c05061b6d3055b83136fa96cb38f0f9a" category="list-text">ONTAP 클러스터의 각 노드에서 각 SVM에 대해 단일 논리 인터페이스(LIF)를 사용합니다. 데이터 저장소당 LIF의 과거 권장사항은 더 이상 필요하지 않습니다. 직접 액세스(LIF 및 동일한 노드의 데이터 저장소)가 가장 좋지만 성능 영향이 일반적으로 최소(마이크로초)이기 때문에 간접 액세스에 대해 걱정하지 마십시오.</block>
@@ -5052,4 +5051,163 @@ HA 쌍당 최소 2개의 LIF를 생성합니다. 작업 부하에 따라 더 많
   <block id="0724b56ced27e0a66fb4692a57fb1436" category="doc">Oracle 데이터베이스 LUN 배치</block>
   <block id="f595bf3bf71ab0c91a5503ba4efb8ea4" category="paragraph">ONTAP 볼륨 내에 데이터베이스 LUN을 최적으로 배치하는 것은 주로 다양한 ONTAP 기능을 사용하는 방법에 따라 달라집니다.</block>
   <block id="05a1ffdb277b8c7ac1dca78adae0017e" category="sidebar">LUN 배치</block>
+  <block id="9d5c13d45bbf74999764cfe8d4798562" category="summary">Security Hardening Guide for ONTAP Tools for VMware vSphere, HTTPS 인증서 관리</block>
+  <block id="0f464051d2b3e2c46fd57cb0c7edb4a9" category="doc">ONTAP 도구 HTTPS 인증서</block>
+  <block id="d6a1787b51b08315bfcc44f3a9bb4b2f" category="paragraph">기본적으로 ONTAP 도구는 웹 UI에 대한 HTTPS 액세스를 보호하기 위해 설치 중에 자동으로 만들어진 자체 서명 인증서를 사용합니다. ONTAP 도구는 다음과 같은 기능을 제공합니다.</block>
+  <block id="1eddd0f3479da31541c39e5ddddfa930" category="list-text">HTTPS 인증서를 다시 생성합니다</block>
+  <block id="61bf3033b18d202012951f5bf7be4fa9" category="paragraph">ONTAP 도구를 설치하는 동안 HTTPS CA 인증서가 설치되고 인증서가 키 저장소에 저장됩니다. 사용자는 유지 관리 콘솔을 통해 HTTPS 인증서를 다시 생성할 수 있습니다.</block>
+  <block id="b363a018e3596ec66080579ce5bd4c2d" category="paragraph">위의 옵션은 _ '응용 프로그램 구성' → '인증서 다시 생성'._으로 이동하여 _maint_console에서 액세스할 수 있습니다</block>
+  <block id="43d609906e5ac2fd9406eddd67d6f82a" category="summary">Security Hardening Guide for ONTAP Tools for VMware vSphere, 사용자 액세스 포인트</block>
+  <block id="3562b87b566382dc56e8b6fb2b849126" category="doc">VMware vSphere 액세스 지점용 ONTAP 툴(사용자)</block>
+  <block id="c015e2af845448c5e88873c4e51c8cac" category="paragraph">VMware vSphere용 ONTAP 툴은 세 가지 유형의 사용자를 생성하고 사용합니다.</block>
+  <block id="6399e228248ba3e1f084750197938b67" category="list-text">시스템 사용자: 루트 사용자 계정입니다</block>
+  <block id="2a408bd40a0a3130a390340955a699ef" category="list-text">애플리케이션 사용자: 관리자 사용자, 유지보수 사용자 및 DB 사용자 계정</block>
+  <block id="5d212a60c02bc59306c8863b31342276" category="list-text">지원 사용자: diag 사용자 계정입니다</block>
+  <block id="3c2b7b0ce42bb5eb8141643a9729f4ee" category="section-title">1.시스템 사용자</block>
+  <block id="b277c4882e7365ab0ac88d56cd6154b3" category="paragraph">시스템 (루트) 사용자는 기본 운영 체제 (데비안)에 ONTAP 도구 설치로 생성됩니다.</block>
+  <block id="155b9191864da17a7eaaf07b64d596d8" category="list-text">기본 시스템 사용자 "root"는 ONTAP 도구 설치로 데비안에 생성됩니다. 기본값은 비활성화되며 '이전' 콘솔을 통해 애드혹 방식으로 활성화할 수 있습니다.</block>
+  <block id="159efbffccd1957bc8c4c78b2a74c085" category="section-title">응용 프로그램 사용자</block>
+  <block id="170cab8b15d5b37a17e43144afe7308d" category="paragraph">응용 프로그램 사용자의 이름은 ONTAP 도구에서 로컬 사용자로 지정됩니다. ONTAP 도구 응용 프로그램에서 만든 사용자입니다. 아래 표에는 애플리케이션 사용자 유형이 나와 있습니다.</block>
+  <block id="e01ca242f9b1bef82800de4c209149c7" category="cell">* 사용자 *</block>
+  <block id="f14c276c07197ebef1394a5a219087a1" category="cell">* 설명 *</block>
+  <block id="9eb92414db7b53ac16645af9b0f64e58" category="cell">관리자 사용자</block>
+  <block id="ccf6887baccb4288ae3579b56fac8d2a" category="cell">ONTAP 도구를 설치하는 동안 생성되며 사용자가 ONTAP 도구를 배포하는 동안 자격 증명을 제공합니다. 사용자는 '이전' 콘솔에서 '암호'를 변경할 수 있습니다. 암호는 90일 후에 만료되며 사용자는 동일하게 변경해야 합니다.</block>
+  <block id="55df75b800db0f96de770b3c38f676b4" category="cell">유지보수 사용자</block>
+  <block id="a2bc121b09cae43d6c478870f5298ae5" category="cell">ONTAP 도구를 설치하는 동안 생성되며 사용자가 ONTAP 도구를 배포하는 동안 자격 증명을 제공합니다. 사용자는 '이전' 콘솔에서 '암호'를 변경할 수 있습니다. 이 사용자는 유지 관리 사용자이며 유지 관리 콘솔 작업을 실행하기 위해 생성됩니다.</block>
+  <block id="b124032a093d41b9efbb43f40c538bcb" category="cell">데이터베이스 사용자</block>
+  <block id="86a670227d3e81e8fa34eb4aede3129a" category="section-title">사용자 지원(diag 사용자)</block>
+  <block id="e482d8f0e37161e7916c7a78d2cf7210" category="paragraph">ONTAP 도구를 설치하는 동안 지원 사용자가 생성됩니다. 이 사용자는 서버의 문제나 중단이 발생할 경우 ONTAP 도구에 액세스하고 로그를 수집하는 데 사용할 수 있습니다. 기본적으로 이 사용자는 비활성화되어 있지만 '이전' 콘솔을 통해 애드혹 방식으로 활성화할 수 있습니다. 이 사용자는 특정 시간이 지나면 자동으로 비활성화됩니다.</block>
+  <block id="562596399deefc1e2a6cc32eb489976c" category="summary">Security Hardening Guide for ONTAP Tools for VMware vSphere 를 참조하십시오.</block>
+  <block id="1bc8028b63c10101b776e8b8ff907571" category="doc">포트 및 프로토콜</block>
+  <block id="80dd7fd00106118cf9c10abf911b7111" category="paragraph">이 슬라이드에는 VMware vSphere 서버용 ONTAP 툴과 관리 스토리지 시스템, 서버 및 기타 구성 요소 등의 기타 엔터티 간의 통신을 지원하는 데 필요한 포트와 프로토콜이 나와 있습니다.</block>
+  <block id="d40dfcfdaecc4e8015535acd5de00398" category="section-title">OTV에 필요한 인바운드 및 아웃바운드 포트</block>
+  <block id="834b74ce890c61455ad330759d44eff2" category="paragraph">아래 표에 ONTAP 도구의 올바른 작동에 필요한 인바운드 및 아웃바운드 포트가 나열되어 있습니다. 표에 나와 있는 포트만 원격 컴퓨터에서 연결할 수 있도록 열려 있고 다른 모든 포트는 원격 컴퓨터에서 연결할 수 있도록 차단해야 합니다. 이렇게 하면 시스템의 보안 및 안전을 보장할 수 있습니다.</block>
+  <block id="5732d3577c35dfcce968ba967a9a6149" category="cell">* TCP v4/v6 포트 # *</block>
+  <block id="e71a4b7488a97c0e5d8b3ab3efe619e4" category="cell">* 방향 *</block>
+  <block id="bc437eb0df24b836c84a74f47b391093" category="cell">* 기능 *</block>
+  <block id="576fe92cf4e45714b61ed10e5c856aa5" category="cell">HTTPS 연결 +
+HTTPS 연결을 통한 SOAP+에 사용됩니다
+클라이언트가 ONTAP 도구 API 서버에 연결할 수 있도록 하려면 이 포트를 열어야 합니다.</block>
+  <block id="4e31bd5bdc8239bb7c98471d3500d951" category="cell">HTTPS 연결 - VP 및 SRA+
+HTTPS 연결을 통한 SOAP에 사용됩니다</block>
+  <block id="7e6b20d014d1c659e4eaf20dc2dcd7eb" category="cell">8443</block>
+  <block id="aaa2d7fe63bee55de8ffca52cb61fbd5" category="cell">원격 플러그인</block>
+  <block id="25fa62922a9b3c1c2763bbf88014e217" category="cell">Derby 데이터베이스 포트, 이 컴퓨터와 자체 사이에서만 외부 연결이 허용되지 않음 - 내부 연결만 해당</block>
+  <block id="c68bd9055776bf38d8fc43c0ed283678" category="cell">8150입니다</block>
+  <block id="b482bc4bf0e383b0858c5d9eb0e96ba9" category="cell">로그 무결성 서비스가 포트에서 실행됩니다</block>
+  <block id="9956361dfa33899fc0efed6ee3946512" category="section-title">Derby 데이터베이스에 대한 원격 액세스 제어</block>
+  <block id="58b7326b56820f4b18dfd73dc9707831" category="paragraph">관리자는 다음 명령을 사용하여 derby 데이터베이스에 액세스할 수 있습니다. ONTAP 도구 로컬 VM 및 원격 서버를 통해 다음 단계에 따라 액세스할 수 있습니다.</block>
+  <block id="296068c08046bbf197300e38c4e851cb" category="paragraph">*[.d밑줄]#example:# *</block>
+  <block id="10046bc1eb8463e6ca6ae51bd3b7a574" category="inline-image-macro">더비, 너비 = 468, 높이 = 136</block>
+  <block id="36434da35edb72a1f85cbbcc1ff2b197" category="paragraph"><block ref="36434da35edb72a1f85cbbcc1ff2b197" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f21dd7ffc271f1301878c3078a59692d" category="summary">Security Hardening Guide for ONTAP Tools for VMware vSphere, 로그인 배너</block>
+  <block id="8bea3b588d20824cc56c9e5629943f1a" category="doc">로그인 배너</block>
+  <block id="67f78f0bab8fe81a2b6971543c716d3d" category="paragraph">다음 로그인 배너는 사용자가 로그인 프롬프트에 사용자 이름을 입력하면 표시됩니다. SSH는 기본적으로 비활성화되어 있으며 VM 콘솔에서 활성화된 경우 1회 로그인만 허용합니다.</block>
+  <block id="ae20daf991a940f9de7033ff0a1af410" category="paragraph">사용자가 SSH 채널을 통해 로그인을 완료하면 다음 텍스트가 표시됩니다.</block>
+  <block id="8f1b6f904292913013b1f6e578d7b074" category="summary">Security Hardening Guide for ONTAP Tools for VMware vSphere, 무결성 검증</block>
+  <block id="cedd87fff2ad5101cd8565e33950e1fb" category="doc">VMware vSphere 설치 패키지용 ONTAP 툴의 무결성 검증</block>
+  <block id="aeeb9f5277554716592480db544d25f3" category="paragraph">고객은 두 가지 방법으로 ONTAP 도구 설치 패키지의 무결성을 확인할 수 있습니다.</block>
+  <block id="126ba7383e25522e071a963ddd6f220f" category="list-text">체크섬 확인</block>
+  <block id="deccc645a0c8869a44e645f2f4247dbd" category="list-text">서명을 확인하는 중입니다</block>
+  <block id="e5f3970dd7fabab1726b53d58d636de2" category="paragraph">체크섬은 OTV 설치 패키지의 다운로드 페이지에 제공됩니다. 사용자는 다운로드 페이지에 제공된 체크섬과 비교하여 다운로드한 패키지의 체크섬을 확인해야 합니다.</block>
+  <block id="7452fe022f94726684aeea655673eb0f" category="section-title">ONTAP 도구 OVA의 서명 확인</block>
+  <block id="373d060b52f94a014177952dcca0c4e9" category="paragraph">vApp 설치 패키지는 타볼 형태로 제공됩니다. 이 타볼에는 README 파일 및 OVA 패키지와 함께 가상 어플라이언스에 대한 중간 및 루트 인증서가 포함되어 있습니다. README 파일은 사용자에게 vApp OVA 패키지의 무결성을 확인하는 방법을 안내합니다.</block>
+  <block id="48fefdb76906b256f183e6f68b23eba1" category="paragraph">또한 vCenter 버전 7.0U3E 이상에서 제공된 루트 및 중간 인증서를 업로드해야 합니다.  7.0.1 및 7.0.U3E 사이의 vCenter 버전의 경우 인증서 확인 기능은 VMware에서 지원되지 않습니다. 고객은 vCenter 버전 6.x에 대한 인증서를 업로드할 필요가 없습니다</block>
+  <block id="84a005842347a9560b170cfcd79c5203" category="section-title">신뢰할 수 있는 루트 인증서를 vCenter에 업로드하는 중입니다</block>
+  <block id="57f60da4817dc5d71c45890bb182781e" category="list-text">VMware vSphere Client를 사용하여 vCenter Server에 로그인합니다.</block>
+  <block id="72282f16a7aca6b61acfc6fe27ce55c7" category="list-text">administrator@vsphere.loca l 또는 vCenter Single Sign-On Administrators 그룹의 다른 구성원에 대한 사용자 이름과 암호를 지정합니다. 설치 중에 다른 도메인을 지정한 경우 administrator@mydomain으로 로그인합니다.</block>
+  <block id="9470c9e64c285d5b66a039ab668ab64a" category="list-text">인증서 관리 사용자 인터페이스로 이동합니다. a. 홈 메뉴에서 관리 를 선택합니다. b. 인증서에서 인증서 관리를 클릭합니다.</block>
+  <block id="43a75b176810226695d2db6f52c87b73" category="list-text">메시지가 표시되면 vCenter Server의 자격 증명을 입력합니다.</block>
+  <block id="5f51c5b3cb2f48fd1d670bf384d1006d" category="list-text">신뢰할 수 있는 루트 인증서에서 추가를 클릭합니다.</block>
+  <block id="55c3b759c54a437c7ced6432f1c62de0" category="list-text">찾아보기 를 클릭하고 certificate.pem 파일(OTV_OVA_INTER_ROOT_CERT_CHAIN.pem)의 위치를 선택합니다.</block>
+  <block id="8acdedaaa4134bb6ae49472b4bc268a7" category="list-text">추가 를 클릭합니다. 인증서가 저장소에 추가됩니다.</block>
+  <block id="e2200da08ea15bdea0f97dbfc4e9f1c7" category="inline-link-macro">인증서 저장소에 신뢰할 수 있는 루트 인증서를 추가합니다</block>
+  <block id="6eeecddd909e7e017ba2732e46dc739c" category="paragraph">을 참조하십시오 <block ref="b8e45b03638af10d852f253eba7e63e3" category="inline-link-macro-rx"></block> 를 참조하십시오. OVA 파일을 사용하여 vApp을 구축하는 동안 vApp 패키지의 디지털 서명을 'Review details' 페이지에서 확인할 수 있습니다. 다운로드한 vApp 패키지가 정품이면 '게시자' 열에 '신뢰할 수 있는 인증서'가 표시됩니다(다음 스크린샷 참조).</block>
+  <block id="a13b63a149750821fb588cd3cb41c209" category="inline-image-macro">신뢰할 수 있는 인증서</block>
+  <block id="a83d8109f7a0cf9c4a04c65c40ecd354" category="paragraph"><block ref="a83d8109f7a0cf9c4a04c65c40ecd354" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="61dc5ac976a8bd4a8744d8890305d26e" category="section-title">ONTAP 도구 ISO 및 SRA tar.gz 서명 확인</block>
+  <block id="d4f26c1c073b64ba200e3fa71762c256" category="paragraph">NetApp는 OTV-iso 및 SRA.tgz용 제품 zip 파일과 함께 제품 다운로드 페이지의 고객과 코드 서명 인증서를 공유합니다.</block>
+  <block id="a7ac1e7561da5cc70126cfea891de159" category="paragraph">코드 서명 인증서에서 사용자는 다음과 같이 공개 키를 추출할 수 있습니다.</block>
+  <block id="5f4345a6f62f7a3926b2c3d92f5574f6" category="paragraph">그런 다음 공개 키를 사용하여 아래와 같이 ISO 및 tgz 제품 zip의 서명을 확인해야 합니다.</block>
+  <block id="81eeab9506186e2dca8faefa78d54067" category="paragraph">예:</block>
+  <block id="c6666237b03fcb86e315a0a06e73b6ef" category="summary">Security Hardening Guide for ONTAP Tools for VMware vSphere, 스토리지 관리 연결을 위한 상호 TLS 암호화</block>
+  <block id="a1f873acd76a0948013378ff10927a74" category="doc">상호 TLS(인증서 기반 인증)</block>
+  <block id="53893182b7e17fb2da37935ee3ffda55" category="paragraph">ONTAP 버전 9.7 이상에서는 상호 TLS 통신을 지원합니다. VMware 및 vSphere 9.12용 ONTAP 툴부터 상호 TLS는 새로 추가된 클러스터와의 통신에 사용됩니다(ONTAP 버전에 따라 다름).</block>
+  <block id="1be712dee4c47804142318ffb739e46b" category="paragraph">이전에 추가한 모든 스토리지 시스템에 대해 업그레이드 중에 추가된 모든 스토리지 시스템이 자동으로 신뢰되고 인증서 기반 인증 메커니즘이 구성됩니다.</block>
+  <block id="d39adf53eaace0fbba30d4e13760a974" category="paragraph">아래 스크린샷과 같이 클러스터 설정 페이지에는 각 클러스터에 대해 구성된 상호 TLS(인증서 기반 인증) 상태가 표시됩니다.</block>
+  <block id="c036889d83926f57571c8b12e4f7fb6f" category="inline-image-macro">image2, width=468, height=158</block>
+  <block id="095064767a4b9cadb4016dfc2788237c" category="paragraph"><block ref="095064767a4b9cadb4016dfc2788237c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="53f061d401dd80027634ccca2a19cd8d" category="section-title">* 클러스터 추가 *</block>
+  <block id="7ce4b2757e70979f49bcf8f64ba36363" category="paragraph">클러스터 추가 워크플로우 중에 추가되는 클러스터가 MTLS를 지원하는 경우 MTLS는 기본적으로 구성됩니다. 사용자는 이에 대해 구성을 수행할 필요가 없습니다. 아래 스크린샷은 클러스터 추가 중 사용자에게 표시되는 화면을 보여 줍니다.</block>
+  <block id="3c1556a297200019d3a0b8045c0956b9" category="inline-image-macro">스토리지 시스템 추가, 폭 = 450, 높이 = 400</block>
+  <block id="3a225aabc3c5c25670ad0b4d131da24f" category="paragraph"><block ref="3a225aabc3c5c25670ad0b4d131da24f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="987de6e025f6af1fc4451710295ca76f" category="inline-image-macro">스토리지 시스템 추가, 너비 = 468, 높이 = 416</block>
+  <block id="576a9128888c73fc82869b3ae173c7d2" category="paragraph"><block ref="576a9128888c73fc82869b3ae173c7d2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="307eba22b8070bb93e642827620f8588" category="paragraph"><block ref="307eba22b8070bb93e642827620f8588" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="71cfed326a2cabd3b505c6580123a459" category="inline-image-macro">스토리지 시스템 추가, 너비 = 468, 높이 = 516</block>
+  <block id="a3a8f9da50b3f15d69f3186129f159f6" category="paragraph"><block ref="a3a8f9da50b3f15d69f3186129f159f6" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3b3ebbeea272602ddec07bb77e34668a" category="section-title">클러스터 편집</block>
+  <block id="d2562e450657937f981a45d9d18ff4ec" category="paragraph">클러스터 편집 작업 중에 다음과 같은 두 가지 시나리오가 있습니다.</block>
+  <block id="500bcb89776517849e2e07073aad4eca" category="list-text">ONTAP 인증서가 만료되면 사용자는 새 인증서를 얻고 업로드해야 합니다.</block>
+  <block id="edf2227e3378b5b0864ef73e58d39d77" category="list-text">OTV 인증서가 만료되면 사용자는 확인란을 선택하여 인증서를 다시 생성할 수 있습니다.</block>
+  <block id="6db8cdf80049c7cf629fe6f8f6e3a9c0" category="list-text">_ONTAP에 대한 새 클라이언트 인증서를 생성합니다</block>
+  <block id="acba923a9524c642724d6ff34f5dac93" category="inline-image-macro">스토리지 시스템 수정, 너비 = 468, 높이 = 461</block>
+  <block id="6a59df9970674c274e20b1d91be2df8a" category="paragraph"><block ref="6a59df9970674c274e20b1d91be2df8a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="75545011d3e6abe8a2cd8cd5bc21c6fd" category="paragraph"><block ref="75545011d3e6abe8a2cd8cd5bc21c6fd" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="14a73da2f5fe352620bed1b49a3319ed" category="summary">Security Hardening Guide for ONTAP Tools for VMware vSphere, DOS 공격으로부터 네트워크 보안 보호</block>
+  <block id="7dc9b3603fa2b925d4d44930e25f1afa" category="doc">사용자당 최대 동시 요청 수(네트워크 보안 보호::DOS 공격)</block>
+  <block id="8f7e7bd942f453f0550dc4f907e88810" category="paragraph">기본적으로 사용자당 최대 동시 요청 수는 48개입니다. ONTAP 도구의 루트 사용자는 해당 환경의 요구 사항에 따라 이 값을 변경할 수 있습니다. *이 값은 서비스 거부(DOS) 공격에 대한 메커니즘을 제공하므로 매우 높은 값으로 설정하지 않아야 합니다.*</block>
+  <block id="99c1088ea27d16b42c6b45d794f59d3f" category="paragraph">사용자는 *_/opt/netapp/vscserver/etc/dosfilterParams.json_ * 파일에서 최대 동시 세션 및 기타 지원되는 매개 변수의 수를 변경할 수 있습니다.</block>
+  <block id="5e7c907630f5a432ac6b39f0b8c04c28" category="paragraph">다음 매개 변수를 사용하여 필터를 구성할 수 있습니다.</block>
+  <block id="a35f2f4ccb228969a85b8719ea25b047" category="list-text">*_delayms_ * : 고려되기 전에 속도 제한을 초과하는 모든 요청에 주어진 지연 시간(밀리초)입니다. 요청을 거부하려면 -1을 지정합니다.</block>
+  <block id="f1b9d5fde713093a3a80f140d1439d37" category="list-text">*_thromlems_ * : 세마포에 대한 비동기 대기 시간.</block>
+  <block id="aa363bec6acd7600aedeee5377470bde" category="list-text">*_maxRequests_ *: 이 요청을 실행할 수 있는 기간입니다.</block>
+  <block id="351b695725caafd647abb749c50a7e6f" category="list-text">*_ipWhitelist_ *: 속도 제한이 없는 쉼표로 구분된 IP 주소 목록입니다. (vCenter, ESXi 및 SRA IP일 수 있음)</block>
+  <block id="058e1fe7e6afcd3bcff86482a583976b" category="list-text">*_maxRequestsPerSec_ *: 초당 연결의 최대 요청 수입니다.</block>
+  <block id="1c1496a21f967d57b50fe5ebb0e62125" category="paragraph">* _dosfilterParams 파일의 기본값 _: *</block>
+  <block id="ca49b2b6b0c4bb4aa0596879eef667f5" category="inline-image-macro">다중 경로 연결</block>
+  <block id="de3698c6b3c2722a1b82c99522519f4f" category="paragraph"><block ref="de3698c6b3c2722a1b82c99522519f4f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="9afb15056a8bc8b4402d55eba2274dad" category="summary">Security Hardening Guide for ONTAP Tools for VMware vSphere, NTP 구성</block>
+  <block id="bad9c891abe49e73c2bf4fb95fbe61ba" category="doc">NTP(Network Time Protocol) 구성</block>
+  <block id="48edbd8a951efb0ad617f7868b27a6c0" category="paragraph">경우에 따라 네트워크 시간 구성의 불일치로 인해 보안 문제가 발생할 수 있습니다. 이러한 문제를 방지하려면 네트워크 내의 모든 장치에 정확한 시간 설정이 있는지 확인하는 것이 중요합니다.</block>
+  <block id="a55d703ea2930e8e72e94ce11c3297ab" category="section-title">* 가상 어플라이언스 *</block>
+  <block id="5a65f4c9ca6d99f573528348d36914fa" category="paragraph">가상 어플라이언스의 유지 관리 콘솔에서 NTP 서버를 구성할 수 있습니다.  사용자는 _시스템 구성_=&gt;_새 NTP 서버 추가_옵션에서 NTP 서버 세부 정보를 추가할 수 있습니다</block>
+  <block id="90ab4fc7a1c530bceac36bda71efbc5f" category="paragraph">기본적으로 NTP에 대한 서비스는 ntpd입니다. 이 서비스는 레거시 서비스이며 일부 경우 가상 시스템에서 제대로 작동하지 않습니다.</block>
+  <block id="6801ecdb823d018c7370042d27b5ee2c" category="section-title">* 데비안 *</block>
+  <block id="dc3bb5166d38d2aec53765aca7c0d24c" category="paragraph">데비안에서 사용자는 /etc/ntp.conf 파일에 액세스하여 NTP 서버 세부 정보를 확인할 수 있습니다.</block>
+  <block id="08fe6a0b481c7eba55985eb19ee19e1e" category="summary">Security Hardening Guide for ONTAP Tools for VMware vSphere, 개요 및 소개</block>
+  <block id="baecfb438214487bb004e49d325c66bf" category="doc">Security Hardening Guide for ONTAP Tools for VMware vSphere 를 참조하십시오</block>
+  <block id="8d1618af2c6a6379783e2978ba4a551c" category="paragraph">VMware vSphere용 ONTAP Tools용 보안 강화 가이드 에서는 가장 안전한 설정을 구성하기 위한 포괄적인 지침을 제공합니다.</block>
+  <block id="fec65f0c33739368ce5845fadb6cb880" category="paragraph">이 가이드는 어플라이언스 자체의 애플리케이션과 게스트 OS 모두에 적용됩니다.</block>
+  <block id="5aaf8fc9424d7872cf500fb7adcb3b97" category="summary">Security Hardening Guide for ONTAP Tools for VMware vSphere, 암호 정책 구성</block>
+  <block id="ca80b83fb98de16af35b38476df589c3" category="doc">암호 정책</block>
+  <block id="53477738359cebc12d4e01727ee8b5e7" category="paragraph">ONTAP 도구를 처음 배포하거나 버전 9.12 이상으로 업그레이드하는 사용자는 관리자와 데이터베이스 사용자 모두에 대해 강력한 암호 정책을 따라야 합니다. 배포 프로세스 중에 새 사용자에게 암호를 입력하라는 메시지가 표시됩니다. 버전 9.12 이상으로 업그레이드하는 Brownfield 사용자의 경우 유지 관리 콘솔에서 강력한 암호 정책을 따르는 옵션을 사용할 수 있습니다.</block>
+  <block id="7afd9be20a239f83f98bdbc7f90512ef" category="list-text">사용자가 유지 관리 콘솔에 로그인하면 복잡한 규칙 집합에 대해 암호가 확인되고, 따르지 않을 경우 사용자에게 동일한 암호를 재설정하라는 메시지가 표시됩니다.</block>
+  <block id="1e048d74f3d9375186833526a00f4309" category="list-text">암호 기본 유효 기간은 90일이며 75일 후에는 사용자가 암호 변경 알림을 받기 시작합니다.</block>
+  <block id="dbb73ef3f8e9b61d387a809281a654cc" category="list-text">모든 사이클에서 새 암호를 설정해야 합니다. 시스템에서는 마지막 암호를 새 암호로 사용하지 않습니다.</block>
+  <block id="210b05d5e7375bcb02bcf09a873bbda6" category="list-text">사용자가 유지 관리 콘솔에 로그인할 때마다 기본 메뉴를 로드하기 전에 아래 스크린샷과 같은 암호 정책을 확인합니다.</block>
+  <block id="bc66b4fce20ef49b05e4a54f053e65a6" category="inline-image-macro">주 메뉴, 폭 = 468, 높이 = 116</block>
+  <block id="4661acb75237098be364b3c05d7d9b7c" category="paragraph"><block ref="4661acb75237098be364b3c05d7d9b7c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="8f09c69f731d4d6f2e8d6135082aa8e4" category="list-text">암호 정책 또는 ONTAP tools 9.11 또는 이전 버전에서 업그레이드 설정을 따르지 않는 경우. 그런 다음 사용자가 암호를 재설정하는 다음 화면을 볼 수 있습니다.</block>
+  <block id="4499d4bfb9610056781e2e61956dd0ca" category="inline-image-macro">암호 재설정 화면, 너비 = 468, 높이 = 116</block>
+  <block id="a84278f7bf3ee281e39e467fca1fe454" category="paragraph"><block ref="a84278f7bf3ee281e39e467fca1fe454" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="47e6664ac0a72e1d719cfc288383b4f8" category="list-text">사용자가 약한 암호를 설정하려고 하거나 마지막 암호를 다시 입력하면 다음 오류가 표시됩니다.</block>
+  <block id="fe04952c38b6a9a7db1a75bbb4905232" category="inline-image-macro">약한 암호 오류, 너비 = 468, 높이 = 101</block>
+  <block id="2c59de9ea5183e73d5fa6382fa7f3fc1" category="paragraph"><block ref="2c59de9ea5183e73d5fa6382fa7f3fc1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="8463a61dd94ff5934036d4c8a8936e32" category="doc">비활성 시간 초과</block>
+  <block id="704c7fc6c4d40b9af6aafb7cf9b44022" category="paragraph">무단 액세스를 방지하기 위해 비활성 시간 제한이 설정되며, 이 시간 제한은 승인된 리소스를 사용하는 동안 특정 기간 동안 비활성 상태인 사용자를 자동으로 로그아웃시킵니다. 이렇게 하면 권한이 있는 사용자만 리소스에 액세스할 수 있으며 보안을 유지하는 데 도움이 됩니다.</block>
+  <block id="80f9ebebc8f94450338d28bcb4a2164d" category="inline-link">vSphere Client Timeout 값을 구성합니다</block>
+  <block id="3748702da26b5718f1f7c769ce58b009" category="list-text">기본적으로 vSphere Client 세션은 120분 동안 유휴 시간이 지나면 닫히므로 사용자가 다시 로그인하여 클라이언트 사용을 재개해야 합니다. webclient.properties 파일을 편집하여 시간 초과 값을 변경할 수 있습니다. vSphere Client의 시간 초과를 구성할 수 있습니다<block ref="ec8715bde1a929a6f64160d5372f4574" category="inline-link-rx"></block></block>
+  <block id="e4306c4cf124046d8f90518752cd5021" category="list-text">ONTAP 도구의 웹 CLI 세션 로그아웃 시간은 30분입니다.</block>
+  <block id="7fb0cadcdae6feac05c7b8274b97b3c7" category="sidebar">ONTAP 툴 강화 개요</block>
+  <block id="10b486896b1a91f5d38214dfb30c4263" category="sidebar">ONTAP 도구 설치 패키지의 무결성을 확인합니다</block>
+  <block id="7c7c4cc4771d6114aa8b4d38f5817a85" category="sidebar">포트 및 프로토콜</block>
+  <block id="919e26ea009ce7fa2dcc499a27ccc6aa" category="sidebar">액세스 지점(사용자)</block>
+  <block id="333dd505db0523536c6885f47456518c" category="sidebar">상호 TLS</block>
+  <block id="6a3f3799bc264d32568bb7169ddd515a" category="sidebar">HTTPS 인증서</block>
+  <block id="4b7ad38343c4b2010cf81e6b2933e186" category="sidebar">로그인 배너</block>
+  <block id="bfdb89134acf30ff5da790924cefa0ac" category="sidebar">비활성 시간 초과</block>
+  <block id="cb197b06aa92a742d01e256d58d3e34b" category="sidebar">DoS 공격</block>
+  <block id="d870a4bd29f74339732a958574d2c4eb" category="sidebar">NTP 구성</block>
+  <block id="339ce1d4220ba7045e3a35ef35279ad3" category="sidebar">암호 정책</block>
 </blocks>

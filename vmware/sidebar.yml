@@ -80,3 +80,27 @@ entries:
     url: "/vmware/vmware-security-tools.html"
   - title: VMware vSphere용 SnapCenter 플러그인
     url: "/vmware/vmware-security-snapcenter.html"
+- title: Security Hardening Guide for ONTAP Tools for VMware vSphere 를 참조하십시오
+  entries:
+  - title: ONTAP 툴 강화 개요
+    url: "/vmware/vmware-otv-hardening-overview.html"
+  - title: ONTAP 도구 설치 패키지의 무결성을 확인합니다
+    url: "/vmware/vmware-otv-hardening-integrity.html"
+  - title: 포트 및 프로토콜
+    url: "/vmware/vmware-otv-hardening-ports.html"
+  - title: 액세스 지점(사용자)
+    url: "/vmware/vmware-otv-hardening-access.html"
+  - title: 상호 TLS
+    url: "/vmware/vmware-otv-hardening-mutual-tls.html"
+  - title: HTTPS 인증서
+    url: "/vmware/vmware-otv-hardening-https-cert.html"
+  - title: 로그인 배너
+    url: "/vmware/vmware-otv-hardening-login-banner.html"
+  - title: 비활성 시간 초과
+    url: "/vmware/vmware-otv-hardening-timeout.html"
+  - title: DoS 공격
+    url: "/vmware/vmware-otv-hardening-dos.html"
+  - title: NTP 구성
+    url: "/vmware/vmware-otv-hardening-ntp.html"
+  - title: 암호 정책
+    url: "/vmware/vmware-otv-hardening-passwords.html"
