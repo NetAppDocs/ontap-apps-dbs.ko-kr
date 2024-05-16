@@ -128,7 +128,6 @@
   <block id="eee4f7a4e0ed3a8646a97bcf3e118fb9" category="paragraph">동기식 복제 솔루션을 설계하고 관리하는 첫 번째 단계는 동기식 복제 기술을 사용하는 것입니다. 가장 중요한 고려 사항은 계획된 고장 시나리오와 예상치 못한 다양한 장애 시나리오 중에 발생할 수 있는 상황을 이해하는 것입니다. 모든 동기식 복제 솔루션이 동일한 기능을 제공하는 것은 아닙니다. 데이터 손실이 0인 복구 지점 목표(RPO)를 제공하는 솔루션이 필요한 경우 모든 장애 시나리오를 고려해야 합니다. 특히 사이트 간 연결 손실로 인해 복제가 불가능할 때 예상되는 결과는 무엇입니까?</block>
   <block id="71554672a088c43ab21c759ddd161928" category="section-title">SyncMirror 데이터 가용성</block>
   <block id="8646bb558f8f18a200cce2f70602627a" category="paragraph">원격 사이트에 연결할 수 없는 경우 SyncMirror가 동기식 모드를 원활하게 전환할 수 있을 뿐만 아니라 연결이 복원되면 RPO=0 상태로 빠르게 다시 동기화할 수 있습니다. 또한 재동기화 중에 원격 사이트의 오래된 데이터 복제본을 사용 가능한 상태로 유지할 수 있으므로 데이터의 로컬 및 원격 복제본이 항상 존재합니다.</block>
-  <block id="995f5151d2d1c0a4e8371b2b3c9b6e5b" category="paragraph">도미노 모드가 필요한 경우 NetApp은 SnapMirror Synchronous(SM-S)를 제공합니다. Oracle DataGuard 또는 호스트측 디스크 미러링의 시간 초과와 같은 애플리케이션 레벨 옵션도 있습니다. 자세한 정보와 옵션은 NetApp 또는 파트너 계정 팀에 문의하십시오.</block>
   <block id="1d12d7a206d9b5337ae6fa442f23d377" category="doc">스냅샷 전용</block>
   <block id="64c29f2f2feedeb607ff588b13d9758b" category="paragraph">를 클릭합니다<block ref="8805d416ce540c5f2df34af5b18d742b" prefix=" " category="inline-code"></block><block ref="964193481f440d73ce3474a7a09bc3ac" prefix=" " category="inline-code"></block> 액티브 파일 시스템과 공유되지 않는 블록에만 적용됩니다. 기본적으로 데이터베이스 백업의 계층화가 이루어집니다. 스냅샷이 생성되고 블록이 덮어써지면 블록이 계층화 대상이 되어 스냅샷 내에만 존재하는 블록이 됩니다. 이전 지연 시간<block ref="8805d416ce540c5f2df34af5b18d742b" prefix=" " category="inline-code"></block> 블록은 냉각된 것으로 간주됩니다<block ref="e5e88684921dd21f3f86c28343a3082f" prefix=" " category="inline-code"></block> 볼륨 설정입니다. ONTAP 9.8의 범위는 2-183일입니다.</block>
   <block id="ebd9889c847a7a3ddeccd2717ead46f2" category="paragraph">많은 데이터 세트의 변경률이 낮기 때문에 이 정책에서의 절약 효과가 최소화됩니다. 예를 들어 ONTAP에서 관찰되는 일반적인 데이터베이스의 변경률은 주당 5% 미만입니다. 데이터베이스 아카이브 로그는 광범위한 공간을 차지할 수 있지만 일반적으로 활성 파일 시스템에 계속 존재하므로 이 정책에 따라 계층화할 대상이 아닙니다.</block>
@@ -1547,20 +1546,13 @@ I/O 중단 없음.</block>
   <block id="2623b589ddbc1cdb6184ba32aa06e83f" category="inline-link-macro">NVFAIL(* NVFAIL</block>
   <block id="a4feacea8b05d0f24e5a4612a164a055" category="paragraph">일반적인 모범 사례가 여전히 적용되므로 필요한 경우 RPO = 0 데이터 보호만 있으면 MetroCluster를 통해 이 요구사항을 충족할 수 있습니다. 하지만 대부분의 고객은 RPO=0 데이터 보호를 위해뿐만 아니라 재해 시나리오 중에 RTO를 개선하고 사이트 유지 관리 작업의 일부로 투명한 페일오버를 제공하기 위해 MetroCluster을 사용합니다.</block>
   <block id="3ff8bcf18c694581aa25b0a347508e0f" category="section-title">사전 구성된 OS로 페일오버</block>
-  <block id="9bd9ad7f296a0e8ac3df804b3c6a392f" category="paragraph">SyncMirror은 재해 복구 사이트에서 데이터의 동기식 복사본을 제공하지만, 데이터를 사용하려면 운영 체제와 관련 애플리케이션이 필요합니다. 기본 자동화를 통해 전체 환경의 장애 조치 시간을 크게 개선할 수 있습니다. Oracle RAC, VCS(Veritas Cluster Server) 또는 VMware HA 같은 Clusterware 제품은 사이트 전체에 클러스터를 생성하는 데 자주 사용되며, 대부분의 경우 간단한 스크립트로 페일오버 프로세스를 구동할 수 있습니다.</block>
-  <block id="c5a2f3b867d990c681a218d29a55fcfa" category="paragraph">운영 노드가 손실되면 대체 사이트에서 애플리케이션을 온라인으로 전환하도록 클러스터웨어(또는 스크립트)가 구성됩니다. 한 가지 옵션은 애플리케이션을 구성하는 NFS 또는 SAN 리소스에 대해 사전 구성된 대기 서버를 생성하는 것입니다. 운영 사이트에 장애가 발생하면 클러스터웨어 또는 스크립트된 대체 시스템이 다음과 유사한 일련의 작업을 수행합니다.</block>
   <block id="442f34633164f1be348a442b2c62d29d" category="list-text">MetroCluster 강제 전환</block>
   <block id="e081e79ea1b1040c51d4a452e46de76d" category="list-text">FC LUN 검색 수행(SAN만 해당)</block>
-  <block id="6f3fd86521759fc98ed93853eaf8a03a" category="list-text">파일 시스템을 마운트하는 중입니다</block>
-  <block id="9d9ea7a9c532a3cec63305130018a45b" category="list-text">응용 프로그램을 시작하는 중입니다</block>
-  <block id="b8eca7b573624230962095fcadb03ddf" category="paragraph">이 방법의 주요 요구 사항은 원격 사이트에서 실행 중인 OS입니다. 애플리케이션 바이너리로 사전 구성되어야 합니다. 즉, 패치와 같은 작업은 운영 및 대기 사이트에서 수행되어야 합니다. 또는 재해가 선언된 경우 애플리케이션 바이너리를 원격 사이트로 미러링하고 마운트할 수 있습니다.</block>
   <block id="e60946bf73021e18706a6ac33386b376" category="paragraph">실제 활성화 절차는 간단합니다. LUN 검색과 같은 명령은 FC 포트당 몇 개의 명령만 사용하면 됩니다. 파일 시스템 마운팅은 에 불과합니다<block ref="19822b1b15d9eefc54c07ab49f87b100" prefix=" " category="inline-code"></block> CLI에서 단일 명령으로 명령 및 데이터베이스와 ASM을 모두 시작하고 중지할 수 있습니다. 볼륨 및 파일 시스템이 전환 전 재해 복구 사이트에서 사용되지 않는 경우에는 설정할 필요가 없습니다<block ref="3b93661df04b698b1340ff2da3238d16" prefix=" " category="inline-code"></block> On 볼륨.</block>
   <block id="486eed21f55b6fb544db5504294592e6" category="section-title">가상화된 OS로 페일오버</block>
   <block id="bf65e943f86f26b49698bfdac9b95f81" category="paragraph">데이터베이스 환경의 페일오버는 운영 체제 자체를 포함하도록 확장할 수 있습니다. 이론적으로 이 페일오버는 부팅 LUN에서 수행할 수 있지만 대부분의 경우 가상화된 OS에서 수행됩니다. 절차는 다음 단계와 유사합니다.</block>
   <block id="7c37589384e83d2b43bba430c18a45aa" category="list-text">데이터베이스 서버 가상 머신을 호스팅하는 데이터 저장소를 마운트합니다</block>
   <block id="3d4d04d6cdab90b7ca0deb0344f04eec" category="list-text">가상 머신 시작</block>
-  <block id="ba2f22f63087151f0a0694be5f35fcf2" category="list-text">데이터베이스를 수동으로 시작하거나 가상 시스템이 데이터베이스를 자동으로 시작하도록 구성합니다</block>
-  <block id="810078f3b19b93e24de8638d68f727b5" category="paragraph">예를 들어, ESX 클러스터가 사이트에 걸쳐 있을 수 있습니다. 재해 발생 시 전환 후 재해 복구 사이트에서 가상 시스템을 온라인으로 전환할 수 있습니다. 재해 발생 시 가상 데이터베이스 서버를 호스팅하는 데이터 저장소를 사용하지 않는 한 설정할 필요가 없습니다<block ref="3b93661df04b698b1340ff2da3238d16" prefix=" " category="inline-code"></block> 연결된 볼륨에서.</block>
   <block id="c702c387f07bcb4f18482e68d69a155a" category="paragraph">MetroCluster 시스템을 통한 Oracle 데이터 보호의 기반은 최대 성능 스케일아웃 동기식 미러링 기술인 SyncMirror입니다.</block>
   <block id="9028b52caaa7bdbfb9be779eeb1fe00e" category="summary">MetroCluster를 사용한 Oracle RAC 확장</block>
   <block id="dbcedb2fd86e6012347a3c9ad111f3a8" category="doc">MetroCluster에서 Oracle RAC 확장</block>
@@ -5210,4 +5202,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="3698338a95ad1801e25ed154adaf1a70" category="summary">VMware vSphere용 ONTAP 툴에 대한 보안 강화 가이드, 개요 및 소개</block>
   <block id="47d29daaa26fbfa9c9a069d4cd023ac1" category="doc">VMware vSphere용 ONTAP 툴에 대한 보안 강화 가이드</block>
   <block id="fe0e23a929284a636c245a362ada6472" category="paragraph">VMware vSphere용 ONTAP 툴에 대한 보안 강화 가이드에서는 가장 안전한 설정을 구성하기 위한 포괄적인 지침을 제공합니다.</block>
+  <block id="bc86ce4caa57368f9094a93dd72ffd28" category="paragraph">도미노 모드가 필요한 경우 NetApp은 SnapMirror Synchronous(SM-S)를 제공합니다. Oracle DataGuard 또는 SQL Server Always On Availability Groups와 같은 애플리케이션 레벨 옵션도 있습니다. OS 수준 디스크 미러링은 옵션이 될 수 있습니다. 자세한 정보와 옵션은 NetApp 또는 파트너 계정 팀에 문의하십시오.</block>
+  <block id="ef0892c4d97bdcd9e4bada330c24ee8b" category="paragraph">MetroCluster는 여러 사이트에 RPO=0 동기식 미러링으로 Oracle 데이터베이스를 보호할 수 있는 ONTAP 기능으로, 단일 MetroCluster 시스템에서 수백 개의 데이터베이스를 지원하도록 스케일업할 수 있습니다. 사용도 간단합니다. MetroCluster를 사용할 경우 엔터프라이즈 애플리케이션 및 데이터베이스 운영에 있어 최상의 인종을 추가하거나 변경할 필요는 없습니다.</block>
 </blocks>
