@@ -1,0 +1,36 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-vsphere-encryption.html 
+keywords: Data protection, Space reclamation, VM and datastore cloning, Storage efficiency, thin provisioning, QoS, SIOC, Storage Distributed Resource Scheduler, DRS, Active IQ Unified Manager, Encryption 
+summary: 기존 데이터를 넘어 저장된 모든 데이터 유형으로 확장하여 유휴 데이터를 암호화해야 하는 수요가 증가하고 있습니다. 
+---
+= vSphere 데이터 암호화
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+오늘날, 암호화를 통해 유휴 데이터를 보호해야 하는 요구가 증가하고 있습니다. 처음에는 금융 및 의료 정보에 초점을 맞추었지만 파일, 데이터베이스 또는 기타 데이터 유형에 관계없이 모든 정보를 보호하는 데 대한 관심이 높아지고 있습니다.
+
+ONTAP 소프트웨어를 실행하는 시스템을 사용하면 유휴 데이터를 쉽게 보호할 수 있습니다. NetApp 스토리지 암호화(NSE)는 ONTAP가 포함된 자체 암호화 디스크 드라이브를 사용하여 SAN 및 NAS 데이터를 보호합니다. NetApp은 또한 디스크 드라이브에서 볼륨을 암호화하는 단순한 소프트웨어 기반 접근 방식으로 NetApp 볼륨 암호화 및 NetApp 애그리게이트 Encryption도 제공합니다. 이 소프트웨어 암호화는 특수 디스크 드라이브나 외부 키 관리자가 필요하지 않으며 ONTAP 고객이 추가 비용 없이 사용할 수 있습니다. 클라이언트 또는 애플리케이션을 중단하지 않고 업그레이드하거나 사용할 수 있으며 온보드 키 관리자를 포함하여 FIPS 140-2 레벨 1 표준에 따라 검증을 받았습니다.
+
+VMware vSphere에서 실행되는 가상화된 애플리케이션의 데이터를 보호하기 위한 몇 가지 접근 방식이 있습니다. 한 가지 방법은 게스트 OS 수준에서 VM 내부의 소프트웨어로 데이터를 보호하는 것입니다. vSphere 6.5와 같은 최신 하이퍼바이저는 VM 수준에서 암호화를 지원하는 또 다른 대안으로, 그러나 NetApp 소프트웨어 암호화는 간단하고 쉬우며 다음과 같은 이점을 제공합니다.
+
+* * 가상 서버 CPU에 영향을 미치지 않습니다. * 일부 가상 서버 환경에서는 애플리케이션에 사용할 수 있는 모든 CPU 사이클이 필요하지만 하이퍼바이저 레벨 암호화를 위해서는 최대 5배의 CPU 리소스가 필요하다는 결과가 있습니다. 암호화 소프트웨어가 암호화 워크로드를 오프로드하는 인텔의 AES-NI 명령 집합을 지원하더라도(NetApp 소프트웨어 암호화처럼), 이전 서버와 호환되지 않는 새로운 CPU가 필요하기 때문에 이 접근 방식은 적합하지 않을 수 있습니다.
+* * 온보드 키 관리자가 포함되어 있습니다. * NetApp 소프트웨어 암호화는 추가 비용 없이 온보드 키 관리자를 포함하므로 구입 및 사용이 복잡한 고가용성 키 관리 서버 없이 쉽게 시작할 수 있습니다.
+* * 스토리지 효율성에 영향을 미치지 않습니다. * 데이터 중복 제거 및 압축과 같은 스토리지 효율성 기술이 현재 널리 사용되고 있으며 플래시 디스크 미디어를 비용 효율적으로 사용하는 데 핵심적인 역할을 합니다. 그러나 암호화된 데이터는 일반적으로 중복제거되거나 압축할 수 없습니다. NetApp 하드웨어 및 스토리지 암호화는 다른 접근법과는 달리 낮은 수준에서 작동하며 업계 최고의 NetApp 스토리지 효율성 기능을 충분히 활용할 수 있도록 합니다.
+* * 데이터스토어의 세분화된 암호화. * NetApp Volume Encryption을 사용하면 각 볼륨에 고유한 AES 256비트 키를 사용할 수 있습니다. 변경해야 하는 경우 단일 명령을 사용하여 변경할 수 있습니다. 이 접근 방식은 테넌트가 여러 개이거나 서로 다른 부서 또는 애플리케이션에 대해 독립적인 암호화를 증명해야 하는 경우에 유용합니다. 이 암호화는 개별 VM을 관리하는 것보다 훨씬 쉬운 데이터 저장소 수준에서 관리됩니다.
+
+
+소프트웨어 암호화를 간단하게 시작할 수 있습니다. 라이센스를 설치한 후 암호를 지정하여 온보드 키 관리자를 구성한 다음 새 볼륨을 생성하거나 스토리지 측 볼륨 이동을 수행하여 암호화를 설정합니다. NetApp은 향후 VMware 툴 릴리즈에서 암호화 기능에 대한 통합 지원을 추가하기 위해 노력하고 있습니다.
+
+자세한 보안 항목에 대한 자세한 내용은 다음 리소스를 참조하십시오.
+
+* link:https://docs.netapp.com/us-en/ontap-technical-reports/security.html["보안 기술 보고서"]
+* link:https://docs.netapp.com/us-en/ontap-technical-reports/security-hardening-guides.html["보안 강화 가이드"]
+* link:https://docs.netapp.com/us-en/ontap/security-encryption/index.html["ONTAP 보안 및 데이터 암호화 제품 설명서"]
+

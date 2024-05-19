@@ -30,6 +30,12 @@ entries:
     url: "/vmware/vmware-vsphere-dp.html"
   - title: QoS를 참조하십시오
     url: "/vmware/vmware-vsphere-qos.html"
+  - title: 클라우드 마이그레이션 및 백업
+    url: "/vmware/vmware-vsphere-cloud_migration_backup.html"
+  - title: vSphere 데이터 암호화
+    url: "/vmware/vmware-vsphere-encryption.html"
+  - title: Active IQ Unified Manager
+    url: "/vmware/vmware-vsphere-aiqum.html"
   - title: 관리 기반의 스토리지 정책
     url: "/vmware/vmware-vsphere-policy-and-vvols.html"
   - title: VMware 스토리지 분산 리소스 스케줄러입니다

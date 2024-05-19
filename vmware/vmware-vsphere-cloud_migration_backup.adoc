@@ -1,0 +1,41 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-vsphere-cloud_migration_backup.html 
+keywords: Data protection, Space reclamation, VM and datastore cloning, Storage efficiency, thin provisioning, QoS, SIOC, Storage Distributed Resource Scheduler, DRS, Active IQ Unified Manager, Encryption 
+summary: ONTAP 소프트웨어는 하이브리드 클라우드에 대해 광범위한 지원을 제공합니다. 
+---
+= 클라우드 마이그레이션 및 백업
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP의 또 다른 강점은 하이브리드 클라우드를 광범위하게 지원하여 사내 프라이빗 클라우드의 시스템을 퍼블릭 클라우드 기능과 병합하는 것입니다. 다음은 vSphere와 함께 사용할 수 있는 몇 가지 NetApp 클라우드 솔루션입니다.
+
+* * 자사 오퍼링 * Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes 및 Azure NetApp Files for ANF는 최고의 퍼블릭 클라우드 환경에서 고성능 멀티 프로토콜 관리형 스토리지 서비스를 제공합니다. VMware Cloud on AWS(AWS의 VMC), Azure VMware Solution(AVS) 및 Google Cloud VMware Engine(GCVE)에서 게스트 운영 체제(GOS) 및 컴퓨팅 인스턴스용 데이터 저장소 또는 스토리지로 직접 사용할 수 있습니다.
+* * Cloud Volumes ONTAP. * NetApp Cloud Volumes ONTAP 데이터 관리 소프트웨어는 선택한 클라우드에서 데이터에 제어, 보호, 유연성 및 효율성을 제공합니다. Cloud Volumes ONTAP는 ONTAP 스토리지를 기반으로 구축된 클라우드 네이티브 데이터 관리 소프트웨어입니다. Cloud Manager와 함께 사용하면 사내 ONTAP 시스템과 함께 Cloud Volumes ONTAP 인스턴스를 구축하고 관리할 수 있습니다. 스냅샷과 SnapMirror 복제를 포함한 통합 데이터 관리와 함께 고급 NAS 및 iSCSI SAN 기능을 활용합니다.
+* * 클라우드 서비스. * BlueXP 백업 및 복구 또는 SnapMirror Cloud를 사용하여 퍼블릭 클라우드 스토리지를 사용하는 온프레미스 시스템의 데이터를 보호합니다. Cloud Sync를 사용하면 NAS, 오브젝트 저장소 및 Cloud Volumes Service 스토리지에서 데이터를 마이그레이션하고 동기화 상태를 유지할 수 있습니다. BlueXP 재해 복구는 클라우드로 DR, 사내에서 온프레미스로 DR, 온프레미스에서 온프레미스로 DR을 위한 강력하고 성능이 뛰어난 재해 복구 솔루션의 기반으로 NetApp 기술을 활용할 수 있는 비용 효율적이고 효율적인 솔루션을 제공합니다.
+* * FabricPool. * FabricPool는 ONTAP 데이터를 빠르고 쉽게 계층화할 수 있도록 지원합니다. 콜드 블록은 퍼블릭 클라우드 또는 프라이빗 StorageGRID 오브젝트 저장소의 오브젝트 저장소로 마이그레이션할 수 있으며, ONTAP 데이터에 다시 액세스할 때 자동으로 호출됩니다. 또는 SnapVault에서 이미 관리하는 데이터를 보호하기 위해 개체 계층을 세 번째 수준으로 사용할 수도 있습니다. 이 접근 방식을 통해 다음을 수행할 수 있습니다 https://www.linkedin.com/pulse/rethink-vmware-backup-again-keith-aasen/["VM의 스냅샷을 더 많이 저장합니다"^] 주요 및/또는 보조 ONTAP 스토리지 시스템
+* * ONTAP Select. * NetApp 소프트웨어 정의 스토리지를 사용하여 프라이빗 클라우드를 인터넷으로 원격 시설 및 사무소로 확장할 수 있습니다. ONTAP Select를 사용하여 블록 및 파일 서비스와 엔터프라이즈 데이터 센터에서 사용하는 vSphere 데이터 관리 기능을 지원할 수 있습니다.
+
+
+VM 기반 애플리케이션을 설계할 때는 미래의 클라우드 이동성을 고려해 보십시오. 예를 들어, 애플리케이션과 데이터 파일을 함께 배치하는 대신 데이터에 대해 별도의 LUN 또는 NFS 내보내기를 사용합니다. 따라서 VM 및 데이터를 클라우드 서비스로 별도로 마이그레이션할 수 있습니다.
+
+자세한 보안 항목에 대한 자세한 내용은 다음 리소스를 참조하십시오.
+
+* link:https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP 설명서"]
+* link:https://docs.netapp.com/us-en/ontap-select/["ONTAP Select 설명서"]
+* link:https://docs.netapp.com/us-en/bluexp-backup-recovery/index.html["BlueXP 백업 및 복구 설명서"]
+* link:https://docs.netapp.com/us-en/bluexp-disaster-recovery/index.html["BlueXP 재해 복구 설명서"]
+* link:https://aws.amazon.com/fsx/netapp-ontap/["NetApp ONTAP용 Amazon FSx"]
+* link:https://www.vmware.com/products/vmc-on-aws.html["AWS 기반 VMware 클라우드"]
+* link:https://learn.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-introduction["Azure NetApp Files란 무엇입니까?
+"]
+* link:https://azure.microsoft.com/en-us/products/azure-vmware/["Azure VMware 솔루션"]
+* link:https://cloud.google.com/vmware-engine["Google Cloud VMware 엔진"]
+* link:https://cloud.google.com/netapp/volumes/docs/discover/overview["Google Cloud NetApp 볼륨이란?"]
+

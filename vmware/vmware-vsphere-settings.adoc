@@ -33,7 +33,7 @@ NetApp은 NFS 및 블록 프로토콜 모두에 최적의 ESXi 호스트 설정 
 
 
 | VMFS3.EnableBlockDelete 를 참조하십시오 | 기본값 유지(0), 필요한 경우 변경할 수 있습니다.
-자세한 내용은 을 참조하십시오 link:https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=2007427["VMware KB 2007427"] | 아니요 
+자세한 내용은 을 참조하십시오 link:https://knowledge.broadcom.com/external/article?legacyId=2007427["VMware KB 2007427"] | 아니요 
 
 
 | VMFS3.EnableVMFS6매핑 해제 | 기본값 유지(1)
@@ -48,7 +48,7 @@ NetApp은 NFS 및 블록 프로토콜 모두에 최적의 ESXi 호스트 설정 
 
 
 | net.TcpipHeapMax | 대부분의 vSphere 6.X 릴리즈에서는 512MB로 설정합니다.
-6.5U3, 6.7U3 및 7.0 이상의 경우 1024MB로 설정합니다. | 예 
+6.5U3, 6.7U3 및 7.0 이상에서는 기본값(1024MB)으로 설정합니다. | 예 
 
 
 | NFS.MaxVolumes | vSphere 6.0 이상, 256으로 설정
