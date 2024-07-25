@@ -2363,7 +2363,6 @@ I/O 중단 없음.</block>
   <block id="f0d0f0a6174a5a9dde27782042e22ccf" category="paragraph">VM이 프로비저닝되면 VASA Provider는 규정 준수를 계속 확인하고 백업 볼륨이 정책을 더 이상 준수하지 않을 경우 vCenter에서 경고를 VM 관리자에게 보냅니다(그림 2).</block>
   <block id="941431bc1cecb0ec5e89e78e9a5a96fc" category="section-title">VM 스토리지 정책 준수</block>
   <block id="bfd6dec22a6a1724ff1b67f1f289cdfc" category="image-alt">가상 시스템 저장소 정책 준수</block>
-  <block id="e08bc5b354c3e8058003a662e0f7cade" category="section-title">NetApp VVOL을 지원합니다</block>
   <block id="9fe1fd556b933358881222d5c3da127c" category="paragraph">하이퍼스케일러 환경은 기존의 NFS v3 데이터 저장소로만 제한되므로, VVOL은 온프레미스 ONTAP 시스템이나 전 세계 NetApp 파트너 및 서비스 공급자가 호스팅하는 것과 같은 온프레미스 시스템의 모든 기능을 제공하는 클라우드 연결 시스템에서만 사용할 수 있습니다.</block>
   <block id="274bc582ca884fc158ea9ac9f79f9067" category="inline-link">ONTAP 제품 설명서</block>
   <block id="5ca60fe92dec435059ba5acefa4ce2c9" category="paragraph">_ ONTAP에 대한 자세한 내용은 을(를) 참조하십시오<block ref="8a9b15dc18a16e0b1acfa438e27f6aa6" category="inline-link-rx"></block>_</block>
@@ -2375,7 +2374,6 @@ I/O 중단 없음.</block>
   <block id="3f4dbd6687bd0d55bf69fe5fdd0137c4" category="list-text">* 보다 현명한 프로비저닝. * 스토리지 시스템 기능은 VASA API를 통해 노출되므로 VM 관리자가 스토리지 시스템 관리 방법을 이해하지 않고도 프로비저닝 워크플로우를 통해 고급 기능을 활용할 수 있습니다.</block>
   <block id="a13fcc9220d042cae454e9ac073636ca" category="list-text">신속한 프로비저닝 * 다양한 스토리지 기능을 단일 데이터 저장소에서 지원하고 VM 정책에 따라 VM에 적합한 대로 자동으로 선택할 수 있습니다.</block>
   <block id="eb4c052226108afebf26e670208b9a55" category="list-text">* 실수를 피하십시오. * 스토리지 및 VM 정책은 미리 개발되고 VM을 프로비저닝할 때마다 스토리지를 사용자 지정할 필요 없이 필요에 따라 적용됩니다. 정의된 정책에서 스토리지 기능이 떨어지면 규정 준수 알람이 발생합니다. 앞서 언급한 것처럼, ICP는 초기 프로비저닝을 예측 가능하고 반복 가능하게 만드는 동시에, ICP를 기반으로 하는 VM 스토리지 정책을 수립하여 정확한 배치를 보장합니다.</block>
-  <block id="9c520768a1d84268417335cf19a423b9" category="list-text">* 더 나은 용량 관리. * VASA 및 ONTAP 툴을 사용하면 필요한 경우 업계 애그리게이트 레벨까지 스토리지 용량을 확인할 수 있으며, 용량 부족 시 여러 계층의 알림을 제공할 수 있습니다.</block>
   <block id="f9878e32fdf258284c007eaae38773cd" category="section-title">최신 SAN에서 VM 세부 관리</block>
   <block id="7e673a7c12cc256f29bcd7b2028d9d5a" category="paragraph">파이버 채널과 iSCSI를 사용하는 SAN 스토리지 시스템은 ESX에 대해 VMware에서 최초로 지원되었지만 스토리지 시스템에서 개별 VM 파일과 디스크를 관리할 수 있는 기능이 부족했습니다. 대신 LUN이 프로비저닝되고 VMFS가 개별 파일을 관리합니다. 따라서 스토리지 시스템에서 개별 VM 스토리지 성능, 클론 복제 및 보호를 직접 관리하는 것이 어렵습니다. VVOL은 ONTAP의 강력한 고성능 SAN 기능을 통해 이미 사용 중인 NFS 스토리지를 사용하는 고객이 더욱 세분화된 스토리지 기능을 이용할 수 있도록 합니다.</block>
   <block id="25a46370807e0eab0dfe3853abfb9b6e" category="paragraph">이제 vSphere 8 및 VMware vSphere 9.12 이상을 위한 ONTAP 툴을 사용하여, 기존 SCSI 기반 프로토콜을 위한 VVOL에서 사용하는 것과 동일한 세분화된 제어를 NVMe over Fabrics를 사용하여 최신 파이버 채널 SAN에서 사용할 수 있으며, 규모에 따라 훨씬 더 뛰어난 성능을 제공합니다. vSphere 8.0 업데이트 1을 사용하면 하이퍼바이저 스토리지 스택에서 I/O 변환 없이 VVOL을 사용하여 완벽한 엔드 투 엔드 NVMe 솔루션을 구축할 수 있습니다.</block>
@@ -5255,4 +5253,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="5a4857ad48868097d482a4a448f48bd9" category="doc">사용자당 최대 동시 요청 수(네트워크 보안 보호/DOS 공격)</block>
   <block id="0af211d5cda5cc4bb17dd7751e741595" category="doc">NTP(Network Time Protocol) 구성</block>
   <block id="c1fac7a72cd91bcd345e567f6d6d93a3" category="sidebar">MetroCluster을 통한 Oracle 페일오버</block>
+  <block id="273eb98a312e607888044e87e0210015" category="section-title">NetApp VVOL 지원</block>
+  <block id="551e3b0a48f99995daac658b17a1de62" category="list-text">* 향상된 용량 관리 * VASA 및 ONTAP 툴을 사용하면 필요한 경우 스토리지 용량을 개별 애그리게이트 레벨까지 확인하고, 용량이 부족해지기 시작할 때 여러 계층의 알림을 제공할 수 있습니다.</block>
 </blocks>
