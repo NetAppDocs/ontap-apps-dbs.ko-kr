@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-dr-smas-fail-restore.html 
+keywords: Oracle, SnapMirror active sync, SMBC, failover 
+summary: Oracle 및 SnapMirror 활성 동기화 서비스 복원 
+---
+= Oracle 및 SnapMirror 활성 동기화 서비스 복원
+:allow-uri-read: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapMirror는 자가 복구입니다. SnapMirror 활성 동기화는 장애가 있는 복제 관계가 있는지 자동으로 감지하여 RPO=0 상태로 되돌립니다. 동기식 복제가 다시 설정되면 경로가 다시 온라인 상태가 됩니다.
+
+대부분의 경우, 클러스터된 애플리케이션은 장애가 발생한 경로의 반환을 자동으로 감지하여 다시 온라인 상태로 돌아갑니다. 호스트 레벨 SAN 검사가 필요하거나 애플리케이션을 수동으로 다시 온라인으로 전환해야 하는 경우도 있습니다.
+
+애플리케이션 및 구성 방식에 따라 다르며 일반적으로 이러한 작업을 쉽게 자동화할 수 있습니다. SnapMirror 활성 동기화 자체는 자체 해결 방식이므로 전원 및 연결이 복원된 후 RPO=0 스토리지 작업을 재개하기 위해 사용자 개입이 필요하지 않습니다.

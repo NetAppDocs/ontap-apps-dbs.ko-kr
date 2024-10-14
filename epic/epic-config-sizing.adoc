@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-config-sizing.html 
+keywords: epic,cache,iris 
+summary: Epic을 위한 스토리지 크기 조정 
+---
+= Epic을 위한 스토리지 크기 조정
+:allow-uri-read: 
+
+
+[role="lead"]
+귀사는 Epic 제휴 팀과 협력하여 Epic 설계를 확인해야 합니다. 이 팀은 epic @NetApp.com에서 연락할 수 있습니다. 모든 구현은 Epic 및 NetApp의 권장 모범 사례를 준수하면서 고객의 요청을 수용해야 합니다.
+
+NetApp 사이징 툴을 사용하여 Epic 소프트웨어 환경 스토리지 요구사항을 위한 올바른 RAID 그룹 크기 및 RAID 그룹 수를 결정하는 방법에 대한 자세한 내용은  (NetApp 로그인 필요) 을 참조하십시오link:https://fieldportal.netapp.com/content/192412?assetComponentId=192510["TR-3930i: Epic을 위한 NetApp 사이징 지침"^].
+
+
+NOTE: NetApp Field Portal에 액세스해야 합니다.

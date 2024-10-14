@@ -10,7 +10,7 @@ summary: Microsoft Windows 및 Hyper-V에 대한 추가 리소스
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ../media
+:imagesdir: ../media/
 
 
 [role="lead"]

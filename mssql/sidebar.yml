@@ -29,6 +29,34 @@ entries:
 - title: 데이터 보호
   url: "/mssql/mssql-data-protection.html"
 - title: 재해 복구
-  url: "/mssql/mssql-disaster-recovery.html"
+  entries:
+  - title: 개요
+    url: "/mssql/mssql-disaster-recovery.html"
+  - title: SnapMirror를 참조하십시오
+    url: "/mssql/mssql-dr-snapmirror.html"
+  - title: MetroCluster
+    entries:
+    - title: MetroCluster 아키텍처
+      url: "/mssql/mssql-dr-mcc-overview.html"
+    - title: MetroCluster이 포함된 SQL Server
+      url: "/mssql/mssql-dr-mcc-sql.html"
+  - title: SnapMirror 활성 동기화
+    entries:
+    - title: 개요
+      url: "/mssql/mssql-dr-smas-overview.html"
+    - title: ONTAP 중재자
+      url: "/mssql/mssql-dr-smas-mediator.html"
+    - title: 기본 사이트
+      url: "/mssql/mssql-dr-smas-preferred-site.html"
+    - title: 네트워크 토폴로지
+      entries:
+      - title: 균일한 액세스
+        url: "/mssql/mssql-dr-smas-uniform.html"
+      - title: 비균일 액세스
+        url: "/mssql/mssql-dr-smas-nonuniform.html"
+    - title: SQL Server with SM-AS
+      url: "/mssql/mssql-dr-smas-sql.html"
+    - title: 실패 시나리오
+      url: "/mssql/mssql-dr-smas-failure-scenarios.html"
 - title: 데이터 보안
   url: "/mssql/mssql-data-security.html"

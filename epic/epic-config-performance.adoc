@@ -1,0 +1,23 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-config-performance.html 
+keywords: epic,cache,iris,QoS 
+summary: 탁월한 성능 관리 
+---
+= 탁월한 성능 관리
+:allow-uri-read: 
+
+
+[role="lead"]
+대부분의 All-Flash 어레이는 Epic 워크로드에 필요한 성능을 제공할 수 있습니다. NetApp의 차별화 요소는 바닥 수준의 성능 정책을 설정하고 각 응용 프로그램에 대해 일관된 성능을 보장하는 기능입니다.
+
+
+
+== 서비스 품질(QoS)
+
+NetApp에서는 QoS를 사용할 것을 권장합니다. QoS는 모든 Epic 워크로드를 통합할 수 있다는 이점이 있습니다. 모든 프로토콜과 스토리지 풀은 더 적은 하드웨어에 상주할 수 있습니다. 스토리지 풀을 분리할 필요가 없습니다.
+
+* NetApp은 클러스터의 모든 워크로드를 QoS 정책에 할당하여 클러스터의 여유 공간을 효율적으로 관리하는 것이 좋습니다.
+* NetApp은 모든 워크로드를 HA 쌍 전체에 균등하게 분산하는 것이 좋습니다.
+* I/O 테스트를 수행할 때 QoS 정책을 사용하지 마십시오. 그렇지 않으면 Genio 테스트가 실패합니다. QoS 정책을 할당하기 전에 2-4주 동안 다양한 운영 워크로드를 분석합니다.
+

@@ -71,7 +71,7 @@ CAUTION: 8KB보다 큰 압축 블록 크기는 스트리밍 백업 대상에서 
 
 === 온도에 민감한 스토리지 효율성
 
-TSSE(Temperature Sensitive Storage Efficiency)는 블록 액세스 히트 맵을 사용하여 자주 액세스하지 않는 블록을 식별하고 보다 효율적으로 압축하는 ONTAP 9.8 이상에서 사용할 수 있습니다.
+TSSE(Temperature Sensitive Storage Efficiency)는 ONTAP 9 .8 이상에서 사용할 수 있습니다. 블록 액세스 히트 맵에 의존하여 자주 액세스하지 않는 블록을 식별하고 더 높은 효율성으로 압축합니다.
 
 
 

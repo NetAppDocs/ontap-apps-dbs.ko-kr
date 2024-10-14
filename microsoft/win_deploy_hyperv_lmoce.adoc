@@ -10,7 +10,7 @@ summary: 이 부록에서는 클러스터 환경 외부에서 Hyper-V 실시간 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ../media
+:imagesdir: ../media/
 
 
 [role="lead"]

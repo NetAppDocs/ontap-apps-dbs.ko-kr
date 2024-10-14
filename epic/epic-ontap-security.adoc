@@ -1,0 +1,20 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-ontap-security.html 
+keywords: epic,cache,iris 
+summary: ONTAP 보안 상의 Epic 
+---
+= ONTAP 보안 상의 Epic
+:allow-uri-read: 
+
+
+[role="lead"]
+오늘날 기업 및 의료 임원이 가장 중요하게 생각하는 것은 보안입니다. 관리하는 것이 그 어느 때보다 어려워졌으며 조직은 규정 준수, 데이터 거버넌스, 바이러스 백신 보호 및 랜섬웨어에 대응해야 합니다.
+
+Epic 및 스토리지 보안에 대한 전체 가이드는 본 문서에서 다루지 않지만, link:https://docs.netapp.com/us-en/ontap/ontap-security-hardening/security-hardening-overview.html["ONTAP 보안 강화 가이드 를 참조하십시오"^]ONTAP에서 사용할 수 있는 광범위하고 고급 보안 기능에 대한 자세한 내용은 자세히 설명합니다.
+
+NetApp Active IQ Unified Manager는 에 포함된 정보를 기반으로 보안 위반을 link:https://docs.netapp.com/us-en/ontap/ontap-security-hardening/security-hardening-overview.html["TR-4569 를 참조하십시오"^]모니터링하고 이를 대시보드에 보고하여 보안 관리를 간소화합니다. 이러한 도구는 조직이 보안 목표를 충족하여 공격을 보호, 감지 및 해결하는 데 도움이 될 수 있습니다.
+
+또한 NetApp는 보안 공급업체와 협력하여 소프트웨어를 통한 통합을 link:https://docs.netapp.com/us-en/ontap/ontap-security-hardening/create-fpolicy.html["NetApp FPolicy를 사용해 보십시오"^]제공하여 보안 오퍼링을 개선합니다. 또한, 유출된 자격 증명으로 인한 무단 액세스로부터 Epic 환경을 보호하기 위해 을 link:https://docs.netapp.com/us-en/ontap/authentication/mfa-overview.html["다단계(MFA) 인증"^]추가할 수 있습니다.
+
+마지막으로 ONTAP 네이티브 스냅샷 복사본 및 변경 불가능한 SnapLock 기술은 link:https://docs.netapp.com/us-en/netapp-solutions/cyber-vault/ontap-cyber-vault-overview.html["ONTAP 사이버 소산"^]랜섬웨어로부터 환자 기록을 보호하는 고유한 공극 기능을 제공합니다. 의 NetApp 설명서를 link:https://docs.netapp.com/us-en/ontap/ransomware-solutions/ransomware-overview.html["랜섬웨어용 NetApp 솔루션"^]참조하십시오. 보안에 대한 보다 전략적인 접근 방법은 을 참조하십시오link:https://docs.netapp.com/us-en/ontap/zero-trust/zero-trust-overview.html["NetApp와 제로 트러스트"^].

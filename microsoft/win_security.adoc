@@ -10,7 +10,7 @@ summary: Hyper-V를 사용한 ONTAP 스토리지 보안
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ../media
+:imagesdir: ../media/
 
 
 [role="lead"]

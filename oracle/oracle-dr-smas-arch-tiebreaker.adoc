@@ -1,0 +1,58 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-dr-smas-arch-tiebreaker.html 
+keywords: oracle, active sync, mcc, MCC-IP 
+summary: Oracle SnapMirror 활성 동기화 
+---
+= Oracle 및 SnapMirror Active Sync-RAC Tiebreaker의 약어입니다
+:allow-uri-read: 
+
+
+[role="lead"]
+SnapMirror 액티브 동기화를 사용하는 확장된 RAC는 IO와 관련된 대칭 아키텍처이지만 브레인 분할 관리에 연결된 한 가지 예외가 있습니다.
+
+복제 링크가 손실되고 양쪽 사이트에 쿼럼이 없는 경우 어떻게 됩니까? 어떻게 해야 합니까? 이 질문은 Oracle RAC 및 ONTAP 동작 모두에 적용됩니다. 변경 내용을 사이트 간에 복제할 수 없고 작업을 다시 시작하려는 경우 사이트 중 하나가 생존해야 하고 다른 사이트를 사용할 수 없게 됩니다.
+
+은 link:oracle-dr-smas-mediator.html["ONTAP 중재자"]ONTAP 계층에서 이 요구 사항을 해결합니다. RAC 티브레이킹에는 여러 옵션이 있습니다.
+
+
+
+== Oracle Tiebreaker를 소개합니다
+
+브레인 분할 Oracle RAC 위험을 관리하기 위한 가장 좋은 방법은 다른 수의 RAC 노드를 사용하는 것입니다. 이 경우 3차 사이트 Tiebreaker를 사용하는 것이 좋습니다. 세 번째 사이트를 사용할 수 없는 경우 Tiebreaker 인스턴스를 두 사이트의 한 사이트에 배치하여 해당 사이트를 효율적으로 기본 생존자 사이트로 지정할 수 있습니다.
+
+
+
+== Oracle 및 css_critical
+
+노드 수가 짝수일 경우 기본 Oracle RAC 동작은 클러스터의 노드 중 하나가 다른 노드보다 더 중요한 것으로 간주된다는 것입니다. 우선 순위가 더 높은 노드가 있는 사이트는 사이트 격리를 유지하는 반면 다른 사이트의 노드는 제거됩니다. 우선 순위는 여러 요소를 기반으로 하지만 설정을 사용하여 이 동작을 제어할 수도 `css_critical` 있습니다.
+
+link:oracle-dr-smas-fail-sample.html["예"]아키텍처에서 RAC 노드의 호스트 이름은 jfs12 및 jfs13입니다. 의 현재 설정은 `css_critical` 다음과 같습니다.
+
+....
+[root@jfs12 ~]# /grid/bin/crsctl get server css_critical
+CRS-5092: Current value of the server attribute CSS_CRITICAL is no.
+
+[root@jfs13 trace]# /grid/bin/crsctl get server css_critical
+CRS-5092: Current value of the server attribute CSS_CRITICAL is no.
+....
+jfs12가 있는 사이트를 기본 사이트로 설정하려면 사이트 A 노드에서 이 값을 예로 변경하고 서비스를 다시 시작합니다.
+
+....
+[root@jfs12 ~]# /grid/bin/crsctl set server css_critical yes
+CRS-4416: Server attribute 'CSS_CRITICAL' successfully changed. Restart Oracle High Availability Services for new value to take effect.
+
+[root@jfs12 ~]# /grid/bin/crsctl stop crs
+CRS-2791: Starting shutdown of Oracle High Availability Services-managed resources on 'jfs12'
+CRS-2673: Attempting to stop 'ora.crsd' on 'jfs12'
+CRS-2790: Starting shutdown of Cluster Ready Services-managed resources on server 'jfs12'
+CRS-2673: Attempting to stop 'ora.ntap.ntappdb1.pdb' on 'jfs12'
+…
+CRS-2673: Attempting to stop 'ora.gipcd' on 'jfs12'
+CRS-2677: Stop of 'ora.gipcd' on 'jfs12' succeeded
+CRS-2793: Shutdown of Oracle High Availability Services-managed resources on 'jfs12' has completed
+CRS-4133: Oracle High Availability Services has been stopped.
+
+[root@jfs12 ~]# /grid/bin/crsctl start crs
+CRS-4123: Oracle High Availability Services has been started.
+....

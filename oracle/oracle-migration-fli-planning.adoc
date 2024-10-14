@@ -14,7 +14,7 @@ summary: FLI-Planning을 사용한 Oracle 마이그레이션
 
 
 [role="lead"]
-FLI를 사용하여 SAN 리소스를 마이그레이션하는 절차는 NetApp에 설명되어 있습니다 http://www.netapp.com/us/media/tr-4380.pdf["TR-4380: 외부 LUN 가져오기를 사용한 SAN 마이그레이션"^].
+FLI를 사용하여 SAN 리소스를 마이그레이션하는 절차는 NetApp에 설명되어 https://docs.netapp.com/us-en/ontap-fli/index.html["ONTAP 외부 LUN 임포트 설명서"^] 있습니다.
 
 데이터베이스 및 호스트 관점에서 볼 때 특별한 단계가 필요하지 않습니다. FC 존이 업데이트되고 LUN을 ONTAP에서 사용할 수 있게 되면 LVM이 LUN에서 LVM 메타데이터를 읽을 수 있어야 합니다. 또한 볼륨 그룹을 추가 구성 단계 없이 사용할 수 있습니다. 드문 경우지만 환경에 이전 스토리지 어레이를 참조하는 하드 코딩된 구성 파일이 포함될 수 있습니다. 예를 들어, 을 포함하는 Linux 시스템이 해당됩니다 `/etc/multipath.conf` 주어진 디바이스의 WWN을 참조하는 규칙은 FLI에 의해 도입된 변경 사항을 반영하도록 업데이트되어야 합니다.
 

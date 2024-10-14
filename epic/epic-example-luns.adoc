@@ -1,0 +1,26 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-example-luns.html 
+keywords: epic,cache,iris 
+summary: ONTAP 기반 EPIC 구축 예 - LUN 
+---
+= ONTAP 기반 EPIC 구축 예 - LUN
+:allow-uri-read: 
+
+
+[role="lead"]
+>>> 설명을 위한 첫 번째 문장 또는 단락의 자리 표시자
+
+LUN 생성
+
+LUN 생성하기: https://docs.netapp.com/us-en/ontap-cli-9141//lun-create.html[]
+
+CG에 볼륨 추가
+
+정합성 보장 그룹 생성 또는 수정하기: https://docs.netapp.com/us-en/ontap/smbc/smbc_admin_add_and_remove_volumes_in_consistency_groups.html[]
+
+LUN 매핑
+
+LUN 매핑 방법: https://docs.netapp.com/us-en/ontap-cli-9141//lun-mapping-create.html[]
+
+ONTAP 버전에 따라 볼륨에 대한 분할 예약의 기본 설정은 100%일 수 있습니다. 이 구성은 0으로 설정해야 합니다.

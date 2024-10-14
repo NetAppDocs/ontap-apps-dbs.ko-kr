@@ -1,0 +1,26 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-arch-6node.html 
+keywords: epic,cache,iris 
+summary: EPIC 6노드 아키텍처 
+---
+= EPIC 6노드 아키텍처
+:allow-uri-read: 
+
+
+[role="lead"]
+고객은 6노드 설계로 시작하거나 수요 증가에 따라 4개에서 6개 노드로 원활하게 스케일아웃하기를 원할 수 있습니다. 스케일아웃 기능을 사용하면 노드 간에 워크로드를 중단 없이 이동하고 클러스터 전반에 걸쳐 재조정할 수 있습니다.
+
+이 아키텍처는 클러스터에서 최고의 성능과 용량 균형을 제공합니다. Epic Production, Epic Report, Epic Test가 첫 번째 HA 쌍에서 실행됩니다. 두 번째 HA 쌍은 Clarity, Hyperspace, VMware, NAS1 및 나머지 Epic 워크로드에 사용됩니다. 재해 복구는 이전 섹션의 4노드 아키텍처와 동일합니다.
+
+
+
+== 6노드 아키텍처
+
+image:epic-6node.png["Epic 6-노드 아키텍처"]
+
+
+
+== 6노드 워크로드 배치
+
+image:epic-6node-design.png["Epic 6노드 배치"]

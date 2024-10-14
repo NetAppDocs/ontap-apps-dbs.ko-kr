@@ -10,7 +10,7 @@ summary: Microsoft Windows Nano Server 배포에 대해 자세히 알아보십�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ../media
+:imagesdir: ../media/
 
 
 [role="lead"]

@@ -1,0 +1,21 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-example-volumes.html 
+keywords: epic,cache,iris 
+summary: ONTAP 기반 Epic 구축 예 - 볼륨 
+---
+= ONTAP 기반 Epic 구축 예 - 볼륨
+:allow-uri-read: 
+
+
+[role="lead"]
+볼륨을 생성하려면 을 참조하십시오 https://docs.netapp.com/us-en/ontap-cli-9141//volume-create.html[]
+
+
+NOTE: ONTAP 9.7부터, NVE 라이센스와 온보드 또는 외부 키 관리가 있으면 애그리게이트 및 볼륨 암호화가 기본적으로 활성화됩니다. 볼륨 수준 중복제거를 활성화하려면 add-encrypt 장애를 volume create/modify 명령(NVE 라이센스가 있는 경우)으로 설정합니다.
+
+
+
+== 스냅샷 자동 삭제
+
+스냅샷을 자동으로 삭제하려면 다음을 수행합니다. https://docs.netapp.com/us-en/ontap-cli-9141//volume-snapshot-autodelete-modify.html[]

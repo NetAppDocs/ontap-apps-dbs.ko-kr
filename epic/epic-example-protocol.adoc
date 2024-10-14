@@ -1,0 +1,16 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-example-protocol.html 
+keywords: epic,cache,iris 
+summary: ONTAP 기반 Epic 구축 예 - FCP 프로토콜 
+---
+= ONTAP 기반 Epic 구축 예 - FCP 프로토콜
+:allow-uri-read: 
+
+
+[role="lead"]
+SVM이 생성되면 프로토콜을 추가해야 합니다.
+
+FCP 데이터 LIF를 생성하려면 를 클릭합니다link:https://docs.netapp.com/us-en/ontap/san-admin/configure-svm-fc-task.html["여기"^].
+
+이니시에이터 그룹을 사용하면 서버에서 LUN을 액세스할 수 있습니다. iGroup을 생성하려면 를 클릭합니다link:https://docs.netapp.com/us-en/ontap/san-admin/manage-san-initiators-task.html#view-manage-san-igroups["여기"^].

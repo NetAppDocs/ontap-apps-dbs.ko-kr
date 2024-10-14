@@ -42,4 +42,4 @@ dNFS를 사용하면 호스트에 마운트된 가시적인 파일 시스템을 
 (a) dNFS가 사용되고 (b) 파일 가시성의 지연으로 인해 문제가 발생하는 경우에만 마운트 옵션을 변경하십시오. dNFS를 사용하지 않는 경우 단일 인스턴스 데이터베이스에서 Oracle RAC 마운트 옵션을 사용하면 성능이 저하됩니다.
 
 
-NOTE: 에 대한 참고 사항을 참조하십시오 `nosharecache` 인치 link:../host-configuration/linux.html#linux-direct-nfs["Linux NFS 마운트 옵션"] 비정상적인 결과를 초래할 수 있는 Linux 관련 dNFS 문제의 경우
+NOTE: 비정상적인 결과를 초래할 수 있는 Linux 관련 dNFS 문제에 대해서는 의 link:oracle-host-config-linux.html#linux-direct-nfs["Linux NFS 마운트 옵션"]참고 사항을 `nosharecache` 참조하십시오.

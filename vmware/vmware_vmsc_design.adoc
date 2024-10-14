@@ -38,7 +38,8 @@ SnapMirror 액티브 동기화를 사용하여 vMSC 구성을 관리하는 것�
 
 vSphere HA 클러스터 생성은 에서 자세히 설명하는 다단계 프로세스입니다 https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-vcenter-esxi-management/GUID-F7818000-26E3-4E2A-93D2-FCDCE7114508.html["docs.vmware.com 에서 vSphere Client에서 클러스터를 생성하고 구성하는 방법"]. 즉, 먼저 빈 클러스터를 생성한 다음 vCenter를 사용하여 호스트를 추가하고 클러스터의 vSphere HA 및 기타 설정을 지정해야 합니다.
 
-* 참고: * 이 문서의 어떤 내용도 대체되지 않습니다 https://core.vmware.com/resource/vmware-vsphere-metro-storage-cluster-recommended-practices["VMware vSphere Metro Storage Cluster 권장 사례"]
+
+NOTE: 이 문서의 어떤 내용도 대체되지 않습니다 https://core.vmware.com/resource/vmware-vsphere-metro-storage-cluster-recommended-practices["VMware vSphere Metro Storage Cluster 권장 사례"]
 
 HA 클러스터를 구성하려면 다음 단계를 완료하십시오.
 
@@ -155,7 +156,10 @@ NetApp MetroCluster용 VMware DRS Affinity
 * NetApp은 그룹*의 호스트에서 실행해야 함*이 아니라 그룹*의 호스트에서 실행되어야 함*을 사용할 것을 적극 권장합니다. 사이트 A 호스트에 장애가 발생할 경우 사이트 A의 VM을 vSphere HA를 통해 사이트 B의 호스트에서 다시 시작해야 하지만, 후자의 사양에서는 하드 규칙이기 때문에 HA가 사이트 B에서 VM을 다시 시작할 수 없습니다. 이전 사양은 소프트 규칙이며 HA가 발생할 경우 위반되므로 성능보다 가용성이 향상됩니다.
 
 
-* 참고: * 가상 머신이 VM-호스트 선호도 규칙을 위반할 때 트리거되는 이벤트 기반 알람을 생성할 수 있습니다. vSphere Client에서 가상 머신에 대한 새 경고를 추가하고 이벤트 트리거로 "VM is behaving VM-Host Affinity Rule"을 선택합니다. 알람 생성 및 편집에 대한 자세한 내용은 을 참조하십시오 http://pubs.vmware.com/vsphere-51/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-51-monitoring-performance-guide.pdf["vSphere 모니터링 및 성능"] 문서화:
+* [참고]
+
+* 가상 시스템이 VM-호스트 선호도 규칙을 위반할 때 트리거되는 이벤트 기반 경보를 생성할 수 있습니다. vSphere Client에서 가상 머신에 대한 새 경고를 추가하고 이벤트 트리거로 "VM is behaving VM-Host Affinity Rule"을 선택합니다. 알람 생성 및 편집에 대한 자세한 내용은 http://pubs.vmware.com/vsphere-51/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-51-monitoring-performance-guide.pdf["vSphere 모니터링 및 성능"] 설명서를 참조하십시오.
+
 
 
 

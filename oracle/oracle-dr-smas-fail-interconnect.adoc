@@ -1,0 +1,26 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-dr-smas-fail-interconnect.html 
+keywords: Oracle, SnapMirror active sync, SMBC, failover 
+summary: Oracle 및 SnapMirror 액티브 동기식 페일오버 
+---
+= SnapMirror 활성 동기화 - Oracle RAC 복제의 손실
+:allow-uri-read: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Oracle RAC 복제 링크가 손실되면 SnapMirror 접속 손실과 유사한 결과가 발생합니다. 단, 기본적으로 시간 초과가 짧아진다는 점이 다릅니다. 기본 설정에서 Oracle RAC 노드는 스토리지 연결이 끊긴 후 200초 동안 대기했다가 꺼내지만 RAC 네트워크 하트비트가 손실된 후 30초만 대기합니다.
+
+CRS 메시지는 아래와 유사합니다. 30초의 타임아웃 타임랩스를 볼 수 있습니다. 사이트 A에 있는 jfs12 jfss_critical이 설정되어 있기 때문에 사이트 B에 있는 jfs13이 제거됩니다.
+
+....
+2024-09-12 10:56:44.047 [ONMD(3528)]CRS-1611: Network communication with node jfs13 (2) has been missing for 75% of the timeout interval.  If this persists, removal of this node from cluster will occur in 6.980 seconds
+2024-09-12 10:56:48.048 [ONMD(3528)]CRS-1610: Network communication with node jfs13 (2) has been missing for 90% of the timeout interval.  If this persists, removal of this node from cluster will occur in 2.980 seconds
+2024-09-12 10:56:51.031 [ONMD(3528)]CRS-1607: Node jfs13 is being evicted in cluster incarnation 621599354; details at (:CSSNM00007:) in /gridbase/diag/crs/jfs12/crs/trace/onmd.trc.
+2024-09-12 10:56:52.390 [CRSD(6668)]CRS-7503: The Oracle Grid Infrastructure process 'crsd' observed communication issues between node 'jfs12' and node 'jfs13', interface list of local node 'jfs12' is '192.168.30.1:33194;', interface list of remote node 'jfs13' is '192.168.30.2:33621;'.
+2024-09-12 10:56:55.683 [ONMD(3528)]CRS-1601: CSSD Reconfiguration complete. Active nodes are jfs12 .
+2024-09-12 10:56:55.722 [CRSD(6668)]CRS-5504: Node down event reported for node 'jfs13'.
+2024-09-12 10:56:57.222 [CRSD(6668)]CRS-2773: Server 'jfs13' has been removed from pool 'Generic'.
+2024-09-12 10:56:57.224 [CRSD(6668)]CRS-2773: Server 'jfs13' has been removed from pool 'ora.NTAP'.
+....

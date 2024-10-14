@@ -158,16 +158,48 @@ entries:
       url: "/oracle/oracle-dr-mcc-rac.html"
   - title: SnapMirror 활성 동기화
     entries:
-    - title: 있습니다
-      url: "/oracle/oracle-dr-smbc-architecture.html"
-    - title: 페일오버
-      url: "/oracle/oracle-dr-smbc-failover.html"
-    - title: SnapMirror 활성 동기화가 포함된 Oracle SI
-      url: "/oracle/oracle-dr-smbc-si.html"
-    - title: SnapMirror 활성 동기화가 포함된 Oracle RAC
-      url: "/oracle/oracle-dr-smbc-rac.html"
+    - title: 개요
+      url: "/oracle/oracle-dr-smas-overview.html"
+    - title: ONTAP 중재자
+      url: "/oracle/oracle-dr-smas-mediator.html"
+    - title: 기본 사이트
+      url: "/oracle/oracle-dr-smas-preferred-site.html"
+    - title: 네트워크 토폴로지
+      entries:
+      - title: 균일한 액세스
+        url: "/oracle/oracle-dr-smas-uniform.html"
+      - title: 비균일 액세스
+        url: "/oracle/oracle-dr-smas-nonuniform.html"
+    - title: Oracle 구성
+      entries:
+      - title: 개요
+        url: "/oracle/oracle-dr-smas-arch-overview.html"
+      - title: Oracle 단일 인스턴스
+        url: "/oracle/oracle-dr-smas-arch-si.html"
+      - title: Oracle RAC를 참조하십시오
+        url: "/oracle/oracle-dr-smas-arch-rac.html"
+      - title: Oracle RAC 및 tiebreaker
+        url: "/oracle/oracle-dr-smas-arch-tiebreaker.html"
     - title: 실패 시나리오
-      url: "/oracle/oracle-dr-smbc-failure-scenarios.html"
+      entries:
+      - title: 개요
+        url: "/oracle/oracle-dr-smas-fail-overview.html"
+      - title: 아키텍처 예
+        url: "/oracle/oracle-dr-smas-fail-sample.html"
+      - title: RAC 상호 연결 오류입니다
+        url: "/oracle/oracle-dr-smas-fail-interconnect.html"
+      - title: SnapMirror 통신 실패
+        url: "/oracle/oracle-dr-smas-fail-snapmirror.html"
+      - title: 전체 네트워크 상호 연결 오류입니다
+        url: "/oracle/oracle-dr-smas-fail-repl.html"
+      - title: 사이트 장애
+        url: "/oracle/oracle-dr-smas-fail-site.html"
+      - title: 중재자 고장
+        url: "/oracle/oracle-dr-smas-fail-mediator.html"
+      - title: 실패 후 서비스 복원
+        url: "/oracle/oracle-dr-smas-fail-restore.html"
+      - title: 수동 페일오버
+        url: "/oracle/oracle-dr-smas-fail-manual.html"
 - title: Oracle 데이터베이스 마이그레이션
   entries:
   - title: 개요

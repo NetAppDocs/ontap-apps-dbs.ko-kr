@@ -10,7 +10,7 @@ summary: 이 부록에서는 클러스터 환경에서의 실시간 마이그레
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ../media
+:imagesdir: ../media/
 
 
 [role="lead"]

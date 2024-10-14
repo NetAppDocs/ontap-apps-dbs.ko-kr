@@ -10,7 +10,7 @@ summary: SMB3을 사용하는 Hyper-V용 ONTAP NAS 스토리지
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ../media
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -61,7 +61,7 @@ cluster::> system services ntp server create â€“server $domainControllerIP
 
 . NAS 프로토콜 CIFS를 사용하도록 설정된 새 SVM을 생성합니다. 다음 방법 중 하나로 새로운 SVM을 생성할 수 있습니다.
 +
-** NetApp ONTAP의 CLI 명령
+** ONTAP의 CLI 명령
 ** 시스템 관리자
 ** NetApp PowerShell 툴킷
 
@@ -84,14 +84,14 @@ cluster::> system services ntp server create â€“server $domainControllerIP
 
 === 호스트 통합
 
-NAS 프로토콜 CIFS는 기본적으로 ONTAP에 통합됩니다. 따라서 Windows Server에서는 NetApp ONTAP의 데이터에 액세스하는 데 추가 클라이언트 소프트웨어가 필요하지 않습니다. NetApp 스토리지 컨트롤러는 네트워크에 기본 파일 서버로 표시되며 Microsoft Active Directory 인증을 지원합니다.
+NAS 프로토콜 CIFS는 기본적으로 ONTAP에 통합됩니다. 따라서 Windows Server에서는 ONTAP의 데이터에 액세스하는 데 추가 클라이언트 소프트웨어가 필요하지 않습니다. NetApp 스토리지 컨트롤러는 네트워크에 기본 파일 서버로 표시되며 Microsoft Active Directory 인증을 지원합니다.
 
 Windows Server에서 이전에 생성한 CIFS 공유를 검색하려면 다음 단계를 수행하십시오.
 
 . 관리자 그룹의 구성원으로 Windows Server에 로그인합니다.
 . run.exe 으로 이동하여 공유를 액세스하기 위해 생성된 CIFS 공유의 전체 경로를 입력합니다.
 . 공유를 Windows Server에 영구적으로 매핑하려면 이 PC를 마우스 오른쪽 단추로 클릭하고 네트워크 드라이브 연결 을 클릭한 다음 CIFS 공유 경로를 제공합니다.
-. 특정 CIFS 관리 작업은 MMC(Microsoft Management Console)를 사용하여 수행할 수 있습니다. 이러한 작업을 수행하기 전에 MMC 메뉴 명령을 사용하여 MMC를 NetApp ONTAP 스토리지에 연결해야 합니다.
+. 특정 CIFS 관리 작업은 MMC(Microsoft Management Console)를 사용하여 수행할 수 있습니다. 이러한 작업을 수행하기 전에 MMC 메뉴 명령을 사용하여 MMC를 ONTAP 스토리지에 연결해야 합니다.
 +
 .. Windows Server에서 MMC를 열려면 서버 관리자의 도구 섹션에서 컴퓨터 관리를 클릭합니다.
 .. 추가 작업 및 다른 컴퓨터에 연결 을 클릭하면 컴퓨터 선택 대화 상자가 열립니다.
@@ -108,7 +108,7 @@ Windows Server에서 이전에 생성한 CIFS 공유를 검색하려면 다음 �
 * 볼륨을 한 노드에서 다른 노드로 이동할 때 다운타임이 발생하지 않도록 하거나 노드 장애가 발생한 경우 NetApp 파일 공유에서 지속적인 가용성 옵션을 활성화하는 것이 좋습니다.
 * Hyper-V-over-SMB 환경에 대해 VM을 NetApp 프로비저닝할 경우 스토리지 시스템에서 복사본 오프로드를 사용하도록 권장합니다. 이렇게 하면 VM 프로비저닝 시간이 줄어듭니다.
 * 스토리지 클러스터가 SQL Server, Hyper-V, CIFS 서버와 같은 여러 SMB 워크로드를 호스팅하는 경우, NetApp은 별도의 애그리게이트에서 별도의 SVM에서 서로 다른 SMB 워크로드를 호스팅할 것을 권장합니다. 이러한 각 워크로드는 고유한 스토리지 네트워킹 및 볼륨 레이아웃을 보장하므로 이 구성은 유용합니다.
-* NetApp은 사용 가능한 경우 10GB 네트워크를 사용하여 Hyper-V 호스트와 NetApp ONTAP 스토리지를 연결하는 것이 좋습니다. 1GB 네트워크 연결의 경우 NetApp에서는 여러 개의 1GB 포트로 구성된 인터페이스 그룹을 생성할 것을 권장합니다.
+* NetApp은 사용 가능한 경우 10GB 네트워크를 사용하여 Hyper-V 호스트와 ONTAP 스토리지를 연결하는 것이 좋습니다. 1GB 네트워크 연결의 경우 NetApp에서는 여러 개의 1GB 포트로 구성된 인터페이스 그룹을 생성할 것을 권장합니다.
 * SMB 3.0 공유 간에 VM을 마이그레이션할 경우 NetApp은 스토리지 시스템에서 CIFS 복사본 오프로드 기능을 사용하여 마이그레이션을 보다 빠르게 수행할 것을 권장합니다.
 
 

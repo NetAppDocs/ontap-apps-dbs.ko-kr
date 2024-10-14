@@ -10,7 +10,7 @@ summary: SnapCenter 및 T-SQL 명령을 사용하여 ONTAP에서 Microsoft SQL S
 
 
 [role="lead"]
-데이터베이스 백업 계획은 비즈니스 요구 사항을 기반으로 합니다. ONTAP의 NetApp 스냅샷 기술을 결합하고 Microsoft SQL Server API를 활용하면 사용자 데이터베이스 크기에 관계없이 애플리케이션 정합성이 보장된 백업을 신속하게 수행할 수 있습니다. 고급 또는 스케일아웃 데이터 관리 요구사항을 충족하기 위해 NetApp에서는 SnapCenter을 제공합니다.
+데이터베이스 백업 전략은 이론적인 기능이 아닌 식별된 비즈니스 요구 사항을 기반으로 해야 합니다. ONTAP의 스냅샷 기술을 결합하고 Microsoft SQL Server API를 활용하면 사용자 데이터베이스 크기에 관계없이 애플리케이션 정합성이 보장되는 백업을 신속하게 수행할 수 있습니다. 고급 또는 스케일아웃 데이터 관리 요구사항을 충족하기 위해 NetApp에서는 SnapCenter을 제공합니다.
 
 
 
@@ -22,7 +22,7 @@ SQL Server 인스턴스는 독립 실행형 설치, 장애 조치 클러스터 �
 
 
 TIP: * NetApp는 SnapCenter를 사용하여 스냅샷 복사본을 생성할 것을 권장합니다 *. 아래에 설명된 T-SQL 방법도 작동하지만 SnapCenter는 백업, 복원 및 복제 프로세스를 완벽하게 자동화합니다. 또한 검색을 수행하여 올바른 스냅샷이 생성되도록 합니다. 사전 구성이 필요하지 않습니다.
-...
+
 또한 SQL Server는 생성 시 스냅샷에 올바른 데이터가 존재하도록 OS와 스토리지 간의 조정이 필요합니다. 대부분의 경우 이 작업을 수행하는 유일한 안전한 방법은 SnapCenter 또는 T-SQL을 사용하는 것입니다. 이 추가 조정 없이 생성된 스냅샷은 안정적으로 복구할 수 없습니다.
 
 SnapCenter용 SQL Server 플러그인에 대한 자세한 내용은 을 참조하십시오 link:https://www.netapp.com/pdf.html?item=/media/12400-tr4714.pdf["TR-4714: NetApp SnapCenter를 사용하는 SQL Server 모범 사례 가이드"^].

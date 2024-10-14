@@ -12,20 +12,26 @@ summary: ONTAP을 사용한 Microsoft SQL Server 재해 복구
 [role="lead"]
 엔터프라이즈 데이터베이스 및 애플리케이션 인프라에서는 다운타임을 최소화하면서 자연 재해 또는 예상치 못한 비즈니스 운영 중단으로부터 보호하기 위해 복제를 필요로 하는 경우가 많습니다.
 
-SQL Server Always-on 가용성 그룹 복제 기능은 탁월한 옵션일 수 있으며, NetApp는 데이터 보호를 상시 가동과 통합하는 옵션을 제공합니다. 그러나 ONTAP 복제 기술을 고려할 수도 있습니다. MetroCluster 및 SnapMirror를 비롯한 ONTAP 복제 옵션은 성능에 미치는 영향을 최소화하면서 확장할 수 있고, SQL이 아닌 데이터를 보호하며, 일반적으로 전체 인프라 복제 및 DR 솔루션을 제공할 수 있습니다.
+SQL Server 상시 가용성 그룹 복제 기능은 탁월한 옵션일 수 있으며, NetApp는 데이터 보호를 상시 가동과 통합하는 옵션을 제공합니다. 그러나 ONTAP 복제 기술을 고려할 수도 있습니다. 세 가지 기본 옵션이 있습니다.
 
 
 
-== SnapMirror 비동기
+== SnapMirror를 참조하십시오
 
-SnapMirror 기술은 LAN 및 WAN을 통해 데이터를 복제하는 빠르고 유연한 비동기 엔터프라이즈 솔루션을 제공합니다. SnapMirror 기술은 초기 미러가 생성된 후에 변경된 데이터 블록만 타겟으로 전송하므로 네트워크 대역폭 요구사항을 크게 줄여줍니다.
-
-다음은 SQL Server용 SnapMirror에 대한 권장사항입니다.
-
-* CIFS를 사용하는 경우 대상 SVM은 소스 SVM이 속한 동일한 Active Directory 도메인의 구성원이어야 NAS 파일 내에 저장된 ACL(액세스 제어 목록)이 재해로부터 복구하는 동안 손상되지 않습니다.
-* 소스 볼륨 이름과 동일한 대상 볼륨 이름을 사용할 필요는 없지만, 대상 볼륨을 대상에 마운트하는 프로세스를 더 간편하게 관리할 수 있습니다. CIFS를 사용하는 경우 소스 네임스페이스와 경로 및 디렉토리 구조의 대상 NAS 네임스페이스를 동일하게 만들어야 합니다.
-* 일관성을 위해 컨트롤러에서 SnapMirror 업데이트를 예약하지 마십시오. 대신, 전체 또는 로그 백업이 완료된 후 SnapCenter에서 SnapMirror를 업데이트하도록 SnapMirror를 활성화합니다.
-* SQL Server 데이터가 포함된 볼륨을 클러스터의 서로 다른 노드에 분산하여 모든 클러스터 노드가 SnapMirror 복제 활동을 공유할 수 있도록 합니다. 이러한 분산은 노드 리소스 사용을 최적화합니다.
+SnapMirror 기술은 LAN 및 WAN을 통한 데이터 복제를 위한 빠르고 유연한 엔터프라이즈 솔루션을 제공합니다. SnapMirror 기술은 초기 미러가 생성된 후에 변경된 데이터 블록만 타겟으로 전송하므로 네트워크 대역폭 요구사항을 크게 줄여줍니다. 동기 또는 비동기 모드로 구성할 수 있습니다.
 
 
-SnapMirror에 대한 자세한 내용은 를 참조하십시오 link:https://www.netapp.com/us/media/tr-4015.pdf["TR-4015:ONTAP 9용 SnapMirror 구성 및 모범 사례 가이드"^].
+
+== NetApp MetroCluster
+
+MetroCluster 구성은 애플리케이션, 데이터베이스 및 가상화 플랫폼에 고가용성과 데이터 무손실 스토리지 솔루션을 제공하는 데 도움이 됩니다. 이 솔루션은 어레이 기반 클러스터링과 동기식 복제를 함께 사용하여 전체 스토리지와 호스트 환경에 대한 추가적인 보호 계층을 제공합니다.
+
+
+
+== SnapMirror active sync (이전의 SnapMirror 비즈니스 연속성)
+
+SnapMirror Active Sync는 SnapMirror Synchronous와 쓰기 순서 일관성을 유지하면서 여러 LUN을 복제 스토리지에 복제하는 기능을 기반으로 합니다. MetroCluster의 경우 네트워크 구성을 포함한 ONTAP 컨트롤러가 사이트 전체에서 동일해야 합니다. SnapMirror가 활성 동기화에서는 기본적으로 LUN 데이터의 독립적인 복사본을 유지하지만 해당 LUN의 단일 인스턴스를 제공하기 위해 협력하는 두 개의 ONTAP 시스템이 있습니다. 호스트 관점에서 보면 단일 LUN 엔티티입니다.
+
+MetroCluster와 SnapMirror 활성 동기화의 주된 차이점은 세분성과 확장성입니다. 특정 워크로드를 동기적으로 복제하거나 두 사이트에서 읽기/쓰기 작업을 위해 LUN을 사용할 수 있어야 하는 경우에는 SnapMirror 활성 동기화가 더 좋습니다. 전체 환경이나 데이터 센터를 복제해야 하는 경우 MetroCluster가 더 나은 옵션입니다. 또한 SnapMirror 액티브 동기화는 현재 SAN, NFS, SMB를 포함한 멀티 프로토콜 MetroCluster이 있는 동안 SAN 전용입니다.
+
+SnapMirror에 대한 자세한 내용은 을 link:https://www.netapp.com/pdf.html?item=/media/17229-tr4015pdf.pdf["TR-4015:ONTAP 9용 SnapMirror 구성 및 모범 사례 가이드"^]참조하십시오.

@@ -10,7 +10,7 @@ summary: Windows Server 장애 조치 클러스터를 사용하여 Hyper-V 복�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ../media
+:imagesdir: ../media/
 
 
 [role="lead"]

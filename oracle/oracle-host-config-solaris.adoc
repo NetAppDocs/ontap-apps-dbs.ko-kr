@@ -87,9 +87,13 @@ Solaris ZFS에서 최적의 성능을 얻으려면 신중하게 설치하고 구
 
 === mvector입니다
 
-Solaris 11에서는 대규모 I/O 작업을 처리하는 방식이 변경되었으며 이로 인해 SAN 스토리지 어레이에 심각한 성능 문제가 초래될 수 있습니다. 이 문제는 NetApp 버그 보고서 630173, 'Solaris 11 ZFS 성능 퇴보'에서 상세히 다루고 있습니다. "해결책은 라는 OS 매개변수를 변경하는 것입니다 `zfs_mvector_max_size`.
+Solaris 11에서는 대규모 I/O 작업을 처리하는 방식이 변경되었으며 이로 인해 SAN 스토리지 어레이에 심각한 성능 문제가 초래될 수 있습니다. 이 문제는 NetApp 추적 버그 보고서 630173, 'Solaris 11 ZFS 성능 퇴보'에 대한 문서화되어 있습니다.
 
-다음 명령을 루트로 실행합니다.
+ONTAP 버그는 아닙니다. Solaris 결함 7199305 및 7082975에서 추적된 Solaris 결함입니다.
+
+사용 중인 Solaris 11 버전이 영향을 받는지 확인하려면 Oracle 지원 에 문의하거나 보다 작은 값으로 변경하여 대안을 테스트할 수 `zfs_mvector_max_size` 있습니다.
+
+다음 명령을 루트로 실행하면 됩니다.
 
 ....
 [root@host1 ~]# echo "zfs_mvector_max_size/W 0t131072" |mdb -kw

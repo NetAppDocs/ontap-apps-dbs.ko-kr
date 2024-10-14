@@ -1,0 +1,15 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-example-aggregates.html 
+keywords: epic,cache,iris 
+summary: ONTAP 기반 Epic 구축 예 - 애그리게이트 
+---
+= ONTAP 기반 Epic 구축 예 - 애그리게이트
+:allow-uri-read: 
+
+
+[role="lead"]
+애그리게이트 프로비저닝에 대한 최신 문서를 보려면 를 클릭합니다link:https://docs.netapp.com/us-en/ontap/disks-aggregates/manage-local-tiers-overview-concept.html["여기"^].
+
+
+NOTE: 기본 설정은 성능과 용량을 최적화합니다. 노드당 하나의 대형 Aggregate가 생성됩니다.

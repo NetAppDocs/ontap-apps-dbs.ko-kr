@@ -1,0 +1,23 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-arch-sizing.html 
+keywords: epic,cache,iris 
+summary: 탁월한 크기 조정 
+---
+= 탁월한 크기 조정
+:allow-uri-read: 
+
+
+[role="lead"]
+Epic 스토리지 환경의 크기를 결정할 때 고려해야 할 주요 아키텍처 중 하나는 ODB 데이터베이스 크기입니다.
+
+아래 표시된 다이어그램을 사용하여 중소 규모 Epic 스토리지 아키텍처를 선택할 수 있습니다. 이러한 설계에는 하드웨어 구성 가이드에 나열된 모든 워크로드를 실행하는 것이 포함됩니다. 사이징 트리는 100개 이상의 하드웨어 구성 가이드의 데이터를 기반으로 하며 대부분 정확한 예측이 가능해야 합니다.
+
+이것은 단지 시작점일 뿐이라는 점에 유의해야 합니다. 귀사는 Epic 제휴 팀과 협력하여 Epic 설계를 확인해야 합니다. 이 팀은 epic @NetApp.com에서 연락할 수 있습니다. 모든 구현은 Epic 및 NetApp의 권장 모범 사례를 준수하면서 고객의 요청을 수용해야 합니다.
+
+* Epic 데이터베이스를 10TB 미만의 소형 Epic 아키텍처
+* 10TB에서 50TB까지 Epic 데이터베이스를 사용하는 중간 규모 Epic 아키텍처
+* 50TB 이상에서 Epic 데이터베이스를 구축한 대규모 Epic 아키텍처
+
+
+image:epic-sizing.png["탁월한 사이징 가이드"]

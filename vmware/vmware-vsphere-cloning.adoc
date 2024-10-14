@@ -24,7 +24,7 @@ vSphere에서 VM, 가상 디스크, VVOL 또는 데이터 저장소를 복제할
 
 image:vsphere_ontap_image5.png["ONTAP 클론 복제"]
 
-클론 복제는 일반적으로 VM, VVOL 또는 데이터 저장소 레벨의 다양한 메커니즘을 통해 ONTAP 소프트웨어를 실행하는 시스템으로 오프로드될 수 있습니다. 여기에는 다음이 포함됩니다.
+클론 복제는 일반적으로 VM, VVOL 또는 데이터 저장소 수준에서 여러 메커니즘을 통해 ONTAP을 실행하는 시스템으로 오프로드할 수 있습니다. 여기에는 다음이 포함됩니다.
 
 * NetApp VASA(vSphere APIs for Storage Awareness) 공급자를 사용하여 VVOL을 이동합니다.  ONTAP 클론은 vCenter에서 관리하는 VVol 스냅샷을 지원하는 데 사용되며 이 스냅샷은 I/O 효과가 최소화되어 생성 및 삭제가 가능합니다.  vCenter를 사용하여 VM을 복제할 수도 있으며, 단일 데이터 저장소/볼륨 내에서 또는 데이터 저장소/볼륨 간에 ONTAP로 오프로드됩니다.
 * VAAI(vSphere API – Array Integration)를 사용한 vSphere 클론 생성 및 마이그레이션 SAN 및 NAS 환경 모두에서 VM 클론 복제 작업을 ONTAP로 오프로드할 수 있습니다(NetApp은 NFS용 VAAI를 지원하기 위해 ESXi 플러그인을 제공합니다).  vSphere는 NAS 데이터 저장소의 콜드(전원이 꺼진) VM에 대한 작업만 오프로드하는 반면, 핫 VM(클론 생성 및 Storage vMotion)에 대한 작업도 SAN에 오프로드됩니다. ONTAP는 소스, 대상 및 설치된 제품 라이센스를 기반으로 가장 효율적인 방식을 사용합니다. 이 기능은 VMware Horizon View에서 사용할 수도 있습니다.

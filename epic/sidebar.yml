@@ -1,0 +1,58 @@
+---
+section: epic
+title: 대단한
+entries:
+- title: 개요
+  url: "/epic/epic-overview.html"
+- title: ONTAP에서 성공
+  entries:
+  - title: 개요
+    url: "/epic/epic-ontap-overview.html"
+  - title: 가용성
+    url: "/epic/epic-ontap-availability.html"
+  - title: 통합
+    url: "/epic/epic-ontap-consolidation.html"
+  - title: 효율성
+    url: "/epic/epic-ontap-efficiency.html"
+  - title: 성능
+    url: "/epic/epic-ontap-performance.html"
+  - title: 확장
+    url: "/epic/epic-ontap-scalability.html"
+  - title: 스냅샷 및 클론 복제
+    url: "/epic/epic-ontap-snapshots.html"
+  - title: 보안
+    url: "/epic/epic-ontap-security.html"
+- title: 탁월한 아키텍처 및 설계
+  entries:
+  - title: 개요
+    url: "/epic/epic-arch-overview.html"
+  - title: 사이징
+    url: "/epic/epic-arch-sizing.html"
+  - title: 구축하는 것이었습니다
+    url: "/epic/epic-arch-storage.html"
+  - title: 4노드 아키텍처
+    url: "/epic/epic-arch-4node.html"
+  - title: 6노드 아키텍처
+    url: "/epic/epic-arch-6node.html"
+  - title: 8노드 아키텍처
+    url: "/epic/epic-arch-8node.html"
+- title: 구성 및 모범 사례
+  entries:
+  - title: Host Utilities(호스트 유틸리티)
+    url: "/epic/epic-config-huk.html"
+  - title: LUN 및 볼륨 구성
+    url: "/epic/epic-config-lunvol.html"
+  - title: 파일 서비스
+    url: "/epic/epic-config-files.html"
+  - title: 성능
+    url: "/epic/epic-config-performance.html"
+  - title: 프로토콜
+    url: "/epic/epic-config-protocols.html"
+  - title: 스토리지 효율성
+    url: "/epic/epic-config-efficiency.html"
+  - title: 정합성 보장 그룹
+    url: "/epic/epic-config-cgs.html"
+  - title: 스토리지 사이징
+    url: "/epic/epic-config-sizing.html"
+- title: 추가 정보를 찾을 수 있는 위치
+  url: "/epic/epic-additional-info.html"

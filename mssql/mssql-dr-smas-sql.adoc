@@ -1,0 +1,37 @@
+---
+sidebar: sidebar 
+permalink: mssql/mssql-dr-smas-sql.html 
+keywords: MSSQL,SQL Server, SnapMirror active sync, ONTAP, SMBC, SMas, SnapMirror Business Continuity 
+summary: Microsoft SQL Server 및 SnapMirror 활성 동기화 
+---
+= SnapMirror 활성 동기화가 있는 Microsoft SQL Server
+:allow-uri-read: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+여러 가지 방법으로 SnapMirror와 함께 작동하도록 SQL Server를 구성할 수 있습니다. 정답은 사용 가능한 네트워크 연결, RPO 요구사항 및 가용성 요구사항에 따라 다릅니다.
+
+
+
+== SQL Server의 독립 실행형 인스턴스입니다
+
+파일 레이아웃 및 서버 구성에 대한 Best Practice는 설명서에서 권장하는 방법과 동일합니다link:mssql-storage-considerations.html["ONTAP 기반 SQL Server"].
+
+독립 실행형 설정을 사용하면 한 사이트에서만 SQL Server를 실행할 수 있습니다. 아마도 link:mssql-dr-smas-uniform.html["균일"] access가 사용될 것입니다.
+
+image:smas-onehost.png["단일 호스트 및 단일 액세스"]
+
+균일한 액세스를 사용하더라도 두 사이트의 스토리지 장애로 인해 데이터베이스 작업이 중단되지 않습니다. 데이터베이스 서버가 포함된 사이트의 전체 사이트 장애는 물론 중단이 발생할 수 있습니다.
+
+일부 고객은 사전 구성된 SQL Server 설정으로 원격 사이트에서 실행 중인 OS를 구성할 수 있으며, 운영 인스턴스의 빌드 버전과 동일한 버전으로 업데이트할 수 있습니다. 장애 조치에는 대체 사이트에서 해당 독립 실행형 SQL Server 인스턴스를 활성화하고, LUN을 검색하고, 데이터베이스를 시작해야 합니다. 스토리지 측에서 별도의 작업이 필요하지 않으므로 Windows Powershell cmdlet을 사용하여 전체 프로세스를 자동화할 수 있습니다.
+
+link:mssql-dr-smas-nonuniform.html["비균일"] 액세스를 사용할 수도 있지만 데이터베이스에 스토리지에 대한 가용 경로가 없기 때문에 데이터베이스 서버가 있는 스토리지 시스템에 장애가 발생하면 데이터베이스가 중단될 수 있습니다. 일부 경우에는 이 방법이 여전히 허용됩니다. SnapMirror 활성 동기화는 여전히 RPO=0 데이터 보호를 제공하며, 사이트 장애 발생 시 나머지 복제본은 활성 상태이며 위에서 설명한 것과 동일한 액세스 절차를 사용하여 작업을 재개할 수 있습니다.
+
+단순하고 자동화된 페일오버 프로세스는 가상화 호스트를 사용하여 더욱 쉽게 구성할 수 있습니다. 예를 들어, SQL Server 데이터 파일이 부팅 VMDK와 함께 보조 스토리지에 동기식으로 복제되면 재해 발생 시 전체 환경을 대체 사이트에서 활성화할 수 있습니다. 관리자는 정상적인 사이트에서 호스트를 수동으로 활성화하거나 VMware HA와 같은 서비스를 통해 프로세스를 자동화할 수 있습니다.
+
+
+
+== SQL Server 장애 조치 클러스터 인스턴스입니다
+
+SQL Server 장애 조치 인스턴스는 물리적 서버 또는 가상 서버에서 게스트 운영 체제로 실행되는 Windows 장애 조치 클러스터에서 호스팅될 수도 있습니다. 이 다중 호스트 아키텍처는 SQL Server 인스턴스와 스토리지 복구 기능을 제공합니다. 이러한 배포는 향상된 성능을 유지하면서 강력한 장애 조치 프로세스를 원하는 수요가 많은 환경에 유용합니다. 장애 조치 클러스터 설정에서 호스트 또는 운영 스토리지가 영향을 받으면 SQL 서비스가 보조 호스트로 페일오버되고, 동시에 보조 스토리지를 사용하여 IO를 제공할 수 있습니다. 자동화 스크립트나 관리자 개입이 필요하지 않습니다.

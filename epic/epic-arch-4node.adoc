@@ -1,0 +1,28 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-arch-4node.html 
+keywords: epic,cache,iris 
+summary: Epic 4노드 아키텍처 
+---
+= Epic 4노드 아키텍처
+:allow-uri-read: 
+
+
+[role="lead"]
+아래 그림은 4노드 아키텍처의 스토리지 레이아웃, 즉 운영 중인 HA 쌍과 재해 복구의 HA 쌍을 보여줍니다. 컨트롤러 크기와 디스크 수는 후자의 크기 조정 이미지를 기준으로 합니다.
+
+NetApp는 SLM 권장 AQoS 정책을 수락하여 최소 바닥 수준의 성능을 보장합니다. EPIC는 ONTAP의 스토리지 풀을 훨씬 적은 하드웨어로 통합할 수 있도록 지원합니다. 자세한 내용은 Epic 분기별 SPATS 문서를 참조하십시오. 기본적으로 pool1, pool2 및 NAS1(Epic 하드웨어 구성 가이드에 나와 있음)은 두 컨트롤러에 균등하게 확장되는 워크로드를 모두 단일 HA 쌍에서 실행할 수 있습니다. 재해 복구 시 Epic 풀 3과 NAS 3도 HA 쌍의 두 컨트롤러 간에 분할됩니다.
+
+테스트 전체 복사 환경(예: SUP, REL, PJX)은 Epic Production, Epic Report 또는 Epic 재해 복구에서 클론 복제됩니다. Epic 백업 및 업데이트에 대한 자세한 내용은 " 데이터 관리 " 섹션을 참조하십시오.
+
+
+
+== 4노드 아키텍처
+
+image:epic-4node.png["Epic 4노드 아키텍처"]
+
+
+
+== 4노드 워크로드 배치
+
+image:epic-4node-design.png["EPIC 4노드 배치"]

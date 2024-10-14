@@ -10,7 +10,7 @@ summary: ONTAP를 사용한 Microsoft Windows 및 Hyper-V 가상화 개요
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ../media
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -19,7 +19,7 @@ Microsoft Windows Server는 네트워킹, 보안, 가상화, 프라이빗 클라
 
 NOTE: *이 문서는 이전에 게시된 기술 보고서_TR-4568: NetApp 배포 지침 및 Windows Server_*용 스토리지 모범 사례 대신 제공됩니다
 
-.NetApp ONTAP(R) 관리 소프트웨어는 NetApp 스토리지 컨트롤러에서 실행됩니다. 다양한 형식으로 사용할 수 있습니다.
+.ONTAP 는 NetApp 스토리지 컨트롤러에서 실행됩니다. 다양한 형식으로 사용할 수 있습니다.
 * 파일, 오브젝트 및 블록 프로토콜을 지원하는 통합 아키텍처 이를 통해 스토리지 컨트롤러는 NAS 및 SAN 디바이스와 오브젝트 저장소 역할을 모두 수행할 수 있습니다
 * 블록 프로토콜에만 초점을 맞추고 연결 호스트에 대한 대칭 액티브-액티브 다중 경로를 추가하여 I/O 재시작 시간(IORT)을 최적화하는 All SAN 어레이(ASA)입니다
 * 소프트웨어 정의 통합 아키텍처

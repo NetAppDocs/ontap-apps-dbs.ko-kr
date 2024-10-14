@@ -1,0 +1,38 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-dr-smas-fail-snapmirror.html 
+keywords: Oracle, SnapMirror active sync, SMBC, failover 
+summary: Oracle 및 SnapMirror 액티브 동기식 페일오버 
+---
+= SnapMirror 활성 동기화 - SnapMirror 연결이 끊겼습니다
+:allow-uri-read: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapMirror 활성 동기화 복제 링크인 경우 클러스터에서 변경 내용을 반대편 사이트로 복제할 수 없기 때문에 쓰기 입출력을 완료할 수 없습니다.
+
+
+
+== 사이트 A
+
+복제 링크가 제대로 작동하지 않는 것으로 판단되기 전에 ONTAP에서 쓰기 복제를 시도하기 때문에 사이트 A에서 쓰기 입출력 처리가 약 15초 동안 일시 중지됩니다. 15초가 지나면 사이트 A의 ONTAP 클러스터가 읽기 및 쓰기 IO 처리를 재개합니다. SAN 경로는 변경되지 않으며 LUN은 온라인 상태로 유지됩니다.
+
+
+
+== 사이트 B
+
+사이트 B는 SnapMirror 활성 동기화 기본 사이트가 아니므로 약 15초 후에 해당 LUN 경로를 사용할 수 없게 됩니다.
+
+복제 링크가 타임 스탬프 15:19:44에서 잘렸습니다. Oracle RAC의 첫 번째 경고는 200초 시간 초과(Oracle RAC 매개 변수 disktimeout에 의해 제어됨)가 접근함에 따라 100초 후에 도착합니다.
+
+....
+2024-09-10 15:21:24.702 [ONMD(2792)]CRS-1615: No I/O has completed after 50% of the maximum interval. If this persists, voting file /dev/mapper/grid2 will be considered not functional in 99340 milliseconds.
+2024-09-10 15:22:14.706 [ONMD(2792)]CRS-1614: No I/O has completed after 75% of the maximum interval. If this persists, voting file /dev/mapper/grid2 will be considered not functional in 49330 milliseconds.
+2024-09-10 15:22:44.708 [ONMD(2792)]CRS-1613: No I/O has completed after 90% of the maximum interval. If this persists, voting file /dev/mapper/grid2 will be considered not functional in 19330 milliseconds.
+2024-09-10 15:23:04.710 [ONMD(2792)]CRS-1604: CSSD voting file is offline: /dev/mapper/grid2; details at (:CSSNM00058:) in /gridbase/diag/crs/jfs13/crs/trace/onmd.trc.
+2024-09-10 15:23:04.710 [ONMD(2792)]CRS-1606: The number of voting files available, 0, is less than the minimum number of voting files required, 1, resulting in CSSD termination to ensure data integrity; details at (:CSSNM00018:) in /gridbase/diag/crs/jfs13/crs/trace/onmd.trc
+2024-09-10 15:23:04.716 [ONMD(2792)]CRS-1699: The CSS daemon is terminating due to a fatal error from thread: clssnmvDiskPingMonitorThread; Details at (:CSSSC00012:) in /gridbase/diag/crs/jfs13/crs/trace/onmd.trc
+2024-09-10 15:23:04.731 [OCSSD(2794)]CRS-1652: Starting clean up of CRSD resources.
+....
+200초의 보팅 디스크 시간 초과에 도달하면 이 Oracle RAC 노드가 클러스터에서 자체적으로 제거되고 재부팅됩니다.

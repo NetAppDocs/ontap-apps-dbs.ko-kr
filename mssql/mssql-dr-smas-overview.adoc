@@ -1,0 +1,35 @@
+---
+sidebar: sidebar 
+permalink: mssql/mssql-dr-smas-overview.html 
+keywords: MSSQL,SQL Server, SnapMirror active sync, SMBC, overview 
+summary: Microsoft SQL Server 및 SnapMirror 활성 동기화 
+---
+= SQL Server 및 SnapMirror 활성 동기화
+:allow-uri-read: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapMirror Active Sync를 사용하면 개별 SQL Server 데이터베이스 및 애플리케이션이 스토리지 및 네트워크가 중단되어도 작업을 계속할 수 있으며, 수동 작업 없이 투명한 스토리지 페일오버를 수행할 수 있습니다.
+
+ONTAP 9.15.1부터 SnapMirror 액티브 동기화는 기존 비대칭 구성 외에 대칭 액티브/액티브 아키텍처를 지원합니다. 대칭 액티브/액티브 기능은 비즈니스 연속성 및 재해 복구를 위해 동기식 양방향 복제를 제공합니다. 또한 여러 장애 도메인에 걸쳐 데이터에 대한 동시 읽기 및 쓰기 액세스를 통해 중요한 SAN 워크로드에 대한 데이터 액세스를 보호함으로써 무중단 운영을 보장하고 재해 또는 시스템 장애 시 다운타임을 최소화할 수 있습니다.
+
+SQL Server 호스트는 FC(Fibre Channel) 또는 iSCSI LUN을 사용하여 스토리지에 액세스합니다. 복제된 데이터의 복제본을 호스팅하는 각 클러스터 간의 복제입니다. 이 기능은 스토리지 수준 복제이므로 독립 실행형 호스트 또는 장애 조치 클러스터 인스턴스에서 실행되는 SQL Server 인스턴스는 클러스터 중 하나에서 읽기/쓰기 작업을 수행할 수 있습니다. 계획 및 구성 단계는 를 link:https://docs.netapp.com/us-en/ontap/snapmirror-active-sync/["SnapMirror 활성 동기화에 대한 ONTAP 문서"] 참조하십시오.
+
+
+
+== 대칭 액티브/액티브 방식의 SnapMirror 아키텍처
+
+image:mssql-smas-architecture.png["오류: 그래픽 이미지가 없습니다"]
+
+** 동기 복제**
+
+정상 작동 시 각 복제본은 항상 RPO=0 동기식 복제본이며 한 가지 예외가 있습니다. 데이터를 복제할 수 없는 경우 ONTAP는 데이터를 복제해야 하는 요구 사항을 해제하고 다른 사이트의 LUN이 오프라인 상태가 되는 동안 한 사이트에서 입출력 서비스를 재개합니다.
+
+** 스토리지 하드웨어**
+
+다른 스토리지 재해 복구 솔루션과 달리 SnapMirror Active Sync는 비대칭적 플랫폼 유연성을 제공합니다. 각 사이트의 하드웨어는 동일할 필요가 없습니다. 이 기능을 사용하면 SnapMirror 액티브 동기화를 지원하는 데 사용되는 하드웨어를 적절한 크기로 조정할 수 있습니다. 전체 운영 워크로드를 지원해야 하는 경우 원격 스토리지 시스템이 기본 사이트와 동일할 수 있지만 재해로 인해 I/O가 감소할 경우 원격 사이트의 소규모 시스템보다 비용 효율적입니다.
+
+** ONTAP 중재자**
+
+ONTAP 중재자는 NetApp 지원에서 다운로드되는 소프트웨어 응용 프로그램이며 일반적으로 작은 가상 컴퓨터에 구축됩니다. ONTAP 중재자는 타이브레이커가 아닙니다. SnapMirror 활성 동기화 복제에 참여하는 두 클러스터에 대한 대체 통신 채널입니다. 자동화된 운영은 직접 연결과 중재자를 통해 파트너로부터 받은 응답에 따라 ONTAP에 의해 주도됩니다.

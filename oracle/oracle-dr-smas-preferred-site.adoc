@@ -1,0 +1,40 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-dr-smas-preferred-site.html 
+keywords: Oracle,SM-as,active sync,preferred 
+summary: Oracle 및 SM - 기본 사이트로 지정 
+---
+= Oracle 및 SM - 기본 사이트로 지정
+:allow-uri-read: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapMirror 액티브 동기화 동작은 대칭이며 한 가지 중요한 예외 기본 사이트 구성이 있습니다.
+
+SnapMirror 활성 동기화는 한 사이트를 "소스"로 간주하고 다른 사이트는 "대상"으로 간주합니다. 이는 단방향 복제 관계를 의미하지만 입출력 동작에는 적용되지 않습니다. 복제는 양방향이고 대칭이며 입출력 응답 시간은 미러의 양쪽에서 동일합니다.
+
+ `source`지정은 기본 사이트를 제어합니다. 복제 링크가 손실되면 소스 복제본의 LUN 경로는 계속 데이터를 제공하고 대상 복제본의 LUN 경로는 복제가 다시 설정되고 SnapMirror가 동기식 상태로 다시 전환될 때까지 사용할 수 없게 됩니다. 그러면 경로가 데이터 제공을 재개합니다.
+
+소스/대상 구성은 SystemManager를 통해 볼 수 있습니다.
+
+image:smas-source-systemmanager.png["SM-AS 소스의 SM 스크린샷"]
+
+또는 CLI에서:
+
+....
+Cluster2::> snapmirror show -destination-path jfs_as2:/cg/jfsAA
+
+                            Source Path: jfs_as1:/cg/jfsAA
+                       Destination Path: jfs_as2:/cg/jfsAA
+                      Relationship Type: XDP
+                Relationship Group Type: consistencygroup
+                    SnapMirror Schedule: -
+                 SnapMirror Policy Type: automated-failover-duplex
+                      SnapMirror Policy: AutomatedFailOverDuplex
+                            Tries Limit: -
+                      Throttle (KB/sec): -
+                           Mirror State: Snapmirrored
+                    Relationship Status: InSync
+....
+핵심은 소스는 클러스터 1의 SVM입니다. 위에서 언급한 바와 같이 "원본" 및 "대상"이라는 용어는 복제된 데이터의 흐름을 설명하지 않습니다. 두 사이트 모두 쓰기를 처리하여 반대쪽 사이트로 복제할 수 있습니다. 실제로 두 클러스터 모두 소스와 타겟입니다. 하나의 클러스터를 소스로 지정하면 복제 링크가 손실된 경우 읽기-쓰기 스토리지 시스템으로 존속하는 클러스터를 제어할 수 있습니다.

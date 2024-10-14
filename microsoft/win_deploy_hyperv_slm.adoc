@@ -10,7 +10,7 @@ summary: Hyper-V 스토리지 실시간 마이그레이션을 구성하는 방�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ../media
+:imagesdir: ../media/
 
 
 [role="lead"]

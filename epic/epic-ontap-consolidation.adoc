@@ -1,0 +1,16 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-ontap-consolidation.html 
+keywords: epic,cache,iris 
+summary: ONTAP 통합 기반 Epic 
+---
+= ONTAP 통합 기반 Epic
+:allow-uri-read: 
+
+
+[role="lead"]
+의료 분야의 주요 과제 중 하나는 사일로 환경의 비효율성입니다.
+
+진전을 방해하는 다양한 그룹이 여러 포인트 솔루션을 만듭니다. 통합된 데이터 관리 전략을 수립하면 효율성을 통해 혁신을 빠르게 실현할 수 있습니다. 환자 기록 디지털화, 랜섬웨어 및 생성 AI와 같은 파괴적인 기술 이 통합에 필요한 모든 것을 요구합니다.
+
+ONTAP를 사용하면 온프레미스와 클라우드에서 파일/블록/오브젝트와 각 계층 0/1/2/3 워크로드를 통합할 수 있으며, 모두 ONTAP에서 실행됩니다.

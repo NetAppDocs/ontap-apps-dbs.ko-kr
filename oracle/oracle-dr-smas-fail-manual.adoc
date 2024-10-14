@@ -1,0 +1,53 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-dr-smas-fail-manual.html 
+keywords: Oracle, SnapMirror active sync, SMBC, failover 
+summary: Oracle 및 SnapMirror 액티브 동기식 - 수동 페일오버 
+---
+= Oracle 및 SnapMirror 액티브 동기식 - 수동 페일오버
+:allow-uri-read: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+"페일오버"라는 용어는 양방향 복제 기술이기 때문에 SnapMirror 활성 동기화를 사용하는 복제 방향을 가리키지 않습니다. 대신 '페일오버'는 장애 발생 시 기본 사이트가 될 스토리지 시스템을 나타냅니다.
+
+예를 들어, 유지보수를 위해 사이트를 종료하기 전에 또는 DR 테스트를 수행하기 전에 페일오버를 수행하여 기본 사이트를 변경할 수 있습니다.
+
+기본 사이트를 변경하려면 간단한 작업이 필요합니다. 클러스터 간 복제 동작 전환에 대한 권한으로 입출력이 1-2초 동안 일시 중지되지만, 그렇지 않으면 입출력이 영향을 받지 않습니다.
+
+GUI 예:
+
+image:smas-preferred-site.png["기본 사이트로 SM의 SystemManager 클립"]
+
+CLI를 통해 다시 변경하는 예:
+
+....
+Cluster2::> snapmirror failover start -destination-path jfs_as2:/cg/jfsAA
+[Job 9575] Job is queued: SnapMirror failover for destination "jfs_as2:/cg/jfsAA                      ".
+
+Cluster2::> snapmirror failover show
+
+Source    Destination                                          Error
+Path      Path        Type     Status    start-time end-time   Reason
+-------- -----------  -------- --------- ---------- ---------- ----------
+jfs_as1:/cg/jfsAA
+         jfs_as2:/cg/jfsAA
+                      planned  completed 9/11/2024  9/11/2024
+                                         09:29:22   09:29:32
+
+The new destination path can be verified as follows:
+
+
+Cluster1::> snapmirror show -destination-path jfs_as1:/cg/jfsAA
+
+                            Source Path: jfs_as2:/cg/jfsAA
+                       Destination Path: jfs_as1:/cg/jfsAA
+                      Relationship Type: XDP
+                Relationship Group Type: consistencygroup
+                 SnapMirror Policy Type: automated-failover-duplex
+                      SnapMirror Policy: AutomatedFailOverDuplex
+                            Tries Limit: -
+                           Mirror State: Snapmirrored
+                    Relationship Status: InSync
+....

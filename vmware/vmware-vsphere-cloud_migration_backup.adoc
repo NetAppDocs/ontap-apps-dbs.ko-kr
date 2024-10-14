@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: vmware/vmware-vsphere-cloud_migration_backup.html 
 keywords: Data protection, Space reclamation, VM and datastore cloning, Storage efficiency, thin provisioning, QoS, SIOC, Storage Distributed Resource Scheduler, DRS, Active IQ Unified Manager, Encryption 
-summary: ONTAP 소프트웨어는 하이브리드 클라우드에 대해 광범위한 지원을 제공합니다. 
+summary: ONTAP은 하이브리드 클라우드에 광범위한 지원을 제공합니다. 
 ---
 = 클라우드 마이그레이션 및 백업
 :hardbreaks:
