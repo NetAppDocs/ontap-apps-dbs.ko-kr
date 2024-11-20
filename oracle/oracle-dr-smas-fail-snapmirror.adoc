@@ -2,9 +2,10 @@
 sidebar: sidebar 
 permalink: oracle/oracle-dr-smas-fail-snapmirror.html 
 keywords: Oracle, SnapMirror active sync, SMBC, failover 
-summary: Oracle 및 SnapMirror 액티브 동기식 페일오버 
+summary: SnapMirror active sync - SnapMirror 통신 오류입니다 
+searchtitle: SnapMirror active sync - SnapMirror 통신 오류입니다 
 ---
-= SnapMirror 활성 동기화 - SnapMirror 연결이 끊겼습니다
+= SnapMirror 통신 실패
 :allow-uri-read: 
 :imagesdir: ../media/
 

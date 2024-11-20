@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mysql/mysql-mysql-over-nfs.html 
 keywords: MySQL,MariaDB,NFS 
 summary: NFS와 함께 MySQL을 사용합니다 
+searchtitle: NFS와 함께 MySQL을 사용합니다 
 ---
-= NFS와 함께 MySQL을 사용합니다
+= NFS 를 참조하십시오
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

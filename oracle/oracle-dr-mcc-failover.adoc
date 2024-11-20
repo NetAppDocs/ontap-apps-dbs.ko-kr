@@ -2,9 +2,10 @@
 sidebar: sidebar 
 permalink: oracle/oracle-dr-mcc-failover.html 
 keywords: Metrocluster, mcc, MCC-IP 
-summary: MetroCluster을 사용한 Oracle 데이터베이스 페일오버 
+summary: MetroCluster을 사용한 Oracle 데이터베이스 DR 
+searchtitle: MetroCluster을 사용한 Oracle 데이터베이스 DR 
 ---
-= MetroCluster을 사용한 Oracle 데이터베이스 페일오버
+= MetroCluster을 사용한 재해 복구
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

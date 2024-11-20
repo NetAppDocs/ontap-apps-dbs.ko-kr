@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dr-smas-arch-rac.html 
 keywords: oracle, active sync, extended rac, RAC 
 summary: SnapMirror 활성 동기화를 사용하는 Oracle RAC 확장 
+searchtitle: SnapMirror 활성 동기화를 사용하는 Oracle RAC 확장 
 ---
-= SnapMirror 활성 동기화를 사용하는 Oracle RAC 확장
+= Oracle RAC 확장
 :allow-uri-read: 
 
 

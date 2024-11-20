@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dr-smas-nonuniform.html 
 keywords: Oracle,SM-as,active sync,nonuniform 
 summary: Oracle 및 SM - 비균일 액세스 
+searchtitle: Oracle 및 SM - 비균일 액세스 
 ---
-= Oracle 및 SM - 비균일 액세스
+= 비균일 액세스
 :allow-uri-read: 
 :imagesdir: ../media/
 

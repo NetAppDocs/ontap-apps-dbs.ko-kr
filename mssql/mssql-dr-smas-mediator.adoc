@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mssql/mssql-dr-smas-mediator.html 
 keywords: MSSQL,SQL Server, SnapMirror active sync, SMBC, overview 
 summary: Microsoft SQL Server 및 ONTAP 중재자 
+searchtitle: Microsoft SQL Server 및 ONTAP 중재자 
 ---
-= Microsoft SQL Server 및 ONTAP 중재자
+= ONTAP 중재자
 :allow-uri-read: 
 :imagesdir: ../media/
 

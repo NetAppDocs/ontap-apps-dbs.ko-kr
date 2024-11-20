@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-migration-fli-protocol-conversion.html 
 keywords: migration, oracle, FLI 
 summary: FLI-프로토콜 변환을 통한 Oracle 마이그레이션 
+searchtitle: FLI-프로토콜 변환을 통한 Oracle 마이그레이션 
 ---
-= FLI-프로토콜 변환을 통한 Oracle 마이그레이션
+= 프로토콜 변환
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

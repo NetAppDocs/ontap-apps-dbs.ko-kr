@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-storage-san-config-lvm-striping.html 
 keywords: SAN, ASM, LVM 
 summary: Oracle 데이터베이스에 대한 LVM 스트라이프 구성 
+searchtitle: Oracle 데이터베이스를 사용한 LVM 스트라이핑 
 ---
-= Oracle 데이터베이스를 사용한 LVM 스트라이핑
+= LVM 스트라이핑
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

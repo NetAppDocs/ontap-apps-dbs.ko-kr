@@ -4,7 +4,7 @@ permalink: oracle/oracle-storage-san-config-asmru.html
 keywords: ontap, thin provisioning 
 summary: ONTAP 제로 블록 감지 기능이 있는 ASM 재생 유틸리티 
 ---
-= ASM 재생 유틸리티 및 ONTAP 제로 블록 감지
+= ASM 재생 유틸리티(ASMRU)
 :allow-uri-read: 
 
 

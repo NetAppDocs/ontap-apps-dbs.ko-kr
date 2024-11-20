@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dp-overview.html 
 keywords: oracle, database, ontap 
 summary: Oracle 데이터 보호 개요 
+searchtitle: ONTAP을 사용한 Oracle 데이터 보호 
 ---
-= ONTAP을 사용한 Oracle 데이터 보호
+= ONTAP를 사용한 데이터 보호
 :allow-uri-read: 
 
 

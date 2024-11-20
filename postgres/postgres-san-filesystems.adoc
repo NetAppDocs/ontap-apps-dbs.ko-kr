@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: postgres/postgres-san-filesystems.html 
 keywords: PostgreSQL,database,postgres 
 summary: ONTAP 기반 SAN을 사용한 PostgreSQL 데이터베이스 
+searchtitle: SAN 파일 시스템을 사용한 PostgreSQL 
 ---
-= SAN 파일 시스템을 사용한 PostgreSQL
+= 산
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

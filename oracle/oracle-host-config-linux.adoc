@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-host-config-linux.html 
 keywords: oracle, database, ontap, linux, nfs, xfs, ext4, slot tables 
 summary: Oracle 데이터베이스 및 Linux 
+searchtitle: Oracle 데이터베이스 및 Linux 
 ---
-= Oracle 데이터베이스 및 Linux
+= 리눅스
 :allow-uri-read: 
 
 

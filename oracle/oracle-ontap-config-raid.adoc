@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-ontap-config-raid.html 
 keywords: oracle,raid,mirroring 
 summary: RAID 및 Oracle 데이터베이스 
+searchtitle: RAID 및 Oracle 데이터베이스 
 ---
-= RAID 및 Oracle 데이터베이스
+= RAID
 :allow-uri-read: 
 
 

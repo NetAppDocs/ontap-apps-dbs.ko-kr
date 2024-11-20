@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mssql/mssql-dr-smas-nonuniform.html 
 keywords: MSSQL,SQL Server, SnapMirror active sync, SMBC, overview 
 summary: Microsoft SQL Server 및 SM - 비균일 액세스로 사용됩니다 
+searchtitle: Microsoft SQL Server 및 SM - 비균일 액세스로 사용됩니다 
 ---
-= Microsoft SQL Server 및 SM - 비균일 액세스로 사용됩니다
+= 비균일 액세스
 :allow-uri-read: 
 :imagesdir: ../media/
 

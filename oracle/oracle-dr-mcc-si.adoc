@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dr-mcc-si.html 
 keywords: oracle, metrocluster, mcc, MCC-IP 
 summary: MetroCluster에 있는 Oracle 단일 인스턴스 
+searchtitle: MetroCluster에 있는 Oracle 단일 인스턴스 
 ---
-= MetroCluster에 있는 Oracle 단일 인스턴스
+= Oracle 단일 인스턴스
 :allow-uri-read: 
 
 

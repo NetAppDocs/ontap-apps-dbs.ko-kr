@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mssql/mssql-storage-efficiency.html 
 keywords: MSSQL,SQL Server, efficiency, compression, deduplication 
 summary: Microsoft SQL Server 및 ONTAP 스토리지 효율성 
+searchtitle: Microsoft SQL Server 및 스토리지 효율성 
 ---
-= Microsoft SQL Server 및 스토리지 효율성
+= 스토리지 효율성
 :allow-uri-read: 
 :imagesdir: ../media/
 

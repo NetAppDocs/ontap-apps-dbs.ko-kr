@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-storage-nfs-config-dnfs.html 
 keywords: oracle, database, ontap, nfs, ADR, dNFS 
 summary: Oracle Direct NFS 
+searchtitle: Oracle Direct NFS 
 ---
-= Oracle directNFS를 참조하십시오
+= Oracle Direct NFS(dNFS)
 :allow-uri-read: 
 
 
@@ -38,6 +39,8 @@ DNS, DDNS, NIS 또는 기타 방법을 포함하여 어떤 유형의 라운드 �
 Oracle dNFS는 dNFS 라이브러리를 활성화하는 것 외에 별도의 구성 없이도 NFSv3과 함께 사용할 수 있습니다(필요한 특정 명령에 대한 Oracle 설명서 참조). 그러나 dNFS가 연결을 설정할 수 없는 경우 커널 NFS 클라이언트로 자동 되돌아갈 수 있습니다. 이 경우 성능에 심각한 영향을 미칠 수 있습니다.
 
 NFSv4.X를 사용하여 여러 인터페이스에서 dNFS 멀티플렉싱을 사용하거나 암호화를 사용하려면 oranfstab 파일을 구성해야 합니다. 구문은 매우 엄격합니다. 파일의 작은 오류로 인해 시작 시 중단되거나 oranfstab 파일을 우회할 수 있습니다.
+
+쓰기 당시에는 dNFS 다중 경로가 최신 버전의 Oracle Database와 NFSv4.1에서 작동하지 않습니다. NFSv4.1을 프로토콜로 지정하는 oranfstab 파일은 지정된 내보내기에 대해 단일 PATH 명령만 사용할 수 있습니다. 그 이유는 ONTAP가 ClientID 트렁킹을 지원하지 않기 때문입니다. 이 제한을 해결하기 위한 Oracle Database 패치는 향후 제공될 수 있습니다.
 
 특정 dNFS가 예상대로 작동하는 유일한 방법은 v$dNFS 테이블을 쿼리하는 것입니다.
 

@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-host-config-hp-ux.html 
 keywords: oracle, database, ontap, hp-ux 
 summary: HP-UX를 사용하는 Oracle 데이터베이스 
+searchtitle: HP-UX를 사용하는 Oracle 데이터베이스 
 ---
-= HP-UX를 사용하는 Oracle 데이터베이스
+= HP-UX를 참조하십시오
 :allow-uri-read: 
 
 

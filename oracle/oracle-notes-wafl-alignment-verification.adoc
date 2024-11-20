@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-notes-wafl-alignment-verification.html 
 keywords: oracle, database, ontap, wafl, alignment 
 summary: Oracle 데이터베이스에 대한 WAFL 조정 
+searchtitle: Oracle 데이터베이스에 대한 WAFL 정렬 검증 
 ---
-= Oracle 데이터베이스에 대한 WAFL 정렬 검증
+= WAFL 정렬 확인
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

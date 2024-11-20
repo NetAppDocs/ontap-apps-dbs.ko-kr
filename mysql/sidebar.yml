@@ -9,7 +9,7 @@ entries:
   entries:
   - title: 파일 구조
     url: "/mysql/mysql-file-structure.html"
-  - title: 구성 개요
+  - title: 구성 매개 변수
     url: "/mysql/mysql-configuration.html"
   - title: InnoDB_log_file_size입니다
     url: "/mysql/mysql-innodb_log_file_size.html"
@@ -41,7 +41,7 @@ entries:
 - title: 스토리지 구성
   pdf-filename: MySQL의 스토리지 구성입니다
   entries:
-  - title: NFS를 통한 MySQL
+  - title: NFS 를 참조하십시오
     url: "/mysql/mysql-mysql-over-nfs.html"
-  - title: SAN을 통한 MySQL
+  - title: 산
     url: "/mysql/mysql-mysql-over-san.html"

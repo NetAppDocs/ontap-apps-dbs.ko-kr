@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-tiering-retrieval-policies.html 
 keywords: tiering, FabricPool 
 summary: Oracle 데이터베이스 및 FabricPool 검색 정책 
+searchtitle: Oracle 데이터베이스 및 FabricPool 검색 정책 
 ---
-= Oracle 데이터베이스 및 FabricPool 검색 정책
+= 검색 정책
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

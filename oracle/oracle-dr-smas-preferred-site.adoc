@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dr-smas-preferred-site.html 
 keywords: Oracle,SM-as,active sync,preferred 
 summary: Oracle 및 SM - 기본 사이트로 지정 
+searchtitle: Oracle 및 SnapMirror 활성 동기화 기본 사이트 
 ---
-= Oracle 및 SM - 기본 사이트로 지정
+= SnapMirror 활성 동기화 기본 사이트입니다
 :allow-uri-read: 
 :imagesdir: ../media/
 

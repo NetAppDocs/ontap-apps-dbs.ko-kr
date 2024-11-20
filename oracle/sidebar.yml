@@ -142,7 +142,7 @@ entries:
     url: "/oracle/oracle-dr-overview.html"
   - title: MetroCluster
     entries:
-    - title: MetroCluster을 통한 Oracle 페일오버
+    - title: MetroCluster을 사용한 Oracle DR
       url: "/oracle/oracle-dr-mcc-failover.html"
     - title: 물리적 아키텍처
       url: "/oracle/oracle-dr-mcc-physical.html"

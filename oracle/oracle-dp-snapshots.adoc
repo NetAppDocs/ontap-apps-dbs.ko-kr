@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dp-snapshots.html 
 keywords: oracle, database, ontap, snapshots 
 summary: ONTAP 기반 Oracle 데이터베이스 및 스냅샷의 역할 
+searchtitle: Oracle 데이터베이스 및 스냅샷 기반 백업 
 ---
-= Oracle 데이터베이스 및 스냅샷 기반 백업
+= 스냅샷 기반 백업
 :allow-uri-read: 
 
 

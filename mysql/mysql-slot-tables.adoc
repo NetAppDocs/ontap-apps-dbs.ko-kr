@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mysql/mysql-slot-tables.html 
 keywords: MySQL,MariaDB,TR-4722 
 summary: MySQL 및 NFSv3 슬롯 테이블 
+searchtitle: MySQL 및 NFSv3 슬롯 테이블 
 ---
-= MySQL 및 NFSv3 슬롯 테이블
+= NFSv3 슬롯 테이블
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

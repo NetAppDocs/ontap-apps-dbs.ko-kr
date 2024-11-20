@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dp-storage-snapshot-optimized-backups.html 
 keywords: oracle, data protection, snapshot-optimized, crash-consistent 
 summary: Oracle Storage Snapshot Optimized Backups의 약어입니다 
+searchtitle: Oracle Database Storage Snapshot Optimized Backups의 약어입니다 
 ---
-= Oracle Database Storage Snapshot Optimized Backups의 약어입니다
+= 스토리지 스냅샷 최적화된 백업
 :allow-uri-read: 
 
 

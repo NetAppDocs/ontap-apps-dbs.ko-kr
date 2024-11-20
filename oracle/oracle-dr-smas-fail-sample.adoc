@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dr-smas-fail-sample.html 
 keywords: Oracle, SnapMirror active sync, SMBC, failover 
 summary: Oracle 및 SnapMirror 액티브 동기식 페일오버 
+searchtitle: SnapMirror 활성 동기화 샘플 아키텍처가 포함된 Oracle 
 ---
-= SnapMirror 활성 동기화 샘플 아키텍처가 포함된 Oracle
+= 아키텍처 예
 :allow-uri-read: 
 :imagesdir: ../media/
 

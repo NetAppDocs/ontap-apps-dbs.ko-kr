@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dr-smas-fail-interconnect.html 
 keywords: Oracle, SnapMirror active sync, SMBC, failover 
 summary: Oracle 및 SnapMirror 액티브 동기식 페일오버 
+searchtitle: SnapMirror 활성 동기화 - Oracle RAC 복제의 손실 
 ---
-= SnapMirror 활성 동기화 - Oracle RAC 복제의 손실
+= RAC 상호 연결 오류입니다
 :allow-uri-read: 
 :imagesdir: ../media/
 

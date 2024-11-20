@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-tiering-backups.html 
 keywords: tiering, fabricpool 
 summary: Oracle 백업 계층화 
+searchtitle: Oracle 데이터베이스 백업 계층화 
 ---
-= Oracle 데이터베이스 백업 계층화
+= 백업 계층화
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

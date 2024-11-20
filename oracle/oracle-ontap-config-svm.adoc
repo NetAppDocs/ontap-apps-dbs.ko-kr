@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-ontap-config-svm.html 
 keywords: svm 
 summary: Oracle 데이터베이스용 SVM 프로비저닝 
+searchtitle: Oracle 데이터베이스 및 스토리지 가상 머신 
 ---
-= Oracle 데이터베이스 및 스토리지 가상 머신
+= 스토리지 가상 머신
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

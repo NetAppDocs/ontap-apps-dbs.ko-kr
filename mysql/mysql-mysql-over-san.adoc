@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mysql/mysql-mysql-over-san.html 
 keywords: MySQL,MariaDB,SAN 
 summary: SAN과 함께 MySQL 제공 
+searchtitle: SAN과 함께 MySQL 제공 
 ---
-= SAN과 함께 MySQL 제공
+= 산
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

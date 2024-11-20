@@ -27,7 +27,7 @@ entries:
   entries:
   - title: 네이티브 데이터 보호
     url: "/postgres/postgres-native-dp.html"
-  - title: 스냅샷 기술
+  - title: 스냅샷 수
     url: "/postgres/postgres-snapshot-dp.html"
   - title: 데이터 보호 소프트웨어
     url: "/postgres/postgres-snapcenter-dp.html"

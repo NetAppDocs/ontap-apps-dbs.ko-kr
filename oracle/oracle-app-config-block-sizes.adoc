@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-app-config-block-sizes.html 
 keywords: oracle, database, ontap, SAN, ASM, blocks 
 summary: Oracle 데이터베이스 블록 크기 
+searchtitle: Oracle 데이터베이스 블록 크기 
 ---
-= Oracle 데이터베이스 블록 크기
+= 블록 크기
 :allow-uri-read: 
 
 

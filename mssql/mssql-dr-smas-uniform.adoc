@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mssql/mssql-dr-smas-uniform.html 
 keywords: MSSQL,SQL Server, SnapMirror active sync, SMBC, overview 
 summary: Microsoft SQL Server 및 SM - 단일 액세스 
+searchtitle: Microsoft SQL Server 및 SM - 단일 액세스 
 ---
-= Microsoft SQL Server 및 SM - 단일 액세스
+= 균일한 액세스
 :allow-uri-read: 
 :imagesdir: ../media/
 

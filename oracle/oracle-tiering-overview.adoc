@@ -2,9 +2,10 @@
 permalink: oracle/oracle-tiering-overview.html 
 sidebar: sidebar 
 keywords: tiering, fabricpool 
-summary: Oracle Database FabricPool 계층화 개요 
+summary: Oracle 데이터베이스 FabricPool 계층화 개요 
+searchtitle: Oracle 데이터베이스 FabricPool 계층화 개요 
 ---
-= Oracle 데이터베이스 FabricPool 계층화 개요
+= 개요
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

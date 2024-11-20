@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dp-consistency-group-backup.html 
 keywords: oracle, data, protection, consistency, group, backup, volume, archive, log, redo, controlfiles 
 summary: ONTAP에서 Oracle 데이터베이스에 대한 정합성 보장 그룹 백업 
+searchtitle: Oracle 데이터베이스 정합성 보장 그룹 백업 
 ---
-= Oracle 데이터베이스 정합성 보장 그룹 백업
+= 정합성 보장 그룹 백업
 :allow-uri-read: 
 
 

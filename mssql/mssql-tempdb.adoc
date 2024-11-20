@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mssql/mssql-tempdb.html 
 keywords: MSSQL,SQL Server, tempdb, ONTAP 
 summary: ONTAP에서의 Microsoft SQL Server tempdb 배치 
+searchtitle: Microsoft SQL Server tempdb 파일 
 ---
-= Microsoft SQL Server tempdb 파일
+= tempdb 파일
 :allow-uri-read: 
 :imagesdir: ../media/
 

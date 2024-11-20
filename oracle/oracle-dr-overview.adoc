@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dr-overview.html 
 keywords: metrocluster, syncmirror, oracle 
 summary: ONTAP을 통한 Oracle 데이터베이스 재해 복구 
+searchtitle: ONTAP을 통한 Oracle 데이터베이스 재해 복구 
 ---
-= ONTAP을 통한 Oracle 데이터베이스 재해 복구
+= 개요
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

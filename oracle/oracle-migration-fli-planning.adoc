@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-migration-fli-planning.html 
 keywords: migration, oracle, fli 
 summary: FLI-Planning을 사용한 Oracle 마이그레이션 
+searchtitle: FLI-Planning을 사용한 Oracle 마이그레이션 
 ---
-= FLI-Planning을 사용한 Oracle 마이그레이션
+= 계획 수립
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

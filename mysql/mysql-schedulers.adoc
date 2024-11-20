@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mysql/mysql-schedulers.html 
 keywords: MySQL,MariaDB,schedulers 
 summary: MySQL 및 IO 스케줄러 
+searchtitle: I/O 스케줄러 및 MySQL 
 ---
-= I/O 스케줄러 및 MySQL
+= I/O 스케줄러
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

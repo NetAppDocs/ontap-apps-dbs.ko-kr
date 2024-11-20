@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-host-config-aix.html 
 keywords: oracle, database, ontap, aix, cio 
 summary: AIX를 사용하는 Oracle 데이터베이스 
+searchtitle: IBM AIX를 사용하는 Oracle 데이터베이스 
 ---
-= IBM AIX를 사용하는 Oracle 데이터베이스
+= AIX
 :allow-uri-read: 
 
 

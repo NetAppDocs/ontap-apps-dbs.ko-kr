@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dr-smas-fail-repl.html 
 keywords: Oracle, SnapMirror active sync, SMBC, failover 
 summary: Oracle 및 SnapMirror 액티브 동기식 페일오버 
+searchtitle: SnapMirror active sync - 연결이 완전히 끊겼습니다 
 ---
-= SnapMirror active sync - 연결이 완전히 끊겼습니다
+= 전체 네트워크 상호 연결 실패
 :allow-uri-read: 
 :imagesdir: ../media/
 

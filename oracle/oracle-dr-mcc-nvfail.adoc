@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dr-mcc-nvfail.html 
 keywords: metrocluster, nvfail, switchover 
 summary: Oracle, MetroCluster 및 NVFAIL과 같은 모든 스토리지 시스템을 사용할 수 있습니다 
+searchtitle: 모든 주요 MetroCluster 파이버 채널 인프라 환경을 지원합니다 
 ---
-= 모든 주요 MetroCluster 파이버 채널 인프라 환경을 지원합니다
+= MetroCluster 및 NVFAIL
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

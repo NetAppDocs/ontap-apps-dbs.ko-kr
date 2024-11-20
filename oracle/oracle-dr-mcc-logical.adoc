@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dr-mcc-logical.html 
 keywords: metrocluster, mcc, mcc-ip 
 summary: MetroCluster 논리적 아키텍처와 Oracle 데이터베이스 
+searchtitle: MetroCluster 논리적 아키텍처와 Oracle 데이터베이스 
 ---
-= MetroCluster 논리적 아키텍처와 Oracle 데이터베이스
+= 논리적 아키텍처
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-storage-nfs-config-transfer-sizes.html 
 keywords: NFS 
 summary: Oracle의 NFS 전송 크기 
+searchtitle: Oracle 데이터베이스의 NFS 전송 크기 
 ---
-= Oracle 데이터베이스의 NFS 전송 크기
+= NFS 전송 크기
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

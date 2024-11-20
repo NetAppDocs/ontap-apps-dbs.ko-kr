@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mssql/mssql-dr-smas-failure-scenarios.html 
 keywords: MSSQL,SQL Server, SnapMirror active sync, SMBC, failover 
 summary: Microsoft SQL Server 및 SM - 장애 조치 시나리오 
+searchtitle: Microsoft SQL Server 및 SnapMirror 활성 동기화 장애 조치 
 ---
-= Microsoft SQL Server 및 SnapMirror 활성 동기화 장애 조치
+= 실패 시나리오
 :allow-uri-read: 
 :imagesdir: ../media/
 

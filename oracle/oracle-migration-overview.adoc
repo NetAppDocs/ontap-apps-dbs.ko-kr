@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-migration-overview.html 
 keywords: oracle, ontap, migrations, TR-4534 
 summary: Oracle 스토리지 마이그레이션 소개 
+searchtitle: Oracle 데이터베이스를 ONTAP 스토리지 시스템으로 마이그레이션 
 ---
-= Oracle 데이터베이스를 ONTAP 스토리지 시스템으로 마이그레이션
+= 개요
 :allow-uri-read: 
 
 

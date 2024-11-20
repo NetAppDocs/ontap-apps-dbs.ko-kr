@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mssql/mssql-dr-smas-preferred-site.html 
 keywords: MSSQL,SQL Server, SnapMirror active sync, SMBC, overview 
 summary: Microsoft SQL Server 및 SM - 기본 사이트로 지정 
+searchtitle: Microsoft SQL Server 및 SM - 기본 사이트로 지정 
 ---
-= Microsoft SQL Server 및 SM - 기본 사이트로 지정
+= 기본 사이트
 :allow-uri-read: 
 :imagesdir: ../media/
 

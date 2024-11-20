@@ -3,8 +3,9 @@ permalink: oracle/oracle-app-config-filesystemio_options.html
 sidebar: sidebar 
 keywords: oracle, database, ontap, filesystemio_options, filesystemio, async, directio 
 summary: Oracle 데이터베이스 매개 변수 - filesystemio_options 
+searchtitle: Oracle 데이터베이스 매개 변수 - filesystemio_options 
 ---
-= Oracle 데이터베이스 매개 변수: filesystemio_options
+= filesystemio_options 를 참조하십시오
 :allow-uri-read: 
 
 

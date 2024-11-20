@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-storage-san-config-lun-sizing.html 
 keywords: SAN, ASM, LVM 
 summary: Oracle 데이터베이스 LUN 사이징 및 LUN 수 지침 
+searchtitle: Oracle 데이터베이스 LUN 사이징 및 LUN 수 
 ---
-= Oracle 데이터베이스 LUN 사이징 및 LUN 수
+= LUN 사이징 및 LUN 수
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

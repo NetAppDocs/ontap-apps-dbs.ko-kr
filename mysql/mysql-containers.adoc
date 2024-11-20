@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mysql/mysql-containers.html 
 keywords: MySQL,MariaDB,containers,trident 
 summary: MySQL 컨테이너화 
+searchtitle: MySQL 컨테이너화 
 ---
-= MySQL 컨테이너화
+= 컨테이너화
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

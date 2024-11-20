@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dr-smas-fail-mediator.html 
 keywords: Oracle, SnapMirror active sync, SMBC, failover 
 summary: Oracle 및 SnapMirror 활성 동기화 중재자 오류 
+searchtitle: Oracle 및 SnapMirror 활성 동기화 중재자 오류 
 ---
-= Oracle 및 SnapMirror 활성 동기화 중재자 오류
+= 중재자 고장
 :allow-uri-read: 
 :imagesdir: ../media/
 

@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mssql/mssql-storage-considerations.html 
 keywords: MSSQL,SQL Server, volumes, LUN, SnapCenter 
 summary: Microsoft SQL Server 스토리지 고려사항 
+searchtitle: Microsoft SQL Server 스토리지 고려 사항 
 ---
-= Microsoft SQL Server 스토리지 고려 사항
+= 개요
 :allow-uri-read: 
 :imagesdir: ../media/
 

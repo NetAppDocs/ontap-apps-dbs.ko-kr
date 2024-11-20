@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mysql/mysql-configuration.html 
 keywords: MySQL,MariaDB 
 summary: MySQL 구성 매개변수 
+searchtitle: MySQL 구성 매개변수 
 ---
-= MySQL 구성 매개변수
+= 구성 매개 변수
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

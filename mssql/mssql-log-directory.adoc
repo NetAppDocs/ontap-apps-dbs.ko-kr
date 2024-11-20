@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mssql/mssql-log-directory.html 
 keywords: MSSQL,SQL Server, volumes, LUN, SnapCenter 
 summary: Microsoft SQL Server 로그 디렉터리 
+searchtitle: Microsoft SQL Server 로그 디렉터리 
 ---
-= Microsoft SQL Server 로그 디렉터리
+= 로그 디렉토리
 :allow-uri-read: 
 :imagesdir: ../media/
 

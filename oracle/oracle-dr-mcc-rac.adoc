@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dr-mcc-rac.html 
 keywords: oracle, metrocluster, extended rac, RAC 
 summary: MetroCluster를 사용한 Oracle RAC 확장 
+searchtitle: MetroCluster 기반 Oracle RAC 확장 
 ---
-= MetroCluster에서 Oracle RAC 확장
+= Oracle RAC 확장
 :allow-uri-read: 
 
 

@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dp-nvfail.html 
 keywords: oracle, metrocluster, nvfail 
 summary: Oracle 데이터베이스를 보호하기 위한 NVFAIL 구성 
+searchtitle: Oracle 데이터베이스 및 NVFAIL 
 ---
-= Oracle 데이터베이스 및 NVFAIL
+= NVFAIL(* NVFAIL
 :allow-uri-read: 
 
 

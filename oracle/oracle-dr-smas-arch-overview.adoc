@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dr-smas-arch-overview.html 
 keywords: oracle, active sync, mcc, MCC-IP 
 summary: SnapMirror 활성 동기화가 있는 Oracle 단일 인스턴스 
+searchtitle: SnapMirror 활성 동기화가 있는 Oracle 
 ---
-= SnapMirror 활성 동기화가 있는 Oracle
+= 개요
 :allow-uri-read: 
 
 
