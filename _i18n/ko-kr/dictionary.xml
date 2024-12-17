@@ -2784,17 +2784,13 @@ vSphere 8을 사용하는 NVMe-oF의 경우 자세한 내용은 을 참조하십
   <block id="d8a78b994fcd4e04901203a2e7bc6414" category="paragraph">다음 스크린샷은 AIQUM 확장 토폴로지를 보여줍니다.</block>
   <block id="f02207fb26160d7e47cf5ea35d07df03" category="doc">데이터 저장소 및 프로토콜</block>
   <block id="a7c815fafe60ae637d38216fa6300395" category="list-text">FCP</block>
-  <block id="14eae6ee278098bfad4f8a10fd6c1195" category="list-text">FCoE 를 참조하십시오</block>
   <block id="26bcb9f1cb6f391f4b2c18e676bb458d" category="list-text">NVMe/FC</block>
   <block id="8b7c42123642e2e4ea7dd426aeb2de58" category="list-text">NVMe/TCP</block>
   <block id="e4e1c13bb0b14f6cb7608cbecea948ef" category="list-text">iSCSI</block>
   <block id="f7d773fd2896401c143676940bc001fc" category="list-text">NFS v3</block>
   <block id="0b99b245267ef194ca3b9f6e694b0983" category="list-text">NFS v4.1</block>
-  <block id="cfa070ed8af17c3125cfd1530fbd387a" category="paragraph">FCP, FCoE, NVMe/FC, NVMe/TCP 및 iSCSI는 vSphere VMFS(Virtual Machine File System)를 사용하여 ONTAP FlexVol 볼륨에 포함된 ONTAP LUN 또는 NVMe 네임스페이스 내에 VM을 저장하는 블록 프로토콜입니다. VMware는 vSphere 7.0부터 운영 환경에서는 더 이상 소프트웨어 FCoE를 지원하지 않습니다. NFS는 VMFS 없이 VM을 데이터 저장소(단순한 ONTAP 볼륨)에 배치하는 파일 프로토콜입니다. SMB(CIFS), iSCSI, NVMe/TCP 또는 NFS를 게스트 OS에서 ONTAP로 직접 사용할 수도 있습니다.</block>
   <block id="2b19cb432f68f1ba3dc7b0f175a14778" category="inline-link">VMware 구성 최대값</block>
-  <block id="f8ca1b19553d4c965e40e9eeb1eb5aca" category="paragraph">다음 표에서는 ONTAP에서 vSphere가 지원하는 기존 데이터 저장소 기능을 보여 줍니다. 이 정보는 VVOL 데이터 저장소에 적용되지 않지만 일반적으로 지원되는 ONTAP 릴리즈를 사용하는 vSphere 6.x 이상 릴리즈에 적용됩니다. 상담도 할 수 있습니다<block ref="61b579b455015dfa2bbf16bf62f07f93" category="inline-link-rx"></block> 특정 제한 사항을 확인하기 위한 특정 vSphere 릴리즈</block>
   <block id="9da73946f1bc3be4a41898d06c9d2e8b" category="cell">기능/특징</block>
-  <block id="c982f804d02e2d7e937f125d2cac1024" category="cell">FC/FCoE</block>
   <block id="6151632541dcd80356c6c76b34d69d0c" category="cell">NVMe - oF</block>
   <block id="520d0db389f362bf79ef56ca0af3dcab" category="cell">형식</block>
   <block id="99a3142584ca8ad0a3afadeaa6f2ef69" category="cell">VMFS 또는 RDM(Raw Device Mapping)</block>
@@ -2821,13 +2817,10 @@ vSphere 8을 사용하는 NVMe-oF의 경우 자세한 내용은 을 참조하십
   <block id="e95b58d02782c970bb339c6cc587ff39" category="cell">마이그레이션</block>
   <block id="0486e0e3dc3e86859f43b6d8e32b8071" category="cell">VMware HA입니다</block>
   <block id="8be6bd7f20474cbefdd496cb9fd495ca" category="cell">SDRS(Storage Distributed Resource Scheduler)</block>
-  <block id="4244919a64848265426dfd82a14f8248" category="cell">VMware VADP(vStorage APIs for Data Protection) 지원 백업 소프트웨어</block>
   <block id="28c2f8ab9cdbf296aa4261bc3c58ba0d" category="cell">VM 내의 MSCS(Microsoft Cluster Service) 또는 장애 조치 클러스터링</block>
-  <block id="01a9a3b8d0fcae3055dc91935e8ec6c6" category="cell">예 *</block>
   <block id="aa7f77e663b832d5b0e544c5511e680c" category="cell">지원되지 않습니다</block>
   <block id="aa18abedec09bd4f85e612c307e2eaa6" category="cell">내결함성</block>
   <block id="bfd52522de4ac6efd6f680e0e754eeb5" category="cell">사이트 복구 관리자</block>
-  <block id="d6407966cf588d8d78d4f7e65f1ea6fd" category="cell">V3만 해당**</block>
   <block id="17d495427086fa21259b9df40b27e00a" category="cell">씬 프로비저닝된 VM(가상 디스크)</block>
   <block id="4ee7af004efef335d6a14c60ee758f5e" category="cell">예
 VAAI를 사용하지 않는 경우 NFS에서 모든 VM에 대해 이 설정이 기본값입니다.</block>
@@ -2859,8 +2852,6 @@ VAAI를 사용하지 않는 경우 NFS에서 모든 VM에 대해 이 설정이 �
   <block id="4e3d259d82a536e12c5c9c948b62e26a" category="cell">NDMP 세분성</block>
   <block id="90d45e02e50c81603c36a4e4ad3649d9" category="cell">데이터 저장소 또는 VM</block>
   <block id="8339c514e73f5cced3b83d504d60441b" category="inline-link">Windows Server 장애 조치 클러스터링에 대한 설치</block>
-  <block id="45f7e6f7f6f0f4093754d7d48810e17f" category="paragraph">* NetApp은 VMFS 데이터 저장소에 다중 writer 지원 VMDK가 아닌 Microsoft 클러스터에 게스트 내 iSCSI를 사용할 것을 권장합니다. 이 접근 방식은 Microsoft 및 VMware에서 완벽하게 지원되며 ONTAP(사내 또는 클라우드의 ONTAP 시스템에 대한 SnapMirror)를 통해 뛰어난 유연성을 제공하고 쉽게 구성 및 자동화할 수 있으며 SnapCenter를 통해 보호할 수 있습니다. vSphere 7은 새로운 클러스터 VMDK 옵션을 추가합니다. 이는 클러스터 VMDK를 지원하는 FC 프로토콜을 통해 데이터 저장소를 제공해야 하는 멀티writer 지원 VMDK와 다릅니다. 기타 제한 사항이 적용됩니다. VMware를 참조하십시오<block ref="b158594c147457b5b6417413cb30f800" category="inline-link-rx"></block> 구성 지침 설명서.</block>
-  <block id="e2bd40041a6472b580305ce9017b0b2e" category="paragraph">** NVMe-oF 및 NFS v4.1을 사용하는 데이터 저장소에는 vSphere 복제가 필요합니다. 스토리지 기반 복제는 SRM에서 지원되지 않습니다.</block>
   <block id="54b3e11ce37eaaa9884f4086e72dd2be" category="section-title">스토리지 프로토콜 선택</block>
   <block id="0212b4e8bc965dcd8a7ff771dd96bf21" category="paragraph">프로토콜 선택을 고려할 때 다음과 같은 요소가 유용할 수 있습니다.</block>
   <block id="0425ddb6dbbe7f13280e19e1f925b0a8" category="list-text">* 현재 고객 환경 * IT 팀은 일반적으로 이더넷 IP 인프라 관리에 능숙하지만, 모든 팀이 FC SAN 패브릭 관리에 능숙하지는 않습니다. 그러나 스토리지 트래픽용으로 설계되지 않은 범용 IP 네트워크를 사용하는 것은 잘 작동하지 않을 수 있습니다. 현재 보유하고 있는 네트워킹 인프라, 계획된 개선 사항, 이를 관리할 직원의 기술 및 가용성을 고려하십시오.</block>
@@ -2869,10 +2860,7 @@ VAAI를 사용하지 않는 경우 NFS에서 모든 VM에 대해 이 설정이 �
   <block id="530c759326761c6ac026b313985b255f" category="list-text">* 스토리지 공간 투명성. * 씬 프로비저닝이 즉시 절약 효과를 반환하므로 NFS 환경에서는 일반적으로 스토리지 사용률을 쉽게 확인할 수 있습니다. 마찬가지로, 같은 데이터 저장소 또는 다른 스토리지 시스템 볼륨에 있는 다른 VM에 대해서도 중복 제거 및 클론 생성 절약 효과를 즉시 사용할 수 있습니다. 일반적으로 VM 밀도는 NFS 데이터 저장소에서 더 높으며, 관리할 데이터 저장소 수를 줄여 데이터 중복 제거 비용을 절감할 수 있습니다.</block>
   <block id="16ee928b12bc598bf52b0f312879ec95" category="section-title">데이터 저장소 레이아웃</block>
   <block id="b8c499c7b537f5bd4e51b0a6d6a1e9d0" category="list-text">ONTAP NFS 데이터 저장소를 사용하여 vSphere를 구축하면 관리가 용이한 고성능 구축이 가능하기 때문에 블록 기반 스토리지 프로토콜로는 얻을 수 없는 VM-데이터 저장소 비율을 제공할 수 있습니다. 이 아키텍처를 사용하면 데이터 저장소 밀도가 10배 증가하여 데이터 저장소 수가 서로 관련지어 줄어들 수 있습니다. 더 큰 데이터 저장소가 스토리지 효율성에 이점을 제공하고 운영 이점을 제공할 수 있지만, 하드웨어 리소스의 최대 성능을 얻기 위해 최소 4개의 데이터 저장소(FlexVol 볼륨)를 사용하여 VM을 단일 ONTAP 컨트롤러에 저장하는 것이 좋습니다. 이 방법을 사용하면 복구 정책이 서로 다른 데이터 저장소를 설정할 수도 있습니다. 비즈니스 요구 사항에 따라 다른 사람보다 더 자주 백업하거나 복제할 수 있는 경우도 있습니다. FlexGroup 볼륨은 설계상 확장되므로 성능을 위해 여러 데이터 저장소가 필요하지 않습니다.</block>
-  <block id="e15ed0ec7af4278259b7618024b3e7ce" category="list-text">NetApp은 대부분의 NFS 데이터 저장소에 FlexVol 볼륨을 사용할 것을 권장합니다. ONTAP 9.8부터 FlexGroup 볼륨은 데이터 저장소로도 사용할 수 있으며, 일반적으로 특정 활용 사례에 권장됩니다. qtree와 같은 다른 ONTAP 스토리지 컨테이너는 현재 VMware vSphere용 ONTAP 툴 또는 VMware vSphere용 NetApp SnapCenter 플러그인에서 지원되지 않으므로 일반적으로 권장되지 않습니다. 그렇지만 단일 볼륨에서 데이터 저장소를 여러 Qtree로 구축하면 고도의 자동화 환경에서 데이터 저장소 레벨 할당량 또는 VM 파일 클론의 이점을 누릴 수 있습니다.</block>
   <block id="dc4d78be836807b32c7ef7f42028b1ef" category="list-text">FlexVol 볼륨 데이터 저장소의 적절한 크기는 약 4TB에서 8TB입니다. 이 크기는 성능, 관리 용이성 및 데이터 보호 측면에서 우수한 균형 점입니다. 작게 시작하고(예: 4TB) 필요에 따라 데이터 저장소를 최대 100TB까지 확장할 수 있습니다. 작은 데이터 저장소가 백업이나 재해 발생 후 복구 속도가 빨라지므로 클러스터 간에 빠르게 이동할 수 있습니다. ONTAP 자동 크기 조정을 사용하면 사용된 공간이 변경될 때 볼륨을 자동으로 확대 및 축소할 수 있습니다. VMware vSphere 데이터 저장소 용량 할당 마법사용 ONTAP 툴은 새 데이터 저장소에 대해 기본적으로 자동 크기 조정을 사용합니다. System Manager 또는 명령줄을 사용하여 확장 및 축소 임계값과 최대 및 최소 크기를 추가로 사용자 지정할 수 있습니다.</block>
-  <block id="964a81e46088ae1cc6306072464a9d73" category="list-text">또는 FC, iSCSI 또는 FCoE에서 액세스하는 LUN으로 VMFS 데이터 저장소를 구성할 수도 있습니다. VMFS를 사용하면 클러스터의 모든 ESX 서버에서 기존 LUN에 동시에 액세스할 수 있습니다. VMFS 데이터 저장소의 크기는 최대 64TB이고 최대 32개의 2TB LUN(VMFS 3) 또는 단일 64TB LUN(VMFS 5)으로 구성될 수 있습니다. ONTAP의 최대 LUN 크기는 대부분의 시스템에서 16TB이고, All-SAN 어레이 시스템에서 128TB입니다. 따라서 16TB LUN 4개를 사용하여 대부분의 ONTAP 시스템에서 VMFS 5 데이터 저장소의 최대 크기를 생성할 수 있습니다. 여러 LUN(하이엔드 FAS 또는 AFF 시스템 사용)을 사용하는 높은 I/O 워크로드에 성능 이점이 있을 수 있지만, 데이터 저장소 LUN을 생성, 관리 및 보호하고 가용성 위험을 높이는 관리 복잡성이 추가되어 이러한 이점을 얻을 수 있습니다. 일반적으로 각 데이터 저장소마다 큰 단일 LUN을 사용하는 것이 좋으며 16TB 데이터 저장소를 넘어서는 특별한 요구 사항이 있는 경우에만 확장할 것을 권장합니다. NFS와 마찬가지로, 단일 ONTAP 컨트롤러에서 성능을 최대화하기 위해 여러 데이터 저장소(볼륨)를 사용하는 것을 고려합니다.</block>
-  <block id="c74cab014e402128efd8102b941c0b0c" category="list-text">기존 게스트 운영 체제(OS)는 최고의 성능과 스토리지 효율성을 위해 스토리지 시스템과 조율해야 했습니다. 그러나 Red Hat과 같은 Microsoft 및 Linux 배포업체에서 제공하는 최신 공급업체 지원 OS는 더 이상 가상 환경에서 파일 시스템 파티션을 기본 스토리지 시스템의 블록과 일치시킬 필요가 없습니다. 조정이 필요한 이전 OS를 사용하는 경우 NetApp 지원 기술 자료에서 "VM 정렬"을 사용하는 문서를 검색하거나 NetApp 세일즈 또는 파트너 담당자에게 TR-3747 사본을 요청합니다.</block>
   <block id="8c761039ef4dd69451490b849ace1f82" category="list-text">게스트 OS 내에서 조각 모음 유틸리티를 사용하지 마십시오. 이 유틸리티는 성능 이점을 제공하지 않으며 스토리지 효율성 및 스냅샷 공간 사용에 영향을 줍니다. 또한 게스트 OS에서 가상 데스크톱에 대한 검색 인덱싱을 해제하는 것도 고려하십시오.</block>
   <block id="14abb814748566a24367c4459a54840b" category="list-text">ONTAP은 혁신적인 스토리지 효율성 기능으로 업계에서 최고의 가용성을 제공하므로 사용 가능한 디스크 공간을 최대한 활용할 수 있습니다. AFF 시스템은 기본 인라인 중복제거 및 압축을 사용해 이 효율성을 더욱 높여줍니다. 데이터는 애그리게이트 내 모든 볼륨에서 중복 제거되므로, 더 이상 단일 데이터 저장소 내에서 유사한 운영 체제 및 유사한 애플리케이션을 그룹화할 필요가 없으며 절약 효과를 극대화할 수 있습니다.</block>
   <block id="446548f2b1301893641e29657fc7fe53" category="inline-link-macro">ONTAP 기반의 Oracle 데이터베이스</block>
@@ -2883,7 +2871,6 @@ VAAI를 사용하지 않는 경우 NFS에서 모든 VM에 대해 이 설정이 �
   <block id="e512c890754c686d8deccac97d84a290" category="list-text">적절한 대상 데이터 저장소로 마이그레이션을 신중하게 계획할 수 있지만, 대개 대량으로 마이그레이션한 다음 필요에 따라 나중에 구성하는 것이 더 간단합니다. 서로 다른 스냅샷 일정과 같은 특정 데이터 보호 요구 사항이 있는 경우 이 방법을 사용하여 다른 데이터 저장소로 마이그레이션할 수 있습니다.</block>
   <block id="616b2180a0659911fed5aa758dba722c" category="list-text">대부분의 VM 및 해당 스토리지는 실행 중(핫) 마이그레이션될 수 있지만 다른 스토리지 시스템에서 ISO, LUN 또는 NFS 볼륨과 같은 연결된(데이터 저장소 아님) 스토리지를 마이그레이션하려면 콜드 마이그레이션이 필요할 수 있습니다.</block>
   <block id="9fb2cc2ced88ce872ef16c37d8284360" category="paragraph">이 플러그인은 vSphere 환경에서 다른 ONTAP 툴을 사용하는 데에도 도움이 됩니다. VMware VAAI용 NFS 플러그인을 설치하면 VM 클론 생성 작업, 일반 가상 디스크 파일에 대한 공간 예약 및 ONTAP 스냅샷 오프로드를 위해 ONTAP로 복사 오프로드를 수행할 수 있습니다.</block>
-  <block id="9baea886f208a41896164d4ade5b3fde" category="paragraph">일반적으로, vCenter 내에서 VMware vSphere 인터페이스에 ONTAP 툴을 사용하여 기존 데이터 저장소와 VVOL 데이터 저장소를 프로비저닝하면 모범 사례를 따를 수 있습니다.</block>
   <block id="6161d374e9022f89382fd63b4be15aa1" category="section-title">일반 네트워킹</block>
   <block id="c7949782ad094d3ffc126bee722642a3" category="list-text">Cisco vPC(Virtual PortChannel)와 같은 다중 섀시 링크 통합 그룹 접근 방식을 사용하여 두 개의 별도 스위치 섀시에 있는 포트의 링크 집계를 지원하는 스위치를 사용합니다.</block>
   <block id="9dc1904e0c3ace141704b477cd9b345d" category="inline-link">네트워크 관리</block>
@@ -3732,8 +3719,6 @@ HA 쌍당 최소 2개의 LIF를 생성합니다. 작업 부하에 따라 더 많
   <block id="b47354fcd7d17ab4fbb3283f71677efe" category="paragraph">SnapMirror Active Sync는 두 가지 방법으로 배포할 수도 있습니다.</block>
   <block id="314084a577b998d8089dff72c98c58b0" category="list-text">비대칭</block>
   <block id="40e2e641bad11918585c3dd4f76c2716" category="list-text">대칭(ONTAP 9.14.1의 비공개 미리보기)</block>
-  <block id="b9ca5ba97cf75d3dafb51f78e073770a" category="inline-link">NetApp 문서</block>
-  <block id="1c71125ba0668792e46d93c17dc6c428" category="paragraph">을 참조하십시오<block ref="9ace5d3ebe2fe57037322de54ac9a869" category="inline-link-rx"></block> SnapMirror 액티브 동기화에 대한 특정 설계 및 구축 정보를 제공합니다.</block>
   <block id="bca8b52c503406abc3e9e50c5352d0a2" category="paragraph">이 문서에서는 VMware의 업계 최고 수준의 DR(재해 복구) 소프트웨어인 VMware SRM(Site Recovery Manager)용 ONTAP 솔루션에 대해 소개합니다. 최신 제품 정보와 Best Practice를 통해 배포를 간소화하고 위험을 줄이며 지속적인 관리를 간소화할 수 있습니다.</block>
   <block id="4f46fffb0ac7017fd2b42c10d6aa03fc" category="paragraph">VM을 백업하고 신속하게 복구하는 것은 ONTAP for vSphere의 탁월한 강점 중 하나로서, vCenter에서 VMware vSphere용 SnapCenter 플러그인을 사용하여 이러한 기능을 쉽게 관리할 수 있습니다.</block>
   <block id="b69cd5a82aaf0c524a71d46ec6fdd29c" category="cell">NFS v4.1 세션 트렁킹에는 ONTAP 9.14.1 이상이 필요합니다</block>
@@ -5755,7 +5740,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="14f3c0fa1399e57b5998b528cc5f3515" category="paragraph">ONTAP은 특히 엔터프라이즈급 스케일아웃 NAS 어레이입니다. ONTAP를 사용하면 VMware vSphere가 여러 ESXi 호스트에서 NFS 연결 데이터 저장소에 동시에 액세스할 수 있으므로 VMFS 파일 시스템에 적용되는 제한을 훨씬 초과합니다. vSphere와 함께 NFS를 사용하면 섹션에서 언급한 것처럼 사용 편의성 및 스토리지 효율성 가시성의 이점을 얻을 수 <block ref="72b655a9973dbed02099f5e63762d591" category="inline-link-macro-rx"></block>있습니다.</block>
   <block id="98d3ef3a1c0f94d4ecc34aef4673ce8b" category="paragraph">ONTAP은 iSCSI, 파이버 채널 프로토콜(FCP 또는 FC - Short) 및 NVMe-oF(NVMe over Fabrics)를 사용하여 VMware vSphere를 위한 엔터프라이즈급 블록 스토리지를 제공합니다. 다음은 vSphere 및 ONTAP를 사용하여 VM 스토리지용 블록 프로토콜을 구축하는 Best Practice입니다.</block>
   <block id="8fabf36e54be557b0b3c16cc181ccef7" category="paragraph">SLM은 특정 LUN에 경로를 알리는 노드를 제한합니다. NetApp 모범 사례로서, SVM당 노드당 하나 이상의 LIF를 가지고 SLM을 사용하여 LUN 및 HA 파트너를 호스팅하는 노드에 공고되는 경로를 제한하는 것입니다. 다른 경로가 존재하지만 기본적으로 알려지지 않습니다. SLM 내에서 ADD 및 REMOVE 노드 인수로 보급된 경로를 수정할 수 있습니다. 8.3 이전 릴리즈에서 생성된 LUN은 모든 경로를 광고하고 호스팅 HA 쌍의 경로만 광고하도록 수정해야 합니다. SLM에 대한 자세한 내용은 의 섹션 5.9<block ref="a2bae1e6a9d1ce7703c1f95bb6ec1d6e" category="inline-link-rx"></block>를 참조하십시오. 이전 portset 방법을 사용하여 LUN에 사용 가능한 경로를 더 줄일 수도 있습니다. Portsets는 igroup의 이니시에이터가 LUN을 볼 수 있는 가시적인 경로의 수를 줄여 줍니다.</block>
-  <block id="9f429a2a2cb5d9d82853efd63cd4f4ce" category="paragraph">VMware vSphere를 ONTAP를 실행하는 시스템의 데이터 저장소에 연결하는 데 7가지 프로토콜이 사용됩니다.</block>
   <block id="0783a52eeafbf6085600efe3ac209a9c" category="paragraph">ONTAP를 실행하는 시스템은 모든 주요 스토리지 프로토콜을 지원하므로 고객은 기존 및 계획된 네트워킹 인프라 및 직원 기술에 따라 환경에 가장 적합한 시스템을 선택할 수 있습니다. NetApp 테스트 결과, 유사한 회선 속도에서 실행되는 프로토콜 간에는 일반적으로 차이가 거의 없으므로 원시 프로토콜 성능보다 네트워크 인프라 및 직원 기능에 초점을 맞추는 것이 가장 좋습니다.</block>
   <block id="ef7f5a0b4e0866202a92874cc85a2fd2" category="list-text">보다 신중한 마이그레이션이 필요한 가상 머신에는 연결된 스토리지를 사용하는 데이터베이스와 애플리케이션이 포함됩니다. 일반적으로 마이그레이션 관리에 애플리케이션 툴을 사용하는 것을 고려합니다. Oracle의 경우 RMAN 또는 ASM과 같은 Oracle 툴을 사용하여 데이터베이스 파일을 마이그레이션할 수 있습니다. 자세한 내용은 을<block ref="74eec9db95a0d18126c677c2dcc1d6f1" category="inline-link-rx"></block> 참조하십시오. 마찬가지로 SQL Server의 경우 SQL Server Management Studio 또는 SnapManager for SQL Server 또는 SnapCenter와 같은 NetApp 툴을 사용하는 것이 좋습니다.</block>
   <block id="4adbfc6cb6ee114e186e01168d24a89b" category="paragraph">ONTAP를 실행하는 시스템과 함께 vSphere를 사용할 때 가장 중요한 모범 사례는 VMware vSphere 플러그인(이전의 가상 스토리지 콘솔)용 ONTAP 툴을 설치하고 사용하는 것입니다. 이 vCenter 플러그인을 사용하면 SAN 또는 NAS를 사용할 때 스토리지 관리를 간소화하고, 가용성을 높이고, 스토리지 비용과 운영 오버헤드를 줄일 수 있습니다. 데이터 저장소를 프로비저닝하는 모범 사례를 사용하고 다중 경로 및 HBA 시간 초과를 위해 ESXi 호스트 설정을 최적화합니다(부록 B에 설명되어 있음). vCenter 플러그인이기 때문에 vCenter 서버에 접속하는 모든 vSphere 웹 클라이언트에서 사용할 수 있습니다.</block>
@@ -5924,4 +5908,26 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="e9afc81d3b8e2990f966bb247fa75a6b" category="list-text">8개 볼륨의 LUN 8개를 사용하여 클러스터의 모든 노드에 대해 한 번에 2개의 LUN을 추가합니다.</block>
   <block id="eb75aeb3b4b2b9734ba3e52f5483f0b2" category="inline-link-macro">ONTAP 설명서</block>
   <block id="c5432110ad66f4e2e624118b88a48126" category="list-text">3년 동안 증가할 것으로 예상되는 크기의 LUN을 생성합니다. 최대 LUN 크기는 를 <block ref="2a57767dbf71d600f009b2fefab6360d" category="inline-link-macro-rx"></block>참조하십시오.</block>
+  <block id="4631d10aa7c8cd31e9dcf52425c327ee" category="paragraph">VMware vSphere를 ONTAP를 실행하는 시스템의 데이터 저장소에 연결하는 데 사용되는 6가지 프로토콜이 다음과 같습니다.</block>
+  <block id="4dc791031dce7528180b933655b6f73e" category="paragraph">FCP, NVMe/FC, NVMe/TCP 및 iSCSI는 vSphere VMFS(가상 머신 파일 시스템)를 사용하여 ONTAP FlexVol volume에 포함된 ONTAP LUN 또는 NVMe 네임스페이스 내에 VM을 저장하는 블록 프로토콜입니다. NFS는 VMFS 없이 VM을 데이터 저장소(단순한 ONTAP 볼륨)에 배치하는 파일 프로토콜입니다. SMB(CIFS), iSCSI, NVMe/TCP 또는 NFS를 게스트 OS에서 ONTAP로 직접 사용할 수도 있습니다.</block>
+  <block id="967916c0eb3cb37586d11f3c9a0828bb" category="paragraph">다음 표에서는 ONTAP에서 vSphere가 지원하는 기존 데이터 저장소 기능을 보여 줍니다. 이 정보는 VVOL 데이터 저장소에 적용되지 않지만 일반적으로 지원되는 ONTAP 릴리즈를 사용하는 vSphere 6.x 이상 릴리즈에 적용됩니다. 또한 특정 vSphere 릴리즈를 참조하여 특정 제한을 확인할 수도 <block ref="1367f0506a76ac18eacbdf25f24edbeb" category="inline-link-macro-rx"></block>있습니다.</block>
+  <block id="6b8f0029ce30f9b4d5fe0def33875511" category="cell">FC</block>
+  <block id="81761811d0f769f1e8ab81834167af5c" category="cell">VADP(VMware vStorage APIs for Data Protection) 지원 백업 소프트웨어</block>
+  <block id="50f09c99cf03d7efc83cfdc33047b54f" category="cell">예(1</block>
+  <block id="bb3e0b0b29c5930728585f775194c32b" category="cell">없음 2</block>
+  <block id="b42c555e5ddbb6a4354369bbdd6b4513" category="cell">V3만 해당</block>
+  <block id="1911a7efd32660b2ee5c6769d2050ffe" category="paragraph">NetApp는 VMFS 데이터 저장소에서 멀티라이터가 활성화된 VMDK 대신 Microsoft 클러스터에 게스트 내 iSCSI를 사용할 것을 권장합니다. 이 접근 방식은 Microsoft와 VMware에서 완벽하게 지원하고, ONTAP(SnapMirror-ONTAP 시스템 사내 또는 클라우드)를 통해 뛰어난 유연성을 제공하고, 구성과 자동화가 쉬우며, SnapCenter을 통해 보호할 수 있습니다. vSphere 7에 새로운 클러스터 VMDK 옵션이 추가되었습니다. 이는 클러스터 VMDK를 지원하는 FC 프로토콜을 통해 데이터 저장소를 제공해야 하는 멀티writer 지원 VMDK와 다릅니다. 기타 제한 사항이 적용됩니다. 구성 지침은 VMware<block ref="b158594c147457b5b6417413cb30f800" category="inline-link-rx"></block> 설명서를 참조하십시오.</block>
+  <block id="96fc235c3751a66c90b6518d56724aa1" category="paragraph">NVMe-oF 및 NFS v4.1을 사용하는 데이터 저장소에는 vSphere 복제가 필요합니다. 스토리지 기반 복제는 SRM에서 지원되지 않습니다.</block>
+  <block id="5543e0c19ec8cfcca651874f8d3b3ff7" category="list-text">* NetApp는 대부분의 NFS 데이터 저장소에 FlexVol 볼륨을 사용할 것을 권장합니다 *. ONTAP 9.8부터 FlexGroup 볼륨은 데이터 저장소로도 사용할 수 있으며, 일반적으로 특정 활용 사례에 권장됩니다. qtree와 같은 다른 ONTAP 스토리지 컨테이너는 현재 VMware vSphere용 ONTAP 툴 또는 VMware vSphere용 NetApp SnapCenter 플러그인에서 지원되지 않으므로 일반적으로 권장되지 않습니다. 그렇지만 단일 볼륨에서 데이터 저장소를 여러 Qtree로 구축하면 고도의 자동화 환경에서 데이터 저장소 레벨 할당량 또는 VM 파일 클론의 이점을 누릴 수 있습니다.</block>
+  <block id="c411a2d2bb7111e695dcd16998c5bf03" category="list-text">또는 FC 및 iSCSI에서 액세스하는 LUN을 사용하여 VMFS 데이터 저장소를 구성할 수도 있습니다. VMFS를 사용하면 클러스터의 모든 ESX 서버에서 동시에 LUN에 액세스할 수 있습니다. VMFS 데이터 저장소의 크기는 최대 64TB이고 최대 32개의 2TB LUN(VMFS 3) 또는 단일 64TB LUN(VMFS 5)으로 구성될 수 있습니다. ONTAP의 최대 LUN 크기는 AFF, ASA 및 FAS 시스템에서 128TB입니다. NetApp에서는 일반적으로 각 데이터 저장소에 하나의 큰 LUN을 사용할 것을 권장합니다. NFS와 마찬가지로, 단일 ONTAP 컨트롤러에서 성능을 최대화하기 위해 여러 데이터 저장소(볼륨)를 사용하는 것을 고려합니다.</block>
+  <block id="cb928308729506b7eff5e7791a0ce0ba" category="list-text">기존 게스트 운영 체제(OS)는 최고의 성능과 스토리지 효율성을 위해 스토리지 시스템과 조율해야 했습니다. 그러나 Red Hat과 같은 Microsoft 및 Linux 배포업체에서 제공하는 최신 공급업체 지원 OS는 더 이상 가상 환경에서 파일 시스템 파티션을 기본 스토리지 시스템의 블록과 일치시킬 필요가 없습니다. 정렬이 필요할 수도 있는 이전 OS를 사용 중인 경우 NetApp 지원 Knowledgebase에서 "VM 정렬"을 사용하는 문서를 검색하거나 NetApp 세일즈 또는 파트너 담당자에게 TR-3747 복사본을 요청하십시오.</block>
+  <block id="2d95becf2e726f81e5f2c0c9447ec2ad" category="paragraph">일반적으로 * NetApp는 vCenter 내에서 ONTAP Tools for VMware vSphere 인터페이스를 사용하여 기존 데이터 저장소와 VVol 데이터 저장소를 프로비저닝하여 모범 사례를 준수할 것을 권장합니다.</block>
+  <block id="3405fd91ec611e14ca0464a159e87d21" category="list-text">ESXi 및 ONTAP 스토리지 어레이가 이더넷 스토리지 네트워크에 연결된 경우 * NetApp는 이러한 시스템이 RSTP(고속 스패닝 트리 프로토콜) 에지 포트로 연결되는 이더넷 포트를 구성하거나 Cisco 포트패스트 기능을 사용하여 구성할 것을 권장합니다. *NetApp는 Cisco 포트패스트 기능을 사용하고 ESXi 서버 또는 ONTAP 스토리지 어레이에 대해 802.1Q VLAN 트렁킹이 활성화된 환경에서 스패닝 트리 포트패스트 트렁크 기능을 활성화할 것을 권장합니다.</block>
+  <block id="96d48caf96811ccfa373aaf5fbe6f862" category="list-text">* NetApp는 링크 집계를 위한 다음과 같은 모범 사례를 권장합니다.</block>
+  <block id="022cc03b844340886b4e892084430269" category="cell">없음 4</block>
+  <block id="57749a8572dd2708f63cdf198026e062" category="cell">없음 3</block>
+  <block id="03cba371c1878a590431cec079c6f4c2" category="paragraph">VLAN, MTU 및 기타 설정이 있는 포트, 인터페이스 그룹 또는 VLAN 인터페이스에 연결됩니다. 하지만 SVM 레벨에서 설정을 관리하지 않습니다.</block>
+  <block id="7b9dbbe3099a486a2a81a7e43267d3af" category="paragraph">이 장치들은 관리용으로 자체 IP 주소를 가지고 있지만, 이러한 주소는 ESXi 스토리지 네트워킹의 컨텍스트에서 사용되지 않습니다.</block>
+  <block id="76538e55d69b12bb4a71177e6f12d7af" category="inline-link">SnapMirror 활성 동기화 설명서</block>
+  <block id="07bd30b0e378d86a9efeda3dff8dd07c" category="paragraph">대칭 또는 비대칭 설계 및 배포의 이점에 대한 자세한 내용은 를 참조하십시오<block ref="8b3398c42964cdf57fc4298373a78cfc" category="inline-link-rx"></block>.</block>
 </blocks>
