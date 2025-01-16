@@ -586,7 +586,6 @@
   <block id="29d04e616d2293c4c7538dd6226feac5" category="section-title">SQL Server Management Studio를 사용하여 최대 작업자 스레드 구성</block>
   <block id="44dbc82801d84781083ed9e23b63be00" category="list-text">또는 = 8코어: tempdb 데이터 파일 = 코어 수입니다</block>
   <block id="6203fcdbdad10bb603fd00edd2f0fcf5" category="list-text">8코어 이상의 경우: 8tempdb 데이터 파일</block>
-  <block id="b9f341e4fb0e6b384aa7ec0b5c33f964" category="paragraph">다음 예제 스크립트는 tempdb 파일 8개를 생성하고 tempdb를 마운트 지점으로 이동하여 tempdb를 수정합니다<block ref="ae6fbe62f3ddc46fa9a9885244d23675" prefix=" " category="inline-code"></block> SQL Server 2012 이상</block>
   <block id="0424163d6b24f29436021dfd7072863b" category="paragraph">SQL Server 2016부터 운영 체제에 표시되는 CPU 코어 수가 설치 중에 자동으로 감지되며, 이 수에 따라 SQL Server는 최적의 성능을 위해 필요한 tempdb 파일 수를 계산 및 구성합니다.</block>
   <block id="3b5b2ca12603a36517ce602ffe47361c" category="list-text">백업 소프트웨어로 제공되는 NetApp SnapCenter에는 다음이 포함됩니다.</block>
   <block id="36a92a010308100e1efc10d9eb98c369" category="list-text">Microsoft Windows용 SnapCenter 플러그인</block>
@@ -605,7 +604,6 @@
   <block id="17fce39141e6fa457c789ce2c3239b0c" category="section-title">볼륨 설계 고려 사항</block>
   <block id="d1c9fdbcdbb8521971decf35c6d1c0c8" category="paragraph">데이터베이스 볼륨 설계를 생성하기 전에 SQL Server 입출력 패턴과 특성이 워크로드와 백업 및 복구 요구 사항에 따라 어떻게 다른지 이해해야 합니다. 확장 가능한 볼륨에 대한 다음 NetApp 권장 사항을 참조하십시오.</block>
   <block id="674343739e297abb52c536a453ebaad0" category="list-text">Windows의 26개 드라이브 문자 제한을 능가하려면 드라이브 문자 대신 NTFS 마운트 지점을 사용하십시오. 볼륨 마운트 지점을 사용할 때는 볼륨 레이블에 마운트 지점과 동일한 이름을 지정하는 것이 좋습니다.</block>
-  <block id="d5fe4f7f1c47df1ec78c926d21498f73" category="list-text">필요한 경우 볼륨 자동 크기 조정 정책을 구성하여 공간 부족 상태를 방지하십시오. ONTAP c 2022 NetApp, Inc.의 Microsoft SQL Server에 대한 17 모범 사례 가이드 저작권 본사 소유.</block>
   <block id="4176288dbc134524f79476ba4e57e3aa" category="list-text">tempdb는 SQL Server가 임시 작업 공간으로 사용하는 시스템 데이터베이스로, 특히 I/O를 많이 사용하는 DBCC CHECKDB 작업에 사용됩니다. 따라서 이 데이터베이스를 별도의 스핀들 세트가 있는 전용 볼륨에 배치하십시오. 볼륨 수가 문제가 되는 대규모 환경에서는 신중하게 계획을 수립한 후 tempdb를 더 적은 볼륨으로 통합하고 동일한 볼륨에 저장할 수 있습니다. SQL Server를 다시 시작할 때마다 이 데이터베이스가 다시 생성되므로 tempdb에 대한 데이터 보호는 높은 우선 순위가 아닙니다.</block>
   <block id="b703a2ceaabee81dd9dfcfb3a4b738ee" category="list-text">사용자 데이터베이스 파일과 로그 백업을 저장할 로그 디렉토리가 별도의 볼륨에 있어야 보존 정책이 SnapVault 기술과 함께 사용될 때 스냅샷을 덮어쓰지 않도록 할 수 있습니다.</block>
   <block id="ae72f885471636cbfd0dbe902ddf24e1" category="list-text">DiskManager 또는 다른 툴을 사용하여 LUN을 생성하는 경우 LUN을 포맷할 때 파티션의 할당 단위 크기가 64K로 설정되어 있는지 확인하십시오.</block>
@@ -3939,7 +3937,6 @@ HA 쌍당 최소 2개의 LIF를 생성합니다. 작업 부하에 따라 더 많
   <block id="60654048dbcae98cde53dc0449c8e47b" category="summary">Microsoft SQL Server 스토리지 고려사항</block>
   <block id="71cc52562b241f23c0f5c74c589fc56c" category="paragraph">애그리게이트는 NetApp 스토리지 구성에서 사용할 수 있는 최저 수준의 스토리지 컨테이너입니다. IO를 다른 기본 드라이브 세트로 분리할 것을 권장하는 일부 레거시 문서가 인터넷에 있습니다. ONTAP에서는 이 기능을 사용하지 않는 것이 좋습니다. NetApp은 데이터 파일 및 트랜잭션 로그 파일이 분리된 공유 및 전용 애그리게이트를 사용하여 다양한 I/O 워크로드 특성 테스트를 수행했습니다. 테스트 결과, 더 많은 RAID 그룹 및 드라이브를 포함하는 하나의 대형 Aggregate는 스토리지 성능을 최적화 및 개선했으며 다음과 같은 두 가지 이유로 관리자가 보다 쉽게 관리할 수 있는 것으로 나타났습니다.</block>
   <block id="994dbcbb2492daba25572c539cc12968" category="list-text">하나의 대형 Aggregate를 통해 모든 드라이브의 I/O 기능을 모든 파일에서 사용할 수 있습니다.</block>
-  <block id="8e6ab064c04f3cf4f6cfb70d8db3132c" category="list-text">호스트 간에 볼륨을 공유하지 마십시오. 예를 들어, 단일 볼륨에 2개의 LUN을 생성하고 각 LUN을 다른 호스트와 공유할 수 있지만 관리가 복잡해질 수 있으므로 이러한 작업을 피해야 합니다.</block>
   <block id="900188651b4134e36897865047c3fb5b" category="list-text">운영 관점에서 쉽게 모니터링할 수 있도록 볼륨의 스냅숏 예비 공간 값을 0으로 설정합니다.</block>
   <block id="27d9533edb3ad60370502d101cd38d2b" category="list-text">스냅샷 스케줄 및 보존 정책을 해제합니다. 대신 SnapCenter를 사용하여 SQL Server 데이터 볼륨의 스냅샷 복사본을 조정합니다.</block>
   <block id="a09a2d9023a555d2d5a72621bf3395b3" category="list-text">SQL Server 시스템 데이터베이스를 전용 볼륨에 배치합니다.</block>
@@ -5583,10 +5580,8 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="64999620676d7bc615f88fabe256272f" category="list-text">SMB 공유에 SQL Server를 설치하는 경우 SMB 볼륨에서 폴더를 생성할 때 유니코드가 설정되어 있는지 확인합니다.</block>
   <block id="b0874893f6e3e7030833ec488dc9da90" category="list-text"><block ref="937f38432beb92fdba3d47780720bdf7" prefix="(" category="inline-code"></block>랜덤 읽기/쓰기 워크로드이므로 사용자 데이터 파일을 별도의 볼륨에 배치 일반적으로 트랜잭션 로그 백업은 데이터베이스 백업보다 더 자주 생성됩니다. 따라서 트랜잭션 로그 파일<block ref="cb15b9539ae0d984ff8740c68b52561c" prefix="(" category="inline-code"></block>)을 데이터 파일로부터 별도의 볼륨 또는 VMDK에 배치하여 각각에 대해 독립적인 백업 일정을 생성할 수 있도록 합니다. 또한 이 분리 방식은 로그 파일의 순차적 쓰기 I/O를 데이터 파일의 랜덤 읽기/쓰기 I/O에서 격리하고 SQL Server 성능을 크게 향상시킵니다.</block>
   <block id="f7f1cb17ab4960f1a8e4c28a7fbccb0d" category="list-text">전체 텍스트 검색 관련 파일과 같은 데이터베이스 파일과 데이터베이스를 제외한 파일을 동일한 LUN에 혼합하지 마십시오.</block>
-  <block id="42f55cb17aa10ac3e6774a14ecdda568" category="list-text">데이터베이스 보조 파일(파일 그룹의 일부로)을 별도의 볼륨에 배치하면 SQL Server 데이터베이스의 성능이 향상됩니다. 이 분리는 데이터베이스의 파일이 LUN을 다른 파일과 공유하지 않는<block ref="937f38432beb92fdba3d47780720bdf7" prefix=" " category="inline-code"></block> 경우에만<block ref="772b0ad30c2d9d895a7319f2110cc750" prefix=" " category="inline-code"></block> 유효합니다.</block>
   <block id="58ccb3e2006ffa82c78944061df94b30" category="paragraph">ONTAP 스토리지 효율성은 성능에 영향을 미치지 않고 최소한의 스토리지 공간을 사용하는 방식으로 SQL Server 데이터를 저장하고 관리하는 데 최적화되어 있습니다.</block>
   <block id="f250d23ef016c3e48436a679c5dab1df" category="list-text">백업에 있는 데이터베이스를 단일 볼륨으로 복원하는 것과 같이 볼륨에 동일한 데이터의 여러 복사본이 포함되어 있는 것으로 알려진 경우가 아니면 SQL Server 데이터 파일이 포함된 볼륨에 중복 제거를 설정하지 마십시오.</block>
-  <block id="1bf0b8f469689ae42fe419468737011f" category="paragraph">Tempdb 데이터베이스를 많이 활용할 수 있습니다. ONTAP에 사용자 데이터베이스 파일을 최적으로 배치할 수 있을 뿐 아니라 할당 경합을 줄이기 위해 tempdb 데이터 파일을 배치하는 것도 중요합니다</block>
   <block id="6f80e9146e2184b9ec3c46b6d7dd903f" category="paragraph">SQL Server가 새 개체를 할당하기 위해 특수 시스템 페이지에 써야 하는 경우 GAM(전역 할당 맵), SGAM(공유 전역 할당 맵) 또는 PFS(페이지 사용 가능 공간) 페이지에서 페이지 경합이 발생할 수 있습니다. 래치가 이러한 페이지를 메모리에 잠급니다. 사용 중인 SQL Server 인스턴스의 경우 tempdb의 시스템 페이지에 래치가 표시되는 데 시간이 오래 걸릴 수 있습니다. 이로 인해 쿼리 실행 시간이 느려지며 래치 경합이라고 합니다. tempdb 데이터 파일을 생성하는 방법은 다음 Best Practice를 참조하십시오.</block>
   <block id="255bd5c00b8de4b2f998369f766b2b5e" category="paragraph">이 섹션에서는 안전한 오프사이트 스토리지 및 재해 복구를 위해 데이터를 원격 사이트로 복제하는 원격 데이터 보호에 대해 설명합니다. 이 표는 동기 미러링 데이터 보호를 다루지 않습니다. 이 요구 사항에 대해서는 및 를 포함한 NetApp MetroCluster 설명서를 참조하십시오 <block ref="06d0604733fc7f7e3f9befaa1239278d" category="inline-link-macro-rx"></block><block ref="87f167af2516b222ddeec7405581e8b8" category="inline-link-macro-rx"></block></block>
   <block id="ad8d77efdce72d372a83929b50a127d1" category="paragraph">데이터 세트의 장애 발생 시 정합성이 보장되는 백업은 단일 시점의 전체 데이터 세트 구조를 캡처하는 것을 의미합니다. 데이터 세트가 단일 볼륨에 저장된 경우 프로세스는 간단하며 언제든지 스냅샷을 생성할 수 있습니다. 데이터 세트가 여러 볼륨으로 확장되는 경우에는 정합성 보장 그룹(CG) 스냅샷을 생성해야 합니다. CG 스냅샷을 생성하는 옵션에는 NetApp SnapCenter 소프트웨어, 기본 ONTAP 일관성 그룹 기능, 사용자 유지보수 스크립트 등 여러 가지가 있습니다.</block>
@@ -5837,9 +5832,7 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="6be050126f2df5ae7cd944ce446241c2" category="paragraph">30초의 시간 초과가 허용되지 않는 경우 임대 기간을 연장할 수 있습니다.</block>
   <block id="38d530634a8d32e8775a37109fc08542" category="paragraph">60초의 네트워크 중단을 견디기 위해 리스 시간 제한을 60초로 늘리려면 유예 기간도 늘려야 합니다. 이는 컨트롤러 페일오버 중 IO 일시 중단이 더 길다는 것을 의미합니다.</block>
   <block id="ac76821692fdb2dae1d98babe804fb8f" category="paragraph">이것은 일반적으로 문제가 되지 않습니다. 일반 사용자는 연간 1~2회 ONTAP 컨트롤러를 업데이트하며, 하드웨어 장애로 인한 계획되지 않은 페일오버는 매우 드물게 발생합니다. 또한 60초 네트워크 중단이 발생할 가능성이 있는 네트워크가 있고 임대 시간 초과가 60초로 필요한 경우 드물게 발생하는 스토리지 시스템 장애 조치를 거부하여 61초 동안 일시 중지되지 않을 수 있습니다. 이미 60초 이상 일시 중지된 네트워크가 있음을 확인했습니다.</block>
-  <block id="66bb028b9d7030985c1ce3bb4f5a27e9" category="searchtitle">= Microsoft SQL Server CPU 구성</block>
   <block id="73f7848a74f8a1b6c78ac0dfbca44874" category="searchtitle">NetApp 관리 소프트웨어를 통한 Microsoft SQL Server 데이터 보호</block>
-  <block id="fa67fb4719e92db117cccfc693cf2a40" category="searchtitle">Microsoft SQL Server tempdb 파일</block>
   <block id="3a80e1e29c96d0837b12aef65785a41a" category="doc">구성 매개 변수</block>
   <block id="4bb9f72180425717a416a5037a100cca" category="searchtitle">MySQL 및 InnoDB 파일 구조</block>
   <block id="9a41c04f55c43c1bfac6d1e3fb0992de" category="doc">NFSv3 슬롯 테이블</block>
@@ -5930,4 +5923,11 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="7b9dbbe3099a486a2a81a7e43267d3af" category="paragraph">이 장치들은 관리용으로 자체 IP 주소를 가지고 있지만, 이러한 주소는 ESXi 스토리지 네트워킹의 컨텍스트에서 사용되지 않습니다.</block>
   <block id="76538e55d69b12bb4a71177e6f12d7af" category="inline-link">SnapMirror 활성 동기화 설명서</block>
   <block id="07bd30b0e378d86a9efeda3dff8dd07c" category="paragraph">대칭 또는 비대칭 설계 및 배포의 이점에 대한 자세한 내용은 를 참조하십시오<block ref="8b3398c42964cdf57fc4298373a78cfc" category="inline-link-rx"></block>.</block>
+  <block id="d4b27e1b61577e2e3dfeebd3b8129da5" category="list-text">호스트 간에 볼륨을 공유하지 마십시오. 예를 들어, 단일 볼륨에 2개의 LUN을 생성하고 각 LUN을 다른 호스트와 공유할 수 있지만 관리가 복잡해질 수 있으므로 이러한 작업을 피해야 합니다. 동일한 호스트에서 여러 SQL Server 인스턴스를 실행하는 경우, 노드의 볼륨 제한에 근접하지 않으면 볼륨 공유를 피하고, 대신 데이터 관리를 쉽게 하기 위해 호스트당 개별 볼륨을 보유하는 것이 좋습니다.</block>
+  <block id="e3ea9105e22caf8aa06aee0279a968bb" category="list-text">필요한 경우 볼륨 자동 크기 조정 정책을 구성하여 공간 부족 상태를 방지하십시오.</block>
+  <block id="72a9733bd5929d30a93ea680e0c3fad1" category="list-text">데이터베이스 보조 파일(파일 그룹의 일부로)을 별도의 볼륨에 배치하면 SQL Server 데이터베이스의 성능이 향상됩니다. 이 분리는 데이터베이스의 파일이 LUN을 다른 파일과 공유하지 않는<block ref="937f38432beb92fdba3d47780720bdf7" prefix=" " category="inline-code"></block> 경우에만<block ref="937f38432beb92fdba3d47780720bdf7" prefix=" " category="inline-code"></block> 유효합니다.</block>
+  <block id="5962130d833e0408cf58a87e342bc1f9" category="searchtitle">Microsoft SQL Server tempdb 파일</block>
+  <block id="82d9655a27436534991360ea4c0dc680" category="paragraph">Tempdb 데이터베이스를 많이 활용할 수 있습니다. ONTAP에 사용자 데이터베이스 파일을 최적으로 배치할 수 있을 뿐 아니라 할당 경합을 줄이기 위해 tempdb 데이터 파일을 배치하는 것도 중요합니다. tempdb는 별도의 디스크에 배치해야 하며 사용자 데이터 파일과 공유하지 않아야 합니다.</block>
+  <block id="5c4a7832da0e9f8799089fdc985bb9b3" category="list-text">tempdb 데이터 파일은 같은 크기로 만들어야 합니다</block>
+  <block id="20453a1c8627ad0bc536be210636fa41" category="paragraph">다음 예제 스크립트는 크기가 같은 tempdb 파일 8개를 생성하고 tempdb를 SQL Server 2012 이상의 마운트 지점으로 이동하여 tempdb를<block ref="ae6fbe62f3ddc46fa9a9885244d23675" prefix=" " category="inline-code"></block> 수정합니다.</block>
 </blocks>
