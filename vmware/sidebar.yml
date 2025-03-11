@@ -42,10 +42,12 @@ entries:
     url: "/vmware/vmware-vsphere-sdrs.html"
   - title: 권장 설정
     url: "/vmware/vmware-vsphere-settings.html"
-- title: ONTAP을 사용한 VVOL(가상 볼륨
+- title: ONTAP 툴을 이용한 VVOL(가상 볼륨) 10
   entries:
   - title: 개요
     url: "/vmware/vmware-vvols-overview.html"
+  - title: ONTAP 툴 설치 체크리스트
+    url: "/vmware/vmware-vvols-checklist.html"
   - title: ONTAP에서 VVOL 사용
     url: "/vmware/vmware-vvols-ontap.html"
   - title: VVOL 스토리지 구축

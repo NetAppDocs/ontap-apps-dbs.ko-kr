@@ -20,17 +20,19 @@ summary: vMSC 설계 및 구현 지침.
 
 == NetApp 스토리지 구성
 
-NetApp MetroCluster에 대한 설정 지침(MCC 구성이라고 함)은 에서 확인할 수 있습니다 https://docs.netapp.com/us-en/ontap-metrocluster/["MetroCluster 문서"]. SnapMirror 활성 동기화에 대한 지침은 에서도 확인할 수 있습니다 https://docs.netapp.com/us-en/ontap/smbc/index.html["SnapMirror 비즈니스 연속성 개요"].
+NetApp MetroCluster에 대한 설정 지침(MCC 구성이라고 함)은 에서 확인할 수 있습니다 https://docs.netapp.com/us-en/ontap-metrocluster/["MetroCluster 문서"]. SMAS(SnapMirror Active Sync)에 대한 지침은 에서도 확인할 수 https://docs.netapp.com/us-en/ontap/smbc/index.html["SnapMirror 비즈니스 연속성 개요"] 있습니다.
 
 MetroCluster를 구성한 후에는 기존 ONTAP 환경을 관리하는 것과 같습니다. CLI(Command Line Interface), System Manager, Ansible과 같은 다양한 툴을 사용하여 SVM(스토리지 가상 머신)을 설정할 수 있습니다. SVM을 구성한 후 정상 작업에 사용할 클러스터에 논리 인터페이스(LIF), 볼륨 및 논리 유닛 번호(LUN)를 생성합니다. 이러한 오브젝트는 클러스터 피어링 네트워크를 사용하여 다른 클러스터로 자동으로 복제됩니다.
 
-MetroCluster를 사용하지 않는 경우 SnapMirror 액티브 동기화를 사용하여 서로 다른 장애 도메인에 있는 여러 ONTAP 클러스터에서 데이터 저장소에 대한 세분화된 보호와 액티브-액티브 액세스를 제공할 수 있습니다. SnapMirror 액티브 동기화에서는 정합성 보장 그룹을 사용하여 하나 이상의 데이터 저장소 간에 쓰기 순서 일관성을 보장하고 애플리케이션 및 데이터 저장소 요구 사항에 따라 여러 정합성 보장 그룹을 생성할 수 있습니다. 일관성 그룹은 여러 데이터 저장소 간에 데이터를 동기화해야 하는 애플리케이션에 특히 유용합니다. 또한 SnapMirror 활성 동기화는 RDM(Raw Device Mappings) 및 게스트 내 iSCSI 초기자가 있는 게스트 연결 스토리지를 지원합니다. 일관성 그룹에 대한 자세한 내용은 에서 확인할 수 있습니다 https://docs.netapp.com/us-en/ontap/consistency-groups/index.html["일관성 그룹 개요"].
+MetroCluster를 사용하지 않는 경우 SnapMirror 액티브 동기화를 사용하여 서로 다른 장애 도메인에 있는 여러 ONTAP 클러스터에서 데이터 저장소에 대한 세분화된 보호와 액티브-액티브 액세스를 제공할 수 있습니다. SMAS는 CG(정합성 보장 그룹)를 사용하여 하나 이상의 데이터 저장소 간에 쓰기 순서 일관성을 보장하고 애플리케이션 및 데이터 저장소 요구 사항에 따라 여러 CG를 생성할 수 있습니다. 일관성 그룹은 여러 데이터 저장소 간에 데이터를 동기화해야 하는 애플리케이션에 특히 유용합니다. SMAS는 RDM(Raw Device Mappings) 및 게스트 내 iSCSI 초기자가 있는 게스트 연결 스토리지도 지원합니다. 일관성 그룹에 대한 자세한 내용은 에서 https://docs.netapp.com/us-en/ontap/consistency-groups/index.html["일관성 그룹 개요"]확인할 수 있습니다.
 
-SnapMirror 액티브 동기화를 사용하여 vMSC 구성을 관리하는 것은 MetroCluster와 비교하여 몇 가지 차이가 있습니다. 첫째, SAN 전용 구성이며 SnapMirror 활성 동기화로 NFS 데이터 저장소를 보호할 수 없습니다. 둘째, 두 장애가 발생한 도메인 모두에서 복제된 데이터 저장소를 액세스할 수 있도록 LUN의 두 복제본을 ESXi 호스트에 매핑해야 합니다.
+이제 ONTAP 도구를 사용하여 vMSC에 대한 SnapMirror 액티브 동기화를 간단히 구성할 수 있습니다. ONTAP 도구 vCenter 플러그인을 사용하여 두 ONTAP 클러스터 간에 SnapMirror 활성 동기화 관계를 생성하고 관리할 수 있습니다. 이 플러그인은 두 ONTAP 클러스터 간의 SnapMirror 활성 동기화 관계를 만들고 관리할 수 있는 간단하고 직관적인 인터페이스를 제공합니다. ONTAP 툴 vCenter 플러그인에 대한 자세한 내용은 에서확인하거나 바로 로 이동할 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/protect-cluster.html["호스트 클러스터 보호를 사용하여 보호합니다"] 수 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/index.html["VMware vSphere용 ONTAP 툴"] 있습니다.
+
+SnapMirror 액티브 동기화를 사용하여 vMSC 구성을 관리하는 것은 MetroCluster와 비교하여 몇 가지 차이가 있습니다. 첫째, SMAS는 SAN 전용 구성이므로 SnapMirror 활성 동기화를 사용하여 NFS 데이터 저장소를 보호할 수 없습니다. 둘째, 두 장애가 발생한 도메인 모두에서 복제된 데이터 저장소를 액세스할 수 있도록 LUN의 두 복제본을 ESXi 호스트에 매핑해야 합니다.
 
 
 
-== VMware vSphere HA
+== VMware vSphere 구성
 
 
 
@@ -39,7 +41,7 @@ SnapMirror 액티브 동기화를 사용하여 vMSC 구성을 관리하는 것�
 vSphere HA 클러스터 생성은 에서 자세히 설명하는 다단계 프로세스입니다 https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-vcenter-esxi-management/GUID-F7818000-26E3-4E2A-93D2-FCDCE7114508.html["docs.vmware.com 에서 vSphere Client에서 클러스터를 생성하고 구성하는 방법"]. 즉, 먼저 빈 클러스터를 생성한 다음 vCenter를 사용하여 호스트를 추가하고 클러스터의 vSphere HA 및 기타 설정을 지정해야 합니다.
 
 
-NOTE: 이 문서의 어떤 내용도 대체되지 않습니다 https://core.vmware.com/resource/vmware-vsphere-metro-storage-cluster-recommended-practices["VMware vSphere Metro Storage Cluster 권장 사례"]
+NOTE: 이 문서의 어떤 내용도 대체되지 https://www.vmware.com/docs/vmw-vmware-vsphere-metro-storage-cluster-recommended-practices["VMware vSphere Metro Storage Cluster 권장 사례"]않습니다. 이 콘텐츠는 쉽게 참조할 수 있도록 제공되며 공식 VMware 설명서를 대체할 수 없습니다.
 
 HA 클러스터를 구성하려면 다음 단계를 완료하십시오.
 
@@ -133,8 +135,6 @@ image::../media/vmsc_3_6.png[자동으로 생성된 컴퓨터 설명 스크린�
 
 === 고급 옵션 구성
 
-* 호스트 장애 감지 *
-
 격리 이벤트는 HA 클러스터에 있는 호스트가 네트워크 또는 클러스터의 다른 호스트에 대한 연결이 끊어질 때 발생합니다. 기본적으로 vSphere HA는 관리 네트워크의 기본 게이트웨이를 기본 격리 주소로 사용합니다. 하지만 ping을 수행할 호스트에 대한 추가 격리 주소를 지정하여 격리 응답을 트리거할지 여부를 결정할 수 있습니다. 사이트당 하나씩 ping을 수행할 수 있는 두 개의 격리 IP를 추가합니다. 게이트웨이 IP를 사용하지 마십시오. 사용되는 vSphere HA 고급 설정은 DAS.isolationaddress입니다. 이러한 목적으로 ONTAP 또는 중재자 IP 주소를 사용할 수 있습니다.
 
 을 참조하십시오 https://core.vmware.com/resource/vmware-vsphere-metro-storage-cluster-recommended-practices#sec2-sub5["core.vmware.com"] 자세한 내용은 __.__
@@ -149,18 +149,13 @@ NetApp MetroCluster용 VMware DRS Affinity
 
 이 섹션에서는 MetroCluster 환경의 각 사이트\클러스터에 대해 VM 및 호스트용 DRS 그룹을 생성합니다. 그런 다음 VM 호스트 규칙을 구성하여 VM 호스트 선호도를 로컬 스토리지 리소스에 맞춥니다. 예를 들어 사이트 A VM은 VM 그룹 SiteA_VMs에 속하고 사이트 A 호스트는 호스트 그룹 SiteA_HOSTS에 속합니다. 다음으로 VM\Host Rules에서는 SiteA_VMs가 SiteA_hosts의 호스트에서 실행되어야 한다고 설명합니다.
 
-
-
-=== _모범 사례_
-
+[TIP]
+====
 * NetApp은 그룹*의 호스트에서 실행해야 함*이 아니라 그룹*의 호스트에서 실행되어야 함*을 사용할 것을 적극 권장합니다. 사이트 A 호스트에 장애가 발생할 경우 사이트 A의 VM을 vSphere HA를 통해 사이트 B의 호스트에서 다시 시작해야 하지만, 후자의 사양에서는 하드 규칙이기 때문에 HA가 사이트 B에서 VM을 다시 시작할 수 없습니다. 이전 사양은 소프트 규칙이며 HA가 발생할 경우 위반되므로 성능보다 가용성이 향상됩니다.
+* 가상 시스템이 VM-호스트 선호도 규칙을 위반할 때 트리거되는 이벤트 기반 경보를 생성할 수 있습니다. vSphere Client에서 가상 머신에 대한 새 경고를 추가하고 이벤트 트리거로 "VM is behaving VM-Host Affinity Rule"을 선택합니다. 알람 생성 및 편집에 대한 자세한 내용은 link:https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-monitoring-and-performance-8-0.html["vSphere 모니터링 및 성능"^]설명서를 참조하십시오.
 
 
-* [참고]
-
-* 가상 시스템이 VM-호스트 선호도 규칙을 위반할 때 트리거되는 이벤트 기반 경보를 생성할 수 있습니다. vSphere Client에서 가상 머신에 대한 새 경고를 추가하고 이벤트 트리거로 "VM is behaving VM-Host Affinity Rule"을 선택합니다. 알람 생성 및 편집에 대한 자세한 내용은 http://pubs.vmware.com/vsphere-51/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-51-monitoring-performance-guide.pdf["vSphere 모니터링 및 성능"] 설명서를 참조하십시오.
-
-
+====
 
 
 === DRS 호스트 그룹을 생성합니다
@@ -219,33 +214,25 @@ image::../media/vmsc_3_8.png[자동으로 생성된 컴퓨터 설명 스크린�
 
 
 
-== NetApp MetroCluster용 VMware vSphere Storage DRS
-
-
-
-=== 데이터 저장소 클러스터를 생성합니다
+== 필요한 경우 데이터 저장소 클러스터를 생성합니다
 
 각 사이트에 대해 데이터 저장소 클러스터를 구성하려면 다음 단계를 완료합니다.
 
 . vSphere Web Client를 사용하여 Storage 아래에 HA 클러스터가 있는 데이터 센터로 이동합니다.
 . 데이터 센터 개체를 마우스 오른쪽 버튼으로 클릭하고 스토리지 > 새 데이터 저장소 클러스터 를 선택합니다.
-. Turn on Storage DRS 옵션을 선택하고 Next를 클릭합니다.
-. 모든 옵션을 자동화 안 함(수동 모드)으로 설정하고 다음을 클릭합니다.
 
 
+[TIP]
+====
+* ONTAP 스토리지를 사용할 경우 Storage DRS를 비활성화하는 것이 좋습니다.
+
+* Storage DRS는 일반적으로 ONTAP 스토리지 시스템에서 사용할 필요가 없거나 권장되지 않습니다.
+* ONTAP는 Storage DRS의 영향을 받을 수 있는 데이터 중복 제거, 압축 및 컴팩션과 같은 자체 스토리지 효율성 기능을 제공합니다.
+* ONTAP 스냅샷을 사용하는 경우 Storage vMotion은 스냅샷에서 VM의 복제본을 남겨 두므로 스토리지 활용도가 높아지며 VM 및 해당 ONTAP 스냅샷을 추적하는 NetApp SnapCenter와 같은 백업 애플리케이션에 영향을 미칠 수 있습니다.
 
 
-==== _모범 사례_
-
-* NetApp는 관리자가 마이그레이션이 필요한 시기를 결정하고 제어할 수 있도록 Storage DRS를 수동 모드로 구성하는 것이 좋습니다.
-
-
+====
 image::../media/vmsc_3_9.png[Storage DRS를 참조하십시오,528,94]
-
-. Enable I/O Metric for SDRS Recommendations 확인란이 선택되어 있는지 확인합니다. 메트릭 설정을 기본값으로 유지할 수 있습니다.
-
-
-image::../media/vmsc_3_10.png[SDRS 권장 사항,624,241]
 
 . HA 클러스터를 선택하고 Next를 클릭합니다.
 

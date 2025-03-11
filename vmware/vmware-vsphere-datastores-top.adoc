@@ -26,7 +26,7 @@ VMware vSphere를 ONTAP를 실행하는 시스템의 데이터 저장소에 연�
 
 FCP, NVMe/FC, NVMe/TCP 및 iSCSI는 vSphere VMFS(가상 머신 파일 시스템)를 사용하여 ONTAP FlexVol volume에 포함된 ONTAP LUN 또는 NVMe 네임스페이스 내에 VM을 저장하는 블록 프로토콜입니다. NFS는 VMFS 없이 VM을 데이터 저장소(단순한 ONTAP 볼륨)에 배치하는 파일 프로토콜입니다. SMB(CIFS), iSCSI, NVMe/TCP 또는 NFS를 게스트 OS에서 ONTAP로 직접 사용할 수도 있습니다.
 
-다음 표에서는 ONTAP에서 vSphere가 지원하는 기존 데이터 저장소 기능을 보여 줍니다. 이 정보는 VVOL 데이터 저장소에 적용되지 않지만 일반적으로 지원되는 ONTAP 릴리즈를 사용하는 vSphere 6.x 이상 릴리즈에 적용됩니다. 또한 특정 vSphere 릴리즈를 참조하여 특정 제한을 확인할 수도 link:https://www.vmware.com/support/pubs/["VMware 구성 최대값"^]있습니다.
+다음 표에서는 ONTAP에서 vSphere가 지원하는 기존 데이터 저장소 기능을 보여 줍니다. 이 정보는 VVOL 데이터 저장소에 적용되지 않지만 일반적으로 지원되는 ONTAP 릴리즈를 사용하는 vSphere 6.x 이상 릴리즈에 적용됩니다. 특정 vSphere 릴리즈에 대한 을 참조하여 특정 제한을 확인할 수도 link:https://configmax.broadcom.com/guest?vmwareproduct=vSphere&release=vSphere%208.0&categories=2-0["VMware Configuration Maximums 툴"^]있습니다.
 
 |===
 | 기능/특징 | FC | iSCSI | NVMe - oF | NFS 를 참조하십시오 
@@ -129,9 +129,9 @@ VAAI를 사용하지 않는 경우 NFS에서 모든 VM에 대해 이 설정이 �
 
 | NDMP 세분성 | 데이터 저장소 | 데이터 저장소 | 데이터 저장소 | 데이터 저장소 또는 VM 
 |===
-NetApp는 VMFS 데이터 저장소에서 멀티라이터가 활성화된 VMDK 대신 Microsoft 클러스터에 게스트 내 iSCSI를 사용할 것을 권장합니다. 이 접근 방식은 Microsoft와 VMware에서 완벽하게 지원하고, ONTAP(SnapMirror-ONTAP 시스템 사내 또는 클라우드)를 통해 뛰어난 유연성을 제공하고, 구성과 자동화가 쉬우며, SnapCenter을 통해 보호할 수 있습니다. vSphere 7에 새로운 클러스터 VMDK 옵션이 추가되었습니다. 이는 클러스터 VMDK를 지원하는 FC 프로토콜을 통해 데이터 저장소를 제공해야 하는 멀티writer 지원 VMDK와 다릅니다. 기타 제한 사항이 적용됩니다. 구성 지침은 VMware https://docs.vmware.com/en/VMware-vSphere/7.0/vsphere-esxi-vcenter-server-70-setup-wsfc.pdf["Windows Server 장애 조치 클러스터링에 대한 설치"^] 설명서를 참조하십시오.
+NetApp는 VMFS 데이터 저장소에서 멀티라이터가 활성화된 VMDK 대신 Microsoft 클러스터에 게스트 내 iSCSI를 사용할 것을 권장합니다. 이 접근 방식은 Microsoft와 VMware에서 완벽하게 지원하고, ONTAP(SnapMirror-ONTAP 시스템 사내 또는 클라우드)를 통해 뛰어난 유연성을 제공하고, 구성과 자동화가 쉬우며, SnapCenter을 통해 보호할 수 있습니다. vSphere 7에 새로운 클러스터 VMDK 옵션이 추가되었습니다. 이는 클러스터 VMDK를 지원하는 FC 프로토콜을 통해 데이터 저장소를 제공해야 하는 멀티writer 지원 VMDK와 다릅니다. 기타 제한 사항이 적용됩니다. 구성 지침은 VMware link:https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/setup-for-windows-server-failover-clustering.html["Windows Server 장애 조치 클러스터링에 대한 설치"^]설명서를 참조하십시오.
 
-NVMe-oF 및 NFS v4.1을 사용하는 데이터 저장소에는 vSphere 복제가 필요합니다. 스토리지 기반 복제는 SRM에서 지원되지 않습니다.
+NVMe-oF 및 NFS v4.1을 사용하는 데이터 저장소에는 vSphere 복제가 필요합니다. NFS v4.1에 대한 어레이 기반 복제는 현재 SRM에서 지원되지 않습니다. NVMe-oF를 사용한 어레이 기반 복제는 현재 VMware SRA(vSphere Storage Replication Adapter)용 ONTAP 툴에서 지원되지 않습니다.
 
 
 

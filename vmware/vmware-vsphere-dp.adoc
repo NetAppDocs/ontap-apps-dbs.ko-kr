@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: vmware/vmware-vsphere-dp.html 
 keywords: Data protection, Space reclamation, VM and datastore cloning, Storage efficiency, thin provisioning, QoS, SIOC, Storage Distributed Resource Scheduler, DRS, Active IQ Unified Manager, Encryption 
-summary: SnapCenter를 사용하면 여러 작업에 적용할 수 있는 백업 정책을 생성할 수 있습니다. 이러한 정책은 스케줄, 보존, 복제 및 기타 기능을 정의할 수 있습니다. 또한 VM 정합성 보장 스냅샷의 선택 옵션을 계속 허용하므로 VMware 스냅샷을 생성하기 전에 하이퍼바이저의 입출력 중지 기능을 활용할 수 있습니다. 
+summary: SnapCenter를 사용하면 여러 작업에 적용할 수 있는 백업 정책을 생성할 수 있습니다. 이러한 정책은 스케줄, 보존, 복제 및 기타 기능을 정의할 수 있습니다. 또한 VM 정합성 보장 스냅샷의 선택적인 선택을 계속 허용하므로 VMware 스냅샷을 생성하기 전에 하이퍼바이저의 입출력 중지 기능을 활용할 수 있습니다. 
 ---
 = 데이터 보호
 :hardbreaks:
@@ -18,9 +18,9 @@ VM을 백업하고 신속하게 복구하는 것은 ONTAP for vSphere의 탁월�
 
 스냅샷을 사용하여 성능에 영향을 주지 않고 VM 또는 데이터 저장소를 신속하게 복사한 다음, SnapMirror를 사용하여 보조 시스템으로 전송하여 장기적인 오프 사이트 데이터 보호를 실현합니다. 이러한 접근 방식은 변경된 정보만 저장하여 스토리지 공간과 네트워크 대역폭을 최소화합니다.
 
-SnapCenter를 사용하면 여러 작업에 적용할 수 있는 백업 정책을 생성할 수 있습니다. 이러한 정책은 스케줄, 보존, 복제 및 기타 기능을 정의할 수 있습니다. 또한 VM 정합성 보장 스냅샷의 선택 옵션을 계속 허용하므로 VMware 스냅샷을 생성하기 전에 하이퍼바이저의 입출력 중지 기능을 활용할 수 있습니다. 그러나 VMware 스냅샷의 성능 때문에 게스트 파일 시스템을 중지해야 하는 경우가 아니면 일반적으로 이러한 스냅샷을 사용하지 않는 것이 좋습니다. 대신 일반적인 보호를 위해 스냅샷을 사용하고 SnapCenter 플러그인과 같은 애플리케이션 툴을 사용하여 SQL Server 또는 Oracle과 같은 트랜잭션 데이터를 보호하십시오. 이러한 스냅샷은 VMware(정합성 보장) 스냅샷과는 다르며 장기간 보호에 적합합니다.  VMware 스냅샷은 전용입니다 http://pubs.vmware.com/vsphere-65/index.jsp?topic=%2Fcom.vmware.vsphere.vm_admin.doc%2FGUID-53F65726-A23B-4CF0-A7D5-48E584B88613.html["권장"^] 성능 및 기타 효과로 인한 단기 사용.
+SnapCenter를 사용하면 여러 작업에 적용할 수 있는 백업 정책을 생성할 수 있습니다. 이러한 정책은 스케줄, 보존, 복제 및 기타 기능을 정의할 수 있습니다. 또한 VM 정합성 보장 스냅샷의 선택적인 선택을 계속 허용하므로 VMware 스냅샷을 생성하기 전에 하이퍼바이저의 입출력 중지 기능을 활용할 수 있습니다. 그러나 VMware 스냅샷의 성능 때문에 게스트 파일 시스템을 중지해야 하는 경우가 아니면 일반적으로 이러한 스냅샷을 사용하지 않는 것이 좋습니다. 대신 일반적인 보호를 위해 스냅샷을 사용하고 SnapCenter 플러그인과 같은 애플리케이션 툴을 사용하여 SQL Server 또는 Oracle과 같은 트랜잭션 데이터를 보호하십시오. 이러한 스냅샷은 VMware(정합성 보장) 스냅샷과는 다르며 장기간 보호에 적합합니다. VMware 스냅샷은 성능 및 기타 효과로 인해 단기간 사용에만 사용하는 것이 좋습니다. link:https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/snapshot-limitations.html["스냅샷 제한 사항"^]자세한 내용은 을 참조하십시오.
 
-이러한 플러그인은 물리적 환경과 가상 환경 모두에서 데이터베이스를 보호하는 확장된 기능을 제공합니다. vSphere를 사용하면 RDM LUN에 데이터가 저장되어 있는 SQL Server 또는 Oracle 데이터베이스, 게스트 OS에 직접 연결된 iSCSI LUN 또는 VMFS 또는 NFS 데이터 저장소의 VMDK 파일을 보호할 수 있습니다. 플러그인을 사용하면 다양한 유형의 데이터베이스 백업을 지정할 수 있고, 온라인 또는 오프라인 백업을 지원하고, 로그 파일과 함께 데이터베이스 파일을 보호할 수 있습니다. 플러그인은 백업 및 복구 외에도 개발 또는 테스트 용도로 데이터베이스 클론 복제도 지원합니다.
+이러한 플러그인은 물리적 환경과 가상 환경 모두에서 데이터베이스를 보호하는 확장된 기능을 제공합니다. vSphere를 사용하면 RDM LUN에 데이터가 저장되어 있는 SQL Server 또는 Oracle 데이터베이스, 게스트 OS에 직접 연결된 iSCSI LUN 또는 VMFS 또는 NFS 데이터 저장소의 VMDK 파일을 보호할 수 있습니다. 플러그인을 사용하면 다양한 유형의 데이터베이스 백업을 지정하고 온라인 또는 오프라인 백업을 지원하며 로그 파일과 함께 데이터베이스 파일을 보호할 수 있습니다. 플러그인은 백업 및 복구 외에도 개발 또는 테스트 목적으로 데이터베이스의 클론 복제를 지원합니다.
 
 다음 그림은 SnapCenter 구축의 예를 보여 줍니다.
 

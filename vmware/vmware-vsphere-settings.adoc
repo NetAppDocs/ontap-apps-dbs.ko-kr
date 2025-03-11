@@ -18,7 +18,7 @@ NetApp은 NFS 및 블록 프로토콜 모두에 최적의 ESXi 호스트 설정 
 
 이러한 값은 VMware vSphere용 ONTAP 툴을 사용하여 쉽게 설정할 수 있습니다. 요약 대시보드의 호스트 시스템 포틀릿에서 설정 편집 을 클릭하거나 vCenter에서 호스트를 마우스 오른쪽 버튼으로 클릭한 다음 ONTAP 툴 > 권장 값 설정 으로 이동합니다.
 
-다음은 9.8-9.13 릴리즈에서 현재 권장되는 호스트 설정입니다.
+다음은 현재 지원되는 모든 ONTAP 버전에 대해 권장되는 호스트 설정입니다.
 
 |===
 
@@ -32,8 +32,7 @@ NetApp은 NFS 및 블록 프로토콜 모두에 최적의 ESXi 호스트 설정 
 | VMFS3. HardwareAcceleratedLocking | 기본값 유지(1) | 아니요 
 
 
-| VMFS3.EnableBlockDelete 를 참조하십시오 | 기본값 유지(0), 필요한 경우 변경할 수 있습니다.
-자세한 내용은 을 참조하십시오 link:https://knowledge.broadcom.com/external/article?legacyId=2007427["VMware KB 2007427"] | 아니요 
+| VMFS3.EnableBlockDelete 를 참조하십시오 | 기본값 유지(0), 필요한 경우 변경할 수 있습니다. 자세한 내용은 을 참조하십시오 link:https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-storage-8-0/storage-provisioning-and-space-reclamation-in-vsphere/storage-space-reclamation-in-vsphere/space-reclamation-for-guest-operating-systems.html["VMFS5 가상 머신에 대한 공간 재확보"] | 아니요 
 
 
 | VMFS3.EnableVMFS6매핑 해제 | 기본값 유지(1)
@@ -155,15 +154,12 @@ ONTAP 툴은 ONTAP FlexVol 볼륨 및 LUN을 생성할 때 특정 기본 설정�
 
 현재 사용 가능한 ONTAP 툴에 의해 구성되지 않은 상태에서 NetApp에서는 다음과 같은 구성 옵션을 제안합니다.
 
-* 고성능 환경에서 또는 단일 LUN 데이터 저장소에서 성능을 테스트할 때는 라운드 로빈(VMW_PSP_RR) 경로 선택 정책(PSP)의 로드 밸런싱 설정을 기본 IOPS 설정인 1000에서 값 1로 변경하는 것이 좋습니다. VMware KB를 참조하십시오 https://kb.vmware.com/s/article/2069356["2069356)을 참조하십시오"^] 를 참조하십시오.
-* vSphere 6.7 업데이트 1에서 VMware는 라운드 로빈 PSP에 새로운 지연 시간 로드 밸런싱 메커니즘을 도입했습니다. 새로운 옵션은 I/O에 가장 적합한 경로를 선택할 때 I/O 대역폭과 경로 지연 시간을 고려합니다 한 경로에 다른 경로보다 많은 네트워크 홉이 있는 경우나 NetApp All SAN 어레이 시스템을 사용하는 경우와 같이, 비등가 경로 연결이 있는 환경에서 이 옵션을 사용하면 혜택을 누릴 수 있습니다. 을 참조하십시오 https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.storage.doc/GUID-B7AD0CA0-CBE2-4DB4-A22C-AD323226A257.html?hWord=N4IghgNiBcIA4Gc4AIJgC4FMB2BjAniAL5A["경로 선택 플러그인 및 정책"^] 를 참조하십시오.
+* 고성능 환경에서 또는 단일 LUN 데이터 저장소에서 성능을 테스트할 때는 라운드 로빈(VMW_PSP_RR) 경로 선택 정책(PSP)의 로드 밸런싱 설정을 기본 IOPS 설정인 1000에서 값 1로 변경하는 것이 좋습니다. 자세한 내용은 을 link:https://knowledge.broadcom.com/external/article?legacyId=2069356["VMware KB 2069356"^]참조하십시오.
+* vSphere 6.7 업데이트 1에서 VMware는 라운드 로빈 PSP에 새로운 지연 시간 로드 밸런싱 메커니즘을 도입했습니다. 새로운 옵션은 I/O에 가장 적합한 경로를 선택할 때 I/O 대역폭과 경로 지연 시간을 고려합니다 한 경로에 다른 경로보다 많은 네트워크 홉이 있는 경우나 NetApp ASA(All SAN Array) 시스템을 사용하는 경우와 같이 비등가 경로 연결이 있는 환경에서 이 기능을 사용하면 도움이 될 수 있습니다. 자세한 내용은 을 https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-storage-8-0/understanding-multipathing-and-failover-in-the-esxi-environment/viewing-and-managing-storage-paths-on-esxi-hosts.html#GUID-1940AE9E-04CF-40BE-BB71-398621F0642E-en["지연 라운드 로빈의 기본 매개 변수를 변경합니다"^] 참조하십시오.
 
 
 
 
 == 추가 문서
 
-vSphere 7을 사용하는 FCP 및 iSCSI의 경우 자세한 내용은 을 참조하십시오 https://docs.netapp.com/us-en/ontap-sanhost/hu_vsphere_7.html["ONTAP와 함께 VMware vSphere 7.x를 사용합니다"^]
-vSphere 8을 사용하는 FCP 및 iSCSI의 경우 자세한 내용은 을 참조하십시오 https://docs.netapp.com/us-en/ontap-sanhost/hu_vsphere_8.html["ONTAP와 함께 VMware vSphere 8.x를 사용합니다"^]
-vSphere 7을 사용하는 NVMe-oF의 경우 자세한 내용은 을 참조하십시오 https://docs.netapp.com/us-en/ontap-sanhost/nvme_esxi_7.html["NVMe-oF의 경우 자세한 내용은 ONTAP를 사용하는 ESXi 7.x용 NVMe-oF 호스트 구성 을 참조하십시오"^]
-vSphere 8을 사용하는 NVMe-oF의 경우 자세한 내용은 을 참조하십시오 https://docs.netapp.com/us-en/ontap-sanhost/nvme_esxi_8.html["NVMe-oF의 경우 자세한 내용은 ONTAP를 사용하는 ESXi 8.x용 NVMe-oF 호스트 구성 을 참조하십시오"^]
+vSphere 7이 포함된 FCP 및 iSCSI의 경우 자세한 link:https://docs.netapp.com/us-en/ontap-sanhost/hu_vsphere_7.html["ONTAP와 함께 VMware vSphere 7.x를 사용합니다"^]내용은 vSphere 8이 설치된 FCP 및 iSCSI에서 찾을 link:https://docs.netapp.com/us-en/ontap-sanhost/hu_vsphere_8.html["ONTAP와 함께 VMware vSphere 8.x를 사용합니다"^]수 있습니다. 자세한 내용은 vSphere 7이 설치된 NVMe-oF 를 link:https://docs.netapp.com/us-en/ontap-sanhost/nvme_esxi_7.html["NVMe-oF의 경우 자세한 내용은 ONTAP를 사용하는 ESXi 7.x용 NVMe-oF 호스트 구성 을 참조하십시오"^]참조하십시오. 자세한 내용은 vSphere 8이 설치된 NVMe-oF 를 참조하십시오 link:https://docs.netapp.com/us-en/ontap-sanhost/nvme_esxi_8.html["NVMe-oF의 경우 자세한 내용은 ONTAP를 사용하는 ESXi 8.x용 NVMe-oF 호스트 구성 을 참조하십시오"^]
