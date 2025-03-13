@@ -35,8 +35,7 @@ NetApp은 NFS 및 블록 프로토콜 모두에 최적의 ESXi 호스트 설정 
 | VMFS3.EnableBlockDelete 를 참조하십시오 | 기본값 유지(0), 필요한 경우 변경할 수 있습니다. 자세한 내용은 을 참조하십시오 link:https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-storage-8-0/storage-provisioning-and-space-reclamation-in-vsphere/storage-space-reclamation-in-vsphere/space-reclamation-for-guest-operating-systems.html["VMFS5 가상 머신에 대한 공간 재확보"] | 아니요 
 
 
-| VMFS3.EnableVMFS6매핑 해제 | 기본값 유지(1)
-자세한 내용은 을 참조하십시오 link:https://core.vmware.com/resource/vmware-vsphere-apis-array-integration-vaai#sec9426-sub4["VMware vSphere API: 어레이 통합(VAAI)"] | 아니요 
+| VMFS3.EnableVMFS6매핑 해제 | 기본값 유지(1) 자세한 내용은 을 참조하십시오 link:https://www.vmware.com/docs/vmw-vmware-vsphere-apis-array-integration-vaai["VMware vSphere API: 어레이 통합(VAAI)"] | 아니요 
 
 
 3+| * NFS 설정 * 

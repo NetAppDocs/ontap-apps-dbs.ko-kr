@@ -20,6 +20,7 @@ summary: ONTAP 툴 10 설치 체크리스트
 * 설치를 시작하기 전에 에서 배포가 인증되었는지 확인해야 https://imt.netapp.com/matrix/#search["상호 운용성 매트릭스 툴"] 합니다.
 * 환경에 필요한 ONTAP 툴 구성의 크기 및 유형을 결정합니다. 자세한 내용은 을 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/deploy/prerequisites.html["VMware vSphere용 ONTAP 툴을 구축하기 위한 구성 제한"] 참조하십시오.
 * 멀티 테넌트 SVM을 사용할 것인지 또는 전체 클러스터 액세스를 허용할 것인지 결정합니다. 멀티 테넌트 SVM을 사용하는 경우 사용할 각 SVM에 SVM 관리 LIF가 있어야 합니다. ONTAP 툴을 통해 포트 443을 통해 이 LIF에 연결할 수 있어야 합니다.
+* 스토리지 접속에 FC(Fibre Channel)를 사용할 것인지 결정합니다. 그럴 경우 ESXi 호스트와 SVM의 FC LIF 간 연결을 설정하려면 FC 스위치에서 연결해야 https://docs.netapp.com/us-en/ontap/san-config/fibre-channel-fcoe-zoning-concept.html["조닝 구성"] 합니다.
 * VMware SRM(사이트 복구 관리자)에 대해 ONTAP 툴 SRA(스토리지 복제 어댑터)를 사용할지, VLSR(라이브 사이트 복구)을 사용할지 결정합니다. 이 경우 SRM/VLSR 서버 관리 인터페이스에 액세스하여 SRA를 설치해야 합니다.
 * ONTAP 도구로 관리되는 SnapMirror 복제(SnapMirror 활성 동기화 포함, 이에 국한되지 않음)를 사용하는 경우 ONTAP 관리자가 https://docs.netapp.com/us-en/ontap/peering/create-intercluster-svm-peer-relationship-93-later-task.html["ONTAP에서 인터클러스터 SVM 피어 관계를 생성합니다"] ONTAP 도구를 SnapMirror와 함께 사용할 수 있도록 해야 https://docs.netapp.com/us-en/ontap/peering/create-cluster-relationship-93-later-task.html["ONTAP에서 클러스터 피어 관계를 생성합니다"] 합니다.
 * https://mysupport.netapp.com/site/products/all/details/otv10/downloads-tab["다운로드"] ONTAP는 OVA를, 필요한 경우 SRA tar.gz 파일을 사용합니다.
@@ -27,7 +28,7 @@ summary: ONTAP 툴 10 설치 체크리스트
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["2개"] IP 주소 및 DNS 레코드를 프로비저닝합니다
 [role="quick-margin-list"]
-* 네트워크 팀에 다음 IP 정보를 요청합니다. 처음 3개의 IP 주소가 필요합니다. 노드 2와 노드 3은 스케일아웃 HA(고가용성) 구축에 사용됩니다. DNS 호스트 레코드가 필요하며 모든 주소가 동일한 VLAN에 있어야 합니다.
+* 네트워크 팀에 다음 IP 정보를 요청합니다. 처음 3개의 IP 주소가 필요합니다. 노드 2와 노드 3은 스케일아웃 HA(고가용성) 구축에 사용됩니다. DNS 호스트 레코드가 필요하며 모든 노드 이름과 모든 주소가 동일한 VLAN 및 서브넷에 있어야 합니다.
 * ONTAP 도구 응용 프로그램 주소 \____\_____. \_____\____. \_____\____. \_____\____
 * 내부 서비스 주소 \__________. \_____\____. \_____\____. \_____\____
 * 1노드의 DNS 호스트 이름 \_____________________________________\___________
@@ -49,21 +50,7 @@ summary: ONTAP 툴 10 설치 체크리스트
 * 네트워크 방화벽에서 위의 IP 주소에 필요한 포트를 엽니다. 최신 업데이트는 을 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/deploy/prerequisites.html#port-requirements["포트 요구 사항"] 참조하십시오.
 
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["네"] 어플라이언스 서비스 구성(선택 사항)
-[role="quick-margin-list"]
-* VVOL을 사용하려면 먼저 해야 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/enable-services.html["어플라이언스 설정을 편집하고 VASA 서비스를 설정합니다"] 합니다. 동시에 다음 두 항목을 검토합니다.
-* 프로덕션 환경에서 VVol을 사용할 계획이라면 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/edit-appliance-settings.html["고가용성 지원"] 위의 두 개의 선택적 IP 주소를 사용하십시오.
-* VMware 사이트 복구 관리자 또는 라이브 사이트 복구용 ONTAP 툴 SRA(스토리지 복제 어댑터)를 사용하려는 경우 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/edit-appliance-settings.html["SRA 서비스를 활성화합니다"]
-
-
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["다섯"] 인증서(옵션)
-[role="quick-margin-list"]
-* VMware에서는 여러 vCenter에서 VVol을 사용하는 경우 CA 서명 인증서가 필요합니다.
-* VASA 서비스\____________________________________________________________________________________
-* 관리 서비스\____________________________________________________
-
-
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["6개"] 바로 스토리지죠
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["네"] 바로 스토리지죠
 [role="quick-margin-list"]
 * 공유 스토리지 디바이스의 데이터 저장소가 필요합니다. 또는 VAAI를 사용하여 템플릿을 빠르게 복제할 수 있도록 노드 1과 동일한 데이터 저장소에 있는 컨텐츠 라이브러리를 사용할 수 있습니다.
 * 컨텐츠 라이브러리(HA에만 필요) \_______________________________________________________________________________
@@ -72,21 +59,45 @@ summary: ONTAP 툴 10 설치 체크리스트
 * 노드 3 데이터 저장소(선택 사항이지만 HA의 경우 권장됨) \_______________________________________________________________________
 
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png["7번"] OVA를 배포합니다
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["다섯"] OVA를 배포합니다
 [role="quick-margin-list"]
 * https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/deploy/ontap-tools-deployment.html["OVA를 배포합니다"] vSphere Client 사용
 
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-8.png["8개"] 배포 후 작업
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["6개"] ONTAP 툴에 vCenter 추가
+[role="quick-margin-list"]
+* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-vcenter.html["vCenter Server 인스턴스를 추가합니다"] ONTAP 도구 관리자
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png["7번"] ONTAP 툴에 스토리지 백엔드를 추가합니다
+[role="quick-margin-list"]
+* SVM에서 스토리지 멀티 테넌시를 사용하는 경우 를 사용합니다
+* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-storage-backend.html["온보드 클러스터"] ONTAP Tools Manager에서 vCenter에 연결합니다.
+* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-storage-backend.html["온보드 SVM"] ONTAP 툴 vCenter UI
+* 멀티 테넌트 SVM을 사용하는 * 아님 * 시
+* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-storage-backend.html["온보드 클러스터"] ONTAP 툴에 직접 있음 vCenter UI 또는 이 경우 VVOL을 활용하지 않을 때 SVM을 직접 추가할 수 있습니다.
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-8.png["8개"] 어플라이언스 서비스 구성(선택 사항)
+[role="quick-margin-list"]
+* VVOL을 사용하려면 먼저 해야 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/enable-services.html["어플라이언스 설정을 편집하고 VASA 서비스를 설정합니다"] 합니다. 동시에 다음 두 항목을 검토합니다.
+* 프로덕션 환경에서 VVol을 사용할 계획이라면 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/edit-appliance-settings.html["고가용성 지원"] 위의 두 개의 선택적 IP 주소를 사용하십시오.
+* VMware 사이트 복구 관리자 또는 라이브 사이트 복구용 ONTAP 툴 SRA(스토리지 복제 어댑터)를 사용하려는 경우 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/edit-appliance-settings.html["SRA 서비스를 활성화합니다"]
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-9.png["아홉"] 인증서(옵션)
+[role="quick-margin-list"]
+* VMware에서는 여러 vCenter에서 VVol을 사용하는 경우 CA 서명 인증서가 필요합니다.
+* VASA 서비스\____________________________________________________________________________________
+* 관리 서비스\____________________________________________________
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-10.png["10개"] 기타 배포 후 작업
 [role="quick-margin-list"]
 * HA 구축 환경에서 VM에 대한 반유사성 규칙을 생성합니다.
 * HA를 사용하는 경우 Storage vMotion 노드 2와 3을 서로 다른 데이터 저장소로 사용합니다(선택 사항이지만 권장).
 * https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/configure-user-role-and-privileges.html["ONTAP 사용자 역할 및 권한을 구성합니다"] 포함된 JSON 파일 사용
 * https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/certificate-manage.html["인증서 관리를 사용합니다"] ONTAP 도구 관리자에서 모든 필수 CA 서명 인증서를 설치합니다.
-* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-vcenter.html["vCenter Server 인스턴스를 추가합니다"] ONTAP 도구 관리자
-* 멀티 테넌트 SVM을 사용하는 경우 ONTAP 툴 관리자에서 해당 SVM을 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-storage-backend.html["온보드 클러스터"] vCenter에 연결합니다.
-* 멀티 테넌트 SVM을 사용하는 경우 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-storage-backend.html["온보드 SVM"] ONTAP 툴에서 vCenter UI를 사용합니다.
-* 멀티 테넌트 SVM을 사용하지 * 않을 경우 * https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-storage-backend.html["온보드 클러스터"] ONTAP 툴 vCenter UI에서 직접 확인할 수 있습니다. 또는 이 경우 VVOL을 활용하지 않을 때 SVM을 직접 추가할 수 있습니다.
 * 기존 데이터 저장소를 보호하기 위해 SRM/VLSR에 대해 SRA를 설정한 경우 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/protect/configure-on-srm-appliance.html["VMware Live Site Recovery 어플라이언스에 SRA를 구성합니다"]
 * 의 기본 백업을 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/enable-backup.html["제로급 RPO"] 구성합니다.
 * 다른 저장 매체에 대한 정기 백업을 구성합니다.

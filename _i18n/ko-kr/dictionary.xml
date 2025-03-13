@@ -2349,8 +2349,6 @@
   <block id="1b50110aedae4d8d2043a4eb9beb20af" category="cell">VMFS3.EnableBlockDelete 를 참조하십시오</block>
   <block id="316084648bbafe451240702bd19c6ee9" category="cell">VMFS3.EnableVMFS6매핑 해제</block>
   <block id="befd90cd01403237f6fdf296822efbee" category="inline-link-macro">VMware vSphere API: 어레이 통합(VAAI)</block>
-  <block id="e385d2442208cc1e23ca841b1f217380" category="cell">기본값 유지(1)
-자세한 내용은 을 참조하십시오 <block ref="d124e203790e5f214a195f69cd068c6d" category="inline-link-macro-rx"></block></block>
   <block id="571cc1d48c6d1ff3cf7e3a54cb035753" category="cell">* NFS 설정 *</block>
   <block id="c3b49a515dd0046685e06092642aa139" category="cell">NET.TcpipHeapSize</block>
   <block id="875f6b98e20edfecb56f9013d00987f6" category="cell">vSphere 6.0 이상, 32로 설정.
@@ -3422,8 +3420,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="fc66ba7317ceb4220dc88aa267db085d" category="list-text">vCenter가 두 사이트에서 사용할 데이터 저장소를 선택하고 OK를 누릅니다.</block>
   <block id="1d2b14769d080b9214d9e407dfc92a64" category="section-title">고급 옵션 구성</block>
   <block id="a9316d69e5abcfaffc56fc8f5e645412" category="paragraph">격리 이벤트는 HA 클러스터에 있는 호스트가 네트워크 또는 클러스터의 다른 호스트에 대한 연결이 끊어질 때 발생합니다. 기본적으로 vSphere HA는 관리 네트워크의 기본 게이트웨이를 기본 격리 주소로 사용합니다. 하지만 ping을 수행할 호스트에 대한 추가 격리 주소를 지정하여 격리 응답을 트리거할지 여부를 결정할 수 있습니다. 사이트당 하나씩 ping을 수행할 수 있는 두 개의 격리 IP를 추가합니다. 게이트웨이 IP를 사용하지 마십시오. 사용되는 vSphere HA 고급 설정은 DAS.isolationaddress입니다. 이러한 목적으로 ONTAP 또는 중재자 IP 주소를 사용할 수 있습니다.</block>
-  <block id="102d7879ceca393c309ef492c958e19d" category="inline-link">core.vmware.com</block>
-  <block id="27e2292ff6db48ed2e6d50b256eae43e" category="paragraph">을 참조하십시오<block ref="43057df4f3a6b5f2fffe8b7c5a490646" category="inline-link-rx"></block> 자세한 내용은 __.__</block>
   <block id="3f44bb4a3b9420d495e400b9afbda2c7" category="paragraph">das.heartbeatDsPerHost 라는 고급 설정을 추가하면 하트비트 데이터 저장소의 수가 증가할 수 있습니다. 사이트당 2개씩 4개의 하트비트 데이터 저장소(HB DSS)를 사용합니다. "목록에서 선택 하지만 칭찬" 옵션을 사용합니다. 한 사이트에 장애가 발생해도 두 개의 HB DSS가 필요하기 때문입니다. 하지만 MCC 또는 SnapMirror 액티브 동기화로 해당 데이터를 보호할 필요는 없습니다.</block>
   <block id="eaa1dfe3982e06655ce64e240c139b81" category="paragraph">NetApp MetroCluster용 VMware DRS Affinity</block>
   <block id="e32221c52eb3b0bbeb3ca79aad6c90f6" category="paragraph">이 섹션에서는 MetroCluster 환경의 각 사이트\클러스터에 대해 VM 및 호스트용 DRS 그룹을 생성합니다. 그런 다음 VM 호스트 규칙을 구성하여 VM 호스트 선호도를 로컬 스토리지 리소스에 맞춥니다. 예를 들어 사이트 A VM은 VM 그룹 SiteA_VMs에 속하고 사이트 A 호스트는 호스트 그룹 SiteA_HOSTS에 속합니다. 다음으로 VM\Host Rules에서는 SiteA_VMs가 SiteA_hosts의 호스트에서 실행되어야 한다고 설명합니다.</block>
@@ -3470,7 +3466,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="d3e911c902a6b066f9c31d471d16fb21" category="paragraph">두 사이트에 걸쳐 VMware HA/DRS 클러스터를 생성하기 위해 ESXi 호스트는 VCSA(vCenter Server Appliance)에 의해 사용되고 관리됩니다. vSphere 관리, vMotion ® 및 가상 머신 네트워크는 두 사이트 간에 중복 네트워크를 통해 연결됩니다. HA/DRS 클러스터를 관리하는 vCenter Server는 두 사이트의 ESXi 호스트에 연결할 수 있으며 vCenter HA를 사용하여 구성해야 합니다.</block>
   <block id="da76be2bc20d4e043d9a2019b817214f" category="inline-link">vSphere Client에서 클러스터를 생성하고 구성하는 방법</block>
   <block id="e02f3e9258a23204655bd512ec53911d" category="paragraph">을 참조하십시오<block ref="c06ae090600e7aa086edfa28514435e7" category="inline-link-rx"></block> vCenter HA를 구성합니다.</block>
-  <block id="bdd88c75f085534f6e2cdc7726cf1dd6" category="paragraph">또한 을 참조하십시오<block ref="3a8301f60ad04eb873ae8dea15ee0495" category="inline-link-rx"></block>.</block>
   <block id="38910d3dab2318849fd5f1a1dfbe0152" category="inline-link">VMware 스토리지 호환성 가이드 를 참조하십시오</block>
   <block id="838b66b875df1b432ac420a98cba3db6" category="paragraph">vSphere Metro Storage Cluster의 설계 지침에 대한 자세한 내용은 다음 설명서를 참조하십시오.</block>
   <block id="07aaf2aebfd07b8763284018d1ebbf57" category="inline-link">VMware vSphere는 NetApp MetroCluster를 지원합니다</block>
@@ -5732,7 +5727,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="18f5114f4a595ad26525bf20f301ce19" category="list-text"><block ref="20462cf0cb6f4e0f9c91cc66c831d98e" category="inline-link-rx"></block> ONTAP는 OVA를, 필요한 경우 SRA tar.gz 파일을 사용합니다.</block>
   <block id="aada29daee1d64ed0fe907043855cb7e" category="inline-image-macro">2개</block>
   <block id="770c8023395525bc05b5a8fc2e6efa8b" category="list-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block> IP 주소 및 DNS 레코드를 프로비저닝합니다</block>
-  <block id="b63e31bbf24a6eef701dc39672946405" category="list-text">네트워크 팀에 다음 IP 정보를 요청합니다. 처음 3개의 IP 주소가 필요합니다. 노드 2와 노드 3은 스케일아웃 HA(고가용성) 구축에 사용됩니다. DNS 호스트 레코드가 필요하며 모든 주소가 동일한 VLAN에 있어야 합니다.</block>
   <block id="08b0c7e27d2f1780fce59893f12e7642" category="list-text">ONTAP 도구 응용 프로그램 주소 \____\_____. \_____\____. \_____\____. \_____\____</block>
   <block id="6bb090d29a0e3de8cc001d02c1e8a7b3" category="list-text">내부 서비스 주소 \__________. \_____\____. \_____\____. \_____\____</block>
   <block id="e32a9122e97bf17560b53c6993301629" category="list-text">1노드의 DNS 호스트 이름 \_____________________________________\___________</block>
@@ -5752,7 +5746,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="76841410d8f9a6881e0b96f150e9cedf" category="inline-link">포트 요구 사항</block>
   <block id="1cb44e38b7d534b49fb7ce15d6726cb0" category="list-text">네트워크 방화벽에서 위의 IP 주소에 필요한 포트를 엽니다. 최신 업데이트는 을<block ref="d75d54fbd8f18143d683ed6f5389e615" category="inline-link-rx"></block> 참조하십시오.</block>
   <block id="981b8fcee42e1e726a67a2b9a98ea6e9" category="inline-image-macro">네</block>
-  <block id="fe2367acaa1f51e55b545df54a8794d7" category="list-title"><block ref="beadfa85a2fdca06b91edc1131c603e6" category="inline-image-macro-rx" type="image"></block> 어플라이언스 서비스 구성(선택 사항)</block>
   <block id="640e990f06389e4b49f54086ba1aba46" category="inline-link">어플라이언스 설정을 편집하고 VASA 서비스를 설정합니다</block>
   <block id="49b964c1f288e8e75650b3e86683914d" category="list-text">VVOL을 사용하려면 먼저 해야<block ref="c9f7d482e0b51df808dc044e3e43f591" category="inline-link-rx"></block> 합니다. 동시에 다음 두 항목을 검토합니다.</block>
   <block id="8ba46a1826b102cd1b8b0fb75a241176" category="inline-link">고가용성 지원</block>
@@ -5760,23 +5753,19 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="fddd8f455515e6a6de8e8d876641e0c5" category="inline-link">SRA 서비스를 활성화합니다</block>
   <block id="777b715f4e7db3295048bd9409cb3a0f" category="list-text">VMware 사이트 복구 관리자 또는 라이브 사이트 복구용 ONTAP 툴 SRA(스토리지 복제 어댑터)를 사용하려는 경우<block ref="9eb793199b56cb94f5df0c657a62ea9e" category="inline-link-rx"></block></block>
   <block id="e5d9de39f7ca1ba2637e5640af3ae8aa" category="inline-image-macro">다섯</block>
-  <block id="fdf409c5a691a69cd744dfc08ae641b5" category="list-title"><block ref="99e8b2f00e172bfcff96afdce69907bc" category="inline-image-macro-rx" type="image"></block> 인증서(옵션)</block>
   <block id="e03ec7d1e46f44c47e1547f8c19fdbb5" category="list-text">VMware에서는 여러 vCenter에서 VVol을 사용하는 경우 CA 서명 인증서가 필요합니다.</block>
   <block id="777f90dea67a6de19d7e4287d6d65525" category="list-text">VASA 서비스\____________________________________________________________________________________</block>
   <block id="50261e7dc97594e1ef47d1913fadd642" category="list-text">관리 서비스\____________________________________________________</block>
   <block id="e6fbc0b9673f8c86726688d7607fc8f5" category="inline-image-macro">6개</block>
-  <block id="45109aee8db55f9962ba496902ac47d1" category="list-title"><block ref="ef78558f80439832e0f51cc22cee8b8c" category="inline-image-macro-rx" type="image"></block> 바로 스토리지죠</block>
   <block id="96c44f7328270a7b9e72a07f78739ecf" category="list-text">공유 스토리지 디바이스의 데이터 저장소가 필요합니다. 또는 VAAI를 사용하여 템플릿을 빠르게 복제할 수 있도록 노드 1과 동일한 데이터 저장소에 있는 컨텐츠 라이브러리를 사용할 수 있습니다.</block>
   <block id="656b82abf6edc190097506cd4d1d585b" category="list-text">컨텐츠 라이브러리(HA에만 필요) \_______________________________________________________________________________</block>
   <block id="99325facb7679dc357733bd909532cfc" category="list-text">노드 1 데이터 저장소 \____________________________________________________________</block>
   <block id="f669e2c7e65edea7adca0c4006b6cf36" category="list-text">노드 2 데이터 저장소(선택 사항이지만 HA의 경우 권장됨) \____________________________\________\______________</block>
   <block id="5ba1096fffa0ecfd4695651916c48133" category="list-text">노드 3 데이터 저장소(선택 사항이지만 HA의 경우 권장됨) \_______________________________________________________________________</block>
   <block id="12e67aac3e7f9227cc35f8f047d7dc74" category="inline-image-macro">7번</block>
-  <block id="34e299878c510a313972dbf8e915aa70" category="list-title"><block ref="36915574c413876eaa75cbd48f69fd00" category="inline-image-macro-rx" type="image"></block> OVA를 배포합니다</block>
   <block id="db5321854b38ff4107ff88c3d3fb2602" category="inline-link">OVA를 배포합니다</block>
   <block id="62386ee2b40ea01fd147eb04a3da8b17" category="list-text"><block ref="2b093a8e786abd40836246bfb87e05bd" category="inline-link-rx"></block> vSphere Client 사용</block>
   <block id="baca0ca6729684fd54206793ae4b5bd5" category="inline-image-macro">8개</block>
-  <block id="3af4c2c51fab2d80844fbb6e10989de8" category="list-title"><block ref="430057c670c01688e904ed2ba129a0b5" category="inline-image-macro-rx" type="image"></block> 배포 후 작업</block>
   <block id="d40a477cc61e319a78ef1bb36d8ea566" category="list-text">HA 구축 환경에서 VM에 대한 반유사성 규칙을 생성합니다.</block>
   <block id="4695b076293ddedd5434ae5a73b57ae2" category="list-text">HA를 사용하는 경우 Storage vMotion 노드 2와 3을 서로 다른 데이터 저장소로 사용합니다(선택 사항이지만 권장).</block>
   <block id="fde3f7a850bbaaac2a3706bf8c7df54c" category="inline-link">ONTAP 사용자 역할 및 권한을 구성합니다</block>
@@ -5786,10 +5775,7 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="6245e46af5a3bdaf57696763c4214c70" category="inline-link">vCenter Server 인스턴스를 추가합니다</block>
   <block id="427d083edfb4d6df118817492fea1fea" category="list-text"><block ref="9271e724c67dd3dffeb4e3ddaf43b80d" category="inline-link-rx"></block> ONTAP 도구 관리자</block>
   <block id="75299228e38c6c56354b3fbc53bd01db" category="inline-link">온보드 클러스터</block>
-  <block id="3a4a4867d2582a3fc7b55ad4df5113f7" category="list-text">멀티 테넌트 SVM을 사용하는 경우 ONTAP 툴 관리자에서 해당 SVM을<block ref="ea2efd531a0984091e8158139d5ccc0c" category="inline-link-rx"></block> vCenter에 연결합니다.</block>
   <block id="0583aea4353aeb5998071022ebbb79ae" category="inline-link">온보드 SVM</block>
-  <block id="8ad9f2408218e1b63c20ae491c20ce60" category="list-text">멀티 테넌트 SVM을 사용하는 경우<block ref="d765a6bb593f5e86f1e69993d841269b" category="inline-link-rx"></block> ONTAP 툴에서 vCenter UI를 사용합니다.</block>
-  <block id="d7788ac532a6f39741dcd93fd04481e6" category="list-text">멀티 테넌트 SVM을 사용하지 * 않을 경우 *<block ref="ea2efd531a0984091e8158139d5ccc0c" category="inline-link-rx"></block> ONTAP 툴 vCenter UI에서 직접 확인할 수 있습니다. 또는 이 경우 VVOL을 활용하지 않을 때 SVM을 직접 추가할 수 있습니다.</block>
   <block id="4d5a9665c20fe0f045d612f3d7c14c3a" category="inline-link">VMware Live Site Recovery 어플라이언스에 SRA를 구성합니다</block>
   <block id="74d3c40ee5d2741e75390e90d13a881a" category="list-text">기존 데이터 저장소를 보호하기 위해 SRM/VLSR에 대해 SRA를 설정한 경우<block ref="ae14a63430307f4358dbb1aa0a6215ef" category="inline-link-rx"></block></block>
   <block id="56b3d744b9b4be462a3690ae4544597f" category="inline-link">제로급 RPO</block>
@@ -5951,4 +5937,24 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="c50c3de11b39aab15ac6b3b860691105" category="paragraph">VMware Storage DRS 기능을 사용하면 단일 유닛으로 데이터 저장소를 통합할 수 있으며 SIOC(스토리지 입출력 제어) 임계값을 초과할 경우 가상 머신 디스크의 균형을 조정할 수 있습니다.</block>
   <block id="a6389705a0010980a83767268763aa53" category="sidebar">ONTAP 툴을 이용한 VVOL(가상 볼륨) 10</block>
   <block id="d858ab232a556e2be473d51d09bc0c3d" category="sidebar">ONTAP 툴 설치 체크리스트</block>
+  <block id="2e0a1393be1d4f990f277513b8384831" category="cell">기본값 유지(1) 자세한 내용은 을 참조하십시오 <block ref="3b98534d1167689d42f2d1a533484036" category="inline-link-macro-rx"></block></block>
+  <block id="79a22fb066bcc86a371f557f30051d43" category="inline-link">조닝 구성</block>
+  <block id="b5d661217ddfecce129a41707ffa9fa9" category="list-text">스토리지 접속에 FC(Fibre Channel)를 사용할 것인지 결정합니다. 그럴 경우 ESXi 호스트와 SVM의 FC LIF 간 연결을 설정하려면 FC 스위치에서 연결해야<block ref="1ce5ae0107fd362eacaa4ef5b56c5d82" category="inline-link-rx"></block> 합니다.</block>
+  <block id="49e1b0dac188727de519431ac2068825" category="list-text">네트워크 팀에 다음 IP 정보를 요청합니다. 처음 3개의 IP 주소가 필요합니다. 노드 2와 노드 3은 스케일아웃 HA(고가용성) 구축에 사용됩니다. DNS 호스트 레코드가 필요하며 모든 노드 이름과 모든 주소가 동일한 VLAN 및 서브넷에 있어야 합니다.</block>
+  <block id="7be8dd6dbcd142349f300df69f6a63d2" category="list-title"><block ref="beadfa85a2fdca06b91edc1131c603e6" category="inline-image-macro-rx" type="image"></block> 바로 스토리지죠</block>
+  <block id="829d9899725b36358387edfa5df0e486" category="list-title"><block ref="99e8b2f00e172bfcff96afdce69907bc" category="inline-image-macro-rx" type="image"></block> OVA를 배포합니다</block>
+  <block id="2c63315a0e6899fa3f810f1b06553689" category="list-title"><block ref="ef78558f80439832e0f51cc22cee8b8c" category="inline-image-macro-rx" type="image"></block> ONTAP 툴에 vCenter 추가</block>
+  <block id="0547f403694814dca82327ab77f95205" category="list-title"><block ref="36915574c413876eaa75cbd48f69fd00" category="inline-image-macro-rx" type="image"></block> ONTAP 툴에 스토리지 백엔드를 추가합니다</block>
+  <block id="3317c36267d6f484693b29dbd86b1e79" category="list-text">SVM에서 스토리지 멀티 테넌시를 사용하는 경우 를 사용합니다</block>
+  <block id="5abf46747a299bb4d24d81d3a3f343aa" category="list-text"><block ref="40ea307f91b1c1591600230b15a0b728" category="inline-link-rx"></block> ONTAP Tools Manager에서 vCenter에 연결합니다.</block>
+  <block id="e69b3c58a2b1480f291387c690bf92b4" category="list-text"><block ref="9f5477aac946ec407262cd052d80864d" category="inline-link-rx"></block> ONTAP 툴 vCenter UI</block>
+  <block id="1ca4d08fe4d0cced2e4ebb5629b6613c" category="list-text">멀티 테넌트 SVM을 사용하는 * 아님 * 시</block>
+  <block id="9e80f1d38a7781fc49c6800d20337ec2" category="list-text"><block ref="40ea307f91b1c1591600230b15a0b728" category="inline-link-rx"></block> ONTAP 툴에 직접 있음 vCenter UI 또는 이 경우 VVOL을 활용하지 않을 때 SVM을 직접 추가할 수 있습니다.</block>
+  <block id="421bdf5be659af6d75aab31df92b7907" category="list-title"><block ref="430057c670c01688e904ed2ba129a0b5" category="inline-image-macro-rx" type="image"></block> 어플라이언스 서비스 구성(선택 사항)</block>
+  <block id="24db11216549ee55172c33cf3def2f3f" category="inline-image-macro">아홉</block>
+  <block id="8a339db13a88428ad39d370cfdd1129a" category="list-title"><block ref="b37b448eff4f65237cf47b29bdd2817c" category="inline-image-macro-rx" type="image"></block> 인증서(옵션)</block>
+  <block id="a185c3c138dca5ef46afc33288a67d1f" category="inline-image-macro">10개</block>
+  <block id="71fc21799db94f8cae72c8732659492c" category="list-title"><block ref="6097494f0af631df68e3dcb7a6da8d2a" category="inline-image-macro-rx" type="image"></block> 기타 배포 후 작업</block>
+  <block id="93da9d9a3842b9e17ab9de43211bf697" category="paragraph">자세한 내용은 을<block ref="0802e50581eb79c07178f36fed073afc" category="inline-link-rx"></block> 참조하십시오. _.__</block>
+  <block id="275507174f3ab21b1a65c1d5e8446001" category="paragraph">또한 을<block ref="0802e50581eb79c07178f36fed073afc" category="inline-link-rx"></block>참조하십시오.</block>
 </blocks>
