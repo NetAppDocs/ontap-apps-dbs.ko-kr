@@ -3,10 +3,13 @@ sidebar: sidebar
 permalink: mysql/mysql-innodb_flush_method.html 
 keywords: MySQL,MariaDB,innodb_flush_method 
 summary: MySQL 및 innodb_flush_method 
+searchtitle: MySQL 및 innodb_flush_method 
 ---
 = InnoDB_flush_method 를 참조하십시오
+:hardbreaks:
 :allow-uri-read: 
 :icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 

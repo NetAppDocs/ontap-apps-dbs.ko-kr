@@ -6,8 +6,10 @@ summary: MySQL 구성 매개변수
 searchtitle: MySQL 구성 매개변수 
 ---
 = 구성 매개 변수
+:hardbreaks:
 :allow-uri-read: 
 :icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 

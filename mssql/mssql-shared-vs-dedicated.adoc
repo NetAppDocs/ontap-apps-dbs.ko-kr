@@ -3,10 +3,13 @@ sidebar: sidebar
 permalink: mssql/mssql-shared-vs-dedicated.html 
 keywords: MSSQL,SQL Server, multiple instances, dedicated instance, ONTAP 
 summary: Microsoft SQL Server 인스턴스 배포 
-searchtitle: Microsoft SQL Server 공유 인스턴스와 전용 인스턴스 비교 
+searchtitle: Microsoft SQL Server 인스턴스 배포 
 ---
 = 공유 인스턴스와 전용 인스턴스 비교
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 

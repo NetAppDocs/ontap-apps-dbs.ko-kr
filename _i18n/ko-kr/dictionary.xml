@@ -140,7 +140,6 @@
   <block id="1c237d1ebcdeff13ae0145c741d9401d" category="admonition">이러한 접근 방식은 사용자가 백업에 필요한 공간을 보다 효율적으로 관리하는 데 도움이 되지만 FabricPool 자체는 백업 기술이 아닙니다. 백업 파일을 오브젝트 저장소로 계층화하면 파일이 원래 스토리지 시스템에 계속 표시되지만 오브젝트 저장소 대상의 데이터 블록은 원본 스토리지 시스템에 따라 다르므로 관리가 간소화됩니다. 소스 볼륨이 손실되면 오브젝트 저장소 데이터를 더 이상 사용할 수 없습니다.</block>
   <block id="a19665c8f7c0210f96ad2934ad0ee361" category="paragraph">ONTAP 시스템에서 스토리지는 4KB 장치로 구성됩니다. 데이터베이스 또는 파일 시스템 8KB 블록은 정확히 2개의 4KB 블록에 매핑되어야 합니다. LUN 구성 오류로 인해 정렬이 어느 방향으로든 1KB 이동되면 각 8KB 블록은 2개가 아닌 3개의 서로 다른 4KB 스토리지 블록에 존재하게 됩니다. 이 방식은 스토리지 시스템 내에서 지연 시간이 늘어나고 추가적인 I/O가 수행되도록 합니다.</block>
   <block id="211a9fe299057fe8665b591dddbac56d" category="paragraph">정렬은 LVM 아키텍처에도 영향을 미칩니다. 논리적 볼륨 그룹 내의 물리적 볼륨은 전체 드라이브 장치에서 정의되며(생성되는 파티션 없음), LUN의 첫 번째 4KB 블록이 스토리지 시스템의 첫 번째 4KB 블록에 맞춰 정렬됩니다. 이것이 올바른 정렬입니다. 문제는 파티션에서 발생하는데, 운영 체제가 LUN을 사용하는 시작 위치를 파티션이 바꾸기 때문입니다. 오프셋이 4KB 단위로 이동하는 한 LUN은 정렬됩니다.</block>
-  <block id="7c8a0aad1f59988f8160921a07203bb4" category="paragraph">Linux 환경에서는 전체 드라이브 장치에 논리적 볼륨 그룹이 구축됩니다. 파티션이 필요하면 를 실행하여 정렬을 점검합니다<block ref="16ae8c2dc7757a3180ce37bad780251a" prefix=" " category="inline-code"></block> 각 파티션의 시작이 8의 배수인지 확인합니다. 이는 8개의 512바이트 섹터를 곱한 값인 4KB에서 파티션이 시작된다는 뜻입니다.</block>
   <block id="e98a692d783d8d778aab49ed4c55e214" category="doc">사이트 장애 방지: NVRAM 및 MetroCluster</block>
   <block id="186577daf29184ed8a55cf899ba2979c" category="paragraph">MetroCluster는 NVRAM 데이터 보호를 다음과 같은 방식으로 확장합니다.</block>
   <block id="679f5a5873d7d3378cf4b3035fd5cb13" category="list-text">2노드 구성에서는 ISL(Inter-Switch Link)을 사용하여 NVRAM 데이터를 원격 파트너에게 복제합니다.</block>
@@ -184,10 +183,8 @@
   <block id="8e7705fe4aea384d7f6a99ab6dc0f408" category="section-title">패브릭 연결 MetroCluster가 포함된 MetroCluster Tiebreaker</block>
   <block id="897b7698cb343dbc3452e845705ab0f3" category="inline-link">NetApp MetroCluster Tiebreaker의 약어입니다</block>
   <block id="9c093f14319e8253b8c9b37290597239" category="inline-link">NetApp Support 사이트</block>
-  <block id="a1d9fc4fb49119a9fe9b39abec0a769b" category="paragraph">를 클릭합니다<block ref="9332969062716487f0feefe076babf99" category="inline-link-rx"></block> 소프트웨어를 세 번째 사이트에서 실행하여 MetroCluster 환경의 상태를 모니터링하고, 알림을 보내고, 재해 상황에서 선택적으로 스위치오버를 수행할 수 있습니다. 타이브레이커에 대한 자세한 설명은 에서 확인할 수 있습니다<block ref="c21658567f794984b03c21186a56713d" category="inline-link-rx"></block>하지만 MetroCluster Tiebreaker의 주요 목적은 사이트 손실을 감지하는 것입니다. 또한 사이트 손실과 연결 손실 간에 구분해야 합니다. 예를 들어, Tiebreaker가 운영 사이트에 연결할 수 없기 때문에 전환이 발생하지 않아야 합니다. 따라서 Tiebreaker는 원격 사이트의 운영 사이트 접속 기능을 모니터링합니다.</block>
   <block id="6f29b1849750ceee5eb7f6f02d100e6b" category="paragraph">AUSO를 통한 자동 절체는 MCTB와도 호환됩니다. AUSO는 특정 장애 이벤트를 감지한 다음 NVRAM 및 SyncMirror 플렉스가 동기화되어 있는 경우에만 스위치오버를 호출하도록 설계되었기 때문에 매우 빠르게 대응합니다.</block>
   <block id="6f5c7ae76595eca2ca83c5dd30cd8e9f" category="paragraph">반대로 타이브레이커는 원격으로 위치하므로 타이머가 경과할 때까지 기다린 후 사이트를 비활성화해야 합니다. Tiebreaker는 결국 AUSO에 포함된 일종의 컨트롤러 장애를 감지하지만, 일반적으로 AUSO는 이미 전환을 시작하고 Tiebreaker가 작동하기 전에 전환을 완료했을 수 있습니다. Tiebreaker에서 생성된 두 번째 switchover 명령은 거부됩니다.</block>
-  <block id="842547e1622bb12d9201167b0c39cf6d" category="paragraph">* 주의: * MCTB 소프트웨어는 전환을 강제 적용할 때 NVRAM이 동기화되었는지 또는 플렉스가 동기화되었는지 확인하지 않습니다. 자동 전환이 구성된 경우 유지 관리 활동 중에 NVRAM 또는 SyncMirror 플렉스의 동기화가 손실되는 것을 방지해야 합니다.</block>
   <block id="7110edd59c3d0f25a584723f6fea26a0" category="paragraph">또한 MCTB는 지속적인 재해를 처리하지 못해 다음과 같은 일련의 이벤트가 발생할 수 있습니다.</block>
   <block id="93d732b784eaf1a323f191e75c10f233" category="list-text">사이트 간 연결이 30초 이상 중단됩니다.</block>
   <block id="81d4275cc3534a9fa8cfdcdb5172eb94" category="list-text">SyncMirror 복제 시간이 초과되고 운영 사이트에서 작업이 계속되어 원격 복제본이 오래된 상태로 남습니다.</block>
@@ -196,12 +193,10 @@
   <block id="86de4e3737e3d871dacf8ffef353fc31" category="list-text">사이트 손실 시 기본 사이트의 스토리지 리소스를 사용 중이던 정상적인 사이트의 애플리케이션이 데이터를 캐싱했을 수 있습니다. 스위치오버로 인해 캐시와 일치하지 않는 오래된 데이터가 생성됩니다.</block>
   <block id="dbb2a01afe28c8310daf781bb80b795f" category="list-text">사이트 손실 시 기본 사이트의 스토리지 리소스를 사용하고 있었던 정상적인 사이트의 운영 체제에서는 데이터가 캐시되었을 수 있습니다. 스위치오버로 인해 캐시와 일치하지 않는 오래된 데이터가 생성됩니다. 가장 안전한 옵션은 사이트 장애가 감지되면 알림을 보내도록 Tiebreaker를 구성한 다음 사람이 전환을 강제 적용할 것인지 여부를 결정하도록 하는 것입니다. 캐시된 데이터를 지우려면 먼저 응용 프로그램 및/또는 운영 체제를 종료해야 할 수 있습니다. 또한 NVFAIL 설정을 사용하여 보호 기능을 추가하고 장애 조치 프로세스를 간소화할 수 있습니다.</block>
   <block id="ec6b0ea9c511479c118aa0f028f6519d" category="section-title">MetroCluster IP를 사용하는 ONTAP 중재자</block>
-  <block id="8ada6a626a475d631df231bbb3a88ac9" category="paragraph">ONTAP mediator는 MetroCluster IP 및 기타 특정 ONTAP 솔루션과 함께 사용됩니다. 위에서 설명한 MetroCluster Tiebreaker 소프트웨어와 마찬가지로 기존 Tiebreaker 서비스 역할을 하지만 자동 자동 전환을 수행하는 중요한 기능도 포함되어 있습니다.</block>
   <block id="991d7d7d7388ccdd87c65ca09aa804f2" category="paragraph">패브릭이 연결된 MetroCluster는 반대쪽 사이트의 스토리지 장치에 직접 액세스할 수 있습니다. 이를 통해 한 MetroCluster 컨트롤러가 드라이브에서 하트비트 데이터를 읽어 다른 컨트롤러의 상태를 모니터링할 수 있습니다. 이를 통해 한 컨트롤러가 다른 컨트롤러의 장애를 인식하고 전환을 수행할 수 있습니다.</block>
   <block id="db2e932a11478bcf14c75d38e8b9a170" category="paragraph">반면, MetroCluster IP 아키텍처는 컨트롤러-컨트롤러 연결을 통해서만 모든 I/O를 라우팅하며, 원격 사이트의 스토리지 장치에 직접 액세스할 수 없습니다. 이로 인해 컨트롤러가 장애를 감지하고 스위치오버를 수행할 수 없게 됩니다. 따라서 사이트 손실을 감지하고 자동으로 전환을 수행하기 위한 Tiebreaker 장치로 ONTAP 중재자가 필요합니다.</block>
   <block id="8004e6d63f487a456290225b74768a6c" category="section-title">ClusterLion이 포함된 가상 3번째 사이트</block>
   <block id="f1d5a7305654a402a719675fbec810e7" category="paragraph">ClusterLion은 가상 3차 사이트로 작동하는 고급 MetroCluster 모니터링 어플라이언스입니다. 이 접근 방식을 통해 MetroCluster는 완전 자동화된 스위치오버 기능을 통해 2개 사이트 구성으로 안전하게 구축할 수 있습니다. 또한 ClusterLion은 추가 네트워크 수준 모니터를 수행하고 전환 후 작업을 실행할 수 있습니다. ProLion에서 전체 문서를 다운로드할 수 있습니다.</block>
-  <block id="a60b8f728a13371898fea9947ef1e0dc" category="paragraph"><block ref="a60b8f728a13371898fea9947ef1e0dc" category="inline-image-macro-rx" type="image"></block></block>
   <block id="f8aae92ec17ec82868ef9ffc767dbd03" category="list-text">ClusterLion 어플라이언스는 이더넷 및 직렬 케이블을 직접 연결하여 컨트롤러의 상태를 모니터링합니다.</block>
   <block id="c5f8963a91e3d8e7ac0abda2eab9f17d" category="list-text">이 두 장비는 이중화 3G 무선 연결을 통해 서로 연결됩니다.</block>
   <block id="24de16a13a1b584832d19117982cbfa6" category="list-text">ONTAP 컨트롤러의 전원은 내부 릴레이를 통해 배선됩니다. 사이트 장애가 발생할 경우 내부 UPS 시스템이 포함된 ClusterLion은 전환을 호출하기 전에 전원 연결을 끊습니다. 이 과정을 통해 브레인 분할 상태가 발생하지 않도록 합니다.</block>
@@ -227,10 +222,6 @@
   <block id="8a467b35326e4738b1bd39865c3b21a0" category="admonition">데이터에 대한 모든 액세스 유형은 열 지도 데이터를 재설정합니다. 바이러스 검사, 인덱싱, 심지어 소스 파일을 읽는 백업 활동으로 인해 계층화가 방지됩니다<block ref="e5e88684921dd21f3f86c28343a3082f" prefix=" " category="inline-code"></block> 임계값에 도달하지 않았습니다.</block>
   <block id="7a1920d61156abc05a60135aefe8bc67" category="doc">기본값</block>
   <block id="5ba46d288640832c345e169b04a7458a" category="paragraph">모든 FabricPool 볼륨은 처음에 에서 설정됩니다<block ref="c21f969b5f03d33d43e04f8f136e7682" prefix=" " category="inline-code"></block>즉, 클라우드 검색 정책에 의해 동작이 제어됩니다. 정확한 동작은 사용된 계층화 정책에 따라 다릅니다.</block>
-  <block id="5ec354970d7934d92ba67ccaa0de0121" category="list-text"><block ref="9df22f196a33acd0b372fe502de51211" prefix="" category="inline-code"></block>– 임의로 읽은 데이터만 검색합니다</block>
-  <block id="74092cfa5efab8e6ddc5c2991ee2cfc9" category="list-text"><block ref="8805d416ce540c5f2df34af5b18d742b" prefix="" category="inline-code"></block>– 순차 또는 임의로 읽은 데이터를 모두 검색합니다</block>
-  <block id="2de036541477f953c6fd33d14a8db0e8" category="list-text"><block ref="334c4a4c42fdb79d7ebc3e73b517e6f8" prefix="" category="inline-code"></block>– 순차 또는 임의로 읽은 데이터를 모두 검색합니다</block>
-  <block id="b6ffdb7ccf86e99ecf73899ec23bdd46" category="list-text"><block ref="a181a603769c1f98ad927e7367c7aa51" prefix="" category="inline-code"></block>용량 계층에서 데이터를 검색하지 마십시오</block>
   <block id="d556a0d2cad80695d1d803ebb49de9cd" category="section-title">온리드</block>
   <block id="7c39eb141ca855e5a211b468bd67636c" category="paragraph">설정<block ref="d253e682212338dd6cbe577947f0511e" prefix=" " category="inline-code"></block> On-read를 선택하면 기본 동작이 재정의되므로 계층화된 데이터를 읽으면 해당 데이터가 성능 계층으로 반환됩니다.</block>
   <block id="e07df43ea07fecb178484ef278644eb2" category="paragraph">예를 들어, 볼륨을 오랫동안 가볍게 사용한 적이 있을 수 있습니다<block ref="9df22f196a33acd0b372fe502de51211" prefix=" " category="inline-code"></block> 계층화 정책과 대부분의 블록이 이제 계층화됩니다.</block>
@@ -244,7 +235,6 @@
   <block id="2d242bb36ec91b32005f9296ff03a912" category="doc">있습니다</block>
   <block id="ac30d4a74ecef302adab70e9669a4bf2" category="paragraph">FabricPool는 블록을 핫 또는 쿨 블록으로 분류하여 가장 적절한 스토리지 계층에 배치하는 계층화 기술입니다. 성능 계층은 가장 일반적으로 SSD 스토리지에 배치되며 핫 데이터 블록을 호스팅합니다. 용량 계층은 오브젝트 저장소에 있으며 쿨 데이터 블록을 호스팅합니다. 오브젝트 스토리지 지원에는 NetApp StorageGRID, ONTAP S3, Microsoft Azure Blob 스토리지, Alibaba 클라우드 오브젝트 스토리지 서비스, IBM 클라우드 오브젝트 스토리지, Google Cloud 스토리지, Amazon AWS S3가 포함됩니다.</block>
   <block id="f9f5fe2f7456d37c955f3291744c93b6" category="paragraph">여러 계층화 정책을 사용하여 블록의 핫 또는 쿨 분류 방식을 제어하고, 볼륨별로 정책을 설정하고 필요에 따라 변경할 수 있습니다. 성능 계층과 용량 계층 간에는 데이터 블록만 이동됩니다. LUN 및 파일 시스템 구조를 정의하는 메타데이터는 항상 성능 계층에 유지됩니다. 결과적으로 관리가 ONTAP에서 중앙 집중화됩니다. 파일 및 LUN은 다른 ONTAP 구성에 저장된 데이터와 다르지 않습니다. NetApp AFF 또는 FAS 컨트롤러는 정의된 정책을 적용하여 데이터를 적절한 계층으로 이동합니다.</block>
-  <block id="156a1cf692c4ba9a4f9574fb16428b01" category="paragraph"><block ref="156a1cf692c4ba9a4f9574fb16428b01" category="inline-image-macro-rx" type="image"></block></block>
   <block id="616ce0475334fe37834d13972a168ca5" category="section-title">오브젝트 저장소 공급자</block>
   <block id="71e79501cc067e6b35ac3d3e97c940a4" category="paragraph">오브젝트 스토리지 프로토콜은 다수의 데이터 오브젝트를 저장하기 위해 간단한 HTTP 또는 HTTPS 요청을 사용합니다. ONTAP에서 데이터에 액세스하는 것은 요청을 즉시 처리하는 데 좌우되므로 오브젝트 스토리지에 대한 액세스는 안정적이어야 합니다. 옵션에는 Amazon S3 Standard 및 빈도가 낮은 액세스 옵션과 Microsoft Azure Hot and Cool Blob Storage, IBM Cloud 및 Google Cloud가 있습니다. Amazon Glacier 및 Amazon Archive와 같은 아카이브 옵션은 데이터를 검색하는 데 필요한 시간이 호스트 운영 체제 및 애플리케이션의 허용 한도를 초과할 수 있기 때문에 지원되지 않습니다.</block>
   <block id="e114e830308285cd9085063fad91662c" category="paragraph">NetApp StorageGRID는 또한 지원되며 최적의 엔터프라이즈급 솔루션입니다. 확장성이 뛰어나고 매우 안전한 오브젝트 스토리지 시스템으로, FabricPool 데이터와 엔터프라이즈 애플리케이션 환경에 포함될 가능성이 더 높은 기타 오브젝트 저장소 애플리케이션에 지리적 이중화를 제공할 수 있습니다.</block>
@@ -276,7 +266,6 @@
   <block id="32aeb47267cb2045610b468115f3ae0e" category="section-title">효율성 및 씬 프로비저닝</block>
   <block id="3381946611f34fb44ad8a38a0c44e0a8" category="paragraph">효율성 기능은 씬 프로비저닝의 한 형태입니다. 예를 들어, 100GB 볼륨을 점유하는 100GB LUN은 50GB까지 압축할 수 있을 것이고 볼륨은 여전히 100GB이기 때문에 실제로 절감이 실현되지는 않았습니다. 먼저 볼륨의 크기를 줄여 절감된 공간을 시스템의 어느 곳에서든 사용할 수 있게 해야 합니다. 나중에 100GB LUN으로 변경하면 데이터 압축률이 줄어들어 LUN 크기가 커지고 볼륨을 가득 채울 수 있습니다.</block>
   <block id="38ef8b6f2fc332958c293d93c61d7756" category="paragraph">일부 고객은 특정 워크로드에 대해 또는 일반적으로 확립된 운영 및 조달 사례를 기반으로 일반 프로비저닝을 사용하는 것을 선호합니다.</block>
-  <block id="f8ea8eaa5ca0e58c6a43ec0117b7bd8d" category="paragraph">* 주의: * 볼륨이 일반 프로비저닝되면 압축 해제 및 를 사용한 중복 제거 제거를 포함하여 해당 볼륨에 대한 모든 효율성 기능을 완전히 비활성화하도록 주의해야 합니다<block ref="3cfeff511a11b8c5f54ce9749a719a58" prefix=" " category="inline-code"></block> 명령. 볼륨은 에 나타나지 않아야 합니다<block ref="df899f2d908ec33afe1d01ee26b3dd47" prefix=" " category="inline-code"></block> 출력. 그렇지 않을 경우, 효율성 기능을 위해 볼륨이 부분적으로 구성됩니다. 결과적으로 덮어쓰기 보장은 서로 다르게 동작하므로 구성 과다 사용으로 인해 볼륨의 공간이 예기치 않게 부족해져서 데이터베이스 I/O 오류가 발생할 가능성이 높아집니다.</block>
   <block id="0e7c78164adb6d4650ea685a79d8e99e" category="section-title">효율성 모범 사례</block>
   <block id="ec499ad25fa5a765ba43ec2c87819623" category="section-title">AFF 기본값</block>
   <block id="9f7127e69d50bf7b844ff3723b86fbd1" category="section-title">일반 권장 사항</block>
@@ -325,17 +314,14 @@
   <block id="b28c5a429800ea9669a191a402a72b49" category="paragraph">또한 사이트 간 연결만 컨트롤러를 위한 것이므로 아키텍처가 더욱 단순합니다. FC SAN 연결 MetroCluster에서 컨트롤러는 반대쪽 사이트의 드라이브에 직접 기록하므로 SAN 연결, 스위치 및 브리지가 추가로 필요합니다. 반면, IP 구성의 컨트롤러는 컨트롤러를 통해 반대쪽 드라이브에 씁니다.</block>
   <block id="457b0075e8f0333975a8e2aaeaceb149" category="inline-link">MetroCluster IP 솔루션 아키텍처 및 설계</block>
   <block id="82aa44c8aa5ebe78f1496c8fc80cb954" category="paragraph">자세한 내용은 공식 ONTAP 설명서 및 를 참조하십시오<block ref="03a3c76178d2d43147a2756857a0985e" category="inline-link-rx"></block>.</block>
-  <block id="68cf128ce140240c63e9a47e2a82a333" category="paragraph"><block ref="68cf128ce140240c63e9a47e2a82a333" category="inline-image-macro-rx" type="image"></block></block>
   <block id="0d2d438a72f6c558744351265fa49a62" category="section-title">HA-쌍 FC SAN 연결 MetroCluster</block>
   <block id="3e9133ff590581b29a911d9631ab1737" category="paragraph">HA 쌍 MetroCluster FC 구성은 사이트당 2개 또는 4개의 노드를 사용합니다. 이 구성 옵션은 2노드 옵션에 비해 복잡성과 비용을 증가시키지만, 내부 중복이라는 중요한 이점을 제공합니다. 컨트롤러 장애가 간단하더라도 WAN을 통한 데이터 액세스가 필요하지 않습니다. 데이터 액세스는 대체 로컬 컨트롤러를 통해 로컬에 유지됩니다.</block>
-  <block id="7ea740801794ba8a2ce3f87db010c319" category="paragraph"><block ref="7ea740801794ba8a2ce3f87db010c319" category="inline-image-macro-rx" type="image"></block></block>
   <block id="4bc2926f030255369db3e4435de5c774" category="paragraph">일부 멀티사이트 인프라는 액티브-액티브 운영을 위해 설계되지 않았지만 운영 사이트 및 재해 복구 사이트로 더 많이 사용됩니다. 이 상황에서 HA 쌍 MetroCluster 옵션이 일반적으로 다음과 같은 이유로 더 권장됩니다.</block>
   <block id="5f49f48dd22b405a813e2ef7cc02e9f8" category="list-text">2노드 MetroCluster 클러스터는 HA 시스템이지만, 컨트롤러의 예상치 못한 장애나 계획된 유지 관리를 위해서는 반대쪽 사이트에서 데이터 서비스를 온라인으로 전환해야 합니다. 사이트 간 네트워크 연결이 필요한 대역폭을 지원할 수 없는 경우 성능이 영향을 받습니다. 유일한 옵션은 다양한 호스트 OS 및 관련 서비스를 대체 사이트로 페일오버하는 것입니다. HA Pair MetroCluster 클러스터는 동일한 사이트 내에서 단순한 페일오버가 발생하기 때문에 이 문제가 해소됩니다.</block>
   <block id="0ce798a4f2e77d6aa1a6e0d718fa8e98" category="list-text">일부 네트워크 토폴로지는 사이트 간 액세스용으로 설계되지 않은 대신 서로 다른 서브넷이나 격리된 FC SAN을 사용합니다. 이런 경우 2노드 MetroCluster 클러스터는 다른 사이트의 서버에 데이터를 제공할 수 없기 때문에 더 이상 HA 시스템으로 작동하지 않습니다. 완벽한 이중화를 제공하려면 HA Pair MetroCluster 옵션이 필요합니다.</block>
   <block id="098fa44ef37572e0f8ea717199ac72e6" category="list-text">2개 사이트 인프라를 고가용성 단일 인프라로 간주하는 경우 2노드 MetroCluster 구성이 적합합니다. 하지만 사이트 장애 후 시스템이 오랫동안 작동해야 하는 경우에는 단일 사이트 내에서 HA를 계속 제공하기 때문에 HA 2노드가 선호됩니다.</block>
   <block id="ea8bb3e5a357ca97851352f6944342c9" category="section-title">2노드 FC SAN 연결 MetroCluster</block>
   <block id="b759079fef92c80eca80e7349bf84363" category="paragraph">2노드 MetroCluster 구성은 사이트당 하나의 노드만 사용합니다. 이 설계는 구성과 유지 관리가 필요한 구성 요소가 적기 때문에 HA 쌍 옵션보다 단순합니다. 또한 케이블 연결 및 FC 스위칭에 대한 인프라 요구도 줄었습니다. 마지막으로 비용을 절감할 수 있습니다.</block>
-  <block id="5bfcbf762ac959212294cdf71bbec2b5" category="paragraph"><block ref="5bfcbf762ac959212294cdf71bbec2b5" category="inline-image-macro-rx" type="image"></block></block>
   <block id="bcf549481eb36a62594e938bca6a10bb" category="paragraph">이 설계의 분명한 영향은 단일 사이트에서 컨트롤러 장애가 발생하면 반대쪽 사이트에서 데이터를 사용할 수 있다는 것입니다. 이러한 제한이 반드시 문제가 되는 것은 아닙니다. 많은 기업은 기본적으로 단일 인프라로 작동하는 지연 시간이 짧은 확장된 고속 네트워크를 통해 멀티사이트 데이터 센터를 운영하고 있습니다. 이 경우 MetroCluster의 2노드 버전을 사용하는 것이 좋습니다. 현재 여러 서비스 공급자가 두 노드 시스템을 페타바이트 규모로 사용하고 있습니다.</block>
   <block id="78558542e724655ba80fc4879399f103" category="section-title">MetroCluster 복원력 기능</block>
   <block id="5427d2eb91f25a425f13544e56fb12c4" category="paragraph">MetroCluster 솔루션에는 단일 장애 지점이 없습니다.</block>
@@ -456,7 +442,6 @@
   <block id="0c2f3b2ec9d90baa0a0a0b6fb673a113" category="paragraph">높은 성능을 필요로 하는 애플리케이션 I/O는 거의 항상 (a) 기본 블록 크기 단위 또는 (b) 1MB입니다.</block>
   <block id="804d5b1f06570b4d242be0c2f0c3392c" category="paragraph">스트라이핑 구성의 기본적인 목표는 단일 파일 I/O를 단일 유닛으로 수행하고, 1MB 크기여야 하는 다중 블록 I/O를 스트라이핑 볼륨의 모든 LUN에 걸쳐 균등하게 병렬 처리할 수 있도록 지원하는 것입니다. 즉, 스트라이프 크기가 데이터베이스 블록 크기보다 작아서는 안 되며 스트라이프 크기를 LUN 수를 곱한 크기가 1MB여야 합니다.</block>
   <block id="0598f393baefd05d48b48076cc7df606" category="paragraph">다음 그림에서는 스트라이프 크기 및 폭 조정에 사용할 수 있는 세 가지 옵션을 보여 줍니다. 위에서 설명한 대로 성능 요구 사항을 충족하기 위해 LUN 수를 선택하지만 모든 경우에 단일 스트라이프의 총 데이터는 1MB입니다.</block>
-  <block id="9ca503fae9ccd4d6d8e67806b23adfa0" category="paragraph"><block ref="9ca503fae9ccd4d6d8e67806b23adfa0" category="inline-image-macro-rx" type="image"></block></block>
   <block id="0353522b39b87d54d40d3f09ec668851" category="doc">ONTAP 구성</block>
   <block id="8e52de0d4b03d5fe87dc88da09616c7f" category="inline-link-macro">여기.</block>
   <block id="337c62c6b6eb7319bae58701105e889c" category="doc">계층화</block>
@@ -547,7 +532,6 @@
   <block id="0a01e6837f5c691536f0b6cbdd0232ec" category="inline-link-macro">TR-4015:ONTAP 9용 SnapMirror 구성 및 모범 사례 가이드</block>
   <block id="1cca1a3fad8c6dd7e2dadbd2aa08bf07" category="paragraph">SnapMirror에 대한 자세한 내용은 를 참조하십시오 <block ref="64b916f792bad525a069a243c092b62e" category="inline-link-macro-rx"></block>.</block>
   <block id="77641f4a3e4406855e878235cbd89b87" category="doc">CPU 구성</block>
-  <block id="a51adad5719779145ac252822e328611" category="section-title">하이퍼스레딩</block>
   <block id="673c216e20d1cf8827f347c01dace664" category="paragraph">여기서 주의해야 할 점은 각 SQL Server 버전에는 사용할 수 있는 컴퓨팅 성능에 대한 제한이 있다는 것입니다. 자세한 내용은 SQL Server Edition별 계산 용량 제한 을 참조하십시오.</block>
   <block id="cf0e2551e639758cc3c4d82df655eccd" category="inline-link-macro">SQL Server 2022: 최신 데이터 플랫폼</block>
   <block id="809c9e1f6ce0bc82bf42fae361c6f43e" category="paragraph">따라서 모든 CPU를 사용하려면 프로세서당 코어 라이센스를 사용해야 합니다. SQL Server 라이센스에 대한 자세한 내용은 을 참조하십시오 <block ref="457abfaf1083b1cbfc49f2783069c6cd" category="inline-link-macro-rx"></block>.</block>
@@ -559,8 +543,6 @@
   <block id="a99f7ebb3b0f5b0ecea93ed586b2a17d" category="section-title">최대 작업자 스레드 수</block>
   <block id="aff27140f50a549b1331add8d5025f7e" category="paragraph">최대 작업자 스레드 옵션을 사용하면 많은 수의 클라이언트가 SQL Server에 연결될 때 성능을 최적화할 수 있습니다.</block>
   <block id="decd79137325e1efbc7b994f946ea24f" category="paragraph">기본값은 0입니다. 이 값을 사용하면 SQL Server가 시작 시 작업자 스레드 수를 자동으로 구성할 수 있습니다. 이는 대부분의 시스템에서 작동합니다. Max worker 스레드는 고급 옵션이므로 숙련된 데이터베이스 관리자(DBA)의 도움 없이 변경할 수 없습니다.</block>
-  <block id="030a270970f70c1bd91d3689b6f95f3f" category="inline-link-macro">최대 작업자 스레드 서버 구성 옵션을 구성합니다</block>
-  <block id="2a0c648df721b9bc2643d59c4a3a310a" category="paragraph">작업자 스레드를 더 많이 사용하도록 SQL Server를 구성해야 하는 경우는 언제입니까? 각 스케줄러의 평균 작업 대기열 길이가 1을 초과하면 시스템에 더 많은 스레드를 추가할 수 있습니다. 단, 로드가 CPU에 바인딩되지 않거나 다른 과중한 대기가 발생하는 경우에만 가능합니다. 이러한 상황이 발생하는 경우 스레드를 더 추가해도 다른 시스템 병목 현상이 발생하기 때문에 도움이 되지 않습니다. 최대 작업자 스레드에 대한 자세한 내용은 을 참조하십시오 <block ref="77c391df5f9f06cdf367c2a7314ce351" category="inline-link-macro-rx"></block>.</block>
   <block id="29d04e616d2293c4c7538dd6226feac5" category="section-title">SQL Server Management Studio를 사용하여 최대 작업자 스레드 구성</block>
   <block id="44dbc82801d84781083ed9e23b63be00" category="list-text">또는 = 8코어: tempdb 데이터 파일 = 코어 수입니다</block>
   <block id="6203fcdbdad10bb603fd00edd2f0fcf5" category="list-text">8코어 이상의 경우: 8tempdb 데이터 파일</block>
@@ -628,7 +610,6 @@
   <block id="a7a2496066febda8d325e0964e434481" category="inline-link-macro">T-SQL 스냅샷에 대한 Microsoft 설명서를 제공합니다</block>
   <block id="bf06f3f95c5b653499bb4ac53ba44c95" category="paragraph">자세한 내용은 을 참조하십시오 <block ref="2ba8392a398067f6d2e5f6e4167e9d00" category="inline-link-macro-rx"></block>.</block>
   <block id="450eb6d84ec721a20f17b7778b24b457" category="doc">바로 Microsoft SQL Server 워크로드입니다</block>
-  <block id="1b1b4c822e9c1b28b845dcc038fec08e" category="doc">Microsoft SQL Server 데이터베이스 파일 및 파일 그룹</block>
   <block id="5306de2e4bff067a10c1c9b5aafe5920" category="paragraph">이론적으로 SQL Server(64비트)는 인스턴스당 32,767개의 데이터베이스와 524,272TB의 데이터베이스 크기를 지원하지만, 일반적인 설치에는 일반적으로 여러 개의 데이터베이스가 있습니다. 그러나 SQL Server에서 처리할 수 있는 데이터베이스 수는 로드 및 하드웨어에 따라 다릅니다. SQL Server 인스턴스가 수십, 수백 또는 수천 개의 소규모 데이터베이스를 호스팅하는 것은 드문 일이 아닙니다.</block>
   <block id="9a3f42cec243006996ab4580d3ce5d56" category="paragraph">각 데이터베이스는 하나 이상의 데이터 파일과 하나 이상의 트랜잭션 로그 파일로 구성됩니다. 트랜잭션 로그에는 데이터베이스 트랜잭션에 대한 정보와 각 세션에서 수행한 모든 데이터 수정에 대한 정보가 저장됩니다. 데이터가 수정될 때마다 SQL Server는 작업을 실행 취소(롤백)하거나 다시 실행(재생)할 수 있는 충분한 정보를 트랜잭션 로그에 저장합니다. SQL Server 트랜잭션 로그는 데이터 무결성과 견고성에 대한 SQL Server의 평판에 필수적인 부분입니다. 트랜잭션 로그는 SQL Server의 원자성, 일관성, 격리 및 내구성(ACID) 기능에 매우 중요합니다. SQL Server는 데이터 페이지가 변경되는 즉시 트랜잭션 로그에 기록합니다. 모든 DML(Data Manipulation Language) 문(예: SELECT, INSERT, UPDATE 또는 DELETE)은 완전한 트랜잭션이며, 트랜잭션 로그에서는 전체 집합 기반 작업이 수행되도록 하여 트랜잭션의 원자성을 확인합니다.</block>
   <block id="cbe6958e46fbab53cdbdb9deb2d75938" category="paragraph">각 데이터베이스에는 기본 데이터 파일이 하나 있으며 기본적으로 확장명은 .mdf입니다. 또한 각 데이터베이스에는 보조 데이터베이스 파일이 있을 수 있습니다. 이러한 파일의 확장명은 기본적으로 .ndf입니다.</block>
@@ -641,7 +622,6 @@
   <block id="2b222ad4000e6e966783fd7bc480180e" category="paragraph">SQL Server 시작 계정에 "볼륨 유지 관리 작업 수행"이라고도 하는 SA_MANAGE_VOLUME_NAME 권한을 추가하여 즉각적인 파일 초기화를 활성화할 수 있습니다. 이 작업은 다음 그림과 같이 로컬 보안 정책 관리 응용 프로그램(secpol.msc)에서 수행할 수 있습니다. "볼륨 유지 관리 작업 수행" 권한에 대한 속성을 열고 SQL Server 시작 계정을 사용자 목록에 추가합니다.</block>
   <block id="c622e0142ed854a10f98fcaa8b3487f8" category="paragraph">사용 권한이 설정되어 있는지 확인하려면 다음 예제의 코드를 사용합니다. 이 코드는 SQL Server가 오류 로그에 추가 정보를 쓰고, 작은 데이터베이스를 만들고, 로그 내용을 읽도록 하는 두 개의 추적 플래그를 설정합니다.</block>
   <block id="eba8c32bde087b29aaa1fe0d3bb32ef3" category="paragraph">인스턴트 파일 초기화가 사용되지 않는 경우 SQL Server 오류 로그는 다음 예와 같이 SQL Server가 MDF 데이터 파일을 제로화하는 것 외에 LDF 로그 파일을 제로화하는 것을 보여 줍니다. 인스턴트 파일 초기화가 설정된 경우 로그 파일의 제로화만 표시됩니다.</block>
-  <block id="3b6c913908f5844ccb31a4d3775cb34e" category="doc">Microsoft SQL Server 공유 인스턴스와 전용 인스턴스 비교</block>
   <block id="37fbf1be337695452699ab9df948aa25" category="paragraph">어떤 인스턴스가 근본 원인인지 파악해야 하기 때문에 성능 문제의 해결은 복잡할 수 있습니다. 이 질문은 운영 체제 라이선스와 SQL Server 라이선스 비용을 기준으로 합니다. 애플리케이션 성능이 가장 중요한 경우에는 전용 인스턴스를 사용하는 것이 좋습니다.</block>
   <block id="c840abede1d1bcf78e7b3e30048c08b1" category="paragraph">Microsoft는 코어당 SQL Server의 라이센스를 인스턴스가 아닌 서버 레벨에서 부여합니다. 이러한 이유로 데이터베이스 관리자는 서버에서 처리할 수 있는 SQL Server 인스턴스를 많이 설치하여 라이센스 비용을 절감하려는 경향이 있으며, 이로 인해 나중에 주요 성능 문제가 발생할 수 있습니다.</block>
   <block id="8a77155b45f0f2313c8ebf3d755463e5" category="admonition">*NetApp는 최적의 성능을 얻기 위해 가능한 한 전용 SQL Server 인스턴스를 선택할 것을 권장합니다.</block>
@@ -2941,7 +2921,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="b61bad6f7bf48bf9abda0c86c9beed79" category="paragraph">많은 트랜잭션이 파일에 로그인되기 때문에 로그 파일 크기는 쓰기 작업에 중요합니다. 레코드가 수정되면 변경 내용이 테이블스페이스에 즉시 다시 기록되지 않습니다. 대신 변경 내용이 로그 파일 끝에 기록되고 페이지가 더티(dirty)로 표시됩니다. InnoDB는 로그를 사용하여 랜덤 I/O를 순차적 I/O로 변환합니다</block>
   <block id="e87d83a3c0af4df83efb4784b5182f8f" category="paragraph">로그가 가득 차면 로그 파일의 공간을 확보하기 위해 더티 페이지가 테이블스페이스에 순서대로 기록됩니다. 예를 들어 트랜잭션 중에 서버가 충돌하고 쓰기 작업이 로그 파일에만 기록된다고 가정합니다. 서버가 다시 가동되기 전에 로그 파일에 기록된 변경 내용이 재생되는 복구 단계를 거쳐야 합니다. 로그 파일에 있는 항목이 많을수록 서버가 복구하는 데 더 오래 걸립니다.</block>
   <block id="8321756b7fedf72543a1b0917bf92613" category="paragraph">이 예에서 로그 파일 크기는 복구 시간과 쓰기 성능에 모두 영향을 줍니다. 로그 파일 크기에 적합한 숫자를 선택할 때는 복구 시간과 쓰기 성능의 균형을 맞춥니다. 일반적으로 128M과 512M 사이의 모든 것이 좋은 가치가 있습니다.</block>
-  <block id="d4ae77cd65c244ceb4277b27553d6931" category="doc">ONTAP의 MySQL 데이터베이스</block>
   <block id="598132a821e8cc696fbbae934047d991" category="paragraph">MySQL 및 MariaDB 및 Percona MySQL을 포함한 그 변종은 세계에서 가장 인기있는 데이터베이스입니다.</block>
   <block id="35701e1bcd40c8e1a520fc33d0e14842" category="doc">InnoDB_flush_method 를 참조하십시오</block>
   <block id="138738e11d5fda5c496edaa92e32e158" category="paragraph">innodb_flush_method 매개 변수는 InnoDB가 로그 및 데이터 파일을 열고 플러시하는 방법을 지정합니다.</block>
@@ -2995,8 +2974,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="668b6acc98c3469094062ed50b43e43a" category="admonition">* NetApp는 NFS에서 이 설정을 사용할 경우 IOPS(Sysbench/FiO)의 테스트 결과를 분석하고 그에 따라 매개변수를 설정할 것을 권장합니다. InnoDB 버퍼 풀에서 원하는 것보다 더 많은 수정 또는 더티 페이지가 표시되지 않는 한 플러싱과 퍼징에 가능한 가장 작은 값을 사용합니다.</block>
   <block id="038b11d42ee14bd77b6370c575c63b16" category="admonition">작업량에 더 낮은 값이 충분하지 않다는 사실이 입증되지 않는 한 20,000개 이상의 극단적인 값을 사용하지 마십시오.</block>
   <block id="62385f5ceb285bca676cb0561555d719" category="paragraph">InnoDB_IO_CAPACITY 매개변수는 플러싱 속도 및 관련 I/O를 조절합니다</block>
-  <block id="c957ef06af970a7526a73e741b47fef1" category="admonition">이 매개 변수 또는 innodb_io_capacity_max 매개 변수를 너무 높게 설정하고 조기 플러시로 I/O 작업을 낭비하면 성능이 심각하게 저하될 수 있습니다.</block>
-  <block id="b238d5dd75fe5ed855c5b3047e074050" category="paragraph">일반적인 2개 볼륨 모델을 사용하여 SAN과 MySQL을 구성하는 두 가지 옵션이 있습니다.</block>
   <block id="58d94bb6e53e154e2f4b16efa09f4c0d" category="paragraph">입출력 및 용량 요구 사항이 단일 LUN 파일 시스템의 제한 범위 내에 있는 경우 더 작은 데이터베이스를 한 쌍의 표준 LUN에 배치할 수 있습니다. 예를 들어, 약 2K 랜덤 IOPS가 필요한 데이터베이스는 단일 LUN의 단일 파일 시스템에서 호스팅될 수 있습니다. 마찬가지로, 크기가 100GB인 데이터베이스도 관리 문제를 일으키지 않고 단일 LUN에 적합합니다.</block>
   <block id="c33bcb4f520265bb106616e844397ffb" category="paragraph">데이터베이스가 클수록 여러 개의 LUN이 필요합니다. 예를 들어, 100K IOPS가 필요한 데이터베이스에는 일반적으로 8개 이상의 LUN이 필요할 수 있습니다. 드라이브에 대한 SCSI 채널 수가 충분하지 않기 때문에 단일 LUN에 병목 현상이 발생합니다. 마찬가지로 단일 10TB LUN에서는 10TB 데이터베이스를 관리하기가 어렵습니다. 논리적 볼륨 관리자는 여러 LUN의 성능과 용량 기능을 함께 결합하여 성능과 관리 효율성을 높이도록 설계되었습니다.</block>
   <block id="428e88a1415b00f5eb396829b4bd9a2c" category="paragraph">두 경우 모두 한 쌍의 ONTAP 볼륨으로 충분합니다. 간단한 구성을 사용하면 데이터 파일 LUN이 로그 LUN과 마찬가지로 전용 볼륨에 배치됩니다. 논리적 볼륨 관리자를 구성하면 데이터 파일 볼륨 그룹의 모든 LUN이 전용 볼륨에 있고 로그 볼륨 그룹의 LUN은 두 번째 전용 볼륨에 있게 됩니다.</block>
@@ -3037,7 +3014,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="b8c3891a902a70c4f7f774363652f4b4" category="summary">MySQL 파일 구조</block>
   <block id="5713a921d815fd7d19875846450f8ea8" category="doc">파일 구조</block>
   <block id="4955922857da5499a2f1be602a96b0ff" category="paragraph">InnoDB는 스토리지와 MySQL 서버 사이의 중간 계층 역할을 하며 데이터를 드라이브에 저장합니다.</block>
-  <block id="8a6fab0b8bb36427eda4071adfd7780b" category="inline-image-macro">오류: 그래픽 이미지를 찾을 수 없습니다</block>
   <block id="5d416cf65dd1e2c908bf430f957c89f8" category="paragraph">MySQL I/O는 두 가지 유형으로 분류됩니다.</block>
   <block id="e8a320970c929abda9ae744b0b9e8f5f" category="list-text">랜덤 파일 I/O</block>
   <block id="85430c0aa096ec282f2a14156baa312e" category="list-text">순차적 파일 I/O</block>
@@ -3154,8 +3130,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="c80b3cc8b5013bd4039769fb0f783e60" category="paragraph"><block ref="c80b3cc8b5013bd4039769fb0f783e60" category="inline-image-macro-rx" type="image"></block></block>
   <block id="dee28dd6d1a9ef7bf399f642fd9d588f" category="section-title">NFS 전송 크기</block>
   <block id="d8299d00f914e35b80644e5781e47a77" category="paragraph"><block ref="d8299d00f914e35b80644e5781e47a77" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="861f074a1ecd9d1cc088d2fe81903565" category="paragraph"><block ref="861f074a1ecd9d1cc088d2fe81903565" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="710e9cd79e3865d47122a799f425b31f" category="paragraph"><block ref="710e9cd79e3865d47122a799f425b31f" category="inline-image-macro-rx" type="image"></block></block>
   <block id="5a656ddcc72bacc3a5900c23edf7a08e" category="paragraph"><block ref="5a656ddcc72bacc3a5900c23edf7a08e" category="inline-image-macro-rx" type="image"></block></block>
   <block id="073ce0a0568adc64d52dd9b1d8c02c54" category="paragraph"><block ref="073ce0a0568adc64d52dd9b1d8c02c54" category="inline-image-macro-rx" type="image"></block></block>
   <block id="3401a9880dfc322da8a56c4d632361f6" category="paragraph"><block ref="3401a9880dfc322da8a56c4d632361f6" category="inline-image-macro-rx" type="image"></block></block>
@@ -3164,8 +3138,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="3105b4c0642b9710179c18edcf8e8718" category="paragraph"><block ref="3105b4c0642b9710179c18edcf8e8718" category="inline-image-macro-rx" type="image"></block></block>
   <block id="1a43000eb9893bff7ab7b1ce1d3fd6a8" category="paragraph"><block ref="1a43000eb9893bff7ab7b1ce1d3fd6a8" category="inline-image-macro-rx" type="image"></block></block>
   <block id="4b7a8562c98b8c652bdfb6aa79788222" category="paragraph"><block ref="4b7a8562c98b8c652bdfb6aa79788222" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="38ac6f4e1538397bd4f659237ec03ebf" category="paragraph"><block ref="38ac6f4e1538397bd4f659237ec03ebf" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="f01518e5f3b18a9ea241bc63a3475dbd" category="paragraph"><block ref="f01518e5f3b18a9ea241bc63a3475dbd" category="inline-image-macro-rx" type="image"></block></block>
   <block id="acce752526553bfa73c92799accd9cb8" category="summary">Oracle 데이터 보호 개요</block>
   <block id="deb8cb7644231cae002f5f37c725b86f" category="paragraph">장거리 마이그레이션을 위해서는 일반적으로 에 설명된 로그 전달 프로세스와 같이 보다 창의적인 접근 방식이 필요합니다 <block ref="86efe12ea0d3a769a4b7cfc2b6362f49" category="inline-link-macro-rx"></block>. 장거리 IP 네트워크는 LAN 또는 SAN 속도와 가까운 곳에서는 거의 대역폭을 가지지 않습니다. 한 예로, NetApp는 아카이브 로그 생성 속도가 매우 높은 220TB 데이터베이스의 장거리 마이그레이션을 지원했습니다. 이 방법은 가능한 최대 대역폭을 제공하기 때문에 데이터 전송을 위해 선택한 방식은 테이프를 매일 배송하는 방식이었습니다.</block>
   <block id="055362c7082175c34483772a43b776cf" category="paragraph">예를 들어 10TB 데이터베이스를 복사하려면 일반적으로 약 7시간이 소요됩니다. 비즈니스 요구 사항이 7시간 동안 중단되는 경우 파일 복사는 쉽고 안전한 마이그레이션 옵션입니다. 5시간이 허용되지 않는 경우 간단한 로그 전달 프로세스를 수행합니다(참조 <block ref="eee8a7589b6555fc3411165c58a62ca5" category="inline-link-macro-rx"></block>)를 최소한의 노력으로 설정하여 컷오버 시간을 약 15분으로 단축할 수 있습니다. 이 시간 동안 데이터베이스 관리자가 이 프로세스를 완료할 수 있습니다. 15분이 허용되는 경우 스크립팅을 통해 최종 컷오버 프로세스를 자동화하여 컷오버 시간을 단 몇 분으로 단축할 수 있습니다. 언제든지 마이그레이션의 속도를 높일 수 있지만 시간과 노력을 들여야 합니다. 컷오버 시간 목표는 비즈니스에 허용되는 성과를 기준으로 해야 합니다.</block>
@@ -3205,29 +3177,17 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="92d0a1aef2134a70d5c0f0279dc22ec6" category="doc">Snapshot 복사본</block>
   <block id="0c47b4eb567b018e3d2e5882b88eaca9" category="paragraph">스토리지 스냅샷은 타겟 데이터의 시점 복제본입니다. ONTAP은 다양한 정책을 설정하고 볼륨당 최대 1024개의 스냅샷을 저장하는 기능을 제공합니다. ONTAP의 스냅샷은 공간 효율적입니다. 공간은 원래 데이터 세트의 변경이 있을 때만 사용됩니다. 또한 읽기 전용입니다. 스냅샷은 삭제할 수 있지만 변경할 수는 없습니다.</block>
   <block id="7986a4827296ca9cd0b991ded9f8a10d" category="paragraph">경우에 따라 ONTAP에서 스냅샷을 직접 예약할 수 있습니다. 스냅샷을 생성하기 전에 SnapCenter와 같은 소프트웨어가 애플리케이션 또는 OS 작업을 조율해야 할 수도 있습니다. 워크로드에 가장 적합한 접근 방식이 무엇이든 공격적인 스냅샷 전략은 부팅 LUN에서 업무상 중요한 데이터베이스에 이르는 모든 항목의 백업에 자주 쉽게 액세스할 수 있도록 하여 데이터 보안을 제공할 수 있습니다.</block>
-  <block id="210c45246ad11e0b53bdb20b64266780" category="paragraph">* 참고 *: ONTAP 플렉시블 볼륨 또는 더 간단히 말하면 볼륨은 LUN과 동의어가 아닙니다. 볼륨은 파일 또는 LUN 같은 데이터를 위한 관리 컨테이너입니다. 예를 들어, 모든 LUN이 단일 볼륨에 포함된 8개의 LUN 스트라이프 세트에 데이터베이스를 배치할 수 있습니다.</block>
-  <block id="ad590deba1cd4423ee565e822c3a91d1" category="paragraph">스냅샷에 대한 자세한 내용을 보려면 을 클릭합니다 <block ref="211d7effcac0cb0488144c6fc8b3cb7c" category="inline-link-macro-rx"></block></block>
   <block id="c4bf0f56feeec9a45e973768fbc4f47e" category="section-title">변조 방지 스냅샷</block>
-  <block id="d2e783db61d20da61c761d4d473bed14" category="paragraph">ONTAP 9.12.1부터 스냅샷은 읽기 전용일 뿐 아니라 실수로 또는 의도적으로 삭제되지 않도록 보호할 수 있습니다. 이 기능을 변조 방지 스냅샷이라고 합니다. 스냅샷 정책을 통해 보존 기간을 설정하고 적용할 수 있습니다. 생성된 스냅샷은 만료 날짜에 도달할 때까지 삭제할 수 없습니다. 관리 또는 지원 센터 재정의가 없습니다.</block>
   <block id="38fef959179f8d3eb79a68a5ce747bdc" category="paragraph">이렇게 하면 침입자, 악의적 내부자 또는 랜섬웨어 공격으로 인해 ONTAP 시스템 자체에 대한 액세스 결과가 발생했더라도 백업이 손상될 수 있습니다. 빈번한 스냅샷 스케줄과 결합하면 RPO가 매우 낮은 매우 강력한 데이터 보호 기능을 얻을 수 있습니다.</block>
-  <block id="c64db0c79e66c1c0e5b932c5d2dedfea" category="paragraph">변조 방지 스냅샷에 대한 자세한 내용을 보려면 을 클릭합니다 <block ref="134603be635c039f9224bff191c6103c" category="inline-link-macro-rx"></block></block>
   <block id="a1f41e52e9ddbd9f87ecd032c237b1c0" category="section-title">SnapMirror 복제</block>
-  <block id="1bb837ddfb635c39a6c6e23d847823f9" category="paragraph">스냅샷을 원격 시스템에 복제할 수도 있습니다. 여기에는 원격 시스템에 보존 기간이 적용되고 적용되는 변조 방지 스냅샷이 포함됩니다. 그 결과 로컬 스냅샷과 동일한 데이터 보호 이점을 얻을 수 있지만 데이터는 두 번째 스토리지 시스템에 위치합니다. 이렇게 하면 원래 스토리지를 폐기해도 백업이 손상되지 않습니다.</block>
   <block id="18d315ae923785b3f9c5234724b0ab42" category="paragraph">두 번째 시스템은 관리 보안을 위한 새로운 옵션도 엽니다. 예를 들어, 일부 NetApp 고객은 운영 스토리지 시스템과 2차 스토리지 시스템의 인증 자격 증명을 분리합니다. 한 명의 관리자가 두 시스템에 액세스할 수 없으므로 악의적인 관리자가 모든 데이터 복사본을 삭제할 수 없습니다.</block>
-  <block id="e805272dcce51c35975e830e5ee9ecaf" category="paragraph">SnapMirror에 대한 자세한 내용을 보려면 를 클릭합니다 <block ref="9abdfd5d94773cf0a996248d1d722cac" category="inline-link-macro-rx"></block></block>
   <block id="500569e3cc0764260a592cb176921ca3" category="section-title">스토리지 가상 머신</block>
-  <block id="d5174dd4c760ef1a826b3e5bc22215e5" category="paragraph">새로 구성된 ONTAP 스토리지 시스템은 가상 시스템을 생성할 때까지 어떤 사용자도 지원할 수 없기 때문에 새로 프로비저닝된 VMware ESX Server와 유사합니다. ONTAP를 사용하면 스토리지 관리의 가장 기본적인 장치가 되는 SVM(스토리지 가상 시스템)을 만들 수 있습니다. 각 SVM에는 자체 스토리지 리소스, 프로토콜 구성, IP 주소 및 FCP WWN이 있습니다.  이것이 ONTAP 멀티 테넌시의 토대입니다.</block>
   <block id="597cb258dd509add7cd999794c60d430" category="paragraph">예를 들어, 중요 운영 워크로드에 1개의 SVM을, 개발 활동을 위해 다른 네트워크 세그먼트에 2차 SVM을 구성할 수 있습니다. 그런 다음 운영 SVM에 대한 액세스를 특정 관리자로 제한하고, 개발자에게는 개발 SVM에서 스토리지 리소스를 더욱 포괄적으로 제어할 수 있습니다. 특히 중요한 눈 전용 데이터를 저장하려면 재무 및 HR 팀에 세 번째 SVM을 제공해야 할 수도 있습니다.</block>
-  <block id="18519d16720b1e13890c2639657b5bf8" category="paragraph">SVM에 대한 자세한 내용을 보려면 를 클릭합니다 <block ref="a06a0fd566387240178b1c926e07cb7b" category="inline-link-macro-rx"></block></block>
   <block id="7d0fc71fe28e011ca49b06214469d484" category="section-title">관리 RBAC</block>
   <block id="4f0dae2ba2fd11c533349d6ade4f81de" category="paragraph">ONTAP는 관리 로그인을 위한 강력한 RBAC(역할 기반 액세스 제어)를 제공합니다. 일부 관리자는 전체 클러스터 액세스가 필요할 수 있고 일부 관리자는 특정 SVM에 대해서만 액세스해야 할 수도 있습니다. 고급 헬프데스크 직원은 볼륨 크기를 늘릴 수 있어야 합니다. 그 결과, 관리 사용자에게 업무 수행에 필요한 액세스 권한을 부여할 수 있으며 그 이상의 권한은 없습니다. 또한 다양한 공급업체의 PKI를 사용하여 이러한 로그인을 보호하고 ssh 키에만 대한 액세스를 제한하며 실패한 로그인 시도 잠금을 적용할 수 있습니다.</block>
-  <block id="6ae13b0198daa7d13d79a8631297e64d" category="paragraph">관리 액세스 제어에 대한 자세한 내용을 보려면 을 클릭합니다 <block ref="db5be08b697b5ef26e0e94da1d5f4970" category="inline-link-macro-rx"></block></block>
-  <block id="671a94a08dff3cf44fad087e2346c8b0" category="section-title">다중 요소 인증</block>
-  <block id="945c88a63c229c39ee73ab5592b3ef63" category="paragraph">자세한 내용을 보려면 을 클릭합니다 <block ref="03628d0cd13b6640ef56c399aa1c2070" category="inline-link-macro-rx"></block></block>
   <block id="852741d2a7fb0a8a1a5dd748dbbd6734" category="section-title">API RBAC입니다</block>
   <block id="bbbea5fec67f15424fa77aa563754c49" category="paragraph">자동화를 위해서는 API 호출이 필요하지만, 모든 툴에 전체 관리 액세스가 필요한 것은 아닙니다. 자동화 시스템의 보안을 유지하기 위해 RBAC는 API 레벨에서도 사용할 수 있습니다. 자동화 사용자 계정을 필요한 API 호출로 제한할 수 있습니다. 예를 들어, 모니터링 소프트웨어는 변경 액세스가 필요하지 않고 읽기 액세스만 있으면 됩니다. 스토리지를 프로비저닝하는 워크플로우에는 스토리지를 삭제하는 기능이 필요하지 않습니다.</block>
   <block id="7604bad489eaec7e27d112c63d3e2936" category="paragraph">여러 "요소" 인증은 각각 고유한 자격 증명을 가진 두 명의 관리자가 특정 작업을 승인하도록 요구함으로써 더욱 더 나아가 수행할 수 있습니다. 여기에는 로그인 권한 변경, 진단 명령 실행, 데이터 삭제가 포함됩니다.</block>
-  <block id="e890d04cd745ac382688bbb307655e81" category="paragraph">다중 관리자 확인(MAV)에 대한 자세한 내용을 보려면 을 클릭합니다 <block ref="88f84d4fec0424d978600980bf11baf0" category="inline-link-macro-rx"></block></block>
   <block id="b39c0496b44447232912303246b46aaa" category="paragraph">순차적 IO가 많이 필요할 경우 다음 섹션에서 설명하는 대로 NFS 전송 크기를 늘릴 수 있습니다.</block>
   <block id="959e8f746f4ff03f6225b95cf646e65f" category="admonition">이 문서는 이전에 게시된 기술 보고서_TR-4590: Microsoft SQL Server에 대한 모범 사례 가이드를 ONTAP_ 로 대체합니다</block>
   <block id="36d72286c0ef70108b2f7791b73fdc6d" category="list-text">이전 가이드에서는 데이터 지역성에 LIF를 생성하는 것이 권장되었습니다. 다시 말해, 볼륨을 물리적으로 소유한 노드에 있는 LIF를 사용하여 데이터 저장소를 항상 마운트합니다. 이는 ONTAP 9의 최신 버전에서 더 이상 필요하지 않습니다. 가능한 한 언제든지, 클러스터 범위 자격 증명이 있을 경우 ONTAP 툴은 데이터를 로컬에 있는 LIF 간 로드 밸런싱을 계속 선택하지만 고가용성 또는 성능이 필요하지 않습니다.</block>
@@ -3276,11 +3236,9 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="ae14ab6d1e5edd0e782d8897d1721eb4" category="summary">MySQL 및 innodb_doublewrite</block>
   <block id="689c52e3f5db5d2dafccd7d93cf1abc4" category="summary">MySQL 및 innodb_flush_log_at_TRx_commi</block>
   <block id="639600080c225673dfdfa012fdbd6146" category="summary">MySQL 및 IO 스케줄러</block>
-  <block id="32e3724e2b54692cbef969373fbfe040" category="doc">I/O 스케줄러 및 MySQL</block>
   <block id="72985ac51e91797345b2437088a4362e" category="summary">SAN과 함께 MySQL 제공</block>
   <block id="d5ef0a45fe252b03f538bfd134b168db" category="summary">MySQL 및 innodb_lRU_scan_depth</block>
   <block id="df657260453f6ef228ee0ca22dd7a415" category="summary">MySQL 컨테이너화</block>
-  <block id="885b1b5a90f898c89b664ec58a42121c" category="doc">MySQL 컨테이너화</block>
   <block id="2828450fc6669c8df75f937e227996f1" category="doc">MySQL 파일 설명자</block>
   <block id="9420010a756fb6d3ddeadfa63d2170f6" category="paragraph">MySQL 서버를 실행하려면 파일 설명자가 필요하며 기본값이 충분하지 않습니다.</block>
   <block id="62414a5a9c0e2fc12a8d028ad29164b8" category="summary">MySQL 및 innodb_io_capacity</block>
@@ -3594,11 +3552,7 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="ea7df930bd6bec6222e23d2b3af02a50" category="paragraph">SnapMirror 액티브 동기화는 계획된 스토리지 페일오버 작업과 계획되지 않은 두 가지 유형의 스토리지 페일오버 작업을 지원하며, 두 가지 방식으로 작동합니다. 계획된 페일오버는 관리자가 원격 사이트로 빠르게 전환하기 위해 수동으로 시작하는 반면, 계획되지 않은 페일오버는 3차 사이트의 중재자가 자동으로 시작합니다. 계획된 페일오버의 주된 목적은 증분 패치 및 업그레이드를 수행하고, 재해 복구 테스트를 수행하거나, 전체 활성 동기화 기능을 입증하기 위해 1년 내내 사이트 간 작업을 전환하는 공식적인 정책을 채택하는 것입니다.</block>
   <block id="f7c8b0ba16967990d91c2ca78d655eaa" category="paragraph">이 다이어그램은 정상, 장애 조치 및 장애 복구 작업 중에 발생하는 상황을 보여 줍니다. 쉽게 이해할 수 있도록 복제된 LUN을 설명합니다. 실제 SnapMirror 활성 동기화 구성에서는 각 볼륨에 하나 이상의 LUN이 포함되어 있는 볼륨을 기반으로 복제가 수행되지만 그림을 더 단순하게 만들기 위해 볼륨 계층이 제거되었습니다.</block>
   <block id="cfa86460b638615878bbee89b1b6d4c7" category="paragraph">녹색 선은 활성 경로이지만 해당 경로의 IO가 SnapMirror 활성 동기화 경로를 통해 전달되어야 하기 때문에 지연 시간이 더 많이 발생합니다. 추가 지연 시간은 SnapMirror 활성 동기화에 사용되는 사이트 간 상호 연결의 속도에 따라 달라집니다.</block>
-  <block id="175d350addf4717d454787f950938adf" category="paragraph"><block ref="175d350addf4717d454787f950938adf" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="033e21b9b80fa06986d25123f3025db5" category="paragraph"><block ref="033e21b9b80fa06986d25123f3025db5" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="f4d4f8b4d1153d0a9894be19e1f52e4e" category="paragraph"><block ref="f4d4f8b4d1153d0a9894be19e1f52e4e" category="inline-image-macro-rx" type="image"></block></block>
   <block id="22ea45ef5d49a1b807d571799d80613d" category="paragraph">소스 시스템이 서비스로 반환되면 SnapMirror 활성 동기화는 복제를 다시 동기화하지만 다른 방향을 실행할 수 있습니다. 이제 이 구성은 기본적으로 시작점과 동일하지만 활성 미러 사이트가 대칭 이동된 경우는 예외입니다.</block>
-  <block id="3dd37fdc28ae50bae909f461c8eae979" category="paragraph"><block ref="3dd37fdc28ae50bae909f461c8eae979" category="inline-image-macro-rx" type="image"></block></block>
   <block id="2702e101c97ce9a58738b1a4089319df" category="summary">MetroCluster 논리적 아키텍처와 Oracle 데이터베이스</block>
   <block id="784fdd6bf0ebb9c00eaefafc3f9a9cee" category="doc">RAID 및 Oracle 데이터베이스</block>
   <block id="204d288bf0e9d1ee9912d68d6282d7a9" category="summary">AIX를 사용하는 Oracle 데이터베이스</block>
@@ -3682,15 +3636,12 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="82116b39cd4d0d1920fab1ab4515603b" category="paragraph">이로써 얻어지는 절감의 수준은 다양합니다. 이미 압축되었거나 암호화된 데이터는 일반적으로 더 압축할 수 없기 때문에 이 데이터 세트는 컴팩션의 이점을 얻지 못합니다. 반면 제로와 블록 메타데이터보다 조금 더 많이 포함하고 있으며 새롭게 초기화된 데이터 파일의 경우 80:1까지 압축합니다.</block>
   <block id="2608473fa5767385d01f256eccbc1cc4" category="paragraph">많은 경쟁업체의 어레이는 데이터베이스가 여러 차례 복사된다는 추정을 기반으로 데이터베이스의 중복제거 기능을 내세웁니다. 이런 측면에서 NetApp 중복제거도 사용할 수 있지만 ONTAP은 더 나은 옵션인 NetApp FlexClone 기술을 제공합니다. 최종 결과는 같으며 기본 물리적 블록의 대부분을 공유하는 데이터베이스의 복사본이 여러 개 생성됩니다. FlexClone은 시간을 들여 데이터베이스 파일을 복사한 다음 중복제거하는 것보다 훨씬 더 효율적입니다. 실제로 이는 중복제거가 아니라 비중복이라 할 수 있습니다. 애초에 중복을 생성하지 않기 때문입니다.</block>
   <block id="7e96c1b651af3f28c27b78807f0310e2" category="paragraph">씬 프로비저닝은 관리를 단순화하는 동시에 가용 용량을 크게 개선하면서 비용을 절감할 수 있기 때문에 적극 권장합니다. 단순한 데이터베이스 환경에서 많은 빈 공간, 많은 수의 볼륨 및 LUN, 압축 가능한 데이터가 포함되는 경우가 많습니다. 일반 프로비저닝은 언젠가 100% 채워지고 100% 압축할 수 없는 데이터가 포함될 경우에 대비해 볼륨 및 LUN에 대한 스토리지 공간을 예약합니다. 그런 일은 일어나지 않을 것입니다. 씬 프로비저닝을 사용하면 공간을 재확보하고 다른 위치에서 사용할 수 있으며 더 작은 볼륨 및 LUN이 아닌 스토리지 시스템 자체를 기반으로 용량을 관리할 수 있습니다.</block>
-  <block id="0f55b43344575cc268bf51ae032d47c2" category="paragraph">NetApp에서 권장하는 사항은 다음과 같습니다.</block>
   <block id="f67b854e2d644480b0ec40d7de2b773d" category="paragraph">All-Flash AFF 시스템에서 실행되는 ONTAP에서 생성된 볼륨은 모든 인라인 효율성 기능을 사용하는 씬 프로비저닝됩니다. 일반적으로 데이터베이스에는 중복제거를 통해 이점을 얻을 수 없고 압축할 수 없는 데이터가 포함될 수 있지만 그럼에도 불구하고 기본 설정은 거의 모든 워크로드에 적합합니다. ONTAP는 절감 여부와 관계없이 모든 유형의 데이터와 I/O 패턴을 효율적으로 처리하도록 설계되었습니다. 원인을 완전히 이해하고 편차가 있는 경우에만 기본값을 변경해야 합니다.</block>
   <block id="649141c6b8267ea3df10949a853d22cb" category="list-text">데이터베이스 백업에 32KB 압축 및 중복제거를 모두 사용하지 마십시오. 섹션을 참조하십시오 <block ref="57ee2712afc5e59236f86db0537b05dc" category="inline-xref-macro-rx"></block> 를 참조하십시오.</block>
   <block id="5059ada12bae6c7e7fac9338d88301b5" category="doc">Oracle 데이터베이스 아카이브 로그 계층화</block>
-  <block id="b7e89b3a1ff13c93cc5c038440e48f58" category="paragraph">자세한 내용을 보려면 c https://docs.netapp.com/us-en/ontap-automation/rest/rbac_overview.html[here.] 를 시작하십시오</block>
   <block id="4abda684ecc952239d7800547dcf2995" category="sidebar">MetroCluster 기반 Oracle SI</block>
   <block id="bdebc59bb8c11012c00a4be61b8bdb5d" category="summary">Microsoft SQL Server 인스턴스 배포</block>
   <block id="030194212f0e1890126b205fdbcfe852" category="summary">ONTAP에서 Microsoft SQL Server 보안</block>
-  <block id="76e6e519036ed33c414d681e342c73be" category="paragraph">SQL Server 데이터베이스 환경의 보안은 데이터베이스 자체를 관리하는 것 이상의 다차원적인 작업입니다. ONTAP은 데이터베이스 인프라의 스토리지 측면을 보호하기 위해 설계된 몇 가지 고유한 기능을 제공합니다.</block>
   <block id="972d09960af01a5f3831f2eac1c75d12" category="summary">ONTAP을 사용한 Microsoft SQL Server 재해 복구</block>
   <block id="db78788a721b9a9a669c4935d455a593" category="paragraph">엔터프라이즈 데이터베이스 및 애플리케이션 인프라에서는 다운타임을 최소화하면서 자연 재해 또는 예상치 못한 비즈니스 운영 중단으로부터 보호하기 위해 복제를 필요로 하는 경우가 많습니다.</block>
   <block id="fad02ab7a45b438ba1a4c024b9edb2be" category="paragraph">다음은 SQL Server용 SnapMirror에 대한 권장사항입니다.</block>
@@ -3708,7 +3659,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="d8969d8106a5ac08f38277a3c0b813dc" category="paragraph">파일 그룹 내에 여러 데이터 파일을 배치할 수 있으므로 여러 스토리지 디바이스에 로드를 분산시킬 수 있으므로 시스템의 입출력 성능을 향상시킬 수 있습니다. 반면 SQL Server는 트랜잭션 로그에 순차적으로 기록하므로 트랜잭션 로그는 여러 파일의 이점을 얻지 못합니다.</block>
   <block id="bd87ed7f70b7f9173319df18e5b5b751" category="paragraph">SQL Server는 파일을 늘릴 때마다 새로 할당된 공간을 0으로 채웁니다. 이 프로세스는 해당 파일에 기록해야 하는 모든 세션을 차단하거나 트랜잭션 로그가 증가하는 경우 트랜잭션 로그 레코드를 생성합니다.</block>
   <block id="7a64f7e9c9b5737a434bdcc8f935c5ce" category="summary">Microsoft SQL Server 및 ONTAP 스토리지 효율성</block>
-  <block id="20f0346a9d65f2fba1523d3343d7c6e7" category="doc">Microsoft SQL Server 및 스토리지 효율성</block>
   <block id="9df29e7c756637e30b37f014d02117ef" category="paragraph">SQL Server 자체에는 데이터를 압축하고 효율적으로 관리하는 기능도 있습니다. SQL Server는 현재 행 압축과 페이지 압축이라는 두 가지 유형의 데이터 압축을 지원합니다.</block>
   <block id="09ddfa236e0fa1173f8d86a5ad0c148f" category="summary">Microsoft SQL Server 로그 디렉터리</block>
   <block id="cc2c23339c0ad05c5ae1704b4a0ecb37" category="paragraph">로그 디렉토리는 트랜잭션 로그 백업 데이터를 호스트 레벨에서 저장하기 위해 SQL Server에 지정됩니다. SnapCenter를 사용하여 로그 파일을 백업하는 경우 SnapCenter에서 사용하는 각 SQL Server 호스트에 로그 백업을 수행하도록 구성된 호스트 로그 디렉토리가 있어야 합니다. SnapCenter에는 데이터베이스 저장소가 있으므로 백업, 복원 또는 클론 복제 작업과 관련된 메타데이터가 중앙 데이터베이스 저장소에 저장됩니다.</block>
@@ -3725,7 +3675,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="8a3aceb6ed4b21af2f2c00ecb032f75f" category="paragraph">Microsoft는 SQL Server 2022에서 백업 작업의 스크립팅 및 자동화 경로를 제공하는 T-SQL 스냅샷을 도입했습니다. 전체 크기 복제본을 수행하는 대신 스냅샷을 위해 데이터베이스를 준비할 수 있습니다. 데이터베이스를 백업할 준비가 되면 ONTAP REST API를 활용하여 스냅샷을 생성할 수 있습니다.</block>
   <block id="eeeb4e610a7896c1b1f2e2ea9b3f52a0" category="list-text">alter 명령으로 데이터베이스를 고정합니다. 이렇게 하면 기본 스토리지에서 정합성이 보장되는 스냅샷을 위해 데이터베이스가 준비됩니다. 고정 후에는 데이터베이스를 해제하고 backup 명령을 사용하여 스냅샷을 기록할 수 있습니다.</block>
   <block id="fd95362fecccbbb7b017317e8bede3b5" category="admonition">ONTAP 및 MySQL 데이터베이스에 대한 이 문서는 이전에 게시된 _TR-4722: ONTAP 모범 사례에 기반한 MySQL 데이터베이스를 대체합니다. _</block>
-  <block id="03591504f4566055ad54d9422f8a0488" category="paragraph">NetApp은 Astra Trident를 제공하여 스토리지의 고급 관리 기능을 제공합니다. 예를 들어, Kubernetes에서 생성된 컨테이너에서 Astra Trident를 사용하면 해당 계층에 스토리지를 자동으로 프로비저닝하고, 엑스포트 정책을 적용하고, 스냅샷 정책을 설정하고, 심지어 컨테이너를 다른 컨테이너에 복제할 수 있습니다. 자세한 내용은 를 참조하십시오 <block ref="2b8a155fc083396b96b18cee0ba5eab0" category="inline-link-macro-rx"></block>.</block>
   <block id="887757e2405372a0b9e17cc054ab38f3" category="paragraph">SnapRestore이 빠르고 효율적으로 작동하는 이유는 기본적으로 특정 시점에 볼륨 콘텐츠에 대한 병렬 읽기 전용 뷰인 스냅샷의 특성 때문입니다. 활성 블록은 변경할 수 있는 실제 블록이지만 스냅샷은 스냅샷이 생성된 시점의 파일 및 LUN을 구성하는 블록 상태에 대한 읽기 전용 뷰입니다.</block>
   <block id="f9b673452d1da030fef3f976bbbbb103" category="paragraph">이 예에서 소스 데이터베이스는 ONTAP 시스템에 있습니다. 데이터베이스 백업을 만드는 가장 간단한 방법은 스냅샷을 사용하는 것입니다. 데이터베이스는 가 있는 동안 몇 초 동안 핫 백업 모드로 전환됩니다<block ref="252ce13e6c150af4d3e7eea5fca266bc" prefix=" " category="inline-code"></block> 이 작업은 데이터 파일을 호스팅하는 볼륨에서 실행됩니다.</block>
   <block id="630a571b99791968d41f9caba4a3e39c" category="paragraph">그 결과 라는 디스크에 스냅샷이 생성됩니다<block ref="a8b3bc9f12cd194b80d404c30e9015ee" prefix=" " category="inline-code"></block> 핫 백업 모드에 있는 동안 데이터 파일의 이미지가 포함됩니다. 적절한 아카이브 로그와 결합하여 데이터 파일의 일관성을 유지할 경우 이 스냅샷의 데이터를 복구 또는 클론의 기준으로 사용할 수 있습니다. 이 경우 새 서버에 복제됩니다.</block>
@@ -4772,7 +4721,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="afe62727c9717a186ce014753f902c8a" category="paragraph">기본 사이트를 변경하려면 간단한 작업이 필요합니다. 클러스터 간 복제 동작 전환에 대한 권한으로 입출력이 1-2초 동안 일시 중지되지만, 그렇지 않으면 입출력이 영향을 받지 않습니다.</block>
   <block id="2d430e41b39275608ed6816ee435f2c4" category="paragraph">중재자는 실제로 타이브레이커가 아니지만 실제로 제공하는 기능을 제공합니다. 어떤 작업도 수행하지 않고 클러스터 간 통신을 위한 대체 통신 채널을 제공합니다.</block>
   <block id="caeb8c810d4965bfc8ad369332977e54" category="inline-image-macro">중재자가 있는 SnapMirror 활성 동기화 다이어그램</block>
-  <block id="4c67fbe8dcb303fbb7a06384a1e166ff" category="paragraph"><block ref="4c67fbe8dcb303fbb7a06384a1e166ff" category="inline-image-macro-rx" type="image"></block></block>
   <block id="2767cf2bbeaf5540c1e615745cfead81" category="paragraph">자동 장애 조치의 가장 큰 과제는 브레인 분할 문제이며, 두 사이트가 서로 연결이 끊어지면 이 문제가 발생합니다. 어떻게 해야 합니까? 서로 다른 두 사이트가 자신을 데이터의 정상적인 복제본으로 지정하도록 하고 싶지 않지만, 단일 사이트가 상대 사이트의 실제 손실과 반대쪽 사이트와 통신할 수 없는 간의 차이를 어떻게 알 수 있습니까?</block>
   <block id="661d0a9679d7d1af0f76f646c941e5cc" category="paragraph">중재자가 사진을 입력하는 위치입니다. 세 번째 사이트에 배치되고 각 사이트에 해당 사이트에 대한 별도의 네트워크 연결이 있는 경우 각 사이트에 대한 추가 경로를 통해 다른 사이트의 상태를 확인할 수 있습니다. 위의 그림을 다시 보고 다음 시나리오를 고려하십시오.</block>
   <block id="d0c23d9c3fc0a960d3362e7ba10243f5" category="list-text">중재자가 한 사이트 또는 두 사이트에서 작동하지 않거나 연결할 수 없는 경우 어떻게 됩니까?</block>
@@ -4790,10 +4738,8 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="700cb79deb6ef819c0aacbb228c5a16b" category="paragraph">SnapMirror 액티브 동기화(SM-AS)는 SnapMirror 동기식 을 기반으로 합니다. 둘 다 RPO=0 동기식 데이터 복제를 제공할 수 있지만 SM-AS는 SAN 데이터에 대해 제로에 가까운 RTO 가용성을 제공하여 솔루션을 더욱 강화해 줍니다. 이 작업은 데이터 가용성을 유지하기 위해 SAN 경로를 관리하는 자동화를 통해 수행됩니다. 사이트, 컨트롤러 및 통신 장애는 모두 ONTAP에 의해 자동으로 처리됩니다.</block>
   <block id="c159224eea5fb4a30b3cc9be6e90cd6c" category="paragraph">SnapMirror 액티브 동기화는 서로 다른 두 사이트에 있는 LUN을 제공합니다. 정상 작동에는 "소스" 또는 "대상"이 없습니다. 방향은 양방향입니다. 지정된 LUN 경로에 대한 모든 읽기 입출력은 로컬 컨트롤러에서 데이터의 로컬 복제본을 사용하여 처리됩니다. 모든 쓰기가 원격 파트너에게 복제되고 확인 전에 로컬에 기록됩니다.</block>
   <block id="4a85397e66688e4e619ffe832e627548" category="inline-image-macro">SnapMirror Active Sync 개요</block>
-  <block id="773253d9f54d4d8d3d596bef999303fa" category="paragraph"><block ref="773253d9f54d4d8d3d596bef999303fa" category="inline-image-macro-rx" type="image"></block></block>
   <block id="ddc1e5dc440806435445e7a532ad1198" category="paragraph">논리적으로 이 동작은 단일 LUN 세트와 같습니다. 서로 다른 두 클러스터에 있는 SAN 경로를 통해 이러한 논리 LUN에서 입출력을 지정할 수 있지만 데이터는 항상 동일합니다. IO 동작은 대부분의 액티브-액티브 애플리케이션 구성에 있어 중요한 대칭입니다.</block>
   <block id="ddc5ca7c74db522011a3b2ddccda5b40" category="inline-image-macro">SnapMirror 활성 동기화 논리 설계</block>
-  <block id="a91ae760520ff89a08c2f2db6a6c2ebd" category="paragraph"><block ref="a91ae760520ff89a08c2f2db6a6c2ebd" category="inline-image-macro-rx" type="image"></block></block>
   <block id="daadd24f5163a10f9a2f016019883886" category="section-title">경로 관리</block>
   <block id="9bb9bee58b329761e36c7d9bf8900d6f" category="paragraph">SnapMirror 동기식 네트워크 토폴로지에는 균일하고 비균일한 두 가지 접근 방식이 있습니다. 단일 액세스와 비균일 액세스 중에서 선택할 때 고려해야 할 주요 사항은 SAN을 사이트 간에 확장할 수 있는지 여부입니다. SnapMirror 활성 동기화는 두 가지 상황에서 사용할 수 있습니다.</block>
   <block id="1f46c4a6c97a8add22ae7c23181c23d8" category="paragraph">ONTAP 중재자는 NetApp 지원 사이트에서 다운로드되는 소프트웨어 애플리케이션으로, 일반적으로 가상 컴퓨터에 구축됩니다.</block>
@@ -4803,24 +4749,19 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="e5086daa5843466ff5f04f20d4c19d74" category="paragraph"><block ref="36cd38f49b9afa08222c0dc9ebfe35eb" prefix=" " category="inline-code"></block>지정은 기본 사이트를 제어합니다. 복제 링크가 손실되면 소스 복제본의 LUN 경로는 계속 데이터를 제공하고 대상 복제본의 LUN 경로는 복제가 다시 설정되고 SnapMirror가 동기식 상태로 다시 전환될 때까지 사용할 수 없게 됩니다. 그러면 경로가 데이터 제공을 재개합니다.</block>
   <block id="a0bbe7bd1e93252f1267d98703905552" category="paragraph">소스/대상 구성은 SystemManager를 통해 볼 수 있습니다.</block>
   <block id="13d0a54956b2dd09d5e909acadfb1694" category="inline-image-macro">SM-AS 소스의 SM 스크린샷</block>
-  <block id="70547bc22a604012e7d30f238d3ab5c8" category="paragraph"><block ref="70547bc22a604012e7d30f238d3ab5c8" category="inline-image-macro-rx" type="image"></block></block>
   <block id="5b53b7d18b58af25bcf47dc21678038f" category="paragraph">또는 CLI에서:</block>
   <block id="498b1bbe0e017f1ad405fe4c77fb8ea1" category="paragraph">핵심은 소스는 클러스터 1의 SVM입니다. 위에서 언급한 바와 같이 "원본" 및 "대상"이라는 용어는 복제된 데이터의 흐름을 설명하지 않습니다. 두 사이트 모두 쓰기를 처리하여 반대쪽 사이트로 복제할 수 있습니다. 실제로 두 클러스터 모두 소스와 타겟입니다. 하나의 클러스터를 소스로 지정하면 복제 링크가 손실된 경우 읽기-쓰기 스토리지 시스템으로 존속하는 클러스터를 제어할 수 있습니다.</block>
   <block id="18a07170e14f5cbc26533f0a136dfdd0" category="inline-image-macro">SnapMirror 활성 동기화 비균일 네트워킹</block>
-  <block id="9347dda18b33bf2c717916c013eb47bc" category="paragraph"><block ref="9347dda18b33bf2c717916c013eb47bc" category="inline-image-macro-rx" type="image"></block></block>
   <block id="9532c9e7afcd43c7d9bb5740695fc259" category="paragraph">이 접근 방식의 주요 이점은 SAN의 단순성입니다. 네트워크를 통해 SAN을 확장할 필요가 없어졌습니다. 일부 고객은 사이트 간에 지연 시간이 충분히 짧거나 사이트 간 네트워크를 통해 FC SAN 트래픽을 터널링할 수 있는 인프라가 부족합니다.</block>
   <block id="439caacb19fa16f2c21563703ed645d7" category="paragraph">비균일 액세스의 단점은 복제 링크 손실을 비롯한 특정 장애 시나리오로 인해 일부 호스트가 스토리지에 액세스할 수 없게 된다는 것입니다. 클러스터 이외의 데이터베이스와 같이 단일 인스턴스로 실행되는 애플리케이션은 로컬 스토리지 연결이 끊긴 경우 해당 마운트의 단일 호스트에서만 실행 중이므로 실패합니다. 데이터는 여전히 보호되지만 데이터베이스 서버는 더 이상 액세스할 수 없습니다. 원격 사이트에서 자동 프로세스를 통해 재시작해야 합니다. 예를 들어 VMware HA는 한 서버에서 모든 경로 다운 상황을 감지하고 경로를 사용할 수 있는 다른 서버에서 VM을 다시 시작할 수 있습니다.</block>
-  <block id="5a2e2e33df9734d8ef57bcb93643d89a" category="paragraph">반면, Oracle RAC와 같은 클러스터된 애플리케이션은 두 개의 사이트에서 동시에 사용할 수 있는 서비스를 제공할 수 있습니다. 사이트를 잃는다고 해서 애플리케이션 서비스 전체가 손실되는 것은 아닙니다. 인스턴스는 계속 사용할 수 있으며 정상적인 사이트에서 실행됩니다.</block>
   <block id="9fad44ede04fb95c16ea64be5e51836c" category="paragraph">대부분의 경우, 사이트 간 링크를 통해 스토리지에 액세스하는 애플리케이션의 지연 시간 오버헤드가 허용할 수 없는 경우가 많습니다. 즉, 사이트의 스토리지 손실로 인해 장애가 발생한 사이트의 서비스를 종료해야 하기 때문에 일관된 네트워킹의 가용성 향상은 최소화됩니다.</block>
   <block id="15da96ce40136a3259e04ae0dc25fc95" category="paragraph">로컬 클러스터를 통한 중복 경로가 있습니다. 이러한 경로는 단순성을 위해 이러한 다이어그램에 표시되지 않습니다. ONTAP 스토리지 시스템은 HA 자체이므로 컨트롤러 장애가 사이트 장애로 이어질 수 없습니다. 영향을 받는 사이트에서 사용되는 로컬 경로가 변경될 뿐입니다.</block>
   <block id="bb12626aefb7c36f9b13694d35dadd5d" category="paragraph">SM-AS의 중요한 기능은 호스트의 위치를 알 수 있도록 스토리지 시스템을 구성하는 기능입니다. 특정 호스트에 LUN을 매핑할 때 해당 LUN이 지정된 스토리지 시스템에 근접한지 여부를 지정할 수 있습니다.</block>
   <block id="4590bab77464ba1a9c8ee6b8095eef60" category="inline-image-macro">SnapMirror 액티브 싱크 AFF 유니폼 네트워킹</block>
-  <block id="988f5836c7a60d1374a4804da23d51e4" category="paragraph"><block ref="988f5836c7a60d1374a4804da23d51e4" category="inline-image-macro-rx" type="image"></block></block>
   <block id="2b2fdfa824f1319cc47992b1277faa78" category="paragraph">정상 작동 시 모든 입출력은 로컬 입출력입니다. 읽기와 쓰기는 로컬 스토리지 시스템에서 서비스됩니다. 물론 쓰기 입출력도 인식되기 전에 로컬 컨트롤러에 의해 원격 시스템으로 복제되어야 하지만 모든 읽기 입출력은 로컬로 처리되며 사이트 간 SAN 링크를 통과하여 추가적인 지연 시간이 발생하지 않습니다.</block>
   <block id="97b2bb0cfbae3fe49433caf537e819ec" category="paragraph">최적화되지 않은 경로는 액티브/최적화 경로가 모두 손실되는 경우에만 사용됩니다. 예를 들어, 사이트 A의 전체 스토리지에 전원이 공급되지 않으면 사이트 A의 호스트가 사이트 B의 어레이에 대한 경로에 액세스할 수 있으므로 지연 시간이 더 길더라도 작동 상태를 유지할 수 있습니다.</block>
   <block id="5ab085bf88338486e590861594d3947a" category="paragraph">NetApp ASA 시스템은 클러스터의 모든 경로에 대해 액티브-액티브 다중 경로를 제공합니다. 이는 SM-AS 구성에도 적용됩니다.</block>
   <block id="6511f0e2589c08e82bc8dd3e9bc93185" category="inline-image-macro">SnapMirror 액티브 싱크 ASA 유니폼 네트워킹</block>
-  <block id="1d818a68fead665559afc9e582394a7d" category="paragraph"><block ref="1d818a68fead665559afc9e582394a7d" category="inline-image-macro-rx" type="image"></block></block>
   <block id="c3fe6771b27ffcb15a75ae88f6d57c4b" category="paragraph">비균일 액세스를 사용하는 ASA 구성은 AFF와 거의 동일합니다. 균일한 액세스의 경우 입출력이 WAN을 통과하게 됩니다. 이것은 바람직하지 않을 수도 있습니다.</block>
   <block id="498a9faf271a73dcf026b1041b66ef2a" category="paragraph">두 사이트가 파이버 연결을 통해 100m 떨어져 있는 경우 WAN을 통해 추가 지연 시간을 감지할 수 없지만 사이트가 멀리 떨어져 있으면 두 사이트에서 읽기 성능이 저하됩니다. 이와 반대로 AFF에서는 사용 가능한 로컬 경로가 없는 경우에만 WAN 교차 경로를 사용하고 모든 입출력이 로컬 입출력이기 때문에 일상적인 성능이 더 나을 것입니다. 비균일 액세스 네트워크를 사용하는 ASA는 사이트 간 지연 시간 액세스 패널티 없이 ASA의 비용 및 기능 이점을 얻을 수 있는 옵션이 될 것입니다.</block>
   <block id="15ab92b8042738f6acc912e2d98ae17a" category="paragraph">지연 시간이 짧은 구성의 SM-AS를 사용하는 ASA는 두 가지 흥미로운 이점을 제공합니다. 첫째로, IO는 2배 더 많은 경로를 사용하여 2배 더 많은 컨트롤러가 처리할 수 있기 때문에 모든 단일 호스트의 성능을 두 배 * 제공합니다. 둘째, 단일 사이트 환경에서 호스트 액세스를 중단하지 않고 전체 스토리지 시스템을 손실할 수 있기 때문에 최고의 가용성을 제공합니다.</block>
@@ -5199,13 +5140,10 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="ab2d1dd1b024fd7be648c22c4a43997b" category="list-text">특정 CIFS 관리 작업은 MMC(Microsoft Management Console)를 사용하여 수행할 수 있습니다. 이러한 작업을 수행하기 전에 MMC 메뉴 명령을 사용하여 MMC를 ONTAP 스토리지에 연결해야 합니다.</block>
   <block id="1d5ba6202d85466a95188b58c37dccc8" category="list-text">NetApp은 사용 가능한 경우 10GB 네트워크를 사용하여 Hyper-V 호스트와 ONTAP 스토리지를 연결하는 것이 좋습니다. 1GB 네트워크 연결의 경우 NetApp에서는 여러 개의 1GB 포트로 구성된 인터페이스 그룹을 생성할 것을 권장합니다.</block>
   <block id="79d467fa842b9015f2f12ada4fa1c7fc" category="paragraph">SQL Server 성능은 CPU 및 코어 구성에 대해 여러 가지 종속성이 있습니다.</block>
-  <block id="dcfe06c0ddbb3b395286872a95182eb3" category="paragraph">하이퍼스레딩은 X86 프로세서에서 수행되는 계산의 병렬화를 향상시키는 SMT(동시 다중 스레딩) 구현을 의미합니다. SMT는 Intel 및 AMD 프로세서 모두에서 사용할 수 있습니다.</block>
-  <block id="2e84c18998d7c7a831a62718e10a98c5" category="paragraph">하이퍼스레딩은 운영 체제에 물리적 CPU로 표시되는 논리 CPU를 생성합니다. 그런 다음 SQL Server는 이러한 추가 CPU를 보고 물리적으로 존재하는 것보다 더 많은 코어가 있는 것처럼 사용합니다. 이를 통해 병렬화를 증가시켜 성능을 크게 향상시킬 수 있습니다.</block>
   <block id="4403546c5938500562a9d8677deb1c38" category="section-title">코어 및 라이센싱</block>
   <block id="c325fde2d51a1ea2ddd8c9dd51cfdf9c" category="paragraph">아래 그림에서는 시작 후 코어 제한 적용을 나타내는 SQL Server 로그 메시지를 보여 줍니다.</block>
   <block id="e59dc8056170cddb696ba9bff812c325" category="paragraph">SQL Server는 운영 체제에서 사용할 수 있는 모든 CPU를 사용합니다(프로세서당 코어 라이센스를 선택한 경우). 또한 각 CPU에 스케줄러를 생성하여 모든 워크로드를 위한 리소스를 최대한 활용할 수 있습니다. 멀티태스킹 시 서버의 운영 체제 또는 다른 응용 프로그램은 프로세스 스레드를 하나의 프로세서에서 다른 프로세서로 전환할 수 있습니다. SQL Server는 리소스를 많이 사용하는 응용 프로그램이므로 이 경우 성능에 영향을 줄 수 있습니다. 영향을 최소화하기 위해 모든 SQL Server 로드가 미리 선택된 프로세서 그룹으로 전달되도록 프로세서를 구성할 수 있습니다. 이는 CPU 선호도 마스크를 사용하여 수행할 수 있습니다.</block>
   <block id="e40a45aed8142e74026f5aa7a6ee1122" category="paragraph">선호도 입출력 마스크 옵션은 SQL Server 디스크 입출력을 CPU의 하위 집합에 바인딩합니다. SQL Server OLTP 환경에서 이 확장은 I/O 작업을 실행하는 SQL Server 스레드의 성능을 크게 향상시킬 수 있습니다.</block>
-  <block id="a58930419c1b1a276791665c876f8f80" category="paragraph">이 방법은 대규모 쿼리에 유용하지만 성능 문제가 발생하고 동시성이 제한될 수 있습니다. 더 좋은 방법은 병렬 처리를 단일 CPU 소켓의 물리적 코어 수로 제한하는 것입니다. 예를 들어, 하이퍼스레딩에 관계없이 소켓당 12개의 코어가 있는 물리적 CPU 소켓 2개가 있는 서버에서<block ref="1abedc5f6ab369ab9fcd16d6b7990638" prefix=" " category="inline-code"></block> 12로 설정해야 합니다.<block ref="1abedc5f6ab369ab9fcd16d6b7990638" prefix=" " category="inline-code"></block> 사용할 CPU를 제한하거나 지정할 수 없습니다. 대신 단일 배치 쿼리에서 사용할 수 있는 CPU 수를 제한합니다.</block>
   <block id="16dce493fdad96fe48148f47dc552bfb" category="admonition">* NetApp는 데이터 웨어하우스와 같은 DSS에 대해 50부터 시작하여 필요한 경우 조정 기능을 위 또는 아래로 탐색할 것을<block ref="1abedc5f6ab369ab9fcd16d6b7990638" prefix=" " category="inline-code"></block> 권장합니다. 변경할 때 응용 프로그램에서 중요한 쿼리를 측정해야 합니다.</block>
   <block id="0add8d6e7be42a854cd7e0161c7f9bcc" category="paragraph">일반적으로 각 쿼리에 대해 별도의 운영 체제 스레드가 만들어집니다. SQL Server에 수백 개의 동시 연결이 이루어지면 쿼리당 하나의 스레드 구성이 과도한 시스템 리소스를 소모할 수 있습니다. 이<block ref="a9233738c364090bbc418d8a0e08a79e" prefix=" " category="inline-code"></block> 옵션을 사용하면 SQL Server에서 더 많은 쿼리 요청을 종합적으로 처리할 수 있는 작업자 스레드 풀을 만들어 성능을 향상시킬 수 있습니다.</block>
   <block id="29daf9697a41a463dbe76855a2053a87" category="paragraph">다음 예제에서는 T-SQL을 사용하여 최대 작업 스레드 옵션을 구성하는 방법을 보여 줍니다.</block>
@@ -5231,36 +5169,27 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="89c617c4ed9cac275e572a67b1c52b29" category="list-text">파일 시스템을 마운트합니다</block>
   <block id="f08329445e69fa49a8223bf365f09e47" category="list-text">SQL 서비스를 시작합니다</block>
   <block id="b7aabeea5e06b7371d4372fd7f698f88" category="paragraph">이 방법의 주요 요구 사항은 원격 사이트에서 실행 중인 OS입니다. SQL Server 설치 시 사전 구성되어야 하며 동일한 빌드 버전으로 업데이트해야 합니다. 또한 SQL Server 시스템 데이터베이스는 원격 사이트로 미러링되고 재해가 선언된 경우 마운트할 수 있습니다.</block>
-  <block id="a61003199d91214045b9d3344f527cbd" category="paragraph">가상화 데이터베이스를 호스팅하는 볼륨, 파일 시스템 및 데이터 저장소가 전환 전에 재해 복구 사이트에서 사용되지 않는 경우에는 관련 볼륨에 설정할 필요가 없습니다.<block ref="3b93661df04b698b1340ff2da3238d16" prefix=" " category="inline-code"></block></block>
   <block id="2b963bb5f627aa0ffda026b4d97b6474" category="summary">Microsoft SQL Server 및 SM - 장애 조치 시나리오</block>
-  <block id="bdd8b094b65ec8544e0ad9724a1984ad" category="doc">Microsoft SQL Server 및 SnapMirror 활성 동기화 장애 조치</block>
   <block id="b0bb805a1ea68ad43ceacf65954b4b4b" category="paragraph">전체 SnapMirror 액티브 동기화 애플리케이션 아키텍처를 계획하려면 계획된 페일오버 및 예상치 못한 다양한 페일오버 시나리오에서 SM-AS가 어떻게 반응하는지 이해해야 합니다.</block>
-  <block id="3fc36a3b35bb877723ed17d69c3d57fb" category="summary">Microsoft SQL Server 및 ONTAP 중재자</block>
   <block id="511d40fa1b50f901027391480dff9c67" category="paragraph">장애 조치를 안전하게 자동화하려면 중재자가 필요합니다. 이상적으로는 독립적인 3차 사이트에 배치되지만 복제에 참여하는 클러스터 중 하나와 같은 위치에 배치하면 대부분의 요구 사항에 대해 여전히 기능을 수행할 수 있습니다.</block>
   <block id="cef962a099d3ff2b834420d0c97f5bc1" category="summary">Microsoft SQL Server 및 SM - 비균일 액세스로 사용됩니다</block>
   <block id="3ef2650b3e4d89df6ea0248f432e6c2c" category="paragraph">비균일 액세스 네트워킹은 각 호스트가 로컬 스토리지 시스템의 포트에만 액세스할 수 있음을 의미합니다. SAN은 사이트(또는 동일한 사이트 내의 장애 도메인)에 걸쳐 확장되지 않습니다.</block>
   <block id="7c58b14cf1e27ff24a5b6a0656848380" category="summary">Microsoft SQL Server 및 SnapMirror 활성 동기화</block>
-  <block id="a87e788e43169f3df56a7eee4e9bd79c" category="doc">SQL Server 및 SnapMirror 활성 동기화</block>
   <block id="64affc06244780af1f97a68438460989" category="paragraph">SnapMirror Active Sync를 사용하면 개별 SQL Server 데이터베이스 및 애플리케이션이 스토리지 및 네트워크가 중단되어도 작업을 계속할 수 있으며, 수동 작업 없이 투명한 스토리지 페일오버를 수행할 수 있습니다.</block>
   <block id="0a19f1ca74616d0d4972b2c02c3f7fee" category="paragraph">ONTAP 9.15.1부터 SnapMirror 액티브 동기화는 기존 비대칭 구성 외에 대칭 액티브/액티브 아키텍처를 지원합니다. 대칭 액티브/액티브 기능은 비즈니스 연속성 및 재해 복구를 위해 동기식 양방향 복제를 제공합니다. 또한 여러 장애 도메인에 걸쳐 데이터에 대한 동시 읽기 및 쓰기 액세스를 통해 중요한 SAN 워크로드에 대한 데이터 액세스를 보호함으로써 무중단 운영을 보장하고 재해 또는 시스템 장애 시 다운타임을 최소화할 수 있습니다.</block>
   <block id="d17dae030927ab027095c1e44df8fbf1" category="paragraph">SQL Server 호스트는 FC(Fibre Channel) 또는 iSCSI LUN을 사용하여 스토리지에 액세스합니다. 복제된 데이터의 복제본을 호스팅하는 각 클러스터 간의 복제입니다. 이 기능은 스토리지 수준 복제이므로 독립 실행형 호스트 또는 장애 조치 클러스터 인스턴스에서 실행되는 SQL Server 인스턴스는 클러스터 중 하나에서 읽기/쓰기 작업을 수행할 수 있습니다. 계획 및 구성 단계는 를 <block ref="44f5d8051247437425911d96f84db248" category="inline-link-macro-rx"></block> 참조하십시오.</block>
-  <block id="3fa280b2a8840046be265109ff9f0696" category="section-title">대칭 액티브/액티브 방식의 SnapMirror 아키텍처</block>
-  <block id="a93a13dd139e6bb0629cd0ace446c595" category="paragraph"><block ref="a93a13dd139e6bb0629cd0ace446c595" category="inline-image-macro-rx" type="image"></block></block>
   <block id="b2f689709f901a51858096aaf9637eb4" category="paragraph">** 동기 복제**</block>
   <block id="71ed2e619a97a27f6fe533714a412725" category="paragraph">정상 작동 시 각 복제본은 항상 RPO=0 동기식 복제본이며 한 가지 예외가 있습니다. 데이터를 복제할 수 없는 경우 ONTAP는 데이터를 복제해야 하는 요구 사항을 해제하고 다른 사이트의 LUN이 오프라인 상태가 되는 동안 한 사이트에서 입출력 서비스를 재개합니다.</block>
   <block id="331b5c7e8c01ec1e37b60de5a5efba6c" category="paragraph">** 스토리지 하드웨어**</block>
-  <block id="c2048364072b2c53688aeb273047e068" category="paragraph">** ONTAP 중재자**</block>
   <block id="588068838f06fe39dec548e2210ddf2f" category="paragraph">ONTAP 중재자는 NetApp 지원에서 다운로드되는 소프트웨어 응용 프로그램이며 일반적으로 작은 가상 컴퓨터에 구축됩니다. ONTAP 중재자는 타이브레이커가 아닙니다. SnapMirror 활성 동기화 복제에 참여하는 두 클러스터에 대한 대체 통신 채널입니다. 자동화된 운영은 직접 연결과 중재자를 통해 파트너로부터 받은 응답에 따라 ONTAP에 의해 주도됩니다.</block>
   <block id="6fda40460e9cbbefd704b9c01ea2c18c" category="summary">Microsoft SQL Server 및 SM - 기본 사이트로 지정</block>
   <block id="ac420a2d1b21182a80148191683bc9f7" category="paragraph">SnapMirror 액티브 동기화 동작은 대칭이며 한 가지 중요한 예외 기본 사이트 구성이 있습니다.</block>
-  <block id="309d61d5c343d8fd53c2c585c64587b6" category="doc">SnapMirror 활성 동기화가 있는 Microsoft SQL Server</block>
   <block id="3ccf31c781c6df95109107d66199a8f6" category="section-title">SQL Server의 독립 실행형 인스턴스입니다</block>
   <block id="bd53ef250bf6f7a012cc7ed01c62f8cd" category="inline-link-macro">ONTAP 기반 SQL Server</block>
   <block id="d0d5aa4f66a3624a91ad4b11bbc2250f" category="paragraph">파일 레이아웃 및 서버 구성에 대한 Best Practice는 설명서에서 권장하는 방법과 동일합니다<block ref="c89905de54b32eb552c83786b7590df9" category="inline-link-macro-rx"></block>.</block>
   <block id="a489ffed938ef1b9e86889bc413501ee" category="inline-link-macro">균일</block>
   <block id="ee289d07b4c3d14dcc9cc162df065f99" category="paragraph">독립 실행형 설정을 사용하면 한 사이트에서만 SQL Server를 실행할 수 있습니다. 아마도 <block ref="b88135502d93a28469d0c520f73e7e7d" category="inline-link-macro-rx"></block> access가 사용될 것입니다.</block>
   <block id="50c137c2af8db8930fd9881b4ece5d99" category="inline-image-macro">단일 호스트 및 단일 액세스</block>
-  <block id="60ee5124219a8203e5bacd7d5a1f38fa" category="paragraph"><block ref="60ee5124219a8203e5bacd7d5a1f38fa" category="inline-image-macro-rx" type="image"></block></block>
   <block id="327efeeabe7ad30552ef39a61284b93b" category="paragraph">균일한 액세스를 사용하더라도 두 사이트의 스토리지 장애로 인해 데이터베이스 작업이 중단되지 않습니다. 데이터베이스 서버가 포함된 사이트의 전체 사이트 장애는 물론 중단이 발생할 수 있습니다.</block>
   <block id="5bc465d840f8a329d264340f938ab253" category="paragraph">일부 고객은 사전 구성된 SQL Server 설정으로 원격 사이트에서 실행 중인 OS를 구성할 수 있으며, 운영 인스턴스의 빌드 버전과 동일한 버전으로 업데이트할 수 있습니다. 장애 조치에는 대체 사이트에서 해당 독립 실행형 SQL Server 인스턴스를 활성화하고, LUN을 검색하고, 데이터베이스를 시작해야 합니다. 스토리지 측에서 별도의 작업이 필요하지 않으므로 Windows Powershell cmdlet을 사용하여 전체 프로세스를 자동화할 수 있습니다.</block>
   <block id="ea7bbefe18f9ad7af62904dd6da19c33" category="inline-link-macro">비균일</block>
@@ -5270,7 +5199,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="21fd4631916f5c0e63ef67f98d413d6a" category="paragraph">SQL Server 장애 조치 인스턴스는 물리적 서버 또는 가상 서버에서 게스트 운영 체제로 실행되는 Windows 장애 조치 클러스터에서 호스팅될 수도 있습니다. 이 다중 호스트 아키텍처는 SQL Server 인스턴스와 스토리지 복구 기능을 제공합니다. 이러한 배포는 향상된 성능을 유지하면서 강력한 장애 조치 프로세스를 원하는 수요가 많은 환경에 유용합니다. 장애 조치 클러스터 설정에서 호스트 또는 운영 스토리지가 영향을 받으면 SQL 서비스가 보조 호스트로 페일오버되고, 동시에 보조 스토리지를 사용하여 IO를 제공할 수 있습니다. 자동화 스크립트나 관리자 개입이 필요하지 않습니다.</block>
   <block id="58daef667c5e83ded89d712a683c532b" category="summary">Microsoft SQL Server 및 SM - 단일 액세스</block>
   <block id="b8c5c455d22a62b43bd58615af0a569e" category="paragraph">균일한 액세스 네트워킹은 호스트가 두 사이트(또는 동일한 사이트 내의 장애 도메인)의 경로를 액세스할 수 있음을 의미합니다.</block>
-  <block id="b7986b8213ecdd63004689cc2dedb163" category="doc">SnapMirror을 사용한 Microsoft SQL Server 재해 복구</block>
   <block id="fdbd6bb11fa9bf15b9e53c8f359e821c" category="list-text">SMB를 사용하는 경우 대상 SVM은 소스 SVM이 속한 동일한 Active Directory 도메인의 구성원이어야 NAS 파일 내에 저장된 ACL(액세스 제어 목록)이 재해로부터 복구하는 동안 손상되지 않습니다.</block>
   <block id="d5a7d81e3f495111d65621aede2e26a4" category="list-text">소스 볼륨 이름과 동일한 대상 볼륨 이름을 사용할 필요는 없지만, 대상 볼륨을 대상에 마운트하는 프로세스를 더 간편하게 관리할 수 있습니다. SMB를 사용하는 경우 소스 네임스페이스와 경로 및 디렉토리 구조의 대상 NAS 네임스페이스를 동일하게 만들어야 합니다.</block>
   <block id="4dd0779e2b7f46c37eb5ec38cdde3bb6" category="list-text">빠른 데이터 복구에 대한 수요가 많은 경우 동기식 복제를 사용하고 RPO에 유연성을 제공하는 비동기식 솔루션을 사용합니다.</block>
@@ -5545,7 +5473,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="6be050126f2df5ae7cd944ce446241c2" category="paragraph">30초의 시간 초과가 허용되지 않는 경우 임대 기간을 연장할 수 있습니다.</block>
   <block id="38d530634a8d32e8775a37109fc08542" category="paragraph">60초의 네트워크 중단을 견디기 위해 리스 시간 제한을 60초로 늘리려면 유예 기간도 늘려야 합니다. 이는 컨트롤러 페일오버 중 IO 일시 중단이 더 길다는 것을 의미합니다.</block>
   <block id="ac76821692fdb2dae1d98babe804fb8f" category="paragraph">이것은 일반적으로 문제가 되지 않습니다. 일반 사용자는 연간 1~2회 ONTAP 컨트롤러를 업데이트하며, 하드웨어 장애로 인한 계획되지 않은 페일오버는 매우 드물게 발생합니다. 또한 60초 네트워크 중단이 발생할 가능성이 있는 네트워크가 있고 임대 시간 초과가 60초로 필요한 경우 드물게 발생하는 스토리지 시스템 장애 조치를 거부하여 61초 동안 일시 중지되지 않을 수 있습니다. 이미 60초 이상 일시 중지된 네트워크가 있음을 확인했습니다.</block>
-  <block id="73f7848a74f8a1b6c78ac0dfbca44874" category="searchtitle">NetApp 관리 소프트웨어를 통한 Microsoft SQL Server 데이터 보호</block>
   <block id="3a80e1e29c96d0837b12aef65785a41a" category="doc">구성 매개 변수</block>
   <block id="4bb9f72180425717a416a5037a100cca" category="searchtitle">MySQL 및 InnoDB 파일 구조</block>
   <block id="9a41c04f55c43c1bfac6d1e3fb0992de" category="doc">NFSv3 슬롯 테이블</block>
@@ -5634,7 +5561,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="d4b27e1b61577e2e3dfeebd3b8129da5" category="list-text">호스트 간에 볼륨을 공유하지 마십시오. 예를 들어, 단일 볼륨에 2개의 LUN을 생성하고 각 LUN을 다른 호스트와 공유할 수 있지만 관리가 복잡해질 수 있으므로 이러한 작업을 피해야 합니다. 동일한 호스트에서 여러 SQL Server 인스턴스를 실행하는 경우, 노드의 볼륨 제한에 근접하지 않으면 볼륨 공유를 피하고, 대신 데이터 관리를 쉽게 하기 위해 호스트당 개별 볼륨을 보유하는 것이 좋습니다.</block>
   <block id="e3ea9105e22caf8aa06aee0279a968bb" category="list-text">필요한 경우 볼륨 자동 크기 조정 정책을 구성하여 공간 부족 상태를 방지하십시오.</block>
   <block id="72a9733bd5929d30a93ea680e0c3fad1" category="list-text">데이터베이스 보조 파일(파일 그룹의 일부로)을 별도의 볼륨에 배치하면 SQL Server 데이터베이스의 성능이 향상됩니다. 이 분리는 데이터베이스의 파일이 LUN을 다른 파일과 공유하지 않는<block ref="937f38432beb92fdba3d47780720bdf7" prefix=" " category="inline-code"></block> 경우에만<block ref="937f38432beb92fdba3d47780720bdf7" prefix=" " category="inline-code"></block> 유효합니다.</block>
-  <block id="5962130d833e0408cf58a87e342bc1f9" category="searchtitle">Microsoft SQL Server tempdb 파일</block>
   <block id="82d9655a27436534991360ea4c0dc680" category="paragraph">Tempdb 데이터베이스를 많이 활용할 수 있습니다. ONTAP에 사용자 데이터베이스 파일을 최적으로 배치할 수 있을 뿐 아니라 할당 경합을 줄이기 위해 tempdb 데이터 파일을 배치하는 것도 중요합니다. tempdb는 별도의 디스크에 배치해야 하며 사용자 데이터 파일과 공유하지 않아야 합니다.</block>
   <block id="5c4a7832da0e9f8799089fdc985bb9b3" category="list-text">tempdb 데이터 파일은 같은 크기로 만들어야 합니다</block>
   <block id="20453a1c8627ad0bc536be210636fa41" category="paragraph">다음 예제 스크립트는 크기가 같은 tempdb 파일 8개를 생성하고 tempdb를 SQL Server 2012 이상의 마운트 지점으로 이동하여 tempdb를<block ref="ae6fbe62f3ddc46fa9a9885244d23675" prefix=" " category="inline-code"></block> 수정합니다.</block>
@@ -5961,4 +5887,84 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="e867f73e9a09d015c82be5c45264cda9" category="paragraph">VVOL은 VVOL 데이터 저장소에 저장된 실제 가상 머신 파일 및 디스크입니다. VVOL(단일)이라는 용어는 단일 특정 파일, LUN 또는 네임스페이스를 의미합니다. ONTAP는 데이터 저장소에서 사용하는 프로토콜에 따라 NVMe 네임스페이스, LUN 또는 파일을 생성합니다. VVol에는 여러 가지 유형이 있습니다. 가장 일반적인 유형은 CONFIG(VMFS만 있고 VM의 VMX 파일과 같은 메타데이터 파일이 포함되어 있음), Data(가상 디스크 또는 VMDK) 및 Swap(VM의 전원이 켜질 때 생성됨)입니다. VMware VM 암호화로 보호되는 VVol은 다른 유형입니다. VMware VM 암호화를 ONTAP 볼륨 또는 애그리게이트 암호화와 혼동해서는 안 됩니다.</block>
   <block id="f615a85ee8b4ffd3bdd64ab72c2cf934" category="paragraph">위에서 언급한 것처럼 정책을 사용하면 VM 또는 VMDK 프로비저닝 작업을 간소화할 수 있습니다. 적절한 정책을 선택하기만 하면 VASA Provider는 해당 정책을 지원하는 VVol 데이터 저장소를 표시하고 VVOL을 호환되는 개별 FlexVol volume에 배치합니다.</block>
   <block id="d5938f26039c87ff0b18251b9b89e0ec" category="list-text">클론은 단일 볼륨 내에서 또는 ONTAP 클러스터의 여러 볼륨에 빠르게 생성되며, 이는 기존 VAAI 지원 클론과 비교할 때 이점이 있습니다. 또한 스토리지 효율성도 뛰어납니다. 볼륨 내의 클론은 FlexClone 볼륨과 같이 ONTAP 파일 클론을 사용하며 소스 VVol 파일/LUN/네임스페이스의 변경 내용만 저장합니다. 따라서 운영 또는 기타 애플리케이션 용도로 장기간 사용할 VM을 빠르게 생성하고, 공간을 최소화하고, VM 수준 보호(VMware vSphere용 NetApp SnapCenter 플러그인, VMware 관리 스냅샷 또는 VADP 백업 사용) 및 성능 관리(ONTAP QoS 사용)를 활용할 수 있습니다. VVOL에서 볼륨 간 클론은 VAAI를 사용할 때보다 훨씬 빠릅니다. VASA를 사용하면 클론을 생성하고 복제가 완료되기 전에 대상에서 해당 클론에 액세스할 수 있습니다. 데이터 블록은 백그라운드 프로세스로 복사되어 대상 VVOL을 채웁니다. 이는 기존 LUN에서 ONTAP 무중단 LUN 이동이 작동하는 방식과 유사합니다.</block>
+  <block id="5c2620ed6abb266a7824246fc409e405" category="admonition">볼륨이 일반 프로비저닝되는 경우 명령을 사용한 중복제거 및 중복제거를 비롯한 해당 볼륨의 모든 효율성 기능을 완전히 비활성화하도록 주의를 기울여야<block ref="3cfeff511a11b8c5f54ce9749a719a58" prefix=" " category="inline-code"></block> 합니다. 볼륨이 출력에 나타나지 않아야<block ref="df899f2d908ec33afe1d01ee26b3dd47" prefix=" " category="inline-code"></block> 합니다. 그렇지 않을 경우, 효율성 기능을 위해 볼륨이 부분적으로 구성됩니다. 결과적으로 덮어쓰기 보장은 서로 다르게 동작하므로 구성 과다 사용으로 인해 볼륨의 공간이 예기치 않게 부족해져서 데이터베이스 I/O 오류가 발생할 가능성이 높아집니다.</block>
+  <block id="d276d666f03c049a59433c8727efaa6e" category="paragraph">Linux 환경에서는 전체 드라이브 장치에 논리적 볼륨 그룹이 구축됩니다. 파티션이 필요하면 를 실행하고 각 파티션의 시작이 8의 배수인지 확인하여 정렬을<block ref="ab425294b9ef9f9c8acbc3f08f92b37d" prefix=" " category="inline-code"></block> 점검합니다. 이는 8개의 512바이트 섹터를 곱한 값인 4KB에서 파티션이 시작된다는 뜻입니다.</block>
+  <block id="e23f5b5639a79ab22ace94b51b47872d" category="paragraph"><block ref="e23f5b5639a79ab22ace94b51b47872d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="39e45e79eb595c951cff8267572302f1" category="inline-image-macro">SyncMirror 구성</block>
+  <block id="8c91b2538377a2c3400ec4694ba15e2e" category="paragraph"><block ref="8c91b2538377a2c3400ec4694ba15e2e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="073b52a996437eabf93f7783b02e2fe9" category="paragraph">이 <block ref="fe3ee14511b9b1e5dfd5af1f82ac3216" category="inline-link-macro-rx"></block> 소프트웨어를 세 번째 사이트에서 실행하여 MetroCluster 환경의 상태를 모니터링하고, 알림을 보내고, 재해 상황에서 선택적으로 스위치오버를 수행할 수 있습니다. 타이브레이커에 대한 자세한 설명은 에서 확인할 수 <block ref="2acc94a061be1196588f7f734d193bf6" category="inline-link-macro-rx"></block>있지만, MetroCluster 타이브레이커의 주요 목적은 사이트 손실을 감지하는 것입니다. 또한 사이트 손실과 연결 손실 간에 구분해야 합니다. 예를 들어, Tiebreaker가 운영 사이트에 연결할 수 없기 때문에 전환이 발생하지 않아야 합니다. 따라서 Tiebreaker는 원격 사이트의 운영 사이트 접속 기능을 모니터링합니다.</block>
+  <block id="007bfe897ab1dfc6713daff4c13130e2" category="admonition">MCTB 소프트웨어는 강제 전환을 수행할 때 NVRAM WAS 및/또는 플렉스가 동기화되었는지 확인하지 않습니다. 자동 전환이 구성된 경우 유지 관리 활동 중에 NVRAM 또는 SyncMirror 플렉스의 동기화가 손실되는 것을 방지해야 합니다.</block>
+  <block id="d5e917df8e0b7f1db3996ead2cbeb2ac" category="paragraph">ONTAP mediator는 MetroCluster IP 및 기타 특정 ONTAP 솔루션과 함께 사용됩니다. 위에서 설명한 MetroCluster Tiebreaker 소프트웨어와 마찬가지로 기존 Tiebreaker 서비스 역할을 하지만 중요한 기능을 수행하는 자동 자동 전환 기능도 포함되어 있습니다.</block>
+  <block id="bf74d7de09985a8ef553e5122b5d0f7c" category="inline-image-macro">ClusterLion 다이어그램</block>
+  <block id="0354d54d7a567ab0e86cd8a04f4919a1" category="paragraph"><block ref="0354d54d7a567ab0e86cd8a04f4919a1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0db380344593268d0331dffbd0e53491" category="inline-image-macro">MetroCluster IP 아키텍처</block>
+  <block id="207f169ffa50efdada53e61e95be500f" category="paragraph"><block ref="207f169ffa50efdada53e61e95be500f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d012707a79628e35e35aa78aae04ba03" category="inline-image-macro">4노드 MetroCluster</block>
+  <block id="d2d10d2707ff9930a55b8735ba28ca8b" category="paragraph"><block ref="d2d10d2707ff9930a55b8735ba28ca8b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f76fa4fd08c3d58e5591281c16d5c61b" category="inline-image-macro">2개 노드 MetroCluster</block>
+  <block id="4cc7f7e2eae466068330e3136b2e786f" category="paragraph"><block ref="4cc7f7e2eae466068330e3136b2e786f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="57d3154f4afcd986d4f30b4e06c1c434" category="paragraph">ONTAP 유연한 볼륨 또는 더 간단히 말하면 볼륨은 LUN과 동의어가 아닙니다. 볼륨은 파일 또는 LUN 같은 데이터를 위한 관리 컨테이너입니다. 예를 들어, 모든 LUN이 단일 볼륨에 포함된 8개의 LUN 스트라이프 세트에 데이터베이스를 배치할 수 있습니다.</block>
+  <block id="05ef9b22209f0e35efc9b6f875ad3c55" category="inline-link-macro">ONTAP 설명서.</block>
+  <block id="a9f5ed6c3fb24e75b9bbfde2801f43c5" category="paragraph">스냅샷에 대한 자세한 내용은 를 참조하십시오 <block ref="8f47a9b0ccec19c7f5d940ab138ea0b4" category="inline-link-macro-rx"></block></block>
+  <block id="7509bd2cfd7821f433d962315cc50a57" category="paragraph">ONTAP 9.12.1부터 스냅샷은 읽기 전용일 뿐 아니라 실수로 또는 의도적으로 삭제되지 않도록 보호할 수 있습니다. 이 기능을 변조 방지 스냅샷이라고 합니다. 스냅샷 정책을 통해 보존 기간을 설정하고 적용할 수 있습니다. 생성된 스냅샷은 만료 날짜에 도달할 때까지 삭제할 수 없습니다. 관리 또는 지원 센터 재정의가 없습니다.</block>
+  <block id="287130f9ebd13d6ed68dd04d8d2a295e" category="admonition">패브릭 풀을 사용하여 변조 방지 스냅샷은 계층화할 수 없습니다.</block>
+  <block id="c2f55c662895ff4fac4100a2a0852e43" category="paragraph">변조 방지 스냅샷에 대한 자세한 내용은 를 참조하십시오 <block ref="fd5bfd16d2f3d4d67a500529a5ee8cad" category="inline-link-macro-rx"></block></block>
+  <block id="be7dc70d98bcb6099a5c94c0eb263502" category="paragraph">스냅샷을 원격 시스템에 복제할 수도 있습니다. 여기에는 원격 시스템에 보존 기간이 적용되고 적용되는 변조 방지 스냅샷이 포함됩니다. 그 결과 로컬 스냅샷과 동일한 데이터 보호 이점을 얻을 수 있지만 데이터는 두 번째 스토리지 시스템에 위치합니다. 이렇게 하면 원래 스토리지를 폐기해도 백업이 손상되지 않습니다.</block>
+  <block id="170814cc5599dd2691018c487b6c756b" category="paragraph">SnapMirror에 대한 자세한 내용은 를 참조하십시오 <block ref="3a921b7bc4d1ecfb45f8d64003b59241" category="inline-link-macro-rx"></block></block>
+  <block id="f1e054edf08e67911f64f3d6bc85055c" category="paragraph">새로 구성된 ONTAP 스토리지 시스템은 가상 시스템을 생성할 때까지 어떤 사용자도 지원할 수 없기 때문에 새로 프로비저닝된 VMware ESX Server와 유사합니다. ONTAP를 사용하면 스토리지 관리의 가장 기본적인 장치가 되는 SVM(스토리지 가상 시스템)을 만들 수 있습니다. 각 SVM에는 자체 스토리지 리소스, 프로토콜 구성, IP 주소 및 FCP WWN이 있습니다. 이것이 ONTAP 멀티 테넌시의 토대입니다.</block>
+  <block id="9f531561663c2d70601e59d0a2a97e22" category="paragraph">SVM에 대한 자세한 내용은 를 참조하십시오 <block ref="49f63552efbf93d6a834173c0aa523ad" category="inline-link-macro-rx"></block></block>
+  <block id="7995495e3afeef685b0a0bcf51360d6c" category="paragraph">관리 액세스 제어에 대한 자세한 내용은 를 참조하십시오 <block ref="a0740fbcbe9ba6690a7ab99ab89cd2c9" category="inline-link-macro-rx"></block></block>
+  <block id="19fd31cbf45473230fbcebf8392cc91e" category="section-title">다단계 인증(MFA)</block>
+  <block id="96654aef2c50a23153b1537b5229776f" category="paragraph">MFA(다중 요소 인증)에 대한 자세한 내용은 를 참조하십시오 <block ref="1786169af27633b737f29186948225e1" category="inline-link-macro-rx"></block></block>
+  <block id="e888b1b74bec5238c3c604159ac1d53a" category="paragraph">API RBAC에 대한 자세한 내용은 를 참조하십시오 <block ref="e61ba9faf8dbe169378ea875c9b479b4" category="inline-link-macro-rx"></block></block>
+  <block id="6e09a67fb21def2cb508cbfe0d7c0794" category="paragraph">MAV(다중 관리자 확인)에 대한 자세한 내용은 를 참조하십시오 <block ref="88147b7c4319c7463e1de20879284ceb" category="inline-link-macro-rx"></block></block>
+  <block id="d682e5055f8368ad42d44e0de5e75ed3" category="inline-image-macro">SnapMirror 활성 동기화 정상 작동</block>
+  <block id="a61d348ee21d7fdf1a9da822a79df846" category="paragraph"><block ref="a61d348ee21d7fdf1a9da822a79df846" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3fe281f607d85b52408e82cb2d7aef71" category="inline-image-macro">SnapMirror 활성 동기화 오류입니다</block>
+  <block id="c5ff28a15762db1ce9589bc45fe42a83" category="paragraph"><block ref="c5ff28a15762db1ce9589bc45fe42a83" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a98433bfbc9755650778888be2e155c8" category="inline-image-macro">SnapMirror 활성 동기화 장애 조치</block>
+  <block id="5fe2be834f0686a9a02a2872ecb20f91" category="paragraph"><block ref="5fe2be834f0686a9a02a2872ecb20f91" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="40685542fb725d5516910c5721538340" category="inline-image-macro">SnapMirror 활성 동기화 복구</block>
+  <block id="67e60a13c39559320bab1f6f456824d0" category="paragraph"><block ref="67e60a13c39559320bab1f6f456824d0" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="217536ed57b639cdf05f688cf8ddaca1" category="inline-image-macro">SnapMirror 활성 동기화 장애 복구</block>
+  <block id="362b862a6b72622be34b2904dcbf413b" category="paragraph"><block ref="362b862a6b72622be34b2904dcbf413b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f060f17ec7a3fc2a182a4759545d4cb3" category="paragraph"><block ref="f060f17ec7a3fc2a182a4759545d4cb3" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3d25a1eebebf538e68ea79a21fdeb31c" category="paragraph"><block ref="3d25a1eebebf538e68ea79a21fdeb31c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="1cf9d22584fea5a10f4ed164a871a45f" category="paragraph"><block ref="1cf9d22584fea5a10f4ed164a871a45f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4be3d396256a7548ce446a9a03183122" category="paragraph"><block ref="4be3d396256a7548ce446a9a03183122" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="05933557921f3e80d9d78fff7d9532d6" category="paragraph"><block ref="05933557921f3e80d9d78fff7d9532d6" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2a5e066e529edd11b35f46c161170620" category="paragraph">반면, Oracle RAC와 같은 클러스터된 애플리케이션은 두 개의 사이트에서 동시에 사용할 수 있는 서비스를 제공할 수 있습니다. 사이트를 잃었다고 해서 애플리케이션 서비스 전체가 손실되는 것은 아닙니다. 인스턴스는 계속 사용할 수 있으며 정상적인 사이트에서 실행됩니다.</block>
+  <block id="d629eadf33041c24ee81c3752a895f8d" category="paragraph"><block ref="d629eadf33041c24ee81c3752a895f8d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="267017761cb9de7ce4e0ea9f0e078628" category="paragraph"><block ref="267017761cb9de7ce4e0ea9f0e078628" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="fd994146b555ce2a39038a16098a6e3e" category="list-text"><block ref="9df22f196a33acd0b372fe502de51211" prefix="" category="inline-code"></block>- 임의로 읽은 데이터만 검색합니다</block>
+  <block id="0c65a737281c49235c3058020e81f7b9" category="list-text"><block ref="8805d416ce540c5f2df34af5b18d742b" prefix="" category="inline-code"></block>- 순차적으로 또는 임의로 읽은 데이터를 모두 검색합니다</block>
+  <block id="deea309eeb62f907bfa37ca436857255" category="list-text"><block ref="334c4a4c42fdb79d7ebc3e73b517e6f8" prefix="" category="inline-code"></block>- 순차적으로 또는 임의로 읽은 데이터를 모두 검색합니다</block>
+  <block id="c4216ce97dadec9cf3de76609a5a07de" category="list-text"><block ref="a181a603769c1f98ad927e7367c7aa51" prefix="" category="inline-code"></block>용량 계층에서 데이터를 검색하지 마십시오</block>
+  <block id="47f64097ec44c9f18f4025941f2e4436" category="inline-image-macro">FabricPool 계층화</block>
+  <block id="0a5778c8b17c5df28190c8f022c4e11a" category="paragraph"><block ref="0a5778c8b17c5df28190c8f022c4e11a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e6edcd80dc55ce70fb5c4fa1c13c9bc6" category="section-title">하이퍼 스레딩</block>
+  <block id="7e4c522ec8e0c58e24f493765888ed54" category="paragraph">하이퍼스레딩은 X86 프로세서에서 수행되는 계산의 병렬화를 개선하는 SMT(동시 다중 스레딩) 구현을 의미합니다. SMT는 Intel 및 AMD 프로세서 모두에서 사용할 수 있습니다.</block>
+  <block id="4114d233d42e1381db8a36ed5a76930b" category="paragraph">하이퍼 스레딩은 운영 체제에 물리적 CPU로 표시되는 논리 CPU를 생성합니다. 그런 다음 SQL Server는 이러한 추가 CPU를 보고 물리적으로 존재하는 것보다 더 많은 코어가 있는 것처럼 사용합니다. 이를 통해 병렬화를 증가시켜 성능을 크게 향상시킬 수 있습니다.</block>
+  <block id="fbb6d18b081bfa69df40139eb4b0213b" category="inline-image-macro">SQL Server 로그 메시지</block>
+  <block id="d78202a5fb91002bb31924c80636beee" category="paragraph"><block ref="d78202a5fb91002bb31924c80636beee" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="8f2b07811863589142fb500958a93aef" category="paragraph">이 방법은 대규모 쿼리에 유용하지만 성능 문제가 발생하고 동시성이 제한될 수 있습니다. 더 좋은 방법은 병렬 처리를 단일 CPU 소켓의 물리적 코어 수로 제한하는 것입니다. 예를 들어, 하이퍼스레딩에 관계없이 소켓당 12개의 코어가 있는 물리적 CPU 소켓 2개가 있는 서버에서<block ref="1abedc5f6ab369ab9fcd16d6b7990638" prefix=" " category="inline-code"></block> 12로 설정해야 합니다.<block ref="1abedc5f6ab369ab9fcd16d6b7990638" prefix=" " category="inline-code"></block> 사용할 CPU를 제한하거나 지정할 수 없습니다. 대신 단일 배치 쿼리에서 사용할 수 있는 CPU 수를 제한합니다.</block>
+  <block id="2bcdfd16d227f0659d58f9c368f92311" category="inline-link-macro">최대 작업자 스레드 서버 구성 옵션을 구성합니다</block>
+  <block id="784d03ae991a0cc4ef7f8b5318d0643e" category="paragraph">작업자 스레드를 더 많이 사용하도록 SQL Server를 구성해야 하는 경우는 언제입니까? 각 스케줄러의 평균 작업 대기열 길이가 1을 초과하면 시스템에 더 많은 스레드를 추가할 수 있습니다. 단, 로드가 CPU에 바인딩되지 않거나 다른 과중한 대기가 발생하는 경우에만 가능합니다. 이러한 상황이 발생하는 경우 스레드를 더 추가해도 다른 시스템 병목 현상이 발생하기 때문에 도움이 되지 않습니다. 최대 작업자 스레드에 대한 자세한 내용은 을 <block ref="516f4431a9f331f442450f80b5638a9d" category="inline-link-macro-rx"></block>참조하십시오.</block>
+  <block id="a5ee78f6f06a355d893076bd00799f33" category="inline-image-macro">최대 작업자 스레드 수</block>
+  <block id="06a7934dd21e03f634b6cd9fc8dfafd5" category="paragraph"><block ref="06a7934dd21e03f634b6cd9fc8dfafd5" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c7acc2cdcff9c9156a99e4f37871f0b3" category="searchtitle">SnapCenter 및 T-SQL 명령을 사용하여 ONTAP에서 Microsoft SQL Server 데이터베이스 보호</block>
+  <block id="d56a13248537a908d7fb7730827a3ea8" category="paragraph">SQL Server 데이터베이스 환경의 보안은 데이터베이스 자체 관리 이상의 다차원적인 작업입니다. ONTAP은 데이터베이스 인프라의 스토리지 측면을 보호하기 위해 설계된 몇 가지 고유한 기능을 제공합니다.</block>
+  <block id="1fdd8a4c4832d13ddabbb02c424cf87d" category="paragraph">가상화 데이터베이스를 호스팅하는 볼륨, 파일 시스템 및 데이터 저장소가 전환 전에 재해 복구 사이트에서 사용되지 않는 경우에는 관련 볼륨에 설정할 필요가 없습니다.<block ref="a2626552f293b2377efe829e69d14daa" prefix=" " category="inline-code"></block></block>
+  <block id="358f73eb3e0830400b47b849dd1ff244" category="summary">Microsoft SQL Server 및 ONTAP 중재자</block>
+  <block id="d7b47db08dce16a62f9ea97613e8f704" category="paragraph">장애 조치를 안전하게 자동화하려면 중재자가 필요합니다. 이상적으로는 독립적인 3차 사이트에 배치되지만 복제에 참여하는 클러스터 중 하나와 같은 위치에 배치하면 대부분의 요구 사항에 대해 여전히 기능을 수행할 수 있습니다.</block>
+  <block id="f9619e52c7cdde4c0b1a97530a47dd35" category="section-title">대칭 액티브/액티브를 사용한 SnapMirror 액티브 싱크 아키텍처</block>
+  <block id="19faeb7ab81d5f28227fc1778d55ff90" category="inline-image-macro">SnapMirror 액티브 동기화 아키텍처</block>
+  <block id="133eca4b24d6c05606859c2288c8ac7f" category="paragraph"><block ref="133eca4b24d6c05606859c2288c8ac7f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="441756ba9f536a754940c70c53cb3b13" category="paragraph">** ONTAP 중재자**</block>
+  <block id="b41efcb6893de373f77e07be9a8e0d32" category="paragraph"><block ref="b41efcb6893de373f77e07be9a8e0d32" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f830e7995cd120ac203db751bdb1174b" category="paragraph">NetApp은 Astra Trident를 제공하여 스토리지의 고급 관리 기능을 제공합니다. 예를 들어, Kubernetes에서 생성된 컨테이너에서 Astra Trident를 사용하면 해당 계층에 스토리지를 자동으로 프로비저닝하고, 엑스포트 정책을 적용하고, 스냅샷 정책을 설정하고, 심지어 컨테이너를 다른 컨테이너에 복제할 수 있습니다. 자세한 내용은 를 <block ref="d243cca937364184efa824b0525b876a" category="inline-link-macro-rx"></block>참조하십시오.</block>
+  <block id="e5f3f995b3e054f0d6bfdd13c3597e2c" category="paragraph"><block ref="e5f3f995b3e054f0d6bfdd13c3597e2c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="9b87cb3e85b59ad2d04537560673f94b" category="inline-image-macro">I/O 유형</block>
+  <block id="977d1017b39374152ac0d18ac3267ca2" category="paragraph"><block ref="977d1017b39374152ac0d18ac3267ca2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="77ea00d93c10244a077ab55be57f5c28" category="admonition">이 매개 변수 또는 innodb_io_capacity_max 매개 변수를 너무 높게 설정하여 성능을 심각하게 저하시킬 수 있습니다</block>
 </blocks>

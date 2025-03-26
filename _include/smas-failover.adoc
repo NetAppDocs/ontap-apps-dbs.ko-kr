@@ -14,7 +14,7 @@ SnapMirror 액티브 동기화는 계획된 스토리지 페일오버 작업과 
 
 녹색 선은 활성 경로이지만 해당 경로의 IO가 SnapMirror 활성 동기화 경로를 통해 전달되어야 하기 때문에 지연 시간이 더 많이 발생합니다. 추가 지연 시간은 SnapMirror 활성 동기화에 사용되는 사이트 간 상호 연결의 속도에 따라 달라집니다.
 
-image:smas-failover-1.png["오류: 그래픽 이미지가 없습니다"]
+image:../media/smas-failover-1.png["SnapMirror 활성 동기화 정상 작동"]
 
 
 
@@ -22,7 +22,7 @@ image:smas-failover-1.png["오류: 그래픽 이미지가 없습니다"]
 
 계획되거나 계획되지 않은 페일오버 때문에 액티브 미러 복사본을 사용할 수 없게 되면 더 이상 사용할 수 없게 됩니다. 그러나 원격 시스템에는 동기식 복제본이 있고 원격 사이트에 대한 SAN 경로가 이미 존재합니다. 원격 시스템에서 해당 LUN에 대한 IO를 처리할 수 있습니다.
 
-image:smas-failover-2.png["오류: 그래픽 이미지가 없습니다"]
+image:../media/smas-failover-2.png["SnapMirror 활성 동기화 오류입니다"]
 
 
 
@@ -30,7 +30,7 @@ image:smas-failover-2.png["오류: 그래픽 이미지가 없습니다"]
 
 페일오버하면 원격 복제본이 활성 복제본이 됩니다. 경로가 Active에서 Active/Optimized로 변경되고 IO는 데이터 손실 없이 계속 처리됩니다.
 
-image:smas-failover-3.png["오류: 그래픽 이미지가 없습니다"]
+image:../media/smas-failover-3.png["SnapMirror 활성 동기화 장애 조치"]
 
 
 
@@ -38,7 +38,7 @@ image:smas-failover-3.png["오류: 그래픽 이미지가 없습니다"]
 
 소스 시스템이 서비스로 반환되면 SnapMirror 활성 동기화는 복제를 다시 동기화하지만 다른 방향을 실행할 수 있습니다. 이제 이 구성은 기본적으로 시작점과 동일하지만 활성 미러 사이트가 대칭 이동된 경우는 예외입니다.
 
-image:smas-failover-4.png["오류: 그래픽 이미지가 없습니다"]
+image:../media/smas-failover-4.png["SnapMirror 활성 동기화 복구"]
 
 
 
@@ -46,4 +46,4 @@ image:smas-failover-4.png["오류: 그래픽 이미지가 없습니다"]
 
 필요한 경우 관리자는 페일백을 수행한 후 LUN의 활성 복사본을 원래 컨트롤러로 다시 이동할 수 있습니다.
 
-image:smas-failover-1.png["오류: 그래픽 이미지가 없습니다"]
+image:../media/smas-failover-1.png["SnapMirror 활성 동기화 장애 복구"]

@@ -3,10 +3,13 @@ sidebar: sidebar
 permalink: mysql/mysql-open_file_limits.html 
 keywords: MySQL,MariaDB,open_file_limits 
 summary: MySQL 및 open_file_limits 
+searchtitle: MySQL 및 open_file_limits 
 ---
 = Open_file_limits 를 참조하십시오
+:hardbreaks:
 :allow-uri-read: 
 :icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 

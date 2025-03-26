@@ -6,13 +6,17 @@ summary: SAN과 함께 MySQL 제공
 searchtitle: SAN과 함께 MySQL 제공 
 ---
 = 산
+:hardbreaks:
 :allow-uri-read: 
 :icons: font
+:linkattrs: 
 :imagesdir: ../media/
+:firstname: [.lead]
+:author: [.lead]
+:authorinitials: [
+:authors: [.lead]
+:revdate: There are two options to configure MySQL with SAN using the usual two-volume model.
 
-
-[role="lead"]
-일반적인 2개 볼륨 모델을 사용하여 SAN과 MySQL을 구성하는 두 가지 옵션이 있습니다.
 
 입출력 및 용량 요구 사항이 단일 LUN 파일 시스템의 제한 범위 내에 있는 경우 더 작은 데이터베이스를 한 쌍의 표준 LUN에 배치할 수 있습니다. 예를 들어, 약 2K 랜덤 IOPS가 필요한 데이터베이스는 단일 LUN의 단일 파일 시스템에서 호스팅될 수 있습니다. 마찬가지로, 크기가 100GB인 데이터베이스도 관리 문제를 일으키지 않고 단일 LUN에 적합합니다.
 

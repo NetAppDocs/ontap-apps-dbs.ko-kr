@@ -1,12 +1,15 @@
 ---
 sidebar: sidebar 
 permalink: mssql/mssql-cpu-configuration.html 
-keywords: MSSQL,SQL Server, CPU, ONTAP 
+keywords: MSSQL, SQL Server, CPU, ONTAP 
 summary: Microsoft SQL Server CPU 구성 
 searchtitle: Microsoft SQL Server CPU 구성 
 ---
 = CPU 구성
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 
@@ -15,11 +18,11 @@ SQL Server 성능은 CPU 및 코어 구성에 대해 여러 가지 종속성이 
 
 
 
-== 하이퍼스레딩
+== 하이퍼 스레딩
 
-하이퍼스레딩은 X86 프로세서에서 수행되는 계산의 병렬화를 향상시키는 SMT(동시 다중 스레딩) 구현을 의미합니다. SMT는 Intel 및 AMD 프로세서 모두에서 사용할 수 있습니다.
+하이퍼스레딩은 X86 프로세서에서 수행되는 계산의 병렬화를 개선하는 SMT(동시 다중 스레딩) 구현을 의미합니다. SMT는 Intel 및 AMD 프로세서 모두에서 사용할 수 있습니다.
 
-하이퍼스레딩은 운영 체제에 물리적 CPU로 표시되는 논리 CPU를 생성합니다. 그런 다음 SQL Server는 이러한 추가 CPU를 보고 물리적으로 존재하는 것보다 더 많은 코어가 있는 것처럼 사용합니다. 이를 통해 병렬화를 증가시켜 성능을 크게 향상시킬 수 있습니다.
+하이퍼 스레딩은 운영 체제에 물리적 CPU로 표시되는 논리 CPU를 생성합니다. 그런 다음 SQL Server는 이러한 추가 CPU를 보고 물리적으로 존재하는 것보다 더 많은 코어가 있는 것처럼 사용합니다. 이를 통해 병렬화를 증가시켜 성능을 크게 향상시킬 수 있습니다.
 
 여기서 주의해야 할 점은 각 SQL Server 버전에는 사용할 수 있는 컴퓨팅 성능에 대한 제한이 있다는 것입니다. 자세한 내용은 SQL Server Edition별 계산 용량 제한 을 참조하십시오.
 
@@ -31,7 +34,7 @@ SQL Server 라이선스에는 두 가지 옵션이 있습니다. 첫 번째는 �
 
 아래 그림에서는 시작 후 코어 제한 적용을 나타내는 SQL Server 로그 메시지를 보여 줍니다.
 
-image:mssql-hyperthreading.png["오류: 그래픽 이미지가 없습니다"]
+image:../media/mssql-hyperthreading.png["SQL Server 로그 메시지"]
 
 따라서 모든 CPU를 사용하려면 프로세서당 코어 라이센스를 사용해야 합니다. SQL Server 라이센스에 대한 자세한 내용은 을 참조하십시오 link:https://www.microsoft.com/en-us/sql-server/sql-server-2022-comparison["SQL Server 2022: 최신 데이터 플랫폼"^].
 
@@ -72,9 +75,9 @@ TIP: * NetApp는 데이터 웨어하우스와 같은 DSS에 대해 50부터 시�
 
 기본값은 0입니다. 이 값을 사용하면 SQL Server가 시작 시 작업자 스레드 수를 자동으로 구성할 수 있습니다. 이는 대부분의 시스템에서 작동합니다. Max worker 스레드는 고급 옵션이므로 숙련된 데이터베이스 관리자(DBA)의 도움 없이 변경할 수 없습니다.
 
-작업자 스레드를 더 많이 사용하도록 SQL Server를 구성해야 하는 경우는 언제입니까? 각 스케줄러의 평균 작업 대기열 길이가 1을 초과하면 시스템에 더 많은 스레드를 추가할 수 있습니다. 단, 로드가 CPU에 바인딩되지 않거나 다른 과중한 대기가 발생하는 경우에만 가능합니다. 이러한 상황이 발생하는 경우 스레드를 더 추가해도 다른 시스템 병목 현상이 발생하기 때문에 도움이 되지 않습니다. 최대 작업자 스레드에 대한 자세한 내용은 을 참조하십시오 link:https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/configure-the-max-worker-threads-server-configuration-option?view=sql-server-ver16&redirectedfrom=MSDN["최대 작업자 스레드 서버 구성 옵션을 구성합니다"^].
+작업자 스레드를 더 많이 사용하도록 SQL Server를 구성해야 하는 경우는 언제입니까? 각 스케줄러의 평균 작업 대기열 길이가 1을 초과하면 시스템에 더 많은 스레드를 추가할 수 있습니다. 단, 로드가 CPU에 바인딩되지 않거나 다른 과중한 대기가 발생하는 경우에만 가능합니다. 이러한 상황이 발생하는 경우 스레드를 더 추가해도 다른 시스템 병목 현상이 발생하기 때문에 도움이 되지 않습니다. 최대 작업자 스레드에 대한 자세한 내용은 을 link:https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/configure-the-max-worker-threads-server-configuration-option?view=sql-server-ver16&redirectedfrom=MSDN["최대 작업자 스레드 서버 구성 옵션을 구성합니다"^]참조하십시오.
 
-image:mssql-max-worker-threads.png["오류: 그래픽 이미지가 없습니다"]
+image:../media/mssql-max-worker-threads.png["최대 작업자 스레드 수"]
 
 
 

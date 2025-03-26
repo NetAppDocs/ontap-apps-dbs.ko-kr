@@ -6,7 +6,10 @@ summary: Microsoft SQL Server 로그 디렉터리
 searchtitle: Microsoft SQL Server 로그 디렉터리 
 ---
 = 로그 디렉토리
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 

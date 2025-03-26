@@ -19,7 +19,7 @@ SnapMirror 활성 동기화는 한 사이트를 "소스"로 간주하고 다른 
 
 소스/대상 구성은 SystemManager를 통해 볼 수 있습니다.
 
-image:smas-source-systemmanager.png["SM-AS 소스의 SM 스크린샷"]
+image:../media/smas-source-systemmanager.png["SM-AS 소스의 SM 스크린샷"]
 
 또는 CLI에서:
 

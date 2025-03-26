@@ -3,11 +3,13 @@ sidebar: sidebar
 permalink: mysql/mysql-overview.html 
 keywords: MySQL,MariaDB,TR-4722 
 summary: ONTAP 기반 MySQL 
-searchtitle: ONTAP의 MySQL 데이터베이스 
+searchtitle: ONTAP 기반 MySQL 
 ---
 = 개요
+:hardbreaks:
 :allow-uri-read: 
 :icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 

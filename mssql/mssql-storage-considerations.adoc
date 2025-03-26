@@ -6,7 +6,10 @@ summary: Microsoft SQL Server 스토리지 고려사항
 searchtitle: Microsoft SQL Server 스토리지 고려 사항 
 ---
 = 개요
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 

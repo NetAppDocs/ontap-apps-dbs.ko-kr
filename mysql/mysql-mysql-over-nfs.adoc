@@ -6,8 +6,10 @@ summary: NFS와 함께 MySQL을 사용합니다
 searchtitle: NFS와 함께 MySQL을 사용합니다 
 ---
 = NFS 를 참조하십시오
+:hardbreaks:
 :allow-uri-read: 
 :icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 

@@ -24,7 +24,7 @@ SM-AS의 중요한 기능은 호스트의 위치를 알 수 있도록 스토리�
 
 AFF 시스템의 경우 호스트 근접성이 구성된 경우 경로가 아래와 같이 표시됩니다.
 
-image:smas-uniform-aff.png["SnapMirror 액티브 싱크 AFF 유니폼 네트워킹"]
+image:../media/smas-uniform-aff.png["SnapMirror 액티브 싱크 AFF 유니폼 네트워킹"]
 
 정상 작동 시 모든 입출력은 로컬 입출력입니다. 읽기와 쓰기는 로컬 스토리지 시스템에서 서비스됩니다. 물론 쓰기 입출력도 인식되기 전에 로컬 컨트롤러에 의해 원격 시스템으로 복제되어야 하지만 모든 읽기 입출력은 로컬로 처리되며 사이트 간 SAN 링크를 통과하여 추가적인 지연 시간이 발생하지 않습니다.
 
@@ -38,7 +38,7 @@ image:smas-uniform-aff.png["SnapMirror 액티브 싱크 AFF 유니폼 네트워�
 
 NetApp ASA 시스템은 클러스터의 모든 경로에 대해 액티브-액티브 다중 경로를 제공합니다. 이는 SM-AS 구성에도 적용됩니다.
 
-image:smas-uniform-asa.png["SnapMirror 액티브 싱크 ASA 유니폼 네트워킹"]
+image:../media/smas-uniform-asa.png["SnapMirror 액티브 싱크 ASA 유니폼 네트워킹"]
 
 비균일 액세스를 사용하는 ASA 구성은 AFF와 거의 동일합니다. 균일한 액세스의 경우 입출력이 WAN을 통과하게 됩니다. 이것은 바람직하지 않을 수도 있습니다.
 

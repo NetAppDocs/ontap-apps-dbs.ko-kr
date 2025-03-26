@@ -3,10 +3,13 @@ sidebar: sidebar
 permalink: mssql/mssql-dr-smas-sql.html 
 keywords: MSSQL,SQL Server, SnapMirror active sync, ONTAP, SMBC, SMas, SnapMirror Business Continuity 
 summary: Microsoft SQL Server 및 SnapMirror 활성 동기화 
-searchtitle: SnapMirror 활성 동기화가 있는 Microsoft SQL Server 
+searchtitle: Microsoft SQL Server 및 SnapMirror 활성 동기화 
 ---
 = 개요
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 
@@ -21,7 +24,7 @@ searchtitle: SnapMirror 활성 동기화가 있는 Microsoft SQL Server
 
 독립 실행형 설정을 사용하면 한 사이트에서만 SQL Server를 실행할 수 있습니다. 아마도 link:mssql-dr-smas-uniform.html["균일"] access가 사용될 것입니다.
 
-image:smas-onehost.png["단일 호스트 및 단일 액세스"]
+image:../media/smas-onehost.png["단일 호스트 및 단일 액세스"]
 
 균일한 액세스를 사용하더라도 두 사이트의 스토리지 장애로 인해 데이터베이스 작업이 중단되지 않습니다. 데이터베이스 서버가 포함된 사이트의 전체 사이트 장애는 물론 중단이 발생할 수 있습니다.
 

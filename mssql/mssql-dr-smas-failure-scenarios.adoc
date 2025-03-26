@@ -3,10 +3,13 @@ sidebar: sidebar
 permalink: mssql/mssql-dr-smas-failure-scenarios.html 
 keywords: MSSQL,SQL Server, SnapMirror active sync, SMBC, failover 
 summary: Microsoft SQL Server 및 SM - 장애 조치 시나리오 
-searchtitle: Microsoft SQL Server 및 SnapMirror 활성 동기화 장애 조치 
+searchtitle: Microsoft SQL Server 및 SM - 장애 조치 시나리오 
 ---
 = 실패 시나리오
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 
@@ -23,7 +26,7 @@ SM-AS 복제가 중단되면 클러스터에서 변경 내용을 반대편 사�
 
 
 
-=== 사이트 A(기본 사이트)
+== 사이트 A(기본 사이트)
 
 기본 사이트에서 복제 링크 실패의 결과는 ONTAP가 복제된 쓰기 작업을 다시 시도하기 때문에 쓰기 입출력 처리가 약 15초 동안 일시 중지되는 것입니다. 이 경우 복제 링크에 도달할 수 없는 것으로 판단됩니다. 15초가 지나면 사이트 A 시스템이 읽기 및 쓰기 IO 처리를 재개합니다. SAN 경로는 변경되지 않으며 LUN은 온라인 상태로 유지됩니다.
 

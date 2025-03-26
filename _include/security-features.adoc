@@ -10,9 +10,12 @@
 
 경우에 따라 ONTAP에서 스냅샷을 직접 예약할 수 있습니다. 스냅샷을 생성하기 전에 SnapCenter와 같은 소프트웨어가 애플리케이션 또는 OS 작업을 조율해야 할 수도 있습니다. 워크로드에 가장 적합한 접근 방식이 무엇이든 공격적인 스냅샷 전략은 부팅 LUN에서 업무상 중요한 데이터베이스에 이르는 모든 항목의 백업에 자주 쉽게 액세스할 수 있도록 하여 데이터 보안을 제공할 수 있습니다.
 
-* 참고 *: ONTAP 플렉시블 볼륨 또는 더 간단히 말하면 볼륨은 LUN과 동의어가 아닙니다. 볼륨은 파일 또는 LUN 같은 데이터를 위한 관리 컨테이너입니다. 예를 들어, 모든 LUN이 단일 볼륨에 포함된 8개의 LUN 스트라이프 세트에 데이터베이스를 배치할 수 있습니다.
+[NOTE]
+====
+ONTAP 유연한 볼륨 또는 더 간단히 말하면 볼륨은 LUN과 동의어가 아닙니다. 볼륨은 파일 또는 LUN 같은 데이터를 위한 관리 컨테이너입니다. 예를 들어, 모든 LUN이 단일 볼륨에 포함된 8개의 LUN 스트라이프 세트에 데이터베이스를 배치할 수 있습니다.
 
-스냅샷에 대한 자세한 내용을 보려면 을 클릭합니다 link:https://docs.netapp.com/us-en/ontap/data-protection/manage-local-snapshot-copies-concept.html["여기."]
+====
+스냅샷에 대한 자세한 내용은 를 참조하십시오 link:https://docs.netapp.com/us-en/ontap/data-protection/manage-local-snapshot-copies-concept.html["ONTAP 설명서."]
 
 
 
@@ -22,7 +25,10 @@ ONTAP 9.12.1부터 스냅샷은 읽기 전용일 뿐 아니라 실수로 또는 
 
 이렇게 하면 침입자, 악의적 내부자 또는 랜섬웨어 공격으로 인해 ONTAP 시스템 자체에 대한 액세스 결과가 발생했더라도 백업이 손상될 수 있습니다. 빈번한 스냅샷 스케줄과 결합하면 RPO가 매우 낮은 매우 강력한 데이터 보호 기능을 얻을 수 있습니다.
 
-변조 방지 스냅샷에 대한 자세한 내용을 보려면 을 클릭합니다 link:https://docs.netapp.com/us-en/ontap/snaplock/snapshot-lock-concept.html["여기."]
+
+NOTE: 패브릭 풀을 사용하여 변조 방지 스냅샷은 계층화할 수 없습니다.
+
+변조 방지 스냅샷에 대한 자세한 내용은 를 참조하십시오 link:https://docs.netapp.com/us-en/ontap/snaplock/snapshot-lock-concept.html["ONTAP 설명서."]
 
 
 
@@ -32,17 +38,17 @@ ONTAP 9.12.1부터 스냅샷은 읽기 전용일 뿐 아니라 실수로 또는 
 
 두 번째 시스템은 관리 보안을 위한 새로운 옵션도 엽니다. 예를 들어, 일부 NetApp 고객은 운영 스토리지 시스템과 2차 스토리지 시스템의 인증 자격 증명을 분리합니다. 한 명의 관리자가 두 시스템에 액세스할 수 없으므로 악의적인 관리자가 모든 데이터 복사본을 삭제할 수 없습니다.
 
-SnapMirror에 대한 자세한 내용을 보려면 를 클릭합니다 link:https://docs.netapp.com/us-en/ontap/data-protection/snapmirror-unified-replication-concept.html["여기."]
+SnapMirror에 대한 자세한 내용은 를 참조하십시오 link:https://docs.netapp.com/us-en/ontap/data-protection/snapmirror-unified-replication-concept.html["ONTAP 설명서."]
 
 
 
 == 스토리지 가상 머신
 
-새로 구성된 ONTAP 스토리지 시스템은 가상 시스템을 생성할 때까지 어떤 사용자도 지원할 수 없기 때문에 새로 프로비저닝된 VMware ESX Server와 유사합니다. ONTAP를 사용하면 스토리지 관리의 가장 기본적인 장치가 되는 SVM(스토리지 가상 시스템)을 만들 수 있습니다. 각 SVM에는 자체 스토리지 리소스, 프로토콜 구성, IP 주소 및 FCP WWN이 있습니다.  이것이 ONTAP 멀티 테넌시의 토대입니다.
+새로 구성된 ONTAP 스토리지 시스템은 가상 시스템을 생성할 때까지 어떤 사용자도 지원할 수 없기 때문에 새로 프로비저닝된 VMware ESX Server와 유사합니다. ONTAP를 사용하면 스토리지 관리의 가장 기본적인 장치가 되는 SVM(스토리지 가상 시스템)을 만들 수 있습니다. 각 SVM에는 자체 스토리지 리소스, 프로토콜 구성, IP 주소 및 FCP WWN이 있습니다. 이것이 ONTAP 멀티 테넌시의 토대입니다.
 
 예를 들어, 중요 운영 워크로드에 1개의 SVM을, 개발 활동을 위해 다른 네트워크 세그먼트에 2차 SVM을 구성할 수 있습니다. 그런 다음 운영 SVM에 대한 액세스를 특정 관리자로 제한하고, 개발자에게는 개발 SVM에서 스토리지 리소스를 더욱 포괄적으로 제어할 수 있습니다. 특히 중요한 눈 전용 데이터를 저장하려면 재무 및 HR 팀에 세 번째 SVM을 제공해야 할 수도 있습니다.
 
-SVM에 대한 자세한 내용을 보려면 를 클릭합니다 link:https://docs.netapp.com/us-en/ontap/concepts/storage-virtualization-concept.html["여기."]
+SVM에 대한 자세한 내용은 를 참조하십시오 link:https://docs.netapp.com/us-en/ontap/concepts/storage-virtualization-concept.html["ONTAP 설명서."]
 
 
 
@@ -50,15 +56,15 @@ SVM에 대한 자세한 내용을 보려면 를 클릭합니다 link:https://doc
 
 ONTAP는 관리 로그인을 위한 강력한 RBAC(역할 기반 액세스 제어)를 제공합니다. 일부 관리자는 전체 클러스터 액세스가 필요할 수 있고 일부 관리자는 특정 SVM에 대해서만 액세스해야 할 수도 있습니다. 고급 헬프데스크 직원은 볼륨 크기를 늘릴 수 있어야 합니다. 그 결과, 관리 사용자에게 업무 수행에 필요한 액세스 권한을 부여할 수 있으며 그 이상의 권한은 없습니다. 또한 다양한 공급업체의 PKI를 사용하여 이러한 로그인을 보호하고 ssh 키에만 대한 액세스를 제한하며 실패한 로그인 시도 잠금을 적용할 수 있습니다.
 
-관리 액세스 제어에 대한 자세한 내용을 보려면 을 클릭합니다 link:https://docs.netapp.com/us-en/ontap/authentication/manage-access-control-roles-concept.html["여기."]
+관리 액세스 제어에 대한 자세한 내용은 를 참조하십시오 link:https://docs.netapp.com/us-en/ontap/authentication/manage-access-control-roles-concept.html["ONTAP 설명서."]
 
 
 
-== 다중 요소 인증
+== 다단계 인증(MFA)
 
 이제 ONTAP 및 특정 기타 NetApp 제품은 다양한 방법을 사용하여 다단계 인증(MFA)을 지원합니다. 결과적으로 손상된 사용자 이름/암호만으로는 FOB 또는 스마트폰 앱과 같은 두 번째 요소의 데이터가 없는 보안 스레드가 아닙니다.
 
-자세한 내용을 보려면 을 클릭합니다 link:https://docs.netapp.com/us-en/ontap/authentication/mfa-overview.html["여기."]
+MFA(다중 요소 인증)에 대한 자세한 내용은 를 참조하십시오 link:https://docs.netapp.com/us-en/ontap/authentication/mfa-overview.html["ONTAP 설명서."]
 
 
 
@@ -66,7 +72,7 @@ ONTAP는 관리 로그인을 위한 강력한 RBAC(역할 기반 액세스 제�
 
 자동화를 위해서는 API 호출이 필요하지만, 모든 툴에 전체 관리 액세스가 필요한 것은 아닙니다. 자동화 시스템의 보안을 유지하기 위해 RBAC는 API 레벨에서도 사용할 수 있습니다. 자동화 사용자 계정을 필요한 API 호출로 제한할 수 있습니다. 예를 들어, 모니터링 소프트웨어는 변경 액세스가 필요하지 않고 읽기 액세스만 있으면 됩니다. 스토리지를 프로비저닝하는 워크플로우에는 스토리지를 삭제하는 기능이 필요하지 않습니다.
 
-자세한 내용을 보려면 c https://docs.netapp.com/us-en/ontap-automation/rest/rbac_overview.html[here.] 를 시작하십시오
+API RBAC에 대한 자세한 내용은 를 참조하십시오 link:https://docs.netapp.com/us-en/ontap-automation/rest/rbac_overview.html["ONTAP 설명서."]
 
 
 
@@ -74,4 +80,4 @@ ONTAP는 관리 로그인을 위한 강력한 RBAC(역할 기반 액세스 제�
 
 여러 "요소" 인증은 각각 고유한 자격 증명을 가진 두 명의 관리자가 특정 작업을 승인하도록 요구함으로써 더욱 더 나아가 수행할 수 있습니다. 여기에는 로그인 권한 변경, 진단 명령 실행, 데이터 삭제가 포함됩니다.
 
-다중 관리자 확인(MAV)에 대한 자세한 내용을 보려면 을 클릭합니다 link:https://docs.netapp.com/us-en/ontap/multi-admin-verify/index.html["여기"]
+MAV(다중 관리자 확인)에 대한 자세한 내용은 를 참조하십시오 link:https://docs.netapp.com/us-en/ontap/multi-admin-verify/index.html["ONTAP 설명서."]

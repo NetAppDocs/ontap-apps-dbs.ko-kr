@@ -6,7 +6,10 @@ summary: Microsoft SQL Server 및 NetApp MetroCluster
 searchtitle: Microsoft SQL Server 및 NetApp MetroCluster 
 ---
 = 있습니다
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 
@@ -45,7 +48,7 @@ HA 쌍 MetroCluster IP 구성은 사이트당 2~4개의 노드를 사용합니�
 
 자세한 내용은 공식 ONTAP 설명서 및 를 참조하십시오 https://www.netapp.com/pdf.html?item=/media/13481-tr4689.pdf["MetroCluster IP 솔루션 아키텍처 및 설계"^].
 
-image:mccip.png["오류: 그래픽 이미지가 없습니다"]
+image:../media/mccip.png["MetroCluster IP 아키텍처"]
 
 
 
@@ -53,7 +56,7 @@ image:mccip.png["오류: 그래픽 이미지가 없습니다"]
 
 HA 쌍 MetroCluster FC 구성은 사이트당 2개 또는 4개의 노드를 사용합니다. 이 구성 옵션은 2노드 옵션에 비해 복잡성과 비용을 증가시키지만, 내부 중복이라는 중요한 이점을 제공합니다. 컨트롤러 장애가 간단하더라도 WAN을 통한 데이터 액세스가 필요하지 않습니다. 데이터 액세스는 대체 로컬 컨트롤러를 통해 로컬에 유지됩니다.
 
-image:mcc-4-node.png["오류: 그래픽 이미지가 없습니다"]
+image:../media/mcc-4-node.png["4노드 MetroCluster"]
 
 일부 멀티사이트 인프라는 액티브-액티브 운영을 위해 설계되지 않았지만 운영 사이트 및 재해 복구 사이트로 더 많이 사용됩니다. 이 상황에서 HA 쌍 MetroCluster 옵션이 일반적으로 다음과 같은 이유로 더 권장됩니다.
 
@@ -68,7 +71,7 @@ image:mcc-4-node.png["오류: 그래픽 이미지가 없습니다"]
 
 2노드 MetroCluster 구성은 사이트당 하나의 노드만 사용합니다. 이 설계는 구성과 유지 관리가 필요한 구성 요소가 적기 때문에 HA 쌍 옵션보다 단순합니다. 또한 케이블 연결 및 FC 스위칭에 대한 인프라 요구도 줄었습니다. 마지막으로 비용을 절감할 수 있습니다.
 
-image:mcc-2-node.png["오류: 그래픽 이미지가 없습니다"]
+image:../media/mcc-2-node.png["2개 노드 MetroCluster"]
 
 이 설계의 분명한 영향은 단일 사이트에서 컨트롤러 장애가 발생하면 반대쪽 사이트에서 데이터를 사용할 수 있다는 것입니다. 이러한 제한이 반드시 문제가 되는 것은 아닙니다. 많은 기업은 기본적으로 단일 인프라로 작동하는 지연 시간이 짧은 확장된 고속 네트워크를 통해 멀티사이트 데이터 센터를 운영하고 있습니다. 이 경우 MetroCluster의 2노드 버전을 사용하는 것이 좋습니다. 현재 여러 서비스 공급자가 두 노드 시스템을 페타바이트 규모로 사용하고 있습니다.
 

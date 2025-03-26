@@ -6,7 +6,10 @@ summary: ONTAP을 사용한 Microsoft SQL Server 재해 복구
 searchtitle: ONTAP을 사용한 Microsoft SQL Server 재해 복구 
 ---
 = 재해 복구
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 

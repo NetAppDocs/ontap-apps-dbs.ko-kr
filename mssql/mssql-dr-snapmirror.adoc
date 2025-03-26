@@ -3,10 +3,13 @@ sidebar: sidebar
 permalink: mssql/mssql-dr-snapmirror.html 
 keywords: MSSQL,SQL Server, disaster recovery, snapmirror 
 summary: ONTAP을 사용한 Microsoft SQL Server 재해 복구 
-searchtitle: SnapMirror을 사용한 Microsoft SQL Server 재해 복구 
+searchtitle: ONTAP을 사용한 Microsoft SQL Server 재해 복구 
 ---
 = SnapMirror를 참조하십시오
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 

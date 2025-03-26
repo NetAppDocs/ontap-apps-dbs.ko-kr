@@ -16,11 +16,11 @@ SnapMirror 액티브 동기화(SM-AS)는 SnapMirror 동기식 을 기반으로 �
 
 SnapMirror 액티브 동기화는 서로 다른 두 사이트에 있는 LUN을 제공합니다. 정상 작동에는 "소스" 또는 "대상"이 없습니다. 방향은 양방향입니다. 지정된 LUN 경로에 대한 모든 읽기 입출력은 로컬 컨트롤러에서 데이터의 로컬 복제본을 사용하여 처리됩니다. 모든 쓰기가 원격 파트너에게 복제되고 확인 전에 로컬에 기록됩니다.
 
-image:smas-overview.png["SnapMirror Active Sync 개요"]
+image:../media/smas-overview.png["SnapMirror Active Sync 개요"]
 
 논리적으로 이 동작은 단일 LUN 세트와 같습니다. 서로 다른 두 클러스터에 있는 SAN 경로를 통해 이러한 논리 LUN에서 입출력을 지정할 수 있지만 데이터는 항상 동일합니다. IO 동작은 대부분의 액티브-액티브 애플리케이션 구성에 있어 중요한 대칭입니다.
 
-image:smas-logical.png["SnapMirror 활성 동기화 논리 설계"]
+image:../media/smas-logical.png["SnapMirror 활성 동기화 논리 설계"]
 
 
 

@@ -3,10 +3,13 @@ sidebar: sidebar
 permalink: mssql/mssql-files-and-filegroups.html 
 keywords: MSSQL,SQL Server, backup, recovery, database file management 
 summary: Microsoft SQL Server 데이터베이스 파일 배치 
-searchtitle: Microsoft SQL Server 데이터베이스 파일 및 파일 그룹 
+searchtitle: Microsoft SQL Server 데이터베이스 파일 배치 
 ---
 = 데이터베이스 파일 및 파일 그룹
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 

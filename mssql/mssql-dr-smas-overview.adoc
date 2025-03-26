@@ -3,10 +3,13 @@ sidebar: sidebar
 permalink: mssql/mssql-dr-smas-overview.html 
 keywords: MSSQL,SQL Server, SnapMirror active sync, SMBC, overview 
 summary: Microsoft SQL Server 및 SnapMirror 활성 동기화 
-searchtitle: SQL Server 및 SnapMirror 활성 동기화 
+searchtitle: Microsoft SQL Server 및 SnapMirror 활성 동기화 
 ---
 = 개요
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 
@@ -19,9 +22,9 @@ SQL Server 호스트는 FC(Fibre Channel) 또는 iSCSI LUN을 사용하여 스�
 
 
 
-== 대칭 액티브/액티브 방식의 SnapMirror 아키텍처
+== 대칭 액티브/액티브를 사용한 SnapMirror 액티브 싱크 아키텍처
 
-image:mssql-smas-architecture.png["오류: 그래픽 이미지가 없습니다"]
+image:../media/mssql-smas-architecture.png["SnapMirror 액티브 동기화 아키텍처"]
 
 ** 동기 복제**
 

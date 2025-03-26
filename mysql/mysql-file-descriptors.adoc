@@ -6,8 +6,10 @@ summary: MySQL 파일 설명자
 searchtitle: MySQL 파일 설명자 
 ---
 = 파일 설명자
+:hardbreaks:
 :allow-uri-read: 
 :icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 

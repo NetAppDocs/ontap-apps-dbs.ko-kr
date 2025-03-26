@@ -3,10 +3,13 @@ sidebar: sidebar
 permalink: mysql/mysql-innodb_io_capacity.html 
 keywords: MySQL,MariaDB,innodb_io_capacity 
 summary: MySQL 및 innodb_io_capacity 
+searchtitle: MySQL 및 innodb_io_capacity 
 ---
 = InnoDB_IO_capacity의 약어입니다
+:hardbreaks:
 :allow-uri-read: 
 :icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 
@@ -26,4 +29,4 @@ CAUTION: 작업량에 더 낮은 값이 충분하지 않다는 사실이 입증�
 InnoDB_IO_CAPACITY 매개변수는 플러싱 속도 및 관련 I/O를 조절합니다
 
 
-CAUTION: 이 매개 변수 또는 innodb_io_capacity_max 매개 변수를 너무 높게 설정하고 조기 플러시로 I/O 작업을 낭비하면 성능이 심각하게 저하될 수 있습니다.
+CAUTION: 이 매개 변수 또는 innodb_io_capacity_max 매개 변수를 너무 높게 설정하여 성능을 심각하게 저하시킬 수 있습니다

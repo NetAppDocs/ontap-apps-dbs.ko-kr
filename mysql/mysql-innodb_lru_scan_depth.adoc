@@ -3,10 +3,13 @@ sidebar: sidebar
 permalink: mysql/mysql-innodb_lru_scan_depth.html 
 keywords: MySQL,MariaDB,innodb_lru_scan_depth 
 summary: MySQL 및 innodb_lRU_scan_depth 
+searchtitle: MySQL 및 innodb_lRU_scan_depth 
 ---
 = InnoDB_LRU_scan_depth 를 선택합니다
+:hardbreaks:
 :allow-uri-read: 
 :icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 

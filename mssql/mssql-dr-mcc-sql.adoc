@@ -3,9 +3,13 @@ sidebar: sidebar
 permalink: mssql/mssql-dr-mcc-sql.html 
 keywords: MSSQL,SQL Server, MetroCluster 
 summary: NetApp MetroCluster 탑재 Microsoft SQL Server 
+searchtitle: NetApp MetroCluster 탑재 Microsoft SQL Server 
 ---
 = MetroCluster이 포함된 SQL Server
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 
@@ -26,4 +30,4 @@ MetroCluster에 대한 완전한 설명은 본 문서의 범위를 벗어나지�
 
 이 방법의 주요 요구 사항은 원격 사이트에서 실행 중인 OS입니다. SQL Server 설치 시 사전 구성되어야 하며 동일한 빌드 버전으로 업데이트해야 합니다. 또한 SQL Server 시스템 데이터베이스는 원격 사이트로 미러링되고 재해가 선언된 경우 마운트할 수 있습니다.
 
-가상화 데이터베이스를 호스팅하는 볼륨, 파일 시스템 및 데이터 저장소가 전환 전에 재해 복구 사이트에서 사용되지 않는 경우에는 관련 볼륨에 설정할 필요가 없습니다. `dr-force- nvfail`
+가상화 데이터베이스를 호스팅하는 볼륨, 파일 시스템 및 데이터 저장소가 전환 전에 재해 복구 사이트에서 사용되지 않는 경우에는 관련 볼륨에 설정할 필요가 없습니다. `dr-force-nvfail`
