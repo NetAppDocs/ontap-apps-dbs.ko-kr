@@ -24,7 +24,7 @@ SQL Server 성능은 CPU 및 코어 구성에 대해 여러 가지 종속성이 
 
 하이퍼 스레딩은 운영 체제에 물리적 CPU로 표시되는 논리 CPU를 생성합니다. 그런 다음 SQL Server는 이러한 추가 CPU를 보고 물리적으로 존재하는 것보다 더 많은 코어가 있는 것처럼 사용합니다. 이를 통해 병렬화를 증가시켜 성능을 크게 향상시킬 수 있습니다.
 
-여기서 주의해야 할 점은 각 SQL Server 버전에는 사용할 수 있는 컴퓨팅 성능에 대한 제한이 있다는 것입니다. 자세한 내용은 SQL Server Edition별 계산 용량 제한 을 참조하십시오.
+여기서 주의해야 할 점은 각 SQL Server 버전에는 사용할 수 있는 컴퓨팅 성능에 대한 제한이 있다는 것입니다. 자세한 내용은 을 link:https://learn.microsoft.com/en-us/sql/sql-server/compute-capacity-limits-by-edition-of-sql-server?view=sql-server-ver16&redirectedfrom=MSDN["SQL Server 버전별 컴퓨팅 용량 제한"]참조하십시오.
 
 
 

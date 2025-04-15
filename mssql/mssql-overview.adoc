@@ -23,7 +23,6 @@ NetApp는 독자가 다음에 대한 실무 지식을 보유하고 있다고 가
 
 * ONTAP
 * Microsoft SQL Server 아키텍처 및 관리
-* 다음 구성 요소를 포함한 SnapCenter 백업 소프트웨어:
 * 백업 소프트웨어로 제공되는 NetApp SnapCenter에는 다음이 포함됩니다.
 +
 ** Microsoft Windows용 SnapCenter 플러그인

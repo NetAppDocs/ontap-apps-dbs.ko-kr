@@ -1,0 +1,21 @@
+---
+sidebar: sidebar 
+permalink: mssql/mssql-dr-snapmirror-ASA.html 
+keywords: MSSQL,SQL Server, disaster recovery, snapmirror 
+summary: ONTAP을 사용한 Microsoft SQL Server 재해 복구 
+searchtitle: SnapMirror을 사용한 Microsoft SQL Server 재해 복구 
+---
+= SnapMirror를 참조하십시오
+:allow-uri-read: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+다음은 SQL Server용 SnapMirror에 대한 권장사항입니다.
+
+* 빠른 데이터 복구에 대한 수요가 높은 SnapMirror 액티브 동기화로 동기식 복제를 사용하고 RPO에 유연성을 제공하는 비동기식 솔루션을 사용합니다.
+* SnapCenter를 사용하여 데이터베이스를 백업하고 원격 클러스터로 스냅샷을 복제하는 경우 일관성을 위해 컨트롤러에서 SnapMirror 업데이트를 예약하지 마십시오. 대신, 전체 또는 로그 백업이 완료된 후 SnapCenter에서 SnapMirror를 업데이트하도록 SnapMirror를 활성화합니다.
+* 모든 클러스터 노드가 SnapMirror 복제 작업을 공유할 수 있도록 클러스터의 서로 다른 노드에서 SQL Server 데이터를 포함하는 스토리지 유닛의 균형을 조정합니다. 이러한 분산은 노드 리소스 사용을 최적화합니다.
+
+
+SnapMirror에 대한 자세한 내용은 를 참조하십시오 link:https://www.netapp.com/us/media/tr-4015.pdf["TR-4015:ONTAP 9용 SnapMirror 구성 및 모범 사례 가이드"^].
