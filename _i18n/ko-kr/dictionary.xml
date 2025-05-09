@@ -269,7 +269,6 @@
   <block id="0e7c78164adb6d4650ea685a79d8e99e" category="section-title">효율성 모범 사례</block>
   <block id="ec499ad25fa5a765ba43ec2c87819623" category="section-title">AFF 기본값</block>
   <block id="9f7127e69d50bf7b844ff3723b86fbd1" category="section-title">일반 권장 사항</block>
-  <block id="2c24e4751310e03f119a4df187a3bc08" category="list-text">볼륨 및/또는 LUN이 씬 프로비저닝되지 않는 경우 모든 효율성 설정을 비활성화해야 합니다. 이러한 기능을 사용하면 절약 효과가 없고 일반 프로비저닝과 공간 효율성이 활성화된 조합을 통해 공간 부족 오류를 포함하여 예기치 않은 동작이 발생할 수 있기 때문입니다.</block>
   <block id="4922fe547c351d6a121465da036d478e" category="list-text">백업 또는 데이터베이스 트랜잭션 로그와 같이 데이터를 덮어쓰지 않는 경우 냉각 기간이 짧은 TSSE를 활성화하여 효율성을 높일 수 있습니다.</block>
   <block id="e75fd383e4106eb78482b18896975daf" category="list-text">일부 파일에는 압축할 수 없는 많은 양의 데이터가 포함되어 있을 수 있습니다. 예를 들어 파일의 응용 프로그램 수준에서 압축이 이미 활성화되어 있는 경우 암호화됩니다. 이러한 시나리오가 적용되는 경우 압축 데이터를 포함하는 다른 볼륨에서 더 효율적으로 작업할 수 있도록 압축을 해제하는 것이 좋습니다.</block>
   <block id="64d5def835c194cac8afe4fafded756e" category="doc">정책 - 로컬 스냅샷</block>
@@ -5225,7 +5224,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="b0874893f6e3e7030833ec488dc9da90" category="list-text"><block ref="937f38432beb92fdba3d47780720bdf7" prefix="(" category="inline-code"></block>랜덤 읽기/쓰기 워크로드이므로 사용자 데이터 파일을 별도의 볼륨에 배치 일반적으로 트랜잭션 로그 백업은 데이터베이스 백업보다 더 자주 생성됩니다. 따라서 트랜잭션 로그 파일<block ref="cb15b9539ae0d984ff8740c68b52561c" prefix="(" category="inline-code"></block>)을 데이터 파일로부터 별도의 볼륨 또는 VMDK에 배치하여 각각에 대해 독립적인 백업 일정을 생성할 수 있도록 합니다. 또한 이 분리 방식은 로그 파일의 순차적 쓰기 I/O를 데이터 파일의 랜덤 읽기/쓰기 I/O에서 격리하고 SQL Server 성능을 크게 향상시킵니다.</block>
   <block id="f7f1cb17ab4960f1a8e4c28a7fbccb0d" category="list-text">전체 텍스트 검색 관련 파일과 같은 데이터베이스 파일과 데이터베이스를 제외한 파일을 동일한 LUN에 혼합하지 마십시오.</block>
   <block id="58ccb3e2006ffa82c78944061df94b30" category="paragraph">ONTAP 스토리지 효율성은 성능에 영향을 미치지 않고 최소한의 스토리지 공간을 사용하는 방식으로 SQL Server 데이터를 저장하고 관리하는 데 최적화되어 있습니다.</block>
-  <block id="f250d23ef016c3e48436a679c5dab1df" category="list-text">백업에 있는 데이터베이스를 단일 볼륨으로 복원하는 것과 같이 볼륨에 동일한 데이터의 여러 복사본이 포함되어 있는 것으로 알려진 경우가 아니면 SQL Server 데이터 파일이 포함된 볼륨에 중복 제거를 설정하지 마십시오.</block>
   <block id="6f80e9146e2184b9ec3c46b6d7dd903f" category="paragraph">SQL Server가 새 개체를 할당하기 위해 특수 시스템 페이지에 써야 하는 경우 GAM(전역 할당 맵), SGAM(공유 전역 할당 맵) 또는 PFS(페이지 사용 가능 공간) 페이지에서 페이지 경합이 발생할 수 있습니다. 래치가 이러한 페이지를 메모리에 잠급니다. 사용 중인 SQL Server 인스턴스의 경우 tempdb의 시스템 페이지에 래치가 표시되는 데 시간이 오래 걸릴 수 있습니다. 이로 인해 쿼리 실행 시간이 느려지며 래치 경합이라고 합니다. tempdb 데이터 파일을 생성하는 방법은 다음 Best Practice를 참조하십시오.</block>
   <block id="255bd5c00b8de4b2f998369f766b2b5e" category="paragraph">이 섹션에서는 안전한 오프사이트 스토리지 및 재해 복구를 위해 데이터를 원격 사이트로 복제하는 원격 데이터 보호에 대해 설명합니다. 이 표는 동기 미러링 데이터 보호를 다루지 않습니다. 이 요구 사항에 대해서는 및 를 포함한 NetApp MetroCluster 설명서를 참조하십시오 <block ref="06d0604733fc7f7e3f9befaa1239278d" category="inline-link-macro-rx"></block><block ref="87f167af2516b222ddeec7405581e8b8" category="inline-link-macro-rx"></block></block>
   <block id="ad8d77efdce72d372a83929b50a127d1" category="paragraph">데이터 세트의 장애 발생 시 정합성이 보장되는 백업은 단일 시점의 전체 데이터 세트 구조를 캡처하는 것을 의미합니다. 데이터 세트가 단일 볼륨에 저장된 경우 프로세스는 간단하며 언제든지 스냅샷을 생성할 수 있습니다. 데이터 세트가 여러 볼륨으로 확장되는 경우에는 정합성 보장 그룹(CG) 스냅샷을 생성해야 합니다. CG 스냅샷을 생성하는 옵션에는 NetApp SnapCenter 소프트웨어, 기본 ONTAP 일관성 그룹 기능, 사용자 유지보수 스크립트 등 여러 가지가 있습니다.</block>
@@ -6040,4 +6038,29 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="120f8cb87e8ceb36804a526419a5803a" category="sidebar">AFF/FAS 시스템의 Microsoft SQL Server</block>
   <block id="fc5b2b3c5350dcd6f3cc1cc3cdf1a13f" category="sidebar">ASA R2 시스템의 스토리지 구성</block>
   <block id="8bdbdec629db36efc1c9bdbf743dd56a" category="sidebar">ASA 시스템의 Microsoft SQL Server</block>
+  <block id="3e2b4674c9afc41f9c3a0311b458ed23" category="list-text">볼륨 및/또는 LUN이 씬 프로비저닝되지 않는 경우 절약 효과가 없고, 일반 프로비저닝과 공간 효율성이 설정된 조합을 통해 공간 부족 오류를 포함하여 예기치 않은 동작이 발생할 수 있으므로 모든 효율성 설정을 사용하지 않도록 설정해야 합니다.</block>
+  <block id="c2dc7d465f4be5df7a663820063fe07c" category="summary">SnapCenter를 사용하는 Microsoft SQL Server 가용성 그룹</block>
+  <block id="b474dc2fb6ce60c11ecdfbe0a373bf34" category="doc">SnapCenter를 사용하는 SQL Server 가용성 그룹</block>
+  <block id="0a1151b962e7b34ea7fa78538961cc63" category="paragraph">SnapCenter는 Windows 페일오버 클러스터로 구성된 SQL Server 가용성 그룹 데이터베이스의 백업을 지원합니다.</block>
+  <block id="55876228853abf632dec9346a4f372ec" category="inline-link-macro">문서화</block>
+  <block id="19bc77c28d506c79f4e3acd767956f68" category="paragraph">Microsoft SQL Server용 SnapCenter 플러그인은 Windows Server 장애 조치 클러스터의 모든 노드에 설치해야 합니다. <block ref="7ea17b48fc658598752bd1b70818d0c2" category="inline-link-macro-rx"></block>의 필수 구성 요소 및 SnapCenter 플러그인 설정 단계를 참조하십시오.</block>
+  <block id="878026ceb11256fd34df776a768794b2" category="paragraph">SnapCenter는 Windows 호스트 및 리소스의 모든 데이터베이스, 인스턴스 및 가용성 그룹을 검색하며 SnapCenter 리소스 페이지에 열거됩니다.</block>
+  <block id="feb288d4161a267b78f781ef497c33f6" category="section-title">Always On 가용성 그룹의 데이터베이스 보호</block>
+  <block id="6493759953e55bc95c88e42046f8c8e1" category="paragraph">가용성 그룹의 데이터베이스는 여러 가지 방법으로 보호할 수 있습니다.</block>
+  <block id="71903a5ca626286195e8839f74b46627" category="list-text">데이터베이스 레벨 백업: 데이터베이스 리소스 페이지에 사용할 가용성 데이터베이스를 선택하고 전체/로그 백업으로 구성된 정책을 추가하고 백업을 예약합니다. SnapCenter는 기본 복제본이든 보조 복제본이든 데이터베이스 역할에 관계없이 백업을 수행합니다. 리소스 그룹에 데이터베이스를 추가하여 보호를 구성할 수도 있습니다.</block>
+  <block id="402962f18d83fc2e3da0155e7c85d340" category="list-text">인스턴스 레벨 백업: 인스턴스를 선택하면 선택한 정책에 따라 인스턴스에서 실행되는 모든 데이터베이스가 보호됩니다. 기본 또는 보조 복제본으로 실행되는 가용성 데이터베이스를 포함한 모든 데이터베이스는 SnapCenter를 사용하여 백업됩니다. 리소스 그룹에 인스턴스를 추가하여 보호를 구성할 수도 있습니다.</block>
+  <block id="4eea6cb4e656587b45ce878e96aced6c" category="list-text">가용성 그룹 레벨 백업: 정책을 구성하는 동안 SnapCenter에는 가용성 그룹 레벨 백업에 대한 고급 옵션이 있습니다. 정책의 가용성 그룹 설정을 통해 사용자는 백업을 위한 복제본 기본 설정을 선택할 수 있습니다. 1차, 2차 복제본 또는 모든 복제본을 선택할 수 있습니다. 기본 옵션은 SQL Server 가용성 그룹 구성의 백업 복제본 세트를 기반으로 합니다.</block>
+  <block id="df79a1b2903886af697a431a42cecd61" category="paragraph">SnapCenter 정책의 가용성 그룹 설정은 가용성 그룹 수준 백업을 사용하여 가용성 그룹 데이터베이스를 보호하고 데이터베이스 또는 인스턴스 수준 백업에 적용되지 않는 경우에만 적용됩니다.</block>
+  <block id="2b371d66d8eda6963cd085c7a884f4d7" category="admonition">* NetApp는 가용성 수준 백업을 사용하여 NetApp ONTAP 스토리지에서 실행되는 모든 복제본에 백업할 것을 권장합니다.</block>
+  <block id="5c0ae1f6e89ffad82dfe5e7773da2fd6" category="section-title">SnapCenter에서 로그 백업을 구성하는 중입니다</block>
+  <block id="b3b9b1046ddf8efb1b774f35855a0d1c" category="paragraph">독립 실행형 SQL Server 설정에서 가용성 그룹이 설정된 경우 Windows Server 페일오버 클러스터의 각 노드에 전용 디스크를 마운트해야 합니다. 전용 디스크를 사용하여 트랜잭션 로그 백업을 저장할 로그 디렉토리를 구성해야 합니다.</block>
+  <block id="ac3f0583ff584e6a0d60cd070d6edce2" category="paragraph">SQL Server 장애 조치 클러스터에 가용성 그룹이 설정되어 있으면 클러스터된 디스크가 SQL Server 장애 조치 클러스터 인스턴스에서 호스트 로그 디렉토리에 생성되어야 합니다.</block>
+  <block id="57194431a839a253461e94f7d15e0d30" category="section-title">SnapCenter를 사용하여 가용성 그룹 설정에서 데이터베이스를 복원합니다</block>
+  <block id="cb66b1b1ce1e9f56d0a1572ba3dcccdd" category="list-text">SnapCenter는 보조 복제본에서 사용 가능한 최신 스냅샷으로부터 데이터베이스를 자동으로 복구하는 다시 시드 옵션을 제공합니다. 다시 시드 작업은 데이터베이스 백업을 가용성 그룹에 자동으로 복원하고 연결합니다.</block>
+  <block id="4c25cf6fd81e138392692e0a7e5523f3" category="list-text">가용성 그룹에서 복제본 데이터베이스를 복구하는 또 다른 방법은 가용성 그룹을 해제하고 전체 및 로그 복구를 수행하는 것입니다. SnapCenter를 사용하여 Norecovery 모드에서 데이터베이스를 복원한 다음 SQL Server Management Studio 또는 T-SQL을 사용하여 데이터베이스를 가용성 그룹에 다시 연결합니다.</block>
+  <block id="533d3de92f8337e84aa0eccec7e4698f" category="list-text">데이터의 일부만 복구하기 위해 SnapCenter의 클론 기능을 사용하여 데이터베이스의 클론 복사본을 생성할 수 있습니다. 데이터베이스 복제본은 SnapCenter를 사용하여 몇 분 내에 생성한 다음 SQL Server 기본 툴을 사용하여 기본 복제본으로 데이터를 내보냅니다.</block>
+  <block id="f652b77e8bd5ef106d3fbeec02a874c5" category="inline-link-macro">TR-4714 NetApp SnapCenter를 사용하는 Microsoft SQL Server에 대한 모범 사례</block>
+  <block id="9cc210a8901b58403ed2b299b9f87ac9" category="paragraph">RTO 및 RPO 요구 사항을 충족하도록 데이터베이스 스토리지 레이아웃을 설정하는 Best Practice는 를 참조하십시오<block ref="4619ebf0116b8a67a7bd991a2d661c12" category="inline-link-macro-rx"></block>.</block>
+  <block id="724394156ac637a07abed4b02026424a" category="admonition">SnapCenter는 분산된 가용성 그룹 및 포함된 가용성 그룹을 지원하지 않습니다.</block>
+  <block id="f9feae8e1753d6486bf95d4403f7d5a7" category="list-text">SQL Server 데이터 파일이 포함된 FAS의 모든 볼륨에서 중복 제거를 사용하도록 설정하지 마십시오. 단, 백업에 있는 데이터베이스를 단일 볼륨으로 복원하는 것과 같이 동일한 데이터의 여러 복사본이 볼륨에 포함되어 있는 것으로 알려져 있지 않습니다.</block>
 </blocks>
