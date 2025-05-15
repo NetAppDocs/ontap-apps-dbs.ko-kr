@@ -14,18 +14,56 @@ summary: SnapCenter를 사용하면 여러 작업에 적용할 수 있는 백업
 
 
 [role="lead"]
-VM을 백업하고 신속하게 복구하는 것은 ONTAP for vSphere의 탁월한 강점 중 하나로서, vCenter에서 VMware vSphere용 SnapCenter 플러그인을 사용하여 이러한 기능을 쉽게 관리할 수 있습니다.
+ONTAP for vSphere를 사용하면 VM(가상 머신)을 백업하고 신속하게 복구할 수 있습니다. 이 기능은 VMware vSphere용 SnapCenter 플러그인을 통해 vCenter 내에서 쉽게 관리할 수 있습니다. ONTAP로 VM을 복구하는 가장 빠르고 간단한 방법을 제공하는 SnapCenter를 사용하여 타사 백업 솔루션을 강화함으로써 ONTAP의 스냅샷 기술을 활용합니다. SnapCenter는 ONTAP One 라이센스를 보유한 고객에게 무료로 제공되며, 다른 라이센스 번들도 이용할 수 있습니다.
+
+또한 VMware용 SnapCenter 플러그인은 와 https://docs.netapp.com/us-en/bluexp-backup-recovery/concept-protect-vm-data.html["가상 머신의 백업 및 복구를 위한 BlueXP "^]통합되어 대부분의 ONTAP 시스템에 효과적인 3-2-1 백업 솔루션을 구현할 수 있습니다. 추가 백업 스토리지를 위한 객체 저장소와 같이 프리미엄 서비스가 제공되는 가상 시스템에 대해 BlueXP  백업 및 복구를 사용하는 경우 일부 요금이 부과될 수 있습니다. 이 섹션에서는 VM 및 데이터 저장소를 보호하는 데 사용할 수 있는 다양한 옵션에 대해 간략하게 설명합니다.
+
+
+
+== NetApp ONTAP 볼륨 스냅샷
 
 스냅샷을 사용하여 성능에 영향을 주지 않고 VM 또는 데이터 저장소를 신속하게 복사한 다음, SnapMirror를 사용하여 보조 시스템으로 전송하여 장기적인 오프 사이트 데이터 보호를 실현합니다. 이러한 접근 방식은 변경된 정보만 저장하여 스토리지 공간과 네트워크 대역폭을 최소화합니다.
 
-SnapCenter를 사용하면 여러 작업에 적용할 수 있는 백업 정책을 생성할 수 있습니다. 이러한 정책은 스케줄, 보존, 복제 및 기타 기능을 정의할 수 있습니다. 또한 VM 정합성 보장 스냅샷의 선택적인 선택을 계속 허용하므로 VMware 스냅샷을 생성하기 전에 하이퍼바이저의 입출력 중지 기능을 활용할 수 있습니다. 그러나 VMware 스냅샷의 성능 때문에 게스트 파일 시스템을 중지해야 하는 경우가 아니면 일반적으로 이러한 스냅샷을 사용하지 않는 것이 좋습니다. 대신 일반적인 보호를 위해 스냅샷을 사용하고 SnapCenter 플러그인과 같은 애플리케이션 툴을 사용하여 SQL Server 또는 Oracle과 같은 트랜잭션 데이터를 보호하십시오. 이러한 스냅샷은 VMware(정합성 보장) 스냅샷과는 다르며 장기간 보호에 적합합니다. VMware 스냅샷은 성능 및 기타 효과로 인해 단기간 사용에만 사용하는 것이 좋습니다. link:https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/snapshot-limitations.html["스냅샷 제한 사항"^]자세한 내용은 을 참조하십시오.
+스냅샷은 ONTAP의 핵심 기능으로, 데이터의 시점 복사본을 생성할 수 있습니다. 이러한 솔루션은 공간 효율적이며 신속하게 생성할 수 있으므로 VM 및 데이터 저장소를 보호하는 데 이상적입니다. 스냅샷은 백업, 복구 및 테스트를 포함한 다양한 용도로 사용할 수 있습니다. 이러한 스냅샷은 VMware(정합성 보장) 스냅샷과는 다르며 장기간 보호에 적합합니다. VMware의 vCenter 관리 스냅샷은 성능 및 기타 효과로 인해 단기간 사용하는 경우에만 권장됩니다. link:https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/snapshot-limitations.html["스냅샷 제한 사항"^]자세한 내용은 을 참조하십시오.
 
-이러한 플러그인은 물리적 환경과 가상 환경 모두에서 데이터베이스를 보호하는 확장된 기능을 제공합니다. vSphere를 사용하면 RDM LUN에 데이터가 저장되어 있는 SQL Server 또는 Oracle 데이터베이스, 게스트 OS에 직접 연결된 iSCSI LUN 또는 VMFS 또는 NFS 데이터 저장소의 VMDK 파일을 보호할 수 있습니다. 플러그인을 사용하면 다양한 유형의 데이터베이스 백업을 지정하고 온라인 또는 오프라인 백업을 지원하며 로그 파일과 함께 데이터베이스 파일을 보호할 수 있습니다. 플러그인은 백업 및 복구 외에도 개발 또는 테스트 목적으로 데이터베이스의 클론 복제를 지원합니다.
+스냅샷은 볼륨 레벨에서 생성되며 해당 볼륨 내의 모든 VM 및 데이터 저장소를 보호하는 데 사용될 수 있습니다. 즉, 해당 데이터 저장소 내의 모든 VM을 포함하는 전체 데이터 저장소의 스냅샷을 생성할 수 있습니다.
+
+NFS 데이터 저장소의 경우 .snapshots 디렉토리를 탐색하여 스냅샷에서 VM 파일을 쉽게 볼 수 있습니다. 따라서 특정 백업 솔루션을 사용하지 않고도 스냅샷에서 파일을 빠르게 액세스하고 복구할 수 있습니다.
+
+VMFS 데이터 저장소의 경우 원하는 스냅샷을 기반으로 데이터 저장소의 FlexClone을 생성할 수 있습니다. 이를 통해 스냅샷을 기반으로 새 데이터 저장소를 생성할 수 있으며, 이 데이터 저장소는 테스트 또는 개발 목적으로 사용할 수 있습니다. FlexClone는 스냅샷이 생성된 후 변경된 내용에만 공간을 사용하므로 데이터 저장소의 복제본을 공간 효율적으로 생성할 수 있습니다. FlexClone이 생성되면 일반 데이터 저장소처럼 LUN 또는 네임스페이스를 ESXi 호스트에 매핑할 수 있습니다. 이를 통해 특정 VM 파일을 복원할 수 있을 뿐만 아니라 프로덕션 환경의 성능에 영향을 주지 않고 프로덕션 데이터를 기반으로 테스트 또는 개발 환경을 빠르게 만들 수 있습니다.
+
+스냅샷에 대한 자세한 내용은 ONTAP 설명서를 참조하십시오. 자세한 내용은 다음 링크를 참조하십시오. https://docs.netapp.com/us-en/ontap/data-protection/manage-local-snapshot-copies-concept.html["ONTAP 로컬 스냅샷 복사본"^] https://docs.netapp.com/us-en/ontap/data-protection/manage-snapmirror-replication.html["ONTAP SnapMirror 복제"^]
+
+
+
+== VMware vSphere용 SnapCenter 플러그인
+
+SnapCenter를 사용하면 여러 작업에 적용할 수 있는 백업 정책을 생성할 수 있습니다. 이러한 정책은 스케줄, 보존, 복제 및 기타 기능을 정의할 수 있습니다. 또한 VM 정합성 보장 스냅샷의 선택적인 선택을 계속 허용하므로 VMware 스냅샷을 생성하기 전에 하이퍼바이저의 입출력 중지 기능을 활용할 수 있습니다. 그러나 VMware 스냅샷의 성능 때문에 게스트 파일 시스템을 중지해야 하는 경우가 아니면 일반적으로 이러한 스냅샷을 사용하지 않는 것이 좋습니다. 대신 일반적인 보호를 위해 스냅샷을 사용하고 SnapCenter 애플리케이션 플러그인 같은 애플리케이션 툴을 사용하여 SQL Server 또는 Oracle과 같은 트랜잭션 데이터를 보호하십시오.
+
+이러한 플러그인은 물리적 환경과 가상 환경 모두에서 데이터베이스를 보호하는 확장된 기능을 제공합니다. vSphere를 사용하면 RDM LUN, VVol 또는 NVMe/TCP 네임스페이스와 게스트 OS에 직접 연결된 iSCSI LUN 또는 VMFS 또는 NFS 데이터 저장소의 VMDK 파일에 데이터가 저장되는 SQL Server 또는 Oracle 데이터베이스를 보호할 수 있습니다. 플러그인을 사용하면 다양한 유형의 데이터베이스 백업을 지정하고 온라인 또는 오프라인 백업을 지원하며 로그 파일과 함께 데이터베이스 파일을 보호할 수 있습니다. 플러그인은 백업 및 복구 외에도 개발 또는 테스트 목적으로 데이터베이스의 클론 복제를 지원합니다.
 
 다음 그림은 SnapCenter 구축의 예를 보여 줍니다.
 
 image:vsphere_ontap_image4.png["SnapCenter 구축"]
 
-향상된 재해 복구 기능을 위해 ONTAP용 NetApp SRA를 VMware Site Recovery Manager와 함께 사용하는 것이 좋습니다. 데이터 저장소를 DR 사이트로 복제할 수 있을 뿐만 아니라, 복제된 데이터 저장소를 클론 복제하여 DR 환경에서 무중단 테스트를 수행할 수도 있습니다. SRA에 내장된 자동화를 통해 운영 중단이 해결된 후 재해 복구 및 운영 재보호 작업도 쉽게 수행할 수 있습니다.
+사이징 정보는 을 참조하십시오 https://kb.netapp.com/data-mgmt/SnapCenter/SC_KBs/SCV__Sizing_Guide_for_SnapCenter_Plugin_for_VMware_vSphere["VMware vSphere용 SnapCenter 플러그인용 사이징 가이드"^]
 
-마지막으로, 최고 수준의 데이터 보호를 위해 NetApp MetroCluster를 사용하는 VMware vMSC(vSphere Metro Storage Cluster) 구성을 고려해 보십시오. vMSC는 동기식 복제와 어레이 기반 클러스터링이 결합된 VMware 인증 솔루션으로, 고가용성 클러스터의 동일한 이점을 제공하지만 사이트 재해로부터 보호됩니다. NetApp MetroCluster는 단일 스토리지 구성 요소 장애로부터의 투명한 복구와 사이트 재해 발생 시 단일 명령 복구를 통해 동기식 복제를 위한 비용 효율적인 구성을 제공합니다. vMSC는 에 자세히 설명되어 있습니다. https://www.netapp.com/pdf.html?item=/media/19773-tr-4128.pdf["TR-4128"^]
+
+
+== VMware Live Site Recovery가 포함된 VMware vSphere용 ONTAP 툴
+
+OT4VS(VMware vSphere)용 ONTAP 툴은 VMware vSphere와 NetApp ONTAP 간의 원활한 통합을 지원하는 무료 플러그인입니다. vSphere Web Client에서 직접 ONTAP 스토리지를 관리할 수 있으므로 스토리지 용량 할당, 복제 관리, 성능 모니터링 등의 작업을 보다 쉽게 수행할 수 있습니다.
+
+향상된 재해 복구 기능을 사용하려면 VMware vSphere용 ONTAP 툴의 일부인 NetApp SRA for ONTAP를 VMware 라이브 사이트 복구(이전의 사이트 복구 관리자)와 함께 사용하는 것이 좋습니다. 이 툴은 SnapMirror을 사용하는 재해 복구 사이트에 데이터 저장소를 복제할 뿐만 아니라 복제된 데이터 저장소를 클론 복제하여 DR 환경에서 무중단 테스트를 지원합니다. 또한 내장된 자동화 기능 덕분에 운영 중단 해결 후 재해 복구 및 운영 재보호가 간소화됩니다.
+
+
+
+== BlueXP  재해 복구
+
+BlueXP  DR(재해 복구) 은 재해 발생 시 데이터와 애플리케이션을 보호하기 위한 포괄적인 솔루션을 제공하는 클라우드 기반 서비스입니다. 또한 자동화된 페일오버 및 페일백, 여러 시점 복구, 애플리케이션 정합성 보장 재해 복구, 온프레미스 및 클라우드 기반 ONTAP 시스템 모두에 대한 지원 등 다양한 기능을 제공합니다. BlueXP  DR은 ONTAP 및 VMware vSphere 환경과 원활하게 작동하도록 설계되어 재해 복구를 위한 통합 솔루션을 제공합니다.
+
+
+
+== NetApp MetroCluster 및 SnapMirror 액티브 동기화가 포함된 vMSC(vSphere Metro Storage Cluster
+
+마지막으로, 최고 수준의 데이터 보호를 위해 NetApp MetroCluster를 사용하는 VMware vMSC(vSphere Metro Storage Cluster) 구성을 고려해 보십시오. vMSC는 동기식 복제를 사용하는 VMware 인증 NetApp 지원 솔루션으로, 고가용성 클러스터에서와 동일한 이점을 제공하지만 사이트 재해로부터 보호하기 위해 별도의 사이트에 분산됩니다. ASA 및 AFF, MetroCluster with AFF를 통한 NetApp SnapMirror 액티브 동기화는 동기식 복제를 위한 비용 효율적인 구성을 제공하며 단일 스토리지 구성 요소 장애로부터의 투명한 복구는 물론, SnapMirror 활성 동기화의 경우 투명한 복구 또는 MetroCluster로 사이트 재해 발생 시 단일 명령 복구에 대해 자세히 설명합니다. vMSC는 에 자세히 설명되어 있습니다. https://www.netapp.com/pdf.html?item=/media/19773-tr-4128.pdf["TR-4128"^]

@@ -22,7 +22,7 @@ NetApp와 함께 VVOL을 사용하려면 먼저 VMware vSphere용 ONTAP 툴이 �
 
 == 제품 및 문서
 
-ONTAP One 라이센스에는 ONTAP 시스템에서 VVOL을 활용하는 데 필요한 모든 라이센스가 포함되어 있습니다. VASA 공급자 역할을 하는 무료 ONTAP 툴 OVA가 추가로 필요합니다. VVOL 환경에서 VASA Provider 소프트웨어는 어레이 기능을 정책 기반 특성으로 변환하며, VASA API를 통해 활용될 수 있습니다. 따라서 vSphere 관리자가 기능이 백그라운드에서 어떻게 관리되는지 알 필요가 없습니다. 따라서 정책에 따라 할당된 스토리지 용량을 동적으로 사용할 수 있으므로 기존 데이터 저장소를 수동으로 생성하고 개별 스토리지 사용율을 관리할 필요가 없습니다. 간단히 말해, VVOL은 엔터프라이즈 스토리지 관리에 수반되는 복잡성을 모두 해소하고 vSphere 관리자에서 추상화하므로 가상화 레이어에 집중할 수 있습니다.
+ONTAP One 라이센스에는 ONTAP 시스템에서 VVOL을 사용하는 데 필요한 모든 라이센스가 포함되어 있습니다. VASA 공급자 역할을 하는 무료 ONTAP 툴 OVA가 추가로 필요합니다. VVOL 환경에서 VASA Provider 소프트웨어는 어레이 기능을 정책 기반 특성으로 변환하며, VASA API를 통해 활용될 수 있습니다. 따라서 vSphere 관리자가 기능이 백그라운드에서 어떻게 관리되는지 알 필요가 없습니다. 따라서 정책에 따라 할당된 스토리지 용량을 동적으로 사용할 수 있으므로 기존 데이터 저장소를 수동으로 생성하고 개별 스토리지 사용율을 관리할 필요가 없습니다. 간단히 말해, VVOL은 엔터프라이즈 스토리지 관리에 수반되는 복잡성을 모두 해소하고 vSphere 관리자에서 추상화하므로 가상화 레이어에 집중할 수 있습니다.
 
 VMware Cloud Foundation과 vSAN을 사용하는 고객의 경우 모든 관리 또는 워크로드 도메인에 VVOL을 보조 스토리지로 추가할 수 있습니다. VVOL은 공통 스토리지 정책 기반 관리 프레임워크를 통해 vSAN과 원활하게 통합됩니다.
 
@@ -47,7 +47,7 @@ image:vvols-image5.png["ONTAP 툴 VASA 공급자 아키텍처, 240"]
 Best Practice는 상호 의존성 충돌을 방지하기 위해 ONTAP 툴과 vCenter 어플라이언스를 기존 NFS 또는 VMFS 데이터 저장소에 저장하는 것입니다. VVol 작업 중에는 vCenter와 ONTAP 툴이 모두 서로 통신해야 하므로 ONTAP 툴 어플라이언스나 VCSA(vCenter Server 어플라이언스)를 관리하고 있는 VVol 스토리지로 설치하거나 이동하지 마십시오. 이 경우 vCenter 또는 ONTAP 툴 어플라이언스를 재부팅하면 제어 플레인 액세스가 중단되고 어플라이언스를 부팅하지 못할 수 있습니다.
 
 ====
-ONTAP 도구의 전체 업그레이드는 NetApp 지원 사이트 에서 다운로드할 수 있는 업그레이드 ISO 파일을 사용하여 https://mysupport.netapp.com/site/products/all/details/otv10/downloads-tab["VMware vSphere 10용 ONTAP 툴 - 다운로드"] 지원됩니다(NSS - 로그인 필요). 가이드 지침에 따라 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/upgrade/upgrade-ontap-tools.html["VMware vSphere 10.x용 ONTAP 툴을 10.3로 업그레이드하십시오"] 어플라이언스를 업그레이드합니다. ONTAP 도구 9.13에서 10.3으로 나란히 업그레이드할 수도 있습니다. 해당 주제에 대한 자세한 내용은 을 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/migrate/migrate-to-latest-ontaptools.html["VMware vSphere 9.x용 ONTAP 툴에서 10.3로 마이그레이션합니다"] 참조하십시오.
+ONTAP 도구의 전체 업그레이드는 NetApp 지원 사이트(로그인 필요)에서 다운로드할 수 있는 업그레이드 ISO 파일을 사용하여 https://mysupport.netapp.com/site/products/all/details/otv10/downloads-tab["VMware vSphere 10용 ONTAP 툴 - 다운로드"] 지원됩니다. 가이드 지침에 따라 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/upgrade/upgrade-ontap-tools.html["VMware vSphere 10.x용 ONTAP 툴을 10.3로 업그레이드하십시오"] 어플라이언스를 업그레이드합니다. ONTAP 도구 9.13에서 10.3으로 나란히 업그레이드할 수도 있습니다. 해당 주제에 대한 자세한 내용은 을 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/migrate/migrate-to-latest-ontaptools.html["VMware vSphere 9.x용 ONTAP 툴에서 10.3로 마이그레이션합니다"] 참조하십시오.
 
 가상 어플라이언스 사이징 및 구성 제한에 대한 자세한 내용은 을 참조하십시오 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/deploy/prerequisites.html#configuration-limits-to-deploy-ontap-tools-for-vmware-vsphere["VMware vSphere용 ONTAP 툴을 구축하기 위한 구성 제한"^]
 
@@ -73,7 +73,7 @@ https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/index.html["VMware v
 
 ==== ONTAP 도구를 사용합니다
 
-* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/create-vvols-datastore.html["데이터 저장소를 프로비저닝합니다"^]
+* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/create-datastore.html["데이터 저장소를 프로비저닝합니다"^]
 * https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/configure-user-role-and-privileges.html["역할 기반 액세스 제어를 구성합니다"^]
 * https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/edit-appliance-settings.html["고가용성을 구성합니다"^]
 * https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/edit-esxi-host-settings.html["ESXi 호스트 설정을 수정합니다"^]
@@ -106,11 +106,11 @@ vSphere에서 ONTAP VVOL을 사용하는 것은 간단하며 게시된 vSphere �
 
 * VMware vSphere의 UI 확장 또는 REST API용 ONTAP 툴을 사용하여 VVOL 데이터 저장소 * * 및 프로토콜 엔드포인트 프로비저닝 *
 
-일반 vSphere 인터페이스를 통해 VVOL 데이터 저장소를 생성할 수도 있지만, ONTAP 툴을 사용하면 필요에 따라 프로토콜 엔드포인트를 자동으로 생성하고 ONTAP 모범 사례를 사용하여 FlexVol 볼륨(ASA R2에서는 필요하지 않음)을 생성할 수 있습니다. 호스트/클러스터/데이터 센터를 마우스 오른쪽 버튼으로 클릭하고 _ONTAP tools_and_provision datastore_를 선택합니다. 마법사에서 원하는 VVOL 옵션을 선택하기만 하면 됩니다.
+일반 vSphere 인터페이스를 통해 VVOL 데이터 저장소를 생성할 수도 있지만, ONTAP 툴을 사용하면 필요에 따라 프로토콜 엔드포인트를 자동으로 생성하고 ONTAP 모범 사례를 사용하여 FlexVol 볼륨(ASA R2에서는 필요하지 않음)을 생성할 수 있습니다. 호스트/클러스터/데이터 센터를 마우스 오른쪽 버튼으로 클릭한 다음 _ONTAP tools_and_provision datastore_를 선택합니다. 마법사에서 원하는 VVOL 옵션을 선택하기만 하면 됩니다.
 
 * ONTAP 툴 어플라이언스 또는 VCSA(vCenter Server Appliance)를 관리하는 VVol 데이터 저장소에 저장하지 마십시오. *
 
-이로 인해 어플라이언스를 재부팅해야 할 경우 "닭과 달걀"이 발생할 수 있습니다. 재부팅하는 동안에는 자체 VVOL을 다시 바인딩할 수 없기 때문입니다. 다른 ONTAP 툴과 vCenter 구축을 통해 관리되는 VVol 데이터 저장소에 저장할 수 있습니다.
+이 경우 어플라이언스를 재부팅해야 하는 경우 "닭고기와 달걀"이 발생할 수 있습니다. 재부팅하는 동안 자신의 VVol을 다시 찾을 수 없기 때문입니다. 다른 ONTAP 툴과 vCenter 구축을 통해 관리되는 VVol 데이터 저장소에 저장할 수 있습니다.
 
 * 다양한 ONTAP 릴리즈에서 VVOL을 운영하는 것을 방지합니다. *
 
@@ -130,7 +130,7 @@ https://www.netapp.com/media/10680-tr4080.pdf["_TR-4080 최신 SAN ONTAP 9_에 �
 
 https://www.netapp.com/pdf.html?item=/media/10681-tr4684.pdf["_TR-4684 NVMe-oF_로 최신 SAN 구현 및 구성"^]
 
-* 필요에 따라 지원 FlexVols를 계획합니다. *
+* 필요에 따라 FlexVol 볼륨을 지원할 계획을 세우십시오. *
 
 비 ASA R2 시스템의 경우 여러 백업 볼륨을 VVol 데이터 저장소에 추가하여 ONTAP 클러스터 전체에 워크로드를 분산하거나, 다른 정책 옵션을 지원하거나, 허용된 LUN 또는 파일 수를 늘리는 것이 좋습니다. 하지만 최대 스토리지 효율성이 필요한 경우에는 모든 백업 볼륨을 단일 Aggregate에 배치하십시오. 또는 최대 클론 복제 성능이 필요한 경우 단일 FlexVol 볼륨을 사용하고 템플릿 또는 콘텐츠 라이브러리를 동일한 볼륨에 유지하는 것을 고려해 보십시오. VASA Provider는 마이그레이션, 클론 생성 및 스냅샷을 비롯한 다양한 VVOL 스토리지 작업을 ONTAP로 오프로드합니다. 단일 FlexVol 볼륨 내에서 이 작업을 수행할 경우 공간 효율적인 파일 클론이 사용되며 거의 즉시 사용할 수 있습니다. FlexVol 볼륨 전체에 걸쳐 복사본을 빠르게 생성하여 인라인 중복제거 및 압축을 사용할 수 있지만, 백그라운드 작업이 백그라운드 중복제거 및 압축을 사용하는 볼륨에서 실행될 때까지 최대 스토리지 효율성이 복구되지 않을 수 있습니다. 소스 및 타겟에 따라 일부 효율성이 저하될 수 있습니다.
 

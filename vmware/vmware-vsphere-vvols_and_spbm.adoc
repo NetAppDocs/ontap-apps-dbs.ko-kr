@@ -16,7 +16,8 @@ summary: 이 페이지에서는 VMware vSphere 환경에 ONTAP 스토리지 솔�
 [role="lead"]
 2012년에 처음 발표한 NetApp는 엔터프라이즈 스토리지 시스템과 함께 SPBM(스토리지 정책 기반 관리)의 토대인 VASA(VMware vSphere APIs for Storage Awareness)를 개발하는 VMware의 초기 설계 파트너였습니다. 이 접근 방식은 VMFS 및 NFS 스토리지에 제한된 VM 세부 스토리지 관리를 제공했습니다.
 
- As a technology design partner, NetApp provided architectural input and in 2015 announced support for vVols. This new technology now enabled the automation of VM-granular and truly array-native storage provisioning through SPBM.
+기술 설계 파트너인 NetApp은 아키텍처에 대한 의견을 제공했으며 2015년에 VVOL을 지원한다고 발표했습니다. 이 새로운 기술은 이제 SPBM을 통해 VM 세분화 및 진정한 스토리지 네이티브 스토리지 프로비저닝을 자동화할 수 있게 되었습니다.
+
 
 
 == VVol(가상 볼륨)
@@ -41,9 +42,9 @@ NetApp ONTAP은 VVOL 확장 스토리지 산업을 선도하여 단일 클러스
 
 앞서 VM 관리자가 용량을 스토리지 풀로 사용할 수 있다고 언급했습니다. 이 작업은 vSphere에서 논리적 데이터 저장소로 표시되는 스토리지 컨테이너를 사용하여 수행됩니다.
 
-스토리지 컨테이너는 스토리지 관리자가 생성하며 VM 관리자가 사용할 수 있는 스토리지 리소스를 그룹화하는 데 사용됩니다. 스토리지 컨테이너는 사용 중인 ONTAP 시스템의 유형에 따라 다르게 생성할 수 있습니다. 기존 ONTAP 9 클러스터의 경우 컨테이너에는 하나 이상의 백업 FlexVol이 할당되어 스토리지 풀을 형성합니다. ASA R2 시스템에서는 전체 클러스터가 스토리지 풀입니다.
+스토리지 컨테이너는 스토리지 관리자가 생성하며 VM 관리자가 사용할 수 있는 스토리지 리소스를 그룹화하는 데 사용됩니다. 스토리지 컨테이너는 사용 중인 ONTAP 시스템의 유형에 따라 다르게 생성할 수 있습니다. 기존 ONTAP 9 클러스터의 경우 컨테이너에는 하나 이상의 백업 FlexVol 볼륨이 할당되어 함께 스토리지 풀을 구성합니다. ASA R2 시스템에서는 전체 클러스터가 스토리지 풀입니다.
 
 
 NOTE: VMware vSphere 가상 볼륨, SPBM 및 ONTAP에 대한 자세한 내용은 을 참조하십시오 link:vmware-vvols-overview.html["TR-4400: ONTAP를 포함한 VMware vSphere 가상 볼륨"^].
 
- \* Depending on platform and protocol
+* 플랫폼 및 프로토콜에 따라 다릅니다

@@ -54,10 +54,10 @@ summary: 이 부록에서는 NetApp 스토리지에 고가용성 Hyper-V 클러�
 +
 ... LUN을 온라인 상태로 전환하고 디스크를 초기화하고 새 단순 볼륨을 생성한 다음 NTFS 또는 ReFS를 사용하여 포맷합니다.
 ... Failover Cluster Manager에서 클러스터를 확장하고 Storage를 확장한 다음 Disks를 마우스 오른쪽 단추로 클릭하고 Add Disks를 클릭합니다. 그러면 클러스터에 디스크 추가 마법사가 열리고 LUN이 디스크로 표시됩니다. OK를 클릭하여 LUN을 디스크로 추가합니다.
-... 이제 LUN의 이름이 clustered Disk이며 Disks 아래에 Available Storage로 표시됩니다.
+... 이제 LUN의 이름이 '클러스터 디스크'이고 Disks(디스크) 아래에 Available Storage(사용 가능한 스토리지)로 표시됩니다.
 
 
-.. LUN(클러스터 디스크)을 마우스 오른쪽 버튼으로 클릭하고 Add to Cluster Shared Volumes를 클릭합니다. 이제 LUN이 CSV로 표시됩니다.
+.. LUN('클러스터 디스크')을 마우스 오른쪽 버튼으로 클릭하고 Add to Cluster Shared Volumes를 클릭합니다. 이제 LUN이 CSV로 표시됩니다.
 .. CSV는 로컬 위치 C:\ClusterStorage\에 있는 페일오버 클러스터의 모든 Hyper-V 서버에서 동시에 표시되고 액세스할 수 있습니다.
 
 

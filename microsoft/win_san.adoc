@@ -81,9 +81,9 @@ Windows Server의 iSCSI용 IQN은 iSCSI 이니시에이터 속성의 구성에�
 
 Windows Server는 ALUA(Asymmetric Logical Unit Access) 확장 MPIO를 사용하여 LUN에 대한 직접 및 간접 경로를 결정합니다. SVM이 소유한 모든 LIF가 LUN에 대한 읽기/쓰기 요청을 수락하지만, 클러스터 노드 중 하나만 실제로 특정 시점에 해당 LUN을 지원하는 디스크를 소유합니다. 그러면 다음 그림과 같이 LUN에 대한 사용 가능한 경로가 직접 또는 간접 두 가지 유형으로 구분됩니다.
 
-LUN을 위한 직접 경로는 SVM의 LIF와 액세스 중인 LUN이 동일한 노드에 있는 경로입니다. 물리적 대상 포트에서 디스크로 이동하기 위해 클러스터 네트워크를 통과할 필요가 없습니다.
+LUN을 위한 직접 경로는 SVM의 LIF와 액세스 중인 LUN이 동일한 노드에 있는 경로입니다. 물리적 대상 포트에서 디스크로 이동하는 경우 클러스터 상호 연결을 통과할 필요가 없습니다.
 
-간접 경로는 SVM의 LIF와 액세스 중인 LUN이 서로 다른 노드에 있는 데이터 경로입니다. 데이터는 물리적 대상 포트에서 디스크로 이동하려면 클러스터 네트워크를 통과해야 합니다.
+간접 경로는 SVM의 LIF와 액세스 중인 LUN이 서로 다른 노드에 있는 데이터 경로입니다. 물리적 대상 포트에서 디스크로 이동하려면 데이터가 클러스터 상호 연결을 통과해야 합니다.
 
 image:win_image3.png["SAN 환경의 다중 경로, 폭 = 624, 높이 = 232입니다"]
 
@@ -196,7 +196,7 @@ Start-Service msiscsi
 +
 ....
 # Create a new iSCSI target portal
-New-IscsiTargetPortal â€“TargetPortalAddress <SVM LIF>
+New-IscsiTargetPortal -TargetPortalAddress <SVM LIF>
 ....
 +
 ....
@@ -242,12 +242,12 @@ Enable-WindowsOptionalFeature -Online -FeatureName MultipathIo
 +
 ....
 # Get the Network adapters and their IPs
-Get-NetIPAddress â€“AddressFamily IPv4 â€“PrefixOrigin <Dhcp or Manual>
+Get-NetIPAddress -AddressFamily IPv4 -PrefixOrigin <Dhcp or Manual>
 ....
 +
 ....
 # Create one MPIO-enabled iSCSI connection per network adapter
-Connect-IscsiTarget -NodeAddress <NodeAddress> -IsPersistent $True â€“IsMultipathEnabled $True â€“InitiatorPortalAddress <IP Address of ethernet adapter>
+Connect-IscsiTarget -NodeAddress <NodeAddress> -IsPersistent $True -IsMultipathEnabled $True -InitiatorPortalAddress <IP Address of ethernet adapter>
 ....
 +
 ....

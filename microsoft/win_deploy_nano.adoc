@@ -23,10 +23,10 @@ Microsoft Windows Nano Server 배포에 대해 자세히 알아보십시오.
 Nano Server를 Hyper-V 호스트로 배포하려면 다음 단계를 수행하십시오.
 
 . 관리자 그룹의 구성원으로 Windows Server에 로그인합니다.
-. Windows Server ISO의 \NanoServer 폴더에서 로컬 하드 드라이브로 NanoServerImageGenerator 폴더를 복사합니다.
+. Windows Server ISO의 \NanoServer 폴더에서 로컬 하드 디스크로 NanoServerImageGenerator 폴더를 복사합니다.
 . Nano Server VHD/VHDX를 생성하려면 다음 단계를 수행하십시오.
 +
-.. 관리자 권한으로 Windows PowerShell을 시작하고 로컬 하드 드라이브에서 복사된 NanoServerImageGenerator 폴더로 이동한 후 다음 cmdlet을 실행합니다.
+.. 관리자 권한으로 Windows PowerShell을 시작하고 로컬 하드 디스크의 복사된 NanoServerImageGenerator 폴더로 이동한 후 다음 cmdlet을 실행합니다.
 +
 ....
 Set-ExecutionPolicy RemoteSigned

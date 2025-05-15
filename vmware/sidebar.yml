@@ -6,6 +6,8 @@ entries:
   entries:
   - title: 개요
     url: "/vmware/vmware-vsphere-overview.html"
+  - title: ONTAP for VMware를 선택해야 하는 이유
+    url: "/vmware/vmware-vsphere-why.html"
   - title: 유니파이드 스토리지
     url: "/vmware/vmware-vsphere-unified.html"
   - title: 포함되었습니다

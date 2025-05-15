@@ -4,7 +4,7 @@ permalink: vmware/vmware-otv-hardening-ntp.html
 keywords: VMware, Data protection, security, OTV, Hardening, ONTAP Tools 
 summary: Security Hardening Guide for ONTAP Tools for VMware vSphere, NTP 구성 
 ---
-= NTP(Network Time Protocol) 구성
+= ONTAP 도구 9.13에 대한 NTP(Network Time Protocol) 구성
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

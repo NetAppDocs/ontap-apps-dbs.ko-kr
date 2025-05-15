@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: vmware/vmware_vmsc_design.html 
-keywords: VMware, Data protection, MetroCluster, SMBC, SnapMirror active sync, vMSC 
+keywords: VMware, Data protection, MetroCluster, SMBC, SMas, SnapMirror active sync, vMSC, metro storage cluster, vSphere, vCenter, business continuity, disaster recovery, ONTAP 
 summary: vMSC 설계 및 구현 지침. 
 ---
 = vMSC 설계 및 구현 지침
@@ -20,15 +20,19 @@ summary: vMSC 설계 및 구현 지침.
 
 == NetApp 스토리지 구성
 
-NetApp MetroCluster에 대한 설정 지침(MCC 구성이라고 함)은 에서 확인할 수 있습니다 https://docs.netapp.com/us-en/ontap-metrocluster/["MetroCluster 문서"]. SMAS(SnapMirror Active Sync)에 대한 지침은 에서도 확인할 수 https://docs.netapp.com/us-en/ontap/smbc/index.html["SnapMirror 비즈니스 연속성 개요"] 있습니다.
+NetApp MetroCluster 설치 지침은 에서 https://docs.netapp.com/us-en/ontap-metrocluster/["MetroCluster 문서"]확인할 수 있습니다. SMAS(SnapMirror Active Sync)에 대한 지침은 에서도 확인할 수 https://docs.netapp.com/us-en/ontap/smbc/index.html["SnapMirror 비즈니스 연속성 개요"] 있습니다.
 
 MetroCluster를 구성한 후에는 기존 ONTAP 환경을 관리하는 것과 같습니다. CLI(Command Line Interface), System Manager, Ansible과 같은 다양한 툴을 사용하여 SVM(스토리지 가상 머신)을 설정할 수 있습니다. SVM을 구성한 후 정상 작업에 사용할 클러스터에 논리 인터페이스(LIF), 볼륨 및 논리 유닛 번호(LUN)를 생성합니다. 이러한 오브젝트는 클러스터 피어링 네트워크를 사용하여 다른 클러스터로 자동으로 복제됩니다.
 
-MetroCluster를 사용하지 않는 경우 SnapMirror 액티브 동기화를 사용하여 서로 다른 장애 도메인에 있는 여러 ONTAP 클러스터에서 데이터 저장소에 대한 세분화된 보호와 액티브-액티브 액세스를 제공할 수 있습니다. SMAS는 CG(정합성 보장 그룹)를 사용하여 하나 이상의 데이터 저장소 간에 쓰기 순서 일관성을 보장하고 애플리케이션 및 데이터 저장소 요구 사항에 따라 여러 CG를 생성할 수 있습니다. 일관성 그룹은 여러 데이터 저장소 간에 데이터를 동기화해야 하는 애플리케이션에 특히 유용합니다. SMAS는 RDM(Raw Device Mappings) 및 게스트 내 iSCSI 초기자가 있는 게스트 연결 스토리지도 지원합니다. 일관성 그룹에 대한 자세한 내용은 에서 https://docs.netapp.com/us-en/ontap/consistency-groups/index.html["일관성 그룹 개요"]확인할 수 있습니다.
+MetroCluster를 사용하지 않거나 ASA R2 시스템과 같이 MetroCluster에서 지원되지 않는 ONTAP 시스템이 있는 경우, 서로 다른 장애 도메인에 있는 여러 ONTAP 클러스터에서 데이터 저장소 세부 보호 및 Active-Active 액세스를 제공하는 SnapMirror Active Sync를 사용할 수 있습니다. SMAS는 CG(정합성 보장 그룹)를 사용하여 하나 이상의 데이터 저장소 간에 쓰기 순서 일관성을 보장하고 애플리케이션 및 데이터 저장소 요구 사항에 따라 여러 CG를 생성할 수 있습니다. 일관성 그룹은 여러 데이터 저장소 간에 데이터를 동기화해야 하는 애플리케이션에 특히 유용합니다. 예를 들어, 데이터 저장소 간에 분산된 게스트 LVM을 예로 들 수 있습니다. SMAS는 RDM(Raw Device Mappings) 및 게스트 내 iSCSI 초기자가 있는 게스트 연결 스토리지도 지원합니다. 일관성 그룹에 대한 자세한 내용은 에서 https://docs.netapp.com/us-en/ontap/consistency-groups/index.html["일관성 그룹 개요"]확인할 수 있습니다.
 
-이제 ONTAP 도구를 사용하여 vMSC에 대한 SnapMirror 액티브 동기화를 간단히 구성할 수 있습니다. ONTAP 도구 vCenter 플러그인을 사용하여 두 ONTAP 클러스터 간에 SnapMirror 활성 동기화 관계를 생성하고 관리할 수 있습니다. 이 플러그인은 두 ONTAP 클러스터 간의 SnapMirror 활성 동기화 관계를 만들고 관리할 수 있는 간단하고 직관적인 인터페이스를 제공합니다. ONTAP 툴 vCenter 플러그인에 대한 자세한 내용은 에서확인하거나 바로 로 이동할 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/protect-cluster.html["호스트 클러스터 보호를 사용하여 보호합니다"] 수 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/index.html["VMware vSphere용 ONTAP 툴"] 있습니다.
+SnapMirror 액티브 동기화를 사용하여 vMSC 구성을 관리하는 것은 MetroCluster와 비교하여 몇 가지 차이가 있습니다. 첫째, SMAS는 SAN 전용 구성이므로 SnapMirror 활성 동기화를 사용하여 NFS 데이터 저장소를 보호할 수 없습니다. 둘째, 두 장애가 발생한 도메인 모두에서 복제된 데이터 저장소를 액세스할 수 있도록 LUN의 두 복제본을 ESXi 호스트에 매핑해야 합니다. 셋째, SnapMirror 활성 동기화를 사용하여 보호할 데이터 저장소에 대해 하나 이상의 정합성 보장 그룹을 생성해야 합니다. 마지막으로 생성한 일관성 그룹에 대한 SnapMirror 정책을 생성해야 합니다. 이 모든 작업은 ONTAP 도구 vCenter 플러그인의 "클러스터 보호" 마법사를 사용하거나 ONTAP CLI 또는 System Manager를 수동으로 사용하여 쉽게 수행할 수 있습니다.
 
-SnapMirror 액티브 동기화를 사용하여 vMSC 구성을 관리하는 것은 MetroCluster와 비교하여 몇 가지 차이가 있습니다. 첫째, SMAS는 SAN 전용 구성이므로 SnapMirror 활성 동기화를 사용하여 NFS 데이터 저장소를 보호할 수 없습니다. 둘째, 두 장애가 발생한 도메인 모두에서 복제된 데이터 저장소를 액세스할 수 있도록 LUN의 두 복제본을 ESXi 호스트에 매핑해야 합니다.
+
+
+== ONTAP 도구 SnapMirror Active Sync용 vCenter 플러그인 사용
+
+ONTAP tools vCenter 플러그인을 사용하면 vMSC에 대한 SnapMirror 활성 동기화를 간단하고 직관적으로 구성할 수 있습니다. ONTAP 도구 vCenter 플러그인을 사용하여 두 ONTAP 클러스터 간에 SnapMirror 활성 동기화 관계를 생성하고 관리할 수 있습니다. 이 플러그인은 이러한 관계를 효율적으로 설정하고 관리하기 위해 사용하기 쉬운 인터페이스를 제공합니다. ONTAP 툴 vCenter 플러그인에 대한 자세한 내용은 에서확인하거나 바로 로 이동할 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/protect-cluster.html["호스트 클러스터 보호를 사용하여 보호합니다"] 수 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/index.html["VMware vSphere용 ONTAP 툴"] 있습니다.
 
 
 
@@ -68,7 +72,7 @@ image::../media/vmsc_3_3.png[VM 모니터링,624,480]
 
 image::../media/vmsc_3_4.png[승인 제어,624,479]
 
-. "Ok"를 클릭합니다.
+. "확인"을 클릭합니다.
 . DRS를 선택하고 편집을 클릭합니다.
 . 응용 프로그램에서 요구하지 않는 한 자동화 수준을 수동으로 설정합니다.
 
@@ -76,7 +80,7 @@ image::../media/vmsc_3_4.png[승인 제어,624,479]
 image::../media/vmsc_3_5.png[vMSC 3 5,624,336]
 
 . VM 구성 요소 보호를 활성화합니다. 을 참조하십시오 https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-availability/GUID-F01F7EB8-FF9D-45E2-A093-5F56A788D027.html["docs.vmware.com"].
-. MCC가 있는 vMSC에는 다음과 같은 vSphere HA 설정이 추가로 권장됩니다.
+. MetroCluster를 사용하는 vMSC에는 다음과 같은 vSphere HA 설정이 추가로 권장됩니다.
 
 
 [cols="50%,50%"]
@@ -141,7 +145,7 @@ image::../media/vmsc_3_6.png[자동으로 생성된 컴퓨터 설명 스크린�
 
 image::../media/vmsc_3_7.png[자동으로 생성된 컴퓨터 설명 스크린샷,624,545]
 
-das.heartbeatDsPerHost 라는 고급 설정을 추가하면 하트비트 데이터 저장소의 수가 증가할 수 있습니다. 사이트당 2개씩 4개의 하트비트 데이터 저장소(HB DSS)를 사용합니다. "목록에서 선택 하지만 칭찬" 옵션을 사용합니다. 한 사이트에 장애가 발생해도 두 개의 HB DSS가 필요하기 때문입니다. 하지만 MCC 또는 SnapMirror 액티브 동기화로 해당 데이터를 보호할 필요는 없습니다.
+das.heartbeatDsPerHost 라는 고급 설정을 추가하면 하트비트 데이터 저장소의 수가 증가할 수 있습니다. 사이트당 2개씩 4개의 하트비트 데이터 저장소(HB DSS)를 사용합니다. "목록에서 선택 하지만 칭찬" 옵션을 사용합니다. 한 사이트에 장애가 발생해도 두 개의 HB DSS가 필요하기 때문입니다. 그러나 이러한 파일은 MetroCluster 또는 SnapMirror 활성 동기화를 사용하여 보호할 필요가 없습니다.
 
 자세한 내용은 을 https://www.vmware.com/docs/vmw-vmware-vsphere-metro-storage-cluster-recommended-practices["VMware vSphere Metro Storage Cluster 권장 사례"] 참조하십시오. _.__
 
@@ -152,7 +156,7 @@ NetApp MetroCluster용 VMware DRS Affinity
 [TIP]
 ====
 * NetApp은 그룹*의 호스트에서 실행해야 함*이 아니라 그룹*의 호스트에서 실행되어야 함*을 사용할 것을 적극 권장합니다. 사이트 A 호스트에 장애가 발생할 경우 사이트 A의 VM을 vSphere HA를 통해 사이트 B의 호스트에서 다시 시작해야 하지만, 후자의 사양에서는 하드 규칙이기 때문에 HA가 사이트 B에서 VM을 다시 시작할 수 없습니다. 이전 사양은 소프트 규칙이며 HA가 발생할 경우 위반되므로 성능보다 가용성이 향상됩니다.
-* 가상 시스템이 VM-호스트 선호도 규칙을 위반할 때 트리거되는 이벤트 기반 경보를 생성할 수 있습니다. vSphere Client에서 가상 머신에 대한 새 경고를 추가하고 이벤트 트리거로 "VM is behaving VM-Host Affinity Rule"을 선택합니다. 알람 생성 및 편집에 대한 자세한 내용은 link:https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-monitoring-and-performance-8-0.html["vSphere 모니터링 및 성능"^]설명서를 참조하십시오.
+* 가상 시스템이 VM-호스트 선호도 규칙을 위반할 때 트리거되는 이벤트 기반 경보를 생성할 수 있습니다. vSphere Client에서 가상 머신에 대한 새 경고를 추가하고 이벤트 트리거로 "VM is behaving VM - Host Affinity Rule"을 선택합니다. 알람 생성 및 편집에 대한 자세한 내용은 link:https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-monitoring-and-performance-8-0.html["vSphere 모니터링 및 성능"^]설명서를 참조하십시오.
 
 
 ====

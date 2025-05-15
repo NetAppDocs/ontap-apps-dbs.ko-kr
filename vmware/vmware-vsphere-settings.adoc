@@ -16,13 +16,11 @@ summary: 이 문서에서는 권장 저장소 및 네트워크 설정을 분류�
 [role="lead"]
 NetApp은 NFS 및 블록 프로토콜 모두에 최적의 ESXi 호스트 설정 세트를 개발했습니다. NetApp 및 VMware 내부 테스트 기반의 ONTAP에서 올바른 동작을 수행할 수 있도록 다중 경로 및 HBA 시간 초과 설정에 대해서도 구체적인 지침이 제공됩니다.
 
-이러한 값은 VMware vSphere용 ONTAP 툴을 사용하여 쉽게 설정할 수 있습니다. 요약 대시보드의 호스트 시스템 포틀릿에서 설정 편집 을 클릭하거나 vCenter에서 호스트를 마우스 오른쪽 버튼으로 클릭한 다음 ONTAP 툴 > 권장 값 설정 으로 이동합니다.
+이러한 값은 VMware vSphere용 ONTAP 툴을 사용하여 쉽게 설정할 수 있습니다. ONTAP 툴 개요 페이지에서 아래로 스크롤하여 ESXi 호스트 규정 준수 포틀릿에서 권장 설정 적용을 클릭합니다.
 
 다음은 현재 지원되는 모든 ONTAP 버전에 대해 권장되는 호스트 설정입니다.
 
 |===
-
-
 | * 호스트 설정 * | * NetApp 권장 가치 * | * 재부팅 필요 * 
 
 
@@ -39,6 +37,9 @@ NetApp은 NFS 및 블록 프로토콜 모두에 최적의 ESXi 호스트 설정 
 
 
 3+| * NFS 설정 * 
+
+
+| newSyncInterval | Kubernetes용 vSphere CSI를 사용하지 않는 경우 를 설정합니다 https://knowledge.broadcom.com/external/article/386364/reducing-excessive-vsan-cnssync-warnings.html["VMware KB 386364"^] | 아니요 
 
 
 | NET.TcpipHeapSize | vSphere 6.0 이상, 32로 설정.
@@ -108,7 +109,7 @@ NetApp은 NFS 및 블록 프로토콜 모두에 최적의 ESXi 호스트 설정 
 이 값을 설정하면 I/O 오류가 방지됩니다. | 아니요 
 |===
 
-NOTE: 1-NFS 고급 구성 옵션 MaxQueueDepth는 VMware vSphere ESXi 7.0.1 및 VMware vSphere ESXi 7.0.2를 사용할 때 의도한 대로 작동하지 않을 수 있습니다. 참조하십시오 link:https://kb.vmware.com/s/article/86331?lang=en_US["VMware KB 86331"] 를 참조하십시오.
+NOTE: NFS 고급 구성 옵션 MaxQueueDepth는 VMware vSphere ESXi 7.0.1 및 VMware vSphere ESXi 7.0.2를 사용할 때 의도한 대로 작동하지 않을 수 있습니다. 자세한  내용은 을 link:https://kb.vmware.com/s/article/86331?lang=en_US["VMware KB 86331"]참조하십시오.
 
 ONTAP 툴은 ONTAP FlexVol 볼륨 및 LUN을 생성할 때 특정 기본 설정도 지정합니다.
 

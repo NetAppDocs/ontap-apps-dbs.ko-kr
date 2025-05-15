@@ -4,7 +4,7 @@ permalink: vmware/vmware-otv-hardening-https-cert.html
 keywords: VMware, Data protection, security, OTV, Hardening, ONTAP Tools 
 summary: Security Hardening Guide for ONTAP Tools for VMware vSphere, HTTPS 인증서 관리 
 ---
-= ONTAP 도구 HTTPS 인증서
+= ONTAP tools 9.13 HTTPS 인증서
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

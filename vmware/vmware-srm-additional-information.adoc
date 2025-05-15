@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: vmware/vmware-srm-additional-information.html 
-keywords: vmware, site, recovery manager, vsrm, hybrid, cloud, additional, information 
+keywords: vmware, site, recovery manager, vsrm, hybrid, cloud, additional, information, srm, vlsr 
 summary: 이 문서에 설명된 정보에 대해 자세히 알아보려면 다음 문서 및/또는 웹 사이트를 검토하십시오. 
 ---
 = 추가 정보
@@ -16,18 +16,15 @@ summary: 이 문서에 설명된 정보에 대해 자세히 알아보려면 다�
 [role="lead"]
 이 문서에 설명된 정보에 대해 자세히 알아보려면 다음 문서 및/또는 웹 사이트를 검토하십시오.
 
+* VMware vSphere 10.x용 ONTAP 툴 리소스 link:https://mysupport.netapp.com/site/products/all/details/otv10/docs-tab["https://mysupport.netapp.com/site/products/all/details/otv10/docs-tab"]
+* VMware vSphere 9.x용 ONTAP 툴 리소스 link:https://mysupport.netapp.com/site/products/all/details/otv/docsandkb-tab["https://mysupport.netapp.com/site/products/all/details/otv/docsandkb-tab"]
 * TR-4597: ONTAP용 VMware vSphere
 link:vmware-vsphere-overview.html["https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vsphere-overview.html"]
 * TR-4400: ONTAP를 포함한 VMware vSphere 가상 볼륨
 link:vmware-vvols-overview.html["https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vvols-overview.html"]
 * ONTAP 9용 TR-4015 SnapMirror 구성 모범 사례 가이드
 link:https://www.netapp.com/media/17229-tr4015.pdf?v=127202175503P["https://www.netapp.com/media/17229-tr4015.pdf?v=127202175503P"]
-* RBAC ONTAP용 사용자 생성기
-link:https://mysupport.netapp.com/site/tools/tool-eula/rbac["https://mysupport.netapp.com/site/tools/tool-eula/rbac"]
-* VMware vSphere 리소스를 위한 ONTAP 툴
-link:https://mysupport.netapp.com/site/products/all/details/otv/docsandkb-tab["https://mysupport.netapp.com/site/products/all/details/otv/docsandkb-tab"]
-* VMware Site Recovery Manager 설명서
-link:https://docs.vmware.com/en/Site-Recovery-Manager/index.html["https://docs.vmware.com/en/Site-Recovery-Manager/index.html"]
+* VMware Live Site Recovery 설명서 link:https://techdocs.broadcom.com/us/en/vmware-cis/live-recovery/live-site-recovery/9-0.html["https://techdocs.broadcom.com/us/en/vmware-cis/live-recovery/live-site-recovery/9-0.html"]
 
 
-을 참조하십시오 link:http://mysupport.netapp.com/matrix["상호 운용성 매트릭스 툴(IMT)"] NetApp Support 사이트에서 본 문서에 기술된 제품과 기능 버전이 귀사의 환경에서 지원되는지 확인하십시오. NetApp IMT에는 NetApp이 지원하는 구성을 설계하는 데 사용할 수 있는 제품 구성요소 및 버전이 정의되어 있습니다. 구체적인 결과는 게시된 기술사양과 그에 따른 고객 설치 환경에 따라 달라집니다.
+NetApp 지원 사이트의 를 link:http://mysupport.netapp.com/matrix["상호 운용성 매트릭스 툴(IMT)"]통해 본 문서에 기술된 제품 및 기능 버전이 귀사의 환경에서 지원되는지 확인하십시오. NetApp IMT에는 NetApp이 지원하는 구성을 설계하는 데 사용할 수 있는 제품 구성요소 및 버전이 정의되어 있습니다. 구체적인 결과는 게시된 기술사양과 그에 따른 고객 설치 환경에 따라 달라집니다.

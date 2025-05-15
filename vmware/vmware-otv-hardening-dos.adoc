@@ -4,7 +4,7 @@ permalink: vmware/vmware-otv-hardening-dos.html
 keywords: VMware, Data protection, security, OTV, Hardening, ONTAP Tools 
 summary: Security Hardening Guide for ONTAP Tools for VMware vSphere, DOS 공격으로부터 네트워크 보안 보호 
 ---
-= 사용자당 최대 동시 요청 수(네트워크 보안 보호/DOS 공격)
+= 사용자당 최대 동시 요청 수(네트워크 보안 보호/DOS 공격) VMware vSphere 9.13용 ONTAP 툴
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
