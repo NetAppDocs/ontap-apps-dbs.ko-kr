@@ -25,7 +25,6 @@ NOTE: *이 문서는 이전에 게시된 기술 보고서_TR-4568: NetApp 배포
 * 소프트웨어 정의 통합 아키텍처
 +
 ** VMware vSphere 또는 KVM에서 실행되는 ONTAP Select
-** 클라우드 네이티브 인스턴스로 실행되는 Cloud Volumes ONTAP
 
 
 * 하이퍼스케일 클라우드 공급자가 제공하는 최초의 타사 오퍼링

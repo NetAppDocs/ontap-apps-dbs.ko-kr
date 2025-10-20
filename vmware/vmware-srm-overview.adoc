@@ -61,7 +61,7 @@ NOTE: ONTAP 시스템을 사용하면 동일한 클러스터에서 SnapMirror �
 
 == ONTAP 및 기타 사용 사례를 지원하는 VLSR: 하이브리드 클라우드 및 마이그레이션
 
-VLSR 배포를 ONTAP 고급 데이터 관리 기능과 통합하면 로컬 스토리지 옵션과 비교했을 때 규모와 성능이 크게 향상됩니다.  하지만 그보다 더 중요한 것은 하이브리드 클라우드의 유연성입니다.  하이브리드 클라우드를 사용하면 FabricPool 사용하여 고성능 어레이에서 사용하지 않는 데이터 블록을 선호하는 하이퍼스케일러로 계층화하여 비용을 절감할 수 있습니다. 이는 NetApp StorageGRID 와 같은 온프레미스 S3 저장소가 될 수 있습니다.  소프트웨어 정의 ONTAP Select 사용하는 에지 기반 시스템이나 Cloud Volumes ONTAP (CVO)를 사용하는 클라우드 기반 DR에 SnapMirror 사용할 수도 있습니다. https://www.equinix.com/partners/netapp["Equinix Metal ® 기반 NetApp 스토리지"^] 또는 다른 호스팅 ONTAP 서비스.
+VLSR 배포를 ONTAP 고급 데이터 관리 기능과 통합하면 로컬 스토리지 옵션과 비교했을 때 규모와 성능이 크게 향상됩니다. 하지만 그보다 더 중요한 것은 하이브리드 클라우드의 유연성입니다. 하이브리드 클라우드를 사용하면 FabricPool 사용하여 고성능 어레이에서 사용하지 않는 데이터 블록을 선호하는 하이퍼스케일러로 계층화하여 비용을 절감할 수 있습니다. 이는 NetApp StorageGRID 와 같은 온프레미스 S3 저장소가 될 수 있습니다. 소프트웨어 정의 ONTAP Select 또는 클라우드 기반 DR을 사용하여 에지 기반 시스템에 SnapMirror 사용할 수도 있습니다. https://www.equinix.com/partners/netapp["Equinix Metal의 NetApp 스토리지"^]또는 다른 호스팅 ONTAP 서비스.
 
 그런 다음, FlexClone을 통해 스토리지 설치 공간이 거의 0에 가까운 클라우드 서비스 공급자의 데이터 센터 내에서 테스트 페일오버를 수행할 수 있습니다. 이제 조직을 보호하는 데 드는 비용이 그 어느 때보다 줄어듭니다.
 
