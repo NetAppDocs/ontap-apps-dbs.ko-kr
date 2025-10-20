@@ -49,4 +49,8 @@ image:vsphere_ontap_image1.png["vSphere용 ONTAP 툴"]
 
 == 프리미엄 소프트웨어 옵션
 
-NetApp 에서 제공하는 프리미엄 소프트웨어 제품은 다음과 같습니다. 이러한 기능은 ONTAP One 라이선스에 포함되지 않으므로 별도로 구매해야 합니다. * https://www.netapp.com/data-services/disaster-recovery/["NetApp Disaster Recovery (DR)"] VMware vSphere용. 이는 VMware 환경에 대한 재해 복구 및 백업을 제공하는 클라우드 기반 서비스입니다. SnapCenter 와 함께 사용하거나 사용하지 않고도 사용할 수 있으며, SAN 또는 NAS를 사용하여 온프레미스 간 DR을 지원하고, 지원되는 경우 NFS를 사용하여 온프레미스와 클라우드 간 DR을 지원합니다. * https://www.netapp.com/data-infrastructure-insights/["데이터 인프라 인사이트(DII)"]. 이는 VMware 환경에 대한 모니터링과 분석을 제공하는 클라우드 기반 서비스입니다. 이 제품은 이기종 스토리지 환경의 다른 스토리지 공급업체는 물론, 여러 스위치 공급업체와 다른 하이퍼바이저를 지원합니다. DII는 VMware 환경의 성능, 용량 및 상태에 대한 완벽한 종단 간 통찰력을 제공합니다.
+NetApp 에서 제공하는 프리미엄 소프트웨어 제품은 다음과 같습니다. 이러한 기능은 ONTAP One 라이선스에 포함되지 않으므로 별도로 구매해야 합니다.
+
+* https://www.netapp.com/data-services/disaster-recovery/["NetApp Disaster Recovery (DR)"]VMware vSphere용. 이는 VMware 환경에 대한 재해 복구 및 백업을 제공하는 클라우드 기반 서비스입니다. SnapCenter 와 함께 사용하거나 사용하지 않고도 사용할 수 있으며, SAN 또는 NAS를 사용하여 온프레미스 간 DR을 지원하고, 지원되는 경우 NFS를 사용하여 온프레미스와 클라우드 간 DR을 지원합니다.
+* https://www.netapp.com/data-infrastructure-insights/["데이터 인프라 인사이트(DII)"]. 이는 VMware 환경에 대한 모니터링과 분석을 제공하는 클라우드 기반 서비스입니다. 이 제품은 이기종 스토리지 환경의 다른 스토리지 공급업체는 물론, 여러 스위치 공급업체와 다른 하이퍼바이저를 지원합니다. DII는 VMware 환경의 성능, 용량 및 상태에 대한 완벽한 종단 간 통찰력을 제공합니다.
+

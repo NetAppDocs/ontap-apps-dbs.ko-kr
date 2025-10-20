@@ -4061,9 +4061,7 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="674c41ba00ec77fc9d294abbba7e7b7d" category="paragraph">ONTAP는 20년 이상 VMware vSphere 환경을 위한 업계 최고의 스토리지 솔루션으로, 비용을 절감하는 동시에 관리를 간소화하는 혁신적인 기능을 지속적으로 추가하고 있습니다.</block>
   <block id="ae7454da5e20b82b7fe67eb1ff88c923" category="admonition">이 문서는 이전에 게시된 기술 보고서_TR-4400: VMware VVol(vSphere 가상 볼륨)을 ONTAP _ 로 대체합니다</block>
   <block id="ee82b7a98212a75a2397dd9c5f9b1ab4" category="paragraph">ONTAP는 2012년 최초 릴리즈부터 VASA 사양을 지원합니다. 다른 NetApp 스토리지 시스템은 VASA를 지원할 수 있지만, 이 문서에서는 현재 지원되는 ONTAP 9 릴리즈에 대해 중점적으로 설명합니다.</block>
-  <block id="669b30b7e6d5ef1d862fe65880b816a8" category="paragraph">NetApp은 AFF, ASA, FAS 시스템 기반의 ONTAP 9 외에도 ONTAP Select에서 VMware 워크로드, AWS 기반의 Amazon FSx for NetApp, Azure VMware Solution 탑재 Azure NetApp Files, Cloud Volumes Service 및 Google Cloud VMware Engine, Equinix의 NetApp 프라이빗 스토리지를 지원합니다. 그러나 특정 기능은 서비스 제공업체 및 사용 가능한 네트워크 연결에 따라 달라질 수 있습니다. vSphere 게스트에서 이러한 구성에 저장된 데이터에 액세스할 수 있을 뿐만 아니라 Cloud Volumes ONTAP도 사용할 수 있습니다.</block>
   <block id="afd715f07b1ec06fe77bf23a2d7bf185" category="paragraph">_ ONTAP 및 VMware vSphere Best Practice에 대한 자세한 내용은 를 참조하십시오 <block ref="5dbb4949ffa7cb97fe4eaffc517a1111" category="inline-link-macro-rx"></block>_</block>
-  <block id="bfdc61fd18bd1a23d9660561bc8999b7" category="list-text">* Cloud Volumes ONTAP. * NetApp Cloud Volumes ONTAP 데이터 관리 소프트웨어는 선택한 클라우드에서 데이터에 제어, 보호, 유연성 및 효율성을 제공합니다. Cloud Volumes ONTAP는 ONTAP 스토리지를 기반으로 구축된 클라우드 네이티브 데이터 관리 소프트웨어입니다. Cloud Manager와 함께 사용하면 사내 ONTAP 시스템과 함께 Cloud Volumes ONTAP 인스턴스를 구축하고 관리할 수 있습니다. 스냅샷과 SnapMirror 복제를 포함한 통합 데이터 관리와 함께 고급 NAS 및 iSCSI SAN 기능을 활용합니다.</block>
   <block id="e88c947a5d8f4c0daec271a8595604a7" category="inline-image-macro">Active IQ Unified Manager 가상 머신 보기</block>
   <block id="9078040b61fc8a9bd0215e8f35ff788c" category="paragraph"><block ref="9078040b61fc8a9bd0215e8f35ff788c" category="inline-image-macro-rx" type="image"></block></block>
   <block id="0ef2f850d3f17cacfbd404bade7eed5b" category="inline-image-macro">AIQUM 확장 토폴로지</block>
@@ -4395,15 +4393,11 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="589b1ebfaed268e1548717208be6131f" category="list-text"><block ref="589b1ebfaed268e1548717208be6131f" category="inline-link-macro-rx"></block></block>
   <block id="e44de13cc4b452eccde9961bbe9da42b" category="inline-link-macro">ONTAP 보안 및 데이터 암호화 제품 설명서</block>
   <block id="c76e848365d3a2199dfced47ddbf8690" category="list-text"><block ref="c76e848365d3a2199dfced47ddbf8690" category="inline-link-macro-rx"></block></block>
-  <block id="1a523ba4ece9125275b92ebb41e3cf23" category="inline-link-macro">Cloud Volumes ONTAP 설명서</block>
   <block id="7436b418bed093768e360d32105591d2" category="inline-link-macro">ONTAP Select 설명서</block>
   <block id="82fe32c89de73116e2188701ca735c39" category="list-text"><block ref="82fe32c89de73116e2188701ca735c39" category="inline-link-macro-rx"></block></block>
   <block id="f5c286d9dc4cdaffcb8e5c86388e6ed8" category="list-text"><block ref="f5c286d9dc4cdaffcb8e5c86388e6ed8" category="inline-link-macro-rx"></block></block>
   <block id="4dab2f9796b0af6304d00e21e2b9dfb4" category="inline-link-macro">AWS 기반 VMware 클라우드</block>
   <block id="560d5b2cd40977bd7b77b31d7088f657" category="list-text"><block ref="560d5b2cd40977bd7b77b31d7088f657" category="inline-link-macro-rx"></block></block>
-  <block id="e6aa20b5d3923ee0466f5d7e7bfed821" category="inline-link-macro">Azure NetApp Files란 무엇입니까?
-</block>
-  <block id="810dc5c2e801b56b11325dd2aca0775c" category="list-text"><block ref="810dc5c2e801b56b11325dd2aca0775c" category="inline-link-macro-rx"></block></block>
   <block id="9789f0612fda153726aa8ad87265e4b9" category="inline-link-macro">Azure VMware 솔루션</block>
   <block id="f068ad668d317d445bc0da61125c318f" category="list-text"><block ref="f068ad668d317d445bc0da61125c318f" category="inline-link-macro-rx"></block></block>
   <block id="8cb69aa5b1609d0a39f0fcd576c07df6" category="inline-link-macro">Google Cloud VMware 엔진</block>
@@ -4746,7 +4740,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="bbd68bf55ab562da30e73449f1b87424" category="summary">ONTAP 기반 Epic 구축 예 - 프로토콜</block>
   <block id="589b83bd3c7696acc0086c7f233e64e3" category="doc">ONTAP 기반 Epic 구축 예 - 플랫폼</block>
   <block id="05f72896244a448167caa4a410eb4ecf" category="paragraph">Epic ODB 데이터베이스, 저널 및 애플리케이션 워크로드의 경우 Epic은 스토리지에 FCP LUN을 형식으로 제시할 것을 권장합니다.</block>
-  <block id="d2ec366dff0b7a3eda35e6acf91f6898" category="paragraph">NetApp 고객은 모든 Epic 워크로드를 Azure 클라우드에서 성공적으로 실행했습니다. AWS는 Epic 워크로드도 실행할 수 있습니다. NetApp은 NetApp Cloud Volumes ONTAP 및 NetApp Cloud Volumes Services를 통해 클라우드에서 Epic을 효과적으로 실행하는 데 필요한 엔터프라이즈급 기능과 성능을 제공합니다. NetApp 클라우드 옵션은 iSCSI를 통한 블록, NFS 또는 SMB를 통한 파일 블록 기능을 제공합니다.</block>
   <block id="a3a5d01a736b2f5bc994d2ff7b0da8c5" category="summary">ONTAP 기반 Epic 구축 예 - FCP 프로토콜</block>
   <block id="dc0e595680f18844673c0930ecf1ca6b" category="paragraph">SVM이 생성되면 프로토콜을 추가해야 합니다.</block>
   <block id="263a628397d3f78e3b61f40863b0868f" category="paragraph">FCP 데이터 LIF를 생성하려면 를 클릭합니다<block ref="8f46d074b2d46f416cb36dce6f8bd76d" category="inline-link-macro-rx"></block>.</block>
@@ -6078,10 +6071,7 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="d27c7eb1b19cbebab6552ca4574e51e5" category="paragraph">예를 들어 베를린과 함부르크의 사이트를 SMas로 보호하고, 세 번째 사이트 복제본을 비동기 SnapMirror 사용하고 VLSR로 보호하는 것이 있습니다. 또 다른 예로는 SMa를 사용하여 뉴욕과 뉴저지의 사이트를 보호하고, 세 번째 사이트는 시카고에 두는 것이 있습니다.</block>
   <block id="3b2b0ebfa27de38f05b20b21651ca265" category="inline-image-macro">SMas 레이아웃</block>
   <block id="65e70274fc1f803a54b1efd4b9ef1df0" category="paragraph"><block ref="65e70274fc1f803a54b1efd4b9ef1df0" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="c8749d248615e8d7d496cc56d369068d" category="list-text">*1차 제공.* Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes 및 Azure NetApp Files 주요 퍼블릭 클라우드 환경에서 고성능의 다중 프로토콜 관리형 스토리지 서비스를 제공합니다. 이러한 스토리지는 VMware Cloud on AWS(VMC on AWS), Azure VMware Solution(AVS), Google Cloud VMware Engine(GCVE)에서 게스트 운영 체제(GOS) 및 컴퓨팅 인스턴스의 데이터 저장소 또는 스토리지로 직접 사용할 수 있습니다.</block>
-  <block id="ac3d641f5a8a83a77a11b6feae2a2368" category="list-text">*클라우드 서비스.* 퍼블릭 클라우드 스토리지를 사용하여 온프레미스 시스템의 데이터를 보호하려면 NetApp Backup and Recovery 또는 SnapMirror Cloud를 사용하세요. Cloud Sync NAS, 개체 저장소 및 Cloud Volumes Service 스토리지에서 데이터를 마이그레이션하고 동기화된 상태로 유지하는 데 도움이 됩니다. NetApp Disaster Recovery 클라우드 재해 복구, 온프레미스 재해 복구, 온프레미스 간 재해 복구를 위한 강력하고 유능한 재해 복구 솔루션의 기반으로 NetApp 기술을 활용하는 비용 효과적이고 효율적인 솔루션을 제공합니다.</block>
   <block id="aff39d99fde3099978b06c2121c26bd9" category="paragraph">VM 기반 애플리케이션을 설계할 때 미래의 클라우드 모빌리티를 고려하세요. 예를 들어, 애플리케이션과 데이터 파일을 함께 배치하는 대신 데이터에 대해 별도의 LUN이나 NFS 내보내기를 사용합니다. 이를 통해 VM과 데이터를 별도로 클라우드 서비스로 마이그레이션할 수 있습니다.</block>
-  <block id="3f42091db773b0aae7161e4d74acb758" category="list-text"><block ref="3f42091db773b0aae7161e4d74acb758" category="inline-link-macro-rx"></block></block>
   <block id="a34428791f8c5ce4b1184d505db69402" category="inline-link-macro">백업 및 복구 문서</block>
   <block id="48f148d7f57b20a6060d03bbcf7335ad" category="list-text"><block ref="48f148d7f57b20a6060d03bbcf7335ad" category="inline-link-macro-rx"></block></block>
   <block id="e198d5cba43e1161bc035f28e60cc161" category="inline-link-macro">재해 복구 문서</block>
@@ -6093,9 +6083,17 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="c256d43e8fa2b8e01df9b9333e730677" category="list-text">*스토리지 복제 어댑터.* SRA는 SnapMirror 사용하여 어레이 기반 복제를 통해 운영 사이트와 재해 복구 사이트 간의 데이터 복제를 관리하기 위해 VMware Live Site Recovery(VLSR)/Site Recovery Manager(SRM)와 함께 사용됩니다. 재해 발생 시 장애 조치 작업을 자동화하고, DR 복제본을 중단 없이 테스트하여 DR 솔루션에 대한 확신을 확보하는 데 도움이 될 수 있습니다.</block>
   <block id="78dea62c276f3a86642777c27b42218f" category="paragraph">그만큼<block ref="df7f63ec4790cd7696ac38c73a72d254" category="inline-link-rx"></block> vCenter Server용 플러그인으로, 가상 머신(VM)과 데이터스토어의 백업과 복원을 관리할 수 있습니다. 여러 ONTAP 시스템에서 VM과 데이터 저장소의 백업, 복원 및 복제를 관리하기 위한 단일 인터페이스를 제공합니다. SnapCenter SnapMirror 사용하여 보조 사이트로의 복제와 복구를 지원합니다. 최신 버전에서는 SnapMirror to cloud(S3), Tamperproof 스냅샷, SnapLock, SnapMirror Active Sync도 지원합니다. VMware vSphere용 SnapCenter 플러그인은 SnapCenter 애플리케이션 플러그인과 통합되어 애플리케이션과 일관된 백업을 제공할 수 있습니다.</block>
   <block id="1e3f6786e57985e5818c765f46508ca6" category="inline-link">NetApp Disaster Recovery (DR)</block>
-  <block id="420046e382e2e07d599fd36d475ab881" category="paragraph">NetApp 에서 제공하는 프리미엄 소프트웨어 제품은 다음과 같습니다. 이러한 기능은 ONTAP One 라이선스에 포함되지 않으므로 별도로 구매해야 합니다. *<block ref="0a0bd4d1f113d075351e4eec418259a3" category="inline-link-rx"></block> VMware vSphere용. 이는 VMware 환경에 대한 재해 복구 및 백업을 제공하는 클라우드 기반 서비스입니다. SnapCenter 와 함께 사용하거나 사용하지 않고도 사용할 수 있으며, SAN 또는 NAS를 사용하여 온프레미스 간 DR을 지원하고, 지원되는 경우 NFS를 사용하여 온프레미스와 클라우드 간 DR을 지원합니다. *<block ref="7c477508804cee468db4a7dd703b8ca2" category="inline-link-rx"></block>. 이는 VMware 환경에 대한 모니터링과 분석을 제공하는 클라우드 기반 서비스입니다. 이 제품은 이기종 스토리지 환경의 다른 스토리지 공급업체는 물론, 여러 스위치 공급업체와 다른 하이퍼바이저를 지원합니다. DII는 VMware 환경의 성능, 용량 및 상태에 대한 완벽한 종단 간 통찰력을 제공합니다.</block>
   <block id="9469e1759c7e42bfeb74f9c90db108cb" category="list-text">vCenter에서 ONTAP 클러스터 자격 증명을 사용하는 대신 스토리지 멀티테넌시를 사용하여 vCenter에 특정 SVM을 할당하려는 경우 다음 단계를 따르세요.</block>
   <block id="617275a68b9e63b5c1bdbaedd18295fb" category="list-text">vCenter 내에서 멀티테넌트 SVM을 사용하지 않는 경우:</block>
   <block id="618f681cdba2c4c2fc4bbcbf50528810" category="paragraph">ONTAP 아키텍처는 데이터 저장소에 대한 SAN(FCP, iSCSI, NVMe-oF) 및 NAS(NFS v3 및 v4.1) 서비스를 제공하는 유연하고 확장 가능한 스토리지 플랫폼입니다. NetApp AFF, ASA 및 FAS 스토리지 시스템은 ONTAP 운영 체제를 사용하여 S3 및 SMB/CIFS와 같은 게스트 스토리지 액세스를 위한 추가 프로토콜을 제공합니다.</block>
   <block id="dece980ac7b814fce6a3ac5ab9c2c18d" category="paragraph">vSphere Metro Storage Cluster(vMSC)는 가상 머신(VM)과 컨테이너를 장애로부터 보호하는 인증된 구성입니다. 이는 랙, 건물, 캠퍼스, 심지어 도시와 같은 다양한 장애 도메인에 분산된 ESXi 호스트 클러스터와 함께 확장 스토리지 개념을 사용하여 달성됩니다. NetApp MetroCluster 및 SnapMirror Active Sync 스토리지 기술은 호스트 클러스터에 RPO(복구 지점 목표)=0 보호를 제공하는 데 사용됩니다. vMSC 구성은 전체 물리적 또는 논리적 "사이트"에 장애가 발생하더라도 항상 데이터를 사용할 수 있도록 설계되었습니다. vMSC 구성의 일부인 저장 장치는 성공적인 vMSC 인증 프로세스를 거친 후 인증을 받아야 합니다. 지원되는 모든 저장 장치는 다음에서 찾을 수 있습니다.<block ref="34bc39e238eb497134ec6f46ab689fb0" category="inline-link-rx"></block>.</block>
+  <block id="fd480a9146da7f38fc6111c24d64620e" category="paragraph">NetApp 고객은 Azure 클라우드에서 모든 Epic 워크로드를 성공적으로 실행했습니다.  AWS와 Google Cloud도 Epic 워크로드를 실행할 수 있습니다.  NetApp 클라우드에서 Epic을 효과적으로 실행하는 데 필요한 엔터프라이즈급 기능과 성능을 제공합니다.  NetApp 클라우드 옵션은 iSCSI를 통한 블록 전송과 NFS 또는 SMB를 통한 파일 전송을 제공합니다.</block>
+  <block id="c4a18a844b0430569f6e8b2d7bfc02b5" category="list-text">*1차 제공.* Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes 및 Azure NetApp Files 주요 퍼블릭 클라우드 환경에서 고성능의 다중 프로토콜 관리형 스토리지 서비스를 제공합니다. 이러한 스토리지는 VMware Cloud on AWS(VMC on AWS), Azure VMware Solution(AVS), Google Cloud VMware Engine(GCVE)에서 게스트 운영 체제(GOS) 및 컴퓨팅 인스턴스의 데이터 저장소 또는 스토리지로 직접 사용할 수 있습니다.</block>
+  <block id="e465d3a307ef6903982ceaea5de22f9a" category="list-text">*클라우드 서비스.* 퍼블릭 클라우드 스토리지를 사용하여 온프레미스 시스템의 데이터를 보호하려면 NetApp Backup and Recovery 또는 SnapMirror Cloud를 사용하세요. NetApp Copy and Sync NAS와 개체 저장소에서 데이터를 마이그레이션하고 동기화하는 데 도움이 됩니다. NetApp Disaster Recovery 클라우드 재해 복구, 온프레미스 재해 복구, 온프레미스 간 재해 복구를 위한 강력하고 유능한 재해 복구 솔루션의 기반으로 NetApp 기술을 활용하는 비용 효과적이고 효율적인 솔루션을 제공합니다.</block>
+  <block id="1e8675e287bf96049d13eb5bf5b6fac6" category="inline-link-macro">Azure NetApp Files 무엇인가요?</block>
+  <block id="0756abbe79f45685a93dcbd06502741d" category="list-text"><block ref="0756abbe79f45685a93dcbd06502741d" category="inline-link-macro-rx"></block></block>
+  <block id="1e813c9851ad8226497585cd68a9aa1c" category="paragraph">NetApp 에서 제공하는 프리미엄 소프트웨어 제품은 다음과 같습니다. 이러한 기능은 ONTAP One 라이선스에 포함되지 않으므로 별도로 구매해야 합니다.</block>
+  <block id="46aee8859cf7d350c8d57a3c97362a07" category="list-text"><block ref="84f74eb2e2d8d303e0cb7d49d5faf63f" category="inline-link-rx"></block>VMware vSphere용. 이는 VMware 환경에 대한 재해 복구 및 백업을 제공하는 클라우드 기반 서비스입니다. SnapCenter 와 함께 사용하거나 사용하지 않고도 사용할 수 있으며, SAN 또는 NAS를 사용하여 온프레미스 간 DR을 지원하고, 지원되는 경우 NFS를 사용하여 온프레미스와 클라우드 간 DR을 지원합니다.</block>
+  <block id="f2f7b54edfb5972f4e3e57e3873f8a6f" category="list-text"><block ref="32ac26eb0ba8de4f2245bdaa97bc7e60" category="inline-link-rx"></block>. 이는 VMware 환경에 대한 모니터링과 분석을 제공하는 클라우드 기반 서비스입니다. 이 제품은 이기종 스토리지 환경의 다른 스토리지 공급업체는 물론, 여러 스위치 공급업체와 다른 하이퍼바이저를 지원합니다. DII는 VMware 환경의 성능, 용량 및 상태에 대한 완벽한 종단 간 통찰력을 제공합니다.</block>
+  <block id="2d025755c29d2044d54015979818fb44" category="paragraph">AFF, ASA 및 FAS 시스템의 ONTAP 9 외에도 NetApp ONTAP Select 의 VMware 워크로드, AWS의 VMware Cloud를 사용하는 Amazon FSx for NetApp , Azure VMware Solution을 사용하는 Azure NetApp Files , Google Cloud NetApp Volumes , Equinix의 NetApp Private Storage를 지원하지만 특정 기능은 서비스 공급자 및 사용 가능한 네트워크 연결에 따라 달라질 수 있습니다.</block>
 </blocks>
