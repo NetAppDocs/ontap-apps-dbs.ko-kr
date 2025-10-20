@@ -25,7 +25,7 @@ NOTE: 이 문서는 이전에 게시된 기술 보고서_TR-4128: NetApp MetroCl
 
 == vSphere 환경을 위한 무중단 가용성 솔루션
 
-ONTAP 아키텍처는 데이터 저장소에 SAN(FCP, iSCSI 및 NVMe-oF) 및 NAS(NFS v3 및 v4.1) 서비스를 제공하는 유연하고 확장 가능한 스토리지 플랫폼입니다. NetApp AFF, ASA 및 FAS 스토리지 시스템은 ONTAP 운영 체제를 사용하여 S3 및 SMB/CIFS와 같은 게스트 스토리지 액세스를 위한 추가 프로토콜을 제공합니다.
+ONTAP 아키텍처는 데이터 저장소에 대한 SAN(FCP, iSCSI, NVMe-oF) 및 NAS(NFS v3 및 v4.1) 서비스를 제공하는 유연하고 확장 가능한 스토리지 플랫폼입니다. NetApp AFF, ASA 및 FAS 스토리지 시스템은 ONTAP 운영 체제를 사용하여 S3 및 SMB/CIFS와 같은 게스트 스토리지 액세스를 위한 추가 프로토콜을 제공합니다.
 
 NetApp MetroCluster는 NetApp의 HA(컨트롤러 페일오버 또는 CFO) 기능을 사용하여 컨트롤러 장애로부터 보호합니다. 또한, 로컬 SyncMirror 기술, 재해 시 클러스터 페일오버(재해 또는 CFOD(Cluster Failover on Disaster), 하드웨어 이중화 및 지리적 분리를 통해 높은 수준의 가용성을 달성합니다. SyncMirror은 데이터를 두 플렉스에 기록하여 MetroCluster 구성의 두 부분에 걸쳐 동기식으로 데이터를 미러링합니다. 로컬 플렉스(로컬 쉘프에 있음)가 데이터를 능동적으로 제공하고 원격 플렉스(원격 쉘프에 있음)는 일반적으로 데이터를 제공하지 않음. 컨트롤러, 스토리지, 케이블, 스위치(패브릭 MetroCluster와 함께 사용), 어댑터와 같은 모든 MetroCluster 구성요소에 대해 하드웨어 이중화가 적용됩니다.
 
@@ -41,7 +41,7 @@ NetApp MetroCluster는 NetApp의 HA(컨트롤러 페일오버 또는 CFO) 기능
 
 == vSphere Metro Storage Cluster란 무엇입니까?
 
-vMSC(vSphere Metro Storage Cluster)는 VM(가상 머신) 및 컨테이너를 장애로부터 보호하는 인증 구성입니다. 이는 확장 스토리지 개념을 랙, 건물, 캠퍼스 또는 도시와 같은 여러 장애 도메인에 분산되는 ESXi 호스트 클러스터와 함께 사용하여 달성할 수 있습니다. NetApp MetroCluster 및 SnapMirror Active Sync 스토리지 기술은 호스트 클러스터에 제로 복구 지점 목표(RPO=0) 보호를 제공하는 데 사용됩니다. vMSC 구성은 완전한 물리적 또는 논리적 "사이트"에 장애가 발생하더라도 데이터를 항상 사용할 수 있도록 설계되었습니다. vMSC 구성에 포함된 스토리지 디바이스는 vMSC 인증 프로세스를 성공적으로 완료한 후 인증을 받아야 합니다. 지원되는 모든 저장 장치는 에서 찾을 https://www.vmware.com/resources/compatibility/search.php["VMware 스토리지 호환성 가이드 를 참조하십시오"] 수 있습니다.
+vSphere Metro Storage Cluster(vMSC)는 가상 머신(VM)과 컨테이너를 장애로부터 보호하는 인증된 구성입니다. 이는 랙, 건물, 캠퍼스, 심지어 도시와 같은 다양한 장애 도메인에 분산된 ESXi 호스트 클러스터와 함께 확장 스토리지 개념을 사용하여 달성됩니다. NetApp MetroCluster 및 SnapMirror Active Sync 스토리지 기술은 호스트 클러스터에 RPO(복구 지점 목표)=0 보호를 제공하는 데 사용됩니다. vMSC 구성은 전체 물리적 또는 논리적 "사이트"에 장애가 발생하더라도 항상 데이터를 사용할 수 있도록 설계되었습니다. vMSC 구성의 일부인 저장 장치는 성공적인 vMSC 인증 프로세스를 거친 후 인증을 받아야 합니다. 지원되는 모든 저장 장치는 다음에서 찾을 수 있습니다. https://compatibilityguide.broadcom.com/["VMware 스토리지 호환성 가이드 를 참조하십시오"].
 
 vSphere Metro Storage Cluster의 설계 지침에 대한 자세한 내용은 다음 설명서를 참조하십시오.
 

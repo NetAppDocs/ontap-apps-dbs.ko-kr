@@ -16,7 +16,7 @@ summary: SnapMirror, VMware VLSR 및 SRM과 함께 ONTAP를 사용한 복제 토
 [role="lead"]
 ONTAP 9에서는 클러스터의 물리적 구성 요소가 클러스터 관리자에게 표시되지만 클러스터를 사용하는 애플리케이션과 호스트에는 직접 표시되지 않습니다. 물리적 구성 요소는 논리적 클러스터 리소스가 구성되는 공유 리소스 풀을 제공합니다. 애플리케이션과 호스트는 볼륨 및 LIF가 포함된 SVM을 통해서만 데이터에 액세스합니다.
 
-각 NetApp SVM은 VMware vCenter Site Recovery Manager에서 어레이로 취급됩니다. VLSR은 특정 어레이 간(또는 SVM 간) 복제 레이아웃을 지원합니다.
+각 NetApp SVM은 Site Recovery Manager에서 고유한 어레이로 처리됩니다. VLSR은 특정 어레이 간(또는 SVM 간) 복제 레이아웃을 지원합니다.
 
 단일 VM은 VMDK(Virtual Machine Disk) 또는 RDM 같은 데이터를 소유할 수 없습니다. 이러한 데이터를 여러 VLSR 스토리지에서 소유할 수 없는 이유는 다음과 같습니다.
 
@@ -43,6 +43,20 @@ image:vsrm-ontap9_image8.png["SnapMirror 관계 레이아웃"]
 image:vsrm-ontap9_image9.png["SnapMirror 관계 레이아웃"]
 
 image:vsrm-ontap9_image10.png["SnapMirror 관계 레이아웃"]
+
+
+
+== SnapMirror Active Sync를 통한 VMFS 지원
+
+ONTAP 도구 10.3 이상에서는 SnapMirror Active Sync(SMas)를 사용하여 VMFS 데이터 저장소를 보호하는 기능도 지원합니다. 이를 통해 비교적 가까이 있는 두 데이터 센터(장애 도메인이라고 함) 간의 비즈니스 연속성을 위한 투명한 장애 조치가 가능해집니다. ONTAP 도구 SRA와 VLSR을 통해 SnapMirror 비동기를 사용하여 장거리 재해 복구를 조율할 수 있습니다.
+
+https://docs.netapp.com/us-en/ontap/snapmirror-active-sync/["ONTAP SnapMirror Active Sync에 대해 알아보세요"]
+
+데이터 저장소는 일관성 그룹(CG)에 함께 수집되며, 모든 데이터 저장소의 VM은 모두 동일한 CG의 멤버로서 쓰기 순서 일관성을 유지합니다.
+
+예를 들어 베를린과 함부르크의 사이트를 SMas로 보호하고, 세 번째 사이트 복제본을 비동기 SnapMirror 사용하고 VLSR로 보호하는 것이 있습니다. 또 다른 예로는 SMa를 사용하여 뉴욕과 뉴저지의 사이트를 보호하고, 세 번째 사이트는 시카고에 두는 것이 있습니다.
+
+image:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-104/media/fan-out-protection.png["SMas 레이아웃"]
 
 
 

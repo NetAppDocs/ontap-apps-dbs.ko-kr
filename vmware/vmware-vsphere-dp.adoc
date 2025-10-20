@@ -16,7 +16,7 @@ summary: SnapCenter를 사용하면 여러 작업에 적용할 수 있는 백업
 [role="lead"]
 ONTAP for vSphere를 사용하면 VM(가상 머신)을 백업하고 신속하게 복구할 수 있습니다. 이 기능은 VMware vSphere용 SnapCenter 플러그인을 통해 vCenter 내에서 쉽게 관리할 수 있습니다. ONTAP로 VM을 복구하는 가장 빠르고 간단한 방법을 제공하는 SnapCenter를 사용하여 타사 백업 솔루션을 강화함으로써 ONTAP의 스냅샷 기술을 활용합니다. SnapCenter는 ONTAP One 라이센스를 보유한 고객에게 무료로 제공되며, 다른 라이센스 번들도 이용할 수 있습니다.
 
-또한 VMware용 SnapCenter 플러그인은 와 https://docs.netapp.com/us-en/bluexp-backup-recovery/concept-protect-vm-data.html["가상 머신의 백업 및 복구를 위한 BlueXP "^]통합되어 대부분의 ONTAP 시스템에 효과적인 3-2-1 백업 솔루션을 구현할 수 있습니다. 추가 백업 스토리지를 위한 객체 저장소와 같이 프리미엄 서비스가 제공되는 가상 시스템에 대해 BlueXP  백업 및 복구를 사용하는 경우 일부 요금이 부과될 수 있습니다. 이 섹션에서는 VM 및 데이터 저장소를 보호하는 데 사용할 수 있는 다양한 옵션에 대해 간략하게 설명합니다.
+또한 VMware용 SnapCenter 플러그인은 다음과 통합될 수 있습니다. https://docs.netapp.com/us-en/data-services-backup-recovery/concept-protect-vm-data.html["가상 머신을 위한 NetApp Backup and Recovery"^]대부분의 ONTAP 시스템에 효과적인 3-2-1 백업 솔루션을 제공합니다. 프리미엄 서비스(추가 백업 저장소를 위한 개체 저장소 등)를 사용하여 가상 머신에 백업 및 복구를 사용하는 경우 일부 요금이 적용될 수 있습니다. 이 섹션에서는 VM과 데이터 저장소를 보호하는 데 사용할 수 있는 다양한 옵션을 간략하게 설명합니다.
 
 
 
@@ -58,9 +58,9 @@ OT4VS(VMware vSphere)용 ONTAP 툴은 VMware vSphere와 NetApp ONTAP 간의 원�
 
 
 
-== BlueXP  재해 복구
+== NetApp Disaster Recovery
 
-BlueXP  DR(재해 복구) 은 재해 발생 시 데이터와 애플리케이션을 보호하기 위한 포괄적인 솔루션을 제공하는 클라우드 기반 서비스입니다. 또한 자동화된 페일오버 및 페일백, 여러 시점 복구, 애플리케이션 정합성 보장 재해 복구, 온프레미스 및 클라우드 기반 ONTAP 시스템 모두에 대한 지원 등 다양한 기능을 제공합니다. BlueXP  DR은 ONTAP 및 VMware vSphere 환경과 원활하게 작동하도록 설계되어 재해 복구를 위한 통합 솔루션을 제공합니다.
+재해 복구(DR)는 재해 발생 시 데이터와 애플리케이션을 보호하기 위한 포괄적인 솔루션을 제공하는 클라우드 기반 서비스입니다. 여기에는 자동 장애 조치 및 장애 복구, 여러 시점 복구 지점, 애플리케이션 일관성 재해 복구, 온프레미스 및 클라우드 기반 ONTAP 시스템 모두에 대한 지원 등 다양한 기능이 제공됩니다. BlueXP DR은 ONTAP 과 VMware vSphere 환경과 원활하게 작동하도록 설계되어 재해 복구를 위한 통합 솔루션을 제공합니다.
 
 
 
