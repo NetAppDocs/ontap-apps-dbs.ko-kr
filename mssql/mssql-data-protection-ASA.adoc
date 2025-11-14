@@ -44,6 +44,3 @@ Microsoft는 SQL Server 2022에서 백업 작업의 스크립팅 및 자동화 �
 
 
 TIP: * NetApp는 SnapCenter를 사용하여 스냅샷 복사본을 생성할 것을 권장합니다 *. 위에서 설명한 T-SQL 방법도 작동하지만 SnapCenter는 백업, 복원 및 복제 프로세스를 완벽하게 자동화합니다. 또한 검색을 수행하여 올바른 스냅샷이 생성되도록 합니다.
-
-
-NOTE: SQL Server 데이터베이스가 VMware 가상화 환경에서 실행되는 가상 디스크에 호스팅되는 경우 SnapCenter를 사용합니다. 데이터베이스가 베어 메탈 물리적 서버 또는 guest-connect SCSI에서 호스팅되는 경우 T-SQL SnapShot 명령을 사용하여 데이터베이스를 백업합니다.
