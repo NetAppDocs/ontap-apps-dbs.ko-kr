@@ -105,7 +105,7 @@ SnapVault가 사용되는 환경에서는 특히 이름이 지정된 스냅샷�
 
 소스 볼륨은 DR 사이트의 SnapMirror 대상에 복제되는 계단식 구성으로 생성할 수 있으며, 이 구성에서는 볼륨을 SnapVault 타겟에 저장할 수 있습니다. 한 대상이 SnapMirror 대상이고 다른 대상이 SnapVault 대상인 팬아웃 관계에 소스 볼륨을 생성할 수도 있습니다. 그러나 VLSR 페일오버 또는 복제 반전이 발생할 경우 SnapMirror 대상 볼륨을 볼트의 소스로 사용하도록 SRA는 SnapVault 관계를 자동으로 재구성하지 않습니다.
 
-SnapMirror 및 SnapVault for ONTAP 9에 대한 최신 정보는 를 참조하십시오 https://www.netapp.com/media/17229-tr4015.pdf?v=127202175503P["ONTAP 9용 TR-4015 SnapMirror 구성 모범 사례 가이드."^]
+ONTAP 9용 SnapMirror 및 SnapVault 에 대한 최신 정보는 다음을 참조하십시오. https://www.netapp.com/pdf.html?item=/media/17229-tr-4015-snapmirror-configuration-ontap.pdf["ONTAP 9용 TR-4015 SnapMirror 구성 모범 사례 가이드."^]
 
 |===
 | 모범 사례 

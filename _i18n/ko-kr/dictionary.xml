@@ -2135,41 +2135,31 @@
   <block id="70532c0374111d897ef1176b34b6396c" category="inline-link">NVMe 및 가상 볼륨</block>
   <block id="50ec55042a7f4e8c2c66219ac096cfb3" category="inline-link">VMware.com</block>
   <block id="113c9d4e642d1ba4cc469267fb7fd0de" category="paragraph">자세한 내용은 을 참조하십시오<block ref="f8d477cd77073d731aafe4f52026608a" category="inline-link-rx"></block> 켜짐<block ref="1f1565cca975c4a703345d21e7f273b8" category="inline-link-rx"></block></block>
-  <block id="937251054fa0c1a7b946f8928cc857b9" category="section-title">관리 기준 정책</block>
   <block id="2ce0d6ec59cca7e0b6e0bdc389301e63" category="section-title">스토리지 정책을 사용하여 VM 구축</block>
   <block id="e0795f8b847058e171dec5a519757ece" category="image-alt">스토리지 정책을 사용하여 가상 머신 구축</block>
   <block id="941431bc1cecb0ec5e89e78e9a5a96fc" category="section-title">VM 스토리지 정책 준수</block>
   <block id="bfd6dec22a6a1724ff1b67f1f289cdfc" category="image-alt">가상 시스템 저장소 정책 준수</block>
-  <block id="9fe1fd556b933358881222d5c3da127c" category="paragraph">하이퍼스케일러 환경은 기존의 NFS v3 데이터 저장소로만 제한되므로, VVOL은 온프레미스 ONTAP 시스템이나 전 세계 NetApp 파트너 및 서비스 공급자가 호스팅하는 것과 같은 온프레미스 시스템의 모든 기능을 제공하는 클라우드 연결 시스템에서만 사용할 수 있습니다.</block>
   <block id="274bc582ca884fc158ea9ac9f79f9067" category="inline-link">ONTAP 제품 설명서</block>
   <block id="5ca60fe92dec435059ba5acefa4ce2c9" category="paragraph">_ ONTAP에 대한 자세한 내용은 을(를) 참조하십시오<block ref="8a9b15dc18a16e0b1acfa438e27f6aa6" category="inline-link-rx"></block>_</block>
   <block id="3dffa984dadf9ff0006ee9cebd3b04b9" category="inline-link">TR-4597 을 참조하십시오</block>
   <block id="d3fb76da5fbbcd6fa32e40910b5b9a47" category="section-title">ONTAP와 함께 VVOL을 사용할 때의 이점</block>
-  <block id="6a74f7c0a9021e009a9c030e54084978" category="paragraph">섹션 1.2에서 설명한 대로 정책 기반 관리를 통해 미리 정의된 정책을 사용하여 VM을 프로비저닝하고 관리할 수 있습니다. 이를 통해 다음과 같은 여러 가지 방법으로 IT를 운영할 수 있습니다.</block>
-  <block id="e0eb51b6d319e14c2fbfc1f628021a26" category="list-text">* 속도를 높이십시오. * ONTAP 툴을 사용하면 vCenter 관리자가 스토리지 용량 할당 작업을 위해 스토리지 팀과 티켓을 열 필요가 없습니다. 하지만 vCenter 및 ONTAP 시스템의 ONTAP 툴 RBAC 역할은 필요한 경우 특정 기능에 대한 액세스를 제한하여 독립 팀(예: 스토리지 팀) 또는 동일한 팀의 독립 활동을 계속 지원합니다.</block>
   <block id="3f4dbd6687bd0d55bf69fe5fdd0137c4" category="list-text">* 보다 현명한 프로비저닝. * 스토리지 시스템 기능은 VASA API를 통해 노출되므로 VM 관리자가 스토리지 시스템 관리 방법을 이해하지 않고도 프로비저닝 워크플로우를 통해 고급 기능을 활용할 수 있습니다.</block>
   <block id="a13fcc9220d042cae454e9ac073636ca" category="list-text">신속한 프로비저닝 * 다양한 스토리지 기능을 단일 데이터 저장소에서 지원하고 VM 정책에 따라 VM에 적합한 대로 자동으로 선택할 수 있습니다.</block>
   <block id="eb4c052226108afebf26e670208b9a55" category="list-text">* 실수를 피하십시오. * 스토리지 및 VM 정책은 미리 개발되고 VM을 프로비저닝할 때마다 스토리지를 사용자 지정할 필요 없이 필요에 따라 적용됩니다. 정의된 정책에서 스토리지 기능이 떨어지면 규정 준수 알람이 발생합니다. 앞서 언급한 것처럼, ICP는 초기 프로비저닝을 예측 가능하고 반복 가능하게 만드는 동시에, ICP를 기반으로 하는 VM 스토리지 정책을 수립하여 정확한 배치를 보장합니다.</block>
   <block id="f9878e32fdf258284c007eaae38773cd" category="section-title">최신 SAN에서 VM 세부 관리</block>
-  <block id="7e673a7c12cc256f29bcd7b2028d9d5a" category="paragraph">파이버 채널과 iSCSI를 사용하는 SAN 스토리지 시스템은 ESX에 대해 VMware에서 최초로 지원되었지만 스토리지 시스템에서 개별 VM 파일과 디스크를 관리할 수 있는 기능이 부족했습니다. 대신 LUN이 프로비저닝되고 VMFS가 개별 파일을 관리합니다. 따라서 스토리지 시스템에서 개별 VM 스토리지 성능, 클론 복제 및 보호를 직접 관리하는 것이 어렵습니다. VVOL은 ONTAP의 강력한 고성능 SAN 기능을 통해 이미 사용 중인 NFS 스토리지를 사용하는 고객이 더욱 세분화된 스토리지 기능을 이용할 수 있도록 합니다.</block>
-  <block id="25a46370807e0eab0dfe3853abfb9b6e" category="paragraph">이제 vSphere 8 및 VMware vSphere 9.12 이상을 위한 ONTAP 툴을 사용하여, 기존 SCSI 기반 프로토콜을 위한 VVOL에서 사용하는 것과 동일한 세분화된 제어를 NVMe over Fabrics를 사용하여 최신 파이버 채널 SAN에서 사용할 수 있으며, 규모에 따라 훨씬 더 뛰어난 성능을 제공합니다. vSphere 8.0 업데이트 1을 사용하면 하이퍼바이저 스토리지 스택에서 I/O 변환 없이 VVOL을 사용하여 완벽한 엔드 투 엔드 NVMe 솔루션을 구축할 수 있습니다.</block>
   <block id="f61f57f748f5f0b52c7f11f1f1bd43f0" category="section-title">스토리지 오프로드 기능</block>
   <block id="911fa02c34dda38cd69be06e524ed9d0" category="inline-link">효율성 보장</block>
-  <block id="3170031d77f241bc872afcb490c0a806" category="paragraph">VAAI는 스토리지로 오프로드되는 다양한 작업을 제공하지만 VASA Provider에서 해결하는 데 약간의 차이가 있습니다. SAN VAAI는 VMware 관리 스냅샷을 스토리지 시스템으로 오프로드할 수 없습니다. NFS VAAI는 VM 관리 스냅샷을 오프로드할 수 있지만 스토리지 네이티브 스냅샷을 사용하여 VM을 배치하는 데 제한이 있습니다. VVOL은 가상 머신 디스크에 개별 LUN, 네임스페이스 또는 파일을 사용하므로 ONTAP는 파일 또는 LUN을 빠르고 효율적으로 복제하여 델타 파일이 더 이상 필요하지 않은 VM 세부 스냅샷을 생성할 수 있습니다. 또한 NFS VAAI는 핫(전원 켜짐) Storage vMotion 마이그레이션에 대한 클론 작업 오프로딩을 지원하지 않습니다. 기존 NFS 데이터 저장소에서 VAAI를 사용할 때 마이그레이션을 오프로드하려면 VM의 전원을 꺼야 합니다. ONTAP 툴의 VASA Provider를 사용하면 핫 및 콜드 마이그레이션을 위해 스토리지 효율성이 뛰어난 거의 즉각적인 복제본을 생성할 수 있으며, VVOL의 볼륨 간 마이그레이션을 위해 거의 즉각적인 복제본을 지원할 수 있습니다. 이러한 상당한 스토리지 효율성 혜택을 통해 에서 VVOL 워크로드를 충분히 활용할 수 있습니다<block ref="9d1af7a9d4f98887e53c1a9bedbce044" category="inline-link-rx"></block> 프로그램. 마찬가지로 VAAI를 사용한 교차 볼륨 클론이 요구 사항을 충족하지 못할 경우 VVol의 복제 환경이 개선되어 비즈니스 과제를 해결할 수 있습니다.</block>
   <block id="a8567b4dc683947384ef2e1dd0fc6ac1" category="section-title">VVOL의 일반적인 사용 사례</block>
   <block id="48e535b80538b088fd868fde9372715c" category="paragraph">이러한 이점 외에도 VVOL 스토리지의 일반적인 사용 사례도 있습니다.</block>
   <block id="441f01ec38e91fad1b235a0e7422a178" category="list-text">* VM의 온디맨드 프로비저닝 *</block>
   <block id="bd652a918164d8fa5176b5f9b92c2e61" category="list-text">프라이빗 클라우드 또는 서비스 공급자 IaaS</block>
   <block id="4fbc1141a40f5259e3ab1545de52b1ea" category="list-text">* 일등석 디스크(FCD) *</block>
-  <block id="e83f2e4e8676ee8faac4d6af599fd7e7" category="list-text">VMware Tanzu Kubernetes Grid[TKG] 영구 볼륨.</block>
-  <block id="b2b81490f2245d3d566e0ccc6a29cfc2" category="list-text">독립적인 VMDK 라이프사이클 관리를 통해 Amazon EBS와 유사한 서비스 제공</block>
   <block id="2511e4e8cbb72027ae20f24008d4b939" category="list-text">* 임시 VM의 온디맨드 프로비저닝 *</block>
   <block id="eeb1044cc319a5d53503e45dbf762291" category="list-text">테스트/개발 연구소</block>
   <block id="858d314810762abccaa7baf230e3dc18" category="list-text">교육 환경</block>
   <block id="ab7bbc294bf0f0354980a3014e8f4219" category="section-title">VVOL의 일반적인 이점</block>
   <block id="ccd6ea8c57e93a5401d07aab9c60f371" category="paragraph">위와 같은 사용 사례에서 VVOL을 최대한 활용했을 때 VVOL은 다음과 같은 구체적인 개선을 제공합니다.</block>
   <block id="1c21847cdc5616af138ba0c03aad7adb" category="list-text">VVol은 vSphere CSI와 함께 TKG를 사용할 때 이상적인 스토리지 기술로서 vCenter 관리자가 관리하는 개별 스토리지 클래스 및 용량을 제공합니다.</block>
-  <block id="d5f068caef73978a5483badd927a7e98" category="list-text">이름에서 알 수 있듯이, Amazon EBS와 유사한 서비스는 FCD를 통해 제공될 수 있습니다. 이는 FCD VMDK는 vSphere의 일등석 시민이며 연결된 VM과 별도로 관리할 수 있는 수명주기를 가지고 있기 때문입니다.</block>
   <block id="7e7040600922b2a78715f856613a3c08" category="doc">VVOL 보호</block>
   <block id="de92c927f248723e4668aec459709995" category="section-title">VASA 공급자 고가용성</block>
   <block id="f4d4cb8868f07cad16bd7de7e36c5201" category="paragraph">NetApp VASA Provider는 vCenter 플러그인 및 REST API 서버(이전의 VSC(Virtual Storage Console)) 및 스토리지 복제 어댑터와 함께 가상 어플라이언스의 일부로 실행됩니다. VASA Provider를 사용할 수 없는 경우 VVol을 사용하는 VM은 계속 실행됩니다. 그러나 새로운 VVOL 데이터 저장소를 생성할 수 없으며 VVol은 vSphere에서 생성하거나 바인딩할 수 없습니다. 즉, vCenter에서 VVOL의 생성을 요청할 수 없기 때문에 VVOL을 사용하는 VM의 전원을 켤 수 없습니다. 실행 중인 VM은 VVol을 새 호스트에 바인딩할 수 없으므로 vMotion을 사용하여 다른 호스트로 마이그레이션할 수 없습니다.</block>
@@ -2246,7 +2236,6 @@
   <block id="3db9849d9f30bfc6e05c4e0b36d28848" category="section-title">기존 데이터 저장소에서 VVOL으로 VM 마이그레이션</block>
   <block id="58f2a764a13ec89d3c5ead5343e75637" category="section-title">정책을 사용하여 VM 관리</block>
   <block id="a4332a81dbc3a9888be608dea640cd3d" category="section-title">VM 스토리지 정책을 생성하는 중입니다</block>
-  <block id="e65bde48b0a84fcc60d957de90c3a128" category="list-text">최소 및 최대 IOPS와 같은 성능 기능을 변경하려면 특정 구성에 약간의 주의가 필요합니다.</block>
   <block id="7de504873f20af5c8ce6dadd2f79b29a" category="list-text">ONTAP 툴은 현재 지원되는 버전의 ONTAP로 개별 비공유 QoS 정책을 생성합니다. 따라서 각 개별 VMDK는 고유한 IOP 할당을 받게 됩니다.</block>
   <block id="63a33ddbd2c3ccd2daac06020248049f" category="section-title">VM 스토리지 정책을 다시 적용합니다</block>
   <block id="50b6e1c7f2e81842d993d8ce88acc979" category="summary">ONTAP는 SAN 환경을 위한 iSCSI, FC(파이버 채널), FCoE(Fibre Channel over Ethernet) 또는 NVMe/FC(Non-Volatile Memory Express over Fibre Channel)와 NFS(v3 및 v4.1), 게스트 연결을 위한 SMB 또는 S3와 같은 가상화에 사용되는 모든 주요 스토리지 프로토콜을 지원합니다. 고객은 자체 환경에 가장 적합한 프로토콜을 자유롭게 선택할 수 있으며 필요에 따라 단일 시스템에서 프로토콜을 결합할 수 있습니다.</block>
@@ -2616,7 +2605,6 @@ VAAI를 사용하지 않는 경우 NFS에서 모든 VM에 대해 이 설정이 �
   <block id="9bc21373e0e299579a7ac86dcd4f513d" category="paragraph">중요한 아키텍처 변화는 ONTAP 9의 SnapVault가 7-Mode SnapVault와 마찬가지로 qtree 레벨이 아닌 볼륨 레벨에서 복제된다는 점입니다. 이 설정은 SnapVault 관계의 소스가 볼륨이어야 하며 해당 볼륨이 SnapVault 보조 시스템의 자체 볼륨으로 복제되어야 함을 의미합니다.</block>
   <block id="d447048519c85a2fb3bea0790cd109fb" category="paragraph">SnapVault가 사용되는 환경에서는 특히 이름이 지정된 스냅샷이 운영 스토리지 시스템에 생성됩니다. 구축된 구성에 따라 SnapVault 스케줄이나 NetApp Active IQ Unified Manager 같은 애플리케이션을 통해 운영 시스템에 명명된 스냅샷을 생성할 수 있습니다. 그런 다음 기본 시스템에서 생성된 명명된 스냅샷이 SnapMirror 대상에 복제되고 이 스냅샷에서 SnapVault 대상에 볼트가 됩니다.</block>
   <block id="5bc66b9c84b3f7cc0b375e729376b68d" category="inline-link">ONTAP 9용 TR-4015 SnapMirror 구성 모범 사례 가이드.</block>
-  <block id="0d510e96259254d285c6aaeb8458f45d" category="paragraph">SnapMirror 및 SnapVault for ONTAP 9에 대한 최신 정보는 를 참조하십시오<block ref="32e7c991f675bf983c547a2a174c2caf" category="inline-link-rx"></block></block>
   <block id="657a41cce55646ab17754ac1427970af" category="paragraph">다음 그림은 SnapVault 계단식으로 구성된 SnapMirror를 보여 줍니다. SnapVault 대상이 DR 사이트 또는 운영 사이트의 운영 중단으로 인해 영향을 받지 않는 3차 사이트에 있는 경우, 페일오버 후 백업을 계속할 수 있도록 환경을 재구성할 수 있습니다.</block>
   <block id="63fd1f18d5d53fa97fd05a7fd96090b4" category="section-title">Site Recovery Manager 환경에서 Qtree 사용</block>
   <block id="345cb3f040f9f7f3f1a4261ed260aa79" category="section-title">FC 및 iSCSI 혼합 환경</block>
@@ -3115,12 +3103,9 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="0b0403a9258293da1f6a5fc84d24a18e" category="inline-link">HA 쌍 관리 개요</block>
   <block id="cf654073ce9eb8f38d3f05292ed83cc5" category="paragraph">MetroCluster를 통한 사이트 전환은 한 사이트가 오프라인일 때 또는 사이트 전체 유지 관리를 위한 계획된 활동으로 수행됩니다. 나머지 사이트에서는 오프라인 클러스터의 스토리지 리소스(디스크 및 애그리게이트)를 소유합니다. 그러면 장애가 발생한 사이트의 SVM이 온라인으로 전환되고 재해 사이트에서 다시 시작되므로 클라이언트 및 호스트 액세스를 위해 전체 ID를 유지할 수 있습니다.</block>
   <block id="823bd5c6c005e340599d915e134d851c" category="summary">VMware vSphere 솔루션 개요</block>
-  <block id="be26d39d86de44047c65c1fed157d529" category="paragraph">VCSA(vCenter Server Appliance)는 관리자가 ESXi 클러스터를 효과적으로 운영할 수 있도록 지원하는 강력한 중앙 집중식 관리 시스템이자 vSphere용 단일 창입니다. VM 프로비저닝, vMotion 작업, HA(고가용성), DRS(Distributed Resource Scheduler), Tanzu Kubernetes Grid 등의 주요 기능을 지원합니다. VMware 클라우드 환경에서 필수적인 구성 요소이며 서비스 가용성을 고려하여 설계해야 합니다.</block>
   <block id="8ba8694e23f6560a60d85c4de549122b" category="section-title">vSphere 고가용성</block>
-  <block id="01036edb3159652090a3f7149fe1ce2f" category="paragraph">vSphere HA 클러스터 장애가 발생한 서버에서 VM을 복구합니다.</block>
   <block id="15496c3917565cea1f21bbc7e6eba996" category="image-alt">vMSC 다이어그램</block>
   <block id="dcff37ab37f2cb6a72aeb3c30e3ed5aa" category="section-title">호스트 장애 감지</block>
-  <block id="7069d861b63dd4095cfb7b2ee30587f5" category="paragraph">HA 클러스터가 생성되면 클러스터의 모든 호스트가 선택에 참여하며 호스트 중 하나가 마스터가 됩니다. 각 슬레이브는 네트워크 하트비트를 마스터로 수행하고, 마스터는 모든 슬레이브 호스트에서 네트워크 하트비트를 수행합니다. vSphere HA 클러스터의 마스터 호스트는 슬레이브 호스트의 장애를 감지합니다.</block>
   <block id="73b629afd8ef39d8d0147696412538c8" category="paragraph">감지된 장애 유형에 따라 호스트에서 실행 중인 가상 머신을 페일오버해야 할 수 있습니다.</block>
   <block id="e12cf4015a45ff29f1f84ae1a3ee0390" category="paragraph">vSphere HA 클러스터에서 세 가지 유형의 호스트 장애가 감지됩니다.</block>
   <block id="4eac346eb6cdd3a1a98ee9bc71ebccaa" category="list-text">실패 - 호스트의 작동이 중지됩니다.</block>
@@ -3135,15 +3120,11 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="df05a421ed8ba49f97f18dc085495ee4" category="section-title">VM 구성 요소 보호(VMCP)</block>
   <block id="1418d127ee81cc7f3e114029e9ba6856" category="paragraph">HA와 관련된 vSphere 6의 향상된 기능 중 하나는 VMCP입니다. VMCP는 블록(FC, iSCSI, FCoE) 및 파일 스토리지(NFS)에 대한 APD(All Path Down) 및 PDL(Permanent Device Loss) 조건에서 향상된 보호 기능을 제공합니다.</block>
   <block id="fc35e15d00ef5b037a1a56c77ef3e17c" category="section-title">영구적 장치 손실(PDL)</block>
-  <block id="967b20f28092443585be2b9649d0ba93" category="paragraph">PDL은 저장소 장치가 영구적으로 실패하거나 관리자가 제거되어 반환되지 않을 때 발생하는 상태입니다. NetApp 스토리지 배열은 ESXi에 SCSI 감지 코드를 발행하여 디바이스가 영구적으로 손실되었음을 알립니다. vSphere HA의 Failure Conditions and VM Response 섹션에서 PDL 조건이 감지된 후 응답을 구성할 수 있습니다.</block>
   <block id="6d623de2ea8c5007def6f2349d9ad8b9" category="section-title">모든 경로 다운(APD)</block>
-  <block id="15d2d9b1f25022e7080482582e155265" category="paragraph">APD는 스토리지 디바이스가 호스트에 액세스할 수 없고 스토리지에 대한 경로를 사용할 수 없는 경우에 발생하는 상태입니다. ESXi는 이 문제가 디바이스의 일시적인 문제로 간주하여 다시 사용할 수 있게 될 것으로 예상하고 있습니다.</block>
   <block id="f89caca297ba86d190d90ef30c409ccf" category="paragraph">APD 조건이 감지되면 타이머가 시작됩니다. 140초 후에 APD 조건이 공식적으로 선언되고 장치가 APD 시간 초과로 표시됩니다. 140초가 지나면 HA는 VM 장애 조치 APD에 지정된 시간(분)을 계산하기 시작합니다. 지정된 시간이 경과하면 HA가 영향을 받는 가상 머신을 다시 시작합니다. 원하는 경우 다르게 응답하도록 VMCP를 구성할 수 있습니다(사용 안 함, 이벤트 발생 또는 VM 전원 끄기 및 재시작).</block>
-  <block id="76d29c3c5f57a16a7f080459356c3793" category="paragraph">보존적 은 HA가 VM을 다시 시작할 수 있는 가능성을 나타냅니다. 보존으로 설정하면 다른 호스트가 다시 시작할 수 있다는 것을 알고 있는 경우에만 HA가 APD의 영향을 받는 VM을 다시 시작합니다. 공격적인 경우 HA는 다른 호스트의 상태를 모르는 경우에도 VM을 다시 시작합니다. 따라서 해당 데이터 저장소에 액세스할 수 있는 호스트가 없는 경우 VM이 다시 시작되지 않을 수 있습니다.</block>
   <block id="580bc3953adcf3e3a20c5497f67f8b2c" category="paragraph">NetApp에서는 APD 시간 초과 후 APD 복구에 대한 응답을 사용 안 함으로 구성하는 것이 좋습니다.</block>
   <block id="a067a9a0e98c97f62fba4698bde30edc" category="section-title">NetApp MetroCluster용 VMware DRS 구현</block>
   <block id="b9e04f46a88c8139fbb91780a2ff9064" category="paragraph">클러스터에 대한 DRS 선호도 규칙을 생성하는 경우 vSphere가 가상 머신 페일오버 중에 해당 규칙을 적용하는 방법을 지정할 수 있습니다.</block>
-  <block id="f903d43a0acb7412db93e8201ab12be3" category="paragraph">vSphere HA 페일오버 동작을 지정할 수 있는 두 가지 규칙 유형이 있습니다.</block>
   <block id="a96c8bab3a450bb828e3093d16f7e32c" category="list-text">VM 반유사성 규칙은 페일오버 작업 중에 지정된 가상 머신이 서로 떨어져 있도록 합니다.</block>
   <block id="1fa3a04279011cbc6001c96c0f6f27fb" category="list-text">VM 호스트 선호도 규칙은 페일오버 작업 중에 특정 호스트 또는 정의된 호스트 그룹의 구성원에 지정된 가상 머신을 배치합니다.</block>
   <block id="225e3f7204b6e5bf6cd388af7bb16eb4" category="paragraph">VMware DRS의 VM 호스트 선호도 규칙을 사용하면 사이트 A와 사이트 B 간에 논리적 구분을 통해 VM이 지정된 데이터 저장소에 대한 운영 읽기/쓰기 컨트롤러로 구성된 스토리지와 동일한 사이트의 호스트에서 실행되도록 할 수 있습니다. 또한 VM 호스트 선호도 규칙을 통해 가상 머신이 스토리지에 로컬을 유지할 수 있으며, 이 경우 사이트 간에 네트워크 장애가 발생할 경우 가상 머신 연결을 확인할 수 있습니다.</block>
@@ -4059,7 +4040,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="f98dd9d12416a648450df8c99d10878a" category="summary">이 개요는 ONTAP이 설치된 VMware vSphere 가상 볼륨(VVol)에 대해 개괄적으로 설명합니다</block>
   <block id="674c41ba00ec77fc9d294abbba7e7b7d" category="paragraph">ONTAP는 20년 이상 VMware vSphere 환경을 위한 업계 최고의 스토리지 솔루션으로, 비용을 절감하는 동시에 관리를 간소화하는 혁신적인 기능을 지속적으로 추가하고 있습니다.</block>
   <block id="ae7454da5e20b82b7fe67eb1ff88c923" category="admonition">이 문서는 이전에 게시된 기술 보고서_TR-4400: VMware VVol(vSphere 가상 볼륨)을 ONTAP _ 로 대체합니다</block>
-  <block id="ee82b7a98212a75a2397dd9c5f9b1ab4" category="paragraph">ONTAP는 2012년 최초 릴리즈부터 VASA 사양을 지원합니다. 다른 NetApp 스토리지 시스템은 VASA를 지원할 수 있지만, 이 문서에서는 현재 지원되는 ONTAP 9 릴리즈에 대해 중점적으로 설명합니다.</block>
   <block id="afd715f07b1ec06fe77bf23a2d7bf185" category="paragraph">_ ONTAP 및 VMware vSphere Best Practice에 대한 자세한 내용은 를 참조하십시오 <block ref="5dbb4949ffa7cb97fe4eaffc517a1111" category="inline-link-macro-rx"></block>_</block>
   <block id="e88c947a5d8f4c0daec271a8595604a7" category="inline-image-macro">Active IQ Unified Manager 가상 머신 보기</block>
   <block id="9078040b61fc8a9bd0215e8f35ff788c" category="paragraph"><block ref="9078040b61fc8a9bd0215e8f35ff788c" category="inline-image-macro-rx" type="image"></block></block>
@@ -4150,9 +4130,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
 <block ref="0bff808225ac084b8184e7670c17aa52" category="inline-link-macro-rx"></block></block>
   <block id="1f7ff87198d4a8563ac0d42354d47052" category="list-text">TR-4400: ONTAP를 포함한 VMware vSphere 가상 볼륨
 <block ref="57ea579fe6c0d333a496008248ad03e2" category="inline-link-macro-rx"></block></block>
-  <block id="ef8c76bd50596fa93881a13dac3f23b3" category="inline-link-macro"><block ref="ef8c76bd50596fa93881a13dac3f23b3" category="inline-link-rx"></block></block>
-  <block id="6e5923e0b2d91653ee7dd35aa5f48141" category="list-text">ONTAP 9용 TR-4015 SnapMirror 구성 모범 사례 가이드
-<block ref="6a851721cd10ebeb2f9cfa107f963956" category="inline-link-macro-rx"></block></block>
   <block id="e651877073d877e1ee090d986eafc550" category="list-text">Hyper-V 클러스터가 운영 및 복제 클러스터 역할을 하는 동일한 위치나 별도의 지리적 위치에 있어야 합니다. 검토 <block ref="8a150f92c22920868769b8738759e23d" category="inline-link-macro-rx"></block> 를 참조하십시오.</block>
   <block id="8762adae157b34ee542f2e614401603a" category="list-text">ONTAP 개념
 <block ref="836022e29667128997850a15d18e8759" category="inline-link-rx"></block></block>
@@ -5413,7 +5390,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="4d5a9665c20fe0f045d612f3d7c14c3a" category="inline-link">VMware Live Site Recovery 어플라이언스에 SRA를 구성합니다</block>
   <block id="74d3c40ee5d2741e75390e90d13a881a" category="list-text">기존 데이터 저장소를 보호하기 위해 SRM/VLSR에 대해 SRA를 설정한 경우<block ref="ae14a63430307f4358dbb1aa0a6215ef" category="inline-link-rx"></block></block>
   <block id="56b3d744b9b4be462a3690ae4544597f" category="inline-link">제로급 RPO</block>
-  <block id="f2866fe05fc7b275f3e2c504b39a3676" category="list-text">의 기본 백업을<block ref="f915d15018e6084f8326718037772bc7" category="inline-link-rx"></block> 구성합니다.</block>
   <block id="c6a161ea3b473fa2cdc98e5283764902" category="list-text">다른 저장 매체에 대한 정기 백업을 구성합니다.</block>
   <block id="ed0748e15540f55b7e9e13424330165e" category="paragraph">가상 시스템에 사용할 VVol 스토리지를 생성하는 모범 사례를 따르십시오.</block>
   <block id="071d555e17e95fc548b89eaa2c3d9abf" category="section-title">ONTAP 툴을 사용하여 VVOL 데이터 저장소 생성 준비</block>
@@ -5422,20 +5398,15 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="975336c37f4c9eec8db7574a1acdfc20" category="inline-link">LIF 개요 구성</block>
   <block id="a51cd3bd8dc9efabd4808d4faa54cb85" category="inline-link">물리적 포트를 결합하여 인터페이스 그룹을 생성합니다</block>
   <block id="02da2876df386437299938fff21fad98" category="list-text">각 스위치/패브릭 연결마다 노드당 하나 이상의 LIF가 있어야 합니다. 모범 사례로서, FCP, iSCSI 또는 NVMe 기반 프로토콜에 대해 노드당 두 개 이상의 를 생성합니다. LIF는 NFS 기반 VVol에는 노드당 하나의 LIF로 충분하지만 이 LIF는 LACP ifgroup으로 보호해야 합니다. <block ref="f0614b67c9ad440bb8aa968adbd6137a" category="inline-link-rx"></block>자세한 내용은 및<block ref="a5ffd5460ffa788a3fba4a7f91132efb" category="inline-link-rx"></block> 을 참조하십시오.</block>
-  <block id="1e410bafe9c5869016fc8d733372d354" category="list-text">테넌트 vCenter에 대해 SVM 범위 자격 증명을 사용하려는 경우 SVM당 하나 이상의 관리 LIF.</block>
   <block id="88ad52445ad4b758c30b8d41e4898479" category="inline-link">ONTAP 클러스터 및 SVM이 피어링됩니다</block>
   <block id="9e972a46542b8d916a3d602fa7d61635" category="list-text">SnapMirror를 사용할 계획이라면 소스와 대상을<block ref="03354afe01dc1f53e5b25fc0bc002ae0" category="inline-link-rx"></block>확인하십시오.</block>
   <block id="2a03ee5b0887b8a6bf23fd52456544db" category="inline-link">VMware vSphere용 ONTAP 툴을 구축합니다</block>
   <block id="23f58455f809e6f8a8a2cac1db0e49cf" category="list-text"><block ref="17b63a5e90adbe276a8874700041ac19" category="inline-link-rx"></block> NetApp 지원 사이트에서 다운로드한 OVA 사용</block>
-  <block id="1bcb0e86c49aae8128bbabb5d9d3d585" category="list-text">ONTAP 툴 10.0 이상에서는 어플라이언스당 여러 vCenter 서버를 지원하므로 더 이상 vCenter당 하나의 ONTAP 툴 어플라이언스를 구축할 필요가 없습니다.</block>
   <block id="951d3fc54a28f9f46798897467d96a5b" category="inline-link">인증서를 관리합니다</block>
-  <block id="6d8aae47de809b9e77fb4f1ee0ed7730" category="list-text">여러 vCenter를 단일 ONTAP 툴 인스턴스에 연결하려면 CA 서명된 인증서를 생성하고 설치해야 합니다. 단계는 를<block ref="32dbc6ca4c4a8bcb0695dd873f46e9e4" category="inline-link-rx"></block> 참조하십시오.</block>
-  <block id="31be7f8c3c1f560d4cfdde9947673161" category="list-text">10.3부터 ONTAP 툴은 대부분의 비 VVOL 워크로드에 적합한 단일 노드 소형 어플라이언스로 구축됩니다.</block>
   <block id="485a78e60d40cdf87a9864e840ed44a8" category="inline-link">스케일아웃 ONTAP 툴</block>
   <block id="0112f904af205a304a0144318d92a88f" category="inline-link">vSphere DRS 없이 선호도 규칙 사용</block>
   <block id="7ff088db1b9b2e6077b66b3e834c022c" category="inline-link">VM-VM 선호도 규칙을 생성합니다</block>
   <block id="1d7299ee36dd01581c03d394e21875e9" category="inline-link">내장된 구성 백업 유틸리티를 사용합니다</block>
-  <block id="aaccfa1f911c7ed3afac8a1c9005cf08" category="list-text">운영 VVOL에 권장되는 모범 사례는 모든 단일 장애 지점을 제거하는 것입니다. ONTAP 도구 VM이 동일한 호스트에서 함께 실행되지 않도록 반유사성 규칙을 생성합니다. 초기 구축 후에는 Storage vMotion을 사용하여 ONTAP 툴 VM을 다른 데이터 저장소에 배치하는 것이 좋습니다. 또는<block ref="33bad2ad715296cb3b9df2aa8e0bbe93" category="inline-link-rx"></block> 에 대한 자세한 정보<block ref="9d1413939148e981fa32923e1c0a740d" category="inline-link-rx"></block> 및/또는 빈번한 백업을 예약해야<block ref="835137bc934138d6c89439748022267d" category="inline-link-rx"></block> 합니다.</block>
   <block id="97075bcba23b351ceb599f8167247f82" category="list-text">사용자 환경에 맞게 ONTAP 도구 10.3 구성</block>
   <block id="46efd89ca4d682d645c74916f2c8e8f4" category="list-text"><block ref="9271e724c67dd3dffeb4e3ddaf43b80d" category="inline-link-rx"></block> ONTAP 도구 관리자 UI에서</block>
   <block id="6eaf552fe4b827d87d969ecf00791fab" category="inline-link">ONTAP 클러스터를 추가합니다</block>
@@ -5445,11 +5416,8 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="b7d3b83b5327fbad54ed641ffe056c7b" category="list-text"><block ref="b7d3b83b5327fbad54ed641ffe056c7b" category="inline-link-rx"></block></block>
   <block id="a5ff3af9e80b6313b32053dd07f43a23" category="inline-link">스토리지 백엔드를 vCenter Server 인스턴스에 연결합니다</block>
   <block id="b60bfa6652bfe8b1d4f8779e792ac95c" category="list-text"><block ref="b60bfa6652bfe8b1d4f8779e792ac95c" category="inline-link-rx"></block></block>
-  <block id="e3efa7d6ee6a48514d6cd7ff7795498f" category="list-text">vCenter 관리자에게 특정 SVM 자격 증명을 제공하고, vCenter의 ONTAP tools storage backend 메뉴에서 SVM을 스토리지 백엔드로 추가합니다.</block>
   <block id="0abec471b6c51c227aee6d0b1708d228" category="list-text">스토리지 계정에 대한 RBAC 역할을 생성하는 것이 모범 사례입니다.</block>
-  <block id="e235f10d1a7bf30f3198a59ac049dc9c" category="list-text">ONTAP 툴에는 ONTAP 툴 스토리지 계정에 필요한 역할 권한이 포함된 JSON 파일이 포함되어 있습니다. JSON 파일을 ONTAP System Manager에 업로드하여 RBAC 역할 및 사용자를 간편하게 생성할 수 있습니다.</block>
   <block id="8ca4b3b11e162a34da542a63661edf9a" category="list-text">ONTAP RBAC 역할에 대한 자세한 내용은 에서확인할 수 있습니다<block ref="34ad13b9bdc1ec3d2d017144f37b1766" category="inline-link-rx"></block>.</block>
-  <block id="e4f0d44befb2f792ce908178a949f26d" category="admonition">전체 클러스터를 ONTAP 툴 관리자 UI에서 온보딩해야 하는 이유는 VVOL에 사용되는 API의 대부분이 클러스터 수준에서만 사용할 수 있기 때문입니다.</block>
   <block id="90aa53fd267c0c35741d35381ad7a054" category="section-title">ONTAP 툴을 사용하여 VVOL 데이터 저장소를 생성합니다</block>
   <block id="2899926e592e956d9ee50e9ac1a3fcc5" category="paragraph">VVOL 데이터 저장소를 생성할 호스트, 클러스터 또는 데이터 센터를 마우스 오른쪽 버튼으로 클릭한 다음 _ONTAP tools_&gt;_Provision Datastore_를 선택합니다.</block>
   <block id="893534fd72b00ed504664763cdcfc0a5" category="inline-image-macro">role="thumb""Provision datastore wizard" ,300</block>
@@ -5462,12 +5430,10 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="2b3dd72cbd7ce4cf79b8fe46700d45d5" category="list-text">마침 을 클릭합니다</block>
   <block id="278f04f3dff2f303eed4edfbc836f534" category="paragraph"><block ref="278f04f3dff2f303eed4edfbc836f534" category="inline-image-macro-rx" type="image"></block></block>
   <block id="78195be4e07f2cf980cf70b78cfd4a62" category="list-text">정말 간단합니다!</block>
-  <block id="ca8e7cc39790460719db057ff38e167d" category="list-text">ONTAP FAS, AFF 및 ASA 이전 ASA R2가 포함된 ONTAP 도구 10.3</block>
   <block id="7f016940a12444f321c6a4251eb495cf" category="list-text">프로토콜을 선택합니다</block>
   <block id="c3646108adeb4be26557fcbb99f62dc2" category="paragraph"><block ref="c3646108adeb4be26557fcbb99f62dc2" category="inline-image-macro-rx" type="image"></block></block>
   <block id="b0ec44dc6f9561dfdf58606f8e389753" category="list-text">SVM을 선택하고 _NEXT_를 클릭합니다.</block>
   <block id="444c0ec9fa985ffe1e7a13b90ec73f1b" category="paragraph"><block ref="444c0ec9fa985ffe1e7a13b90ec73f1b" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="75403559d3b552e859c244a233ae00ac" category="list-text">새 볼륨 추가 _ 또는 기존 볼륨 사용 _ 을(를) 클릭하고 속성을 지정합니다. ONTAP 도구 10.3에서는 여러 볼륨을 동시에 생성하도록 요청할 수 있습니다. 여러 볼륨을 수동으로 추가하여 ONTAP 클러스터 전체에서 볼륨을 밸런싱할 수도 있습니다. 다음 _ 을(를) 클릭합니다</block>
   <block id="9a7e72607a6faad27d7fbe6e5f295675" category="paragraph"><block ref="9a7e72607a6faad27d7fbe6e5f295675" category="inline-image-macro-rx" type="image"></block></block>
   <block id="4e1a38b50f0db11d407ccb112de6a782" category="paragraph"><block ref="4e1a38b50f0db11d407ccb112de6a782" category="inline-image-macro-rx" type="image"></block></block>
   <block id="2037e6ffbfee1dde5dddbbca50cda2de" category="paragraph"><block ref="2037e6ffbfee1dde5dddbbca50cda2de" category="inline-image-macro-rx" type="image"></block></block>
@@ -5475,7 +5441,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="f16d549f88c459ef96e6cb1cfd5e5ad6" category="paragraph"><block ref="f16d549f88c459ef96e6cb1cfd5e5ad6" category="inline-image-macro-rx" type="image"></block></block>
   <block id="66ded2ce50d43c22f8e56efe6053a76d" category="list-text">이제 vCenter UI의 _Policies 및 Profiles_메뉴에서 VM 스토리지 정책을 생성할 수 있습니다.</block>
   <block id="fc7ec2dfcc40e5c7c47dca5758e10523" category="paragraph">기존 데이터 저장소에서 VVOL 데이터 저장소로 VM을 마이그레이션하는 작업은 기존 데이터 저장소 간에 VM을 이동하는 것처럼 간단합니다. VM을 선택한 다음 작업 목록에서 마이그레이션 을 선택하고 마이그레이션 유형 _change storage only_를 선택합니다. 메시지가 표시되면 VVol 데이터 저장소와 일치하는 VM 저장소 정책을 선택합니다. SAN VMFS에서 VVol로의 마이그레이션을 위해 vSphere 6.0 이상을 사용하여 마이그레이션 복사 작업을 오프로드할 수 있지만 NAS VMDK에서 VVol로 마이그레이션할 수는 없습니다.</block>
-  <block id="26fcc57b7c0de02dc9e8360d6f4b3493" category="paragraph">정책 기반 관리로 스토리지 프로비저닝을 자동화하려면 원하는 스토리지 기능에 매핑되는 VM 스토리지 정책을 생성해야 합니다.</block>
   <block id="8b8944ec0cef6dd0777b2144561987fe" category="admonition">ONTAP 도구 10.0 이상에서는 더 이상 이전 버전과 같은 저장소 기능 프로파일을 사용하지 않습니다. 대신 스토리지 기능은 VM 스토리지 정책 자체에서 직접 정의됩니다.</block>
   <block id="0774b1717ce18129cd8e3ec0094e8640" category="paragraph">스토리지 정책이 생성되면 새 VM을 프로비저닝할 때 사용할 수 있습니다.</block>
   <block id="473e84e674f60e2fe619202a460efdfb" category="inline-image-macro">role="thumb""ONTAP 툴을 사용하여 VM 스토리지 정책 생성 VASA Provider 9.10" ,300</block>
@@ -5483,8 +5448,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="71ea2d7b6b501372ec2ecc7846b5bd74" category="section-title">ONTAP 툴을 사용한 성능 관리</block>
   <block id="4357d652f2cfe6e15b6e8c54aacec10b" category="paragraph">ONTAP 툴은 자체적인 밸런스 배치 알고리즘을 사용하여 새로운 VVOL을 유니파이드 또는 기존 ASA 시스템이 있는 최고의 FlexVol volume에 배치하거나, ASA R2 시스템이 포함된 SAZ(Storage Availability Zone)를 VVOL 데이터 저장소 내에 배치합니다. 배치는 백업 스토리지와 VM 스토리지 정책을 일치시키는 것을 기반으로 합니다. 이렇게 하면 데이터 저장소 및 백업 스토리지가 지정된 성능 요구 사항을 충족할 수 있습니다.</block>
   <block id="97c380438d77f28866d8fca75c697d78" category="list-text">* 최소 및 최대 IOPS * 는 VM 정책에 지정할 수 있습니다.</block>
-  <block id="f980d0e57da48ae0fc9f45625e32cf7d" category="list-text">정책에서 IOPS를 변경해도 VM 정책이 해당 정책을 사용하는 VM에 다시 적용될 때까지 VVol의 QoS는 변경되지 않습니다. 또는 원하는 IOPS로 새 정책을 생성하여 대상 VM에 적용할 수 있습니다. 일반적으로 서비스 계층마다 별도의 VM 스토리지 정책을 정의하고 단순히 VM에서 VM 스토리지 정책을 변경하는 것이 좋습니다.</block>
-  <block id="6c47cd98201c31f6165c0239e8fa84b8" category="list-text">ASA, ASA R2, AFF 및 FAS 속성의 IOP 설정은 서로 다릅니다. 모든 플래시 시스템에서 최소 및 최대 를 사용할 수 있지만, 비 AFF 시스템에서는 최대 IOPS 설정만 사용할 수 있습니다.</block>
   <block id="6c2d6091dcb0d9df928f0dc687f86383" category="inline-image-macro">역할 = "엄지" "VM 스토리지 정책 재적용" ,300</block>
   <block id="8551dcdff381e3430606b1ff98a1e369" category="paragraph"><block ref="8551dcdff381e3430606b1ff98a1e369" category="inline-image-macro-rx" type="image"></block></block>
   <block id="def8fabb3f167c5ac05ad7f416c77a5c" category="paragraph">NetApp와 함께 VVOL을 사용하려면 먼저 VMware vSphere용 ONTAP 툴이 있습니다. 이 툴은 NetApp의 ONTAP 9 시스템을 위한 VASA(vSphere API for Storage Awareness) 공급자 인터페이스로 사용됩니다.</block>
@@ -5528,10 +5491,8 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="0a4ba68e118d83e29ea66516a02f1b48" category="section-title">프로토콜 엔드포인트(PE)</block>
   <block id="974863a1395a284a680d09e18cf6c9cc" category="section-title">VPE(가상 프로토콜 엔드포인트)</block>
   <block id="8f13bfaaa8ba18765f4525a280f647cf" category="section-title">가상 볼륨 데이터 저장소</block>
-  <block id="80c64f568dcf805b418e425957b8c975" category="paragraph">| 가상 볼륨 데이터 저장소는 VASA Provider에 의해 생성되고 유지되는 VVol 컨테이너의 논리적 데이터 저장소 표현입니다. 컨테이너는 VASA Provider에서 관리하는 스토리지 시스템에서 프로비저닝된 스토리지 용량 풀을 나타냅니다. ONTAP 툴은 여러 FlexVol 볼륨(백업 볼륨이라고 함)을 단일 VVOL 데이터 저장소에 할당할 수 있도록 지원하며, 이러한 VVOL 데이터 저장소는 ONTAP 클러스터의 여러 노드로 확장하여 플래시와 하이브리드 시스템을 서로 다른 기능으로 결합할 수 있습니다. 관리자는 프로비저닝 마법사 또는 REST API를 사용하여 새 FlexVol 볼륨을 생성하거나, 사용 가능한 경우 스토리지 백업을 위해 미리 생성된 FlexVol 볼륨을 선택할 수 있습니다.</block>
   <block id="9f1893d8db5ceaf62726d1a0aa228224" category="section-title">VM 스토리지 정책</block>
   <block id="0aa8052a92097a4f8ec3114e7249a0e1" category="paragraph">VM 스토리지 정책은 vCenter의 정책 및 프로필 아래에 생성됩니다. VVOL의 경우 NetApp VVOL 스토리지 유형 공급자에서 규칙을 사용하여 규칙 집합을 생성합니다. 이제 ONTAP 툴 10.X는 VM 스토리지 정책 자체에 스토리지 속성을 직접 지정할 수 있으므로 ONTAP 툴 9.X보다 더 간단한 접근 방식을 제공합니다.</block>
-  <block id="2efad47a2579a212fb659be8b8101b3c" category="paragraph">VM이 프로비저닝되면 VASA Provider는 계속해서 규정 준수를 확인하고 백업 볼륨이 더 이상 정책을 준수하지 않을 경우 vCenter에서 경고를 VM 관리자에게 알립니다.</block>
   <block id="1bf63b567c68de7fcd78fcc89f42f93c" category="inline-link">호스트 클러스터 보호를 사용하여 보호합니다</block>
   <block id="b6930b017bd126db888766f9750b206b" category="section-title">VMware vSphere 구성</block>
   <block id="2587ca69fa38fdcf84be76d7302e4e48" category="admonition">이 문서의 어떤 내용도 대체되지<block ref="0802e50581eb79c07178f36fed073afc" category="inline-link-rx"></block>않습니다. 이 콘텐츠는 쉽게 참조할 수 있도록 제공되며 공식 VMware 설명서를 대체할 수 없습니다.</block>
@@ -5571,9 +5532,7 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="5b1ae3ca31ee580e9664ebf0949a302c" category="list-text">"메모리 핫 플러그"</block>
   <block id="2cd9adcb9e8de7c58834011ca647797d" category="list-text"><block ref="4ccf4d83bac775854f5f0cfb549c6d86" category="inline-link-rx"></block> admin을 사용하지 않는 경우 포함된 JSON 파일 사용</block>
   <block id="067561a3b92d67321174249eb7de567d" category="paragraph">NetApp은 VMware와 협력하여 2012년에 vSphere 5용 VASA(vSphere APIs for Storage Awareness)를 지원하기 시작했습니다. 이 초기 VASA Provider는 프로비저닝 시 데이터 저장소를 필터링하고 나중에 정책 준수 여부를 확인하는 데 사용할 수 있는 프로파일의 스토리지 용량 정의를 허용합니다. 시간이 지나면서 프로비저닝 시 더 많은 자동화를 가능하게 하는 새로운 기능을 추가하고 개별 스토리지 오브젝트를 가상 머신 파일 및 가상 디스크에 사용하는 가상 볼륨 또는 VVol을 추가하였습니다. 이러한 오브젝트는 LUN, 파일일 수 있으며 이제 vSphere 8-NVMe 네임스페이스(ONTAP 툴 9.13P2에서 사용)와 함께 사용할 수 있습니다. NetApp은 2015년에 vSphere 6에 릴리즈된 VVOL의 참조 파트너로 VMware와 긴밀하게 협력했으며, vSphere 8에서 NVMe over Fabrics를 사용하는 VVOL의 설계 파트너로 다시 활동했습니다. NetApp은 ONTAP의 최신 기능을 활용하기 위해 VVOL을 지속적으로 개선합니다.</block>
-  <block id="e867f73e9a09d015c82be5c45264cda9" category="paragraph">VVOL은 VVOL 데이터 저장소에 저장된 실제 가상 머신 파일 및 디스크입니다. VVOL(단일)이라는 용어는 단일 특정 파일, LUN 또는 네임스페이스를 의미합니다. ONTAP는 데이터 저장소에서 사용하는 프로토콜에 따라 NVMe 네임스페이스, LUN 또는 파일을 생성합니다. VVol에는 여러 가지 유형이 있습니다. 가장 일반적인 유형은 CONFIG(VMFS만 있고 VM의 VMX 파일과 같은 메타데이터 파일이 포함되어 있음), Data(가상 디스크 또는 VMDK) 및 Swap(VM의 전원이 켜질 때 생성됨)입니다. VMware VM 암호화로 보호되는 VVol은 다른 유형입니다. VMware VM 암호화를 ONTAP 볼륨 또는 애그리게이트 암호화와 혼동해서는 안 됩니다.</block>
   <block id="f615a85ee8b4ffd3bdd64ab72c2cf934" category="paragraph">위에서 언급한 것처럼 정책을 사용하면 VM 또는 VMDK 프로비저닝 작업을 간소화할 수 있습니다. 적절한 정책을 선택하기만 하면 VASA Provider는 해당 정책을 지원하는 VVol 데이터 저장소를 표시하고 VVOL을 호환되는 개별 FlexVol volume에 배치합니다.</block>
-  <block id="d5938f26039c87ff0b18251b9b89e0ec" category="list-text">클론은 단일 볼륨 내에서 또는 ONTAP 클러스터의 여러 볼륨에 빠르게 생성되며, 이는 기존 VAAI 지원 클론과 비교할 때 이점이 있습니다. 또한 스토리지 효율성도 뛰어납니다. 볼륨 내의 클론은 FlexClone 볼륨과 같이 ONTAP 파일 클론을 사용하며 소스 VVol 파일/LUN/네임스페이스의 변경 내용만 저장합니다. 따라서 운영 또는 기타 애플리케이션 용도로 장기간 사용할 VM을 빠르게 생성하고, 공간을 최소화하고, VM 수준 보호(VMware vSphere용 NetApp SnapCenter 플러그인, VMware 관리 스냅샷 또는 VADP 백업 사용) 및 성능 관리(ONTAP QoS 사용)를 활용할 수 있습니다. VVOL에서 볼륨 간 클론은 VAAI를 사용할 때보다 훨씬 빠릅니다. VASA를 사용하면 클론을 생성하고 복제가 완료되기 전에 대상에서 해당 클론에 액세스할 수 있습니다. 데이터 블록은 백그라운드 프로세스로 복사되어 대상 VVOL을 채웁니다. 이는 기존 LUN에서 ONTAP 무중단 LUN 이동이 작동하는 방식과 유사합니다.</block>
   <block id="5c2620ed6abb266a7824246fc409e405" category="admonition">볼륨이 일반 프로비저닝되는 경우 명령을 사용한 중복제거 및 중복제거를 비롯한 해당 볼륨의 모든 효율성 기능을 완전히 비활성화하도록 주의를 기울여야<block ref="3cfeff511a11b8c5f54ce9749a719a58" prefix=" " category="inline-code"></block> 합니다. 볼륨이 출력에 나타나지 않아야<block ref="df899f2d908ec33afe1d01ee26b3dd47" prefix=" " category="inline-code"></block> 합니다. 그렇지 않을 경우, 효율성 기능을 위해 볼륨이 부분적으로 구성됩니다. 결과적으로 덮어쓰기 보장은 서로 다르게 동작하므로 구성 과다 사용으로 인해 볼륨의 공간이 예기치 않게 부족해져서 데이터베이스 I/O 오류가 발생할 가능성이 높아집니다.</block>
   <block id="d276d666f03c049a59433c8727efaa6e" category="paragraph">Linux 환경에서는 전체 드라이브 장치에 논리적 볼륨 그룹이 구축됩니다. 파티션이 필요하면 를 실행하고 각 파티션의 시작이 8의 배수인지 확인하여 정렬을<block ref="ab425294b9ef9f9c8acbc3f08f92b37d" prefix=" " category="inline-code"></block> 점검합니다. 이는 8개의 512바이트 섹터를 곱한 값인 4KB에서 파티션이 시작된다는 뜻입니다.</block>
   <block id="e23f5b5639a79ab22ace94b51b47872d" category="paragraph"><block ref="e23f5b5639a79ab22ace94b51b47872d" category="inline-image-macro-rx" type="image"></block></block>
@@ -5921,8 +5880,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="d1c6249258c65372addf83e0659b487e" category="paragraph">NFS 데이터 저장소의 경우 .snapshots 디렉토리를 탐색하여 스냅샷에서 VM 파일을 쉽게 볼 수 있습니다. 따라서 특정 백업 솔루션을 사용하지 않고도 스냅샷에서 파일을 빠르게 액세스하고 복구할 수 있습니다.</block>
   <block id="98366d305ee795988e2e64b7dc1644c0" category="paragraph">VMFS 데이터 저장소의 경우 원하는 스냅샷을 기반으로 데이터 저장소의 FlexClone을 생성할 수 있습니다. 이를 통해 스냅샷을 기반으로 새 데이터 저장소를 생성할 수 있으며, 이 데이터 저장소는 테스트 또는 개발 목적으로 사용할 수 있습니다. FlexClone는 스냅샷이 생성된 후 변경된 내용에만 공간을 사용하므로 데이터 저장소의 복제본을 공간 효율적으로 생성할 수 있습니다. FlexClone이 생성되면 일반 데이터 저장소처럼 LUN 또는 네임스페이스를 ESXi 호스트에 매핑할 수 있습니다. 이를 통해 특정 VM 파일을 복원할 수 있을 뿐만 아니라 프로덕션 환경의 성능에 영향을 주지 않고 프로덕션 데이터를 기반으로 테스트 또는 개발 환경을 빠르게 만들 수 있습니다.</block>
   <block id="03e4c24bf78c3a62e1dced5c76036cf1" category="inline-link">ONTAP 로컬 스냅샷 복사본</block>
-  <block id="331645ef05e71ecf888b1c6732e111f1" category="inline-link">ONTAP SnapMirror 복제</block>
-  <block id="428f746f2aae5a59f6c035e9d5ea0b6f" category="paragraph">스냅샷에 대한 자세한 내용은 ONTAP 설명서를 참조하십시오. 자세한 내용은 다음 링크를 참조하십시오. <block ref="8952dffd5c4f20d5268260325aabe39c" category="inline-link-rx"></block> <block ref="0f48fac4970e6e00b85c774c033fa517" category="inline-link-rx"></block></block>
   <block id="27ad839d4296d122cd72e93f1112d733" category="section-title">VMware vSphere용 SnapCenter 플러그인</block>
   <block id="f3980536bb15eae0ba5c0b2657f8433a" category="paragraph">SnapCenter를 사용하면 여러 작업에 적용할 수 있는 백업 정책을 생성할 수 있습니다. 이러한 정책은 스케줄, 보존, 복제 및 기타 기능을 정의할 수 있습니다. 또한 VM 정합성 보장 스냅샷의 선택적인 선택을 계속 허용하므로 VMware 스냅샷을 생성하기 전에 하이퍼바이저의 입출력 중지 기능을 활용할 수 있습니다. 그러나 VMware 스냅샷의 성능 때문에 게스트 파일 시스템을 중지해야 하는 경우가 아니면 일반적으로 이러한 스냅샷을 사용하지 않는 것이 좋습니다. 대신 일반적인 보호를 위해 스냅샷을 사용하고 SnapCenter 애플리케이션 플러그인 같은 애플리케이션 툴을 사용하여 SQL Server 또는 Oracle과 같은 트랜잭션 데이터를 보호하십시오.</block>
   <block id="fcc3a75d51e5e5b8a03324e1a626fb47" category="paragraph">이러한 플러그인은 물리적 환경과 가상 환경 모두에서 데이터베이스를 보호하는 확장된 기능을 제공합니다. vSphere를 사용하면 RDM LUN, VVol 또는 NVMe/TCP 네임스페이스와 게스트 OS에 직접 연결된 iSCSI LUN 또는 VMFS 또는 NFS 데이터 저장소의 VMDK 파일에 데이터가 저장되는 SQL Server 또는 Oracle 데이터베이스를 보호할 수 있습니다. 플러그인을 사용하면 다양한 유형의 데이터베이스 백업을 지정하고 온라인 또는 오프라인 백업을 지원하며 로그 파일과 함께 데이터베이스 파일을 보호할 수 있습니다. 플러그인은 백업 및 복구 외에도 개발 또는 테스트 목적으로 데이터베이스의 클론 복제를 지원합니다.</block>
@@ -5985,11 +5942,7 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="8a440842662a6052845e4abd1f7d5dec" category="paragraph">VVOL 데이터 저장소를 프로비저닝하는 데는 몇 가지 단계가 필요합니다. NetApp의 ASA R2 시스템은 VMware 워크로드를 위해 설계되었으며 기존의 ONTAP 시스템과 다른 사용자 환경을 제공합니다. ASA R2 시스템을 사용할 경우 ONTAP 툴 버전 10.3 이상을 사용하면 새로운 스토리지 아키텍처에 최적화된 UI 확장 및 REST API 지원을 설정하고 포함하기 위한 단계를 줄일 수 있습니다.</block>
   <block id="3164e4b18dd8dcc542a3c18024fc82b6" category="inline-link-macro">체크리스트</block>
   <block id="35d34bb35f01ef3d59680d5fb99f1085" category="paragraph">이미 ONTAP 툴을 사용하여 기존 VMFS 또는 기존 NFS 기반 스토리지를 관리, 자동화 및 보고하는 경우 구축 프로세스의 처음 두 단계를 건너뛸 수 있습니다. ONTAP 도구 배포 및 구성에 대해서는 이 전체 내용을 참조할 수도 <block ref="9dbdf15e49c83951dd903469aa18bcda" category="inline-link-macro-rx"></block>있습니다.</block>
-  <block id="d851df02ab3826ddf58a3627857cb8a5" category="list-text">SVM(Storage Virtual Machine)과 프로토콜 구성을 생성합니다. ASA R2 시스템에는 일반적으로 데이터 서비스용 SVM이 하나 있으므로 이 작업이 필요하지 않을 수 있습니다. NVMe/FC(ONTAP 툴 9.13만 해당), NFSv3, NFSv4.1, iSCSI, FCP 또는 이러한 옵션의 조합을 선택합니다. ONTAP 툴 10.3 이상이 설치된 기존 VMFS 데이터 저장소에도 NVMe/TCP 및 NVMe/FC를 사용할 수 있습니다. ONTAP System Manager 마법사 또는 클러스터 셸 명령줄을 사용할 수 있습니다.</block>
-  <block id="0be185fbc79ad0a2e0901c2bf99d7071" category="list-text">ASA R2 시스템이 아닌 시스템의 경우 현재 볼륨을 생성할 수 있지만 ONTAP 툴의 _provision Datastore_wizard에서 볼륨을 생성하도록 하는 것이 좋습니다. 이 규칙의 유일한 예외는 VMware 사이트 복구 관리자 및 ONTAP 도구 9.13 에서 VVol 복제를 사용할 계획일 뿐입니다. 기존 SnapMirror 관계가 있는 기존 FlexVol 볼륨에서는 더욱 쉽게 설정할 수 있습니다. SPBM 및 ONTAP 도구를 통해 관리되기 때문에 VVOL에 사용할 볼륨에서 QoS를 활성화하지 마십시오.</block>
-  <block id="08aa56f631ccbed4e095da7781f63af4" category="list-text">권장되는 모범 사례는<block ref="ef398e4ee19e56a537bbd5564e5f4512" category="inline-link-rx"></block> 10.3 이상부터 모든 운영 워크로드에 대한 3노드 고가용성(HA) 구성까지 적용됩니다. 연구소 또는 테스트 목적으로 단일 노드 구축을 사용할 수 있습니다.</block>
   <block id="ee88aebf80e3a3f63dfba15f3b663832" category="list-text">특정 SVM(Storage Virtual Machine)을 특정 vCenter에 위임하려는 보안 멀티테넌트 환경에서 다음을 수행해야 합니다.</block>
-  <block id="ddf4cee1ee4746501a3a74ca7e1b2ce0" category="paragraph">vSphere에서 VM 스토리지 정책을 사용하여 스토리지 입출력 제어 또는 vSphere 암호화와 같은 선택적 기능을 관리합니다. 특정 스토리지 기능을 VM에 적용하기 위해 VVOL과 함께 사용되기도 합니다. "NetApp.Clustered.Data.ONTAP.VP.VVol" 저장소 유형을 사용합니다. ONTAP 툴 VASA Provider의 예는 링크: vmware-vVols-ontap.html#모범 사례 [NFS v3을 통한 vVols를 사용한 네트워크 구성 예]를 참조하십시오. "NetApp.clustered.Data.ONTAP.VP.VASA10" 스토리지에 대한 규칙은 VVol 기반 데이터 저장소가 아닌 데이터 저장소와 함께 사용됩니다.</block>
   <block id="5e182d41ad3ea710eea81b3297a29a79" category="paragraph">ONTAP One 라이센스에는 ONTAP 시스템에서 VVOL을 사용하는 데 필요한 모든 라이센스가 포함되어 있습니다. VASA 공급자 역할을 하는 무료 ONTAP 툴 OVA가 추가로 필요합니다. VVOL 환경에서 VASA Provider 소프트웨어는 어레이 기능을 정책 기반 특성으로 변환하며, VASA API를 통해 활용될 수 있습니다. 따라서 vSphere 관리자가 기능이 백그라운드에서 어떻게 관리되는지 알 필요가 없습니다. 따라서 정책에 따라 할당된 스토리지 용량을 동적으로 사용할 수 있으므로 기존 데이터 저장소를 수동으로 생성하고 개별 스토리지 사용율을 관리할 필요가 없습니다. 간단히 말해, VVOL은 엔터프라이즈 스토리지 관리에 수반되는 복잡성을 모두 해소하고 vSphere 관리자에서 추상화하므로 가상화 레이어에 집중할 수 있습니다.</block>
   <block id="98f85fc67e5f6131ae07084cdeebb84a" category="paragraph">ONTAP 도구의 전체 업그레이드는 NetApp 지원 사이트(로그인 필요)에서 다운로드할 수 있는 업그레이드 ISO 파일을 사용하여<block ref="b5b3717cb556fa4a89daf005a0a23ea8" category="inline-link-rx"></block> 지원됩니다. 가이드 지침에 따라<block ref="f4c1005a920344cdec43558687897506" category="inline-link-rx"></block> 어플라이언스를 업그레이드합니다. ONTAP 도구 9.13에서 10.3으로 나란히 업그레이드할 수도 있습니다. 해당 주제에 대한 자세한 내용은 을<block ref="f6676f6d529f1f81f9da02084f545f3c" category="inline-link-rx"></block> 참조하십시오.</block>
   <block id="96e626dfdfc4f6474618b5d6e22f052e" category="list-text"><block ref="96e626dfdfc4f6474618b5d6e22f052e" category="inline-link-rx"></block></block>
@@ -5997,8 +5950,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="c1d59fa07379d331f1649dd32c8b663d" category="paragraph">이 경우 어플라이언스를 재부팅해야 하는 경우 "닭고기와 달걀"이 발생할 수 있습니다. 재부팅하는 동안 자신의 VVol을 다시 찾을 수 없기 때문입니다. 다른 ONTAP 툴과 vCenter 구축을 통해 관리되는 VVol 데이터 저장소에 저장할 수 있습니다.</block>
   <block id="4e9810675a80252409e746ff4f07c469" category="paragraph">* 필요에 따라 FlexVol 볼륨을 지원할 계획을 세우십시오. *</block>
   <block id="6ce93abd27f08d98b3c9e6da0a3d3006" category="admonition">이 문서는 vSphere 8.0 업데이트 3, ONTAP 툴 10.4 릴리즈 및 새로운 NetApp ASA 시스템에서 발견되는 새로운 VVOL 기능을 포함하도록 업데이트되었습니다.</block>
-  <block id="183c087ffc7731fee88c6d40b2024a45" category="paragraph">VASA(VMware vSphere APIs for Storage Awareness)를 사용하면 VM 관리자가 스토리지 팀과 상호 작용하지 않고도 VM 프로비저닝에 필요한 스토리지 기능을 손쉽게 사용할 수 있습니다. VASA를 사용하기 전에는 VM 관리자가 VM 스토리지 정책을 정의할 수 있었지만, 스토리지 관리자와 협력하여 적절한 데이터 저장소를 식별해야 했습니다. 이러한 데이터 저장소는 종종 설명서 또는 명명 규칙을 사용합니다. VASA를 사용하면 vCenter 관리자가 적절한 사용 권한을 사용하여 vCenter 사용자가 VM을 프로비저닝하는 데 사용할 수 있는 다양한 스토리지 기능을 정의할 수 있습니다. VM 스토리지 정책과 데이터 저장소 기능 간의 매핑을 통해 vCenter는 선택할 수 있는 호환 데이터 저장소 목록을 표시할 수 있을 뿐만 아니라 Aria(이전의 vRealize) Automation 또는 Tanzu Kubernetes Grid와 같은 다른 기술을 사용하여 할당된 정책에서 스토리지를 자동으로 선택할 수 있습니다. 이러한 접근 방식을 스토리지 정책 기반 관리라고 합니다. VASA Provider 규칙과 VM 스토리지 정책을 기존 데이터 저장소에도 사용할 수 있지만, 여기서는 VVol 데이터 저장소에 대해 중점적으로 살펴봅니다.</block>
-  <block id="daeee50444f5c211b19aa03182c97401" category="paragraph">VMware는 2015년에 VASA 2.0을 통한 VVOL 지원 기능을 선보였을 때, "외부 스토리지(SAN/NAS)를 위한 새로운 운영 모델을 제공하는 통합 및 관리 프레임워크"라고 언급했습니다. 이러한 운영 모델은 ONTAP 스토리지와 함께 여러 가지 이점을 제공합니다.</block>
   <block id="5631462c0980ed3fbdd07e734f163939" category="list-text">Aria(이전의 vRealize) 제품군, OpenStack 등을 통해 자동화 및 오케스트레이션 기능을 활용할 수 있습니다.</block>
   <block id="40ea6e1672fc21c11ea997d9b187dcef" category="paragraph">ONTAP 툴 9.7.1을 통한 SRM 지원의 초기 릴리즈에서는 FlexVol 볼륨을 미리 생성하고 SnapMirror 보호를 활성화한 후 VVol 데이터 저장소의 백업 볼륨으로 사용해야 했습니다. ONTAP 도구 9.10부터는 더 이상 이 프로세스가 필요하지 않습니다. 이제 기존의 백업 볼륨에 SnapMirror 보호를 추가하고 VM 스토리지 정책을 업데이트하여 SRM과 통합된 재해 복구 및 마이그레이션 오케스트레이션 및 자동화 기능을 통해 정책 기반 관리를 활용할 수 있습니다.</block>
   <block id="0d5e4b39b7c99ac3687449b64c2f61d7" category="paragraph">NetApp 지원 사이트에는 NetApp 가상화 제품에 대한 다양한 Knowledgebase 문서 외에 해당 제품에 대한 간편한 랜딩 페이지도<block ref="6e90053136fd326e5d581844ca21966d" category="inline-link-rx"></block> 있습니다. 이 포털은 NetApp 커뮤니티에서 기사, 다운로드, 기술 보고서 및 VMware Solutions 토론에 대한 링크를 제공합니다. 이 제품은 다음 위치에서 사용할 수 있습니다.</block>
@@ -6028,16 +5979,12 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="33cb67cb29131f1d0275317dce2cf236" category="paragraph">피어링된 클러스터 링크 장애 시나리오에서 패브릭 ISL은 여전히 활성 상태이므로 두 사이트에서 데이터 서비스(읽기 및 쓰기)가 두 플렉스에 계속 적용됩니다. 클러스터 구성 변경(예: 새 SVM 추가, 기존 SVM에서 볼륨 또는 LUN 프로비저닝)은 다른 사이트에 전파될 수 없습니다. 이러한 데이터는 로컬 CRS 메타데이터 볼륨에 보관되며 피어링된 클러스터 링크가 복구되면 자동으로 다른 클러스터로 전파됩니다. 피어링된 클러스터 링크를 복원하기 전에 강제 전환이 필요한 경우 전환 프로세스의 일부로 남아 있는 사이트에 있는 메타데이터 볼륨의 원격 복제 복사본에서 미결 클러스터 구성 변경 사항이 자동으로 재생됩니다.</block>
   <block id="5cac5bfa9407e4851e57fffb3704c323" category="paragraph">VMware의 클러스터 기술은 ESXi 서버를 가상 시스템의 공유 리소스 풀로 그룹화하고 vSphere HA(High Availability)를 제공합니다. vSphere HA는 가상 시스템에서 실행되는 애플리케이션에 사용하기 쉽고 고가용성을 제공합니다. 클러스터에서 HA 기능이 활성화된 경우 각 ESXi 서버는 다른 호스트와 통신을 유지하여 ESXi 호스트가 응답하지 않거나 격리될 경우 HA 클러스터는 클러스터의 남은 호스트 간에 해당 ESXi 호스트에서 실행 중이었던 가상 머신의 복구를 협상할 수 있습니다. 게스트 운영 체제에 장애가 발생할 경우 vSphere HA는 영향을 받는 가상 머신을 동일한 물리적 서버에서 다시 시작할 수 있습니다. vSphere HA를 사용하면 계획된 다운타임을 줄이고 예상치 못한 다운타임을 방지하며 운영 중단으로부터 신속하게 복구할 수 있습니다.</block>
   <block id="13756f2a610f8f2a9bfce56369289ce1" category="paragraph">VMware vSphere는 NetApp MetroCluster 또는 SnapMirror 활성 동기화에 대한 지식이 없으며 호스트 및 VM 그룹 선호도 구성에 따라 vSphere 클러스터의 모든 ESXi 호스트를 HA 클러스터 작업에 적합한 호스트로 간주한다는 점을 이해하는 것이 중요합니다.</block>
-  <block id="cb6dde9af508c07c13495c7ceb17dabf" category="paragraph">격리 응답은 vSphere HA의 설정으로, vSphere HA 클러스터의 호스트에서 관리 네트워크 연결이 끊어지지만 계속 실행되는 경우 가상 시스템에서 트리거되는 작업을 결정합니다. 이 설정에는 "사용 안 함", "VM 종료 및 다시 시작", "VM 전원 끄기 및 다시 시작"이라는 세 가지 옵션이 있습니다.</block>
-  <block id="f3392184f9671e794187188ae9003393" category="paragraph">"시스템 종료"는 "전원 끄기"보다 낫습니다. 이는 디스크에 대한 최근 변경 사항을 플러시하거나 트랜잭션을 커밋하지 않습니다. 가상 시스템이 300초 내에 종료되지 않으면 전원이 꺼집니다. 대기 시간을 변경하려면 고급 옵션인 DAS.isolationshutdowntimeout을 사용합니다.</block>
   <block id="5cda3e7fc012f3f66cb81b04173c232e" category="paragraph">NetApp에서는 "호스트 격리 응답"을 사용 안 함으로 설정할 것을 권장합니다.</block>
-  <block id="d32f0f71e4c6ada2841e017ad5b25fab" category="paragraph">NetApp에서는 "PDL이 있는 데이터 저장소에 대한 응답"을 " * VM 전원을 끄고 다시 시작 * "으로 설정할 것을 권장합니다. 이 상태가 감지되면 vSphere HA 클러스터 내의 정상 호스트에서 VM이 즉시 재시작됩니다.</block>
   <block id="990ae835e5ddcf593414be2262bdace1" category="list-text">NetApp에서는 "APD가 있는 데이터 저장소에 대한 응답"을 " * VM 전원을 끄고 다시 시작(보수적) * "으로 구성할 것을 권장합니다.</block>
   <block id="ed239ad833fcd059d909a3b5c5ef32f0" category="list-text">APD 상태가 해결되고 시간 초과가 경과되기 전에 스토리지에 대한 액세스가 복구되는 경우, 사용자가 명시적으로 가상 머신을 구성하지 않는 한 HA는 가상 머신을 불필요하게 다시 시작하지 않습니다. 환경이 APD 조건으로부터 복구된 경우에도 응답이 필요한 경우 APD 시간 초과 후 APD 복구에 대한 응답을 VM 재설정 으로 구성해야 합니다.</block>
   <block id="2f567a5b33a98cbc762cbf67a7d2a620" category="section-title">NetApp SnapMirror Active Sync용 VMware DRS 구현</block>
   <block id="c55b2a3b93f65c4f9532694d5e8ffba3" category="paragraph">VMware DRS는 클러스터의 호스트 리소스를 집계하는 기능으로, 주로 가상 인프라스트럭처의 클러스터 내에서 로드 밸런싱을 수행하는 데 사용됩니다. VMware DRS는 주로 클러스터에서 로드 밸런싱을 수행하기 위한 CPU 및 메모리 리소스를 계산합니다. vSphere는 늘어난 클러스터링을 인식하지 못하므로 로드 밸런싱 시 두 사이트의 모든 호스트를 고려합니다.</block>
   <block id="7753c40d9b983d2079b72842e3406960" category="paragraph">NetApp은 장애가 발생할 경우 vSphere HA에 의해 위반되므로 "필수" 규칙 대신 "필수" 규칙을 구현하는 것이 좋습니다. "필수" 규칙을 사용하면 서비스가 중단될 수 있습니다.</block>
-  <block id="e3537ea3aae3c4341dab60d15af5afd0" category="paragraph">서비스의 가용성은 항상 성과보다 우선해야 합니다. 전체 데이터 센터에 장애가 발생할 경우 "필수" 규칙은 VM 호스트 선호도 그룹에서 호스트를 선택해야 하며, 데이터 센터를 사용할 수 없으면 가상 시스템이 다시 시작되지 않습니다.</block>
   <block id="b88201736c7c63fe1df854d89bf2427f" category="sidebar">ONTAP for VMware를 선택해야 하는 이유</block>
   <block id="4d68c6910c7e5b8e5f736a0a37eba4e6" category="paragraph">ONTAP 20년 전 ESX가 현대 데이터 센터에 도입된 이래로 VMware vSphere를 위한 선도적인 스토리지 솔루션이었으며, 최근에는 Cloud Foundation을 위한 솔루션도 출시되었습니다.  NetApp SnapMirror Active Sync와 같은 기능과 함께 최신 세대의 ASA A 시리즈를 비롯한 혁신적인 시스템을 지속적으로 출시하고 있습니다.  이러한 발전으로 인해 관리가 간소화되고, 복원력이 향상되며, IT 인프라의 총 소유 비용(TCO)이 낮아집니다.</block>
   <block id="d51eebcc193505dec7ec133bd17d0702" category="paragraph">이 문서에서는 이전에 Site Recovery Manager(SRM)로 알려졌던 VMware Live Site Recovery(VLSR)용 ONTAP 솔루션을 소개합니다. VLSR은 VMware의 업계 선도적인 재해 복구(DR) 소프트웨어로, 배포를 간소화하고 위험을 줄이며 지속적인 관리를 단순화하는 최신 제품 정보와 모범 사례를 포함합니다.</block>
@@ -6095,4 +6042,57 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="fea612aa54d66a179c5538c5cd1b8525" category="paragraph">VLSR 배포를 ONTAP 고급 데이터 관리 기능과 통합하면 로컬 스토리지 옵션과 비교했을 때 규모와 성능이 크게 향상됩니다. 하지만 그보다 더 중요한 것은 하이브리드 클라우드의 유연성입니다. 하이브리드 클라우드를 사용하면 FabricPool 사용하여 고성능 어레이에서 사용하지 않는 데이터 블록을 선호하는 하이퍼스케일러로 계층화하여 비용을 절감할 수 있습니다. 이는 NetApp StorageGRID 와 같은 온프레미스 S3 저장소가 될 수 있습니다. 소프트웨어 정의 ONTAP Select 또는 클라우드 기반 DR을 사용하여 에지 기반 시스템에 SnapMirror 사용할 수도 있습니다.<block ref="48f4ab00daadfbd5f3a95d2ba27ed047" category="inline-link-rx"></block>또는 다른 호스팅 ONTAP 서비스.</block>
   <block id="0fc9a0e7b30259b88ee28dc36905dc46" category="paragraph">재해 복구(DR)는 재해 발생 시 데이터와 애플리케이션을 보호하기 위한 포괄적인 솔루션을 제공하는 클라우드 기반 서비스입니다. 여기에는 자동 장애 조치 및 장애 복구, 여러 시점 복구 지점, 애플리케이션 일관성 재해 복구, 온프레미스 및 클라우드 기반 ONTAP 시스템 모두에 대한 지원 등 다양한 기능이 제공됩니다. NetApp Disaster Recovery ONTAP 과 VMware vSphere 환경과 원활하게 작동하도록 설계되어 재해 복구를 위한 통합 솔루션을 제공합니다.</block>
   <block id="b49008ff3ed6386e7b79c895a99dfda0" category="paragraph">중재자는 실제로 동점을 깨는 역할을 하지 않지만, 실질적으로는 그런 기능을 제공합니다. 중재자는 클러스터 노드의 상태를 결정하는 데 도움을 주고 사이트 장애 발생 시 자동 전환 프로세스를 지원합니다. 중재자는 어떠한 상황에서도 데이터를 전송하지 않습니다.</block>
+  <block id="389aace802a4b9cc02f057be6b44af1e" category="inline-link-macro"><block ref="389aace802a4b9cc02f057be6b44af1e" category="inline-link-rx"></block></block>
+  <block id="3f5aed07b92e68d50c76da775ecd27e7" category="list-text">ONTAP 9용 TR-4015 SnapMirror 구성 모범 사례 가이드 <block ref="2b18a9579e6e53dd966359ed48786df3" category="inline-link-macro-rx"></block></block>
+  <block id="af5901ed678cf3616d5e1dd4457d3301" category="paragraph">ONTAP 9용 SnapMirror 및 SnapVault 에 대한 최신 정보는 다음을 참조하십시오.<block ref="f0cb7261aff0b0ca14230d45000a9acc" category="inline-link-rx"></block></block>
+  <block id="0aa1117bb089f8873e3b481abb0fc667" category="inline-link">ONTAP SnapMirror 복제 워크플로</block>
+  <block id="c7d6bfcc1002f9443cf062da6e677452" category="paragraph">스냅샷에 대한 자세한 내용은 ONTAP 설명서를 참조하십시오. 다음 링크에서 추가 정보를 확인할 수 있습니다. <block ref="8952dffd5c4f20d5268260325aabe39c" category="inline-link-rx"></block> <block ref="929e1122e30b57f1156728cb315c1ee3" category="inline-link-rx"></block></block>
+  <block id="fa3baa666422f615ee0c858e2af05bb1" category="list-text">네이티브 백업을 구성합니다.<block ref="0322cca7da8e1c0c74e3021d8f78b104" category="inline-link-rx"></block>.</block>
+  <block id="41100a7491d59c0ef8c938d85e01e5c1" category="list-text">스토리지 가상 머신(SVM)과 해당 프로토콜 구성을 생성합니다. 참고로, ASA r2 시스템에는 일반적으로 데이터 서비스를 위한 단일 SVM이 이미 탑재되어 있으므로 이 과정이 필요하지 않을 수 있습니다. NVMe/FC(ONTAP 도구 9.13에서만 사용 가능), NFSv3, NFSv4.1, iSCSI, FCP 또는 이러한 옵션의 조합 중에서 선택할 수 있습니다. NVMe/TCP 및 NVMe/FC는 ONTAP 도구 10.3 이상 버전에서 기존 VMFS 데이터스토어에도 사용할 수 있습니다. ONTAP 시스템 관리자 마법사 또는 클러스터 셸 명령줄을 사용할 수 있습니다.</block>
+  <block id="a667b507cc97b9e322f83694aef20f26" category="list-text">테넌트 vCenter에 SVM 범위 자격 증명을 사용하려면 SVM당 최소 하나의 관리 LIF가 필요합니다.</block>
+  <block id="3047555801fe554dc4ff9eb83876f55f" category="list-text">ASA r2 시스템이 아닌 경우 이 시점에 볼륨을 생성할 수 있지만, ONTAP 도구의 _데이터스토어 프로비저닝_ 마법사를 사용하여 볼륨을 생성하는 것이 가장 좋습니다. 이 규칙의 유일한 예외는 VMware Site Recovery Manager 및 ONTAP 도구 9.13과 함께 vVols 복제를 사용하려는 경우입니다. 기존에 SnapMirror 관계가 설정된 FlexVol 볼륨을 사용하면 설정이 더 간편합니다. vVols 에 사용할 볼륨에는 QoS를 활성화하지 않도록 주의하십시오. QoS는 SPBM 및 ONTAP 도구에서 관리하도록 되어 있습니다.</block>
+  <block id="cefc859ccac1b3994312e8dd1ebb3c0b" category="list-text">ONTAP Tools 10.0 이상 버전은 어플라이언스당 여러 vCenter 서버를 지원하므로 더 이상 vCenter마다 ONTAP Tools 어플라이언스를 하나씩 배포할 필요가 없습니다.</block>
+  <block id="fb91efb595464d6bb7ce61d52e51afb8" category="list-text">여러 vCenter를 단일 ONTAP 도구 인스턴스에 연결하려면 CA에서 서명한 인증서를 생성하고 설치해야 합니다. 참조하다<block ref="32dbc6ca4c4a8bcb0695dd873f46e9e4" category="inline-link-rx"></block> 단계별로.</block>
+  <block id="4a628faabe7420580271b233272fa51c" category="list-text">10.3 버전부터 ONTAP 도구는 대부분의 vVols 이외의 워크로드에 적합한 단일 노드 소형 어플라이언스로 배포됩니다.</block>
+  <block id="c5bfd1aed347562f4c83466e7148d3bc" category="list-text">권장되는 최적의 방법은 다음과 같습니다.<block ref="ef398e4ee19e56a537bbd5564e5f4512" category="inline-link-rx"></block> 10.3 버전 이상에서는 모든 프로덕션 워크로드에 대해 3노드 고가용성(HA) 구성을 지원합니다. 실험실이나 테스트 목적으로는 단일 노드 배포를 사용할 수 있습니다.</block>
+  <block id="5d30eb70e267f638c91e511336e18c50" category="list-text">프로덕션 환경에서 vVols 사용할 때 권장되는 최적의 방법은 단일 장애 지점을 제거하는 것입니다. ONTAP 도구 VM이 동일한 호스트에서 함께 실행되는 것을 방지하기 위해 안티 어피니티 규칙을 생성합니다. 초기 배포 후에는 스토리지 vMotion을 사용하여 ONTAP 도구 VM을 다른 데이터스토어에 배치하는 것이 좋습니다. 더 자세히 알아보세요<block ref="9d1413939148e981fa32923e1c0a740d" category="inline-link-rx"></block> 또는<block ref="33bad2ad715296cb3b9df2aa8e0bbe93" category="inline-link-rx"></block>. 또한 빈번한 백업 일정을 예약해야 합니다.<block ref="afe67d2e70705f50a69e7f10157eddf5" category="inline-link-rx"></block>.</block>
+  <block id="b6fa162d550fdf3811bb66a421d37a80" category="list-text">vCenter 관리자에게 특정 SVM 자격 증명을 제공하면, 관리자는 vCenter의 ONTAP 도구 스토리지 백엔드 메뉴에 해당 SVM을 스토리지 백엔드로 추가합니다.</block>
+  <block id="6e8ad103d591d2950b1fe8bfa0008d9e" category="list-text">ONTAP 도구에는 ONTAP 도구 스토리지 계정에 필요한 역할 권한이 포함된 JSON 파일이 있습니다. JSON 파일을 ONTAP 시스템 관리자에 업로드하면 RBAC 역할 및 사용자 생성을 간소화할 수 있습니다.</block>
+  <block id="de0a42cf0bf16700b2d6ceaa65e730ff" category="admonition">클러스터 전체를 ONTAP 도구 관리자 UI에 등록해야 하는 이유는 vVols 에 사용되는 많은 API가 클러스터 수준에서만 사용 가능하기 때문입니다.</block>
+  <block id="32a092925eea22c0b1d4fe921bee9674" category="list-text">ONTAP 도구 10.3은 ONTAP FAS, AFF 및 ASA r2 이전 버전과 함께 사용할 ASA 있습니다.</block>
+  <block id="698e9066527b73452158df76842fdbce" category="list-text">'새 볼륨 추가' 또는 '기존 볼륨 사용'을 클릭하고 속성을 지정하세요. 참고로 ONTAP 도구 10.3에서는 여러 볼륨을 동시에 생성하도록 요청할 수 있습니다. ONTAP 클러스터 전체에 걸쳐 용량 균형을 맞추기 위해 여러 볼륨을 수동으로 추가할 수도 있습니다. _다음_을 클릭하세요</block>
+  <block id="672114503f75f02ec534447f449e3aea" category="paragraph">정책 기반 관리를 통해 스토리지 프로비저닝을 자동화하려면 원하는 스토리지 기능에 매핑되는 VM 스토리지 정책을 생성해야 합니다.</block>
+  <block id="e379bf0b5f962009eafc2e78e4ccd8ad" category="paragraph">vSphere에서 VM 스토리지 정책은 스토리지 I/O 제어 또는 vSphere 암호화와 같은 선택적 기능을 관리하는 데 사용됩니다. 또한 vVols 과 함께 사용하여 VM에 특정 스토리지 기능을 적용하는 데에도 사용됩니다. "NetApp.clustered.Data. ONTAP .VP.vvol" 스토리지 유형을 사용하십시오. ONTAP 도구 VASA Provider를 사용한 예시는 다음 링크를 참조하세요: vmware-vvols-ontap.html#Best Practices[NFS v3를 통한 vVols 네트워크 구성 예시]. " NetApp.clustered.Data. ONTAP.VP.VASA10" 스토리지에 대한 규칙은 vVols 기반이 아닌 데이터스토어와 함께 사용해야 합니다.</block>
+  <block id="47e0e897820975c7c38f37533787dde3" category="paragraph">최소 및 최대 IOPS와 같은 성능 기능을 변경하려면 특정 구성에 주의를 기울여야 합니다.</block>
+  <block id="b27853fb2993befbcb7d7e7a6c3a1927" category="list-text">정책에서 IOPS를 변경해도 해당 VM 정책을 사용하는 VM에 다시 적용하기 전까지는 vVols 의 QoS가 변경되지 않습니다. 또는 원하는 IOPS로 새 정책을 생성하여 대상 VM에 적용할 수도 있습니다. 일반적으로는 서비스 계층별로 별도의 VM 스토리지 정책을 정의하고 VM에서 해당 정책을 변경하는 것이 좋습니다.</block>
+  <block id="66f65a7c73ea75782888c8906ba2f531" category="list-text">ASA, ASA r2, AFF 및 FAS 유형은 각각 다른 IOP 설정값을 가지고 있습니다. Min과 Max는 모든 플래시 시스템에서 사용할 수 있지만, AFF 지원하지 않는 시스템에서는 Max IOPs 설정만 사용할 수 있습니다.</block>
+  <block id="d0cd506b6c0d5ed0d5425daa47dfeb60" category="paragraph">가상 볼륨 데이터 저장소는 VASA 공급자가 생성하고 유지 관리하는 vVols 컨테이너의 논리적 데이터 저장소 표현입니다. 컨테이너는 VASA 공급자가 관리하는 스토리지 시스템에서 제공되는 스토리지 용량 풀을 나타냅니다. ONTAP 도구는 여러 FlexVol 볼륨(백업 볼륨이라고 함)을 단일 vVols 데이터스토어에 할당하는 것을 지원하며, 이러한 vVols 데이터스토어는 ONTAP 클러스터의 여러 노드에 걸쳐 있을 수 있으므로 기능이 다른 플래시 및 하이브리드 시스템을 결합할 수 있습니다. 관리자는 프로비저닝 마법사 또는 REST API를 사용하여 새 FlexVol 볼륨을 생성하거나, 사용 가능한 경우 미리 생성된 FlexVol 볼륨을 백업 스토리지로 선택할 수 있습니다.</block>
+  <block id="a6a73b3a10a10b51bba03dc762f92a92" category="paragraph">vVols 는 vVols 데이터 저장소에 저장된 실제 가상 머신 파일 및 디스크입니다. vVol(단수)이라는 용어는 특정 파일, LUN 또는 네임스페이스 하나를 지칭합니다. ONTAP 데이터 저장소가 사용하는 프로토콜에 따라 NVMe 네임스페이스, LUN 또는 파일을 생성합니다. vVols 에는 여러 가지 유형이 있습니다. 가장 일반적인 유형으로는 Config(VMFS가 사용되는 유일한 유형으로, VM의 VMX 파일과 같은 메타데이터 파일을 포함함), Data(가상 디스크 또는 VMDK), Swap(VM이 시작될 때 생성됨)이 있습니다. VMware VM 암호화로 보호되는 vVols 기타 유형입니다. VMware VM 암호화는 ONTAP 볼륨 또는 집계 암호화와 혼동해서는 안 됩니다.</block>
+  <block id="2b0dd43a13989e23e28f9ebb507c10be" category="section-title">정책 기반 관리</block>
+  <block id="d6f00e5aae221de00f33ed84d98aeeda" category="paragraph">VMware vSphere APIs for Storage Awareness(VASA)를 사용하면 VM 관리자가 스토리지 팀과 상호 작용하지 않고도 VM을 프로비저닝하는 데 필요한 모든 스토리지 기능을 쉽게 사용할 수 있습니다. VASA 이전에는 VM 관리자가 VM 스토리지 정책을 정의할 수 있었지만, 스토리지 관리자와 협력하여 문서나 명명 규칙을 활용해 적절한 데이터 저장소를 식별해야 했습니다. VASA를 사용하면 적절한 권한을 가진 vCenter 관리자가 vCenter 사용자가 VM을 프로비저닝하는 데 사용할 수 있는 스토리지 기능 범위를 정의할 수 있습니다. VM 스토리지 정책과 데이터스토어 기능 간의 매핑을 통해 vCenter는 선택할 수 있는 호환 데이터스토어 목록을 표시할 뿐만 아니라 VCF(이전의 Aria 및 vRealize) 자동화 또는 VMware vSphere Kubernetes Service(VKS)와 같은 다른 기술에서 할당된 정책에서 스토리지를 자동으로 선택할 수 있도록 합니다. 이러한 접근 방식을 스토리지 정책 기반 관리라고 합니다. VASA 공급자 규칙 및 VM 스토리지 정책은 기존 데이터스토어와 함께 사용할 수도 있지만, 여기서는 vVols 데이터스토어에 초점을 맞추겠습니다.</block>
+  <block id="429ed308056ea5f8d3df998e8661d751" category="paragraph">VM이 프로비저닝되면 VASA 공급자는 지속적으로 규정 준수 여부를 확인하고 백업 볼륨이 더 이상 정책을 준수하지 않을 경우 vCenter에서 알람을 통해 VM 관리자에게 알립니다.</block>
+  <block id="2b71981af75257a406431c49fe3b8723" category="paragraph">ONTAP 2012년 최초 출시 이후 VASA 사양을 지원해 왔습니다. 다른 NetApp 스토리지 시스템에서도 VASA를 지원할 수 있지만, 이 문서에서는 현재 지원되는 ONTAP 9 릴리스에 중점을 둡니다.</block>
+  <block id="29c9d02592dad3fe1d168768977884ff" category="paragraph">이 문서가 발행될 당시 하이퍼스케일러 환경은 기존 NFS v3 데이터스토어로만 제한되었습니다. 따라서 vVols 온프레미스 ONTAP 시스템 또는 전 세계 NetApp 파트너 및 서비스 제공업체가 호스팅하는 시스템과 같이 온프레미스 시스템의 모든 기능을 제공하는 클라우드 연결 시스템에서만 사용할 수 있습니다.</block>
+  <block id="61ff9bb3324d0333e1239537ddd0a4ff" category="paragraph">VMware는 2015년 VASA 2.0에서 vVols 지원을 도입하면서 이를 "외부 스토리지(SAN/NAS)를 위한 새로운 운영 모델을 제공하는 통합 및 관리 프레임워크"라고 설명했습니다. 이 운영 모델은 ONTAP 스토리지와 함께 여러 가지 이점을 제공합니다.</block>
+  <block id="268208b0fa10cfeb5423cddf7639a4fb" category="paragraph">섹션 1.2에서 설명한 바와 같이 정책 기반 관리를 통해 미리 정의된 정책을 사용하여 VM을 프로비저닝하고 관리할 수 있습니다. 이는 IT 운영에 여러 가지 방식으로 도움이 될 수 있습니다.</block>
+  <block id="bd9a10f490f8034385f873c360de29c0" category="list-text">속도를 높이세요. ONTAP 도구를 사용하면 vCenter 관리자가 스토리지 프로비저닝 작업을 위해 스토리지 팀에 티켓을 발행해야 하는 요구 사항이 사라집니다. 하지만 vCenter와 ONTAP 시스템의 ONTAP 도구 RBAC 역할은 원하는 경우 특정 기능에 대한 액세스를 제한함으로써 독립적인 팀(예: 스토리지 팀) 또는 동일 팀 내의 독립적인 활동을 허용합니다.</block>
+  <block id="57e53c1d32a2012eca394e4b926e662d" category="paragraph">파이버 채널과 iSCSI를 사용하는 SAN 스토리지 시스템은 VMware에서 ESX용으로 처음 지원되었지만, 스토리지 시스템에서 개별 VM 파일과 디스크를 관리하는 기능은 부족했습니다. 대신 LUN이 프로비저닝되고 VMFS가 개별 파일을 관리합니다. 이로 인해 스토리지 시스템이 개별 VM 스토리지 성능, 클론 생성 및 보호를 직접 관리하기 어렵습니다. vVols NFS 스토리지를 사용하는 고객이 이미 누리고 있는 스토리지 세분성을 ONTAP 의 강력하고 고성능 SAN 기능과 결합하여 제공합니다.</block>
+  <block id="e685b5808aa3d45726f9fa420d612499" category="paragraph">이제 vSphere 8과 ONTAP tools for VMware vSphere 기존 SCSI 기반 프로토콜용 vVols 에서 사용되던 것과 동일한 세부 제어 기능을 NVMe over Fabric을 사용하는 최신 파이버 채널 SAN에서도 사용할 수 있어 확장성 측면에서 더욱 뛰어난 성능을 제공합니다. vSphere 8.0 업데이트 1을 사용하면 하이퍼바이저 스토리지 스택에서 I/O 변환 없이 vVols 사용하여 완벽한 엔드투엔드 NVMe 솔루션을 배포할 수 있습니다.</block>
+  <block id="4595fa438a32e8c0c07a9bac5336deb5" category="paragraph">VAAI는 스토리지로 오프로드되는 다양한 작업을 제공하지만, VASA 공급자가 해결하는 몇 가지 부족한 부분이 있습니다. SAN VAAI는 VMware에서 관리하는 스냅샷을 스토리지 시스템으로 오프로드할 수 없습니다. NFS VAAI는 VM에서 관리하는 스냅샷을 오프로드할 수 있지만, 스토리지 네이티브 스냅샷을 사용하는 VM에는 몇 가지 제한 사항이 있습니다. vVols 가상 머신 디스크에 개별 LUN, 네임스페이스 또는 파일을 사용하므로 ONTAP 파일이나 LUN을 신속하고 효율적으로 복제하여 델타 파일이 더 이상 필요하지 않은 VM 단위의 스냅샷을 생성할 수 있습니다. NFS VAAI는 전원이 켜진 상태의 Storage vMotion 마이그레이션을 위한 클론 작업 오프로딩도 지원하지 않습니다. 기존 NFS 데이터스토어를 사용하는 VAAI를 사용할 경우 마이그레이션 오프로딩을 허용하려면 VM의 전원을 꺼야 합니다. ONTAP 도구의 VASA Provider를 사용하면 핫 마이그레이션 및 콜드 마이그레이션을 위한 스토리지 효율적인 클론을 거의 즉시 생성할 수 있으며, vVols 의 볼륨 간 마이그레이션을 위한 거의 즉각적인 복사도 지원합니다. 이러한 상당한 스토리지 효율성 이점 덕분에 vVols 워크로드를 최대한 활용할 수 있습니다.<block ref="9d1af7a9d4f98887e53c1a9bedbce044" category="inline-link-rx"></block> 프로그램. 마찬가지로, VAAI를 사용한 볼륨 간 복제가 요구 사항을 충족하지 못하는 경우 vVols 의 향상된 복사 환경 덕분에 비즈니스 문제를 해결할 수 있을 것입니다.</block>
+  <block id="020478d1582d888a4b791c9b662505b9" category="list-text">VMware vSphere Kubernetes Service(VKS) 영구 볼륨.</block>
+  <block id="53a448a8a5917d3739e5a38641e09b61" category="list-text">독립적인 VMDK 수명주기 관리를 통해 Amazon EBS와 유사한 서비스를 제공합니다.</block>
+  <block id="2625ac556b206894854d65e8c2d8dd60" category="list-text">클론은 단일 볼륨 내에서 또는 ONTAP 클러스터의 여러 볼륨에 걸쳐 빠르게 생성되므로 기존 VAAI 지원 클론에 비해 이점이 있습니다. 또한 저장 효율도 뛰어납니다. 볼륨 내의 클론은 ONTAP 파일 클론을 사용하는데, 이는 FlexClone 볼륨과 유사하며 소스 vVol 파일/LUN/네임스페이스의 변경 사항만 저장합니다. 따라서 프로덕션 또는 기타 애플리케이션 용도로 장기간 사용할 VM을 신속하게 생성하고 최소한의 공간만 차지하며 VM 수준 보호(VMware vSphere용 NetApp SnapCenter 플러그인, VMware 관리형 스냅샷 또는 VADP 백업 사용) 및 성능 관리( ONTAP QoS 사용)의 이점을 누릴 수 있습니다. VASA를 사용하면 복제가 완료되기 전에 대상 위치에서 복제본에 대한 액세스를 허용할 수 있으므로, VAAI보다 vVols 사용한 크로스 볼륨 복제가 훨씬 빠릅니다. 데이터 블록은 백그라운드 프로세스로 복사되어 대상 vVol을 채웁니다. 이는 기존 LUN에 대해 ONTAP 무중단 LUN 이동이 작동하는 방식과 유사합니다.</block>
+  <block id="4dc7238e721d4ca5345cd81e6c8cb3e0" category="list-text">Amazon EBS와 유사한 서비스는 FCD를 통해 제공될 수 있습니다. 이름에서 알 수 있듯이 FCD VMDK는 vSphere에서 핵심적인 역할을 하며, 연결된 VM과 별도로 독립적으로 관리할 수 있는 수명 주기를 가지고 있기 때문입니다.</block>
+  <block id="ec23f03594c1cf8ce973ded1ce2c46bd" category="paragraph">vCenter Server Appliance(VCSA)는 vSphere를 위한 강력한 중앙 집중식 관리 시스템이자 단일 통합 관리 콘솔로, 관리자가 ESXi 클러스터를 효과적으로 운영할 수 있도록 지원합니다. 이 솔루션은 VM 프로비저닝, vMotion 작업, 고가용성(HA), 분산 리소스 스케줄러(DRS), VMware vSphere Kubernetes Service(VKS) 등과 같은 주요 기능을 지원합니다. 이는 VMware 클라우드 환경의 필수 구성 요소이며 서비스 가용성을 염두에 두고 설계해야 합니다.</block>
+  <block id="af47b720024b8b1ab024ae20f4022d06" category="paragraph">vSphere HA 클러스터에서 서버 장애 발생 시 가상 머신을 복구하는 방법.</block>
+  <block id="0c56b1414177813b5b1a16b32ed9d5ac" category="paragraph">HA 클러스터가 생성되는 즉시 클러스터의 모든 호스트가 마스터 선출에 참여하며, 그중 한 호스트가 마스터가 됩니다. 각 슬레이브는 마스터에게 네트워크 하트비트를 전송하고, 마스터는 모든 슬레이브 호스트에 네트워크 하트비트를 전송합니다. vSphere HA 클러스터의 마스터 호스트는 슬레이브 호스트의 장애를 감지하는 역할을 담당합니다.</block>
+  <block id="c9f8dbe3b85827073fec58373038b8e3" category="paragraph">격리 응답은 vSphere HA 클러스터의 호스트가 관리 네트워크 연결이 끊어졌지만 계속 실행될 때 가상 머신에서 트리거되는 작업을 결정하는 vSphere HA 설정입니다. 이 설정에는 "사용 안 함", "VM 종료 후 재시작", "VM 전원 끄고 재시작"의 세 가지 옵션이 있습니다.</block>
+  <block id="2f8a6f413f09b796f9ebf6bf39d1ee4f" category="paragraph">"종료"는 "전원 끄기"보다 낫습니다. "전원 끄기"는 최근 변경 사항을 디스크에 저장하거나 트랜잭션을 커밋하지 않기 때문입니다. 가상 머신이 300초 이내에 종료되지 않으면 전원이 꺼집니다. 대기 시간을 변경하려면 고급 옵션인 das.isolationshutdowntimeout을 사용하십시오.</block>
+  <block id="895d9c0d44a4811deea841128e0e1ef4" category="paragraph">PDL은 저장 장치가 영구적으로 고장 나거나 관리자에 의해 제거되어 다시 복구될 것으로 예상되지 않는 상태를 말합니다. NetApp 스토리지 어레이는 ESXi에 SCSI Sense 코드를 발행하여 장치가 영구적으로 연결 해제되었음을 알립니다. vSphere HA의 장애 조건 및 VM 응답 섹션에서 PDL 조건이 감지된 후 어떤 응답을 수행할지 구성할 수 있습니다.</block>
+  <block id="7b2473c88828f0e4e9ae70e269a94371" category="paragraph">NetApp "PDL이 있는 데이터스토어에 대한 응답"을 "*VM 전원을 끄고 다시 시작*"으로 설정하는 것을 권장합니다. 이 상태가 감지되면 vSphere HA 클러스터 내의 정상적인 호스트에서 VM이 즉시 다시 시작됩니다.</block>
+  <block id="99ca3d06ef1fb8b0d3501365bab5899a" category="paragraph">APD는 호스트가 스토리지 장치에 액세스할 수 없게 되고 어레이에 대한 사용 가능한 경로가 없을 때 발생하는 상태입니다. ESXi는 이를 장치의 일시적인 문제로 간주하며, 곧 다시 사용 가능해질 것으로 예상합니다.</block>
+  <block id="8bf5af809d53b1494fe364d8cbe68c9f" category="list-text">보수적이라는 것은 HA가 가상 머신을 재시작할 수 있을 가능성을 의미합니다. HA 설정을 '보수적'으로 하면, APD의 영향을 받는 VM은 다른 호스트에서 재시작할 수 있는 경우에만 재시작됩니다. 공격적 모드의 경우, HA는 다른 호스트의 상태를 알지 못하더라도 VM을 재시작하려고 시도합니다. 이로 인해 가상 머신이 위치한 데이터 저장소에 접근할 수 있는 호스트가 없는 경우 가상 머신이 재시작되지 않을 수 있습니다.</block>
+  <block id="7fce4a8e4d875aacc44e3d2ed8580a5d" category="paragraph">vSphere HA 페일오버 동작에 대해 지정할 수 있는 규칙에는 두 가지 유형이 있습니다.</block>
+  <block id="26cc6fc2decc1bcfa2c0a112114e3acc" category="paragraph">서비스 제공 가능성은 항상 성능보다 우선시되어야 합니다. 데이터 센터 전체에 장애가 발생하는 시나리오에서 "필수" 규칙은 VM 호스트 선호도 그룹에서 호스트를 선택해야 하며, 데이터 센터를 사용할 수 없는 경우 가상 머신은 다시 시작되지 않습니다.</block>
+  <block id="81430f9750a817293c793dd7958f44fa" category="list-text">ONTAP 스냅샷을 사용하는 경우 스토리지 vMotion을 수행하면 스냅샷에 있는 VM 복사본이 그대로 남아 있게 되어 스토리지 사용량이 증가할 수 있으며, VM 및 ONTAP 스냅샷을 추적하는 NetApp SnapCenter 와 같은 백업 애플리케이션에 영향을 줄 수 있습니다.</block>
 </blocks>

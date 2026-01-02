@@ -22,8 +22,7 @@ summary: 이 문서에 설명된 정보에 대해 자세히 알아보려면 다�
 link:vmware-vsphere-overview.html["https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vsphere-overview.html"]
 * TR-4400: ONTAP를 포함한 VMware vSphere 가상 볼륨
 link:vmware-vvols-overview.html["https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vvols-overview.html"]
-* ONTAP 9용 TR-4015 SnapMirror 구성 모범 사례 가이드
-link:https://www.netapp.com/media/17229-tr4015.pdf?v=127202175503P["https://www.netapp.com/media/17229-tr4015.pdf?v=127202175503P"]
+* ONTAP 9용 TR-4015 SnapMirror 구성 모범 사례 가이드 link:https://www.netapp.com/pdf.html?item=/media/17229-tr-4015-snapmirror-configuration-ontap.pdf["https://www.netapp.com/pdf.html?item=/media/17229-tr-4015-snapmirror-configuration-ontap.pdf"]
 * VMware Live Site Recovery 설명서 link:https://techdocs.broadcom.com/us/en/vmware-cis/live-recovery/live-site-recovery/9-0.html["https://techdocs.broadcom.com/us/en/vmware-cis/live-recovery/live-site-recovery/9-0.html"]
 
 
