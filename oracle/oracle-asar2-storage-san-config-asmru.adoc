@@ -1,0 +1,34 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-asar2-storage-san-config-asru.html 
+keywords: ontap, thin provisioning, oracle, ASRU, ASA r2 
+summary: ASA r2에서 ONTAP 제로 블록 감지 기능을 갖춘 ASM 복구 유틸리티 
+searchtitle: 'ASA r2에서 ONTAP 사용하는 ASM 복구 유틸리티(ASRU)' 
+---
+= ASM 회수 유틸리티(ASRU)
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ASA r2의 ONTAP 인라인 압축이 활성화된 경우 LUN(저장 장치)에 기록된 0으로 채워진 블록을 효율적으로 제거합니다. Oracle ASM Reclamation Utility(ASRU)와 같은 유틸리티는 사용되지 않는 ASM 익스텐트에 0을 기록하는 방식으로 작동합니다.
+
+이를 통해 DBA는 데이터가 삭제된 후 스토리지 어레이의 공간을 회수할 수 있습니다. ONTAP 0을 가로채고 LUN에서 해당 공간을 할당 해제합니다. 데이터 복구 과정은 저장 시스템 내에 실제 데이터가 기록되지 않기 때문에 매우 빠릅니다.
+
+데이터베이스 관점에서 보면 ASM 디스크 그룹은 0을 포함하고 LUN의 해당 영역을 읽으면 스트림이 0이 되지만 ONTAP는 드라이브에 0을 저장하지 않습니다. 그 대신, 내부적으로 LUN의 제로화된 영역을 모든 데이터가 비어 있는 상태로 표시하는 간단한 메타데이터 변경이 이루어집니다.
+
+마찬가지로 0의 블록이 실제로 스토리지 시스템 내에서 쓰기로 처리되지 않기 때문에 제로화된 데이터를 포함하는 성능 테스트는 유효하지 않습니다.
+
+ASA r2 ONTAP 에서 ASRU를 고려할 때 중요한 사항:
+
+* ASA r2는 블록 전용이기 때문에 SAN 워크로드의 경우 AFF/ FAS 와 동일한 방식으로 작동합니다.
+* SAZ 내에 프로비저닝된 LUN 및 NVMe 네임스페이스에 적용됩니다.
+* FlexVol 볼륨은 존재하지 않지만, 제로 블록 회수 동작은 동일합니다.
+
+
+
+NOTE: ASRU를 사용하는 경우 모든 Oracle 권장 패치가 설치되어 있는지 확인합니다.

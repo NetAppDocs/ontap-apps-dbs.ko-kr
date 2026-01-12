@@ -1,0 +1,84 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-asar2-host-config-linux.html 
+keywords: oracle, database, ASA r2, ontap, linux, nfs, xfs, ext4, slot tables 
+summary: ASA r2에서 Linux를 사용하는 Oracle 데이터베이스 
+searchtitle: ASA r2에서 Linux를 사용하는 Oracle 데이터베이스 
+---
+= 리눅스
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ASA r2 ONTAP 에서 Linux OS에 특화된 구성 항목입니다.
+
+[NOTE]
+====
+ASA r2는 Oracle 데이터베이스용으로 Linux(Oracle Linux, RHEL, SUSE)를 지원합니다. SAN 프로토콜을 사용하고, 멀티패싱을 올바르게 구성하고, ASM 및 I/O 튜닝에 대한 Oracle 모범 사례를 적용하십시오.
+
+====
+
+
+== I/O 스케줄러
+
+Linux 커널은 블록 장치의 I/O를 스케줄링하여 낮은 레벨의 제어를 허용합니다. Linux의 다양한 배포 방식에서는 여러 가지의 기본값을 사용할 수 있습니다. 테스트에 의하면 Deadline이 보통 최상의 결과를 제공하지만 NOOP에서 성능이 더 높은 경우도 간혹 있었습니다. 성능 차이는 크지 않으나 데이터베이스 구성에서 최대한의 성능을 끌어내려면 필요 시 두 옵션을 모두 테스트하십시오. 대다수 구성은 CFQ를 기본값으로 하며, 데이터베이스 워크로드에서 심각한 성능 문제가 발생한다는 사실이 입증되었습니다.
+
+I/O 스케줄러 구성에 관한 관련 Linux 공급업체 설명서의 지침을 참조하십시오.
+
+
+
+== 다중 경로
+
+어떤 고객은 다중 경로 데몬이 시스템에서 실행되지 않아 네트워크 중단 시 충돌이 발생하였습니다. Linux 최신 버전에서는 운영 체제 설치 프로세스와 다중 경로 데몬에 의해 운영 체제가 이 문제에 취약해질 수 있습니다. 패키지는 올바르게 설치되나 재부팅 후 자동 시동되도록 구성되지 않습니다.
+
+예를 들어, RHEL 9.7에서 멀티패스 데몬의 기본 설정은 다음과 같을 수 있습니다.
+
+....
+[root@host1 ~]# systemctl list-unit-files --type=service | grep multipathd
+multipathd.service                      disabled
+....
+다음과 같은 명령으로 이를 수정할 수 있습니다.
+
+....
+[root@host1 ~]# systemctl enable multipathd.service
+[root@host1 ~]# systemctl list-unit-files --type=service | grep multipathd
+multipathd.service                      enabled
+....
+
+
+== 큐 깊이
+
+I/O 병목 현상을 방지하려면 SAN 장치에 적절한 큐 깊이를 설정하십시오. 리눅스에서 기본 큐 깊이는 종종 128로 설정되어 있는데, 이로 인해 오라클 데이터베이스에서 성능 문제가 발생할 수 있습니다. 큐 깊이를 너무 높게 설정하면 과도한 I/O 큐잉이 발생하여 지연 시간이 증가하고 처리량이 감소할 수 있습니다. 이 값을 너무 낮게 설정하면 처리 중인 I/O 요청 수가 제한되어 전반적인 성능이 저하될 수 있습니다. ASA r2에서 Oracle 데이터베이스 워크로드의 경우 큐 깊이를 64로 설정하는 것이 좋은 시작점인 경우가 많지만, 특정 워크로드 특성 및 성능 테스트에 따라 조정해야 할 수도 있습니다.
+
+
+
+== ASM 미러링
+
+ASM 미러링은 ASM이 문제를 인식하고 대체 장애 그룹으로 전환할 수 있도록 Linux 다중 경로 설정을 변경해야 할 수 있습니다. ONTAP의 대다수 ASM 구성은 외부 이중화를 사용하는데, 이는 외부 어레이를 통해 데이터가 보호되고 ASM은 데이터를 미러링하지 않는다는 뜻입니다. 일부 사이트는 ASM에서 일반적인 수준의 이중화를 사용하며 일반적으로 여러 사이트에 걸쳐 양방향 미러링을 제공합니다.
+
+액티브-액티브 멀티패싱을 지원하는 ASA r2 시스템의 경우 이러한 멀티패스 설정을 조정해야 합니다. 모든 경로가 활성화되어 있고 로드 밸런싱이 되어 있으므로 무한 대기열이 필요하지 않습니다. 대신, 멀티패스 매개변수는 성능과 빠른 페일백을 우선시해야 합니다. 이 동작은 ASM 미러링에 중요합니다. ASM은 대체 LUN에서 I/O를 재시도하려면 I/O 실패를 수신해야 하기 때문입니다. I/O 작업이 무기한으로 대기열에 쌓이면 ASM은 페일오버를 트리거할 수 없습니다.
+
+Linux에서 다음 매개 변수를 설정합니다 `multipath.conf` ASM 미러링과 함께 사용되는 ASM LUN용 파일:
+
+....
+polling_interval 5
+no_path_retry 24
+failback immediate
+path_grouping_policy multibus
+path_selector "service-time 0"
+....
+이들 설정은 ASM 장치의 시간 초과 값을 120초로 만듭니다. 시간 초과는 로 계산됩니다 `polling_interval` * `no_path_retry` 초 단위로 표시합니다. 정확한 값을 위해 조정이 필요할 때도 있지만 대부분의 경우에는 120초 시간 초과로 충분합니다. 특히, 장애 그룹을 오프라인 상태로 만들어버리는 I/O를 생성하지 않고 120초 동안 컨트롤러가 테이크오버 또는 반환을 수행할 수 있어야 합니다.
+
+더 낮아졌습니다 `no_path_retry` 값을 지정하면 ASM이 대체 장애 그룹으로 전환하는 데 필요한 시간을 단축할 수 있지만 이렇게 하면 컨트롤러 테이크오버 같은 유지보수 활동 중에 원치 않는 페일오버 위험이 증가합니다. 이러한 위험은 ASM 미러링 상태를 주의 깊게 모니터링하여 완화할 수 있습니다. 원치 않는 페일오버가 발생한 경우에도 재동기화가 상대적으로 빠르게 수행된다면 미러링이 신속하게 재동기화됩니다. 추가 정보는 사용 중인 Oracle 소프트웨어 버전의 ASM 빠른 미러 재동기화에 관한 Oracle 설명서를 참조하십시오.
+
+
+
+== Linux xfs, ext3 및 ext4 마운트 옵션
+
+
+TIP: NetApp 기본 마운트 옵션을 사용하는 것을 권장합니다. LUN에 파일 시스템을 생성할 때 올바른 정렬이 이루어지도록 하십시오.

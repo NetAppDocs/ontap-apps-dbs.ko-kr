@@ -441,7 +441,6 @@
   <block id="0c2f3b2ec9d90baa0a0a0b6fb673a113" category="paragraph">높은 성능을 필요로 하는 애플리케이션 I/O는 거의 항상 (a) 기본 블록 크기 단위 또는 (b) 1MB입니다.</block>
   <block id="804d5b1f06570b4d242be0c2f0c3392c" category="paragraph">스트라이핑 구성의 기본적인 목표는 단일 파일 I/O를 단일 유닛으로 수행하고, 1MB 크기여야 하는 다중 블록 I/O를 스트라이핑 볼륨의 모든 LUN에 걸쳐 균등하게 병렬 처리할 수 있도록 지원하는 것입니다. 즉, 스트라이프 크기가 데이터베이스 블록 크기보다 작아서는 안 되며 스트라이프 크기를 LUN 수를 곱한 크기가 1MB여야 합니다.</block>
   <block id="0598f393baefd05d48b48076cc7df606" category="paragraph">다음 그림에서는 스트라이프 크기 및 폭 조정에 사용할 수 있는 세 가지 옵션을 보여 줍니다. 위에서 설명한 대로 성능 요구 사항을 충족하기 위해 LUN 수를 선택하지만 모든 경우에 단일 스트라이프의 총 데이터는 1MB입니다.</block>
-  <block id="0353522b39b87d54d40d3f09ec668851" category="doc">ONTAP 구성</block>
   <block id="8e52de0d4b03d5fe87dc88da09616c7f" category="inline-link-macro">여기.</block>
   <block id="337c62c6b6eb7319bae58701105e889c" category="doc">계층화</block>
   <block id="3493794b3ccb587f71a663f51f4484ef" category="summary">ONTAP의 PostgreSQL 데이터베이스</block>
@@ -5089,9 +5088,7 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="17ed98f652bb960b10b3357e44785f38" category="inline-image-macro">마이그레이션 순서도</block>
   <block id="f420007a3c90420b30780388a0e05dbc" category="paragraph"><block ref="6ee66f70cd2b82e9dd03128a50a38de9" category="inline-image-macro-rx" type="image"></block>..</block>
   <block id="fb3e908ec44ab0657a364e90a649adee" category="admonition">비정상적인 결과를 초래할 수 있는 Linux 관련 dNFS 문제에 대해서는 의 <block ref="6ada863f3548cecdf5d7a06e9c4201cd" category="inline-link-macro-rx"></block>참고 사항을<block ref="4740c034d97ca90a96b8050082816605" prefix=" " category="inline-code"></block> 참조하십시오.</block>
-  <block id="7dde30333f2f14b8935a6f394318dd19" category="paragraph">&lt;stdin&gt;-include::lun-alignment.adoc [ ] 의 해결되지 않은 보호 지침</block>
   <block id="baeaebf1ec4083a8b5a2278617a67479" category="paragraph">또한 압축 블록 정렬에 대한 내용은 섹션을 <block ref="936e7f76dd05eeca0e082776361dee38" category="inline-link-macro-rx"></block>참조하십시오. 8KB 압축 블록 경계에 맞춰 정렬된 레이아웃은 4KB 경계에도 맞춰집니다.</block>
-  <block id="62cc2062c0bb14fd9ee41267e11b9824" category="paragraph">&lt;stdin&gt;-include::database-misalignment-warnings.adoc [ ] 의 unresolved 지시문</block>
   <block id="0452707f6213531bbf4f41e5f16cdead" category="paragraph">클론 복제는 일반적으로 VM, VVOL 또는 데이터 저장소 수준에서 여러 메커니즘을 통해 ONTAP을 실행하는 시스템으로 오프로드할 수 있습니다. 여기에는 다음이 포함됩니다.</block>
   <block id="a4ec3dfc79c8493b1e9fcaee6b06b5a8" category="summary">ONTAP은 하이브리드 클라우드에 광범위한 지원을 제공합니다.</block>
   <block id="14f3c0fa1399e57b5998b528cc5f3515" category="paragraph">ONTAP은 특히 엔터프라이즈급 스케일아웃 NAS 어레이입니다. ONTAP를 사용하면 VMware vSphere가 여러 ESXi 호스트에서 NFS 연결 데이터 저장소에 동시에 액세스할 수 있으므로 VMFS 파일 시스템에 적용되는 제한을 훨씬 초과합니다. vSphere와 함께 NFS를 사용하면 섹션에서 언급한 것처럼 사용 편의성 및 스토리지 효율성 가시성의 이점을 얻을 수 <block ref="72b655a9973dbed02099f5e63762d591" category="inline-link-macro-rx"></block>있습니다.</block>
@@ -6095,4 +6092,310 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="7fce4a8e4d875aacc44e3d2ed8580a5d" category="paragraph">vSphere HA 페일오버 동작에 대해 지정할 수 있는 규칙에는 두 가지 유형이 있습니다.</block>
   <block id="26cc6fc2decc1bcfa2c0a112114e3acc" category="paragraph">서비스 제공 가능성은 항상 성능보다 우선시되어야 합니다. 데이터 센터 전체에 장애가 발생하는 시나리오에서 "필수" 규칙은 VM 호스트 선호도 그룹에서 호스트를 선택해야 하며, 데이터 센터를 사용할 수 없는 경우 가상 머신은 다시 시작되지 않습니다.</block>
   <block id="81430f9750a817293c793dd7958f44fa" category="list-text">ONTAP 스냅샷을 사용하는 경우 스토리지 vMotion을 수행하면 스냅샷에 있는 VM 복사본이 그대로 남아 있게 되어 스토리지 사용량이 증가할 수 있으며, VM 및 ONTAP 스냅샷을 추적하는 NetApp SnapCenter 와 같은 백업 애플리케이션에 영향을 줄 수 있습니다.</block>
+  <block id="f51e6cb0023f640f3e441b33ea6d90b2" category="summary">ASA r2에서 Oracle 데이터베이스 블록 크기</block>
+  <block id="b74e31875db8b4ffb64a32f6af8a00c3" category="paragraph">ONTAP 내부적으로 가변 블록 크기를 사용하므로 Oracle 데이터베이스는 원하는 블록 크기로 구성할 수 있습니다. 하지만 파일 시스템 블록 크기는 성능에 영향을 미칠 수 있으며, 경우에 따라 더 큰 리두 블록 크기가 성능을 향상시킬 수 있습니다.</block>
+  <block id="25efcd88d2bb8d1c51866688d59b6df0" category="paragraph">ASA r2는 AFF/ FAS 시스템과 비교하여 Oracle 블록 크기 권장 사항에 어떠한 변경 사항도 도입하지 않았습니다. ONTAP 동작은 모든 플랫폼에서 일관되게 유지됩니다.</block>
+  <block id="45dfed63ad9cfaef8f16e45163f1ddcb" category="summary">Oracle 데이터베이스 매개변수 - ASA r2의 filesystemio_options</block>
+  <block id="29967c867552a538cee57e0fefdb1612" category="paragraph">ASA r2에서 filesystemio_options의 동작 및 권장 사항은 해당 매개변수가 Oracle 전용이며 스토리지 플랫폼에 종속되지 않으므로 AFF/ FAS 시스템과 동일합니다. ASA r2는 AFF/ FAS 처럼 ONTAP 사용하므로 동일한 모범 사례가 적용됩니다.</block>
+  <block id="4725bcfd9454b799bd0d8edf9880b9c6" category="admonition">ASM 환경에서 Oracle은 ASM 관리 디스크에 대해 직접 I/O와 비동기 I/O를 자동으로 사용합니다.<block ref="f1110589be196c2310808482067fce1b" prefix=" " category="inline-code"></block> ASM 디스크 그룹에는 영향을 미치지 않습니다. ASM을 사용하지 않는 배포 환경(예: SAN LUN의 파일 시스템)의 경우 다음과 같이 설정하십시오.<block ref="6a1623be7d673ed665d6446f22dbb37c" prefix=" " category="inline-code"></block>. 이를 통해 최적의 성능을 위해 비동기 및 직접 I/O를 모두 사용할 수 있습니다.</block>
+  <block id="11277a7f8d508b5b546ee39af32e9b34" category="paragraph">일부 구형 운영 체제는 비동기 I/O에 문제가 있었고, 이로 인해 비동기 I/O를 피해야 한다는 시대착오적인 조언이 나왔습니다. 하지만 비동기 I/O는 안정적이며 현재 모든 운영 체제에서 완벽하게 지원됩니다. 특정 운영체제 버그가 발견되지 않는 한, 해당 기능을 비활성화할 이유가 없습니다.</block>
+  <block id="3d1060d19355a79188cebceddfe20cac" category="admonition">* NetApp 권장 설정*<block ref="f1110589be196c2310808482067fce1b" prefix=" " category="inline-code"></block> 에게<block ref="aef8f91b1e026cc1bb55e8b08c491d35" prefix=" " category="inline-code"></block>하지만 특정 상황에서는 호스트 버퍼 캐시 손실로 인해 Oracle SGA를 늘려야 할 수도 있다는 점에 유의하십시오. ASA r2 시스템은 지연 시간이 짧은 SAN 워크로드에 최적화되어 있으므로 setall을 사용하는 것은 고성능 Oracle 배포를 위한 ASA 설계와 완벽하게 부합합니다.</block>
+  <block id="cc9bafe604d9f828f9e50b888b5af83a" category="summary">Oracle 데이터베이스 매개변수 - ASA r2의 db_file_multiblock_read_count</block>
+  <block id="77da25139302fac7c4678c7feff95328" category="paragraph">AFF/ FAS 시스템과 비교했을 때 권장 사항에는 변경 사항이 없습니다. ONTAP 동작 방식과 Oracle의 모범 사례는 ASA r2, AFF 및 FAS 플랫폼 전반에 걸쳐 동일하게 유지됩니다.</block>
+  <block id="7a6b7a0812fd796dcb806fd5b0c2b6c7" category="summary">Oracle RAC 타임아웃 문제 (ASA r2 사용 시)</block>
+  <block id="f034ddba34805dbfe68b7f48ca895681" category="searchtitle">Oracle Real Application Clusters에서 ASA r2를 사용할 때 발생하는 타임아웃 문제</block>
+  <block id="6ee77b798f308781373f865ac29cba09" category="paragraph">ASA r2 시스템은 AFF/ FAS 와 마찬가지로 ONTAP 사용하므로 Oracle RAC 타임아웃 매개변수에도 동일한 원칙이 적용됩니다. 디스크 타임아웃 또는 미스카운트 권장 사항과 관련하여 ASA 특정한 변경 사항은 없습니다. 하지만 ASA r2는 SAN 워크로드와 저지연 페일오버에 최적화되어 있으므로 이러한 모범 사례가 더욱 중요합니다.</block>
+  <block id="9f7a41723dc84c90511cb0c3007557cc" category="admonition">다음 정보는 <block ref="9cd17d807316d35ef47b12cbecab4ec8" category="inline-link-macro-rx"></block> 이 섹션에는 네트워크 스토리지를 사용하는 Oracle RAC 환경에 대한 중요한 정보가 포함되어 있으며, 많은 경우 RAC 클러스터가 네트워크 경로 변경 및 스토리지 장애 조치 작업에서 안정적으로 유지되도록 기본 Oracle RAC 설정을 변경해야 합니다.</block>
+  <block id="c03d1b47221ed5a173395512ed362d44" category="list-text"><block ref="ff4a008470319a22d9cf3d14af485977" prefix="" category="inline-code"></block> 바이너리 파일은 iSCSI, FC 및 데이터스토어 기반 드라이브를 포함한 네트워크 연결 드라이브에 있습니다.</block>
+  <block id="543df3f730045fd30ce4af77abea11e1" category="list-text">ASA r2의 SAN 최적화 설계는 페일오버 지연 시간을 줄여주지만, 네트워크 부팅 또는 그리드 바이너리에 대해서는 여전히 타임아웃을 조정해야 합니다.</block>
+  <block id="82106d3b2ed91a254d7c6d4d5342cbc1" category="list-text">확장된 RAC 또는 액티브-액티브 구성(예: SnapMirror 액티브 동기화)의 경우, 제로 RPO 아키텍처를 위해서는 타임아웃 튜닝이 여전히 필수적입니다.</block>
+  <block id="6c7de758773bd93ee212e9116ff23b70" category="summary">ASA ASA ONTAP 스토리지 용량과 여유 공간</block>
+  <block id="0ba26eed20c7a72b7557b1dca31463f8" category="searchtitle">ASA r2에서의 Oracle 데이터베이스 및 스토리지 용량 관리</block>
+  <block id="fec46d85c88737d5c6bc3c8fb9d31d07" category="paragraph">ASA r2는 애그리게이트 대신 스토리지 가용 영역(SAZ)을 사용하지만 원칙은 동일합니다. 즉, 여유 공간에는 실제 데이터, 스냅샷 또는 시스템 오버헤드로 인해 소비되지 않은 모든 물리적 용량이 포함됩니다. 씬 프로비저닝 또한 고려해야 할 사항입니다. 논리적 할당은 실제 물리적 사용량을 반영하지 않습니다.</block>
+  <block id="fd3c3ddb6afa0f19ccd103893bdfff01" category="paragraph">엔터프라이즈 애플리케이션에 사용되는 ASA r2 스토리지 시스템에 대한 NetApp 권장 사항은 다음과 같습니다.</block>
+  <block id="b117f27a635613ecfcbec6e1b094b82f" category="section-title">ASA r2 시스템의 SSD 풀</block>
+  <block id="286282b47dd388584f0b47bb531e0c18" category="admonition">NetApp ASA r2 환경에서 최소 10%의 여유 물리적 공간을 유지할 것을 권장합니다. 이 지침은 ASA r2 시스템에서 사용하는 SSD 전용 풀에 적용되며 SAZ 및 스토리지 장치 내의 사용되지 않은 모든 공간을 포함합니다. 논리적 공간은 중요하지 않습니다. 중요한 것은 데이터를 저장하는 데 실제로 사용할 수 있는 물리적 공간입니다.</block>
+  <block id="e44f572dc67206f5fe79649b7a71ea39" category="paragraph">ASA r2는 성능 저하 없이 높은 사용률을 유지할 수 있지만, 거의 최대 용량으로 작동할 경우 저장 공간 부족 위험이 증가하고 스토리지 확장 시 관리 부담이 커집니다. 사용률이 90%를 넘더라도 성능에는 영향을 미치지 않을 수 있지만, 관리가 복잡해지고 추가 드라이브 프로비저닝이 지연될 수 있습니다.</block>
+  <block id="0d0fe41e4cffbd1cbbfd0ff604e5847a" category="paragraph">ASA r2 시스템은 최대 128TB의 스토리지 장치와 HA 쌍당 최대 2PB의 SAZ 크기를 지원하며, ONTAP 노드 간 용량 균형을 자동으로 조정합니다. 클러스터, SAZ 및 스토리지 장치 수준에서 사용률을 모니터링하는 것은 스냅샷, 씬 프로비저닝 워크로드 및 향후 성장을 위한 충분한 여유 공간을 확보하는 데 필수적입니다. 용량이 임계점(사용률 약 90%)에 근접하면 성능과 복원력을 유지하기 위해 SSD를 그룹(최소 6개)으로 추가해야 합니다.</block>
+  <block id="9c4d6eff4aaa2da2a41a618d4e6308e6" category="summary">ASA r2를 사용한 Oracle 데이터베이스 및 스토리지 효율성 향상</block>
+  <block id="eaad7dcfc067b66ed2d62d108f314eaa" category="searchtitle">ASA r2의 Oracle 데이터베이스 및 ONTAP 효율성 기능</block>
+  <block id="97c9a5fb8d9dca6d787d486fae38909e" category="paragraph">ONTAP 공간 효율성 기능은 ASA r2 시스템에 맞게 완벽하게 지원되고 최적화되어 있습니다. 거의 모든 경우에 가장 좋은 방법은 모든 효율성 기능을 활성화한 상태로 기본 설정을 그대로 두는 것입니다.</block>
+  <block id="29e5740ae1265e0ae9ddc367075a430d" category="paragraph">ASA r2 시스템은 올플래시 SAN 플랫폼이므로 압축, 압축 압축 및 중복 제거와 같은 효율성 기술은 사용 가능한 용량을 극대화하고 비용을 절감하는 데 매우 중요합니다.</block>
+  <block id="0e607e6969928c8f0be851b17df35b7c" category="paragraph">압축은 데이터의 패턴을 인코딩하여 저장 공간 요구 사항을 줄입니다. SSD 기반 ASA r2 시스템에서는 플래시 메모리가 성능 향상을 위한 과잉 프로비저닝의 필요성을 없애주기 때문에 압축을 통해 상당한 비용 절감을 실현할 수 있습니다. ONTAP 적응형 압축은 기본적으로 활성화되어 있으며 Oracle 데이터베이스를 포함한 엔터프라이즈 워크로드에서 철저히 테스트되었습니다. 마이크로초 단위의 지연 시간이 발생하는 환경에서도 성능 저하가 전혀 관찰되지 않았습니다. 경우에 따라 압축된 데이터가 캐시 공간을 덜 차지하기 때문에 성능이 향상됩니다.</block>
+  <block id="acf1c3f0880b3b517ae9c08198c3313c" category="admonition">온도 감응형 저장 효율(TSSE)은 ASA r2 시스템에 적용되지 않습니다. ASA r2 시스템에서는 압축이 자주 액세스되는 데이터(핫 데이터) 또는 자주 액세스되지 않는 데이터(콜드 데이터)를 기준으로 수행되지 않습니다. 압축은 데이터가 차가워지기를 기다리지 않고 시작됩니다.</block>
+  <block id="c9359b028210c16d749a4ad44ceef2fe" category="paragraph">적응형 압축은 기본적으로 8KB 블록 크기를 사용하는데, 이는 관계형 데이터베이스에서 일반적으로 사용되는 블록 크기와 일치합니다. 더 큰 블록 크기(16KB 또는 32KB)는 트랜잭션 로그 또는 백업과 같은 순차 데이터의 효율성을 향상시킬 수 있지만, 덮어쓰기 중 오버헤드를 방지하기 위해 활성 데이터베이스에서는 신중하게 사용해야 합니다.</block>
+  <block id="47e17029663cd0a26bc74c23a15916f1" category="admonition">로그 파일이나 백업 파일과 같이 활동이 적은 파일의 경우 블록 크기를 최대 32KB까지 늘릴 수 있습니다. 기본 설정을 변경하기 전에 NetApp 지침을 참조하십시오.</block>
+  <block id="fb88d498aeb61ef7dc46cf0183899e05" category="admonition">스트리밍 백업 시 중복 제거 기능이 있는 32KB 압축 방식을 사용하지 마십시오. 중복 제거 효율을 유지하려면 8KB 압축을 사용하십시오.</block>
+  <block id="fce01c72f00048fc766f0b547b80b0c1" category="paragraph">임의 덮어쓰기의 경우 압축 정렬이 중요합니다. LUN 유형, 파티션 오프셋(8KB의 배수), 파일 시스템 블록 크기가 데이터베이스 블록 크기에 맞춰져 있는지 확인하십시오. 백업이나 로그와 같은 순차적 데이터는 정렬을 고려할 필요가 없습니다.</block>
+  <block id="2f096f341d922649f5787ac9dc67736f" category="paragraph">압축은 여러 개의 압축된 블록이 동일한 물리적 블록을 공유할 수 있도록 함으로써 압축을 보완합니다. 예를 들어 8KB 블록이 1KB로 압축될 경우, 압축 과정을 통해 남은 공간이 낭비되지 않도록 합니다. 이 기능은 인라인으로 구현되어 성능 저하를 유발하지 않습니다.</block>
+  <block id="6d6c415da1e0bfc92ede47ea457bacfe" category="paragraph">중복 제거는 데이터 세트 전체에서 중복되는 블록을 제거합니다. 오라클 데이터베이스는 일반적으로 고유한 블록 헤더와 트레일러로 인해 중복 제거를 통한 공간 절약 효과가 미미하지만, ONTAP 중복 제거는 0으로 채워진 블록과 반복되는 패턴에서 공간을 회수할 수 있습니다.</block>
+  <block id="afe06725d3e8e69f957d42e07a4d2ac6" category="paragraph">ASA r2 시스템은 기본적으로 씬 프로비저닝을 사용합니다. 효율성 기능은 씬 프로비저닝을 보완하여 사용 가능한 용량을 극대화합니다.</block>
+  <block id="3ae7feb5d9cb2335f10922aa1130319d" category="admonition">ASA r2 스토리지 시스템에서는 스토리지 장치가 항상 씬 프로비저닝됩니다. 두꺼운 프로비저닝은 지원되지 않습니다.</block>
+  <block id="b562c9523a15796f6734824c6906ea4b" category="section-title">퀵어시스트 기술(QAT)</block>
+  <block id="9d501bcd94601848e35a4581445c16ae" category="paragraph">NetApp ASA r2 플랫폼에서 Intel QuickAssist Technology(QAT)는 QAT가 없는 소프트웨어 기반 온도 민감형 스토리지 효율성(TSSE)과 크게 다른 하드웨어 가속 효율성을 제공합니다.</block>
+  <block id="a5b1922762277348e395a0f5bb63a066" category="paragraph">*하드웨어 가속을 지원하는 QAT:*</block>
+  <block id="7f061561c79fda3cf285f802ab1df9dd" category="list-text">CPU 코어에서 압축 및 암호화 작업을 분담합니다.</block>
+  <block id="daf76bc97dc262e8534a7d1b39c594b8" category="list-text">자주 액세스하는 데이터(핫 데이터)와 자주 액세스하지 않는 데이터(콜드 데이터) 모두에 대해 즉각적이고 효율적인 인라인 처리를 지원합니다.</block>
+  <block id="e0f81090ab3cc33731ea0afa51ad04be" category="list-text">CPU 오버헤드를 크게 줄여줍니다.</block>
+  <block id="ea763c657dce8d1d285478f80caeaa58" category="list-text">더 높은 처리량과 더 낮은 지연 시간을 제공합니다.</block>
+  <block id="96458f7ac4191be2139fef330262c1f1" category="list-text">TLS 및 VPN 암호화와 같이 성능에 민감한 작업의 확장성을 향상시킵니다.</block>
+  <block id="1121032714cb05a8acd4182211a3d959" category="paragraph">*QAT가 없는 TSSE:*</block>
+  <block id="87dd7a76029eb48dc4829ef2fb0998f1" category="list-text">효율적인 작업을 위해 CPU 기반 프로세스에 의존합니다.</block>
+  <block id="cc16c02975ac3a8fc5a6760ee8b59086" category="list-text">지연 후 콜드 데이터에만 효율성을 적용합니다.</block>
+  <block id="dbb9a4d9b6afe5a22a188b05e2c55aca" category="list-text">CPU 자원을 더 많이 소모합니다.</block>
+  <block id="15c9489f22847ad34cca043b0d3781d9" category="list-text">QAT 가속 시스템에 비해 전반적인 성능이 제한됩니다.</block>
+  <block id="7f0fa9ea3b1bfd8171845c4fd64b045b" category="paragraph">따라서 최신 ASA r2 시스템은 기존 TSSE 전용 플랫폼보다 더 빠른 하드웨어 가속 효율성과 더 나은 시스템 활용률을 제공합니다.</block>
+  <block id="17d46209898416a0271a7a40a040fa62" category="section-title">ASA r2의 효율성 향상을 위한 최적의 방법</block>
+  <block id="52101fec2ca49d6ad57b390b63e72b67" category="section-title">ASA r2 기본 설정</block>
+  <block id="1dc9bf51a5f61b552c5fb6db7bd754ab" category="paragraph">ASA r2 시스템에서 실행되는 ONTAP 에 생성된 스토리지 장치는 압축, 압축 해제 및 중복 제거를 포함한 모든 인라인 효율성 기능이 기본적으로 활성화된 상태로 씬 프로비저닝됩니다. 오라클 데이터베이스는 일반적으로 데이터 중복 제거를 통해 큰 이점을 얻지 못하고 압축 불가능한 데이터를 포함할 수 있지만, 이러한 기본 설정은 거의 모든 워크로드에 적합합니다. ONTAP 비용 절감 여부와 관계없이 모든 유형의 데이터 및 I/O 패턴을 효율적으로 처리하도록 설계되었습니다. 기본 설정은 변경 사유를 완전히 이해하고 변경으로 인한 명확한 이점이 있는 경우에만 변경해야 합니다.</block>
+  <block id="db430188d143b5480822ddee760e1628" category="list-text">암호화되었거나 앱에서 압축된 데이터에 대한 압축 비활성화: 파일이 이미 앱 수준에서 압축되었거나 암호화된 경우, 성능을 최적화하고 다른 저장 장치에서 더 효율적인 작업을 수행할 수 있도록 압축을 비활성화하십시오.</block>
+  <block id="629e6580aba1cbe6cff5a2d11fd73f2b" category="list-text">대용량 압축 블록과 중복 제거를 함께 사용하지 마십시오. 데이터베이스 백업 시 32KB 압축과 중복 제거를 동시에 사용하지 마십시오. 스트리밍 백업의 경우, 중복 제거 효율을 유지하기 위해 8KB 압축을 사용하십시오.</block>
+  <block id="339bd8b6442c9bc710297e62b92fe61c" category="list-text">효율성 절감 효과 모니터링: ONTAP 도구(System Manager, Active IQ)를 사용하여 실제 공간 절감 효과를 추적하고 필요한 경우 정책을 조정하십시오.</block>
+  <block id="5e9589652c75095a75909065d8a0d93f" category="summary">이러한 작업으로 인해 Oracle 데이터베이스 운영이 중단되지 않도록 하려면 스토리지 인출 기능에 대한 이해가 필요합니다. 또한, 인수 작업에 사용되는 인수는 잘못 사용될 경우 데이터 무결성에 영향을 미칠 수 있습니다.</block>
+  <block id="73561d6c3983a6b603417a787cf17ce9" category="searchtitle">ASA r2에서 Oracle 데이터베이스 및 ONTAP 컨트롤러 장애 조치</block>
+  <block id="817dbb89ea186ed07c38e66cc3f11ad2" category="doc">ONTAP 페일오버</block>
+  <block id="6217c84a6fec75785f109083aaaa4617" category="paragraph">이러한 작업 중에 Oracle 데이터베이스 운영이 중단되지 않도록 하려면 스토리지 인출 기능에 대한 이해가 필요합니다. 또한, 인수 작업에 사용되는 인수 인자는 잘못 사용될 경우 데이터 무결성에 영향을 미칠 수 있습니다.</block>
+  <block id="0ee72c88d56aef3026c4fb8a22263fb4" category="paragraph">정상적인 상황에서 특정 컨트롤러로 들어오는 쓰기 작업은 해당 HA 파트너에게 동기적으로 미러링됩니다. SnapMirror Active Sync(SM-as)가 활성화된 ASA r2 환경에서는 쓰기 작업이 보조 사이트의 원격 컨트롤러에도 미러링됩니다. 쓰기 작업이 모든 위치의 비휘발성 저장 매체에 저장될 때까지 호스트 애플리케이션은 해당 작업을 승인하지 않습니다.</block>
+  <block id="8729e9a956b08f3fe788c6d911ba78fa" category="paragraph">쓰기 데이터를 저장하는 매체를 비휘발성 메모리(NVMEM)라고 합니다. 이는 때때로 비휘발성 랜덤 액세스 메모리(NVRAM)라고도 불리며, 캐시라기보다는 쓰기 저널로 생각할 수 있습니다. 정상 작동 중에는 NVMEM 의 데이터를 읽지 않으며, 소프트웨어 또는 하드웨어 오류 발생 시 데이터를 보호하기 위해서만 사용됩니다. 데이터가 드라이브에 기록될 때, 데이터는 NVMEM 이 아닌 시스템 RAM에서 전송됩니다.</block>
+  <block id="3b95fd9bb9e3f2ccc9cb80f0a533d06e" category="paragraph">인수 작업 중에는 HA 쌍의 노드 중 하나가 파트너 노드로부터 작업 권한을 인계받습니다. ASA r2에서는 MetroCluster 지원되지 않으므로 스위치오버가 적용되지 않습니다. 대신 SnapMirror Active Sync가 사이트 수준의 이중화를 제공합니다. 정기 유지보수 중 스토리지 인계 작업은 네트워크 경로 변경으로 인한 짧은 작업 중단 외에는 투명하게 진행되어야 합니다. 네트워킹은 복잡할 수 있으며 오류가 발생하기 쉽습니다. 따라서 NetApp 스토리지 시스템을 운영 환경에 배포하기 전에 인계 작업에 대한 철저한 테스트를 수행할 것을 강력히 권장합니다. 이렇게 하는 것이 모든 네트워크 경로가 올바르게 구성되었는지 확인하는 유일한 방법입니다. SAN 환경에서는 명령어를 사용하여 경로 상태를 확인하십시오.<block ref="41dc2c94e82e1c56ba876085acf5a974" prefix=" " category="inline-code"></block> 또는 운영 체제의 기본 멀티패싱 도구를 사용하여 예상되는 모든 경로를 사용할 수 있도록 합니다. ASA r2 시스템은 LUN에 대한 모든 활성 최적화 경로를 제공하며, NVMe 네임스페이스를 사용하는 고객은 NVMe 경로가 sanlun에서 지원되지 않으므로 OS 기본 도구를 사용해야 합니다.</block>
+  <block id="fbd1162054dfcc75279eb74994c81fc2" category="paragraph">강제 인수 절차를 진행할 때는 신중을 기해야 합니다. 스토리지 구성을 강제로 변경하면 드라이브를 소유한 컨트롤러의 상태는 무시되고 대체 노드가 드라이브 제어권을 강제로 가져오게 됩니다. 강제로 인수하는 과정에서 NVMEM 의 내용이 삭제될 수 있으므로, 잘못된 인수 시도는 데이터 손실이나 손상을 초래할 수 있습니다. 인수 작업이 완료된 후 해당 데이터가 손실되면 드라이브에 저장된 데이터가 데이터베이스 관점에서 약간 이전 상태로 되돌아갈 수 있습니다.</block>
+  <block id="417180065e1db56271a50819dfc8d77a" category="paragraph">일반적인 HA 쌍을 사용한 강제 인수(forced takeover)는 거의 필요하지 않습니다. 거의 모든 장애 시나리오에서 노드는 종료되고 파트너에게 이를 알려 자동 페일오버가 수행됩니다. 노드 간 연결이 끊어지고 그 후 하나의 컨트롤러가 고장나는 롤링 장애와 같은 예외적인 상황에서는 강제 인계가 필요할 수 있습니다. 이러한 상황에서는 컨트롤러 장애 발생 전에 노드 간 미러링이 손실되므로, 남아 있는 컨트롤러는 진행 중인 쓰기 작업의 복사본을 더 이상 보유하지 못하게 됩니다. 그런 다음 인수를 강제로 진행해야 하는데, 이 과정에서 데이터 손실이 발생할 가능성이 있습니다.</block>
+  <block id="eac9e01dcafe5df31549db862e4b5e12" category="paragraph">NetApp 다음과 같은 예방 조치를 권장합니다.</block>
+  <block id="a0033c4526f3231e5c7e8c2c6461cbe2" category="list-text">실수로 인수합병을 강행하지 않도록 매우 조심해야 합니다. 일반적으로 강제 변경은 필요하지 않으며, 강제로 변경하면 데이터 손실이 발생할 수 있습니다.</block>
+  <block id="9215c7ac58dee80cff52c5d5fa62a977" category="list-text">강제로 시스템을 인수해야 하는 경우, 애플리케이션이 종료되었는지, 모든 파일 시스템이 마운트 해제되었는지, 그리고 LVM(논리 볼륨 관리자) 볼륨 그룹이 비활성화되었는지 확인하십시오. ASM 디스크 그룹은 마운트 해제되어야 합니다.</block>
+  <block id="5ebade231442483b3d9dd2848baa6ccc" category="inline-link">ASA r2 시스템의 SnapMirror Active Sync</block>
+  <block id="fd360c79cec2c6ecdbf2a17c6ad2be7f" category="list-text">SM-as를 사용하는 동안 사이트 수준 장애가 발생하면 ONTAP Mediator가 지원하는 자동 계획되지 않은 페일오버가 생존 클러스터에서 시작되어 짧은 I/O 일시 중단이 발생한 후 데이터베이스 전환이 생존 클러스터에서 계속됩니다. 더 자세한 내용은 다음을 참조하십시오.<block ref="e60237ff925f4fb2924a96cecb00f215" category="inline-link-rx"></block> 자세한 설정 단계는 다음을 참조하십시오.</block>
+  <block id="20b465cc6f734e64de0fc141d799a08b" category="summary">ASA r2에서 ONTAP QoS를 사용한 Oracle 데이터베이스 성능 관리</block>
+  <block id="2579c376f51f8f990ad0da35fad7b27f" category="doc">ASA r2 시스템에서 ONTAP QoS를 사용한 성능 관리</block>
+  <block id="f35a95ecdbc736cf5efbd3ffed0758e4" category="paragraph">ASA r2에서 여러 Oracle 데이터베이스를 안전하고 효율적으로 관리하려면 효과적인 QoS 전략이 필요합니다. 이는 특히 ASA r2 시스템이 매우 높은 성능과 워크로드 통합을 위해 설계된 올플래시 SAN 플랫폼이기 때문에 더욱 중요합니다.</block>
+  <block id="fb0f677afb501d6e6b186ff048005ff0" category="paragraph">상대적으로 적은 수의 SSD만으로도 가장 강력한 컨트롤러조차 포화 상태에 이를 수 있으므로, 여러 워크로드에서 예측 가능한 성능을 보장하려면 QoS 제어가 필수적입니다. 참고로 ASA A1K 또는 A90과 같은 ASA r2 시스템은 수십만에서 백만 IOPS 이상의 성능을 밀리초 미만의 지연 시간으로 제공할 수 있습니다. 단일 작업 부하가 이 정도의 성능을 요구하는 경우는 매우 드물기 때문에, 일반적으로 최대 활용률은 여러 데이터베이스 또는 애플리케이션을 호스팅할 때 발생합니다. 이를 안전하게 수행하려면 리소스 경합을 방지하기 위한 QoS 정책이 필요합니다.</block>
+  <block id="56f97482820208f3d16d39528cfb6570" category="paragraph">ASA r2의 ONTAP QoS는 AFF/ FAS 시스템과 동일한 방식으로 작동하며, IOPS와 대역폭이라는 두 가지 주요 제어 유형을 사용합니다. QoS 제어는 SVM 및 LUN에 적용할 수 있습니다.</block>
+  <block id="2e6032fca80b51e97df45f1a5170bd68" category="paragraph">IOPS 기반 QoS는 특정 리소스에 대한 총 IOPS를 제한합니다. ASA r2에서는 QoS 정책을 SVM 수준과 LUN과 같은 개별 스토리지 객체에 적용할 수 있습니다. 작업 부하가 IOPS 한계에 도달하면 추가 I/O 요청이 토큰 대기열에 쌓여 지연 시간이 발생합니다. 이는 예상되는 동작이며, 특정 작업 부하가 시스템 리소스를 독점하는 것을 방지합니다.</block>
+  <block id="3edd2c44fe87d2162de06be373a31a13" category="admonition">데이터베이스 트랜잭션/리두 로그 데이터에 QoS 제어를 적용할 때는 주의해야 합니다. 이러한 작업 부하는 급증하는 경향이 있으며, 평균적인 활동에 적합해 보이는 QoS 제한이 피크 급증 시에는 너무 낮아 심각한 성능 문제를 야기할 수 있습니다. 일반적으로 리두 로그 및 아카이브 로그는 QoS에 의해 제한되어서는 안 됩니다.</block>
+  <block id="31aa78c338ede606cfe715629f639a6b" category="paragraph">대역폭 기반 QoS는 처리량을 Mbps 단위로 제한합니다. 이는 전체 테이블 스캔이나 백업 작업과 같이 대역폭은 많이 소모하지만 IOPS는 상대적으로 낮은 대용량 블록 읽기 또는 쓰기 작업을 수행하는 워크로드에 유용합니다. IOPS와 대역폭 제한을 결합하면 더욱 세밀한 제어가 가능합니다.</block>
+  <block id="d7800d36c7fddb11c98fb31a8c1d5d50" category="paragraph">최소 QoS 정책은 중요 워크로드에 대한 성능을 확보합니다. 예를 들어, 프로덕션 및 개발 데이터베이스가 혼합된 환경에서는 예측 가능한 성능을 보장하기 위해 개발 워크로드에는 최대 QoS를 적용하고 프로덕션 워크로드에는 최소 QoS를 적용해야 합니다.</block>
+  <block id="4602ec11783dd2c5a8ddc1a6a89c04f9" category="paragraph">적응형 QoS는 스토리지 객체의 크기에 따라 제한을 조정합니다. 데이터베이스에는 거의 사용되지 않지만(크기가 성능 요구 사항과 상관관계가 없기 때문), 성능 요구 사항이 용량에 따라 확장되는 가상화 워크로드에는 유용할 수 있습니다.</block>
+  <block id="6edda6968105d6954b5256694e3649bb" category="summary">ASA r2를 사용한 RAID 및 Oracle 데이터베이스</block>
+  <block id="fce02cd425679718f604302e0d536227" category="searchtitle">ASA r2를 사용한 RAID 및 Oracle 데이터베이스</block>
+  <block id="a939d6e21a6c89c72af6e1899ba41b70" category="paragraph">RAID는 드라이브 고장으로부터 데이터를 보호하기 위해 패리티 기반 중복성을 사용하는 것을 의미합니다. ASA r2는 AFF 및 FAS 시스템과 동일한 ONTAP RAID 기술을 사용하여 여러 디스크 오류에 대한 강력한 보호 기능을 제공합니다.</block>
+  <block id="a4769c5e44f0e97f11cb16b39f1a1a0a" category="paragraph">ONTAP ASA r2 시스템에 대한 RAID 구성을 자동으로 수행합니다. 이는 ASA r2의 핵심 기능 중 하나로, 간소화된 스토리지 관리 환경을 제공합니다.</block>
+  <block id="747e44d761ad33b2eb88ebaad70815e6" category="paragraph">ASA r2의 자동 RAID 구성과 관련된 주요 세부 정보는 다음과 같습니다.</block>
+  <block id="86b1e9f406f275d55d8bdbd97ba561d9" category="list-text">스토리지 가용성 영역(SAZ): 기존의 집계 및 RAID 그룹을 수동으로 관리하는 대신, ASA r2는 스토리지 가용성 영역(SAZ)을 사용합니다. 이는 고가용성(HA) 쌍을 위한 공유 RAID 보호 디스크 풀로, 두 노드 모두 동일한 스토리지에 대한 완전한 액세스 권한을 갖습니다.</block>
+  <block id="ff90b3e28ca02df77a6681a0efbd5741" category="list-text">자동 배치: 스토리지 장치(LUN 또는 NVMe 네임스페이스)가 생성될 때 ONTAP SAZ 내에 볼륨을 자동으로 생성하고 최적의 성능과 용량 균형을 위해 배치합니다.</block>
+  <block id="27712ac508d43c6818eadfc8acc10e0e" category="list-text">수동 집계 관리 불가: ASA r2에서는 기존의 집계 및 RAID 그룹 관리 명령이 지원되지 않습니다. 이를 통해 관리자는 RAID 그룹 크기, 패리티 디스크 또는 노드 할당을 수동으로 계획할 필요가 없어집니다.</block>
+  <block id="070b455242b96e245be06bac031a00b6" category="list-text">간소화된 프로비저닝: 프로비저닝은 시스템 관리자 또는 간소화된 CLI 명령을 통해 처리되며, 기본 물리적 RAID 구성보다는 스토리지 장치에 초점을 맞춥니다.</block>
+  <block id="27c8bb95e41f4dcc96c3db322fd90359" category="list-text">워크로드 재분배: 2025 릴리스(ONTAP 9.17.1)부터 ONTAP 수동 개입 없이 성능과 공간 활용도의 균형을 유지하기 위해 HA 쌍의 노드 간 워크로드를 자동으로 재분배합니다.</block>
+  <block id="156a4db35771b9cfbf2f3357b9e08916" category="paragraph">ASA r2는 대부분의 구성에서 RAID DP , 매우 큰 SSD 풀에서는 RAID-TEC 사용하는 ONTAP의 기본 RAID 기술을 자동으로 사용합니다. 이로써 RAID를 수동으로 선택할 필요가 없어집니다. 이러한 패리티 기반 RAID 레벨은 미러링보다 스토리지 효율성과 안정성이 뛰어납니다. 미러링은 이전 Oracle 모범 사례에서 종종 권장되지만 ASA r2에는 적용되지 않습니다. ONTAP WAFL 통합을 통해 기존 RAID의 쓰기 성능 저하 문제를 해결하여 리두 로깅 및 임의 데이터 파일 쓰기와 같은 Oracle 워크로드에 최적의 성능을 보장합니다. ASA r2는 자동화된 RAID 관리 및 스토리지 가용성 영역과 결합하여 Oracle 데이터베이스에 대한 고가용성과 엔터프라이즈급 보호 기능을 제공합니다.</block>
+  <block id="7ba55adf8707a9ea679db22769a025ca" category="summary">ASA r2를 사용한 Oracle 데이터베이스용 SVM 프로비저닝</block>
+  <block id="d4aa9e950ef36e360271594778cbca0b" category="searchtitle">ASA r2를 사용한 Oracle 데이터베이스 및 스토리지 가상 머신</block>
+  <block id="2f715c6e6aa91757f50ff512d56b2a12" category="paragraph">ASA r2 시스템의 Oracle 데이터베이스 스토리지 관리 또한 ONTAP CLI에서 vserver라고 하는 스토리지 가상 머신(SVM)에 중앙 집중화되어 있습니다.</block>
+  <block id="fb6310455e0908df1c6dd824a7609791" category="paragraph">SVM은 ONTAP 에서 스토리지 프로비저닝 및 보안의 기본 단위로, VMware ESX 서버의 게스트 VM과 유사합니다. ONTAP ASA r2에 처음 설치될 때 SVM이 생성되기 전까지는 데이터 제공 기능이 없습니다. SVM은 SAN 환경의 특성과 데이터 서비스를 정의합니다.</block>
+  <block id="ef7aca175aba92d84bbc0ea32b9f26da" category="paragraph">ASA r2 시스템은 블록 프로토콜(FC, iSCSI, NVMe/FC, NVMe/TCP)을 지원하도록 간소화되고 NAS 관련 기능이 제거된 SAN 전용 ONTAP 특성을 사용합니다. 이를 통해 관리가 간소화되고 모든 SVM 구성이 SAN 워크로드에 최적화됩니다. AFF/ FAS 시스템과 달리 ASA r2는 홈 디렉터리나 NFS 공유와 같은 NAS 서비스에 대한 옵션을 제공하지 않습니다.</block>
+  <block id="146a5691df8cfb757d7eda2981b3b7f3" category="paragraph">클러스터가 생성되면 ASA r2는 SAN 프로토콜이 활성화된 svm1이라는 이름의 기본 데이터 SVM을 자동으로 프로비저닝합니다. 이 SVM은 프로토콜 서비스에 대한 수동 구성 없이 블록 스토리지 작업을 수행할 준비가 되어 있습니다. 기본적으로 이 SVM의 IP 데이터 LIF는 iSCSI 및 NVMe/TCP 프로토콜을 지원하며, SAN 워크로드의 초기 설정을 간소화하는 기본 데이터 블록 서비스 정책을 사용합니다. 관리자는 나중에 성능, 보안 또는 다중 테넌트 요구 사항에 따라 추가 SVM을 생성하거나 LIF 구성을 사용자 지정할 수 있습니다.</block>
+  <block id="5e8ecb21f02df615400fabb622919767" category="inline-link">iSCSI 전용 LIF</block>
+  <block id="fcfc982506d2f40ecc714c466f201d61" category="admonition">SAN 프로토콜용 논리 인터페이스(LIF)는 성능 및 가용성 요구 사항을 기반으로 설계해야 합니다. ASA r2는 iSCSI, FC 및 NVMe LIF를 지원하지만, ASA r2는 NVMe 및 SCSI 호스트에 공유 네트워크를 사용하기 때문에 자동 iSCSI LIF 페일오버는 기본적으로 활성화되어 있지 않다는 점에 유의하십시오. 자동 장애 조치를 활성화하려면 다음을 생성하세요.<block ref="dd448f10ba2739ef2cba9a955f730acc" category="inline-link-rx"></block>.</block>
+  <block id="01991e7e8fe0103fe2e08fb4a06fbb42" category="paragraph">다른 ONTAP 플랫폼과 마찬가지로 SVM 생성 개수에 대한 공식적인 권장 사항은 없으며, 결정은 관리 및 보안 요구 사항에 따라 달라집니다.</block>
+  <block id="c9b46b0decb2ff8d931995e958aac2fa" category="paragraph">대부분의 고객은 일상적인 운영을 위해 하나의 기본 SVM을 사용하고 다음과 같은 특수한 요구 사항을 위해 추가 SVM을 생성합니다.</block>
+  <block id="7296e471f26dfae6081a67aab939b8eb" category="list-text">전문 팀이 관리하는 핵심 비즈니스 데이터베이스를 위한 전용 SVM</block>
+  <block id="e3c2829fad1bbce26c8d52d257268905" category="list-text">관리 권한이 위임된 개발 그룹을 위한 SVM</block>
+  <block id="1a8aadbbefcd940de4217d51d39c26b0" category="list-text">관리자 접근이 제한된 민감한 데이터를 위한 SVM</block>
+  <block id="83993ee11718fbb27918bc9918e00456" category="paragraph">다중 테넌트 환경에서는 각 테넌트에게 전용 SVM을 할당할 수 있습니다. 클러스터, HA 쌍 및 노드당 SVM 및 LIF 수에 대한 제한은 사용 중인 프로토콜, 노드 모델 및 ONTAP 버전에 따라 다릅니다. 상담하세요 <block ref="41f66f34b3a905f864500c9319fdff8f" category="inline-link-macro-rx"></block> 이러한 제한 사항에 대해서만.</block>
+  <block id="9166ee55eb1a0be8fa4f050e48a01084" category="admonition">ASA r2는 ONTAP 9.18.1 버전부터 클러스터당 및 HA 쌍당 최대 256개의 SVM을 지원합니다(이전 버전에서는 32개).</block>
+  <block id="d60202b60a3d35c578e974e24bb90e86" category="summary">ASA r2를 사용한 Oracle 및 ONTAP 씬 프로비저닝</block>
+  <block id="0382550e451d7d7be20bbfe79e2675ff" category="searchtitle">ASA r2에서 Oracle 데이터베이스를 사용한 씬 프로비저닝</block>
+  <block id="5db8916695aa627be657a119d435e622" category="paragraph">ASA r2에서 Oracle 데이터베이스에 대한 씬 프로비저닝은 물리적으로 사용 가능한 공간보다 더 많은 논리적 공간을 구성해야 하므로 신중한 계획이 필요합니다. 씬 프로비저닝은 올바르게 구현될 경우 상당한 비용 절감과 관리 용이성 향상을 제공합니다.</block>
+  <block id="67e76662b290c7bb7ddf8c8a381fc486" category="paragraph">씬 프로비저닝은 ASA r2의 핵심 기능이며 ONTAP 효율성 기술과 밀접한 관련이 있습니다. 두 기술 모두 시스템의 물리적 용량보다 더 많은 논리적 데이터를 저장할 수 있도록 해주기 때문입니다. ASA r2 시스템은 SAN 전용이며, 씬 프로비저닝은 스토리지 가용 영역(SAZ) 내의 스토리지 장치 및 LUN에 적용됩니다.</block>
+  <block id="3d54b31e7b15e5ca1f9174de08508c48" category="admonition">ASA r2 스토리지 유닛은 기본적으로 씬 프로비저닝됩니다.</block>
+  <block id="e95dcb4757cac01a8bf2901588dcfc87" category="paragraph">스냅샷을 사용하는 거의 모든 경우는 씬 프로비저닝과 관련이 있습니다. 예를 들어, 30일 동안의 스냅샷을 저장하는 일반적인 10TiB 데이터베이스는 논리적으로는 310TiB의 데이터처럼 보일 수 있지만, 스냅샷에는 변경된 블록만 저장되므로 실제로 사용되는 물리적 공간은 12TiB에서 15TiB에 불과합니다.</block>
+  <block id="70f4fe0bb63801388d4cd14e6d6bbf05" category="paragraph">마찬가지로, 클로닝 또한 씬 프로비저닝의 한 형태입니다. 80TiB 데이터베이스의 복제본 40개를 사용하는 개발 환경은 완전히 기록될 경우 3.2PiB의 용량이 필요하지만, 실제로는 변경 사항만 저장되므로 훨씬 적은 용량이 사용됩니다.</block>
+  <block id="05472458ee0330f07697b2632e7a917a" category="paragraph">애플리케이션 환경에서 씬 프로비저닝을 사용할 때는 데이터 변경률이 예기치 않게 증가할 수 있으므로 주의해야 합니다. 예를 들어, 데이터베이스 테이블의 인덱싱이 다시 수행되거나 VMware 게스트에 대규모 패치가 적용되는 경우 스냅샷으로 인한 공간 사용량이 급격히 증가할 수 있습니다. 백업 파일이 잘못된 위치에 저장되면 매우 짧은 시간 안에 엄청난 양의 데이터가 손실될 수 있습니다. 마지막으로, LUN의 사용 가능한 공간이 예기치 않게 부족해지는 경우 일부 애플리케이션을 복구하기 어려울 수 있습니다.</block>
+  <block id="5db9d3525c3598e18d4bb1ea2db8cc18" category="paragraph">ASA r2에서는 볼륨 자동 확장이나 스냅샷 자동 삭제와 같은 ONTAP 기능 대신 *씬 프로비저닝*, *사전 예방적 모니터링*, *LUN 크기 조정 정책*을 통해 이러한 위험을 완화합니다. 관리자는 다음과 같이 해야 합니다.</block>
+  <block id="9609344ef7cd19a1a5460b6f51e139c4" category="list-text">LUN에서 씬 프로비저닝을 활성화합니다. <block ref="fa1fdc365b74d5b14cab89cd4c2cc7cc" prefix="(" category="inline-code"></block>) - 이것은 ASA r2의 기본 설정입니다.</block>
+  <block id="ac53c0ea3204288de3a2c2522bb85398" category="list-text">시스템 관리자 알림 또는 API 기반 자동화를 사용하여 용량을 모니터링하세요.</block>
+  <block id="d07ab9395151c8b26ab66a9772523f52" category="list-text">확장에 맞춰 LUN 크기 조정을 예약하거나 스크립트로 실행하세요.</block>
+  <block id="cd8bb089e11224111755a57f499c8ea5" category="list-text">시스템 관리자(GUI)를 통해 스냅샷 예약 및 자동 스냅샷 삭제를 구성합니다.</block>
+  <block id="224e45482a3dbc2d7cadd78a8463e91a" category="admonition">ASA r2는 자동 볼륨 증가 또는 CLI 기반 스냅샷 삭제를 지원하지 않으므로 공간 임계값 및 자동화 스크립트를 신중하게 계획하는 것이 필수적입니다.</block>
+  <block id="d53a5e27c9f806298b719e63b60e4d4d" category="paragraph">ASA r2는 WAFL 기반 볼륨 옵션을 추상화하는 SAN 전용 아키텍처이므로 부분 예비 용량 설정을 사용하지 않습니다. 대신 공간 효율성과 덮어쓰기 방지는 LUN 수준에서 관리됩니다. 예를 들어 스토리지 장치에서 250GiB LUN을 프로비저닝한 경우 스냅샷은 사전에 동일한 양의 공간을 예약하는 대신 실제 블록 변경량을 기준으로 공간을 사용합니다. 이로써 부분준비금을 사용하는 기존 ONTAP 환경에서 흔히 발생했던 대규모 고정 예약이 필요 없어집니다.</block>
+  <block id="141cd2097fb78575737b1bfd31b06f02" category="admonition">덮어쓰기 방지 기능이 필수적이고 모니터링이 불가능한 경우, 관리자는 스토리지 장치에 충분한 용량을 확보하고 스냅샷 예약량을 적절하게 설정해야 합니다. 하지만 ASA r2의 설계 덕분에 대부분의 워크로드에서 부분 예약이 필요하지 않습니다.</block>
+  <block id="351f6ae6656f0bf997a0922ec06a6218" category="paragraph">ASA r2의 압축 및 중복 제거는 기존의 씬 프로비저닝 메커니즘이 아니라 공간 효율성 기술입니다. 이러한 기능은 중복 데이터를 제거하고 블록을 압축하여 물리적 저장 공간을 줄여주므로, 기존 저장 용량으로는 불가능했던 더 많은 논리적 데이터를 저장할 수 있습니다.</block>
+  <block id="5ef42f934d63cddc5a96f971a94b7429" category="paragraph">예를 들어, 50TiB 크기의 데이터셋은 30TiB로 압축되어 20TiB의 물리적 공간을 절약할 수 있습니다. 응용 프로그램 관점에서 보면, 디스크에서 30TiB만 차지하더라도 여전히 50TiB의 데이터가 있는 셈입니다.</block>
+  <block id="5ebf328c9cae7faff1019b087db64713" category="admonition">데이터셋의 압축률은 시간이 지남에 따라 변할 수 있으며, 이로 인해 물리적 공간 사용량이 증가할 수 있습니다. 따라서 압축 및 중복 제거는 모니터링과 용량 계획을 통해 사전에 관리해야 합니다.</block>
+  <block id="8fecfb85db5fdf8ae66c3e9a061aa518" category="paragraph">ASA r2 환경에서 씬 프로비저닝은 삭제된 블록이 회수되지 않으면 시간이 지남에 따라 효율성이 떨어질 수 있습니다. TRIM/UNMAP 명령어를 사용하여 공간을 해제하거나 (ASMRU - 자동 공간 관리 및 복구 유틸리티를 통해) 0으로 덮어쓰지 않는 한, 삭제된 데이터는 계속해서 물리적 용량을 차지합니다. 대부분의 Oracle 데이터베이스 환경에서는 데이터 파일이 생성 시 전체 크기로 미리 할당되기 때문에 씬 프로비저닝의 이점이 제한적입니다.</block>
+  <block id="374b240506a11f9564274703d9a9aaa6" category="paragraph">LVM 구성을 신중하게 계획하면 효율성을 향상시키고 스토리지 프로비저닝 및 LUN 크기 조정 필요성을 최소화할 수 있습니다. Veritas VxVM이나 Oracle ASM과 같은 LVM을 사용하는 경우, 기본 LUN은 필요할 때만 사용되는 익스텐트로 분할됩니다. 예를 들어, 데이터 세트의 초기 크기가 2TiB이지만 시간이 지남에 따라 10TiB까지 증가할 수 있는 경우, 이 데이터 세트는 LVM 디스크 그룹으로 구성된 10TiB의 씬 프로비저닝 LUN에 배치할 수 있습니다. 생성 시에는 2TiB의 공간만 차지하며, 데이터 증가에 맞춰 익스텐트가 할당될 때만 추가 공간을 요구합니다. 이 과정은 공간을 모니터링하는 한 안전합니다.</block>
+  <block id="aba3acce9bf977db783a1f3a099fd0a2" category="summary">ASA r2에서 Oracle 데이터베이스를 보호하도록 NVFAIL 구성</block>
+  <block id="5510f46c151cfb15d45e4ba8a9a86738" category="searchtitle">Oracle 데이터베이스 및 ASA r2의 NVFAIL 문제</block>
+  <block id="5726149f7f17e93d987e963b1a9815aa" category="paragraph">NVFAIL은 심각한 장애 조치 시나리오에서 데이터 무결성을 보장하는 ONTAP 기능입니다.</block>
+  <block id="5b44cc6bdb59c7fcd5800e8ca4e8de88" category="paragraph">이 기능은 ASA r2 시스템에서도 여전히 적용 가능합니다. ASA r2는 간소화된 SAN 아키텍처(볼륨 대신 SAZ 및 스토리지 유닛)를 사용하지만 말입니다.</block>
+  <block id="b7a2b4c7beb39acbf30964be233d43b6" category="paragraph">데이터베이스는 대규모 내부 캐시를 유지하기 때문에 스토리지 장애 조치 이벤트 중에 데이터 손상에 취약합니다. 만약 심각한 재해로 인해 전체 구성의 상태와 관계없이 ONTAP 페일오버를 강제로 수행해야 하는 경우, 이전에 승인된 변경 사항이 사실상 폐기될 수 있습니다. 스토리지 어레이의 내용이 시간상으로 거꾸로 이동하면서 데이터베이스 캐시의 상태가 더 이상 디스크에 저장된 데이터의 상태를 반영하지 않게 됩니다. 이러한 불일치로 인해 데이터가 손상됩니다.</block>
+  <block id="d529f1699059fd775d38daec404c9709" category="paragraph">캐싱은 애플리케이션 계층 또는 서버 계층에서 발생할 수 있습니다. 예를 들어, 기본 사이트와 원격 사이트 모두에서 서버가 활성화된 Oracle Real Application Cluster(RAC) 구성은 Oracle SGA 내에 데이터를 캐시합니다. 데이터 손실을 초래하는 강제 장애 조치 작업은 SGA에 저장된 블록과 디스크의 블록이 일치하지 않을 수 있으므로 데이터베이스 손상 위험을 초래할 수 있습니다.</block>
+  <block id="ad67299b81080b42995c6a5aa870ca24" category="paragraph">캐싱의 덜 명확한 용도 중 하나는 운영체제 파일 시스템 계층에서 활용하는 것입니다. 기본 사이트에 있는 LUN을 기반으로 하는 클러스터형 파일 시스템을 원격 사이트의 서버에 마운트할 수 있으며, 이를 통해 데이터를 다시 캐시할 수 있습니다. 이러한 상황에서 NVRAM 오류 또는 강제 인수(takeover)가 발생하면 파일 시스템 손상이 발생할 수 있습니다.</block>
+  <block id="3ddb6c813a50856a003faa943d94ca24" category="paragraph">ONTAP NVFAIL 및 관련 설정을 사용하여 이러한 시나리오로부터 데이터베이스와 운영 체제를 보호합니다. NVFAIL 및 관련 설정은 호스트에 신호를 보내 장애 조치 후 캐시된 데이터를 무효화하고 영향을 받는 파일 시스템을 다시 마운트하도록 합니다. 이 메커니즘은 AFF/ FAS 에서와 마찬가지로 ASA r2 LUN 및 네임스페이스에도 적용됩니다.</block>
+  <block id="cb43a7910131c4a9b54ee4527f41584a" category="paragraph">ASA r2의 주요 고려 사항:</block>
+  <block id="760178473b2704cd5e111e8ac1c4ae81" category="list-text">NVFAIL은 SAZ 레벨이 아닌 LUN(저장 장치) 레벨에서 작동합니다.</block>
+  <block id="c87084320a0d119d921d77b65b487a40" category="list-text">Oracle 데이터베이스의 경우, 중요 구성 요소(데이터 파일, 리두 로그, 제어 파일)를 호스팅하는 모든 LUN에서 NVFAIL을 활성화해야 합니다.</block>
+  <block id="2619eb12ebcaa2f4223907a04c8b3e6a" category="list-text">MetroCluster 는 ASA r2에서 지원되지 않으므로 NVFAIL은 주로 로컬 HA 페일오버 시나리오에 적용됩니다.</block>
+  <block id="ed28739e6688c1c56caa21d8f4e83fa0" category="list-text">ASA r2에서는 NFS가 지원되지 않으므로 NVFAIL 관련 고려 사항은 SAN 기반 워크로드(FC/iSCSI/NVMe)에만 적용됩니다.</block>
+  <block id="e519d6eb34dfc47edf5072f1a0a920e0" category="summary">ASA r2에서 AIX와 함께 Oracle 데이터베이스를 사용하세요.</block>
+  <block id="fcb9fe371de92b4141a475f18125a2e7" category="searchtitle">ASA r2에서 IBM AIX와 함께 사용하는 Oracle 데이터베이스</block>
+  <block id="14590776a7ec5f76f6c0dbaf12aea82d" category="paragraph">IBM AIX 및 ASA r2 ONTAP 에서 Oracle 데이터베이스를 구성하기 위한 항목입니다.</block>
+  <block id="e21c6d7d6ce64b744e1b3dfc9f3dbb12" category="paragraph">AIX는 다음 조건을 충족하는 경우 Oracle 데이터베이스 호스팅을 위해 NetApp ASA r2를 지원합니다.</block>
+  <block id="61cc31cc32fc76833bf9b697fedcd7b5" category="list-text">Oracle에서 동시 I/O를 올바르게 구성했습니다.</block>
+  <block id="9dfe407ff2ee9c174cce1d9f12a01c51" category="list-text">지원되는 SAN 프로토콜(FC/iSCSI/NVMe)을 사용합니다.</block>
+  <block id="5dbad350303c2f9f6c54a25478f708e6" category="list-text">ASA r2에서 ONTAP 9.16.x 이상 버전을 실행하고 있습니다.</block>
+  <block id="ef37a2ddad88a2a152b9948feb73bc4b" category="paragraph">IBM AIX 환경에서 ASA r2를 사용하여 최적의 성능을 달성하려면 동시 I/O를 사용해야 합니다. 동시 I/O가 없으면 AIX가 직렬화된 원자적 I/O를 수행하여 상당한 오버헤드를 발생시키기 때문에 성능 제한이 발생할 가능성이 높습니다.</block>
+  <block id="6edb8857a5df843ec36fc2b3a863d730" category="paragraph">원래 NetApp 다음을 사용하도록 권장했습니다.<block ref="4482571a249db31b3abed938e4567a15" prefix=" " category="inline-code"></block> 파일 시스템에서 동시 I/O를 강제하는 마운트 옵션이 있었지만, 이 과정에는 단점이 있었고 더 이상 필요하지 않습니다. AIX 5.2 및 Oracle 10gR1이 도입된 이후로 AIX에서 Oracle은 전체 파일 시스템에 대한 동시 I/O를 강제하는 대신 개별 파일에 대해 동시 I/O를 허용할 수 있습니다.</block>
+  <block id="eda28eaca3dbfe13d6de344928f25e81" category="paragraph">마운트 옵션으로 cio를 사용하면 동시 I/O가 강제로 발생하게 되는데, 이는 부정적인 결과를 초래할 수 있습니다. 예를 들어, 동시 I/O를 강제로 실행하면 파일 시스템에서 미리 읽기 기능이 비활성화되어 Oracle 데이터베이스 소프트웨어 외부에서 발생하는 I/O(예: 파일 복사 및 테이프 백업 수행)의 성능이 저하될 수 있습니다. 또한 Oracle GoldenGate 및 SAP BR*Tools와 같은 제품은 특정 버전의 Oracle에서 cio 마운트 옵션을 사용하는 것과 호환되지 않습니다.</block>
+  <block id="c3fcaa918acdb778a4e2f846c030c0a9" category="list-text">다음만 사용하십시오.<block ref="4482571a249db31b3abed938e4567a15" prefix=" " category="inline-code"></block> 마운트 옵션을 설정할 수 없는 경우<block ref="b6a2b868e8bebfc19497b406a12a1071" prefix=" " category="inline-code"></block>.</block>
+  <block id="4ad5c7879e9856926d647b1c4108aa1a" category="admonition">ASA r2는 NAS를 지원하지 않으므로 AIX에 Oracle을 배포할 때는 블록 프로토콜을 사용해야 합니다.</block>
+  <block id="8ae7510e454410710230296d25e27ce1" category="cell">제어 파일</block>
+  <block id="d41de13d4f13727ba8bcfa0e4b6f43d3" category="cell">데이터 파일</block>
+  <block id="823272d72b3248694e3df021ef8cf5d4" category="cell">다시 실행 로그</block>
+  <block id="36287b7fc9193c5febdd31bfd37adb9e" category="paragraph">AIX를 사용하기 전에<block ref="b7cc91287fc99a8937a55e79376c6f54" prefix=" " category="inline-code"></block> 데이터베이스를 포함한 모든 환경의 장치에서 매개변수를 확인하십시오.<block ref="9d51746070ef554ad4e93a16de4aed0f" prefix=" " category="inline-code"></block>. 이 매개변수는 HBA 큐 깊이가 아니라 개별 SCSI 큐 깊이와 관련이 있습니다.<block ref="b1835b2bc8fe4eebb5093da8087b01e9" prefix=" " category="inline-code"></block>. ASA r2 LUN 구성 방식에 따라 값은 달라집니다.<block ref="9d51746070ef554ad4e93a16de4aed0f" prefix=" " category="inline-code"></block> 최적의 성능을 내기에는 너무 낮을 수 있습니다. 실험 결과 최적값은 64인 것으로 나타났습니다.</block>
+  <block id="d79502074cc6e7e5a364f270a466f90a" category="summary">ASA r2에서 Linux 및 ASMlib/ASM 필터 드라이버를 사용하는 Oracle 데이터베이스</block>
+  <block id="1b8322dc9ddcf0f0884dea2005af98a4" category="searchtitle">ASA r2에서 ASMLib/AFD(ASM 필터 드라이버)를 사용하는 Oracle 데이터베이스</block>
+  <block id="3488d46993d5a8378c20ef8680693299" category="paragraph">ASA r2 ONTAP 에서 AFD 및 ASMlib를 사용하는 Linux OS 관련 구성 항목입니다.</block>
+  <block id="d096e0a6df0924614163a540b2214971" category="paragraph">ASMlib은 선택적 ASM 관리 라이브러리 및 관련 유틸리티입니다. 이 기능의 가장 큰 장점은 LUN에 사람이 읽을 수 있는 레이블을 지정하여 ASM 리소스로 등록할 수 있다는 점입니다.</block>
+  <block id="d19e24337b54fcc70e96e05114ad22a2" category="summary">ASA r2에서 HP-UX를 사용하는 Oracle 데이터베이스</block>
+  <block id="20c8ba6aea292789ef2e6f1b4b89ae77" category="paragraph">ASA r2 ONTAP 사용하는 HP-UX 환경의 Oracle 데이터베이스 구성 관련 항목입니다.</block>
+  <block id="e9b7342441652011904ff65fb1193d74" category="paragraph">HP-UX는 다음 조건을 충족하는 경우 Oracle 데이터베이스 호스팅을 위해 NetApp ASA r2를 지원합니다.</block>
+  <block id="4f24e0afbf75599b5597e3a2be666094" category="list-text">ONTAP 버전은 9.16.x 이상입니다.</block>
+  <block id="3b97f328d0018662389a71edcacbc5a0" category="list-text">SAN 프로토콜(FC/iSCSI/NVMe)을 사용하십시오. ASA r2에서는 NAS가 지원되지 않습니다.</block>
+  <block id="36995f50a8bb9428c17eabad17a9e21e" category="list-text">HP-UX 전용 마운트 및 I/O 튜닝 모범 사례를 적용하십시오.</block>
+  <block id="b6c1b0f6914791454ede96b6820e724b" category="summary">ASA r2에서 Linux를 사용하는 Oracle 데이터베이스</block>
+  <block id="735da48e08399aff4389f7645ad63008" category="paragraph">ASA r2 ONTAP 에서 Linux OS에 특화된 구성 항목입니다.</block>
+  <block id="cc72f8ba70e23d17e4898b2d817c7775" category="paragraph">ASA r2는 Oracle 데이터베이스용으로 Linux(Oracle Linux, RHEL, SUSE)를 지원합니다. SAN 프로토콜을 사용하고, 멀티패싱을 올바르게 구성하고, ASM 및 I/O 튜닝에 대한 Oracle 모범 사례를 적용하십시오.</block>
+  <block id="1f0e7d8c686c998d847b6b6b0524d0db" category="paragraph">예를 들어, RHEL 9.7에서 멀티패스 데몬의 기본 설정은 다음과 같을 수 있습니다.</block>
+  <block id="17d641ba9ac890f75d4c292b06bb7b94" category="section-title">큐 깊이</block>
+  <block id="409778175ac5dff7ebc33d3a237112c3" category="paragraph">I/O 병목 현상을 방지하려면 SAN 장치에 적절한 큐 깊이를 설정하십시오. 리눅스에서 기본 큐 깊이는 종종 128로 설정되어 있는데, 이로 인해 오라클 데이터베이스에서 성능 문제가 발생할 수 있습니다. 큐 깊이를 너무 높게 설정하면 과도한 I/O 큐잉이 발생하여 지연 시간이 증가하고 처리량이 감소할 수 있습니다. 이 값을 너무 낮게 설정하면 처리 중인 I/O 요청 수가 제한되어 전반적인 성능이 저하될 수 있습니다. ASA r2에서 Oracle 데이터베이스 워크로드의 경우 큐 깊이를 64로 설정하는 것이 좋은 시작점인 경우가 많지만, 특정 워크로드 특성 및 성능 테스트에 따라 조정해야 할 수도 있습니다.</block>
+  <block id="af911470a92a15ef9be3fd8bf911b56d" category="paragraph">액티브-액티브 멀티패싱을 지원하는 ASA r2 시스템의 경우 이러한 멀티패스 설정을 조정해야 합니다. 모든 경로가 활성화되어 있고 로드 밸런싱이 되어 있으므로 무한 대기열이 필요하지 않습니다. 대신, 멀티패스 매개변수는 성능과 빠른 페일백을 우선시해야 합니다. 이 동작은 ASM 미러링에 중요합니다. ASM은 대체 LUN에서 I/O를 재시도하려면 I/O 실패를 수신해야 하기 때문입니다. I/O 작업이 무기한으로 대기열에 쌓이면 ASM은 페일오버를 트리거할 수 없습니다.</block>
+  <block id="a202cf3983184d1ce3e7056d7305d01f" category="admonition">NetApp 기본 마운트 옵션을 사용하는 것을 권장합니다. LUN에 파일 시스템을 생성할 때 올바른 정렬이 이루어지도록 하십시오.</block>
+  <block id="0fc668638a672a7d830afec06b27d782" category="summary">ASA r2에서 Solaris와 함께 Oracle 데이터베이스를 사용하는 방법</block>
+  <block id="40dff793103aa25077d6225eb96d92b6" category="paragraph">ASA r2 ONTAP 에서 Solaris OS에 특화된 구성 항목입니다.</block>
+  <block id="5979a32a9c62ecee74c171ed5cc2d6e7" category="summary">ASA r2에서 Microsoft Windows를 사용하는 Oracle 데이터베이스</block>
+  <block id="59c2890ecd2c8d54b1be7b5075c7d55a" category="paragraph">ASA r2 ONTAP 사용하는 Microsoft Windows 환경의 Oracle 데이터베이스 구성 관련 항목입니다.</block>
+  <block id="41dc5a1bfa78463990313337562fc0a9" category="summary">Oracle 데이터베이스 및 ASA r2와의 직접 연결 ONTAP 연결</block>
+  <block id="e7e1bbfbb8e743a965e762dfa3e234f9" category="paragraph">iSCSI 또는 NVMe/TCP를 사용하는 호스트는 ASA r2 스토리지 시스템에 직접 연결하여 정상적으로 작동할 수 있습니다. 이유는 경로 설정 때문입니다. 서로 다른 두 개의 스토리지 컨트롤러에 직접 연결하면 데이터 흐름을 위한 두 개의 독립적인 경로가 생성됩니다. 경로, 포트 또는 컨트롤러에 문제가 발생하더라도 멀티패싱이 올바르게 구성된 경우 다른 경로를 사용할 수 있습니다.</block>
+  <block id="35a14cf200b3e6049eeb29738ad4711e" category="paragraph">FC 프로토콜을 사용하여 호스트를 ASA r2 스토리지 시스템에 직접 연결하는 것은 불가능합니다. 그 이유는 AFF/ FAS 시스템과 마찬가지로 NPIV를 사용하기 때문입니다. FC 네트워크에서 ONTAP FC 포트를 식별하는 WWN은 NPIV라는 가상화 유형을 사용합니다. ONTAP 시스템에 연결된 모든 장치는 NPIV WWN을 인식할 수 있어야 합니다. 현재 NPIV 타겟을 지원할 수 있는 호스트에 설치할 수 있는 HBA를 제공하는 HBA 공급업체는 없습니다.</block>
+  <block id="4d2361ac0de1401ab0ff03a54ff4a137" category="summary">ASA r2 시스템의 Oracle, TCP/IP 및 이더넷 구성</block>
+  <block id="3c80c484426036630d6eb8389c2ac11d" category="searchtitle">ASA r2를 사용한 Oracle 데이터베이스용 TCP/IP 및 이더넷 구성</block>
+  <block id="5db9438e726eacde259e400997b7ad50" category="paragraph">Oracle on ASA r2 ONTAP 고객 중 상당수는 이더넷, iSCSI 및 NVMe/TCP 네트워크 프로토콜을 사용합니다.</block>
+  <block id="b9859abe854650d97cc9443efe8bacae" category="paragraph">SAN 전용인 ASA r2 시스템의 경우, 이더넷 흐름 제어 고려 사항은 주로 iSCSI 및 NVMe/TCP 트래픽에 적용됩니다.</block>
+  <block id="391bb22eb81aa6a08c067e17fdc19f3a" category="admonition">* NetApp * NetApp ASA r2 스토리지 컨트롤러가 이더넷 흐름 제어 패킷을 수신하지 않도록 하는 것이 좋습니다. 일반적으로 컨트롤러가 연결된 스위치 포트를 설정하여 이 작업을 수행할 수 있지만, 일부 스위치 하드웨어에는 제한 사항이 있어 클라이언트 측 변경이 필요할 수 있습니다.</block>
+  <block id="208fb28dae4318ca1f947bab31f1c824" category="paragraph">SAN 전용인 ASA r2 시스템의 경우, 점보 프레임은 이더넷 기반 SAN 프로토콜(iSCSI 및 NVMe/TCP)에만 적용됩니다.</block>
+  <block id="d65d3c32ef266ba55e2378bbd9a6b317" category="paragraph">NetApp ASA r2 SAN 환경에 대해 다음과 같이 구성하는 것을 권장합니다.</block>
+  <block id="84519fb5c01a2679ca254670c9be6802" category="list-text">점보 프레임은 1GbE에서 바람직하지만 필수 사항은 아닙니다.</block>
+  <block id="db7fb2373c0f2187e6de7e956e29cfed" category="list-text">10GbE에서 최대 성능을 발휘하려면 점보 프레임이 필요하며, iSCSI 및 NVMe/TCP 트래픽의 경우 더 빠른 속도를 제공합니다.</block>
+  <block id="1ce271de40e24ab8a63800ce42e0a92a" category="summary">ASA r2를 사용한 Oracle 데이터베이스용 FC 네트워크 구성</block>
+  <block id="8a0dcf3ef73899d99ab6e7a82434404d" category="searchtitle">ASA r2를 사용한 Oracle 데이터베이스용 FC SAN 구성</block>
+  <block id="d2bdcae397f14f23d178639b4a3449f1" category="paragraph">ASA r2 시스템에서 Oracle 데이터베이스용 FC SAN을 구성하는 것은 기본적으로 표준 SAN 모범 사례를 따르는 것입니다.</block>
+  <block id="e731c4d7f31dd741c0d10f0333c324be" category="paragraph">ASA r2는 SAN 전용 워크로드에 최적화되어 있으므로 성능, 복원력 및 단순성에 중점을 둔 AFF/ FAS 와 동일한 원칙을 따릅니다. 여기에는 호스트와 스토리지 시스템 간의 SAN에 충분한 대역폭이 확보되어 있는지 확인하고, 필요한 모든 장치 간에 모든 SAN 경로가 존재하는지 확인하고, FC 스위치 공급업체에서 요구하는 FC 포트 설정을 사용하고, ISL 경합을 방지하고, 적절한 SAN 패브릭 모니터링을 사용하는 것과 같은 일반적인 계획 조치가 포함됩니다.</block>
+  <block id="517d60dbcaa0d6b23a9f47fbd0edaa39" category="list-text">ASA r2는 애그리게이트 대신 스토리지 가용 영역을 사용하지만, 이는 FC 영역 설정 원칙을 변경하지는 않습니다.</block>
+  <block id="c39ca1d0b43d0baae5362c1cde3ee38c" category="list-text">멀티패싱(MPIO)은 여전히 ​​주요 복원력 메커니즘입니다. 그러나 대칭형 액티브-액티브 멀티패싱을 지원하는 ASA r2 시스템의 경우 LUN에 대한 모든 경로가 활성화되어 I/O에 동시에 사용됩니다.</block>
+  <block id="2209a1d9b2ca24fe83599efabcbffce1" category="summary">ASA r2를 사용한 Oracle 데이터베이스용 논리적 인터페이스 설계</block>
+  <block id="3af46ba2ee5090e4c4e7846e7b132945" category="paragraph">이 섹션에서는 SAN 전용 환경에 최적화된 ASA r2 시스템의 주요 LIF 설계 원칙에 대한 개요를 제공합니다. 보다 자세한 내용은 다음을 참조하십시오. <block ref="a3e6361e1a52d384f542a2f2d8bc9bb1" category="inline-link-macro-rx"></block>. 데이터베이스 아키텍처의 다른 측면과 마찬가지로 스토리지 가상 머신(SVM, CLI에서는 vserver로 알려짐) 및 논리 인터페이스(LIF) 설계에 대한 최적의 옵션은 확장성 요구 사항과 비즈니스 요구 사항에 크게 좌우됩니다.</block>
+  <block id="21799093fc4cfb791dfe32dc663f4f8b" category="list-text">*성능.* 오라클 워크로드에 필요한 네트워크 대역폭이 충분한가요?</block>
+  <block id="111dbd10ee2308ce64978a8e5e7d7304" category="list-text">*데이터 LIF.* SAN 프로토콜 전용 인터페이스: FC, iSCSI, NVMe/FC, NVMe/TCP. NAS 프로토콜(NFS, SMB/CIFS)은 ASA r2 시스템에서 지원되지 않습니다.</block>
+  <block id="eb7b64f9138ff27678062103f7c70882" category="admonition">iSCSI(또는 NVMe/TCP) 트래픽과 관리 트래픽 모두 IP 프로토콜을 사용함에도 불구하고, 두 트래픽 모두에 대해 인터페이스를 구성하는 것은 불가능합니다. iSCSI 또는 NVMe/TCP 환경에서는 별도의 관리용 LIF가 필요합니다. 복원력과 성능을 위해 프로토콜별, 노드별로 여러 개의 SAN 데이터 LIF를 구성하고 이를 서로 다른 물리적 포트 및 패브릭에 분산하십시오. AFF/ FAS 시스템과 달리 ASA r2는 NFS 또는 SMB 트래픽을 허용하지 않으므로 NAS 데이터 LIF를 관리용으로 재활용할 수 있는 옵션이 없습니다.</block>
+  <block id="fbd9cbd3f29c4cfd273ea6e2c6e2ea2e" category="paragraph">SAN 환경에서 LIF 성능을 고려할 때 가장 중요한 요소는 대역폭입니다. 예를 들어, 노드당 32Gb FC 포트가 두 개 있는 2노드 ASA r2 클러스터는 각 노드 간 최대 64Gb의 대역폭을 허용합니다. 마찬가지로 NVMe/TCP 또는 iSCSI의 경우 Oracle 워크로드에 필요한 25GbE 또는 100GbE 연결이 충분히 확보되어야 합니다.</block>
+  <block id="df8a61f03f4995a39442d2a271415832" category="paragraph">SAN LIF는 NAS LIF와 같은 방식으로 페일오버되지 않습니다. ASA r2 시스템은 복원력을 위해 호스트 멀티패싱(MPIO/ALUA)에 의존합니다. 컨트롤러 페일오버로 인해 SAN LIF를 사용할 수 없게 되면 클라이언트의 멀티패싱 소프트웨어는 경로 손실을 감지하고 I/O를 대체 경로로 리디렉션합니다. ASA r2는 전체 경로 가용성을 복원하기 위해 짧은 지연 후 LIF 재배치를 수행할 수 있지만, 파트너 노드에 이미 활성 경로가 존재하므로 이로 인해 I/O가 중단되지는 않습니다. 장애 조치 프로세스는 정의된 모든 포트에서 호스트 액세스를 복원하기 위해 수행됩니다.</block>
+  <block id="a16d6c41318f3de1eb13c1844f304422" category="paragraph">SAN 환경에서 HA 쌍 내에서 볼륨이 재배치될 경우 LIF를 마이그레이션할 필요가 없습니다. 이는 볼륨 이동이 완료된 후 ONTAP SAN에 경로 변경에 대한 알림을 보내고 SAN 클라이언트가 자동으로 재최적화되기 때문입니다. SAN을 이용한 LIF 마이그레이션은 주로 주요 물리적 하드웨어 변경과 관련이 있습니다. 예를 들어, 컨트롤러의 중단 없는 업그레이드가 필요한 경우 SAN LIF를 새 하드웨어로 마이그레이션합니다. FC 포트에 결함이 있는 것으로 확인되면 LIF를 사용되지 않는 포트로 마이그레이션할 수 있습니다.</block>
+  <block id="9828810f7fcace78de1d1de0e576c84e" category="paragraph">NetApp ASA r2 SAN 환경에 대해 다음과 같은 권장 사항을 제시합니다.</block>
+  <block id="f83001332c7becf3e61981f64091d862" category="list-text">기본적으로 활성화되어 있는 선택적 LUN 매핑(SLM) 기능을 사용하십시오. SLM을 사용하면 새 LUN이 추가될 때마다 기본 애그리게이트를 소유한 노드와 해당 노드의 HA 파트너에서 자동으로 알림이 전송됩니다. 이러한 구성 방식은 포트 세트를 생성하거나 포트 접근성을 제한하기 위해 영역 설정을 구성할 필요성을 없애줍니다. 각 LUN은 최적의 성능과 복원력을 위해 필요한 최소 노드 수에서 사용할 수 있습니다.</block>
+  <block id="9bd683ce8a75eb3cef3454ed97d056e9" category="list-text">LUN을 두 컨트롤러 외부로 마이그레이션해야 하는 경우, 추가 노드는 다음을 통해 추가할 수 있습니다.<block ref="02d0bbdc14988c85bbd7994723f4dd7f" prefix=" " category="inline-code"></block> LUN이 새 노드에 광고되도록 하는 명령입니다. 이렇게 하면 LUN 마이그레이션을 위한 LUN에 대한 추가 SAN 경로가 생성됩니다. 하지만 호스트는 새로운 경로를 사용하기 위해 검색 작업을 수행해야 합니다.</block>
+  <block id="90f4c30336e9921dc9f790199b80a26c" category="summary">ASA r2에서 ONTAP 제로 블록 감지 기능을 갖춘 ASM 복구 유틸리티</block>
+  <block id="68b277e79eb0e18f7699090c7f597833" category="searchtitle">ASA r2에서 ONTAP 사용하는 ASM 복구 유틸리티(ASRU)</block>
+  <block id="bfbea40daf6eff16b91d4b7d3bd13b21" category="doc">ASM 회수 유틸리티(ASRU)</block>
+  <block id="8c18218e2429b3c0e71cfb77a5486907" category="paragraph">ASA r2의 ONTAP 인라인 압축이 활성화된 경우 LUN(저장 장치)에 기록된 0으로 채워진 블록을 효율적으로 제거합니다. Oracle ASM Reclamation Utility(ASRU)와 같은 유틸리티는 사용되지 않는 ASM 익스텐트에 0을 기록하는 방식으로 작동합니다.</block>
+  <block id="9dc9cfea7e02e83a3b766a99a9b3b25c" category="paragraph">이를 통해 DBA는 데이터가 삭제된 후 스토리지 어레이의 공간을 회수할 수 있습니다. ONTAP 0을 가로채고 LUN에서 해당 공간을 할당 해제합니다. 데이터 복구 과정은 저장 시스템 내에 실제 데이터가 기록되지 않기 때문에 매우 빠릅니다.</block>
+  <block id="96564d0673d8b56c565c6c6ef3de2ca7" category="paragraph">ASA r2 ONTAP 에서 ASRU를 고려할 때 중요한 사항:</block>
+  <block id="c6455a89096acca814d31fecbec23bf9" category="list-text">ASA r2는 블록 전용이기 때문에 SAN 워크로드의 경우 AFF/ FAS 와 동일한 방식으로 작동합니다.</block>
+  <block id="ce11aa3271c53b3bab6765e2d48951ac" category="list-text">SAZ 내에 프로비저닝된 LUN 및 NVMe 네임스페이스에 적용됩니다.</block>
+  <block id="5c9e99714e3d57e5572281b0e41e2cc6" category="list-text">FlexVol 볼륨은 존재하지 않지만, 제로 블록 회수 동작은 동일합니다.</block>
+  <block id="203be0c11c79d2c1a42df2c5bab9a460" category="summary">ASA r2에서 Oracle 데이터베이스와의 LUN 정렬</block>
+  <block id="7b349eb0f9d2f474d9ab9cc5118eb5d6" category="searchtitle">ASA r2를 사용한 Oracle 데이터베이스 I/O용 LUN 정렬</block>
+  <block id="93f6837f6081de07a7906f5c0941bc8d" category="paragraph">ASA r2 시스템은 AFF/ FAS 와 동일한 ONTAP 아키텍처를 사용하지만 구성 모델이 간소화되었습니다. ASA r2 시스템은 애그리게이트 대신 스토리지 가용 영역(SAZ)을 사용하지만, ONTAP 플랫폼 전반에 걸쳐 블록 레이아웃을 일관되게 관리하기 때문에 정렬 원칙은 동일하게 유지됩니다. 하지만 ASA 관련 다음 사항에 유의하십시오.</block>
+  <block id="8a19d2cf9991d8821095e34703361c32" category="list-text">ASA r2 시스템은 모든 LUN에 대해 액티브-액티브 대칭 경로를 제공하므로 정렬 중에 경로 비대칭 문제를 해결할 수 있습니다.</block>
+  <block id="95c89bde38b17ca0c2652e49f027682e" category="list-text">스토리지 장치(LUN)는 기본적으로 씬 프로비저닝 방식으로 구성되며, 정렬은 이 동작을 변경하지 않습니다.</block>
+  <block id="4c58090f7a610a39283889bddaa74a38" category="list-text">LUN 생성 시 스냅샷 예약 및 자동 스냅샷 삭제를 구성할 수 있습니다(ONTAP 9.18.1 이상).</block>
+  <block id="1734f57e94713f0a032bc6c907c9bdcb" category="paragraph">다음과 같은 유틸리티를 사용하여 정렬 상태를 확인하십시오.<block ref="40883add63f1fbabc7fe6158f93c1246" prefix=" " category="inline-code"></block> 또는<block ref="1aabac6d068eef6a7bad3fdf50a05cc8" prefix=" " category="inline-code"></block> 정의된 블록 크기로 I/O를 생성할 수 있습니다. 스토리지 시스템의 I/O 정렬 통계는 다음을 통해 확인할 수 있습니다.<block ref="446501053769c06c565094b26d26e8ef" prefix=" " category="inline-code"></block> 명령. 보다 <block ref="ebccec7997af507c87f985ec4ccec634" category="inline-link-macro-rx"></block> 더 자세한 정보를 원하시면.</block>
+  <block id="05a449cce434ca63ba5e47373b9d1f49" category="paragraph">추가적인 모범 사례:</block>
+  <block id="fcfa58ba93830f78edfcf9fa0d9fc8f0" category="list-text">NetApp 상호 운용성 매트릭스 도구(IMT)를 사용하여 HBA 펌웨어 및 OS 설정을 확인하십시오.</block>
+  <block id="a169b081fb2875694e9e5e4fc00c909c" category="list-text">산룬 유틸리티를 사용하여 경로의 상태와 정렬 상태를 확인하십시오.</block>
+  <block id="cc8928f2af9f0fae6ef3d8017126cfc4" category="list-text">Oracle ASM 및 LVM의 경우 정렬 문제를 방지하기 위해 구성 파일(/etc/lvm/lvm.conf, /etc/sysconfig/oracleasm)이 올바르게 설정되어 있는지 확인하십시오.</block>
+  <block id="f12a09107ad4162f57baf9c752a518f2" category="summary">ASA r2를 사용한 Oracle 및 ONTAP LUN 배치</block>
+  <block id="aaa76fde2acba4d974e5e81148765b08" category="searchtitle">ASA r2를 사용한 Oracle 데이터베이스 LUN 배치</block>
+  <block id="92ed1004aa7bc12d2dc43469c67ca8cd" category="paragraph">ASA r2 시스템 내 데이터베이스 LUN의 최적 배치 위치는 주로 다양한 ONTAP 기능의 사용 방식에 따라 달라집니다.</block>
+  <block id="e3908755a901bd8b390fca0586e5d01b" category="paragraph">ASA r2 시스템에서 스토리지 장치(LUN 또는 NVMe 네임스페이스)는 HA 쌍에 대한 공통 스토리지 풀 역할을 하는 스토리지 가용 영역(SAZ)이라는 간소화된 스토리지 계층에서 생성됩니다.</block>
+  <block id="4882324a7fb3b029e3afbfa4ea1996f7" category="admonition">일반적으로 HA 쌍당 하나의 스토리지 가용 영역(SAZ)만 존재합니다.</block>
+  <block id="90015b4a4947685eab609edee413af64" category="section-title">스토리지 가용 영역(SAZ)</block>
+  <block id="95eeff3469b684d29e14c8c7ed95c6e1" category="paragraph">ASA r2 시스템에서는 볼륨이 여전히 존재하지만, 스토리지 유닛이 생성될 때 자동으로 생성됩니다. 스토리지 장치(LUN 또는 NVMe 네임스페이스)는 스토리지 가용 영역(SAZ)에 자동으로 생성된 볼륨 내에 직접 프로비저닝됩니다. 이 설계는 수동 볼륨 관리의 필요성을 없애고 Oracle 데이터베이스와 같은 블록 워크로드에 대한 프로비저닝을 더욱 직접적이고 간소화합니다.</block>
+  <block id="20ccc13be8bc94c50c99ae571eabbf3d" category="section-title">SAZ 및 저장 장치</block>
+  <block id="c8e0228d7d981590c271f1ebd7928f14" category="paragraph">관련 스토리지 장치(LUN 또는 NVMe 네임스페이스)는 일반적으로 단일 스토리지 가용 영역(SAZ) 내에 함께 배치됩니다. 예를 들어, 10개의 스토리지 유닛(LUN)이 필요한 데이터베이스는 일반적으로 단순성과 성능 향상을 위해 10개의 유닛 모두를 동일한 SAZ에 배치합니다.</block>
+  <block id="0c6b3219675d75f631c2a5c116fc5051" category="list-text">스토리지 장치와 볼륨을 1:1 비율로 사용하는 것, 즉 볼륨당 하나의 스토리지 장치(LUN)를 사용하는 것이 ASA r2의 기본 동작입니다.</block>
+  <block id="4e198a8d880a904a00df60812b1e1b01" category="list-text">ASA r2 시스템에 HA 쌍이 둘 이상 있는 경우, 특정 데이터베이스에 대한 스토리지 유닛(LUN)을 여러 SAZ에 분산하여 컨트롤러 활용률과 성능을 최적화할 수 있습니다.</block>
+  <block id="4cdd51ddfeccf85bb8dd182e9f83f00d" category="admonition">FC SAN의 맥락에서, 여기서 스토리지 유닛은 LUN을 의미합니다.</block>
+  <block id="cd57cb5c212b19d23633017bc53cc4e7" category="section-title">일관성 그룹(CG), LUN 및 스냅샷</block>
+  <block id="ef7a7d977f1a63e641a7fce414bb7e47" category="paragraph">ASA r2에서는 스냅샷 정책 및 일정이 일관성 그룹 수준에서 적용됩니다. 일관성 그룹은 여러 LUN 또는 NVMe 네임스페이스를 그룹화하여 데이터를 체계적으로 보호하는 논리적 구조입니다. 10개의 LUN으로 구성된 데이터 세트의 경우, 해당 LUN들이 동일한 일관성 그룹에 속해 있다면 단 하나의 스냅샷 정책만 필요합니다.</block>
+  <block id="7d17b1c72d96ef2be6eb824b79d17c09" category="paragraph">일관성 그룹은 포함된 모든 LUN에서 원자적 스냅샷 작업을 보장합니다. 예를 들어, 10개의 LUN에 있는 데이터베이스 또는 10개의 서로 다른 운영 체제로 구성된 VMware 기반 애플리케이션 환경은 기본 LUN이 동일한 일관성 그룹으로 그룹화되면 단일의 일관된 객체로 보호될 수 있습니다. 스냅샷이 서로 다른 일관성 그룹에 배치된 경우, 같은 시간에 예약되었더라도 완벽하게 동기화되지 않을 수 있습니다.</block>
+  <block id="893cac1ea1cce31311a3726c0d553033" category="paragraph">경우에 따라 복구 요구 사항 때문에 관련된 LUN 세트를 두 개의 서로 다른 일관성 그룹으로 분할해야 할 수 있습니다. 예를 들어, 데이터베이스에는 데이터 파일용 LUN 4개와 로그용 LUN 2개가 있을 수 있습니다. 이 경우, LUN 4개로 구성된 데이터 파일 일관성 그룹과 LUN 2개로 구성된 로그 일관성 그룹이 최적의 선택일 수 있습니다. 그 이유는 독립적인 복구 가능성 때문입니다. 데이터 파일 일관성 그룹은 선택적으로 이전 상태로 복원할 수 있으며, 이는 4개의 LUN 모두 스냅샷 상태로 되돌아가는 반면, 중요한 데이터가 포함된 로그 일관성 그룹은 영향을 받지 않는다는 것을 의미합니다.</block>
+  <block id="c630ef12bf3956117cddb1064fc3d361" category="section-title">CG, LUN 및 SnapMirror</block>
+  <block id="6a824f9a12117a2a6895290867e086df" category="paragraph">SnapMirror 정책 및 작업은 스냅샷 작업과 마찬가지로 LUN이 아닌 일관성 그룹에서 수행됩니다.</block>
+  <block id="13fa8b6e8b3be69f7fe58ff3630ccb35" category="paragraph">관련 LUN을 단일 일관성 그룹에 함께 배치하면 단일 SnapMirror 관계를 생성하고 단일 업데이트로 포함된 모든 데이터를 업데이트할 수 있습니다. 스냅샷과 마찬가지로 업데이트 또한 원자적 작업으로 수행됩니다. SnapMirror 대상에는 소스 LUN의 특정 시점 복제본이 하나만 존재하도록 보장됩니다. LUN이 여러 일관성 그룹에 분산되어 있는 경우 복제본은 서로 일관성이 있을 수도 있고 없을 수도 있습니다.</block>
+  <block id="403e3c031b4cfa6e3fe3dae9c8c5fe13" category="paragraph">ASA r2 시스템에서 SnapMirror 복제에는 다음과 같은 제한 사항이 있습니다.</block>
+  <block id="387dae8bc04454e56a9780e8507821e5" category="list-text">SnapMirror 동기 복제는 지원되지 않습니다.</block>
+  <block id="74618c54a0d6a05f0dbccbfa9f4bc480" category="list-text">SnapMirror Active Sync는 두 개의 ASA r2 시스템 간에만 지원됩니다.</block>
+  <block id="b24c01ad6773e01500470565f30e6c7e" category="list-text">SnapMirror 비동기 복제는 두 개의 ASA r2 시스템 간에만 지원됩니다.</block>
+  <block id="760e533cef4cb07e928f9667b4337a91" category="list-text">SnapMirror 비동기 복제는 ASA r2 시스템과 ASA, AFF 또는 FAS 시스템 또는 클라우드 사이에서는 지원되지 않습니다.</block>
+  <block id="91986d95992f1ad825d4163f8cc66a27" category="inline-link">ASA r2 시스템에서 지원되는 SnapMirror 복제 정책</block>
+  <block id="2280c599c5e817601b252f1594e3c4b2" category="paragraph">자세히 알아보기<block ref="2475b888e80612096ae52a0122ee018c" category="inline-link-rx"></block>.</block>
+  <block id="8ca2b03f914c6e1c468a2cd13b3c8b3d" category="section-title">CG, LUN 및 QoS</block>
+  <block id="7f2da44f6bd7c9356e63d179a440809d" category="paragraph">QoS는 개별 LUN에 선택적으로 적용할 수도 있지만, 일반적으로 일관성 그룹 수준에서 설정하는 것이 더 쉽습니다. 예를 들어, 특정 ESX 서버에서 게스트가 사용하는 모든 LUN을 단일 일관성 그룹에 배치한 다음 ONTAP 적응형 QoS 정책을 적용할 수 있습니다. 그 결과 모든 LUN에 적용되는 자체 확장형 TiB당 IOPS 제한이 생성됩니다.</block>
+  <block id="9a463c1574f65dcc765615800d99e581" category="paragraph">마찬가지로, 데이터베이스에 10만 IOPS가 필요하고 10개의 LUN을 사용하는 경우, 각 LUN에 1만 IOPS 제한을 개별적으로 설정하는 것보다 단일 일관성 그룹에 10만 IOPS 제한을 설정하는 것이 더 쉽습니다.</block>
+  <block id="410329240fb2d429a85eaa5a8949cc3d" category="section-title">다양한 CG 레이아웃</block>
+  <block id="5d754c13781487993a2059f802f22ba4" category="paragraph">경우에 따라 LUN을 여러 일관성 그룹에 분산하는 것이 유리할 수 있습니다. 주된 이유는 컨트롤러 스트라이핑 때문입니다. 예를 들어, HA ASA r2 스토리지 시스템은 각 컨트롤러의 최대 처리 및 캐싱 잠재력이 필요한 단일 Oracle 데이터베이스를 호스팅할 수 있습니다. 이 경우 일반적인 설계 방식은 LUN의 절반을 컨트롤러 1의 단일 일관성 그룹에 배치하고 나머지 절반을 컨트롤러 2의 단일 일관성 그룹에 배치하는 것입니다.</block>
+  <block id="7f8f628b8a7fd8f111de2978da131f9d" category="paragraph">마찬가지로, 여러 데이터베이스를 호스팅하는 환경의 경우 LUN을 여러 일관성 그룹에 분산시키면 컨트롤러 사용률의 균형을 유지할 수 있습니다. 예를 들어, 각각 10개의 LUN으로 구성된 100개의 데이터베이스를 호스팅하는 HA 시스템은 데이터베이스당 컨트롤러 1의 일관성 그룹에 5개의 LUN을, 컨트롤러 2의 일관성 그룹에 5개의 LUN을 할당할 수 있습니다. 이를 통해 추가 데이터베이스가 프로비저닝될 때 대칭적인 로딩이 보장됩니다.</block>
+  <block id="ae306759adf36251b055c76a41fa02d8" category="paragraph">하지만 이러한 예시 중 어느 것도 LUN과 일관성 그룹 비율이 1:1인 경우는 포함하지 않습니다. 목표는 관련된 LUN들을 논리적으로 일관성 그룹으로 묶어 관리 용이성을 최적화하는 것입니다.</block>
+  <block id="09ff91a9a7ddab76a6eac2cd43acf9a1" category="paragraph">LUN과 일관성 그룹 간의 1:1 비율이 적합한 한 가지 예는 컨테이너화된 워크로드입니다. 이러한 워크로드에서는 각 LUN이 개별 스냅샷 및 복제 정책이 필요한 단일 워크로드를 나타낼 수 있으므로 개별적으로 관리해야 합니다. 이러한 경우에는 1:1 비율이 최적일 수 있습니다.</block>
+  <block id="ef2e36dfa6fb12cf1c8a7a0ae0c88d52" category="summary">ASA r2에서 Oracle 데이터베이스를 사용한 LUN 및 LVM 크기 조정</block>
+  <block id="aea1f5a276c7b54d6172243c8b548bb2" category="searchtitle">ASA R2를 사용한 Oracle 데이터베이스 LUN 크기 조정 및 LVM 크기 조정</block>
+  <block id="70092e467b0294964d44a44d52d770f2" category="paragraph">ASA r2에서 SAN 기반 파일 시스템 또는 Oracle ASM 디스크 그룹이 용량 한계에 도달하면 사용 가능한 공간을 늘릴 수 있는 두 가지 옵션이 있습니다.</block>
+  <block id="8abbd05e0a227c599291f20b646a134d" category="list-text">기존 LUN(저장 장치)의 크기를 늘립니다.</block>
+  <block id="735f16a4a3b88e32076ada50e5286ae7" category="list-text">기존 ASM 디스크 그룹 또는 LVM 볼륨 그룹에 새 LUN을 추가하고 포함된 논리 볼륨의 크기를 확장합니다.</block>
+  <block id="40ad3147cef36b9d1a82d15d59687f65" category="paragraph">ASA r2에서 LUN 크기 조정이 지원되지만, 일반적으로 Oracle ASM과 같은 논리 볼륨 관리자(LVM)를 사용하는 것이 더 좋습니다. LVM이 존재하는 주요 이유 중 하나는 LUN 크기 조정을 자주 해야 하는 번거로움을 피하기 위해서입니다. LVM을 사용하면 여러 LUN이 결합되어 가상 스토리지 풀이 만들어집니다. 이 풀에서 분할된 논리 볼륨은 기본 스토리지 구성에 영향을 주지 않고 쉽게 크기를 조정할 수 있습니다.</block>
+  <block id="be47566c8372059834f1fc8385d4ac38" category="paragraph">LVM 또는 ASM 사용의 추가적인 이점은 다음과 같습니다.</block>
+  <block id="f04f7fcd9aefa6cc6cfcacbeef712d68" category="list-text">성능 최적화: I/O를 여러 LUN에 분산시켜 핫스팟을 줄입니다.</block>
+  <block id="1abd7acfc8d1a1b656234e216fc629f5" category="list-text">유연성: 기존 워크로드를 중단하지 않고 새로운 LUN을 추가할 수 있습니다.</block>
+  <block id="dc417c507b436d9dcf6e3dbb977f40b7" category="list-text">투명한 마이그레이션: ASM 또는 LVM은 호스트 다운타임 없이 로드 밸런싱 또는 티어링을 위해 익스텐트를 새 LUN으로 재배치할 수 있습니다.</block>
+  <block id="c73b873ea9167a593bee299b16d12b06" category="list-text">LUN 크기 조정은 스토리지 가용 영역(SAZ)의 용량을 사용하여 스토리지 VM(SVM) 내의 스토리지 장치 수준에서 수행됩니다.</block>
+  <block id="1b691366b4a3ac901464c48c9d4d8bff" category="list-text">Oracle의 경우 스트라이핑 및 병렬 처리를 유지하기 위해 기존 LUN의 크기를 조정하는 대신 ASM 디스크 그룹에 LUN을 추가하는 것이 가장 좋은 방법입니다.</block>
+  <block id="58cb14b122b3d785a1a321856cc92c3f" category="summary">ASA R2를 사용한 Oracle 데이터베이스 LUN 크기 조정 및 LUN 개수 관련 지침</block>
+  <block id="cf15b0ae7bdc6d8834b7e6418ffef6cf" category="searchtitle">ASA R2에서 Oracle 데이터베이스 LUN 크기 조정 및 LUN 개수</block>
+  <block id="49521166939155a64490ecd7f6957360" category="paragraph">LUN은 ASA r2 시스템의 호스팅 스토리지 가용 영역(SAZ)에 있는 모든 드라이브에 걸쳐 존재하는 ONTAP 의 가상화된 객체입니다. 결과적으로 LUN의 성능은 크기에 영향을 받지 않습니다. 어떤 크기를 선택하든 LUN은 SAZ의 최대 성능 잠재력을 활용하기 때문입니다.</block>
+  <block id="d25613c7fbbaea4aab9e21e2b21ad490" category="paragraph">* ASA r2 고려 사항:*</block>
+  <block id="5f929ae9afccf8d55896b9978ea77cf9" category="list-text">ASA r2의 최대 LUN 크기는 128TB이므로 성능 저하 없이 더 적은 수의 대용량 LUN을 사용할 수 있습니다.</block>
+  <block id="717d9e18e5ee8ee018a606f9bdf7aef7" category="list-text">ASA r2는 애그리게이트 대신 스토리지 가용 영역(SAZ)을 사용하지만, 이는 Oracle 워크로드에 대한 LUN 크기 조정 로직을 변경하지는 않습니다.</block>
+  <block id="8dd6202dd76a4a6b4230a20ff09f6fac" category="list-text">씬 프로비저닝은 기본적으로 활성화되어 있으며, LUN 크기 조정은 서비스 중단 없이 수행되므로 LUN을 오프라인으로 전환할 필요가 없습니다.</block>
+  <block id="cc7c6c6a526f7d2cb13c2fd2a0b9e839" category="paragraph">ASA r2에서는 ONTAP 플랫폼 전반에 걸쳐 병렬 I/O를 유사하게 처리하기 때문에 LUN 개수에 대한 원칙은 AFF/ FAS 와 동일하게 유지됩니다. 하지만 ASA r2의 SAN 전용 아키텍처와 액티브-액티브 대칭 경로는 모든 LUN에서 일관된 성능을 보장합니다.</block>
+  <block id="1b3bc440bdc4148abaecc010852b3e48" category="paragraph">일반적으로 4개에서 16개의 LUN이면 특정 Oracle 데이터베이스 워크로드의 I/O 요구 사항을 지원하기에 충분합니다. LUN이 4개 미만인 경우 호스트 SCSI 구현의 제한 사항으로 인해 성능 저하가 발생할 수 있습니다. LUN 개수를 16개 이상으로 늘려도 극단적인 경우(예: 매우 높은 랜덤 I/O SSD 워크로드)를 제외하고는 성능 향상이 거의 없습니다.</block>
+  <block id="32a9cc09d7b28dad1bdac19dfa8defca" category="summary">ASA r2를 사용한 Oracle 데이터베이스용 LVM 스트라이프 구성</block>
+  <block id="84337c2f0bd3b367c079858b351c1519" category="searchtitle">ASA r2에서 Oracle 데이터베이스를 사용한 LVM 스트라이핑</block>
+  <block id="9dc44bcf4c4a65f757ee2d4f417fb802" category="paragraph">회전식 드라이브를 사용한 스트라이핑은 I/O 패턴을 사전에 알아야 했기 때문에 더 어려웠습니다. 스트라이프 구성이 실제 I/O 패턴에 맞게 정확하게 조정되지 않으면 성능이 저하될 수 있습니다. 오라클 데이터베이스, 특히 올플래시 스토리지 구성에서는 스트라이핑 구성이 훨씬 쉽고 성능이 크게 향상되는 것으로 입증되었습니다.</block>
+  <block id="3fcb47409d533bbc0f1dedd640536c4e" category="paragraph">Oracle 데이터베이스에서 LVM 스트라이핑을 위한 모범 사례:</block>
+  <block id="1ee9d08de424307c5b0c68e2cae8b964" category="list-text">Stripe 크기 ≥ 데이터베이스 블록 크기.</block>
+  <block id="fb7356b0e5eebd52996145ea92edb38c" category="list-text">최적의 병렬 처리를 위해서는 스트라이프 크기 * LUN 개수 ≈ 1MB가 필요합니다.</block>
+  <block id="77ad8db55bb3aef8186b8f78c53a25b3" category="list-text">ASM 디스크 그룹당 여러 개의 LUN을 사용하여 처리량을 극대화하고 핫스팟을 방지하십시오.</block>
+  <block id="e9846a743cf48ba63b998c13227ca620" category="sidebar">AFF/ FAS 시스템의 ONTAP 구성</block>
+  <block id="a5cbfd8d8aee880e78887fb902e5c440" category="sidebar">Oracle 데이터베이스용 ONTAP 구성</block>
+  <block id="19dcc7d0feb41b8b247042f6b5c839cb" category="sidebar">ASA r2 시스템의 ONTAP 구성</block>
+  <block id="4239635e98cf1c9aade3e99963b47f3e" category="sidebar">ASA r2 시스템을 사용하는 Oracle 데이터베이스용 ONTAP 구성</block>
+  <block id="83059bc9b08eac1413f80049818a551a" category="sidebar">AFF/ FAS 시스템을 이용한 데이터베이스 구성</block>
+  <block id="9cbfcdc7f6207e881eb9efa080cb634a" category="sidebar">ASA r2 시스템을 사용한 데이터베이스 구성</block>
+  <block id="3072f08a47d3ebf5a6bb93d196fc3d0c" category="sidebar">ASA r2 시스템을 사용한 Oracle 데이터베이스 구성</block>
+  <block id="cf3d30b3a2769e5a42ca691fedc13a7a" category="sidebar">AFF/ FAS 시스템을 사용한 호스트 구성</block>
+  <block id="dc224317c322fd5cc85a7517df62ebbd" category="sidebar">ASA r2 시스템을 사용한 호스트 구성</block>
+  <block id="67e9cfbd67f63687103cc996b36d89a3" category="sidebar">ASA r2 시스템을 사용한 Oracle 데이터베이스 호스트 구성</block>
+  <block id="7f63d60cb330bfa4e266460c2678e3e5" category="sidebar">AFF/ FAS 시스템의 네트워크 구성</block>
+  <block id="d9c561cf68fdc77bb1da849869a07f1c" category="sidebar">ASA r2 시스템의 네트워크 구성</block>
+  <block id="38e7ae928dc580caab650dc5df5d2fc1" category="sidebar">ASA r2 시스템을 사용한 Oracle 데이터베이스의 네트워크 구성</block>
+  <block id="8637dea0297332b772f83909e4341446" category="sidebar">ASA r2 시스템을 사용한 Oracle 데이터베이스 스토리지 구성</block>
 </blocks>

@@ -1,0 +1,78 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-asar2-host-config-aix.html 
+keywords: oracle, database, ASA r2, ontap, aix, cio 
+summary: ASA r2에서 AIX와 함께 Oracle 데이터베이스를 사용하세요. 
+searchtitle: ASA r2에서 IBM AIX와 함께 사용하는 Oracle 데이터베이스 
+---
+= AIX
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+IBM AIX 및 ASA r2 ONTAP 에서 Oracle 데이터베이스를 구성하기 위한 항목입니다.
+
+[NOTE]
+====
+AIX는 다음 조건을 충족하는 경우 Oracle 데이터베이스 호스팅을 위해 NetApp ASA r2를 지원합니다.
+
+* Oracle에서 동시 I/O를 올바르게 구성했습니다.
+* 지원되는 SAN 프로토콜(FC/iSCSI/NVMe)을 사용합니다.
+* ASA r2에서 ONTAP 9.16.x 이상 버전을 실행하고 있습니다.
+
+
+====
+
+
+== 동시 I/O
+
+IBM AIX 환경에서 ASA r2를 사용하여 최적의 성능을 달성하려면 동시 I/O를 사용해야 합니다. 동시 I/O가 없으면 AIX가 직렬화된 원자적 I/O를 수행하여 상당한 오버헤드를 발생시키기 때문에 성능 제한이 발생할 가능성이 높습니다.
+
+원래 NetApp 다음을 사용하도록 권장했습니다. `cio` 파일 시스템에서 동시 I/O를 강제하는 마운트 옵션이 있었지만, 이 과정에는 단점이 있었고 더 이상 필요하지 않습니다. AIX 5.2 및 Oracle 10gR1이 도입된 이후로 AIX에서 Oracle은 전체 파일 시스템에 대한 동시 I/O를 강제하는 대신 개별 파일에 대해 동시 I/O를 허용할 수 있습니다.
+
+동시 I/O 활성화를 위한 최상의 방법은 를 설정하는 것입니다 `init.ora` 매개 변수 `filesystemio_options` 를 선택합니다 `setall`. 이렇게 설정하면 Oracle은 동시 I/O와 함께 사용할 특정 파일을 열 수 있습니다
+
+마운트 옵션으로 cio를 사용하면 동시 I/O가 강제로 발생하게 되는데, 이는 부정적인 결과를 초래할 수 있습니다. 예를 들어, 동시 I/O를 강제로 실행하면 파일 시스템에서 미리 읽기 기능이 비활성화되어 Oracle 데이터베이스 소프트웨어 외부에서 발생하는 I/O(예: 파일 복사 및 테이프 백업 수행)의 성능이 저하될 수 있습니다. 또한 Oracle GoldenGate 및 SAP BR*Tools와 같은 제품은 특정 버전의 Oracle에서 cio 마운트 옵션을 사용하는 것과 호환되지 않습니다.
+
+[TIP]
+====
+* NetApp는 * 다음을 권장합니다.
+
+* 를 사용하지 마십시오 `cio` 파일 시스템 레벨에서 마운트 옵션입니다. 을 사용하여 동시 I/O를 활성화하십시오 `filesystemio_options=setall`.
+* 다음만 사용하십시오. `cio` 마운트 옵션을 설정할 수 없는 경우 `filesystemio_options=setall`.
+
+
+====
+
+NOTE: ASA r2는 NAS를 지원하지 않으므로 AIX에 Oracle을 배포할 때는 블록 프로토콜을 사용해야 합니다.
+
+
+
+== AIX jfs/jfs2 마운트 옵션
+
+다음 표에는 AIX jfs/jfs2 마운트 옵션이 나와 있습니다.
+
+|===
+| 파일 형식 | 마운트 옵션 
+
+
+| ADR 홈 | 기본값 
+
+
+| 제어 파일 | 기본값 
+
+
+| 데이터 파일 | 기본값 
+
+
+| 다시 실행 로그 | 기본값 
+
+
+| ORACLE_HOME | 기본값 
+|===
+AIX를 사용하기 전에 `hdisk` 데이터베이스를 포함한 모든 환경의 장치에서 매개변수를 확인하십시오. `queue_depth`. 이 매개변수는 HBA 큐 깊이가 아니라 개별 SCSI 큐 깊이와 관련이 있습니다. `hdisk device`. ASA r2 LUN 구성 방식에 따라 값은 달라집니다. `queue_depth` 최적의 성능을 내기에는 너무 낮을 수 있습니다. 실험 결과 최적값은 64인 것으로 나타났습니다.

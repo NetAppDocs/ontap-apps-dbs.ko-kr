@@ -1,0 +1,41 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-asar2-storage-san-config-lun-resizing.html 
+keywords: SAN, ASM, LVM, oracle, LUN, ASA r2 
+summary: ASA r2에서 Oracle 데이터베이스를 사용한 LUN 및 LVM 크기 조정 
+searchtitle: ASA R2를 사용한 Oracle 데이터베이스 LUN 크기 조정 및 LVM 크기 조정 
+---
+= LUN 리사이징과 LVM 리사이징
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ASA r2에서 SAN 기반 파일 시스템 또는 Oracle ASM 디스크 그룹이 용량 한계에 도달하면 사용 가능한 공간을 늘릴 수 있는 두 가지 옵션이 있습니다.
+
+* 기존 LUN(저장 장치)의 크기를 늘립니다.
+* 기존 ASM 디스크 그룹 또는 LVM 볼륨 그룹에 새 LUN을 추가하고 포함된 논리 볼륨의 크기를 확장합니다.
+
+
+ASA r2에서 LUN 크기 조정이 지원되지만, 일반적으로 Oracle ASM과 같은 논리 볼륨 관리자(LVM)를 사용하는 것이 더 좋습니다. LVM이 존재하는 주요 이유 중 하나는 LUN 크기 조정을 자주 해야 하는 번거로움을 피하기 위해서입니다. LVM을 사용하면 여러 LUN이 결합되어 가상 스토리지 풀이 만들어집니다. 이 풀에서 분할된 논리 볼륨은 기본 스토리지 구성에 영향을 주지 않고 쉽게 크기를 조정할 수 있습니다.
+
+LVM 또는 ASM 사용의 추가적인 이점은 다음과 같습니다.
+
+* 성능 최적화: I/O를 여러 LUN에 분산시켜 핫스팟을 줄입니다.
+* 유연성: 기존 워크로드를 중단하지 않고 새로운 LUN을 추가할 수 있습니다.
+* 투명한 마이그레이션: ASM 또는 LVM은 호스트 다운타임 없이 로드 밸런싱 또는 티어링을 위해 익스텐트를 새 LUN으로 재배치할 수 있습니다.
+
+
+[NOTE]
+====
+ASA r2의 주요 고려 사항:
+
+* LUN 크기 조정은 스토리지 가용 영역(SAZ)의 용량을 사용하여 스토리지 VM(SVM) 내의 스토리지 장치 수준에서 수행됩니다.
+* Oracle의 경우 스트라이핑 및 병렬 처리를 유지하기 위해 기존 LUN의 크기를 조정하는 대신 ASM 디스크 그룹에 LUN을 추가하는 것이 가장 좋은 방법입니다.
+
+
+====

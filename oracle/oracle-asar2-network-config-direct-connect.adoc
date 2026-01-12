@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-asar2-network-config-direct-connect.html 
+keywords: direct-connect, oracle, ASA r2 
+summary: Oracle 데이터베이스 및 ASA r2와의 직접 연결 ONTAP 연결 
+searchtitle: Oracle 데이터베이스 및 ASA r2와의 직접 연결 ONTAP 연결 
+---
+= 직접 연결 네트워킹
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+스토리지 관리자는 구성에서 네트워크 스위치를 제거하여 인프라를 단순화하기를 원할 수도 있습니다. 일부 시나리오에서는 이 기능이 지원될 수 있습니다.
+
+
+
+== iSCSI 및 NVMe/TCP
+
+iSCSI 또는 NVMe/TCP를 사용하는 호스트는 ASA r2 스토리지 시스템에 직접 연결하여 정상적으로 작동할 수 있습니다. 이유는 경로 설정 때문입니다. 서로 다른 두 개의 스토리지 컨트롤러에 직접 연결하면 데이터 흐름을 위한 두 개의 독립적인 경로가 생성됩니다. 경로, 포트 또는 컨트롤러에 문제가 발생하더라도 멀티패싱이 올바르게 구성된 경우 다른 경로를 사용할 수 있습니다.
+
+
+
+== FC 직접 연결
+
+FC 프로토콜을 사용하여 호스트를 ASA r2 스토리지 시스템에 직접 연결하는 것은 불가능합니다. 그 이유는 AFF/ FAS 시스템과 마찬가지로 NPIV를 사용하기 때문입니다. FC 네트워크에서 ONTAP FC 포트를 식별하는 WWN은 NPIV라는 가상화 유형을 사용합니다. ONTAP 시스템에 연결된 모든 장치는 NPIV WWN을 인식할 수 있어야 합니다. 현재 NPIV 타겟을 지원할 수 있는 호스트에 설치할 수 있는 HBA를 제공하는 HBA 공급업체는 없습니다.

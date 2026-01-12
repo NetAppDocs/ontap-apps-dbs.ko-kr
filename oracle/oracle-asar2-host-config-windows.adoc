@@ -1,0 +1,24 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-asar2-host-config-windows.html 
+keywords: oracle, database, ASA r2, ontap, windows 
+summary: ASA r2에서 Microsoft Windows를 사용하는 Oracle 데이터베이스 
+searchtitle: ASA r2에서 Microsoft Windows를 사용하는 Oracle 데이터베이스 
+---
+= Microsoft Windows
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ASA r2 ONTAP 사용하는 Microsoft Windows 환경의 Oracle 데이터베이스 구성 관련 항목입니다.
+
+
+
+== 산
+
+최적의 압축 효율성을 위해 NTFS 파일 시스템이 8K 이상의 할당 유닛을 사용하는지 확인하십시오. 일반적으로 기본값인 4K 할당 유닛을 사용하면 압축 효율성에 부정적인 영향을 줄 수 있습니다.
