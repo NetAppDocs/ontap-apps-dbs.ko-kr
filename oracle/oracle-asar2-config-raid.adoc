@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: /oracle/oracle-asar2-config-raid.html 
+permalink: oracle/oracle-asar2-config-raid.html 
 keywords: oracle, ASA r2, raid, mirroring 
 summary: ASA r2를 사용한 RAID 및 Oracle 데이터베이스 
 searchtitle: ASA r2를 사용한 RAID 및 Oracle 데이터베이스 
