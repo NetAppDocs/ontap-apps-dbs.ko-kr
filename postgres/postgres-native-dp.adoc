@@ -5,7 +5,7 @@ keywords: PostgreSQL,database,postgres
 summary: PostgreSQL 데이터 보호 
 searchtitle: PostgreSQL 네이티브 데이터 보호 
 ---
-= 기본 Ddta 보호
+= 네이티브 데이터 보호
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
