@@ -2,7 +2,7 @@
 section: vmware
 title: VMware
 entries:
-- title: ONTAP 기반의 VMware vSphere
+- title: VMware vSphere with ONTAP 모범 사례 가이드
   entries:
   - title: 개요
     url: "/vmware/vmware-vsphere-overview.html"
@@ -24,6 +24,8 @@ entries:
       url: "/vmware/vmware-vsphere-datastores-nfs.html"
     - title: FlexGroup 볼륨
       url: "/vmware/vmware-vsphere-datastores-fg.html"
+    - title: VMware 데이터 저장소용 FabricPool
+      url: "/vmware/vmware-vsphere-datastores-fp.html"
   - title: 네트워크 구성
     url: "/vmware/vmware-vsphere-network.html"
   - title: 클론 복제
