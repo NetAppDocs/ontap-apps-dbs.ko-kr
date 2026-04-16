@@ -16,7 +16,7 @@ ONTAP가 있는 Microsoft Windows의 Oracle 데이터베이스에 대한 구성 
 
 == NFS 를 참조하십시오
 
-Oracle은 Microsoft Windows를 direct NFS 클라이언트와 함께 사용할 수 있도록 지원합니다. 이 기능을 통해 환경 전반의 파일을 확인하고, 볼륨 크기를 동적으로 조정하며 비용이 적게 드는 IP 프로토콜을 활용하는 것 등 NFS 관리에서 이점을 얻을 수 있습니다. DNFS를 사용하여 Microsoft Windows에 데이터베이스를 설치하고 구성하는 방법은 공식 Oracle 설명서를 참조하십시오. 특별한 모범 사례는 없습니다.
+Oracle은 직접 NFS 클라이언트와 함께 Microsoft Windows 사용을 지원합니다. 이 기능을 통해 여러 환경에서 파일을 보고, NFS 볼륨의 크기를 동적으로 조정하고, 비용 효율적인 IP 프로토콜을 활용하는 등 NFS의 관리 이점을 누릴 수 있습니다. DNFS를 사용하여 Microsoft Windows에 데이터베이스를 설치하고 구성하는 방법에 대한 자세한 내용은 Oracle 공식 설명서를 참조하십시오. 특별한 권장 사항은 없습니다.
 
 
 
