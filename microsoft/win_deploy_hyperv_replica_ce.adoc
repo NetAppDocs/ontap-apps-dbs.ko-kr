@@ -67,4 +67,4 @@ get-clusternode | ForEach-Object \{Invoke-command -computername $_.name -scriptb
 
 == 복제
 
-복제는 섹션에 설명된 프로세스와 비슷합니다 link:win_deploy_hyperv_replica_oce["클러스터 환경 외부의 복제"].
+복제는 link:win_deploy_hyperv_replica_oce.html["클러스터 환경 외부의 복제"] 섹션에 설명된 프로세스와 유사합니다.
