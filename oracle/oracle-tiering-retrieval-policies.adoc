@@ -19,6 +19,7 @@ searchtitle: Oracle 데이터베이스 및 FabricPool 검색 정책
 
 
 
+[[default]]
 == 기본값
 
 모든 FabricPool 볼륨은 처음에 에서 설정됩니다 `default`즉, 클라우드 검색 정책에 의해 동작이 제어됩니다. 정확한 동작은 사용된 계층화 정책에 따라 다릅니다.
@@ -31,6 +32,7 @@ searchtitle: Oracle 데이터베이스 및 FabricPool 검색 정책
 
 
 
+[[on-read]]
 == 온리드
 
 설정 `cloud-retrieval-policy` On-read를 선택하면 기본 동작이 재정의되므로 계층화된 데이터를 읽으면 해당 데이터가 성능 계층으로 반환됩니다.
@@ -41,6 +43,7 @@ searchtitle: Oracle 데이터베이스 및 FabricPool 검색 정책
 
 
 
+[[promote]]
 == 승격
 
 상향 이동 정책의 동작은 계층화 정책에 따라 다릅니다. 계층화 정책이 인 경우 `auto`를 선택한 다음 를 설정합니다 `cloud-retrieval-policy `to `promote` 다음 계층화 스캔 시 용량 계층의 모든 블록을 되돌립니다.
@@ -51,6 +54,7 @@ searchtitle: Oracle 데이터베이스 및 FabricPool 검색 정책
 
 
 
+[[never]]
 == 안 함
 
 용량 계층에서 블록을 검색하지 마십시오.

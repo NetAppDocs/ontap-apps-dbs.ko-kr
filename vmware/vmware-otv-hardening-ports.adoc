@@ -18,6 +18,7 @@ summary: Security Hardening Guide for ONTAP Tools for VMware vSphere, TCP 포트
 
 
 
+[[inbound-and-outbound-ports-required-for-otv]]
 == OTV에 필요한 인바운드 및 아웃바운드 포트
 
 아래 표에는 ONTAP 도구의 올바른 작동에 필요한 인바운드 및 아웃바운드 포트가 나열되어 있습니다. 표에 나와 있는 포트만 원격 컴퓨터에서 연결할 수 있도록 열려 있고 다른 모든 포트는 원격 컴퓨터에서 연결할 수 있도록 차단해야 합니다. 이렇게 하면 시스템의 보안 및 안전을 보장할 수 있습니다.
@@ -66,6 +67,7 @@ HTTPS 연결을 통한 SOAP에 사용됩니다
 |===
 
 
+[[controlling-remote-access-to-the-derby-database]]
 == Derby 데이터베이스에 대한 원격 액세스 제어
 
 관리자는 다음 명령을 사용하여 derby 데이터베이스에 액세스할 수 있습니다. ONTAP 도구 로컬 VM 및 원격 서버를 통해 다음 단계에 따라 액세스할 수 있습니다.

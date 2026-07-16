@@ -47,6 +47,7 @@ vserver1 800DT$HuVWBo /vol/new_lvm/LUN9 completed
 ....
 
 
+[[delete-import-relationships]]
 == 관계 가져오기를 삭제합니다
 
 마이그레이션 프로세스가 완료되면 마이그레이션 관계를 삭제합니다. I/O를 완료한 후에는 ONTAP의 드라이브에서만 I/O를 처리합니다.
@@ -60,6 +61,7 @@ Cluster01::*> lun import delete -vserver vserver1 -path /vol/new_lvm/LUN9
 ....
 
 
+[[deregister-foreign-luns]]
 == 외부 LUN 등록을 취소합니다
 
 마지막으로 디스크를 수정하여 를 제거합니다 `is-foreign` 지정.

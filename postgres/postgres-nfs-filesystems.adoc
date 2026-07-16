@@ -32,6 +32,7 @@ rw,hard,nointr,bg,vers=[3|4],proto=tcp,rsize=65536,wsize=65536
 
 
 
+[[nfs-transfer-sizes]]
 == NFS 전송 크기
 
 기본적으로 ONTAP에서는 NFS I/O 크기를 64K로 제한합니다.
@@ -59,6 +60,7 @@ rw,hard,nointr,bg,vers=[3|4],proto=tcp,rsize=262144,wsize=262144
 ....
 
 
+[[nfsv3-tcp-slot-tables]]
 == NFSv3 TCP 슬롯 테이블
 
 NFSv3을 Linux와 함께 사용할 경우에는 TCP 슬롯 테이블을 올바르게 설정하는 것이 중요합니다.

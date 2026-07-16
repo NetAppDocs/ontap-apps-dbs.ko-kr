@@ -36,6 +36,7 @@ searchtitle: Oracle 데이터베이스 성능 최적화 및 벤치마킹
 
 
 
+[[oracle-automatic-workload-repository-and-benchmarking]]
 == Oracle Automatic Workload Repository 및 벤치마킹
 
 Oracle 성능 비교를 위한 이상적인 표준은 Oracle AWR(Automatic Workload Repository) 보고서입니다.
@@ -51,6 +52,7 @@ NOTE: AWR 보고서를 생성할 수 없는 경우 Oracle Statspack 보고서가
 
 
 
+[[oracle-awr-and-troubleshooting]]
 == Oracle AWR과 문제 해결
 
 AWR 보고서는 성능 문제 분석을 위한 가장 중요한 툴이기도 합니다.
@@ -69,6 +71,7 @@ AWR 데이터를 제공할 때는 다음 요구사항을 고려하십시오.
 
 
 
+[[calibrateio]]
 == CALIBRATE_IO 를 선택합니다
 
 를 클릭합니다 `calibrate_io` 명령은 스토리지 시스템의 테스트, 비교 또는 벤치마크에 사용할 수 없습니다. Oracle 설명서에 명시된 것처럼 이 절차는 스토리지의 I/O 기능을 보정합니다.
@@ -77,24 +80,28 @@ AWR 데이터를 제공할 때는 다음 요구사항을 고려하십시오.
 
 
 
+[[slob2]]
 == SLOB2 를 참조하십시오
 
 Oracle 벤치마크인 SLOB2는 데이터베이스 성능을 평가하는 데 있어 선호되는 도구가 되었습니다. Kevin Closson이 개발했으며 에서 다운로드할 수 있습니다 link:https://kevinclosson.net/slob/["https://kevinclosson.net/slob/"^]. 설치하고 구성하는 데에는 몇 분 정도가 걸리며 실제 Oracle 데이터베이스를 사용하여 사용자가 정의 가능한 테이블스페이스에 I/O 패턴을 생성합니다. 이 툴은 I/O를 통해 All-Flash 어레이를 포화할 수 있는 소수의 테스트 옵션 중 하나이며 IOPS가 낮지만 지연 시간에 민감한 스토리지 워크로드를 시뮬레이션하기 위해 훨씬 낮은 레벨의 I/O를 생성하는 데 유용합니다.
 
 
 
+[[swingbench]]
 == 스윙벤치
 
 Swingbench는 데이터베이스 성능을 테스트하는 데 유용할 수 있지만 스토리지에 중점을 두어 Swingbench를 사용하는 것은 매우 어렵습니다. NetApp이 관찰한 결과, AFF 어레이에 상당한 로드가 될 정도의 I/O가 생성된 Swingbench 테스트는 없었습니다. 드문 경우지만 지연 시간 관점에서 스토리지를 평가하는 데 OET(Order Entry Test)를 사용할 수 있습니다. 이는 데이터베이스에 특정 쿼리의 알려진 지연 시간 종속성이 있는 상황에서 유용할 수 있습니다. All-Flash 어레이의 잠재적 지연 시간을 실현하려면 호스트와 네트워크가 적절히 구성되었는지 주의를 기울여 확인해야 합니다.
 
 
 
+[[hammerdb]]
 == HammerDB
 
 HammerDB는 TPC-C 및 TPC-H 벤치마크를 시뮬레이션하는 데이터베이스 테스트 툴입니다. 테스트를 제대로 실행하기 위해 대규모 데이터 세트를 구성하는 데에는 상당한 시간이 걸릴 수 있지만 이는 OLTP와 데이터 웨어하우스 애플리케이션의 성능을 평가하는 데 효과적인 툴이 될 수 있습니다.
 
 
 
+[[orion]]
 == 오리온
 
 Oracle Orion 툴은 일반적으로 Oracle 9과 함께 사용되었지만 다양한 호스트 운영 체제의 변화에 따른 호환성이 보장되도록 유지보수되지 않았습니다. 이 툴은 운영 체제 및 스토리지 구성의 비호환성 때문에 Oracle 10 또는 Oracle 11에는 거의 사용되지 않습니다.

@@ -1457,106 +1457,11 @@
   <block id="3dee93bd9bc9b8b50dcdd2066a86009f" category="list-text">데이터베이스를 시작하는 중입니다</block>
   <block id="620515885465a26daea6cc6441403e34" category="paragraph">이 방법의 주요 요구 사항은 원격 사이트에서 실행 중인 OS입니다. Oracle 바이너리로 사전 구성되어야 합니다. 즉, Oracle 패치 적용과 같은 작업이 운영 및 대기 사이트에서 수행되어야 합니다. 또는 재해가 선언된 경우 Oracle 바이너리를 원격 사이트로 미러링하고 마운트할 수 있습니다.</block>
   <block id="edb5332feef69c0aa60ea10ed5d31a9f" category="list-text">데이터베이스를 수동으로 시작하거나 데이터베이스를 자동으로 시작하도록 가상 시스템을 구성하면 ESX 클러스터가 사이트에 걸쳐 있을 수 있습니다. 재해 발생 시 전환 후 재해 복구 사이트에서 가상 시스템을 온라인으로 전환할 수 있습니다. 재해 발생 시 가상 데이터베이스 서버를 호스팅하는 데이터 저장소를 사용하지 않는 한 설정할 필요가 없습니다<block ref="3b93661df04b698b1340ff2da3238d16" prefix=" " category="inline-code"></block> 연결된 볼륨에서.</block>
-  <block id="64bba30b717cb45555458da4fed880a1" category="paragraph">거의 모든 애플리케이션에 데이터 복제가 필요합니다.</block>
-  <block id="25fb1fa02f326334533a22c105ad3e69" category="paragraph">가장 기본적인 수준에서 복제는 오프사이트에 저장된 테이프의 복제본 또는 대기 위치에 대한 애플리케이션 수준의 복제를 의미할 수 있습니다. 재해 복구란 서비스 손실이 발생할 경우 이러한 복제본을 사용하여 서비스를 온라인으로 전환하는 것을 말합니다.</block>
-  <block id="eab6cb3a1168ef2311865e6155b8272c" category="paragraph">ONTAP은 스토리지 어레이 내의 다양한 요구사항을 기본적으로 해결하여 다양한 요구사항을 충족할 수 있는 다양한 복제 옵션을 제공합니다. 이러한 옵션에는 원격 사이트에 대한 백업을 단순 복제할 수 있으며, 완전히 자동화된 동기식 솔루션까지 동일한 플랫폼에서 재해 복구와 고가용성을 제공하는 것이 포함됩니다.</block>
-  <block id="32df0c1cabf839652741a56bdaac7def" category="paragraph">애플리케이션에 적용할 수 있는 기본 ONTAP 복제 기술은 NetApp SnapMirror 및 NetApp SyncMirror 기술입니다. 이러한 제품은 애드온 제품이 아니라 ONTAP에 완전히 통합되며 라이센스 키를 간단하게 추가하여 활성화할 수 있습니다. 스토리지 레벨 복제가 유일한 옵션은 아닙니다. Oracle DataGuard와 같은 애플리케이션 레벨 복제를 ONTAP 기반의 데이터 보호 전략에 통합할 수도 있습니다.</block>
-  <block id="a2259fa074bae962e46ca7fc7aa31be1" category="paragraph">적절한 선택은 특정 복제, 복구 및 보존 요구 사항에 따라 달라집니다.</block>
-  <block id="0d3b37ff5855bf299f3c4a154373c1e2" category="section-title">ONTAP SnapMirror를 참조하십시오</block>
-  <block id="296e89e943f5160d338484b3b705a44e" category="paragraph">SnapMirror는 NetApp 비동기식 복제 솔루션으로, 데이터베이스와 관련 애플리케이션과 같이 복잡하고 동적인 대규모 데이터 세트를 보호하는 데 이상적입니다. 주요 값은 다음과 같습니다.</block>
-  <block id="d9f36dae2818ace926c4259271530724" category="list-text">* 관리 기능. * SnapMirror는 스토리지 소프트웨어의 기본 구성 요소이므로 쉽게 구성하고 관리할 수 있습니다. 추가 제품이 필요하지 않습니다. 복제 관계는 몇 분 내에 설정할 수 있으며 스토리지 시스템에서 직접 관리할 수 있습니다.</block>
-  <block id="8f761eff026903aa0140319f597d1fb0" category="list-text">* 단순성 * 복제는 FlexVol 볼륨을 기반으로 하며, LUN 또는 파일 컨테이너인 LUN은 하나의 정합성 보장 그룹으로 복제됩니다.</block>
-  <block id="8b737d6a9db3de6436966db508cb51d4" category="list-text">* 효율성. * 초기 복제 관계가 설정된 후에는 변경 사항만 복제됩니다. 또한 중복제거 및 압축과 같은 효율성 기능이 유지되므로 원격 사이트로 전송해야 하는 데이터의 양이 추가로 줄어듭니다.</block>
-  <block id="0783dadb67ff77ed26bbfc5d80fa0cbd" category="list-text">* 유연성. * 미러를 일시적으로 분리하여 재해 복구 절차를 테스트할 수 있으며, 완전한 재미러링 없이 미러링을 쉽게 재구축할 수 있습니다. 미러를 다시 동기화하려면 변경된 데이터만 적용해야 합니다. 또한 미러링은 재해가 끝나고 원래 사이트가 다시 가동된 후에 신속하게 재동기화를 수행할 수 있도록 되돌릴 수 있습니다. 마지막으로, 복제된 데이터의 읽기-쓰기 클론을 테스트 및 개발에 사용할 수 있습니다.</block>
-  <block id="8a00f09d8937e890f2cfb4d7acf72733" category="paragraph">ONTAP는 여러 가지 복제 기술을 제공하지만 볼륨 간 비동기 미러링 옵션인 SnapMirror가 가장 유연합니다.</block>
-  <block id="80c8fae3d0b5dd100cc984d9ba3eced7" category="paragraph">앞에서 설명한 것처럼 FlexVol 볼륨은 스냅샷 기반 백업 및 SnapRestore 기반 복구를 위한 기본 관리 단위입니다. FlexVol 볼륨은 SnapMirror 기반 복제의 기본 단위이기도 합니다. 첫 번째 단계는 소스 볼륨의 기본 미러를 타겟 볼륨에 설정하는 것입니다. 이 미러 관계가 초기화되면 이후의 모든 작업은 변경된 데이터의 복제만을 기반으로 합니다.</block>
-  <block id="c1020b1755f65f23643158ce6a4d22cc" category="paragraph">복구 관점에서 SnapMirror의 주요 가치는 다음과 같습니다.</block>
-  <block id="50bde20b37cd4d57fbff2b95f2f8ec97" category="list-text">SnapMirror 작업은 이해하기 쉽고 손쉽게 자동화할 수 있습니다.</block>
-  <block id="66162be45733f65fee4abb22e989eb78" category="list-text">SnapMirror 복제본을 간단히 업데이트하려면 델타 변경사항만 복제되어야 하므로 대역폭 요구사항이 감소하고 업데이트를 더 자주 수행할 수 있습니다.</block>
-  <block id="a3b4fbe416387a4991ccaa8b325a68be" category="list-text">SnapMirror는 매우 세분화됩니다. 단순한 볼륨 간 관계를 기반으로 개별적으로 관리되는 수백 개의 복제본과 복제 간격을 생성할 수 있습니다. 모든 경우에 한 가지 복제 방식을 적용할 필요는 없습니다.</block>
-  <block id="4e3785883ef3ccad9938d7e35e493057" category="list-text">대칭 복사 방향은 변경 내용만 기반으로 관계를 업데이트하는 기능을 유지하면서 쉽게 되돌릴 수 있습니다. 따라서 전원 장애와 같은 재해 발생 후 운영 사이트가 서비스 상태로 복원된 후 신속한 장애 복구 기능을 사용할 수 있습니다. 변경 내용만 원본과 다시 동기화해야 합니다.</block>
-  <block id="8b8325381cf528eff12c1e678a3112f9" category="list-text">거울은 쉽게 깨질 수 있고 효율적으로 재동기화하여 재해 복구 절차의 예행 연습을 수행할 수 있습니다.</block>
-  <block id="b1f45b7d95bfc815351fb649fa94b671" category="list-text">전체 블록 레벨 복제 모드에서 작동하는 SnapMirror는 볼륨의 데이터뿐만 아니라 스냅샷도 복제합니다. 이 기능은 재해 복구 사이트의 데이터 복사본과 전체 백업 세트를 모두 제공합니다.</block>
-  <block id="ffafd9ae31dee51209961eb2453ac806" category="paragraph">버전에 상관없이 유연한 모드에서 작동하는 SnapMirror를 사용하면 특정 스냅샷을 복제할 수 있으므로 운영 사이트와 2차 사이트에서 보존 시간이 다를 수 있습니다.</block>
-  <block id="974658d7ac018cb945e78365b0a760fb" category="section-title">SnapMirror Synchronous</block>
-  <block id="ffbf9d0ce29a631b6eae8b22c41ec95e" category="paragraph">SnapMirror Synchronous(SM-S)는 RPO=0 동기식 복제를 제공하는 SnapMirror의 향상된 기능입니다. 전체 데이터의 서브셋에만 동기식 미러링이 필요한 스토리지 아키텍처에서 가장 자주 사용됩니다.</block>
-  <block id="e8a45c4c0391895df78421904703c933" category="paragraph">SM-S는 Sync 및 StrictSync의 두 가지 약간 다른 모드로 작동할 수 있습니다.</block>
-  <block id="15a4e16195fb9d30c5df0e11df5c2166" category="paragraph">동기화 모드에서는 변경 내용이 확인되기 전에 복제됩니다. 따라서 복제가 진행되는 한 RPO가 0이 보장됩니다. 변경 내용을 복제할 수 없는 경우 SM-S는 동기 모드를 종료하고 작업을 계속할 수 있습니다. 따라서 정상적인 상황에서는 RPO=0이 허용되지만 복제 대상을 사용할 수 없는 경우 데이터 프로세스가 완전히 중지되지 않습니다.</block>
-  <block id="115455025d4664c0dd6deaaf3c1fc93c" category="paragraph">StrictSync는 RPO=0을 보장합니다. 변경 사항을 복제하지 못하면 I/O 오류가 발생하여 일반적으로 애플리케이션이 종료됩니다.</block>
-  <block id="1b1ea0d1ad6e5cfb06253a14fcdcfe71" category="inline-link">TR-4733 을 참조하십시오</block>
-  <block id="9ccd61d6efc86cc37743fdff385832e8" category="paragraph">SM-S에 대한 자세한 설명은 을 참조하십시오<block ref="4459b84726c651a8047a6486e87e48fb" category="inline-link-rx"></block> ONTAP 공식 문서를 참조하십시오. 새로운 버전의 ONTAP에서 기능이 지속적으로 추가됩니다.</block>
   <block id="6165c4352e1504dbaeef34d0cc50c187" category="section-title">정합성 보장 그룹</block>
-  <block id="0651e813e385dbd62a9bca9baee23c6c" category="paragraph">ONTAP를 사용하면 일관성 그룹 스냅샷을 생성할 수 있습니다. 9.13.1부터 ONTAP은 볼륨 그룹을(ONTAP 용어의 볼륨은 LUN이 아니라 하나 이상의 파일 또는 LUN으로 구성된 관리 컨테이너라는 점을 유념하십시오.) 일관성 있는 그룹으로 복제할 수 있습니다.</block>
-  <block id="455c7758003d6ebd974e8858f5ef1d7d" category="paragraph">그 결과 다중 볼륨 데이터 세트를 복제하고 모든 볼륨이 상호 정합성이 보장되도록 할 수 있습니다. 무엇보다도, 이를 통해 추가 애플리케이션 또는 데이터베이스 복구 단계가 필요하지 않고 "미러링 중단"된 DR 작업을 수행할 수 있습니다.</block>
-  <block id="c44a2da164b7b770fce6338a987670ee" category="section-title">MetroCluster and SyncMirror 를 참조하십시오</block>
-  <block id="b1a1cfbf3988d8abdfdedaabc1742ae9" category="paragraph">MetroCluster는 또한 대규모 미션 크리티컬 워크로드를 대상으로 하는 동기식 복제 솔루션입니다. 복제는 SyncMirror를 기반으로 합니다. 가장 단순한 계층에서 SyncMirror는 두 개의 서로 다른 위치에 두 개의 완전한 RAID 보호 데이터 세트를 생성합니다. 데이터 센터 내의 인접한 방에 있거나 수 킬로미터 떨어진 곳에 있을 수 있습니다.</block>
-  <block id="89b8adf28db7abb0febecafdca5871ad" category="paragraph">SyncMirror는 ONTAP와 완벽하게 통합되며 RAID 레벨 이상으로 작동합니다. 따라서 Snapshot 복사본, SnapRestore 및 NetApp FlexClone과 같은 ONTAP의 모든 일반 기능이 원활하게 작동합니다. 여전히 ONTAP이며 동기 데이터 미러링 계층이 추가로 포함되어 있습니다.</block>
-  <block id="75c677fa68f5d15c17efbf6fd1fe1765" category="paragraph">SyncMirror 데이터를 관리하는 ONTAP 컨트롤러 모음을 NetApp MetroCluster 구성이라고 합니다. MetroCluster의 주된 목적은 다양한 일반 및 재해 복구 장애 시나리오에서 동기식으로 미러링된 데이터에 대한 고가용성 액세스를 제공하는 것입니다.</block>
-  <block id="af845652f0234e1f71bc37e241ab63dc" category="paragraph">MetroCluster 및 SyncMirror를 통한 데이터 보호의 주요 가치는 다음과 같습니다.</block>
-  <block id="9ab80c5e33e343c3415c21be433c4447" category="list-text">정상적인 작업에서 SyncMirror는 여러 위치에 보장된 동기식 미러링을 제공합니다. 쓰기 작업은 두 사이트의 비휘발성 미디어에 있기 때문에 승인되지 않습니다.</block>
-  <block id="680ccf94624c9f922ed236c8cc0c1af2" category="list-text">사이트 간 연결에 장애가 발생할 경우 SyncMirror는 자동으로 비동기식 모드로 전환되어 연결이 복원될 때까지 데이터를 제공하는 운영 사이트를 유지합니다. 복구되면 운영 사이트에 누적된 변경 사항을 효율적으로 업데이트하여 신속하게 재동기화할 수 있습니다. 전체 재초기화가 필요하지 않습니다.</block>
-  <block id="c18ec55908c635b68abe8c6edbf6476e" category="paragraph">SnapMirror는 SyncMirror 기반 시스템과도 완벽하게 호환됩니다. 예를 들어, 기본 데이터베이스는 두 개의 지리적 사이트에 분산된 MetroCluster 클러스터에서 실행될 수 있습니다. 이 데이터베이스는 DevOps 환경에서 백업을 장기 아카이브나 클론 생성을 위해 세 번째 사이트에 복제할 수도 있습니다.</block>
-  <block id="3a8111f0b903472ec78531619bf984f6" category="paragraph">Oracle 데이터베이스의 복제 절차는 기본적으로 백업 절차와 동일합니다. 기본적인 요구 사항은 복구 가능한 백업을 구성하는 스냅샷을 원격 스토리지 시스템에 복제해야 한다는 것입니다.</block>
-  <block id="c62b3abab4fdbaf8f0a84e8c3559b5fd" category="paragraph">앞서 로컬 데이터 보호에 대한 설명에서 설명한 것처럼 핫 백업 프로세스를 사용하거나 스냅샷 최적화 백업을 활용하여 복구 가능한 백업을 만들 수 있습니다.</block>
-  <block id="3d8f8c6a5c90bcd85a22fbd17390a864" category="inline-link-macro">데이터 레이아웃</block>
-  <block id="f3f227cc5c07a040d61c36679053a58a" category="paragraph">데이터 파일이 전용 볼륨으로 캡슐화된다고 가정할 때 다음 질문은 재실행 로그, 아카이브 로그, 제어 파일을 관리하는 방법입니다. 가장 간단한 접근 방식은 이러한 모든 데이터 유형을 단일 볼륨에 배치하는 것입니다. 이 경우 복제된 redo 로그, 아카이브 로그 및 제어 파일이 완벽하게 동기화된다는 이점이 있습니다. 불완전한 복구나 백업 제어 파일을 사용할 필요는 없지만 다른 잠재적인 복구 시나리오를 위해 백업 제어 파일을 스크립트 작성하는 것이 바람직할 수 있습니다.</block>
-  <block id="927992cbeccc8211e382c97e81514ef9" category="section-title">2볼륨 레이아웃</block>
-  <block id="fe1cf96940a710dc95fd30bbb7533b52" category="paragraph">가장 간단한 레이아웃은 다음 그림에 나와 있습니다.</block>
-  <block id="57f1db4bdf2ce49a98f375d8393f02bf" category="paragraph">이것이 가장 일반적인 접근 방식입니다. DBA 관점에서 볼 때 재실행 로그와 아카이브 로그의 모든 복사본을 동일한 볼륨에 생성하는 것은 드문 것처럼 보일 수 있습니다. 그러나 파일 및 LUN이 모두 동일한 기본 드라이브 세트에 있는 경우 분리 기능을 통해 보호 기능이 크게 향상되지는 않습니다.</block>
-  <block id="bc46e4831ef5654d084e456c4c544a42" category="section-title">3볼륨 레이아웃</block>
-  <block id="f6e969769d9d166122489505d676769b" category="paragraph">데이터 보호 또는 재실행 로그 I/O를 컨트롤러 간에 분산해야 하기 때문에 재실행 로그를 분리해야 하는 경우가 있습니다. 이 경우 아래 그림에 나와 있는 3개 볼륨 레이아웃을 복제에 사용할 수 있지만 불완전한 복구를 수행하거나 백업 제어 파일을 사용할 필요가 없습니다.</block>
-  <block id="4957c2feaa2cb72d80a0ab65228ad43f" category="paragraph">따라서 소스의 독립 스핀들 및 컨트롤러 세트에 대해 redo 로그 및 제어 파일을 스트라이핑할 수 있습니다. 그러나 아카이브 로그와 하나의 제어 파일 및 redo 로그 세트는 아카이브 로그와 동기화된 상태로 복제할 수 있습니다.</block>
-  <block id="39128da64bc55500b4b11391aa54a011" category="paragraph">이 모델에서는 Redo Log B 볼륨이 복제되지 않습니다.</block>
-  <block id="c0ce858e99375deac8274c96b7e5d0ee" category="section-title">재해 복구 절차 - 핫 백업</block>
-  <block id="6993729228512b7e23e3ff3ec9099f33" category="paragraph">핫 백업을 사용하여 재해 복구를 수행하려면 다음 기본 절차를 사용하십시오.</block>
   <block id="ee68e5b99222bbc29a480fcb0d1d6ee2" category="section-title">필수 구성 요소</block>
-  <block id="41bde9c586a860264c425700c48bd375" category="list-text">Oracle 바이너리는 재해 복구 서버에 설치됩니다.</block>
-  <block id="cebf7cec81152da2cadffd580d81937f" category="list-text">데이터베이스 인스턴스는 에 나열됩니다<block ref="2c0b0433aa1c96a2be6f40d9e71bc6af" prefix=" " category="inline-code"></block>.</block>
-  <block id="17f8e5eda67237f2ca94c7dcce3e4022" category="list-text">를 클릭합니다<block ref="76a2173be6393254e72ffa4d6df1030a" prefix=" " category="inline-code"></block> 및<block ref="6b2f852f7f63f2e5d4be597bbca97bb6" prefix=" " category="inline-code"></block> 또는<block ref="1737629d60b511cf45957529a8f046e2" prefix=" " category="inline-code"></block> 이 인스턴스는 에 있어야 합니다<block ref="45c7302d9c2e8745b3a2bff0f992b6df" prefix=" " category="inline-code"></block> 디렉토리. .</block>
   <block id="645a84975202e30700b572b49a5ee29d" category="section-title">재해 복구</block>
-  <block id="25d18766964d7515e1f5acd893094f6e" category="list-text">데이터 파일과 공통 로그 볼륨의 미러를 제거합니다.</block>
-  <block id="8fc655e4752d521563db3bfa138ba62e" category="list-text">데이터 파일 볼륨을 데이터 파일의 최신 핫 백업 스냅샷으로 복원합니다.</block>
-  <block id="68a9c75816a16f6d4f7572fe287961bf" category="list-text">SAN을 사용하는 경우 볼륨 그룹을 활성화하고 파일 시스템을 마운트합니다.</block>
   <block id="312007510a0f0dc7878d4ed6a7a01554" category="list-text">원하는 지점으로 아카이브 로그를 재생합니다.</block>
   <block id="e54b793d8bfa83bbb1bd965992c3474e" category="list-text">전체 복구가 필요한 경우 현재 redo 로그를 재생합니다.</block>
-  <block id="72e5734d53581f86093de5c97d8a3a24" category="paragraph">NFS를 사용하면 데이터 파일 및 로그 파일용 NFS 파일 시스템을 재해 복구 서버에 언제든지 마운트할 수 있으므로 이러한 절차가 크게 간소화됩니다. 미러가 손상되면 읽기/쓰기가 됩니다.</block>
-  <block id="de4735bc5bbfdcae3d690313c739ad67" category="section-title">재해 복구 절차 - 스냅샷에 최적화된 백업</block>
-  <block id="6b2b8ef11e5ded8a083372ba49d488d2" category="paragraph">스냅샷 최적화 백업에서 복구하는 작업은 다음과 같은 변경 사항이 있는 핫 백업 복구 절차와 거의 동일합니다.</block>
-  <block id="af1e49e7bc2b25ce36bd93df09433fb4" category="list-text">데이터 파일 볼륨을 현재 로그 볼륨 복제본 이전에 생성된 스냅샷으로 복구합니다.</block>
-  <block id="5e09669c98226c5d3a748f7e0f0333ad" category="paragraph">이러한 차이는 데이터베이스가 핫 백업 모드에 있는 동안 소스에서 스냅샷이 제대로 생성되었는지 확인할 필요가 없기 때문에 전체 복구 절차가 간소화됩니다. 재해 복구 절차는 재해 복구 사이트에 있는 스냅샷의 타임스탬프를 기반으로 합니다. 스냅샷이 생성된 시점의 데이터베이스 상태는 중요하지 않습니다.</block>
-  <block id="81d6beef7eaf28bbce692d4b59888f3e" category="section-title">핫 백업 스냅샷을 사용한 재해 복구</block>
-  <block id="dc711b77f0d6a9c9ccf88b424509440a" category="paragraph">핫 백업 스냅샷 복제를 기반으로 하는 재해 복구 전략의 한 예입니다. 또한 단순하고 확장 가능한 로컬 백업 전략의 한 예입니다.</block>
-  <block id="edaef18e1c956b9284405fd664c4ca4a" category="paragraph">예제 데이터베이스는 기본적인 두 볼륨 아키텍처에 있습니다.<block ref="f006bf17b06c884c47190c4225d3215a" prefix=" " category="inline-code"></block> 에는 데이터 파일 및 이 포함되어 있습니다<block ref="894db1fc1592356880976f1b92c3e6a2" prefix=" " category="inline-code"></block> 는 결합된 redo 로그, 아카이브 로그 및 제어 파일에 사용됩니다.</block>
-  <block id="fc0e7b6cd7cd15929987b1429d1c3a7e" category="paragraph">야간 데이터 파일 백업용 스케줄 하나와 로그 파일 백업용 스케줄 두 개가 필요합니다. 이를 각각 자정과 15분이라고 합니다.</block>
-  <block id="44c0956347a70c78d2124c1041321049" category="paragraph">그런 다음 이러한 스케줄이 스냅샷 정책 내에서 사용됩니다<block ref="44dc83cda2d6b3ce99cc25803e824061" prefix=" " category="inline-code"></block> 및<block ref="9b055600529d69c4ae0d2a9408dc7aa3" prefix=" " category="inline-code"></block>, 아래 그림과 같이:</block>
-  <block id="180e86b8e3c5049779c98c2c1006bb15" category="paragraph">마지막으로 이러한 스냅샷 정책이 볼륨에 적용됩니다.</block>
-  <block id="2887f2c14c7efbc97d53ac2f914c5657" category="paragraph">볼륨의 백업 일정을 정의합니다. 데이터 파일 스냅샷은 자정에 생성되며 60일 동안 유지됩니다. 로그 볼륨에는 15분 간격으로 생성된 72개의 스냅샷이 포함되어 최대 18시간 동안 사용 가능합니다.</block>
-  <block id="e1e5ef0e7100311d950b4ffebe040670" category="paragraph">그런 다음 데이터 파일 스냅샷이 생성될 때 데이터베이스가 핫 백업 모드인지 확인합니다. 이 작업은 지정된 SID에서 백업 모드를 시작하고 중지하는 몇 가지 기본 인수를 허용하는 작은 스크립트를 사용하여 수행됩니다.</block>
-  <block id="683cdd7abd993faf3ace355cd6870b6f" category="paragraph">이 단계를 수행하면 자정 스냅샷을 둘러싸고 4분 동안 데이터베이스가 핫 백업 모드에 있게 됩니다.</block>
-  <block id="ccff7eb3ad0059a184886709c87f4889" category="paragraph">재해 복구 사이트로의 복제는 다음과 같이 구성됩니다.</block>
-  <block id="42d3752a745fb0cdae528f6cc425b569" category="paragraph">로그 볼륨 대상은 15분마다 업데이트됩니다. 이 경우 RPO는 약 15분입니다. 정확한 업데이트 간격은 업데이트 중에 전송해야 하는 총 데이터 볼륨에 따라 약간 달라집니다.</block>
-  <block id="e272424001d72919ad498e0e9d3c2cc4" category="paragraph">데이터 파일 볼륨 대상은 6시간 간격으로 업데이트됩니다. RPO 또는 RTO에는 영향을 미치지 않습니다. 재해 복구가 필요한 경우 첫 번째 단계 중 하나는 데이터 파일 볼륨을 핫 백업 스냅샷으로 다시 복원하는 것입니다. 보다 빈번한 업데이트 간격의 목적은 이 볼륨의 전송 속도를 부드럽게 하는 것입니다. 업데이트가 하루에 한 번 예약된 경우 해당 날짜에 누적된 모든 변경 사항을 한 번에 전송해야 합니다. 업데이트가 자주 이루어지므로 하루 종일 변경 내용이 점차 복제됩니다.</block>
-  <block id="ce176ff569d716c1fa73d0754aba684b" category="paragraph">재해가 발생할 경우 첫 번째 단계는 두 볼륨의 미러를 분리하는 것입니다.</block>
-  <block id="4b9cdb6e2096c0828aeccd2ee5eecf42" category="paragraph">이제 복제본이 읽기-쓰기입니다. 다음 단계는 로그 볼륨의 타임스탬프를 확인하는 것입니다.</block>
-  <block id="b4d461e48f5be5d08f677045d11e8200" category="paragraph">로그 볼륨의 가장 최근 사본은 3월 14일 13:30:00입니다.</block>
-  <block id="96f75a4b63f4377efdf64d571d71caec" category="paragraph">그런 다음 로그 볼륨의 상태 바로 전에 생성된 핫 백업 스냅샷을 식별합니다. 로그 재생 프로세스에는 핫 백업 모드 중에 생성된 모든 아카이브 로그가 필요하므로 이 작업이 필요합니다. 따라서 로그 볼륨 복제본은 핫 백업 이미지보다 오래된 것이어야 합니다. 그렇지 않으면 필요한 로그가 포함되지 않습니다.</block>
-  <block id="d358e4eb10a2f4e0b591e16941d7782c" category="paragraph">가장 최근에 생성된 스냅샷은 입니다<block ref="c001e27abf0e66d13790bb8a7e00da54" prefix=" " category="inline-code"></block>. 이 이미지는 데이터 파일의 최신 핫 백업 이미지이며 다음과 같이 복원됩니다.</block>
-  <block id="d2037035a976c9be71cf6f372300c8c3" category="paragraph">이 단계에서는 이제 데이터베이스를 복구할 수 있습니다. SAN 환경인 경우 다음 단계에는 볼륨 그룹을 활성화하고 파일 시스템을 마운트하는 작업이 포함되며, 이는 쉽게 자동화할 수 있습니다. 이 예에서는 NFS를 사용하기 때문에 파일 시스템이 이미 마운트되어 읽기/쓰기로 전환되어 미러가 손상되는 즉시 마운트하거나 활성화할 필요가 없습니다.</block>
-  <block id="2edce22eade45b42bc6b2665057fa082" category="paragraph">이제 데이터베이스를 원하는 시점으로 복구하거나 복제된 재실행 로그 사본과 관련하여 완전히 복구할 수 있습니다. 이 예에서는 결합된 아카이브 로그, 제어 파일 및 재실행 로그 볼륨의 값을 보여 줍니다. 백업 제어 파일에 의존하거나 로그 파일을 재설정할 필요가 없기 때문에 복구 프로세스가 매우 간단합니다.</block>
-  <block id="51f74a82c7125b3b288755b6668091b1" category="section-title">스냅샷 최적화 백업을 통한 재해 복구</block>
-  <block id="3680a4757ddad43934237ab6a0ca955c" category="paragraph">스냅샷 최적화 백업을 사용하는 재해 복구 절차는 핫 백업 재해 복구 절차와 거의 동일합니다. 핫 백업 스냅샷 절차와 마찬가지로 기본적으로 재해 복구에서 사용할 수 있도록 백업을 복제하는 로컬 백업 아키텍처의 확장이기도 합니다. 다음 예에서는 자세한 구성 및 복구 절차를 보여 줍니다. 이 예에서는 핫 백업과 스냅샷 최적화 백업의 주요 차이점을 설명합니다.</block>
-  <block id="330dadae5e2585726f41ed1f90e88f9f" category="paragraph">예제 데이터베이스는 기본적인 두 볼륨 아키텍처에 있습니다.<block ref="f006bf17b06c884c47190c4225d3215a" prefix=" " category="inline-code"></block> 에는 데이터 파일, 가 포함되어 있습니다<block ref="894db1fc1592356880976f1b92c3e6a2" prefix=" " category="inline-code"></block> 는 결합된 redo 로그, 아카이브 로그 및 제어 파일에 사용됩니다.</block>
-  <block id="1669f47e046ce7e069e9d143f42e025d" category="paragraph">야간 데이터 파일 백업용 스케줄 하나와 로그 파일 백업용 스케줄 두 개가 필요합니다. 이를 각각 자정과 15분이라고 합니다.</block>
-  <block id="ef4adcab3e9bd572d0670f9f2073c311" category="paragraph">이렇게 하면 볼륨의 최종 백업 일정이 제어됩니다. 스냅샷은 자정에 생성되며 60일 동안 유지됩니다. 로그 볼륨에는 15분 간격으로 생성된 72개의 스냅샷이 포함되어 최대 18시간 동안 사용 가능합니다.</block>
-  <block id="f9d5149b630a43ff5996adc26c6e1f08" category="paragraph">로그 볼륨 대상은 15분마다 업데이트됩니다. 이 경우 RPO는 약 15분이며, 업데이트 중에 전송해야 하는 총 데이터 볼륨에 따라 정확한 업데이트 간격이 약간 달라집니다.</block>
-  <block id="992398ebd9e9f825f0aa4415519abdba" category="paragraph">데이터 파일 볼륨 대상은 6시간마다 업데이트됩니다. RPO 또는 RTO에는 영향을 미치지 않습니다. 재해 복구가 필요한 경우 먼저 데이터 파일 볼륨을 핫 백업 스냅샷으로 복원해야 합니다. 보다 빈번한 업데이트 간격의 목적은 이 볼륨의 전송 속도를 부드럽게 하는 것입니다. 업데이트가 하루에 한 번 예약된 경우 해당 날짜에 누적된 모든 변경 사항을 한 번에 전송해야 합니다. 업데이트가 자주 이루어지므로 하루 종일 변경 내용이 점차 복제됩니다.</block>
-  <block id="9e85b8590ac2f9ff5ebc8d1def51ae82" category="paragraph">재해가 발생할 경우 첫 번째 단계는 모든 볼륨의 미러를 분리하는 것입니다.</block>
-  <block id="fd2834dcadb39f00eb897fdcdc07a03d" category="paragraph">로그 볼륨의 가장 최근 사본은 3월 14일 13:30입니다. 그런 다음 로그 볼륨의 상태 바로 전에 생성된 데이터 파일 스냅샷을 식별합니다. 로그 재생 프로세스에는 스냅샷 바로 전부터 원하는 복구 지점까지 모든 아카이브 로그가 필요하므로 이 작업이 필요합니다.</block>
-  <block id="810e47566b9cd5aa3b28e6514ec95735" category="paragraph">가장 최근에 생성된 스냅샷은 입니다<block ref="c001e27abf0e66d13790bb8a7e00da54" prefix=" " category="inline-code"></block>. 이 스냅샷을 복원합니다.</block>
-  <block id="87d83a0406ac6622efcdf91c42784ecd" category="paragraph">이제 데이터베이스를 복구할 준비가 되었습니다. SAN 환경에서는 볼륨 그룹을 활성화하고 파일 시스템을 마운트하여 쉽게 자동화할 수 있습니다. 그러나 이 예에서는 NFS를 사용하고 있으므로 미러가 손상된 순간 추가 마운트나 활성화가 필요 없이 파일 시스템이 이미 마운트되어 읽기/쓰기로 전환되었습니다.</block>
-  <block id="7a2e97f17454be76b7e522ce612ff961" category="paragraph">이제 데이터베이스를 원하는 시점으로 복구하거나 복제된 재실행 로그 사본과 관련하여 완전히 복구할 수 있습니다. 이 예에서는 결합된 아카이브 로그, 제어 파일 및 재실행 로그 볼륨의 값을 보여 줍니다. 백업 제어 파일에 의존하거나 로그 파일을 재설정할 필요가 없기 때문에 복구 프로세스가 매우 간단합니다.</block>
-  <block id="5eda890cc07e4b7cd409730d8af8ddc3" category="paragraph">일관성 그룹 복제는 SnapMirror를 통해 단일 볼륨의 복제를 예약하는 것만큼 간단하게 수행할 수 있습니다. 여기에는 데이터 파일, 제어 파일, 아카이브 로그 및 재실행 로그가 포함됩니다. 모든 SnapMirror를 업데이트할 때마다 대상 사이트에 데이터베이스의 새 복사본이 생성됩니다. 이 복사본은 미러를 깨뜨려 활성화할 수 있도록 일관되며 즉시 수행됩니다.</block>
-  <block id="f96b125d1bacc785389957041be148e9" category="paragraph">블록 레벨 복제 모드에서 SnapMirror와 함께 사용할 경우 이 전략의 또 다른 이점은 소스 스토리지 시스템에서 모든 스냅샷을 완벽하게 복제한다는 것입니다. 재해 복구 복제본과 함께 전체 백업 보완이 복제됩니다.</block>
   <block id="77fda44088666155052f9d4224878cbc" category="summary">Oracle 아카이브 로그 계층화</block>
   <block id="8625af69ad0b5f76799d87df777e3c86" category="paragraph">FabricPool의 가장 중요한 용도는 데이터베이스 트랜잭션 로그와 같은 알려진 콜드 데이터의 효율성을 개선하는 것입니다.</block>
   <block id="a98d546484d238b37b7e2584ae8d399d" category="summary">Oracle 백업 계층화</block>
@@ -1805,11 +1710,6 @@
   <block id="50a7086972cada154c8164dc1c6b3539" category="list-text">백업 모드에서 생성된 데이터 파일의 스냅샷입니다</block>
   <block id="c72d009669a638aab75c21a28a2101de" category="list-text">데이터 파일이 핫 백업 모드일 때 생성되는 아카이브 로그</block>
   <block id="b8de4b1201e5595bc3de878f2bf59d9b" category="paragraph">복구 중에 데이터베이스는 데이터 파일에서 메타데이터를 읽어 복구에 필요한 아카이브 로그를 선택합니다.</block>
-  <block id="66ee0a6fd90f3cfab8320e1de1341cbd" category="paragraph">스토리지 스냅샷으로 최적화된 복구에서는 동일한 결과를 얻기 위해 약간 다른 데이터 세트가 필요합니다.</block>
-  <block id="6030a1d9761fca3806ef0a0329438071" category="list-text">데이터 파일의 스냅샷과 스냅샷이 생성된 시간을 식별하는 방법입니다</block>
-  <block id="4e822d4c19600b654f176d335c158829" category="list-text">최신 데이터 파일 체크포인트 시점부터 스냅샷의 정확한 시간까지 로그를 아카이빙합니다</block>
-  <block id="604432b50055c69f34df17a8ed5befb5" category="paragraph">복구 중에 데이터베이스는 데이터 파일에서 메타데이터를 읽어 필요한 초기 아카이브 로그를 식별합니다. 전체 또는 특정 시점 복구를 수행할 수 있습니다. 시점 복구를 수행할 때는 데이터 파일의 스냅샷 시간을 알아야 합니다. 지정된 복구 지점은 스냅샷 생성 시간 이후여야 합니다. NetApp에서는 클럭 변동을 고려하여 스냅샷 시간에 최소 몇 분을 추가하는 것이 좋습니다.</block>
-  <block id="08bfe39c49a2dc07b08bd2ccd77d8281" category="paragraph">자세한 내용은 Oracle 12c 설명서의 다양한 릴리스에서 제공되는 "Recovery using Storage Snapshot Optimization(스토리지 스냅샷 최적화를 사용한 복구)" 항목에 대한 Oracle 설명서를 참조하십시오. 또한 Oracle 타사 스냅샷 지원에 대해서는 Oracle Document ID Doc ID 604683.1을 참조하십시오.</block>
   <block id="d22a890163762fcf7a4cb7605c29b7e6" category="section-title">데이터 레이아웃</block>
   <block id="12eb3ceede91a01c74368e0fab03dbe4" category="section-title">로컬 복구 절차 - NFS</block>
   <block id="e1a03fcc478ae212f07b5044b11ff369" category="paragraph">이 절차는 수동으로 또는 SnapCenter와 같은 응용 프로그램을 통해 실행할 수 있습니다. 기본 절차는 다음과 같습니다.</block>
@@ -1819,14 +1719,6 @@
   <block id="4e3110543ebf2a771c16b3b2101f1f88" category="list-text">데이터 파일을 호스팅하는 디스크 그룹을 중지합니다. 절차는 선택한 논리적 볼륨 관리자에 따라 다릅니다. ASM을 사용할 경우 이 프로세스에서는 디스크 그룹을 마운트 해제해야 합니다. Linux에서는 파일 시스템을 마운트 해제해야 하며 논리적 볼륨 및 볼륨 그룹이 비활성화됩니다. 목표는 복구할 타겟 볼륨 그룹의 모든 업데이트를 중지하는 것입니다.</block>
   <block id="1d0ecd206531f96737f8e8002be4a047" category="list-text">원하는 복원 지점 바로 전에 데이터 파일 디스크 그룹을 스냅샷으로 복원합니다.</block>
   <block id="946fe41f610ab658e270a1844c992bcc" category="list-text">새로 복구된 디스크 그룹을 다시 활성화합니다.</block>
-  <block id="3fd5b2a08b3d7c4db29da8590ef6013f" category="section-title">전체 복구 예</block>
-  <block id="31679daa394b7091acfd728d940b7322" category="paragraph">데이터 파일이 손상되었거나 제거되었으며 전체 복구가 필요한 것으로 가정합니다. 이렇게 하는 절차는 다음과 같습니다.</block>
-  <block id="aa09ca247daac25fc18c2633124ca9b6" category="section-title">특정 시점 복구 예</block>
-  <block id="935ff627038d1f5001220c8df7f0e1b9" category="paragraph">전체 복구 절차는 단일 명령입니다.<block ref="3df448f0a5ec82cac76d91ba14c0fa1d" prefix=" " category="inline-code"></block>.</block>
-  <block id="dcd27cf8b8ceae2cd84c898d3c1b9fdb" category="paragraph">시점 복구가 필요한 경우 스냅샷의 타임스탬프를 알고 있어야 하며 다음과 같이 식별할 수 있습니다.</block>
-  <block id="17108ef3ad2e1e613b844beb5f2c6d29" category="paragraph">스냅샷 생성 시간은 3월 9일 및 10:10:06으로 표시됩니다. 안전을 위해 스냅샷 시간에 1분이 추가됩니다.</block>
-  <block id="904b0a17b003c70e398ea85996f0f9ba" category="paragraph">이제 복구가 시작됩니다. 또한 스냅샷 시간을 10:11:00, 기록된 시간 1분 후 가능한 클럭 편차를 계산하고 목표 복구 시간을 10:44로 지정했습니다. 그런 다음 sqlplus는 원하는 복구 시간인 10:44에 도달하는 데 필요한 아카이브 로그를 요청합니다.</block>
-  <block id="91f99c5ad04365fb4d00e509963e2a0c" category="admonition">를 사용하여 스냅샷을 사용하여 데이터베이스 복구를 완료합니다<block ref="3df448f0a5ec82cac76d91ba14c0fa1d" prefix=" " category="inline-code"></block> 명령에는 특정 라이센스가 필요하지 않지만 를 사용하여 시점 복구가 필요합니다<block ref="72104026d9850e8c478c23b2e2e4e8e9" prefix=" " category="inline-code"></block> Oracle Advanced Compression 라이센스가 필요합니다.</block>
   <block id="9173402b63dc5f55506a692258f185e8" category="doc">SnapCenter 및 기타 도구</block>
   <block id="5459c1727c923baa303ff472498dbe97" category="paragraph">이러한 핵심 기능을 ONTAP에서 직접 간단히 구성하여 요구사항을 충족하는 경우도 있지만, 더 복잡한 요구사항에는 오케스트레이션 계층이 필요합니다.</block>
   <block id="aeeb3212c35c26d321183e81d4926e57" category="paragraph">SnapCenter은 NetApp의 대표적인 데이터 보호 제품입니다. 매우 낮은 수준에서 SnapManager 제품은 데이터베이스 백업을 수행하는 방법이라는 측면에서 볼 때 NetApp 제품과 비슷하지만, 처음부터 NetApp 스토리지 시스템의 데이터 보호 관리에 대한 단일 창 방식을 제공하도록 제작되었습니다.</block>
@@ -2897,8 +2789,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="87f823f4f3b4258445d5af029afe5ad9" category="paragraph"><block ref="87f823f4f3b4258445d5af029afe5ad9" category="inline-image-macro-rx" type="image"></block></block>
   <block id="9213fe9d391179276ff6c03552486255" category="paragraph"><block ref="9213fe9d391179276ff6c03552486255" category="inline-image-macro-rx" type="image"></block></block>
   <block id="3105b4c0642b9710179c18edcf8e8718" category="paragraph"><block ref="3105b4c0642b9710179c18edcf8e8718" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="1a43000eb9893bff7ab7b1ce1d3fd6a8" category="paragraph"><block ref="1a43000eb9893bff7ab7b1ce1d3fd6a8" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="4b7a8562c98b8c652bdfb6aa79788222" category="paragraph"><block ref="4b7a8562c98b8c652bdfb6aa79788222" category="inline-image-macro-rx" type="image"></block></block>
   <block id="acce752526553bfa73c92799accd9cb8" category="summary">Oracle 데이터 보호 개요</block>
   <block id="deb8cb7644231cae002f5f37c725b86f" category="paragraph">장거리 마이그레이션을 위해서는 일반적으로 에 설명된 로그 전달 프로세스와 같이 보다 창의적인 접근 방식이 필요합니다 <block ref="86efe12ea0d3a769a4b7cfc2b6362f49" category="inline-link-macro-rx"></block>. 장거리 IP 네트워크는 LAN 또는 SAN 속도와 가까운 곳에서는 거의 대역폭을 가지지 않습니다. 한 예로, NetApp는 아카이브 로그 생성 속도가 매우 높은 220TB 데이터베이스의 장거리 마이그레이션을 지원했습니다. 이 방법은 가능한 최대 대역폭을 제공하기 때문에 데이터 전송을 위해 선택한 방식은 테이프를 매일 배송하는 방식이었습니다.</block>
   <block id="911e63244fc82405263306a64e535c69" category="paragraph">의 단계를 수행해야 zpool을 생성할 수 있습니다 <block ref="e8673fdb712a2edcdf56742c7eec0045" category="inline-link-macro-rx"></block> 수행됩니다. 절차를 정확하게 수행하지 않으면 I/O 정렬로 인해 심각한 성능 저하가 야기될 수 있습니다. ONTAP에서 최적의 성능을 얻으려면 I/O를 드라이브의 4K 경계에 맞춰 정렬해야 합니다. zpool에 생성된 파일 시스템은 라는 매개 변수를 통해 제어되는 유효 블록 크기를 사용합니다<block ref="81df978a8e3da4bee74b135548f390f3" prefix=" " category="inline-code"></block>, 명령을 실행하여 볼 수 있습니다<block ref="1615297782a0dff59b20451e2ca97ea7" prefix=" " category="inline-code"></block>.</block>
@@ -3254,7 +3144,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="190d2bad1c6e231bc18c33e002e663c7" category="summary">Oracle 데이터베이스 및 직접 연결 ONTAP 연결</block>
   <block id="4a3f422632f7d08bf0e6c05affea24e4" category="summary">Oracle 데이터베이스 및 SyncMirror</block>
   <block id="5bbdf1e19bb3f7b70de51a3764fc5f19" category="doc">Oracle Database Storage Snapshot Optimized Backups의 약어입니다</block>
-  <block id="a962af081661ee46d4ef879de33c841e" category="paragraph">데이터베이스를 핫 백업 모드로 설정할 필요가 없기 때문에 Oracle 12c가 출시되었을 때 스냅샷 기반 백업 및 복구가 더욱 간편해졌습니다. 그 결과 스토리지 시스템에서 직접 스냅샷 기반 백업을 예약하고 전체 또는 시점 복구를 수행하는 기능을 유지할 수 있습니다.</block>
   <block id="fdf9dde4dc297fff7ac7b3c1458b0dad" category="doc">Oracle 데이터베이스를 사용한 LVM 스트라이핑</block>
   <block id="d3c8171a7167ce43c547aac8fdd86cfb" category="doc">Oracle 데이터 파일 마이그레이션</block>
   <block id="9718528cb14225785c79e3afc4152efc" category="doc">Oracle 데이터베이스 LUN 사이징 및 LUN 수</block>
@@ -3283,7 +3172,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="490e2f530e53cf85f8ce9b052a8336ec" category="paragraph">NVFAIL은 데이터베이스를 통해 데이터 무결성 보호를 극대화하도록 설계된 ONTAP의 일반적인 데이터 무결성 기능입니다.</block>
   <block id="f2cf6b943d224a732c92223538580ee9" category="doc">MetroCluster에 있는 Oracle 단일 인스턴스</block>
   <block id="ea1d91c32fcf0f4a1090fd0da341c014" category="paragraph">다른 스토리지 재해 복구 솔루션과 달리 SnapMirror Active Sync는 비대칭적 플랫폼 유연성을 제공합니다. 각 사이트의 하드웨어는 동일할 필요가 없습니다. 이 기능을 사용하면 SnapMirror 액티브 동기화를 지원하는 데 사용되는 하드웨어를 적절한 크기로 조정할 수 있습니다. 전체 운영 워크로드를 지원해야 하는 경우 원격 스토리지 시스템이 기본 사이트와 동일할 수 있지만 재해로 인해 I/O가 감소할 경우 원격 사이트의 소규모 시스템보다 비용 효율적입니다.</block>
-  <block id="3873b13983c66ae61dd877b0443a3828" category="summary">Oracle 데이터베이스 및 정합성 보장 그룹 재해 복구</block>
   <block id="ede2d3fcaec1bb9dcda5a75c90f37368" category="summary">ONTAP 기반의 Oracle 데이터베이스를 통해 가용성 극대화</block>
   <block id="9688c9c1c1d15e2f91a3a5b8e5f14bd4" category="doc">ONTAP을 사용한 Oracle 데이터베이스 가용성</block>
   <block id="44e95a6c3878f189a550b4c0314d3b33" category="paragraph">NetApp은 가장 미션 크리티컬한 데이터가 데이터베이스에 있다는 것을 알고 있습니다.</block>
@@ -3319,15 +3207,12 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="45df37151f6a0fd8a3b55d0423459f82" category="doc">Oracle 데이터베이스 입출력에 대한 LUN 정렬</block>
   <block id="857a8adc9eda2d9e197a52323daca558" category="doc">Oracle 데이터베이스 FabricPool 계층화 개요</block>
   <block id="fd73b1ca3b942a1514078a7e59c7433b" category="summary">Oracle 데이터베이스 및 오래된 NFSv3 잠금</block>
-  <block id="102aeb54bf1a69403672f53090c52878" category="summary">로그 전달을 통한 Oracle 데이터베이스 DR</block>
   <block id="d470f5db851ef84aaa776600805af48b" category="summary">Oracle 데이터베이스 가상화 소개</block>
   <block id="b8fc1174bb3f1c65475334182829f75e" category="doc">Oracle 데이터베이스 가상화</block>
   <block id="b1b3f70e4333a9dbda75a98ceb78db39" category="summary">MetroCluster 물리적 아키텍처 및 Oracle 데이터베이스</block>
   <block id="250bce9fbefc7872908d9c2708fc753b" category="doc">Oracle 데이터베이스 백업 계층화</block>
   <block id="4fbe2d000cdf5390ca980149d98eec4d" category="summary">Oracle 데이터베이스 마이그레이션 계획</block>
   <block id="d11e22f56fe0c9dd85597038a25cd80d" category="doc">Oracle 데이터베이스 및 스토리지 용량 관리</block>
-  <block id="1234e92308935cf0a5a22541f312c541" category="summary">Oracle 데이터베이스: SnapMirror 및 SyncMirror</block>
-  <block id="a4cdac841b6453db2f51ce52a1303209" category="paragraph">SnapMirror 복제 및 분리 CG SnapMirror 관계는 볼륨 전체의 일관성을 유지하고, SnapMirror Synchronous 및 SnapMirror 액티브 동기화는 구성 볼륨 전체에서 일관성을 유지합니다.</block>
   <block id="454ff7e5f4a8d37cf6b16b804deca2b6" category="summary">Oracle 데이터베이스 블록 크기</block>
   <block id="eed7df980a6ae17f8e0fecdecf0e25f4" category="doc">Oracle 마이그레이션 절차 샘플 스크립트</block>
   <block id="fac6d6b61dd6bd3ee73d5b425bc5a3b7" category="doc">Oracle 데이터베이스를 사용한 씬 프로비저닝</block>
@@ -6034,12 +5919,9 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="f60ff004e852f49b2838c63fb209b633" category="section-title">AFF Snapshot reserve</block>
   <block id="fe9c8793781de60c81315ec829dc8f84" category="paragraph">AFF SAN 환경에서 Oracle 데이터가 있는 각 볼륨의 경우<block ref="9ca25b30dcc119f9115aad6d85fd12ce" prefix=" " category="inline-code"></block>LUN 환경에서 스냅샷을 위한 공간 예약은 유용하지 않으므로 0으로 설정해야 합니다. 부분 예약을 100으로 설정하면 LUN이 있는 볼륨의 스냅샷에는 스냅샷 예약을 제외하고 모든 데이터의 100% 전환을 흡수할 수 있는 충분한 여유 공간이 볼륨에 필요합니다. 부분 예약을 더 낮은 값으로 설정하면 그에 상응하는 더 적은 양의 여유 공간이 필요하지만 항상 스냅샷 예약은 제외됩니다. 즉, LUN 환경에서 스냅샷 예약 공간은 낭비됩니다.</block>
   <block id="59aebe92fc551de46ca0794f934e5bc8" category="admonition">스냅샷 예약은 ASA 스토리지에는 적용되지 않습니다.</block>
-  <block id="1254f51b373ccd41bf685ec87bc5d68e" category="paragraph">가장 간단한 구성은 데이터 파일을 전용 볼륨, LUN 또는 NVMe 네임스페이스에 격리하는 것입니다. 스토리지 리소스는 다른 파일 유형과 혼합되지 않아야 합니다. 이는 SnapRestore 작업을 통해 중요한 리두 로그, 제어 파일 또는 아카이브 로그를 손상시키지 않고 데이터 파일을 신속하게 복원할 수 있도록 하기 위함입니다.</block>
   <block id="097daca3ca12238584b696f8c73fa814" category="paragraph">ASA는 볼륨 수준의 추상화를 제공하지 않습니다. 대신 일관성 그룹을 사용합니다. 많은 경우 단일 LUN 또는 NVMe 네임스페이스로 데이터베이스의 관리 및 성능 요구 사항을 충족할 수 있습니다. 여러 LUN 또는 네임스페이스가 필요한 경우 추가 리소스를 추가하여 일관성 그룹으로 바인딩할 수 있으며, 이 그룹이 데이터 파일 컨테이너가 됩니다.</block>
   <block id="241ce9f30b2db1015f51f67701e797f5" category="list-text">원하는 복원 지점 바로 직전의 스냅샷으로 데이터 파일 볼륨, LUN 또는 네임스페이스를 복구합니다.</block>
   <block id="a3cf048feddbd56987ac89a2e785cc40" category="paragraph">이 절차는 원하는 아카이브 로그가 액티브 파일 시스템에 여전히 존재한다고 가정합니다. 만약 그렇지 않다면, 아카이브 로그 LUN을 오프라인으로 전환한 후 복원을 수행하여 아카이브 로그를 복원해야 합니다. 이는 아카이브 로그를 전용 볼륨, LUN 또는 네임스페이스로 분리하는 것이 유용한 예시이기도 합니다. 아카이브 로그가 리두 로그와 동일한 볼륨 그룹을 공유하는 경우, 최종적으로 기록된 트랜잭션 손실을 방지하기 위해 전체 LUN 세트를 복원하기 전에 리두 로그를 다른 위치로 복사해야 합니다.</block>
-  <block id="8d2c1d4edd3fbf01c94b8a7e49de1e9d" category="paragraph">데이터베이스가 여러 볼륨에 걸쳐 있어야 하는 경우 일관성 그룹 스냅샷(CG 스냅샷)이 필요합니다.</block>
-  <block id="df4fb0525f0cefd87855853a356c7676" category="paragraph">가장 중요한 요구 사항은 데이터 파일을 하나 이상의 전용 컨테이너로 격리하는 것입니다. 이는 모든 데이터 파일을 단일 LUN/네임스페이스에 배치하거나, 단일 AFF NFS 볼륨 내에 배치하거나, 다중 볼륨 또는 다중 LUN/네임스페이스 ONTAP 일관성 그룹에 배치하는 등 여러 가지 방법으로 수행할 수 있습니다. 핵심은 데이터 파일이 다른 파일 유형과 혼합되지 않아야 한다는 것입니다. 이는 데이터 파일 복제가 아카이브 로그와 같은 다른 데이터 유형의 복제와 완전히 독립적으로 이루어지도록 하기 위함입니다. 파일 레이아웃 및 스토리지 레이아웃이 스냅샷 친화적인지 확인하는 데 필요한 중요한 세부 정보는 <block ref="c87a7212960b8cc2aca49adb1795e291" category="inline-link-macro-rx"></block>을 참조하십시오.</block>
   <block id="6080ea352d8f3c275b55f666b09073b5" category="paragraph">(a) DNFS가 활성화되어 있고 (b) 소스 NFS 공유가 단일 서버에 두 번 이상 마운트되어 있으며 (c) 중첩 NFS 마운트가 있는 경우,<block ref="4740c034d97ca90a96b8050082816605" prefix=" " category="inline-code"></block>라는 추가 마운트 옵션이 필요합니다. 이러한 구성은 주로 SAP 애플리케이션을 지원하는 환경에서 볼 수 있습니다. 예를 들어, NetApp 시스템의 단일 NFS 공유에<block ref="9f9f4ccb1fc3afcbfe0cc3f5eac4332c" prefix=" " category="inline-code"></block>에 위치한 디렉터리와<block ref="ac2f9bbcd397d8f6b39e6713658051ea" prefix=" " category="inline-code"></block>에 위치한 두 번째 디렉터리가 있을 수 있습니다. <block ref="9f9f4ccb1fc3afcbfe0cc3f5eac4332c" prefix=" " category="inline-code"></block>가<block ref="9ad16912cc0ba54a259b1a15d233c264" prefix=" " category="inline-code"></block>에 마운트되고<block ref="ac2f9bbcd397d8f6b39e6713658051ea" prefix=" " category="inline-code"></block>가<block ref="1da707b60c3b55bd01cb7df7c171a368" prefix=" " category="inline-code"></block>에 마운트되면 동일한 소스에서 시작된 중첩 NFS 마운트가 생성됩니다.</block>
   <block id="936d46e56a7c836060ae638ad30b113a" category="paragraph">OS는 <block ref="9ad16912cc0ba54a259b1a15d233c264" prefix=" " category="inline-code"></block> 및 <block ref="1da707b60c3b55bd01cb7df7c171a368" prefix=" " category="inline-code"></block>가 동일한 NFS 공유, 즉 동일한 소스 파일 시스템에 존재한다는 사실을 감지할 수 있습니다. 그런 다음 OS는 데이터를 액세스할 때 동일한 디바이스 핸들을 사용합니다. 이렇게 하면 OS 캐싱 및 특정 기타 작업의 사용이 향상되지만, DNFS에는 방해가 됩니다. DNFS가 <block ref="1737629d60b511cf45957529a8f046e2" prefix=" " category="inline-code"></block>와 같은 파일을 <block ref="1da707b60c3b55bd01cb7df7c171a368" prefix=" " category="inline-code"></block>에서 액세스해야 하는 경우, 잘못된 경로로 데이터를 액세스하려고 시도할 수 있습니다. 그 결과 I/O 작업이 실패하게 됩니다. 이러한 구성에서는 해당 호스트의 다른 NFS 파일 시스템과 소스 NFS 공유를 공유하는 모든 NFS 파일 시스템에 <block ref="4740c034d97ca90a96b8050082816605" prefix=" " category="inline-code"></block> 마운트 옵션을 추가하십시오. 이렇게 하면 Linux OS가 해당 파일 시스템에 대해 독립적인 디바이스 핸들을 할당하도록 강제할 수 있습니다.</block>
   <block id="cdcac9f87f34f858fd0a5ffe221c47b8" category="inline-link-macro">WAFL 정렬</block>
@@ -6051,8 +5933,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="0353522b39b87d54d40d3f09ec668851" category="sidebar">ONTAP 구성</block>
   <block id="92d9160e034a5ffdafcb6f34b87a7fa6" category="sidebar">스냅샷 복원</block>
   <block id="9ca158578d233f36b039facfcb88d879" category="doc">파이버 채널</block>
-  <block id="eebca0389103d44f2d15d0b6a33ec5a9" category="paragraph">ONTAP 9.19.1부터 일부 스토리지 시스템 FC 어댑터를 사용하면 기존 FC-SAN(SCSI) 및 NVMe/FC 모두에서 직접 연결 FC가 지원됩니다. HBA는 표준 지점 간 FC 연결을 설정합니다.</block>
-  <block id="87c40288a73474a81b2b8b85307fd7d0" category="paragraph">ONTAP 9.19.1 이전 버전에서는 ONTAP 스토리지 시스템에 NPIV가 필요합니다. 즉, 스토리지 시스템이 NPIV를 지원하는 FC 스위치에 연결되어 있어야 합니다.</block>
   <block id="117d9103535316f62b4aba303e9d113e" category="paragraph">두 번째 OS NIC는 192.168.1.2로 구성될 수 있으며, 장애 조치된 192.168.1.50 주소와 통신할 수 있지만, 로컬 라우팅 테이블은 기본적으로 192.168.1.0/24 서브넷과 통신하기 위해 *단 하나의* 주소만 사용하도록 설정됩니다. 시스템 관리자는 네트워크 연결 실패를 감지하고 로컬 라우팅 테이블을 수정하거나 인터페이스를 활성화/비활성화하는 스크립팅 프레임워크를 만들 수 있습니다. 정확한 절차는 사용 중인 운영 체제에 따라 달라집니다.</block>
   <block id="884376946142a1edfd44782ed2b90052" category="paragraph">복제는 <block ref="af0a7d0728225b25f051458c13edf1a0" category="inline-link-macro-rx"></block> 섹션에 설명된 프로세스와 유사합니다.</block>
   <block id="b2a583397e41667a32b128529c22c7c3" category="section-title">AFF 애그리게이트</block>
@@ -6066,4 +5946,23 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="6e97cf67ec5979ab5828852639efa208" category="sidebar">Microsoft SQL Server용 스토리지 구성</block>
   <block id="d567144e8d8c4fac6bbff40a38b68b9f" category="sidebar">균일한 네트워크 액세스</block>
   <block id="18e1907532a0fa2fdaa4b2028bf6cf88" category="sidebar">불균일한 네트워크 액세스</block>
+  <block id="b084c614417a42c3fb95ffb418dc1305" category="paragraph">ONTAP 9.19.1부터 일부 스토리지 시스템 FC 어댑터를 사용하면 기존 FC-SAN(SCSI) 및 NVMe/FC 모두에서 직접 연결 FC가 지원됩니다. HBA는 표준 지점 간 FC 연결을 설정합니다. ONTAP 9.19.1 이전 버전에서는 ONTAP 스토리지 시스템에 NPIV가 필요합니다. 즉, 스토리지 시스템이 NPIV를 지원하는 FC 스위치에 연결되어 있어야 합니다.</block>
+  <block id="f65ae703492f992975993544f5dd4e64" category="summary">백업 모드 없이 Oracle 자동 복구.</block>
+  <block id="fc292db0114790e7f34fe78fc7d8c5d8" category="doc">백업 모드 없이 Oracle 자동 복구</block>
+  <block id="c7bc1ef8c337d6a3c8bb4a05d089b769" category="paragraph">Oracle 12c가 출시되면서 스냅샷 기반 백업 및 복구가 훨씬 간편해졌습니다. 데이터베이스를 무중단 제거 모드로 설정할 필요가 없어졌기 때문입니다. 그 결과, 스토리지 시스템에서 직접 스냅샷 기반 백업을 예약할 수 있게 되었습니다.</block>
+  <block id="5e04d2d9eb904b2617e3247f083921b5" category="paragraph">백업 모드 없이 자동 복구를 수행하려면 동일한 결과를 얻기 위해 약간 다른 데이터 세트가 필요합니다.</block>
+  <block id="58a5b096427af9d4d58dbaf800c39353" category="list-text">데이터 파일의 스냅샷입니다.</block>
+  <block id="0f33dd0e540e8f93f690cad587ba035c" category="list-text">동기화된 아카이브 로그, 제어 파일 및 리두 로그 세트입니다. 아카이브 로그에는 데이터 파일 스냅샷이 생성된 시점부터의 모든 레코드가 포함되어야 하므로, 과도한 로그 삭제에 주의해야 합니다.</block>
+  <block id="594b019cc44eb4c884388b833d7510dc" category="paragraph">복구 과정에서 데이터베이스는 데이터 파일에서 메타데이터를 읽어 필요한 로그 레코드를 식별하고 기록된 모든 트랜잭션을 재생합니다.</block>
+  <block id="9b9935ad5969c28de13381a2e512b47c" category="section-title">참고:</block>
+  <block id="64effece8f8fdc7ec22053944731466d" category="paragraph">이 접근 방식은 특정 시점으로의 복구를 근사적으로 수행할 수 있지만, 세부적인 복구 수준은 제한적입니다. 예를 들어, 백업 모드의 데이터 파일로 시작하면 임의의 트랜잭션 시점으로 데이터베이스를 롤포워드할 수 있습니다.</block>
+  <block id="613d39aee0d806ff00a0db510dd469d1" category="paragraph">백업 모드를 사용하지 않고 자동 복구 방식을 사용하는 경우, 데이터베이스를 로그 스냅샷 시점으로 복구해야 합니다. 정상적인 상황에서는 원본 아카이브 로그, 리두 로그 및 제어 파일이 활성 파일 시스템에 남아 있으므로 RPO는 0이 됩니다. 하지만 활성 파일 시스템의 모든 데이터가 손실되어 스냅샷에서만 복구를 수행해야 하는 경우에는 RPO가 1시간이 됩니다.</block>
+  <block id="0601499a184b8a1e3fa9ca7282b4eeb4" category="paragraph">데이터 레이아웃 가장 간단한 레이아웃은 데이터 파일을 전용 볼륨, LUN 또는 NVMe 네임스페이스에 격리하는 것입니다. 스토리지 리소스는 다른 파일 유형과 섞이지 않도록 해야 합니다. 이렇게 하면 SnapRestore 작업을 통해 중요한 리두 로그, 제어 파일 또는 아카이브 로그를 손상시키지 않고 데이터 파일을 신속하게 복원할 수 있습니다.</block>
+  <block id="b57416fe4f383261f33cb82b40542798" category="paragraph">== 로컬 복구 절차—NFS 기본 절차는 다음과 같습니다:</block>
+  <block id="3eccd40648788f9b4313a1311d74bef5" category="list-text">실행<block ref="9a2e8b0856a3edcc37ed4d7d88a28a9b" prefix=" " category="inline-code"></block></block>
+  <block id="e99d63c556c7ca94f984300ca82dd3e4" category="paragraph">== 로컬 복구 절차—SAN 기본 절차는 다음과 같습니다:</block>
+  <block id="ddfa498c53583ed2d2af38e4925ed34b" category="paragraph">== 완전 복구 예시 데이터 파일이 손상되었거나 파괴되어 완전 복구가 필요한 경우를 가정해 보겠습니다. 복구 절차는 다음과 같습니다.</block>
+  <block id="e3471495b791c74dadc31bb77a66a74c" category="paragraph">Oracle Snapshot Optimized Backups는 사용자가 데이터베이스를 무중단 제거 모드로 전환하지 않고도 스냅샷을 사용하여 복구를 수행할 수 있도록 하는 시점 복구 방식입니다.</block>
+  <block id="85ab689d474b14164558afa9923be42b" category="paragraph">사용자는 백업 모드를 사용하지 않고도 스냅샷에서 복구할 수 있지만, RECOVERY AUTOMATIC을 사용한 완전 복구만 지원됩니다. 스냅샷 생성 시간을 지정하는 SNAPSHOT TIME 방식을 사용한 불완전 복구.</block>
+  <block id="17e12dfc833834d5b2e478641ef811d3" category="sidebar">스냅샷 없이 자동 복구</block>
 </blocks>

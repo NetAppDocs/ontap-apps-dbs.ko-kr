@@ -15,12 +15,14 @@ summary: EPIC 6노드 아키텍처
 
 
 
+[[six-node-architecture]]
 == 6노드 아키텍처
 
 image:epic-6node.png["Epic 6-노드 아키텍처"]
 
 
 
+[[six-node-workload-placement]]
 == 6노드 워크로드 배치
 
 image:epic-6node-design.png["Epic 6노드 배치"]

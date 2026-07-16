@@ -133,8 +133,8 @@ entries:
       url: "/oracle/oracle-dp-snaprestore.html"
     - title: 스냅샷 기반 온라인 백업
       url: "/oracle/oracle-dp-online-backup.html"
-    - title: 스토리지 스냅샷 최적화된 백업
-      url: "/oracle/oracle-dp-storage-snapshot-optimized-backups.html"
+    - title: 스냅샷 없이 자동 복구
+      url: "/oracle/oracle-dp-automatic-recovery.html"
     - title: SnapCenter 및 기타 도구
       url: "/oracle/oracle-dp-backup-tools.html"
 - title: Oracle 재해 복구

@@ -15,12 +15,14 @@ summary: Epic 8노드 아키텍처
 
 
 
+[[eight-node-architecture]]
 == 8노드 아키텍처
 
 image:epic-8node.png["Epic 4노드 아키텍처"]
 
 
 
+[[eight-node-workload-placement]]
 == 8노드 워크로드 배치
 
 image:epic-8node-design.png["EPIC 8노드 배치"]

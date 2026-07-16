@@ -20,6 +20,7 @@ summary: ONTAP에서 Epic을 위한 추가 정보입니다
 
 
 
+[[epic-customer-guidance-documents]]
 == Epic 고객 안내 문서
 
 EPIC는 고객에게 서버, 스토리지 및 네트워크에 대한 지침을 위해 다음 문서를 제공합니다. 이 기술 보고서에서 참조된 문서입니다.

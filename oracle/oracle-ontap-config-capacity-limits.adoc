@@ -23,6 +23,7 @@ searchtitle: Oracle 데이터베이스 및 스토리지 용량 관리
 
 
 
+[[aff-ssd-aggregates-and-asa-storage-availability-zones]]
 == AFF SSD 애그리게이트 및 ASA 스토리지 가용성 영역
 
 
@@ -32,6 +33,7 @@ TIP: * NetApp는 * 최소 10%의 여유 공간을 권장합니다. 여기에는 
 
 
 
+[[hdd-aggregates-including-flash-pool-aggregates]]
 == Flash Pool 애그리게이트를 포함한, HDD 애그리게이트
 
 

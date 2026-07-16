@@ -42,6 +42,7 @@ Windows Server와 ONTAP는 함께 대규모 환경에서 운영될 수 있으며
 
 
 
+[[intended-audience]]
 == 대상
 
 이 문서는 Windows Server용 NetApp 스토리지 솔루션을 설계하는 시스템 및 스토리지 설계자를 대상으로 합니다.

@@ -14,6 +14,7 @@ ONTAP 기반 IBM AIX 기반 Oracle 데이터베이스에 대한 구성 항목
 
 
 
+[[concurrent-io]]
 == 동시 I/O
 
 IBM AIX에서 최적의 성능을 달성하려면 동시 I/O를 사용해야 합니다 동시 I/O를 사용하지 않으면 AIX에서 직렬화된 원자 I/O가 수행되어 성능이 저하될 수 있으며 이에 따라 상당한 오버헤드가 발생하게 됩니다.
@@ -35,6 +36,7 @@ IBM AIX에서 최적의 성능을 달성하려면 동시 I/O를 사용해야 합
 ====
 
 
+[[aix-nfs-mount-options]]
 == AIX NFS 마운트 옵션
 
 다음 표에는 Oracle 단일 인스턴스 데이터베이스에 대한 AIX NFS 마운트 옵션이 나와 있습니다.
@@ -93,6 +95,7 @@ nointr`
 
 
 
+[[aix-jfsjfs2-mount-options]]
 == AIX jfs/jfs2 마운트 옵션
 
 다음 표에는 AIX jfs/jfs2 마운트 옵션이 나와 있습니다.

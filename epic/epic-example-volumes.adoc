@@ -16,6 +16,7 @@ NOTE: ONTAP 9.7부터, NVE 라이센스와 온보드 또는 외부 키 관리가
 
 
 
+[[autodelete-snapshots]]
 == 스냅샷 자동 삭제
 
 스냅샷을 자동으로 삭제하려면 다음을 수행합니다. https://docs.netapp.com/us-en/ontap-cli-9141//volume-snapshot-autodelete-modify.html[]

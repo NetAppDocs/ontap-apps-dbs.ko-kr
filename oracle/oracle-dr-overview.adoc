@@ -30,6 +30,7 @@ SnapMirror 활성 동기화(SM-AS)는 SnapMirror Synchronous를 기반으로 합
 
 
 
+[[sm-as-and-mcc-comparison]]
 == SM-AS 및 MCC 비교
 
 SM-AS와 MetroCluster는 전반적인 기능이 비슷하지만 RPO=0 복제 구현 방식과 관리 방식에는 중요한 차이점이 있습니다. SnapMirror 비동기식 및 동기식을 DR 계획의 일부로 사용할 수도 있지만, HA 보장 기술로 설계되지 않았습니다.

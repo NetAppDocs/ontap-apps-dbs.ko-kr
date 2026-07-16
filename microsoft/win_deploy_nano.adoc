@@ -18,6 +18,7 @@ Microsoft Windows Nano Server 배포에 대해 자세히 알아보십시오.
 
 
 
+[[deployment]]
 == 구축
 
 Nano Server를 Hyper-V 호스트로 배포하려면 다음 단계를 수행하십시오.
@@ -91,6 +92,7 @@ Invoke-Command -VMName $nanoserver -Credential $nanosecurecred -ArgumentList @($
 
 
 
+[[connect-to-nano-server]]
 == Nano Server에 연결합니다
 
 PowerShell을 사용하여 Nano Server에 원격으로 연결하려면 다음 단계를 수행하십시오.

@@ -18,12 +18,14 @@ SnapMirror 액티브 동기화를 사용하는 확장된 RAC는 IO와 관련된 
 
 
 
+[[oracle-tiebreakers]]
 == Oracle Tiebreaker를 소개합니다
 
 브레인 분할 Oracle RAC 위험을 관리하기 위한 가장 좋은 방법은 다른 수의 RAC 노드를 사용하는 것입니다. 이 경우 3차 사이트 Tiebreaker를 사용하는 것이 좋습니다. 세 번째 사이트를 사용할 수 없는 경우 Tiebreaker 인스턴스를 두 사이트의 한 사이트에 배치하여 해당 사이트를 효율적으로 기본 생존자 사이트로 지정할 수 있습니다.
 
 
 
+[[oracle-and-csscritical]]
 == Oracle 및 css_critical
 
 노드 수가 짝수일 경우 기본 Oracle RAC 동작은 클러스터의 노드 중 하나가 다른 노드보다 더 중요한 것으로 간주된다는 것입니다. 우선 순위가 더 높은 노드가 있는 사이트는 사이트 격리를 유지하는 반면 다른 사이트의 노드는 제거됩니다. 우선 순위는 여러 요소를 기반으로 하지만 설정을 사용하여 이 동작을 제어할 수도 `css_critical` 있습니다.

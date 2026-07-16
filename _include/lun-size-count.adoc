@@ -15,6 +15,7 @@ LUN은 ONTAP의 가상화 오브젝트로서 호스팅 애그리게이트의 모
 
 
 
+[[lun-count]]
 == LUN 수입니다
 
 LUN 크기와 달리 LUN 개수는 성능에 영향을 미칩니다. 애플리케이션 성능은 SCSI 계층을 통해 병렬 I/O를 수행하는 능력에 따라 달라집니다. 그 결과 2개의 LUN이 1개의 LUN보다 나은 성능을 제공합니다. Veritas VxVM, Linux LVM2 또는 Oracle ASM 같은 LVM은 병렬 처리를 늘리는 가장 단순한 방법입니다.

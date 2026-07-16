@@ -24,6 +24,7 @@ summary: Security Hardening Guide for ONTAP Tools for VMware vSphere, 무결성 
 
 
 
+[[verifying-the-signature-of-the-ontap-tools-ova]]
 == ONTAP 도구 OVA의 서명 확인
 
 vApp 설치 패키지는 타볼 형태로 제공됩니다. 이 타볼에는 README 파일 및 OVA 패키지와 함께 가상 어플라이언스에 대한 중간 및 루트 인증서가 포함되어 있습니다. README 파일은 사용자에게 vApp OVA 패키지의 무결성을 확인하는 방법을 안내합니다.
@@ -32,6 +33,7 @@ vApp 설치 패키지는 타볼 형태로 제공됩니다. 이 타볼에는 READ
 
 
 
+[[uploading-the-trusted-root-certificate-to-vcenter]]
 === 신뢰할 수 있는 루트 인증서를 vCenter에 업로드하는 중입니다
 
 . VMware vSphere Client를 사용하여 vCenter Server에 로그인합니다.
@@ -49,6 +51,7 @@ image:vmware-otv-hardening-trusted-publisher.png["신뢰할 수 있는 인증서
 
 
 
+[[verifying-the-signature-of-the-ontap-tools-iso-and-sra-tar-gz]]
 == ONTAP 도구 ISO 및 SRA tar.gz 서명 확인
 
 NetApp는 OTV-iso 및 SRA.tgz용 제품 zip 파일과 함께 제품 다운로드 페이지의 고객과 코드 서명 인증서를 공유합니다.
