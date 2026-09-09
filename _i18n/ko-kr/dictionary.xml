@@ -517,8 +517,6 @@
   <block id="beb3ca55ed0a53a38a2b97540b05d6e4" category="summary">ONTAP 기반 Microsoft SQL Server</block>
   <block id="7636ae91f443b605f05bed59d7d57a02" category="doc">Microsoft SQL Server 재해 복구</block>
   <block id="18c6a681ea46e1ed394e092461bb53ef" category="list-text">SQL Server 데이터가 포함된 볼륨을 클러스터의 서로 다른 노드에 분산하여 모든 클러스터 노드가 SnapMirror 복제 활동을 공유할 수 있도록 합니다. 이러한 분산은 노드 리소스 사용을 최적화합니다.</block>
-  <block id="0a01e6837f5c691536f0b6cbdd0232ec" category="inline-link-macro">TR-4015:ONTAP 9용 SnapMirror 구성 및 모범 사례 가이드</block>
-  <block id="1cca1a3fad8c6dd7e2dadbd2aa08bf07" category="paragraph">SnapMirror에 대한 자세한 내용은 를 참조하십시오 <block ref="64b916f792bad525a069a243c092b62e" category="inline-link-macro-rx"></block>.</block>
   <block id="77641f4a3e4406855e878235cbd89b87" category="doc">CPU 구성</block>
   <block id="cf0e2551e639758cc3c4d82df655eccd" category="inline-link-macro">SQL Server 2022: 최신 데이터 플랫폼</block>
   <block id="809c9e1f6ce0bc82bf42fae361c6f43e" category="paragraph">따라서 모든 CPU를 사용하려면 프로세서당 코어 라이센스를 사용해야 합니다. SQL Server 라이센스에 대한 자세한 내용은 을 참조하십시오 <block ref="457abfaf1083b1cbfc49f2783069c6cd" category="inline-link-macro-rx"></block>.</block>
@@ -1572,8 +1570,6 @@
   <block id="3e00e4d28b17eedd6f6c2c38233e06a8" category="paragraph">LUN 정렬은 기본 파일 시스템 레이아웃과 관련하여 I/O를 최적화하는 것을 칭합니다.</block>
   <block id="a6c7e85d51ae3b98197ceb3eafa3686a" category="inline-link-macro">효율성</block>
   <block id="6e2524d5663b2bdc0c7985fa3e57cc55" category="section-title">정렬 불량 경고</block>
-  <block id="79e721357e358d77c4700c25c863fc37" category="inline-link">ONTAP SAN 호스트 구성</block>
-  <block id="268b1da3f1ff11d32e385d0223101718" category="paragraph">Solaris 환경에서는 정렬이 더 복잡합니다. 을 참조하십시오<block ref="2d33e0364c07dc165b4079892340d4fe" category="inline-link-rx"></block> 를 참조하십시오.</block>
   <block id="6d017248f1e4f0ec7e2cd19d967b6bee" category="cell">Solaris x86 환경에서는 대부분의 구성에 여러 개의 파티션 계층이 있기 때문에 정렬이 제대로 되는지 더 주의를 기울여야 합니다. Solaris x86 파티션 조각은 일반적으로 표준 마스터 부트 레코드 파티션 테이블의 상단에 존재합니다.</block>
   <block id="b1230060a0220caf9d68d64b9dd85e6f" category="summary">Oracle의 NFS 전송 크기</block>
   <block id="fabe34ed4a5e432f4d1c4f6584956d8d" category="doc">Oracle 데이터베이스의 NFS 전송 크기</block>
@@ -2413,7 +2409,6 @@ VAAI를 사용하지 않는 경우 NFS에서 모든 VM에 대해 이 설정이 �
   <block id="883e69a285ae2d5fd23c80cd29285804" category="paragraph">SnapVault는 처음부터 ONTAP 8.2를 위해 재구축되었습니다. 이전 Data ONTAP 7-Mode 사용자에게도 유사한 점이 있긴 하지만, 이 버전의 SnapVault에서는 여러 가지 기능이 크게 향상되었습니다. 한 가지 중요한 발전은 SnapVault 전송 중에 운영 데이터의 스토리지 효율성을 유지할 수 있는 기능입니다.</block>
   <block id="9bc21373e0e299579a7ac86dcd4f513d" category="paragraph">중요한 아키텍처 변화는 ONTAP 9의 SnapVault가 7-Mode SnapVault와 마찬가지로 qtree 레벨이 아닌 볼륨 레벨에서 복제된다는 점입니다. 이 설정은 SnapVault 관계의 소스가 볼륨이어야 하며 해당 볼륨이 SnapVault 보조 시스템의 자체 볼륨으로 복제되어야 함을 의미합니다.</block>
   <block id="d447048519c85a2fb3bea0790cd109fb" category="paragraph">SnapVault가 사용되는 환경에서는 특히 이름이 지정된 스냅샷이 운영 스토리지 시스템에 생성됩니다. 구축된 구성에 따라 SnapVault 스케줄이나 NetApp Active IQ Unified Manager 같은 애플리케이션을 통해 운영 시스템에 명명된 스냅샷을 생성할 수 있습니다. 그런 다음 기본 시스템에서 생성된 명명된 스냅샷이 SnapMirror 대상에 복제되고 이 스냅샷에서 SnapVault 대상에 볼트가 됩니다.</block>
-  <block id="5bc66b9c84b3f7cc0b375e729376b68d" category="inline-link">ONTAP 9용 TR-4015 SnapMirror 구성 모범 사례 가이드.</block>
   <block id="657a41cce55646ab17754ac1427970af" category="paragraph">다음 그림은 SnapVault 계단식으로 구성된 SnapMirror를 보여 줍니다. SnapVault 대상이 DR 사이트 또는 운영 사이트의 운영 중단으로 인해 영향을 받지 않는 3차 사이트에 있는 경우, 페일오버 후 백업을 계속할 수 있도록 환경을 재구성할 수 있습니다.</block>
   <block id="63fd1f18d5d53fa97fd05a7fd96090b4" category="section-title">Site Recovery Manager 환경에서 Qtree 사용</block>
   <block id="345cb3f040f9f7f3f1a4261ed260aa79" category="section-title">FC 및 iSCSI 혼합 환경</block>
@@ -3445,9 +3440,6 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="b37ae3efea13417cff3fdb198db41274" category="list-text">Windows Server의 클러스터 스토리지 풀은 ONTAP에서 지원되지 않습니다.</block>
   <block id="436593f3429fec64588705fe44025823" category="list-text">NetApp는 Windows SAN 환경에서 게스트 클러스터링을 위한 공유 가상 하드 디스크 형식(VHDX)을 지원합니다.</block>
   <block id="a3a862b96d666cb7005617313f703378" category="list-text">Windows Server에서는 iSCSI 또는 FC LUN을 사용하는 스토리지 풀 생성을 지원하지 않습니다.</block>
-  <block id="570d38aae09bbf84ba37f9219909a7cb" category="list-text">NetApp PowerShell 툴킷에 대한 자세한 내용은 를 참조하십시오<block ref="12f72d9ce1eab5b7cd58718fecdd145c" category="inline-link-rx"></block>.</block>
-  <block id="699f0a44719fb3de5404046fc6caa8af" category="inline-link">TR-4475: NetApp PowerShell 툴킷 모범 사례 가이드 를 참조하십시오</block>
-  <block id="532d077f114744273b1a7cd2a4794077" category="list-text">NetApp PowerShell 툴킷 모범 사례에 대한 자세한 내용은 를 참조하십시오<block ref="87b47631a9123c9d2a382039a9ba503e" category="inline-link-rx"></block>.</block>
   <block id="64f3248fbae79dd41841377bf7dd37c6" category="paragraph">이더넷 네트워크는 다음과 같은 그룹으로 광범위하게 분리할 수 있습니다.</block>
   <block id="0047d4a23ffec6d4afe912d0a2598e58" category="list-text">VM에 대한 클라이언트 네트워크</block>
   <block id="d6cf6da705ce58c7b649fea1cd43c470" category="list-text">하나 이상의 스토리지 네트워크(iSCSI 또는 SMB를 스토리지 시스템에 연결)</block>
@@ -5726,9 +5718,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="fea612aa54d66a179c5538c5cd1b8525" category="paragraph">VLSR 배포를 ONTAP 고급 데이터 관리 기능과 통합하면 로컬 스토리지 옵션과 비교했을 때 규모와 성능이 크게 향상됩니다. 하지만 그보다 더 중요한 것은 하이브리드 클라우드의 유연성입니다. 하이브리드 클라우드를 사용하면 FabricPool 사용하여 고성능 어레이에서 사용하지 않는 데이터 블록을 선호하는 하이퍼스케일러로 계층화하여 비용을 절감할 수 있습니다. 이는 NetApp StorageGRID 와 같은 온프레미스 S3 저장소가 될 수 있습니다. 소프트웨어 정의 ONTAP Select 또는 클라우드 기반 DR을 사용하여 에지 기반 시스템에 SnapMirror 사용할 수도 있습니다.<block ref="48f4ab00daadfbd5f3a95d2ba27ed047" category="inline-link-rx"></block>또는 다른 호스팅 ONTAP 서비스.</block>
   <block id="0fc9a0e7b30259b88ee28dc36905dc46" category="paragraph">재해 복구(DR)는 재해 발생 시 데이터와 애플리케이션을 보호하기 위한 포괄적인 솔루션을 제공하는 클라우드 기반 서비스입니다. 여기에는 자동 장애 조치 및 장애 복구, 여러 시점 복구 지점, 애플리케이션 일관성 재해 복구, 온프레미스 및 클라우드 기반 ONTAP 시스템 모두에 대한 지원 등 다양한 기능이 제공됩니다. NetApp Disaster Recovery ONTAP 과 VMware vSphere 환경과 원활하게 작동하도록 설계되어 재해 복구를 위한 통합 솔루션을 제공합니다.</block>
   <block id="b49008ff3ed6386e7b79c895a99dfda0" category="paragraph">중재자는 실제로 동점을 깨는 역할을 하지 않지만, 실질적으로는 그런 기능을 제공합니다. 중재자는 클러스터 노드의 상태를 결정하는 데 도움을 주고 사이트 장애 발생 시 자동 전환 프로세스를 지원합니다. 중재자는 어떠한 상황에서도 데이터를 전송하지 않습니다.</block>
-  <block id="389aace802a4b9cc02f057be6b44af1e" category="inline-link-macro"><block ref="389aace802a4b9cc02f057be6b44af1e" category="inline-link-rx"></block></block>
-  <block id="3f5aed07b92e68d50c76da775ecd27e7" category="list-text">ONTAP 9용 TR-4015 SnapMirror 구성 모범 사례 가이드 <block ref="2b18a9579e6e53dd966359ed48786df3" category="inline-link-macro-rx"></block></block>
-  <block id="af5901ed678cf3616d5e1dd4457d3301" category="paragraph">ONTAP 9용 SnapMirror 및 SnapVault 에 대한 최신 정보는 다음을 참조하십시오.<block ref="f0cb7261aff0b0ca14230d45000a9acc" category="inline-link-rx"></block></block>
   <block id="0aa1117bb089f8873e3b481abb0fc667" category="inline-link">ONTAP SnapMirror 복제 워크플로</block>
   <block id="c7d6bfcc1002f9443cf062da6e677452" category="paragraph">스냅샷에 대한 자세한 내용은 ONTAP 설명서를 참조하십시오. 다음 링크에서 추가 정보를 확인할 수 있습니다. <block ref="8952dffd5c4f20d5268260325aabe39c" category="inline-link-rx"></block> <block ref="929e1122e30b57f1156728cb315c1ee3" category="inline-link-rx"></block></block>
   <block id="fa3baa666422f615ee0c858e2af05bb1" category="list-text">네이티브 백업을 구성합니다.<block ref="0322cca7da8e1c0c74e3021d8f78b104" category="inline-link-rx"></block>.</block>
@@ -5965,4 +5954,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="e3471495b791c74dadc31bb77a66a74c" category="paragraph">Oracle Snapshot Optimized Backups는 사용자가 데이터베이스를 무중단 제거 모드로 전환하지 않고도 스냅샷을 사용하여 복구를 수행할 수 있도록 하는 시점 복구 방식입니다.</block>
   <block id="85ab689d474b14164558afa9923be42b" category="paragraph">사용자는 백업 모드를 사용하지 않고도 스냅샷에서 복구할 수 있지만, RECOVERY AUTOMATIC을 사용한 완전 복구만 지원됩니다. 스냅샷 생성 시간을 지정하는 SNAPSHOT TIME 방식을 사용한 불완전 복구.</block>
   <block id="17e12dfc833834d5b2e478641ef811d3" category="sidebar">스냅샷 없이 자동 복구</block>
+  <block id="74aeb32ca03a9503e64e32a2c6c54887" category="inline-link">LUN에서 정렬되지 않은 IO를 식별하는 방법</block>
+  <block id="0e399161325f240b090c8d3dbfd792b1" category="paragraph">Solaris 환경에서의 정렬은 더 복잡합니다. 자세한 내용은<block ref="55cb74ec239a32e3acdc528f25f2de7c" category="inline-link-rx"></block>을 참조하십시오.</block>
 </blocks>

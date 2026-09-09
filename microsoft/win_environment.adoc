@@ -97,15 +97,6 @@ NetApp PowerShell 툴킷(PSTK)은 엔드 투 엔드 자동화를 제공하고 ON
 
 
 
-[[further-reading]]
-=== 추가 참고 자료
-
-* NetApp PowerShell 툴킷에 대한 자세한 내용은 를 참조하십시오 https://mysupport.netapp.com/site/tools/tool-eula/ontap-powershell-toolkit["NetApp Support 사이트"].
-* NetApp PowerShell 툴킷 모범 사례에 대한 자세한 내용은 를 참조하십시오 https://www.netapp.com/media/16861-tr-4475.pdf?v=93202073432AM["TR-4475: NetApp PowerShell 툴킷 모범 사례 가이드 를 참조하십시오"].
-
-
-
-
 [[networking-best-practices]]
 == 네트워킹 모범 사례
 

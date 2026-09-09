@@ -22,5 +22,3 @@ searchtitle: ONTAP을 사용한 Microsoft SQL Server 재해 복구
 * SQL Server 데이터가 포함된 볼륨을 클러스터의 서로 다른 노드에 분산하여 모든 클러스터 노드가 SnapMirror 복제 활동을 공유할 수 있도록 합니다. 이러한 분산은 노드 리소스 사용을 최적화합니다.
 * 빠른 데이터 복구에 대한 수요가 많은 경우 동기식 복제를 사용하고 RPO에 유연성을 제공하는 비동기식 솔루션을 사용합니다.
 
-
-SnapMirror에 대한 자세한 내용은 를 참조하십시오 link:https://www.netapp.com/us/media/tr-4015.pdf["TR-4015:ONTAP 9용 SnapMirror 구성 및 모범 사례 가이드"^].
