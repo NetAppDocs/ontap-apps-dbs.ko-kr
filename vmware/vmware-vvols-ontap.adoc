@@ -87,7 +87,6 @@ https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/index.html["VMware v
 
 ==== 데이터 저장소 보호 및 관리
 
-* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/protect-cluster.html["ONTAP 툴 및 SnapMirror 액티브 동기화를 사용하여 vMSC(vSphere Metro Storage Cluster)를 구성합니다"^]
 * https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/protect/enable-storage-replication-adapter.html["가상 시스템 보호"^] SRM을 사용합니다
 * https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/reports.html["클러스터, 데이터 저장소 및 가상 머신 모니터링"^]
 

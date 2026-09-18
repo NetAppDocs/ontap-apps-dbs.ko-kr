@@ -57,5 +57,5 @@ SCSI 기반 블록 프로토콜(iSCSI, FC 및 FCoE)은 LUN ID와 일련 번호 �
 * 대상 인증을 위해 ESXi에서 CHAP(Challenge-Handshake Authentication Protocol)를 사용하는 경우 CLI를 사용하여 ONTAP에서도 구성해야 합니다 (`vserver iscsi security create`) 또는 System Manager를 사용할 경우(스토리지 > SVM > SVM 설정 > 프로토콜 > iSCSI에서 이니시에이터 보안 편집).
 * VMware vSphere용 ONTAP 툴을 사용하여 LUN 및 igroup을 생성하고 관리합니다. 이 플러그인은 서버의 WWPN을 자동으로 확인하여 적절한 igroup을 생성합니다. 또한 모범 사례에 따라 LUN을 구성하고 올바른 igroup에 매핑합니다.
 * RDM은 관리하기가 더 어려울 수 있고 앞에서 설명한 대로 제한된 경로를 사용할 수도 있으므로 주의해서 사용합니다. ONTAP LUN은 둘 다 지원합니다 https://kb.vmware.com/s/article/2009226["물리적 및 가상 호환성 모드"^] RDM
-* vSphere 7.0에서 NVMe/FC를 사용하는 방법에 대한 자세한 내용은 다음을 참조하십시오 https://docs.netapp.com/us-en/ontap-sanhost/nvme_esxi_7.html["ONTAP NVMe/FC 호스트 구성 가이드"^] 및 http://www.netapp.com/us/media/tr-4684.pdf["TR-4684를 참조하십시오"^]다음 그림에서는 vSphere 호스트에서 ONTAP LUN으로의 다중 경로 연결을 보여 줍니다.
+* vSphere 7.0에서 NVMe/FC를 사용하는 방법에 대한 자세한 내용은 이 문서 https://docs.netapp.com/us-en/ontap-sanhost/nvme_esxi_7.html["ONTAP NVMe/FC 호스트 구성 가이드"^] 및 https://www.netapp.com/pdf.html?item=/media/10681-tr4684.pdf["TR-4684를 참조하십시오"^]를 참조하십시오. 다음 그림은 vSphere 호스트에서 ONTAP LUN으로의 다중 경로 연결을 보여줍니다.
 

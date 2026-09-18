@@ -39,7 +39,7 @@ NetApp은 NFS 및 블록 프로토콜 모두에 최적의 ESXi 호스트 설정 
 3+| * NFS 설정 * 
 
 
-| newSyncInterval | Kubernetes용 vSphere CSI를 사용하지 않는 경우 를 설정합니다 https://knowledge.broadcom.com/external/article/386364/reducing-excessive-vsan-cnssync-warnings.html["VMware KB 386364"^] | 아니요 
+| newSyncInterval | Kubernetes용 vSphere CSI를 사용하지 않는 경우, per를 설정합니다. https://knowledge.broadcom.com/external/article/415074/reducing-or-disabling-excessive-vsan-cns.html["VMware KB 415074"^] | 아니요 
 
 
 | NET.TcpipHeapSize | vSphere 6.0 이상, 32로 설정.

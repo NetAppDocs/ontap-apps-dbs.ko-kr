@@ -25,7 +25,7 @@ ONTAP for vSphere를 사용하면 VM(가상 머신)을 백업하고 신속하게
 
 스냅샷을 사용하여 성능에 영향을 주지 않고 VM 또는 데이터 저장소를 신속하게 복사한 다음, SnapMirror를 사용하여 보조 시스템으로 전송하여 장기적인 오프 사이트 데이터 보호를 실현합니다. 이러한 접근 방식은 변경된 정보만 저장하여 스토리지 공간과 네트워크 대역폭을 최소화합니다.
 
-스냅샷은 ONTAP의 핵심 기능으로, 데이터의 시점 복사본을 생성할 수 있습니다. 이러한 솔루션은 공간 효율적이며 신속하게 생성할 수 있으므로 VM 및 데이터 저장소를 보호하는 데 이상적입니다. 스냅샷은 백업, 복구 및 테스트를 포함한 다양한 용도로 사용할 수 있습니다. 이러한 스냅샷은 VMware(정합성 보장) 스냅샷과는 다르며 장기간 보호에 적합합니다. VMware의 vCenter 관리 스냅샷은 성능 및 기타 효과로 인해 단기간 사용하는 경우에만 권장됩니다. link:https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/snapshot-limitations.html["스냅샷 제한 사항"^]자세한 내용은 을 참조하십시오.
+스냅샷은 ONTAP의 핵심 기능으로, 특정 시점의 데이터 복사본을 생성할 수 있습니다. 스냅샷은 공간 효율성이 뛰어나고 빠르게 생성할 수 있으므로 VM과 데이터스토어를 보호하는 데 이상적입니다. 스냅샷은 백업, 복구, 테스트 등 다양한 용도로 사용할 수 있습니다. 이러한 스냅샷은 VMware(일관성) 스냅샷과는 다르며 장기적인 데이터 보호에 적합합니다. VMware의 vCenter에서 관리하는 스냅샷은 성능 및 기타 영향으로 인해 단기적인 용도로만 사용하는 것이 좋습니다. 자세한 내용은 https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/9-1/vsphere-virtual-machine-administration/managing-virtual-machines/using-snapshots-to-manage-virtual-machines/snapshot-file-names-and-description.html["스냅샷 파일 및 제한 사항"^]을 참조하십시오.
 
 스냅샷은 볼륨 레벨에서 생성되며 해당 볼륨 내의 모든 VM 및 데이터 저장소를 보호하는 데 사용될 수 있습니다. 즉, 해당 데이터 저장소 내의 모든 VM을 포함하는 전체 데이터 저장소의 스냅샷을 생성할 수 있습니다.
 

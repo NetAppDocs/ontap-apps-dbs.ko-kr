@@ -1994,8 +1994,6 @@
   <block id="e64de4e49a37e62ff7f8c37e859bbeb9" category="paragraph"><block ref="e64de4e49a37e62ff7f8c37e859bbeb9" category="inline-link-rx"></block></block>
   <block id="0229efec9dc9b9a7fdf144b025157176" category="inline-link">_TR-4705 NetApp MetroCluster 솔루션 아키텍처 및 설계 _</block>
   <block id="6aee4b78ffdfaf193918978472d660a7" category="paragraph"><block ref="6aee4b78ffdfaf193918978472d660a7" category="inline-link-rx"></block></block>
-  <block id="876341bac548f230eb390348e8b075ad" category="inline-link">_VMware KB 2031038 NetApp MetroCluster_ 기반 VMware vSphere 지원</block>
-  <block id="5e68486fffeebad2ed145408dc250367" category="paragraph"><block ref="5e68486fffeebad2ed145408dc250367" category="inline-link-rx"></block></block>
   <block id="50c323f7050912164118ba47eab75888" category="section-title">VVOL 백업 개요</block>
   <block id="6751e706567f4773c4f3138b4de51a0f" category="paragraph">게스트 내 백업 에이전트 사용, 백업 프록시에 VM 데이터 파일 연결 또는 VMware VADP 같은 정의된 API 사용과 같은 VM을 보호하기 위한 몇 가지 방법이 있습니다. VVOL은 동일한 메커니즘을 사용하여 보호할 수 있으며 많은 NetApp 파트너가 VVOL을 포함한 VM 백업을 지원합니다.</block>
   <block id="416d27c872769e934ac8a49ec98ccb53" category="paragraph">앞서 언급했듯이 VMware vCenter 관리 스냅샷은 공간 효율적이고 빠른 ONTAP 파일/LUN 클론으로 오프로드됩니다. 이러한 스냅샷은 빠른 수동 백업에 사용할 수 있지만 vCenter에 의해 최대 32개의 스냅샷으로 제한됩니다. 필요에 따라 vCenter를 사용하여 스냅샷을 생성하고 되돌릴 수 있습니다.</block>
@@ -2220,7 +2218,6 @@
   <block id="905221150fdd103b5241870a0a1f2c42" category="list-text">RDM은 관리하기가 더 어려울 수 있고 앞에서 설명한 대로 제한된 경로를 사용할 수도 있으므로 주의해서 사용합니다. ONTAP LUN은 둘 다 지원합니다<block ref="27e1f8e5a88cfbb2836b083145b004c9" category="inline-link-rx"></block> RDM</block>
   <block id="636da39a2033c6179a718983c5ce1222" category="inline-link">ONTAP NVMe/FC 호스트 구성 가이드</block>
   <block id="81ef6507a13da5635951bc5b533deb59" category="inline-link">TR-4684를 참조하십시오</block>
-  <block id="15483b0826bb9a4b11d1c89af2029c5c" category="list-text">vSphere 7.0에서 NVMe/FC를 사용하는 방법에 대한 자세한 내용은 다음을 참조하십시오<block ref="6b4ed262d14e47ef641cd57b65c32c38" category="inline-link-rx"></block> 및<block ref="7a29b2f31035a451d5b068728d2b79a7" category="inline-link-rx"></block>다음 그림에서는 vSphere 호스트에서 ONTAP LUN으로의 다중 경로 연결을 보여 줍니다.</block>
   <block id="743fa5a7bc7d4ba215b096e34779d298" category="paragraph">vSphere와 함께 ONTAP NFS를 사용할 때는 다음과 같은 Best Practice를 따르는 것이 좋습니다.</block>
   <block id="ae4c5baa79e370d8f601cc7082f8123e" category="list-text">NFSv3과 NFSv4.1 간에는 자동 데이터 저장소가 변환되지 않으므로 새로운 NFSv4.1 데이터 저장소를 생성하고 Storage vMotion을 사용하여 VM을 새 데이터 저장소로 마이그레이션합니다.</block>
   <block id="bd6cc42f9cd65cca72cbd56d2f4bf43d" category="list-text">ro 액세스 규칙: sys</block>
@@ -3025,14 +3022,7 @@ https 연결을 통한 SOAP에 사용됩니다</block>
   <block id="a58c81d13cac4e9b37bba2bd7fc3a93d" category="paragraph">업계 최고 수준의 VMware vSphere 하이퍼바이저를 vMSC(vSphere Metro Storage Cluster)라고 하는 확장 클러스터로 구축할 수 있습니다.</block>
   <block id="e3224e391e08365c1593c07b9fe99cfa" category="section-title">vSphere 환경을 위한 무중단 가용성 솔루션</block>
   <block id="d3e911c902a6b066f9c31d471d16fb21" category="paragraph">두 사이트에 걸쳐 VMware HA/DRS 클러스터를 생성하기 위해 ESXi 호스트는 VCSA(vCenter Server Appliance)에 의해 사용되고 관리됩니다. vSphere 관리, vMotion ® 및 가상 머신 네트워크는 두 사이트 간에 중복 네트워크를 통해 연결됩니다. HA/DRS 클러스터를 관리하는 vCenter Server는 두 사이트의 ESXi 호스트에 연결할 수 있으며 vCenter HA를 사용하여 구성해야 합니다.</block>
-  <block id="da76be2bc20d4e043d9a2019b817214f" category="inline-link">vSphere Client에서 클러스터를 생성하고 구성하는 방법</block>
-  <block id="e02f3e9258a23204655bd512ec53911d" category="paragraph">을 참조하십시오<block ref="c06ae090600e7aa086edfa28514435e7" category="inline-link-rx"></block> vCenter HA를 구성합니다.</block>
   <block id="38910d3dab2318849fd5f1a1dfbe0152" category="inline-link">VMware 스토리지 호환성 가이드 를 참조하십시오</block>
-  <block id="838b66b875df1b432ac420a98cba3db6" category="paragraph">vSphere Metro Storage Cluster의 설계 지침에 대한 자세한 내용은 다음 설명서를 참조하십시오.</block>
-  <block id="07aaf2aebfd07b8763284018d1ebbf57" category="inline-link">VMware vSphere는 NetApp MetroCluster를 지원합니다</block>
-  <block id="a4a5fd5b00daf98bd381d80257378acd" category="list-text"><block ref="a4a5fd5b00daf98bd381d80257378acd" category="inline-link-rx"></block></block>
-  <block id="c3dc11e39d996a00b095022f4e56583d" category="inline-link">NetApp SnapMirror 비즈니스 연속성이 포함된 VMware vSphere 지원</block>
-  <block id="8f675397d9c0ef95aa8b3f0ada9d601a" category="list-text"><block ref="f53214cfd764fa0267c92323be0d7337" category="inline-link-rx"></block> (현재 SnapMirror Active Sync라고 함)</block>
   <block id="b553530def78406c0977f70d5e90b9e8" category="list-text">MetroCluster를 확장합니다</block>
   <block id="2d90abe978ed8084d304295ad0a8c8fd" category="list-text">Fabric MetroCluster의 약어입니다</block>
   <block id="b03023e82bda6a71adc49c4834e3b6ab" category="paragraph">다음은 확장 MetroCluster의 상위 수준 토폴로지 다이어그램을 보여 줍니다.</block>
@@ -5059,7 +5049,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="387b349695476180bf90cc1891288318" category="list-text"><block ref="1f38ac07598dbb4b06912539aafa4211" category="inline-link-macro-rx"></block>VMware와 공동으로 NetApp에서 권장하는 설정을 확인합니다.</block>
   <block id="27071f484b59aa9ce5f5cffcefefd481" category="paragraph">NVMe-oF 및 NFS v4.1을 사용하는 데이터 저장소에는 vSphere 복제가 필요합니다. NFS v4.1에 대한 어레이 기반 복제는 현재 SRM에서 지원되지 않습니다. NVMe-oF를 사용한 어레이 기반 복제는 현재 VMware SRA(vSphere Storage Replication Adapter)용 ONTAP 툴에서 지원되지 않습니다.</block>
   <block id="f992800e6b8aa5ca675e5d1c9fd9950c" category="summary">SnapCenter를 사용하면 여러 작업에 적용할 수 있는 백업 정책을 생성할 수 있습니다. 이러한 정책은 스케줄, 보존, 복제 및 기타 기능을 정의할 수 있습니다. 또한 VM 정합성 보장 스냅샷의 선택적인 선택을 계속 허용하므로 VMware 스냅샷을 생성하기 전에 하이퍼바이저의 입출력 중지 기능을 활용할 수 있습니다.</block>
-  <block id="0a99e5aa10081a6cc2cd756764a791f5" category="inline-link-macro">스냅샷 제한 사항</block>
   <block id="aa4e326f7359bc14116e671e7002dd80" category="paragraph">ONTAP은 기존 iSCSI 및 파이버 채널 프로토콜(FCP)을 사용하는 VMware vSphere용 엔터프라이즈급 블록 스토리지와 매우 효율적이고 성능이 우수한 차세대 블록 프로토콜, NVMe-oF(NVMe over Fabrics)를 제공하며 NVMe/FC 및 NVMe/TCP를 모두 지원합니다.</block>
   <block id="69ed4612751aa53c36bfb06723b9ac3c" category="inline-link-macro">데이터 저장소 및 프로토콜 - SAN</block>
   <block id="6ed827bb740ef6ae13ba33875f09bd4d" category="paragraph">vSphere 및 ONTAP를 사용하여 VM 스토리지에 블록 프로토콜을 구현하는 Best Practice는 를 참조하십시오 <block ref="851570383af5746336da824a0a2590e1" category="inline-link-macro-rx"></block></block>
@@ -5232,8 +5221,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="f5f3c80e03e60f2a58399685adcf6610" category="list-text"><block ref="f5f3c80e03e60f2a58399685adcf6610" category="inline-link-rx"></block></block>
   <block id="1608a10fc8319b14c6c50a77edab9e7c" category="inline-link">ESXi 호스트 설정을 수정합니다</block>
   <block id="1f4b95b02061cf146ca813dd68f240b5" category="list-text"><block ref="1f4b95b02061cf146ca813dd68f240b5" category="inline-link-rx"></block></block>
-  <block id="952be4c4311cd0b3b105435f5c484336" category="inline-link">ONTAP 툴 및 SnapMirror 액티브 동기화를 사용하여 vMSC(vSphere Metro Storage Cluster)를 구성합니다</block>
-  <block id="4e22d6ab0229a29e7c9f041b1f4263a0" category="list-text"><block ref="4e22d6ab0229a29e7c9f041b1f4263a0" category="inline-link-rx"></block></block>
   <block id="c724784c65896d8b16350f4b0580dfd4" category="inline-link">가상 시스템 보호</block>
   <block id="19ffdbf6d480a0097bf46b6fe379b412" category="list-text"><block ref="7970b8a3df0aeb298f96944db6f19225" category="inline-link-rx"></block> SRM을 사용합니다</block>
   <block id="cb2b70161843498e22e97eb5f155009c" category="inline-link">클러스터, 데이터 저장소 및 가상 머신 모니터링</block>
@@ -5251,7 +5238,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="8f13bfaaa8ba18765f4525a280f647cf" category="section-title">가상 볼륨 데이터 저장소</block>
   <block id="9f1893d8db5ceaf62726d1a0aa228224" category="section-title">VM 스토리지 정책</block>
   <block id="0aa8052a92097a4f8ec3114e7249a0e1" category="paragraph">VM 스토리지 정책은 vCenter의 정책 및 프로필 아래에 생성됩니다. VVOL의 경우 NetApp VVOL 스토리지 유형 공급자에서 규칙을 사용하여 규칙 집합을 생성합니다. 이제 ONTAP 툴 10.X는 VM 스토리지 정책 자체에 스토리지 속성을 직접 지정할 수 있으므로 ONTAP 툴 9.X보다 더 간단한 접근 방식을 제공합니다.</block>
-  <block id="1bf63b567c68de7fcd78fcc89f42f93c" category="inline-link">호스트 클러스터 보호를 사용하여 보호합니다</block>
   <block id="b6930b017bd126db888766f9750b206b" category="section-title">VMware vSphere 구성</block>
   <block id="2587ca69fa38fdcf84be76d7302e4e48" category="admonition">이 문서의 어떤 내용도 대체되지<block ref="0802e50581eb79c07178f36fed073afc" category="inline-link-rx"></block>않습니다. 이 콘텐츠는 쉽게 참조할 수 있도록 제공되며 공식 VMware 설명서를 대체할 수 없습니다.</block>
   <block id="0daafa8f38daf57ac774520f73c6131b" category="section-title">필요한 경우 데이터 저장소 클러스터를 생성합니다</block>
@@ -5524,7 +5510,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="b8ed23c8b817e9613412fc97543a876a" category="list-text">FPolicy를 사용하는 경우 VM 전원이 켜질 때마다 vSphere에서 잠금을 위해 .lck 파일을 사용하므로 .lck 파일을 제외해야 합니다.</block>
   <block id="d76b03755162bf8402fea0ef97d95c2b" category="list-text">지원에 필요한 특정 ESXi 패치 수준은 의 NFS v4.1 Interoperability 표 참고 사항을 <block ref="aaa18d9ccb38f09094f0c241a8585efd" category="inline-link-macro-rx"></block>참조하십시오.</block>
   <block id="2e5d8aa3dfa8ef34ca5131d20f9dad51" category="inline-link-macro">설정</block>
-  <block id="428a818039f2f00961fdd9e4de07b721" category="inline-link">VMware KB 386364</block>
   <block id="686d950560445531708a511e6ad1567c" category="paragraph">vSphere에서 블록 스토리지 디바이스를 사용하는 방법에는 네 가지가 있습니다.</block>
   <block id="8f3179360beae87966e6fc5f46edfb7b" category="list-text">VVOL 데이터 저장소 역할을 합니다</block>
   <block id="041c0652f0218403d2721d2ddd9260df" category="admonition">익스텐트는 여러 LUN을 "연결"하여 하나의 더 큰 데이터 저장소를 만들 수 있는 vSphere 스토리지 개념입니다. 원하는 데이터 저장소 크기에 도달하기 위해 익스텐트를 사용해서는 안 됩니다. VMFS 데이터 저장소의 경우 단일 LUN이 Best Practice입니다.</block>
@@ -5553,7 +5538,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="56de38ee4f3cd70309ddc44c00acb1fb" category="list-text">NetApp은 ONTAP 클러스터 내 클러스터 인터커넥트 포트에서 네트워크 흐름 제어를 사용하지 않도록 설정하는 것만 권장합니다. NetApp은 데이터 트래픽에 사용되는 나머지 네트워크 포트에 대한 모범 사례를 위해 다른 권장사항을 제공하지 않습니다. 필요에 따라 활성화하거나 비활성화해야 합니다. 흐름 제어에 대한 자세한 내용은 을<block ref="3455dc2b3e7cd12a38e508bec690aa67" category="inline-link-rx"></block> 참조하십시오.</block>
   <block id="3a04c6fe53e84b0859143746f9b8b3bc" category="paragraph">ONTAP for vSphere를 사용하면 VM(가상 머신)을 백업하고 신속하게 복구할 수 있습니다. 이 기능은 VMware vSphere용 SnapCenter 플러그인을 통해 vCenter 내에서 쉽게 관리할 수 있습니다. ONTAP로 VM을 복구하는 가장 빠르고 간단한 방법을 제공하는 SnapCenter를 사용하여 타사 백업 솔루션을 강화함으로써 ONTAP의 스냅샷 기술을 활용합니다. SnapCenter는 ONTAP One 라이센스를 보유한 고객에게 무료로 제공되며, 다른 라이센스 번들도 이용할 수 있습니다.</block>
   <block id="17d20b1dcedfc04c7879e9675412b0db" category="section-title">NetApp ONTAP 볼륨 스냅샷</block>
-  <block id="424a2b394957a69a3a605706153f9539" category="paragraph">스냅샷은 ONTAP의 핵심 기능으로, 데이터의 시점 복사본을 생성할 수 있습니다. 이러한 솔루션은 공간 효율적이며 신속하게 생성할 수 있으므로 VM 및 데이터 저장소를 보호하는 데 이상적입니다. 스냅샷은 백업, 복구 및 테스트를 포함한 다양한 용도로 사용할 수 있습니다. 이러한 스냅샷은 VMware(정합성 보장) 스냅샷과는 다르며 장기간 보호에 적합합니다. VMware의 vCenter 관리 스냅샷은 성능 및 기타 효과로 인해 단기간 사용하는 경우에만 권장됩니다. <block ref="edb84c63886608dd2a747873a2732130" category="inline-link-macro-rx"></block>자세한 내용은 을 참조하십시오.</block>
   <block id="9fe3ffc9df0f8a5c691d2ed0c67a5b03" category="paragraph">스냅샷은 볼륨 레벨에서 생성되며 해당 볼륨 내의 모든 VM 및 데이터 저장소를 보호하는 데 사용될 수 있습니다. 즉, 해당 데이터 저장소 내의 모든 VM을 포함하는 전체 데이터 저장소의 스냅샷을 생성할 수 있습니다.</block>
   <block id="d1c6249258c65372addf83e0659b487e" category="paragraph">NFS 데이터 저장소의 경우 .snapshots 디렉토리를 탐색하여 스냅샷에서 VM 파일을 쉽게 볼 수 있습니다. 따라서 특정 백업 솔루션을 사용하지 않고도 스냅샷에서 파일을 빠르게 액세스하고 복구할 수 있습니다.</block>
   <block id="98366d305ee795988e2e64b7dc1644c0" category="paragraph">VMFS 데이터 저장소의 경우 원하는 스냅샷을 기반으로 데이터 저장소의 FlexClone을 생성할 수 있습니다. 이를 통해 스냅샷을 기반으로 새 데이터 저장소를 생성할 수 있으며, 이 데이터 저장소는 테스트 또는 개발 목적으로 사용할 수 있습니다. FlexClone는 스냅샷이 생성된 후 변경된 내용에만 공간을 사용하므로 데이터 저장소의 복제본을 공간 효율적으로 생성할 수 있습니다. FlexClone이 생성되면 일반 데이터 저장소처럼 LUN 또는 네임스페이스를 ESXi 호스트에 매핑할 수 있습니다. 이를 통해 특정 VM 파일을 복원할 수 있을 뿐만 아니라 프로덕션 환경의 성능에 영향을 주지 않고 프로덕션 데이터를 기반으로 테스트 또는 개발 환경을 빠르게 만들 수 있습니다.</block>
@@ -5591,7 +5575,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="9fe1a69b0192fb5955b959edd763b9d6" category="paragraph">SDRS에 대한 자세한 내용은 VMware 설명서를 참조하십시오<block ref="6f5bfdeedeaf40bf3dcc7dcc4311a1cf" category="inline-link-rx"></block>.</block>
   <block id="2a104d02cb0299df0ebe47fa0ceb2e3f" category="paragraph">이러한 값은 VMware vSphere용 ONTAP 툴을 사용하여 쉽게 설정할 수 있습니다. ONTAP 툴 개요 페이지에서 아래로 스크롤하여 ESXi 호스트 규정 준수 포틀릿에서 권장 설정 적용을 클릭합니다.</block>
   <block id="b8ed49f8c2faef2a05f3432a8bf20432" category="cell">newSyncInterval</block>
-  <block id="b7715db44a4dfbe51370a25ea991a2f0" category="cell">Kubernetes용 vSphere CSI를 사용하지 않는 경우 를 설정합니다<block ref="e3529737a3b4eef7cff2c05dcd47fcdc" category="inline-link-rx"></block></block>
   <block id="bc7b51a623cfc5e288b304d2f9c93eac" category="admonition">NFS 고급 구성 옵션 MaxQueueDepth는 VMware vSphere ESXi 7.0.1 및 VMware vSphere ESXi 7.0.2를 사용할 때 의도한 대로 작동하지 않을 수 있습니다. 자세한  내용은 을 <block ref="861055760f3cd527823fd34a49459992" category="inline-link-macro-rx"></block>참조하십시오.</block>
   <block id="93754b0c6a333efae9b897da113630eb" category="paragraph">원래 이러한 통합 접근 방식은 단일 스토리지 시스템에서 NAS 및 SAN 프로토콜을 모두 지원한다고 언급했으며, ONTAP은 NAS에서 원래의 강점과 함께 SAN을 위한 최고의 플랫폼이 되었습니다. 이제 ONTAP는 S3 오브젝트 프로토콜 지원도 제공합니다. S3는 데이터 저장소에 사용되지 않지만 게스트 내 애플리케이션에 사용할 수 있습니다. ONTAP에서 S3 프로토콜 지원에 대한 자세한 내용은 를 <block ref="9a0a48164e4b196191c2134bda6f342d" category="inline-link-macro-rx"></block>참조하십시오. 유니파이드 스토리지라는 용어는 단일 인터페이스에서 모든 스토리지 리소스를 관리하는 기능을 포함하여 스토리지 관리에 대한 통합된 접근 방식을 의미하도록 개선되었습니다. 여기에는 사내 및 클라우드 스토리지 리소스, 최신 ASA(All SAN 어레이) 시스템, 단일 인터페이스에서 여러 스토리지 시스템을 관리할 수 있는 기능이 포함됩니다.</block>
   <block id="9f4686c99993be53ee2c19ad1e4f9c69" category="paragraph">스토리지 가상 머신(SVM)은 ONTAP에서 안전한 멀티 테넌시(Multi-tenancy)의 장치입니다. ONTAP를 실행하는 시스템에 대한 클라이언트 액세스를 허용하는 논리적 구성입니다. SVM은 논리 인터페이스(LIF)를 통해 여러 데이터 액세스 프로토콜을 통해 데이터를 동시에 제공할 수 있습니다. SVM은 CIFS 및 NFS와 같은 NAS 프로토콜을 통해 파일 레벨 데이터 액세스를 지원하고, iSCSI, FC/FCoE, NVMe와 같은 SAN 프로토콜을 통해 블록 레벨 데이터 액세스를 제공합니다. SVM은 S3뿐만 아니라 SAN과 NAS 클라이언트에 데이터를 동시에 독립적으로 제공할 수 있습니다.</block>
@@ -5633,7 +5616,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="e69c207b2671a8571c172595068da749" category="paragraph">MetroCluster를 사용하지 않거나 ASA R2 시스템과 같이 MetroCluster에서 지원되지 않는 ONTAP 시스템이 있는 경우, 서로 다른 장애 도메인에 있는 여러 ONTAP 클러스터에서 데이터 저장소 세부 보호 및 Active-Active 액세스를 제공하는 SnapMirror Active Sync를 사용할 수 있습니다. SMAS는 CG(정합성 보장 그룹)를 사용하여 하나 이상의 데이터 저장소 간에 쓰기 순서 일관성을 보장하고 애플리케이션 및 데이터 저장소 요구 사항에 따라 여러 CG를 생성할 수 있습니다. 일관성 그룹은 여러 데이터 저장소 간에 데이터를 동기화해야 하는 애플리케이션에 특히 유용합니다. 예를 들어, 데이터 저장소 간에 분산된 게스트 LVM을 예로 들 수 있습니다. SMAS는 RDM(Raw Device Mappings) 및 게스트 내 iSCSI 초기자가 있는 게스트 연결 스토리지도 지원합니다. 일관성 그룹에 대한 자세한 내용은 에서<block ref="8bba9b5b97dba092834d7a48a07f102d" category="inline-link-rx"></block>확인할 수 있습니다.</block>
   <block id="646b17235be3514942344039b13b0ef5" category="paragraph">SnapMirror 액티브 동기화를 사용하여 vMSC 구성을 관리하는 것은 MetroCluster와 비교하여 몇 가지 차이가 있습니다. 첫째, SMAS는 SAN 전용 구성이므로 SnapMirror 활성 동기화를 사용하여 NFS 데이터 저장소를 보호할 수 없습니다. 둘째, 두 장애가 발생한 도메인 모두에서 복제된 데이터 저장소를 액세스할 수 있도록 LUN의 두 복제본을 ESXi 호스트에 매핑해야 합니다. 셋째, SnapMirror 활성 동기화를 사용하여 보호할 데이터 저장소에 대해 하나 이상의 정합성 보장 그룹을 생성해야 합니다. 마지막으로 생성한 일관성 그룹에 대한 SnapMirror 정책을 생성해야 합니다. 이 모든 작업은 ONTAP 도구 vCenter 플러그인의 "클러스터 보호" 마법사를 사용하거나 ONTAP CLI 또는 System Manager를 수동으로 사용하여 쉽게 수행할 수 있습니다.</block>
   <block id="46a01589543ca9b2c28b281bc82d5190" category="section-title">ONTAP 도구 SnapMirror Active Sync용 vCenter 플러그인 사용</block>
-  <block id="8acd56e642eabaf4e2e00e987d06c0dd" category="paragraph">ONTAP tools vCenter 플러그인을 사용하면 vMSC에 대한 SnapMirror 활성 동기화를 간단하고 직관적으로 구성할 수 있습니다. ONTAP 도구 vCenter 플러그인을 사용하여 두 ONTAP 클러스터 간에 SnapMirror 활성 동기화 관계를 생성하고 관리할 수 있습니다. 이 플러그인은 이러한 관계를 효율적으로 설정하고 관리하기 위해 사용하기 쉬운 인터페이스를 제공합니다. ONTAP 툴 vCenter 플러그인에 대한 자세한 내용은 에서확인하거나 바로 로 이동할<block ref="50b45f063e0080035a4876db2aa395bd" category="inline-link-rx"></block> 수<block ref="238135431b1a2d25dda1f29146112b60" category="inline-link-rx"></block> 있습니다.</block>
   <block id="be0e7f3621283e77712fee8493cfe7c2" category="list-text">"확인"을 클릭합니다.</block>
   <block id="1dddac6a529bf77c76b061ccea8bd130" category="list-text">MetroCluster를 사용하는 vMSC에는 다음과 같은 vSphere HA 설정이 추가로 권장됩니다.</block>
   <block id="4b0d37b4c720a2f35c5ebf18456af4c4" category="paragraph">das.heartbeatDsPerHost 라는 고급 설정을 추가하면 하트비트 데이터 저장소의 수가 증가할 수 있습니다. 사이트당 2개씩 4개의 하트비트 데이터 저장소(HB DSS)를 사용합니다. "목록에서 선택 하지만 칭찬" 옵션을 사용합니다. 한 사이트에 장애가 발생해도 두 개의 HB DSS가 필요하기 때문입니다. 그러나 이러한 파일은 MetroCluster 또는 SnapMirror 활성 동기화를 사용하여 보호할 필요가 없습니다.</block>
@@ -5751,7 +5733,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="bd9a10f490f8034385f873c360de29c0" category="list-text">속도를 높이세요. ONTAP 도구를 사용하면 vCenter 관리자가 스토리지 프로비저닝 작업을 위해 스토리지 팀에 티켓을 발행해야 하는 요구 사항이 사라집니다. 하지만 vCenter와 ONTAP 시스템의 ONTAP 도구 RBAC 역할은 원하는 경우 특정 기능에 대한 액세스를 제한함으로써 독립적인 팀(예: 스토리지 팀) 또는 동일 팀 내의 독립적인 활동을 허용합니다.</block>
   <block id="57e53c1d32a2012eca394e4b926e662d" category="paragraph">파이버 채널과 iSCSI를 사용하는 SAN 스토리지 시스템은 VMware에서 ESX용으로 처음 지원되었지만, 스토리지 시스템에서 개별 VM 파일과 디스크를 관리하는 기능은 부족했습니다. 대신 LUN이 프로비저닝되고 VMFS가 개별 파일을 관리합니다. 이로 인해 스토리지 시스템이 개별 VM 스토리지 성능, 클론 생성 및 보호를 직접 관리하기 어렵습니다. vVols NFS 스토리지를 사용하는 고객이 이미 누리고 있는 스토리지 세분성을 ONTAP 의 강력하고 고성능 SAN 기능과 결합하여 제공합니다.</block>
   <block id="e685b5808aa3d45726f9fa420d612499" category="paragraph">이제 vSphere 8과 ONTAP tools for VMware vSphere 기존 SCSI 기반 프로토콜용 vVols 에서 사용되던 것과 동일한 세부 제어 기능을 NVMe over Fabric을 사용하는 최신 파이버 채널 SAN에서도 사용할 수 있어 확장성 측면에서 더욱 뛰어난 성능을 제공합니다. vSphere 8.0 업데이트 1을 사용하면 하이퍼바이저 스토리지 스택에서 I/O 변환 없이 vVols 사용하여 완벽한 엔드투엔드 NVMe 솔루션을 배포할 수 있습니다.</block>
-  <block id="4595fa438a32e8c0c07a9bac5336deb5" category="paragraph">VAAI는 스토리지로 오프로드되는 다양한 작업을 제공하지만, VASA 공급자가 해결하는 몇 가지 부족한 부분이 있습니다. SAN VAAI는 VMware에서 관리하는 스냅샷을 스토리지 시스템으로 오프로드할 수 없습니다. NFS VAAI는 VM에서 관리하는 스냅샷을 오프로드할 수 있지만, 스토리지 네이티브 스냅샷을 사용하는 VM에는 몇 가지 제한 사항이 있습니다. vVols 가상 머신 디스크에 개별 LUN, 네임스페이스 또는 파일을 사용하므로 ONTAP 파일이나 LUN을 신속하고 효율적으로 복제하여 델타 파일이 더 이상 필요하지 않은 VM 단위의 스냅샷을 생성할 수 있습니다. NFS VAAI는 전원이 켜진 상태의 Storage vMotion 마이그레이션을 위한 클론 작업 오프로딩도 지원하지 않습니다. 기존 NFS 데이터스토어를 사용하는 VAAI를 사용할 경우 마이그레이션 오프로딩을 허용하려면 VM의 전원을 꺼야 합니다. ONTAP 도구의 VASA Provider를 사용하면 핫 마이그레이션 및 콜드 마이그레이션을 위한 스토리지 효율적인 클론을 거의 즉시 생성할 수 있으며, vVols 의 볼륨 간 마이그레이션을 위한 거의 즉각적인 복사도 지원합니다. 이러한 상당한 스토리지 효율성 이점 덕분에 vVols 워크로드를 최대한 활용할 수 있습니다.<block ref="9d1af7a9d4f98887e53c1a9bedbce044" category="inline-link-rx"></block> 프로그램. 마찬가지로, VAAI를 사용한 볼륨 간 복제가 요구 사항을 충족하지 못하는 경우 vVols 의 향상된 복사 환경 덕분에 비즈니스 문제를 해결할 수 있을 것입니다.</block>
   <block id="020478d1582d888a4b791c9b662505b9" category="list-text">VMware vSphere Kubernetes Service(VKS) 영구 볼륨.</block>
   <block id="53a448a8a5917d3739e5a38641e09b61" category="list-text">독립적인 VMDK 수명주기 관리를 통해 Amazon EBS와 유사한 서비스를 제공합니다.</block>
   <block id="2625ac556b206894854d65e8c2d8dd60" category="list-text">클론은 단일 볼륨 내에서 또는 ONTAP 클러스터의 여러 볼륨에 걸쳐 빠르게 생성되므로 기존 VAAI 지원 클론에 비해 이점이 있습니다. 또한 저장 효율도 뛰어납니다. 볼륨 내의 클론은 ONTAP 파일 클론을 사용하는데, 이는 FlexClone 볼륨과 유사하며 소스 vVol 파일/LUN/네임스페이스의 변경 사항만 저장합니다. 따라서 프로덕션 또는 기타 애플리케이션 용도로 장기간 사용할 VM을 신속하게 생성하고 최소한의 공간만 차지하며 VM 수준 보호(VMware vSphere용 NetApp SnapCenter 플러그인, VMware 관리형 스냅샷 또는 VADP 백업 사용) 및 성능 관리( ONTAP QoS 사용)의 이점을 누릴 수 있습니다. VASA를 사용하면 복제가 완료되기 전에 대상 위치에서 복제본에 대한 액세스를 허용할 수 있으므로, VAAI보다 vVols 사용한 크로스 볼륨 복제가 훨씬 빠릅니다. 데이터 블록은 백그라운드 프로세스로 복사되어 대상 vVol을 채웁니다. 이는 기존 LUN에 대해 ONTAP 무중단 LUN 이동이 작동하는 방식과 유사합니다.</block>
@@ -5811,7 +5792,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="9fe81acff7fb8895c38d1841c4b911be" category="list-text">vSphere 8에서 nconnect의 최대값은 4이며 기본값은 1입니다. vSphere의 최대값 제한은 고급 설정을 통해 호스트별로 높일 수 있지만 일반적으로 필요하지 않습니다.</block>
   <block id="76324e8deda86b52136d14ec0de2958c" category="list-text">ESXi는 NFS 연결 수를 256개로 제한하며, 각 nconnect 연결은 이 총 연결 수에 포함됩니다. 예를 들어 nconnect=4인 데이터스토어 두 개는 총 8개의 연결로 계산됩니다.</block>
   <block id="c36803c3f7afe8f4e847f86bb28eeedb" category="list-text">프로덕션 환경에 대규모 변경 사항을 구현하기 전에 사용자 환경에서 nconnect의 성능 영향을 테스트하는 것이 중요합니다.</block>
-  <block id="01e2d9b910b8e5a36373f31296c1c1d3" category="list-text"><block ref="3e0c9147a1a4f5c9489f3907f576c0bf" category="inline-link-macro-rx"></block>에서 언급한 바와 같이 Kubernetes용 vSphere CSI를 사용하지 않는 경우 <block ref="e3529737a3b4eef7cff2c05dcd47fcdc" category="inline-link-rx"></block>에 따라 newSyncInterval을 설정해야 합니다.</block>
   <block id="ddea579695eb36fd924c9d3a8c5bb5bf" category="list-text">ONTAP는 접합점을 사용하여 볼륨을 트리 구조로 구성할 수 있는 유연한 볼륨 네임스페이스 구조를 제공하지만, 이 방식은 vSphere에는 가치가 없습니다. 스토리지의 네임스페이스 계층 구조와 관계없이 데이터스토어의 루트에 각 VM에 대한 디렉터리가 생성됩니다. 따라서 vSphere용 볼륨의 접합 경로를 SVM의 루트 볼륨에 마운트하는 것이 가장 좋은 방법이며, 이것이 ONTAP tools for VMware vSphere가 데이터스토어를 프로비저닝하는 방식입니다. 접합 경로가 중첩되지 않으면 루트 볼륨 이외의 다른 볼륨에 종속되는 볼륨이 없으며, 의도적으로라도 볼륨을 오프라인으로 전환하거나 삭제하더라도 다른 볼륨에 대한 경로에는 영향을 미치지 않습니다.</block>
   <block id="3980a1d1c9ccdad9d36206a7457e9643" category="paragraph">vSphere는 스토리지 장치에 대한 다중 경로를 기본적으로 지원합니다. vSphere는 지원되는 스토리지 시스템의 스토리지 장치 유형을 감지하고, 사용되는 프로토콜이나 ASA, AFF, FAS 또는 소프트웨어 정의 ONTAP 사용 여부에 관계없이 사용 중인 스토리지 시스템의 기능을 지원하도록 다중 경로 스택을 자동으로 구성할 수 있습니다.</block>
   <block id="24e63af66b386fd7126b59dd7fe341db" category="admonition">ESXi에서 지원되는 최신 제한 사항은 <block ref="ca32979bcc653e1966d3624ee8d76604" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
@@ -5956,4 +5936,22 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="17e12dfc833834d5b2e478641ef811d3" category="sidebar">스냅샷 없이 자동 복구</block>
   <block id="74aeb32ca03a9503e64e32a2c6c54887" category="inline-link">LUN에서 정렬되지 않은 IO를 식별하는 방법</block>
   <block id="0e399161325f240b090c8d3dbfd792b1" category="paragraph">Solaris 환경에서의 정렬은 더 복잡합니다. 자세한 내용은<block ref="55cb74ec239a32e3acdc528f25f2de7c" category="inline-link-rx"></block>을 참조하십시오.</block>
+  <block id="af76e786ca90b14a7d42299f0d1375a5" category="inline-link">VMware KB 415074</block>
+  <block id="2014c0fcabc269737b640bd38bc7248e" category="list-text"><block ref="3e0c9147a1a4f5c9489f3907f576c0bf" category="inline-link-macro-rx"></block>에서 언급한 바와 같이 Kubernetes용 vSphere CSI를 사용하지 않는 경우 <block ref="66daae404d60c7a7948be7815b8cecbb" category="inline-link-rx"></block>에 따라 newSyncInterval을 설정해야 합니다.</block>
+  <block id="6aa47cd27ba86090c0a290833e754045" category="list-text">vSphere 7.0에서 NVMe/FC를 사용하는 방법에 대한 자세한 내용은 이 문서<block ref="6b4ed262d14e47ef641cd57b65c32c38" category="inline-link-rx"></block> 및<block ref="25f6eb92bf39f9dbaabe4b65d71fa8c4" category="inline-link-rx"></block>를 참조하십시오. 다음 그림은 vSphere 호스트에서 ONTAP LUN으로의 다중 경로 연결을 보여줍니다.</block>
+  <block id="e6d536dc1857ea29abae2efb4d83a088" category="inline-link">스냅샷 파일 및 제한 사항</block>
+  <block id="6c253fcd497f5eb56cd7feeedb4f2bd9" category="paragraph">스냅샷은 ONTAP의 핵심 기능으로, 특정 시점의 데이터 복사본을 생성할 수 있습니다. 스냅샷은 공간 효율성이 뛰어나고 빠르게 생성할 수 있으므로 VM과 데이터스토어를 보호하는 데 이상적입니다. 스냅샷은 백업, 복구, 테스트 등 다양한 용도로 사용할 수 있습니다. 이러한 스냅샷은 VMware(일관성) 스냅샷과는 다르며 장기적인 데이터 보호에 적합합니다. VMware의 vCenter에서 관리하는 스냅샷은 성능 및 기타 영향으로 인해 단기적인 용도로만 사용하는 것이 좋습니다. 자세한 내용은<block ref="a05729654b2cca6e3a0da6c44f95b4e9" category="inline-link-rx"></block>을 참조하십시오.</block>
+  <block id="2d221a9a1c6447d6299f042924f693ce" category="cell">Kubernetes용 vSphere CSI를 사용하지 않는 경우, per를 설정합니다.<block ref="66daae404d60c7a7948be7815b8cecbb" category="inline-link-rx"></block></block>
+  <block id="0e34258f9d614aa447021e2357abf98b" category="paragraph">VAAI는 스토리지로 오프로드되는 다양한 작업을 제공하지만, VASA Provider에서 해결하는 몇 가지 제한 사항이 있습니다. SAN VAAI는 VMware에서 관리하는 스냅샷을 스토리지 시스템으로 오프로드할 수 없습니다. NFS VAAI는 VM에서 관리하는 스냅샷을 오프로드할 수 있지만, 스토리지 네이티브 스냅샷을 사용하는 VM에는 제약이 있습니다. vVols는 가상 머신 디스크에 개별 LUN, 네임스페이스 또는 파일을 사용하므로, ONTAP은 파일이나 LUN을 빠르고 효율적으로 복제하여 델타 파일이 더 이상 필요하지 않은 VM 단위의 스냅샷을 생성할 수 있습니다. 또한 NFS VAAI는 핫(전원이 켜진) Storage vMotion 마이그레이션에 대한 복제 작업 오프로드를 지원하지 않습니다. 기존 NFS 데이터스토어와 함께 VAAI를 사용할 경우 마이그레이션 오프로드를 허용하려면 VM의 전원이 꺼져 있어야 합니다. ONTAP 툴의 VASA Provider는 핫 및 콜드 마이그레이션에 대해 거의 즉각적이고 스토리지 효율적인 복제를 지원하며, vVols의 볼륨 간 마이그레이션에 대한 거의 즉각적인 복사도 지원합니다. 이러한 상당한 스토리지 효율성 이점 덕분에 해당<block ref="2a2065775c962a86c10ab4823fcb1765" category="inline-link-rx"></block> 프로그램을 통해 vVols 워크로드를 최대한 활용할 수 있습니다. 마찬가지로, VAAI를 사용한 볼륨 간 복제가 요구 사항을 충족하지 못하는 경우, vVols의 향상된 복사 환경을 통해 비즈니스 과제를 해결할 수 있을 것입니다.</block>
+  <block id="27ef780cd847ce01fafe4f671aa8c4dd" category="inline-link">MetroCluster를 사용하여 VCF 관리 도메인에 대한 스트레치 클러스터 구성</block>
+  <block id="44be7557bbc9253097ccd5230cc9cfc9" category="paragraph"><block ref="44be7557bbc9253097ccd5230cc9cfc9" category="inline-link-rx"></block></block>
+  <block id="8613927ea95bd1c8593515ba57f02596" category="inline-link">MetroCluster를 사용하여 VCF 워크로드 도메인에 대한 스트레치 클러스터 구성</block>
+  <block id="1cf454081e24f94b1b1623b832e54b9b" category="paragraph"><block ref="1cf454081e24f94b1b1623b832e54b9b" category="inline-link-rx"></block></block>
+  <block id="ead0b27d7cf57e3420b139c5b99f4200" category="inline-link">ONTAP 툴의 세분화된 데이터스토어 보호 자격 기준</block>
+  <block id="17757c8f1126b26a80d136776b21de19" category="paragraph">ONTAP 툴 vCenter 플러그인은 vMSC용 SnapMirror 활성 동기화를 구성하는 간단하고 직관적인 방법을 제공합니다. ONTAP 툴 vCenter 플러그인을 사용하여 두 ONTAP 클러스터 간의 SnapMirror 활성 동기화 관계를 생성하고 관리할 수 있습니다. 이 플러그인은 이러한 관계를 효율적으로 설정하고 관리할 수 있는 사용하기 쉬운 인터페이스를 제공합니다. ONTAP 툴 vCenter 플러그인에 대한 자세한 내용은<block ref="238135431b1a2d25dda1f29146112b60" category="inline-link-rx"></block>에서 확인하거나<block ref="3236cdfc1549e86732396909582b21e6" category="inline-link-rx"></block>으로 바로 이동하십시오.</block>
+  <block id="b60bba487282e28efda17e877736141f" category="inline-link">vSphere 클라이언트에서 vSphere HA 클러스터 생성</block>
+  <block id="c0a02de3f325544dbbbff0b23f467754" category="paragraph"><block ref="efe0a5efb52ae3977ed7e92171dafbc8" category="inline-link-rx"></block>을 참조하여 vCenter HA를 구성하십시오.</block>
+  <block id="8f459734c1d38bc944055a15326ea68d" category="paragraph">vSphere Metro Storage Cluster의 설계 지침에 대한 자세한 내용은 다음 솔루션 가이드를 참조하십시오.</block>
+  <block id="34fd97d0487efaacb8dc98024d287c11" category="inline-link">VMware vSphere Metro Storage Cluster with SnapMirror 활성 동기화</block>
+  <block id="f9cfc4ca20b8bdb426e6898a32e2f8f3" category="list-text"><block ref="f9cfc4ca20b8bdb426e6898a32e2f8f3" category="inline-link-rx"></block></block>
 </blocks>

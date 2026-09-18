@@ -34,7 +34,7 @@ SnapMirror 액티브 동기화를 사용하여 vMSC 구성을 관리하는 것�
 [[using-the-ontap-tools-vcenter-plugin-for-snapmirror-active-sync]]
 == ONTAP 도구 SnapMirror Active Sync용 vCenter 플러그인 사용
 
-ONTAP tools vCenter 플러그인을 사용하면 vMSC에 대한 SnapMirror 활성 동기화를 간단하고 직관적으로 구성할 수 있습니다. ONTAP 도구 vCenter 플러그인을 사용하여 두 ONTAP 클러스터 간에 SnapMirror 활성 동기화 관계를 생성하고 관리할 수 있습니다. 이 플러그인은 이러한 관계를 효율적으로 설정하고 관리하기 위해 사용하기 쉬운 인터페이스를 제공합니다. ONTAP 툴 vCenter 플러그인에 대한 자세한 내용은 에서확인하거나 바로 로 이동할 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/protect-cluster.html["호스트 클러스터 보호를 사용하여 보호합니다"] 수 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/index.html["VMware vSphere용 ONTAP 툴"] 있습니다.
+ONTAP 툴 vCenter 플러그인은 vMSC용 SnapMirror 활성 동기화를 구성하는 간단하고 직관적인 방법을 제공합니다. ONTAP 툴 vCenter 플러그인을 사용하여 두 ONTAP 클러스터 간의 SnapMirror 활성 동기화 관계를 생성하고 관리할 수 있습니다. 이 플러그인은 이러한 관계를 효율적으로 설정하고 관리할 수 있는 사용하기 쉬운 인터페이스를 제공합니다. ONTAP 툴 vCenter 플러그인에 대한 자세한 내용은 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/index.html["VMware vSphere용 ONTAP 툴"]에서 확인하거나 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/protect/granular-datastore-protection-concept.html["ONTAP 툴의 세분화된 데이터스토어 보호 자격 기준"]으로 바로 이동하십시오.
 
 
 
