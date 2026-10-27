@@ -761,8 +761,6 @@
   <block id="59dcf78e97c197a0f240067da57a248f" category="paragraph">ACCESS 및 GETATTR 같은 극히 높은 레벨의 기타 IOPS가 워크로드를 장악할 수 있다는 사실을 깨달은 고객들이 있습니다. 극단적인 경우 그러한 읽기 및 쓰기 작업이 전체 중 10% 남짓할 수 있습니다. 이는 를 포함하는 모든 데이터베이스에서 정상적인 동작입니다<block ref="3504e2b0e7c968444314433be465518d" prefix=" " category="inline-code"></block> 및/또는<block ref="79fea224ffd9e8111e4e87cab732464b" prefix=" " category="inline-code"></block> 이러한 옵션 덕분에 Linux 운영 체제가 스토리지 시스템에서 파일 메타데이터를 지속적으로 다시 로드하게 되기 때문입니다. ACCESS 및 GETATTR 같은 작업은 데이터베이스 환경에서 ONTAP 캐시로부터 서비스되며 그 영향이 크지 않습니다. 스토리지 시스템에 대한 진정한 수요를 창출하는 읽기 및 쓰기 같은 진정한 IOPS로 간주해서는 안 됩니다. 이러한 기타 IOPS는 특히 RAC 환경에서 약간의 로드를 생성합니다. 이러한 상황을 해결하려면 DNFS를 활성화하여 운영 체제 버퍼 캐시를 우회하고 이 불필요한 메타데이터 작업을 피하십시오.</block>
   <block id="041f371e212c70407e145ae9f752a8b4" category="section-title">Linux 직접 NFS</block>
   <block id="14dd7af30f62ec838445a1e167d2aff6" category="section-title">Linux Direct NFS 및 Oracle RAC</block>
-  <block id="c6a209e4ad702c6424efb7d63d76feca" category="paragraph">Linux에는 노드 전체에 걸친 일관성을 위해 RAC에 필요한 직접 I/O를 강제 적용할 방법이 없기 때문에 DNFS를 사용하면 Linux 운영 체제 기반 Oracle RAC에서 특별한 성능 이점을 얻을 수 있습니다. 이를 해결하려면 Linux에서 를 사용해야 합니다<block ref="3504e2b0e7c968444314433be465518d" prefix=" " category="inline-code"></block> 마운트 옵션을 사용하면 운영 체제 캐시에서 파일 데이터가 즉시 만료됩니다 그러면 이 옵션은 Linux NFS 클라이언트가 특성 데이터를 계속 다시 읽게 강제 적용합니다. 이는 지연 시간을 저하시키고 스토리지 컨트롤러의 로드를 증가시킵니다.</block>
-  <block id="3070cb366c38db327b0cf057d63792c1" category="paragraph">DNFS를 활성화하면 호스트 NFS 클라이언트가 우회되어 이러한 저하가 일어나지 않습니다. 여러 고객의 보고에 따르면, DNFS를 활성화했을 때 RAC 클러스터에서의 성능이 상당히 개선되었고 특히 IOPS와 관련하여 ONTAP 로드가 크게 감소하였다고 합니다.</block>
   <block id="e97ab7f94d503bbec4b013b5b77118c6" category="section-title">Linux Direct NFS 및 oranfstab 파일</block>
   <block id="f63255b70940d25581e0cf5f81dd6cd6" category="paragraph">다중 경로 옵션으로 Linux에서 DNFS를 사용할 때는 여러 서브넷을 사용해야 합니다. 그 외 운영 체제에서는 를 사용하여 여러 DNFS 채널을 설정할 수 있습니다<block ref="54b4c4075463b2e02cd69f5cd139b5b2" prefix=" " category="inline-code"></block> 및<block ref="bbf52a1a57a4eaa83512cab68fd52b70" prefix=" " category="inline-code"></block> 단일 서브넷에 여러 DNFS 채널을 구성하는 옵션입니다. 하지만 이 방법은 Linux에서 제대로 작동하지 않을 수 있고 예기치 않은 성능 문제가 초래될 수 있습니다. Linux에서는 DNFS 트래픽을 위해 사용되는 각 NIC가 다른 서브넷에 있어야 합니다.</block>
   <block id="6c5cf31ca1af553b1f4a9b99e3cb054c" category="section-title">I/O 스케줄러</block>
@@ -2387,7 +2385,6 @@ VAAI를 사용하지 않는 경우 NFS에서 모든 VM에 대해 이 설정이 �
   <block id="116d20fc387d73c8e4a86e7998913947" category="section-title">vSphere 및 Site Recovery Manager의 최신 버전입니다</block>
   <block id="7cb1700928c008eb817bc79250cc9002" category="section-title">IPv6를 지원합니다</block>
   <block id="ea9aacd1495949730de8eeab11e66459" category="paragraph">IPv6은 이제 다음과 같은 제한 사항으로 지원됩니다.</block>
-  <block id="918d32b75f0ab883abba3a8dc0c3ae8d" category="inline-link">상호 운용성 매트릭스 툴</block>
   <block id="4a4842d7448ef71eb69b013e560b18bb" category="section-title">더 뛰어난 확장성</block>
   <block id="96cb4d41ca97bd9d3d446984d3170a57" category="paragraph">오랫동안 기다려온 새로운 기능은 미션 크리티컬 애플리케이션에 볼륨 세분화 제로 RPO 데이터 복제 솔루션을 제공하는 ONTAP 9.5 이상의 SM-S(SnapMirror Synchronous)입니다. SM-S에는 ONTAP 도구 9.8 이상이 필요합니다.</block>
   <block id="b9832b10a87d0c3793ed3b413ee1d839" category="section-title">REST API 지원</block>
@@ -4250,367 +4247,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="498a9faf271a73dcf026b1041b66ef2a" category="paragraph">두 사이트가 파이버 연결을 통해 100m 떨어져 있는 경우 WAN을 통해 추가 지연 시간을 감지할 수 없지만 사이트가 멀리 떨어져 있으면 두 사이트에서 읽기 성능이 저하됩니다. 이와 반대로 AFF에서는 사용 가능한 로컬 경로가 없는 경우에만 WAN 교차 경로를 사용하고 모든 입출력이 로컬 입출력이기 때문에 일상적인 성능이 더 나을 것입니다. 비균일 액세스 네트워크를 사용하는 ASA는 사이트 간 지연 시간 액세스 패널티 없이 ASA의 비용 및 기능 이점을 얻을 수 있는 옵션이 될 것입니다.</block>
   <block id="15ab92b8042738f6acc912e2d98ae17a" category="paragraph">지연 시간이 짧은 구성의 SM-AS를 사용하는 ASA는 두 가지 흥미로운 이점을 제공합니다. 첫째로, IO는 2배 더 많은 경로를 사용하여 2배 더 많은 컨트롤러가 처리할 수 있기 때문에 모든 단일 호스트의 성능을 두 배 * 제공합니다. 둘째, 단일 사이트 환경에서 호스트 액세스를 중단하지 않고 전체 스토리지 시스템을 손실할 수 있기 때문에 최고의 가용성을 제공합니다.</block>
   <block id="41c719032afe187deaf4b4b2af41aa36" category="paragraph">TSSE(Temperature Sensitive Storage Efficiency)는 ONTAP 9 .8 이상에서 사용할 수 있습니다. 블록 액세스 히트 맵에 의존하여 자주 액세스하지 않는 블록을 식별하고 더 높은 효율성으로 압축합니다.</block>
-  <block id="8284eb5a9d9bef8f0f1ece257656d0fe" category="summary">ONTAP에서 Epic을 위한 추가 정보입니다</block>
-  <block id="345245c83d2b2c4c2a5eb9f2887da627" category="paragraph">이 문서에 설명된 정보에 대한 자세한 내용은 다음 문서 및/또는 웹 사이트를 참조하십시오.</block>
-  <block id="bc4fe2352063642d68529f2aa0ca7ca3" category="inline-link-macro">NetApp 제품 설명서</block>
-  <block id="0897605072547ea93ef25a4b355ac5f6" category="list-text"><block ref="0897605072547ea93ef25a4b355ac5f6" category="inline-link-macro-rx"></block></block>
-  <block id="5358757de9216cc29d688612a3d72fe1" category="inline-link-macro">ONTAP 9 설명서</block>
-  <block id="3973235e869d719328cf4b37e59562e5" category="list-text"><block ref="3973235e869d719328cf4b37e59562e5" category="inline-link-macro-rx"></block></block>
-  <block id="c9cefb6ed873a418f8c8232dca6879d2" category="inline-link-macro">일관성 그룹</block>
-  <block id="10d6aff3e86ebe3712a2616b45008fb3" category="list-text"><block ref="10d6aff3e86ebe3712a2616b45008fb3" category="inline-link-macro-rx"></block></block>
-  <block id="0d3cc094235677831b5697c5bab76394" category="inline-link-macro">ONTAP 및 ONTAP System Manager 설명서 리소스</block>
-  <block id="3b2c8ae1d985c88d539bf7851e067922" category="list-text"><block ref="3b2c8ae1d985c88d539bf7851e067922" category="inline-link-macro-rx"></block></block>
-  <block id="e9bf68ed54b6d1ff63e8bda8c0b6a70f" category="inline-link-macro">TR-3930i: Epic을 위한 NetApp 사이징 지침</block>
-  <block id="920aa6d447930899ad56517c79fd12fc" category="list-text"><block ref="b6ff45309a811037a92ca1e6262c74a8" category="inline-link-macro-rx"></block> (NetApp 로그인 필요)</block>
-  <block id="840f4016fe968750d45ea4545f2f1893" category="section-title">Epic 고객 안내 문서</block>
-  <block id="a839c9787ec80291f4b34dc5451786a5" category="paragraph">EPIC는 고객에게 서버, 스토리지 및 네트워크에 대한 지침을 위해 다음 문서를 제공합니다. 이 기술 보고서에서 참조된 문서입니다.</block>
-  <block id="67bab37630accce3ea259fb1601fca2e" category="list-text">스토리지 영역 네트워크 고려 사항</block>
-  <block id="0fe2c5f32f45114c27e3b7a7ca0ba0ad" category="list-text">비즈니스 연속성 기술 솔루션 가이드 를 참조하십시오</block>
-  <block id="2163e1881d92ff554d8969998a7d618f" category="list-text">All-Flash 참조 아키텍처 전략 핸드북</block>
-  <block id="b332ca8d59cd86adb52c28aef982cc69" category="list-text">스토리지 제품 및 기술 상태</block>
-  <block id="a0107bedc201b2df3694df573f65ae32" category="list-text">Epic 클라우드 고려 사항</block>
-  <block id="0cf7d14c360e7f8755d749057b348718" category="list-text">하드웨어 구성 가이드(고객별)</block>
-  <block id="50923dab9020d1e069418763d0bd15a3" category="list-text">데이터베이스 스토리지 레이아웃 권장 사항(고객별)</block>
-  <block id="4e1249f2da2104e56555dec5d4d51e6a" category="summary">Epic 4노드 아키텍처</block>
-  <block id="7baf69c8e83ff08e0583426d011bc650" category="paragraph">아래 그림은 4노드 아키텍처의 스토리지 레이아웃, 즉 운영 중인 HA 쌍과 재해 복구의 HA 쌍을 보여줍니다. 컨트롤러 크기와 디스크 수는 후자의 크기 조정 이미지를 기준으로 합니다.</block>
-  <block id="70ccc987c3596ca363e7b8d980858220" category="paragraph">NetApp는 SLM 권장 AQoS 정책을 수락하여 최소 바닥 수준의 성능을 보장합니다. EPIC는 ONTAP의 스토리지 풀을 훨씬 적은 하드웨어로 통합할 수 있도록 지원합니다. 자세한 내용은 Epic 분기별 SPATS 문서를 참조하십시오. 기본적으로 pool1, pool2 및 NAS1(Epic 하드웨어 구성 가이드에 나와 있음)은 두 컨트롤러에 균등하게 확장되는 워크로드를 모두 단일 HA 쌍에서 실행할 수 있습니다. 재해 복구 시 Epic 풀 3과 NAS 3도 HA 쌍의 두 컨트롤러 간에 분할됩니다.</block>
-  <block id="34557edb2bf88cd4f837f2384ead1830" category="paragraph">테스트 전체 복사 환경(예: SUP, REL, PJX)은 Epic Production, Epic Report 또는 Epic 재해 복구에서 클론 복제됩니다. Epic 백업 및 업데이트에 대한 자세한 내용은 " 데이터 관리 " 섹션을 참조하십시오.</block>
-  <block id="5c8423bf649a8a50f33626549581cce9" category="section-title">4노드 아키텍처</block>
-  <block id="f42ac2802f367c372897f3fb06218d2d" category="inline-image-macro">Epic 4노드 아키텍처</block>
-  <block id="848f13dbd455e0190684bb8052ef94d6" category="paragraph"><block ref="848f13dbd455e0190684bb8052ef94d6" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="14b8013c3961c3eb9f2d01aff2c9d430" category="section-title">4노드 워크로드 배치</block>
-  <block id="8e576f920186d1c7001b6f1da66f2359" category="inline-image-macro">EPIC 4노드 배치</block>
-  <block id="34594b0fc43be2425a0a68f14928bc8d" category="paragraph"><block ref="34594b0fc43be2425a0a68f14928bc8d" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="145a177f694025424b761a3b22ca2f6b" category="summary">EPIC 6노드 아키텍처</block>
-  <block id="7682e26e53b5af35c13c22f5034f788a" category="paragraph">고객은 6노드 설계로 시작하거나 수요 증가에 따라 4개에서 6개 노드로 원활하게 스케일아웃하기를 원할 수 있습니다. 스케일아웃 기능을 사용하면 노드 간에 워크로드를 중단 없이 이동하고 클러스터 전반에 걸쳐 재조정할 수 있습니다.</block>
-  <block id="121ec45abd57b78d2c63e13a01970fbf" category="paragraph">이 아키텍처는 클러스터에서 최고의 성능과 용량 균형을 제공합니다. Epic Production, Epic Report, Epic Test가 첫 번째 HA 쌍에서 실행됩니다. 두 번째 HA 쌍은 Clarity, Hyperspace, VMware, NAS1 및 나머지 Epic 워크로드에 사용됩니다. 재해 복구는 이전 섹션의 4노드 아키텍처와 동일합니다.</block>
-  <block id="628e6fdb5831f5144730fdfb620a1a2a" category="section-title">6노드 아키텍처</block>
-  <block id="5d28884b83f218379ec90c789e2e382b" category="inline-image-macro">Epic 6-노드 아키텍처</block>
-  <block id="a5cf77b4851a534d4e7f8cbfc10e7734" category="paragraph"><block ref="a5cf77b4851a534d4e7f8cbfc10e7734" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="214d949b6d12c893a63f49d862292640" category="section-title">6노드 워크로드 배치</block>
-  <block id="65ea1ebb7d9c2d858f8701fcbecd438d" category="inline-image-macro">Epic 6노드 배치</block>
-  <block id="77e8933cdf526d7670fcd797f57f81a7" category="paragraph"><block ref="77e8933cdf526d7670fcd797f57f81a7" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="a3ab98b5217808d71238c069623fa0ff" category="summary">Epic 8노드 아키텍처</block>
-  <block id="ab4e8eb50674d5d1bee79a6682b49325" category="paragraph">아래 그림은 스케일아웃 8노드 아키텍처를 보여 줍니다. 4개 노드로 시작한 후 6개 노드로 확장하고 8개 노드 이상으로 계속 확장할 수 있습니다. 이 아키텍처는 운영 중인 6개 노드에서 성능과 용량을 가장 적절하게 조정합니다.</block>
-  <block id="0ef10ffde0c0ebd21feabe96ec890f72" category="paragraph">테스트 환경은 이 설계에서 생산 대신 보고서에서 복제됩니다. 테스트 환경 및 무결성 검사를 운영 환경에서 오프로드합니다.</block>
-  <block id="211891edb616b1a6e25c469a73cd07c9" category="section-title">8노드 아키텍처</block>
-  <block id="3b31cb391c5fb328f6bcf768909f68a2" category="paragraph"><block ref="3b31cb391c5fb328f6bcf768909f68a2" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="c344a01a287e43ab2ef2793cf550435a" category="section-title">8노드 워크로드 배치</block>
-  <block id="80a544c0b0187e121e581e019d0902a9" category="inline-image-macro">EPIC 8노드 배치</block>
-  <block id="e374fdf5079d6709ca8206b4c77be000" category="paragraph"><block ref="e374fdf5079d6709ca8206b4c77be000" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="17e9ce8e967d60724d7f53d467470a10" category="summary">탁월한 아키텍처</block>
-  <block id="b1830ae1e99adb346ce1da353cd6c089" category="paragraph">이 섹션에서는 Epic 소프트웨어 환경과 스토리지가 필요한 주요 구성 요소에 대해 설명합니다. 스토리지 설계를 안내하는 데 도움이 되는 주요 고려 사항을 제공합니다.</block>
-  <block id="4db273f137d059bd4ffd23818c367214" category="paragraph">위스콘신 주 베로나에 본사를 둔 EPIC는 중대형 의료 그룹, 병원 및 통합 의료 기관을 위한 소프트웨어를 제작하고 있습니다. 또한 커뮤니티 병원, 학술 시설, 어린이 단체, 안전망 제공자 및 다중 병원 시스템도 포함됩니다. EPIC 통합 소프트웨어는 임상, 액세스 및 수익 기능을 포괄하며 가정까지 확장됩니다.</block>
-  <block id="27cd823999704d6e14cdee1e83bef7f0" category="paragraph">Epic 소프트웨어에서 지원하는 다양한 기능을 다루는 것은 본 문서의 범위를 벗어납니다. 하지만 스토리지 시스템의 관점에서 보면 모든 Epic 소프트웨어는 각 구축 시에 환자 중심 데이터베이스를 공유합니다. EPIC는 InterSystems Cache 데이터베이스에서 새로운 InterSystems Iris 데이터베이스로 전환하고 있습니다. 캐시 및 아이리스의 저장소 요구 사항은 동일하므로 이 문서의 나머지 부분에서는 데이터베이스를 아이리스로 지칭합니다. Iris는 AIX 및 Linux 운영 체제에서 사용할 수 있습니다.</block>
-  <block id="4e25ab2bd75f003927aabf72608c3610" category="section-title">시스템 간 Iris</block>
-  <block id="0af82ac784148ef3818d2fe5b04763fa" category="paragraph">Intersystems Iris는 Epic 애플리케이션에서 사용하는 데이터베이스입니다. 이 데이터베이스에서 데이터 서버는 영구적으로 저장된 데이터의 액세스 지점입니다. 응용 프로그램 서버는 데이터베이스 쿼리를 관리하고 데이터 서버에 데이터를 요청합니다. 대부분의 Epic 소프트웨어 환경에서 SMP(대칭 멀티프로세서) 아키텍처를 단일 데이터베이스 서버에서 사용하면 Epic 애플리케이션의 데이터베이스 요청을 처리할 수 있습니다. 대규모 배포에서는 InterSystems의 ECP(엔터프라이즈 캐시 프로토콜)를 사용하여 분산 모델을 지원할 수 있습니다.</block>
-  <block id="8dfea4e602a85bafff792b879b2d056b" category="paragraph">장애 조치가 활성화된 클러스터 하드웨어를 사용하면 대기 데이터 서버가 기본 데이터 서버와 동일한 스토리지에 액세스할 수 있습니다. 또한 대기 데이터 서버가 하드웨어 장애 시 처리 책임을 맡을 수 있습니다.</block>
-  <block id="c77ab217583518f1b67702b591baf929" category="paragraph">또한 InterSystems는 데이터 복제, 재해 복구 및 고가용성(HA) 요구 사항을 충족하는 기술을 제공합니다. Intersystems의 복제 기술은 기본 데이터 서버에서 하나 이상의 보조 데이터 서버로 동기적 또는 비동기적으로 Iris 데이터베이스를 복제하는 데 사용됩니다. NetApp SnapMirror는 WebBLOB 스토리지를 복제하거나 백업 및 재해 복구에 사용됩니다.</block>
-  <block id="df2e58f9c6f746010ccdd5cf07673500" category="paragraph">업데이트된 Iris 데이터베이스는 다음과 같은 여러 가지 이점을 제공합니다.</block>
-  <block id="f8ffd660138274e3b7b31f900153e4b6" category="list-text">확장성이 향상되어 여러 Epic 인스턴스가 있는 대형 조직이 하나의 더 큰 인스턴스로 통합할 수 있습니다.</block>
-  <block id="242ef58734fef1421d6cc1e1154bd041" category="list-text">새로운 플랫폼 라이센스 비용을 지불하지 않고도 AIX와 RHEL(Red Hat Enterprise Linux) 간에 전환할 수 있는 라이센스 휴일</block>
-  <block id="08a78b85487809e2116574e4ff97dec5" category="section-title">캐시 데이터베이스 서버 및 스토리지 사용량</block>
-  <block id="4cc33a0396ddd5a29816a3a40d01a6b5" category="list-text">* 프로덕션 * Epic 소프트웨어 환경에서는 환자 중심 데이터베이스 하나가 구축됩니다. Epic의 하드웨어 요구 사항에서 운영 읽기/쓰기 Iris 데이터 서버를 호스팅하는 물리적 서버를 운영 데이터베이스 서버라고 합니다. 이 서버에는 기본 데이터베이스 인스턴스에 속한 파일을 위한 고성능 All-Flash 스토리지가 필요합니다. 고가용성을 위해 Epic은 동일한 파일에 액세스할 수 있는 장애 조치 데이터베이스 서버의 사용을 지원합니다. Iris는 Epic Mirror를 사용하여 읽기 전용 보고서, 재해 복구 및 읽기 전용 복제본을 지원합니다. 무중단 업무 운영을 위해 각 데이터베이스 서버 유형을 읽기/쓰기 모드로 전환할 수 있습니다.</block>
-  <block id="cdbcd4cba3ac1d1b15d302df69df1198" category="list-text">* 보고서 * 보고 미러 데이터베이스 서버는 운영 데이터에 대한 읽기 전용 액세스를 제공합니다. 운영 Iris 데이터 서버의 백업 미러로 구성된 Iris 데이터 서버를 호스팅합니다. 보고 데이터베이스 서버의 스토리지 용량 요구 사항은 운영 데이터베이스 서버와 동일합니다. 쓰기 성능 보고는 운영 환경과 동일하지만 읽기 워크로드의 특성 및 크기는 다릅니다.</block>
-  <block id="10938a446d1d37c3afcad8aac850f514" category="list-text">*읽기 전용 지원* 이 데이터베이스 서버는 선택 사항이며 아래 그림에는 나와 있지 않습니다. Epic을 지원하기 위해 미러 데이터베이스 서버를 구축할 수도 있습니다. 읽기 전용 모드로 운영 복사본에 액세스할 수 있는 읽기 전용 기능을 지원합니다. 이 유형의 데이터베이스 서버는 무중단 업무 운영을 위해 읽기/쓰기 모드로 전환할 수 있습니다.</block>
-  <block id="32042e6794444e49e092cad346b66b28" category="list-text">* 재해 복구 * 비즈니스 연속성 및 재해 복구 목표를 달성하기 위해 재해 복구 미러 데이터베이스 서버는 일반적으로 운영 및/또는 보고 미러 데이터베이스 서버와 지리적으로 분리된 사이트에 구축됩니다. 재해 복구 미러 데이터베이스 서버는 운영 Iris 데이터 서버의 백업 미러로 구성된 Iris 데이터 서버도 호스팅합니다. 운영 사이트를 오랫동안 사용할 수 없게 되면 이 백업 미러 데이터베이스 서버가 미러 SRW(읽기/쓰기 인스턴스)로 작동하도록 구성할 수 있습니다. 백업 미러 데이터베이스 서버의 파일 스토리지 요구 사항은 운영 데이터베이스 서버와 동일합니다. 반면, 백업 미러 데이터베이스 스토리지는 비즈니스 연속성의 성능 측면에서 운영 스토리지와 동일한 크기로 사이징됩니다.</block>
-  <block id="d05c7e253f48b314f8488aba0e85b3b4" category="inline-image-macro">EPIC IRIS ODB입니다</block>
-  <block id="90cb7e5b029ac3a1b754d9f0d75bfbb9" category="paragraph"><block ref="90cb7e5b029ac3a1b754d9f0d75bfbb9" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="b101ffd23847579c0cf3cb028fc314ee" category="list-text">* Test * 의료 기관은 개발, 테스트 및 스테이징 환경을 구축하는 경우가 많습니다. 이러한 환경에 대한 추가 Iris 데이터 서버에는 동일한 스토리지 시스템에서 수용할 수 있는 스토리지도 필요합니다. EPIC는 공유 스토리지 시스템에서 추가 스토리지를 제공하기 위한 특정 요구 사항과 제약 조건을 갖추고 있습니다. 이러한 특정 요구 사항은 일반적으로 이 문서의 모범 사례를 통해 해결됩니다.</block>
-  <block id="5c52f2993ead7ce33b4600c9955d9657" category="paragraph">Epic 소프트웨어 환경에는 Iris ODB 데이터 서버 외에도 아래 그림과 같이 다음과 같은 기타 구성 요소가 포함됩니다.</block>
-  <block id="c352fde153a95627d87a161b60e9e211" category="list-text">Oracle 또는 Microsoft SQL Server 데이터베이스 서버가 Epic의 Clarity 비즈니스 보고 도구의 백엔드로 사용됩니다</block>
-  <block id="72e364f0316ce75144d3bcbc76627977" category="admonition">Clarity는 보고 Iris 데이터베이스에서 매일 추출한 데이터를 보고하는 데 사용됩니다.</block>
-  <block id="9c7d7e54119a875f7f730fac34d86939" category="list-text">WebBLOB 서버(SMB)</block>
-  <block id="7f140c68d528349ef23a9adde829618a" category="list-text">다목적 데이터베이스 서버</block>
-  <block id="db670b036ce103ccc68fe4a2f746bcbb" category="list-text">다목적 가상 머신(VM)</block>
-  <block id="46f49acf82ce78d08668061bb78e679a" category="list-text">클라이언트 액세스를 위한 하이퍼스페이스</block>
-  <block id="847ce339c80d3a544fdd1e3ea23f89ed" category="inline-image-macro">Epic 데이터베이스</block>
-  <block id="ddc0ff60fb0cba83974547cb2fd7a40e" category="paragraph"><block ref="ddc0ff60fb0cba83974547cb2fd7a40e" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="300c335aaf3a97bb6020a19be0b8ca96" category="paragraph">이러한 여러 워크로드, 풀, NAS 및 SAN 프로토콜에 대한 스토리지 요구사항을 단일 ONTAP 클러스터를 통해 통합 및 호스팅할 수 있습니다. 의료 조직에서는 이 통합을 통해 모든 Epic 및 Non-Epic 워크로드에 대해 단일 데이터 관리 전략을 수립할 수 있습니다.</block>
-  <block id="4a7de8a55a290fb3a0a4efd490ec781b" category="section-title">운영 데이터베이스 워크로드</block>
-  <block id="a627911d38337b81dddab9711a61842c" category="paragraph">각 Epic 데이터베이스 서버는 다음과 같은 유형의 파일에 대한 I/O를 수행합니다.</block>
-  <block id="458648f675593beefe031e7b7ba9fcdd" category="list-text">데이터베이스 파일</block>
-  <block id="07599d3aee2c26c36cae1cb305a0d120" category="list-text">저널 파일</block>
-  <block id="b9c807a9cbbe80f3b710d64a47334ecf" category="list-text">응용 프로그램 파일</block>
-  <block id="4b11d0da3422be079767b9c81ea967cb" category="paragraph">개별 데이터베이스 서버의 워크로드는 Epic 소프트웨어 환경에서의 역할에 따라 다릅니다. 예를 들어 운영 데이터베이스 파일은 일반적으로 100% 랜덤 입출력 요청으로 구성된 가장 까다로운 워크로드를 발생시킵니다. 미러 데이터베이스의 워크로드는 일반적으로 덜 까다롭고 읽기 요청이 적습니다. 저널 파일 워크로드는 주로 순차적입니다.</block>
-  <block id="6908d08a516bc86d102ccafa6c2ece9d" category="paragraph">Epic은 스토리지 성능 벤치마킹 및 고객 워크로드를 위한 워크로드 모델을 유지합니다. Epic 워크로드 모델, 벤치마크 결과 및 NetApp 사이징 툴을 사용하여 Epic 환경에서 스토리지 크기를 올바르게 조정하는 방법에 대한 자세한 내용은 을 참조하십시오<block ref="81c36a9e6d224e9d42c9630dffaa9434" category="inline-link-rx"></block>(NetApp 로그인 필요).</block>
-  <block id="f71d6b15e61746171efc106f495b60cd" category="paragraph">EPIC는 또한 각 고객에게 I/O 예상 및 스토리지 용량 요구 사항이 포함된 맞춤형 하드웨어 구성 가이드를 제공합니다. 최종 스토리지 요구사항에는 개발, 테스트 및/또는 스테이징 환경 과 통합될 수 있는 기타 보조 워크로드가 포함될 수 있습니다. 고객은 하드웨어 구성 가이드를 사용하여 전체 스토리지 요구사항을 NetApp에 전달할 수 있습니다. 이 가이드에는 Epic 구축을 사이징하는 데 필요한 모든 데이터가 포함되어 있습니다.</block>
-  <block id="c7a0b1a5f7a146b9b72947b2bba045ed" category="paragraph">구축 단계에서 Epic은 데이터베이스 스토리지 레이아웃 가이드를 제공합니다. 이 가이드는 고급 스토리지 설계에 사용할 수 있는 더욱 세부적인 LUN 레벨을 제공합니다. 데이터베이스 스토리지 레이아웃 가이드는 NetApp에만 해당되는 것이 아닌 일반적인 스토리지 권장 사항입니다. 이 가이드를 사용하여 NetApp에 가장 적합한 스토리지 레이아웃을 결정합니다.</block>
-  <block id="ab3b24e1e2a3f9784a9c6cad8db20a76" category="summary">탁월한 크기 조정</block>
-  <block id="706a0ec5dbae849750639964dc6b852f" category="paragraph">Epic 스토리지 환경의 크기를 결정할 때 고려해야 할 주요 아키텍처 중 하나는 ODB 데이터베이스 크기입니다.</block>
-  <block id="abe227b9b306ed7c0527800b44a2f1d0" category="paragraph">아래 표시된 다이어그램을 사용하여 중소 규모 Epic 스토리지 아키텍처를 선택할 수 있습니다. 이러한 설계에는 하드웨어 구성 가이드에 나열된 모든 워크로드를 실행하는 것이 포함됩니다. 사이징 트리는 100개 이상의 하드웨어 구성 가이드의 데이터를 기반으로 하며 대부분 정확한 예측이 가능해야 합니다.</block>
-  <block id="be0322041cc582d91f5f470df1ef2ba4" category="paragraph">이것은 단지 시작점일 뿐이라는 점에 유의해야 합니다. 귀사는 Epic 제휴 팀과 협력하여 Epic 설계를 확인해야 합니다. 이 팀은 epic @NetApp.com에서 연락할 수 있습니다. 모든 구현은 Epic 및 NetApp의 권장 모범 사례를 준수하면서 고객의 요청을 수용해야 합니다.</block>
-  <block id="20e8e833e31ffb5776ac701658144bd3" category="list-text">Epic 데이터베이스를 10TB 미만의 소형 Epic 아키텍처</block>
-  <block id="5d8ee21ec144a04a8287c0171b9a8527" category="list-text">10TB에서 50TB까지 Epic 데이터베이스를 사용하는 중간 규모 Epic 아키텍처</block>
-  <block id="79ac7005a81d3ad4f64a1a5f5db00c7e" category="list-text">50TB 이상에서 Epic 데이터베이스를 구축한 대규모 Epic 아키텍처</block>
-  <block id="650c96055e8747d8b8a4c503b32aea8d" category="inline-image-macro">탁월한 사이징 가이드</block>
-  <block id="1c2004236bc67ea5f8fcc53a967ce698" category="paragraph"><block ref="1c2004236bc67ea5f8fcc53a967ce698" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="431d999c23fb9c149586aa971425928e" category="summary">Epic 스토리지 요구 사항</block>
-  <block id="8afb3f2b206e0239313a484fe51999d7" category="paragraph">일반적으로 운영 데이터베이스용으로 전용 스토리지 리소스가 제공되는 반면, 미러 데이터베이스 인스턴스는 Clarity 보고 툴과 같은 다른 Epic 소프트웨어 관련 구성 요소와 보조 스토리지 리소스를 공유합니다.</block>
-  <block id="d31081e8762bd0903adf5d3f0b769e73" category="paragraph">애플리케이션 및 시스템 파일에 사용되는 것과 같은 다른 소프트웨어 스토리지 환경도 보조 스토리지 리소스를 통해 제공됩니다.</block>
-  <block id="ed879cdc9a77683dfbe5be59441dec43" category="paragraph">Epic은 사이징 고려 사항 외에 다음과 같은 추가 스토리지 레이아웃 규칙과 주요 고려 사항이 있습니다.</block>
-  <block id="ba76cf08b10101b5fee8e2e6d0da268e" category="list-text">2020년 이후에는 모든 운영 데이터베이스(ODB) 워크로드가 All-Flash 어레이에 있어야 합니다.</block>
-  <block id="542f0f7c69fde2bd55b5a36854a84fa3" category="list-text">각 스토리지 풀을 pool1, pool2, pool3, NAS1 및 NAS2를 포함하여 별도의 물리적 하드웨어에 두는 것이 좋습니다.</block>
-  <block id="919d67cad73121e6af0b2b20169d947b" category="admonition">클러스터의 노드는 스토리지 풀로 간주할 수 있습니다. ONTAP 9 .4 이상 및 AQoS를 사용하면 정책을 사용하여 보호된 풀을 만들 수 있습니다.</block>
-  <block id="4449a7b5d2b5dfb4b1bad2ed2f86b5fd" category="list-text">새로운 Epic 3-2-1 백업 권장 사항.</block>
-  <block id="b560499317ab0447790f01d7acd5401b" category="list-text">원격 사이트에 복사 위치(재해 복구)</block>
-  <block id="09d6c5f51239ea513e80e433549993f4" category="list-text">복사본 중 하나는 기본 복사본과 다른 스토리지 플랫폼에 있어야 합니다</block>
-  <block id="df5be706f042b26557014aa77c608eb6" category="list-text">데이터 복제본</block>
-  <block id="47311b53e9ae798223e097c4249a0668" category="admonition">NetApp SnapMirror를 사용하여 NetApp를 백업하는 고객은 3-2-1 권장 사항을 충족하지 않습니다. 이유는 ONTAP to ONTAP가 위에 나열된 두 번째 요구 사항을 충족하지 못하기 때문입니다. SnapMirror를 ONTAP에서 사내 오브젝트 스토리지(예: StorageGRID를 통해)로 직접 사용하거나 클라우드에서 Epic 요구사항을 충족할 수 있습니다.</block>
-  <block id="fef74abf89ce7520dbdabb6ae983ee4b" category="paragraph">스토리지 요구 사항에 대한 자세한 내용은 Galaxy에서 제공되는 다음 Epic 가이드를 참조하십시오.</block>
-  <block id="bed1a6db332388739ca169835c6c3425" category="list-text">SAN 고려 사항</block>
-  <block id="9080906c2106e0567c91717cc003d027" category="list-text">스토리지 제품 및 기술 상태(SPAT)</block>
-  <block id="81b560a1124b6edc7fe2858e332661b6" category="list-text">하드웨어 구성 가이드 를 참조하십시오</block>
-  <block id="db11e37a9250a9db4d48618851771913" category="summary">EPIC 스토리지 스냅샷 구성</block>
-  <block id="4cbb03cae0c07fb5c8e5d5e6df97064e" category="doc">Epic 스토리지 효율성 구성</block>
-  <block id="bc9c71d0bf41f8b2c8bde032eb1d97d0" category="paragraph">워크로드에 적합한 수량의 LUN이 하나 이상 있는 둘 이상의 볼륨에 스토리지가 분산되어 있는 애플리케이션의 경우 컨텐츠를 함께 백업해야 하며 일관된 데이터 보호를 위해서는 CG가 필요합니다.</block>
-  <block id="d43039551f875a24f15f154306be2586" category="paragraph">일관성 그룹(간단히 말해 CG)은 이러한 기능 및 기타 기능을 제공합니다. 야간에 정책을 사용하여 주문형 또는 예약된 정합성 보장 스냅샷을 생성하는 데 사용할 수 있습니다. 이 기능을 사용하여 데이터를 복원, 클론 생성, 복제할 수도 있습니다.</block>
-  <block id="cbe00f2bdd9a3c8aaaf5f8159a8750c1" category="paragraph">CG에 대한 자세한 내용은 를 참조하십시오 <block ref="acc09d7e0c59ae3310cafae5d547383a" category="inline-link-macro-rx"></block></block>
-  <block id="e62f16b222adc7aecc70ff7b56e652dc" category="paragraph">본 문서의 이전 섹션에서 자세히 설명한 대로 볼륨과 LUN을 프로비저닝한 후 CG 세트로 구성할 수 있습니다. 권장되는 모범 사례는 아래 그림과 같이 설정하는 것입니다.</block>
-  <block id="7dd784e39903a42471f96a6d0d6ae420" category="inline-image-macro">Epic 정합성 보장 그룹 레이아웃</block>
-  <block id="909e3795441b963b86fcad387196919f" category="paragraph"><block ref="909e3795441b963b86fcad387196919f" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="45dbe5c870e6de731da235aab8c51046" category="paragraph">운영 데이터베이스에 스토리지를 제공하는 볼륨과 연결된 각 하위 CG에 야간 CG 스냅샷 스케줄을 설정해야 합니다. 이렇게 하면 매일 밤 CG의 일관된 백업을 새로 만들 수 있습니다. 그런 다음 개발 및 테스트와 같은 비프로덕션 환경에서 사용할 프로덕션 데이터베이스를 복제하는 데 사용할 수 있습니다. NetApp은 Epic용 독점 CG 기반 자동화 Ansible 워크플로우를 개발하여 운영 데이터베이스 백업, 업데이트 및 테스트 환경도 자동화합니다.</block>
-  <block id="a93362f9de0aff40adccba50a939a6fa" category="paragraph">CG 스냅샷을 사용하여 Epic의 운영 데이터베이스의 복원 작업을 지원할 수 있습니다.</block>
-  <block id="4bf6f09e67952b918985533c270b0668" category="paragraph">SAN 볼륨의 경우 CG에 사용되는 각 볼륨에서 기본 스냅샷 정책을 사용하지 않도록 설정합니다. 이러한 스냅샷은 일반적으로 사용 중인 백업 애플리케이션 또는 NetApp의 Epic Ansible 자동화 서비스에 의해 관리됩니다.</block>
-  <block id="7082753514151e011ff039e6fe23eba2" category="paragraph">SAN 볼륨의 경우 각 볼륨에서 기본 스냅샷 정책을 해제합니다. 이러한 스냅샷은 일반적으로 백업 애플리케이션 또는 Epic Ansible 자동화를 통해 관리됩니다.[NS2]</block>
-  <block id="669d2da75a76d767cc8259b5f37cacc3" category="paragraph">WebBLOB 및 VMware 데이터 세트는 CG와 연결되지 않고 볼륨으로만 구성해야 합니다. SnapMirror를 사용하여 스토리지 시스템의 스냅샷을 운영 환경과 별도로 유지할 수 있습니다.</block>
-  <block id="5a6fb6753e1c4f748d223c8e329133fb" category="paragraph">완료되면 구성은 다음과 같습니다.</block>
-  <block id="926ce6c3b85cb26b415b6fc7e43f2879" category="inline-image-macro">CG 스냅샷을 사용하는 EPIC</block>
-  <block id="a578d209aa95904cf62330de918a003d" category="paragraph"><block ref="a578d209aa95904cf62330de918a003d" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="193e03aa51a18f1e5d72b6a9dd240ed7" category="paragraph">ONTAP 인라인 효율성은 기본적으로 적용되며 스토리지 프로토콜, 애플리케이션 또는 스토리지 계층에 상관없이 작동합니다.</block>
-  <block id="f900dc6292f9bf9dcf98291ad5846d4b" category="paragraph">효율성을 높이면 고가의 플래시 스토리지에 기록되는 데이터의 양을 줄이고 필요한 드라이브 수를 줄일 수 있습니다. ONTAP는 복제를 통해 효율성을 유지합니다. 지연 시간에 민감한 Epic과 같이 애플리케이션에서도 각 효율성이 성능에 거의 또는 전혀 영향을 미치지 않습니다.</block>
-  <block id="936d07f32ce5afcd55e98c4a8cbce642" category="paragraph">* NetApp는 디스크 사용률을 최대화하기 위해 모든 효율성 설정을 켜는 것을 권장합니다. 이러한 설정은 AFF 및 ASA 기반 시스템에서 기본적으로 설정됩니다.</block>
-  <block id="d4a551eeebb2992a4ffff1ad1083479a" category="paragraph">다음 기능을 통해 스토리지 효율성을 실현할 수 있습니다.</block>
-  <block id="cc0df1dcdfa0541f9c5dde8e0b570a36" category="list-text">중복 제거는 LUN을 호스팅하는 볼륨에서 블록의 중복 복사본을 제거하여 운영 스토리지의 공간을 절약합니다. 이 권장 옵션은 기본적으로 설정되어 있습니다.</block>
-  <block id="db37fd6533f852997b6ae076ae5e86e0" category="list-text">인라인 압축은 디스크에 쓸 데이터의 양을 줄여 주며 Epic 워크로드에서 상당한 공간 절약 효과를 실현할 수 있습니다. 이 권장 옵션은 기본적으로 설정되어 있습니다.</block>
-  <block id="c8afff3d362092825c7eda5b0b6b39af" category="list-text">인라인 컴팩션은 1/2 미만으로 채워진 4K 블록을 단일 블록으로 결합합니다. 이 권장 옵션은 기본적으로 설정되어 있습니다.</block>
-  <block id="b158d6ac5a43e19d1be67d7ba849494d" category="list-text">씬 복제는 NetApp SnapMirror 소프트웨어를 포함한 NetApp 데이터 보호 소프트웨어 포트폴리오의 핵심이 되는 기능입니다. SnapMirror 씬 복제는 비즈니스 크리티컬 데이터를 보호하는 동시에 스토리지 용량 요구사항을 최소화합니다. *NetApp는 이 옵션을 켜는 것을 권장합니다.</block>
-  <block id="13fb0a52e16b7b3839f151b0847cd0d1" category="list-text">애그리게이트 중복제거: 중복 제거는 항상 볼륨 레벨에 있었습니다. ONTAP 9.2를 통해 애그리게이트 중복제거를 사용할 수 있게 되어 디스크를 더욱 절약할 수 있게 되었습니다. 사후 처리 애그리게이트 중복제거가 ONTAP 9.3에 추가되었습니다. *NetApp는 이 옵션을 켜는 것을 권장합니다.</block>
-  <block id="46269eefafcbb08ab4667022c6491767" category="summary">EPIC 및 파일 프로토콜</block>
-  <block id="73a17ad0a24141989f242b5b099eec4f" category="paragraph">동일한 All-Flash 어레이에서 NAS와 SAN을 결합하는 것이 지원됩니다.</block>
-  <block id="688ffca27fb85bfb71c8a7632a871ec1" category="paragraph">* NetApp는 WebBLOB(사용 가능한 경우)와 같은 NAS 공유에 FlexGroup 볼륨을 사용할 것을 권장합니다.</block>
-  <block id="55449fd175613962d882ab450cfc5f3c" category="inline-link-macro">FabricPool</block>
-  <block id="1cd6516d7f54730b868069e2db63b528" category="paragraph">WebBLOB는 최대 95%의 콜드 데이터입니다. 필요한 경우 All-Flash 어레이에서 공간을 비우고 ONTAP의 기능을 사용하여 백업 및 콜드 데이터를 사내 또는 클라우드의 오브젝트 스토리지로 계층화할 수 있습니다<block ref="e722be9b80fb0aa9c356c4300710e630" category="inline-link-macro-rx"></block>. 이 모든 것을 눈에 띄는 성능 효과 없이 달성할 수 있습니다. FabricPool는 ONTAP의 기본 기능입니다. 고객은 콜드(또는 비활성) 데이터 보고서를 생성하여 FabricPool를 사용했을 때 얻을 수 있는 이익의 정도를 검토할 수 있습니다. 정책을 통해 계층화할 데이터 기간을 설정할 수 있습니다. EPIC 고객은 이 기능을 통해 상당한 비용 절감을 실현했습니다.</block>
-  <block id="fc3145f7fe85a0cdfffb31f4034ada3b" category="summary">ONTAP 기반 Epic - 호스트 유틸리티</block>
-  <block id="f2f8d65f0baeae6d15c1016784ddadbf" category="paragraph">NetApp 호스트 유틸리티는 다양한 운영 체제용 소프트웨어 패키지로, CLI 바이너리, 다중 경로 드라이버 및 적절한 SAN 작업에 필요한 기타 중요한 파일과 같은 관리 유틸리티가 포함되어<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block> 있습니다.</block>
-  <block id="23cfb87b0ff3960aab8099cbbb63b50b" category="inline-link-macro">SAN 호스트</block>
-  <block id="b0a8af1d81527bdd65ec0e8fb2a4b4e0" category="paragraph">*NetApp는 NetApp 스토리지 시스템에 접속되어 액세스하는 호스트에 NetApp 호스트 유틸리티를 설치할 것을 권장합니다. 자세한 내용은  및 <block ref="7d7a0f71ed9bf2fe94a10fa9e1aeb381" category="inline-link-macro-rx"></block> 설명서를 참조하십시오<block ref="b2445b429f9784426e3dc1158e67c70d" category="inline-link-macro-rx"></block>.</block>
-  <block id="54ed29e411552372c5b6b9e2e1617e6d" category="admonition">AIX에서는 LUN을 검색하기 전에 Host Utilities를 설치하는 것이 특히 중요합니다. 이렇게 하면 LUN 다중 경로 동작이 올바르게 구성됩니다. Host Utilities를 사용하지 않고 검색을 수행한 경우에는 명령을 사용하여 시스템에서 LUN을 구성 해제한 다음 또는 재부팅을 통해 다시<block ref="fe54d1c30028417038a4ffe0fc5eb503" prefix=" " category="inline-code"></block> 검색해야<block ref="9442434081221d63eaaa2c4799062866" prefix=" " category="inline-code"></block> 합니다.</block>
-  <block id="e7a8be60cff2fec7b8ed793c4d2dddfe" category="summary">Epic LUN 및 볼륨 구성</block>
-  <block id="acdbb325faec5e3e2d86b3dbbaf90c54" category="paragraph">Epic 데이터베이스 스토리지 레이아웃 권장 사항 문서에서는 각 데이터베이스의 LUN 크기 및 수에 대한 지침을 제공합니다.</block>
-  <block id="a620ecf0a73eb209a145eb913a29bc5a" category="paragraph">따라서 Epic DBA 및 Epic 지원 팀과 함께 이 문서를 검토하고 LUN 및 LUN 크기를 조정해야 할 수도 있습니다. 이러한 스토리지 권장 사항은 HBA 대기열 길이, 스토리지 성능, 작업 용이성 및 확장 용이성에 중요합니다.</block>
-  <block id="21ebeea1f14a138dfebb1b9599a4c3dd" category="paragraph">Epic ODB 또는 Clarity와 같은 워크로드의 성능을 최대화하기 위해 각 레이아웃은 NetApp 스토리지에도 가장 잘 맞습니다. 8개의 볼륨을 사용함으로써 쓰기 IO가 컨트롤러에 균등하게 분산되어 CPU 활용률이 극대화됩니다. 복제 및 백업의 경우 작업을 간소화하려면 볼륨 수를 8개로 제한하는 것이 가장 좋습니다.</block>
-  <block id="90adf331b7868c7af46ad6e035e93844" category="section-title">축척 옵션</block>
-  <block id="b323bb297a66afc2eea7b89dd4019798" category="section-title">볼륨 및 8-LUN 레이아웃</block>
-  <block id="66d125e77a6185ef5cf43b2a6bffea80" category="inline-image-macro">Epic 8-LUN 레이아웃</block>
-  <block id="99a54ac1eaa5bd57b4c4c29d6a63f1ac" category="paragraph"><block ref="99a54ac1eaa5bd57b4c4c29d6a63f1ac" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="bad4d79343f04d8b64999875ad328086" category="list-text">HA 2노드 전체에서 워크로드의 균형을 유지하여 성능과 효율성을 극대화합니다.</block>
-  <block id="26b591a32a8a235db7f742995589a455" category="list-text">씬 프로비저닝된 볼륨 및 LUN 사용</block>
-  <block id="9fb0aaeb125238e83485971ae6b7e2fc" category="list-text">최소 8개의 DB LUN, 2개의 저널 LUN 및 2개의 애플리케이션 LUN을 사용합니다. 이 구성은 스토리지 성능과 OS 대기열 길이를 극대화합니다. 용량 또는 기타 이유로 필요한 경우 추가 용량을 사용할 수 있습니다.</block>
-  <block id="ba5e00554d1ba1b8ca0fc2eaeda44672" category="list-text">볼륨 그룹에 LUN을 추가해야 하는 경우 한 번에 8개의 LUN을 추가합니다.</block>
-  <block id="08c8ec6a9fefcf9c5c7dff1258aacf67" category="list-text">함께 백업할 볼륨 및 LUN 그룹에 CG(정합성 보장 그룹)가 필요합니다.</block>
-  <block id="f513b81222a1b44f552ae172aeb697c9" category="list-text">Genio 또는 입출력 성능 중에는 QoS를 사용하지 마십시오.</block>
-  <block id="b77a34499937c829a2c5c5a1cdc17f05" category="list-text">Genio 또는 Clarity 테스트 후 NetApp는 운영 데이터를 로드하기 전에 스토리지를 삭제하고 재프로비저닝할 것을 권장합니다.</block>
-  <block id="186bc47646aec5e2abf40b2605a16461" category="list-text">LUN에 대해 를 사용하도록 설정하는 것이<block ref="54645d7349dcc4fe9d7d19985a40c2c9" prefix=" " category="inline-code"></block> 중요합니다. 그렇지 않으면 LUN에서 삭제된 데이터가 ONTAP에 표시되지 않으며 용량 문제가 발생할 수 있습니다. 자세한 내용은 Epic 스토리지 구성 빠른 참조 가이드 를 참조하십시오.</block>
-  <block id="153c47e1653d87804319da1fe347f29b" category="summary">탁월한 성능 관리</block>
-  <block id="912975539030067a6f1874223cda9b75" category="paragraph">대부분의 All-Flash 어레이는 Epic 워크로드에 필요한 성능을 제공할 수 있습니다. NetApp의 차별화 요소는 바닥 수준의 성능 정책을 설정하고 각 응용 프로그램에 대해 일관된 성능을 보장하는 기능입니다.</block>
-  <block id="edfc4c86589e31546a8fb2d8b085b8c9" category="section-title">서비스 품질(QoS)</block>
-  <block id="8080e6f80ff76b571829265ee2917e87" category="paragraph">NetApp에서는 QoS를 사용할 것을 권장합니다. QoS는 모든 Epic 워크로드를 통합할 수 있다는 이점이 있습니다. 모든 프로토콜과 스토리지 풀은 더 적은 하드웨어에 상주할 수 있습니다. 스토리지 풀을 분리할 필요가 없습니다.</block>
-  <block id="44c2f7cd7c41efaae67916780bf96079" category="list-text">NetApp은 클러스터의 모든 워크로드를 QoS 정책에 할당하여 클러스터의 여유 공간을 효율적으로 관리하는 것이 좋습니다.</block>
-  <block id="d90d7fd828646173964451dadbe758c1" category="list-text">NetApp은 모든 워크로드를 HA 쌍 전체에 균등하게 분산하는 것이 좋습니다.</block>
-  <block id="a77412a540f86bfc443abfcef22db414" category="list-text">I/O 테스트를 수행할 때 QoS 정책을 사용하지 마십시오. 그렇지 않으면 Genio 테스트가 실패합니다. QoS 정책을 할당하기 전에 2-4주 동안 다양한 운영 워크로드를 분석합니다.</block>
-  <block id="c36c006dced61f1e460ff43516fa7294" category="summary">ONTAP 기반 EPIC - 프로토콜</block>
-  <block id="0f079f7da3a6e5c8a52a3aca113fd3e6" category="paragraph">FCP는 LUN을 제공하기 위한 기본 프로토콜입니다.</block>
-  <block id="97ec588f063ba0f25df2b93eda2639c8" category="paragraph">* NetApp는 WWPN(Worldwide Port Name)을 사용하여 스토리지에 필요한 모든 대상 포트가 있는 존당 하나의 이니시에이터 조닝으로 구성된 단일 초기자를 권장합니다. 단일 존에 둘 이상의 이니시에이터가 있을 경우 간헐적인 HBA 혼선이 발생하여 상당한 중단이 발생할 수 있습니다.</block>
-  <block id="880bc24c60e1d6eb559f57440c27f955" category="paragraph">LUN을 생성한 후 LUN을 호스트의 WWPN이 포함된 이니시에이터 그룹(igroup)에 매핑하여 액세스할 수 있도록 합니다.</block>
-  <block id="d8609b6e37acaad082fff919da3c6691" category="paragraph">NetApp는 또한 NVMe/FC(사용 가능한 AIX 및 RHEL 운영 체제 버전이 있는 경우) 사용을 지원하고 성능을 향상시킵니다. FCP 및 NVMe/FC는 동일한 패브릭에서 공존할 수 있습니다.</block>
-  <block id="2586e87005565fe66fa19a3af50f632c" category="summary">Epic을 위한 스토리지 크기 조정</block>
-  <block id="5e3e8694114d62a133f86c691b0d1d68" category="paragraph">귀사는 Epic 제휴 팀과 협력하여 Epic 설계를 확인해야 합니다. 이 팀은 epic @NetApp.com에서 연락할 수 있습니다. 모든 구현은 Epic 및 NetApp의 권장 모범 사례를 준수하면서 고객의 요청을 수용해야 합니다.</block>
-  <block id="c77c62342c6d144df81571fee8e8a4e8" category="paragraph">NetApp 사이징 툴을 사용하여 Epic 소프트웨어 환경 스토리지 요구사항을 위한 올바른 RAID 그룹 크기 및 RAID 그룹 수를 결정하는 방법에 대한 자세한 내용은  (NetApp 로그인 필요) 을 참조하십시오<block ref="b6ff45309a811037a92ca1e6262c74a8" category="inline-link-macro-rx"></block>.</block>
-  <block id="6fff8a4d9dc5db1aefc3e3a86c26dbd7" category="admonition">NetApp Field Portal에 액세스해야 합니다.</block>
-  <block id="1484157a851d4053990c9bf55fb59e58" category="summary">ONTAP 기반 Epic 구축 예 - 애그리게이트</block>
-  <block id="e8f3d574ecc3fdf160285a0c9a5a7046" category="paragraph">애그리게이트 프로비저닝에 대한 최신 문서를 보려면 를 클릭합니다<block ref="a20b867e80db6cfd4fb8336d84c1fcc5" category="inline-link-macro-rx"></block>.</block>
-  <block id="f2871c08962452bb98a23ee83880a7dd" category="admonition">기본 설정은 성능과 용량을 최적화합니다. 노드당 하나의 대형 Aggregate가 생성됩니다.</block>
-  <block id="46b67d0e3c5baea52f318c392862983a" category="summary">ONTAP 기반 EPIC 구축 예 - 파일 시스템</block>
-  <block id="ff902a0a262960f8bf9189923c1ff7d9" category="paragraph">LUN 마운트, 볼륨 그룹 및 논리적 볼륨 생성, 파일 시스템 구성에 대한 자세한 내용은 Epic 스토리지 구성 빠른 참조 가이드 를 참조하십시오. 다음 샘플 명령을 사용하여 RHEL용 Epic Production 서버를 설정합니다.</block>
-  <block id="f54e4ad7066826fa3c18dcb8a62ddd03" category="section-title">파일 시스템 및 마운트 옵션</block>
-  <block id="ca487f2e3d336dbbead8ef7ce6f1dc6c" category="paragraph">LUN을 생성 및 매핑하고 조닝을 완료한 후 다음 절차에 따라 스토리지를 서버에 연결합니다.</block>
-  <block id="232aac42537fa2491071068a6dacfe10" category="admonition">이 예에서는 DB에 8x 1024GB LUN, 저널에 1024GB LUN 2개, 애플리케이션 설치에 1,024GB LUN 2개를 사용했습니다.</block>
-  <block id="cdf658da371089bb06d8dc79b4ae2e2e" category="section-title">비동기식 I/O</block>
-  <block id="86c5811d8dc490e1467aed33484d89f2" category="paragraph">호스트를 구성하고 스토리지에 연결하는 방법에 대한 자세한 내용은 Epic SAN 고려 사항 백서 및 스토리지 구성 빠른 참조 문서를 참조하십시오. 이 섹션에서는 Red Hat Enterprise Linux 호스트를 설정하는 방법을 검토합니다. AIX 세부 정보는 참조 문서에서 찾을 수 있습니다.</block>
-  <block id="81cba0a3715b5297330ade2beaa9dc7d" category="summary">ONTAP 기반 EPIC 구축 예 - LUN</block>
-  <block id="30baf86157b500051493cda4ff1be0c3" category="paragraph">&gt;&gt;&gt; 설명을 위한 첫 번째 문장 또는 단락의 자리 표시자</block>
-  <block id="6aa18085c59b7b34360d5dff15bf6e84" category="paragraph">LUN 생성</block>
-  <block id="6a761ce5c1cf1122b1aaea2aec3cfc85" category="paragraph">LUN 생성하기:<block ref="18244093c882fe4e65acdec6d61f9f95" category="inline-link-rx"></block></block>
-  <block id="8ede5bcd129cb7b52add8d233c5e5867" category="paragraph">CG에 볼륨 추가</block>
-  <block id="4bd3faeb169131a1ecbf00026f146a6f" category="paragraph">정합성 보장 그룹 생성 또는 수정하기:<block ref="52ad8c1ba289849e0c6ebe85b916c91a" category="inline-link-rx"></block></block>
-  <block id="1093fcc785c9f0e59ff32142b73ff3a5" category="paragraph">LUN 매핑</block>
-  <block id="9e5dabcfb97ff08290166a6dd001c95e" category="paragraph">LUN 매핑 방법:<block ref="8b5a6c46b302a4299b28e891d262657f" category="inline-link-rx"></block></block>
-  <block id="73a228bbb9b14b5f966f329a201b115d" category="paragraph">ONTAP 버전에 따라 볼륨에 대한 분할 예약의 기본 설정은 100%일 수 있습니다. 이 구성은 0으로 설정해야 합니다.</block>
-  <block id="b13aace07f0445cf1ff16be054bcc01e" category="summary">ONTAP 기반 Epic 구축 예</block>
-  <block id="cca1d6e8ff542fcd4d1315f7f9033467" category="paragraph">이 섹션에서는 ONTAP 클러스터의 완벽한 고급 구성과 프로비저닝, Epic 서버에 스토리지를 제공하는 방법을 안내합니다.</block>
-  <block id="df8f0aad2b90e887efba35ecbc7e6546" category="paragraph">세부 정보를 캡처하고 보다 쉽게 문서화할 수 있도록 명령줄을 사용합니다. GUI를 선호하는 경우 System Manager의 모든 설정을 프로비저닝할 수 있습니다.</block>
-  <block id="d706ffe8745cb55ce7b7d1c7dfa458dd" category="paragraph">일반적으로 대규모 프로젝트에 대한 초기 일괄 설정은 표 1에 나와 있는 명령을 사용하면 더 빠릅니다. 특히 워크시트에서 명령을 연결하는 경우에는 더욱 그렇습니다. 이 명령 목록도 뛰어난 빌드 문서로도 사용됩니다.</block>
-  <block id="12c8172fde8f9b3f81c3ed0d2805f3d4" category="paragraph">또 다른 프로비저닝 옵션은 Ansible을 사용하여 Day 0 및 Day 1 자동화 스크립트를 사용하는 것입니다. NetApp에는 Ansible-galaxy collection install NetApp.ONTAP 명령을 통한 Ansible Galaxy 컬렉션을 포함하여 수백 개의 기존 Ansible 플레이북을 다운로드할 수 있습니다.</block>
-  <block id="80455b40cdd7b477184d76f23f747af1" category="paragraph">GUI는 단순한 1페이지 LUN 및 공유 프로비저닝에도 적합합니다. GUI는 스토리지를 추가, 수정 또는 삭제할 때 작업에 가장 적합합니다. 표 1의 모범 사례 스토리지 설정을 적용한 경우에는 두 옵션 중 어느 옵션에도 문제가 없습니다.</block>
-  <block id="d7441f24bee2c1922760ce27f5e978ec" category="paragraph">전체 클러스터 설정 및 스토리지/호스트 프로비저닝은 스테이징할 때 1시간 이상 걸리면 안 됩니다.</block>
-  <block id="3924c8a2656c72cc0c7d6a27f9ad08ea" category="paragraph">* 스토리지 설정 모범 사례 *</block>
-  <block id="51ac4bf63a0c6a9cefa7ba69b4154ef1" category="cell">설정</block>
-  <block id="689202409e48743b914713f96d93947c" category="cell">값</block>
-  <block id="2ee34178bb8415b7d7234cd27b83aed6" category="cell">집계</block>
-  <block id="ae6bd8a277455ba774ffc217a2f8a539" category="cell">기본 자동 프로비저닝, RAID DEP가 있는 노드당 ADP 애그리게이트 1개</block>
-  <block id="63555da25f96be027cd722d9f281cffa" category="cell">다중 프로토콜(블록 SVM 및 SMB/NFS SVM)을 사용할 경우 SVM 2개 Epic 및 프로토콜 명명 규칙을 사용합니다. 적절한 보안 스타일을 사용합니다</block>
-  <block id="aec0819ab194aee8aab8a5e40aad8343" category="cell">볼륨 공간 보장</block>
-  <block id="334c4a4c42fdb79d7ebc3e73b517e6f8" category="cell">없음</block>
-  <block id="d374cbba7f603e6be8e6450a6b3feb45" category="cell">볼륨 스냅샷 정책</block>
-  <block id="8285885018fdba6d87edc774237f0e24" category="cell">볼륨 자동 크기 조정</block>
-  <block id="4d200fce73a8e1cc965cfc2c43343824" category="cell">성장</block>
-  <block id="948111f101cd4e13c4a1e21775e9742d" category="cell">볼륨 최대 자동 크기 조정</block>
-  <block id="fde7826aacd46b7610beed2b0ef8d81e" category="cell">2T 또는 2 X LUN 크기입니다</block>
-  <block id="ca714a7089246aff7f85bbda97ba660b" category="cell">볼륨 스냅샷 자동 삭제</block>
-  <block id="a10311459433adf322f2590a4987c423" category="cell">활성화됨</block>
-  <block id="6bb41960470a19d97556b9240ac0b3ff" category="cell">볼륨 크기</block>
-  <block id="9bba382221ce257d09f3f50492803815" category="cell">LUN 크기 1.5배</block>
-  <block id="dc85eb20ed6dd71700df76a7f9acd32b" category="cell">볼륨 레이아웃</block>
-  <block id="370e47099244ee43c575d91449bb7e36" category="cell">컨트롤러 전체에 분산됩니다</block>
-  <block id="ca301c828c76b7b6b1a9b621ba37f603" category="cell">Igroup 유형입니다</block>
-  <block id="d6c56de514a4a8fe23f54d6b42dd23af" category="cell">OS 물리적 서버와 함께 사용할 경우 ESX와 함께 사용할 경우 VMware 유형입니다.</block>
-  <block id="bbd68bf55ab562da30e73449f1b87424" category="summary">ONTAP 기반 Epic 구축 예 - 프로토콜</block>
-  <block id="589b83bd3c7696acc0086c7f233e64e3" category="doc">ONTAP 기반 Epic 구축 예 - 플랫폼</block>
-  <block id="05f72896244a448167caa4a410eb4ecf" category="paragraph">Epic ODB 데이터베이스, 저널 및 애플리케이션 워크로드의 경우 Epic은 스토리지에 FCP LUN을 형식으로 제시할 것을 권장합니다.</block>
-  <block id="a3a5d01a736b2f5bc994d2ff7b0da8c5" category="summary">ONTAP 기반 Epic 구축 예 - FCP 프로토콜</block>
-  <block id="dc0e595680f18844673c0930ecf1ca6b" category="paragraph">SVM이 생성되면 프로토콜을 추가해야 합니다.</block>
-  <block id="263a628397d3f78e3b61f40863b0868f" category="paragraph">FCP 데이터 LIF를 생성하려면 를 클릭합니다<block ref="8f46d074b2d46f416cb36dce6f8bd76d" category="inline-link-macro-rx"></block>.</block>
-  <block id="663c2decd75c93fbad53179b6016c0d1" category="paragraph">이니시에이터 그룹을 사용하면 서버에서 LUN을 액세스할 수 있습니다. iGroup을 생성하려면 를 클릭합니다<block ref="c6345eebd77187b1723cf47095ffbd0f" category="inline-link-macro-rx"></block>.</block>
-  <block id="93f7209bec244568b95ac2f8f50896d7" category="summary">ONTAP 기반 Epic 구축 예 - SVM</block>
-  <block id="39ce7fcbb7e39843ad7e81e460901359" category="paragraph">NetApp는 스토리지를 가상화하고 SVM을 통해 사용자 액세스를 제공합니다.</block>
-  <block id="8c22ab38f47a2a116e19714defb5f005" category="paragraph">Epic의 경우 FCP SVM 및 SMB SVM이 있습니다. 스토리지 관리 방식과 멀티 테넌시에 따라 더 많은 SVM을 사용할 수 있습니다.</block>
-  <block id="99889a411324e95bb7313521d10d972b" category="paragraph">SVM을 설정하려면 를 클릭합니다 <block ref="cb8e547e3f29ee63864aeed75c724bf1" category="inline-link-macro-rx"></block></block>
-  <block id="abf025601df70d9ba931fe67b1cc4a79" category="summary">ONTAP 기반 Epic 구축 예 - 볼륨</block>
-  <block id="02594c71ca915876e2512e474d8b462d" category="paragraph">볼륨을 생성하려면 을 참조하십시오<block ref="b6546da834bc505016791ad9e7ec9d1e" category="inline-link-rx"></block></block>
-  <block id="36e2bc00e48fbcfe5ae35a8a6056788c" category="admonition">ONTAP 9.7부터, NVE 라이센스와 온보드 또는 외부 키 관리가 있으면 애그리게이트 및 볼륨 암호화가 기본적으로 활성화됩니다. 볼륨 수준 중복제거를 활성화하려면 add-encrypt 장애를 volume create/modify 명령(NVE 라이센스가 있는 경우)으로 설정합니다.</block>
-  <block id="7a112f92e38a30129ab13d18331e21ce" category="section-title">스냅샷 자동 삭제</block>
-  <block id="f118801694edca90b5e446d3fe39cda0" category="paragraph">스냅샷을 자동으로 삭제하려면 다음을 수행합니다.<block ref="ecea59d033fb2dad1d38e75fbdc1c820" category="inline-link-rx"></block></block>
-  <block id="e324e68086bb9c9e930b9d1168f1de5d" category="summary">ONTAP에서 Epic을 사용합니다</block>
-  <block id="8339b88fddad3cfe433f684a83da04eb" category="paragraph">ONTAP의 핵심에는 무중단 운영이 있어 비용이 많이 드는 비즈니스 운영 중단을 방지할 수 있습니다.</block>
-  <block id="ca7972f1caf7a478b4f931e986112b62" category="paragraph">NetApp는 NetApp Active IQ를 통해 홈이라고 하는 프로덕션 데이터를 기반으로 99.999999% 이상의 가용성을 제공합니다. 클러스터의 각 HA 쌍에는 단일 장애 지점이 없습니다. ONTAP은 1992년부터 지금까지 안정적인 스토리지를 제공해온 최고의 이력을 보유하고 있으며 세계에서 가장 널리 사용되는 데이터 관리 소프트웨어입니다. 이제 Active IQ를 통해 사전에 모니터링하고 문제를 97%나 자동으로 해결하여 지원 사례를 대폭 줄일 수 있으므로 가용성이 향상됩니다.</block>
-  <block id="43a21754b069ee170b1858e00c4072df" category="paragraph">EPIC는 하드웨어 구성 요소 장애를 완화하기 위해 HA 스토리지 시스템을 사용할 것을 권장합니다. 이 권장 사항은 기본 하드웨어(예: 중복 전원 공급 장치)에서 네트워킹(예: 다중 경로 네트워킹)까지 확장됩니다.</block>
-  <block id="58992d12f27d940ad0ced78080987a44" category="paragraph">클러스터 전체에서 스토리지를 업그레이드, 스케일업, 스케일아웃 또는 워크로드 밸런싱이 필요한 경우, 환자가 치료하는 데 아무런 효과가 없습니다. 데이터를 이동할 수 있지만 데이터 마이그레이션이나 전면적 업그레이드를 통해 환자 치료에 지장을 주지 않아도 됩니다. 차세대 기술로 전환하여 미래에 대비하고 하드웨어 종속을 방지합니다. NetApp는 100% 서면 가용성을 보장합니다.</block>
-  <block id="071a41c2bfc6123073746c5459501089" category="inline-link-macro">NetApp ONTAP의 안정성, 가용성, 서비스 가능성 및 보안 기능과 같은 세 가지 주요 요소에 대해 설명합니다</block>
-  <block id="c38a90bcf1a9aa5905c0c4e6fbac331b" category="paragraph">NetApp의 안정성, 가용성, 서비스 가능성 및 보안 기능에 대한 자세한 내용은 백서를 <block ref="c4f5dec030b0bd57318efbed2e25e7a7" category="inline-link-macro-rx"></block>참조하십시오.</block>
-  <block id="12a3215a6e17b2d4e547b8c9ddb4db59" category="summary">EPIC 데이터 보호</block>
-  <block id="e2f4ffd17d85ea8c667a8fa10eaa81bd" category="doc">EPIC 클로닝</block>
-  <block id="d777ff146845d0c5a59b451dcdd63eff" category="paragraph">Epic은 스토리지 노드 기반 NetApp Snapshot 기술이 기존 파일 기반 백업과 비교하여 운영 워크로드에 성능 영향이 없다는 사실을 인지하고 있습니다. Snapshot 백업을 운영 데이터베이스의 복구 소스로 사용할 때는 데이터베이스 일관성을 염두에 두고 백업 방법을 구현해야 합니다.</block>
-  <block id="7952c7481879c42a618f85cfab77dc0b" category="paragraph">스냅샷은 볼륨의 특정 시점 읽기 전용 백업 복사본입니다. NetApp FlexClone ® 은 스냅샷을 가져와서 즉시 읽고 쓰기 가능하게 합니다. FlexClone 볼륨은 애플리케이션 정합성이 보장된 읽기 전용 스냅샷을 생성하고 프로덕션 데이터에서 쓰기 가능한 FlexClone 볼륨을 생성하여 뛰어난 가치를 제공합니다. 이 기본 기능은 스토리지 절약, 운영 시간 및 자동화 기능에 큰 영향을 미칩니다.</block>
-  <block id="dd12a5170cc960b0ed4afe4f23fd727b" category="paragraph">업데이트 프로세스에는 FlexClone 볼륨이 사용됩니다.</block>
-  <block id="198010d8bf8a3ff0f084ffd059a9a1da" category="section-title">데이터 관리</block>
-  <block id="31949f92a027681e10fa0ae809d62bcd" category="paragraph">솔루션의 일부로 NetApp는 기본 ONTAP 툴을 사용하여 완전히 자동화된 백업 및 테스트 교체 솔루션을 제공합니다. 이 솔루션은 Epic 데이터베이스 관리자(DBA)의 대규모 커뮤니티를 위해 특별히 Epic 데이터 관리를 간소화하도록 설계되었습니다.</block>
-  <block id="bde282ad1e62a3d8d64bcbebfd99918c" category="list-text">EPIC Mirror는 재해 복구 및 보고서(녹색으로 표시됨)로 데이터를 복제하는 데 사용됩니다.</block>
-  <block id="89c4ed523f61f9d3446182d80a53c8b6" category="list-text">일일 데이터가 보고에서 Clarity로 덤프됩니다.</block>
-  <block id="c3d37da5ec71148ab4d2292c5fc62181" category="list-text">NetApp 자동 백업(노란색으로 표시됨).</block>
-  <block id="f417d841f910f45d16ac64fccd850be8" category="list-text">NetApp는 SUP, REP 및 기타(파란색으로 표시됨)의 테스트 새로 고침을 자동화합니다.</block>
-  <block id="2a7a6372892435f5d284e730df618c35" category="list-text">테스트 환경은 더 작은 스쿼시 사본이 아니라 전체 복사 환경에 사용됩니다.</block>
-  <block id="88b2dcefc205727508d4017aacafaafd" category="paragraph">자세한 내용은 Epic 애플리케이션용 NetApp 서비스 에 문의하십시오.</block>
-  <block id="4e3e281c19bf41f436de9fe363daa25c" category="paragraph">정합성 보장 그룹(간단히 말해 CG)은 이러한 기능 및 기타 기능을 제공합니다. 야간에 정책을 사용하여 주문형 또는 예약된 정합성 보장 스냅샷을 생성하는 데 사용할 수 있습니다. 이 기능을 사용하여 데이터를 복원, 클론 생성, 복제할 수도 있습니다.</block>
-  <block id="f5de57234e68f27cbd82acfc80f2d5cb" category="inline-link-macro">정합성 보장 그룹에 대한 NetApp 설명서</block>
-  <block id="f7e43fe614bf53ff9721f7494c0caf16" category="paragraph">CG에 대한 자세한 내용은 을 참조하십시오 <block ref="0efc681e89d66f1c589ad00a8ae67afa" category="inline-link-macro-rx"></block></block>
-  <block id="9f42082fda47a6a26e6c6e6bcc14526e" category="section-title">Epic용 정합성 보장 그룹 구성</block>
-  <block id="7d381e222258ec55bcf215684ae70097" category="inline-image-macro">EPIC 및 정합성 보장 그룹</block>
-  <block id="4eb8f91ee432a8e69615314961db4f88" category="paragraph"><block ref="4eb8f91ee432a8e69615314961db4f88" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="4294e0bf4b67190ddcb91a01b3c4356c" category="section-title">정합성 보장 그룹 스냅샷</block>
-  <block id="86cfb45aaa741215d8d8d58223948dcc" category="paragraph">WebBLOB 및 VMare 데이터 세트는 CG와 연결되지 않고 볼륨으로만 구성해야 합니다. SnapMirror 또는 SnapVault 기술을 사용하여 스냅샷 복사본을 운영 환경과 별도로 스토리지 시스템에 유지할 수 있습니다.</block>
-  <block id="f5445123331a1b74a34fd1f392e9e946" category="inline-image-macro">Epic CG 스냅샷</block>
-  <block id="92aabd14a16803d9fa65ca4f94488322" category="paragraph"><block ref="92aabd14a16803d9fa65ca4f94488322" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="9c71026f6349a81cd2a3cfcfa8ea9ceb" category="summary">ONTAP 통합 기반 Epic</block>
-  <block id="569a30a99d3744f0871a7c36162f469c" category="paragraph">의료 분야의 주요 과제 중 하나는 사일로 환경의 비효율성입니다.</block>
-  <block id="87b522a84cee7651eb3ea5c59d4c9a35" category="paragraph">진전을 방해하는 다양한 그룹이 여러 포인트 솔루션을 만듭니다. 통합된 데이터 관리 전략을 수립하면 효율성을 통해 혁신을 빠르게 실현할 수 있습니다. 환자 기록 디지털화, 랜섬웨어 및 생성 AI와 같은 파괴적인 기술 이 통합에 필요한 모든 것을 요구합니다.</block>
-  <block id="882f36b3d76e4e5b9ac08850c1e7a15a" category="paragraph">ONTAP를 사용하면 온프레미스와 클라우드에서 파일/블록/오브젝트와 각 계층 0/1/2/3 워크로드를 통합할 수 있으며, 모두 ONTAP에서 실행됩니다.</block>
-  <block id="0b153e0d191221abe8c325950ab9a03b" category="summary">ONTAP에서 Epic을 사용한 효율성</block>
-  <block id="12ca553efec3e73a9120d8c050d405a9" category="paragraph">EPIC는 대부분의 비용이 디스크인 All-Flash 어레이에서 실행됩니다. 따라서 스토리지 효율성은 비용을 절감하는 데 매우 중요합니다.</block>
-  <block id="aac466a460fe672b45d2e43b476f772e" category="paragraph">NetApp 인라인 스토리지 효율성은 성능에 영향을 미치지 않고 업계 최고 수준의 스토리지 비용 절감을 달성합니다. 또한 All-Flash 어레이가 서면 효율성 보장도 제공합니다.</block>
-  <block id="436525ee58a117eefbde96bb2f0cae02" category="paragraph">스토리지 효율성을 계산할 때는 물리적 용량에서 가용 용량까지 측정하는 것이 중요합니다.</block>
-  <block id="bbf547b93564824fe00f04646269a56e" category="list-text">* Raw 용량 * RAID가 적용되기 전의 디스크 크기.</block>
-  <block id="29cabda6c17d251ab3bba7feb41646fc" category="list-text">* 가용 용량 * RAID 적용 후 사용 가능한 스토리지 용량</block>
-  <block id="9edb4e889ca40d3881217c9433ecb376" category="list-text">* 유효 용량 * 호스트 또는 클라이언트에 프로비저닝되고 표시되는 스토리지 양.</block>
-  <block id="21e10a177fbffc69f63f5dcdb44175f5" category="paragraph">아래 그림은 852TB의 실제 스토리지가 필요한 모든 워크로드와 1.32PB의 총 실제 데이터를 제공하는 5.2:1 효율성으로 일반적인 Epic 구축을 위한 샘플 효율성 계산입니다.</block>
-  <block id="c8c2fd097c28062ec912ad0d2f9bbe11" category="admonition">디스크 수에 따라 물리-가용 용량이 약간 다릅니다.</block>
-  <block id="f0a0c9b18011b122c315d8970dbcce49" category="inline-image-macro">Epic 스토리지 효율성</block>
-  <block id="d145883b21ccbccb471abc3a5dac40f3" category="paragraph"><block ref="d145883b21ccbccb471abc3a5dac40f3" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="bf8acecf163b9e71e2e9331bc87c5e90" category="admonition">NetApp은 NetApp 스냅샷 기술 또는 씬 프로비저닝을 사용하여 보장 프로그램의 효율성을 계산하지 않습니다. 그렇게 하면 30~100:1의 비현실적인 효율성이 나타나기 때문에 실제 스토리지 용량을 사이징할 때 이는 아무 의미가 없습니다.</block>
-  <block id="f4f81a0ab85224d234bc465988b5b871" category="summary">ONTAP 기반 Epic 개요</block>
-  <block id="35b4c598dd74c59e91d978c12210cc03" category="doc">ONTAP에서 성공</block>
-  <block id="52aaae321a4b3f69eaf3448c22d2d55c" category="paragraph">ONTAP를 사용하면 Epic이 더 쉬워집니다.</block>
-  <block id="76d68daeac9b3e7a8cfb0c3d904ac7de" category="paragraph">ONTAP은 Epic 워크로드를 통합하고 성능, 데이터 보호, 데이터 관리의 모든 요구사항을 충족할 수 있도록 지원하는 데이터 관리 플랫폼입니다.</block>
-  <block id="85e6f9f2e3539043a3a60b16af5a654f" category="paragraph">NetApp만이 SAN, NAS, 오브젝트의 모든 의료 워크로드를 단일 고가용성 데이터 관리 플랫폼에서 표준화할 수 있습니다. ONTAP은 세계에서 가장 널리 구축된 스토리지 소프트웨어 플랫폼으로, 약 30년에 걸친 지속적인 혁신의 바탕이 됩니다. 네이티브 ONTAP 데이터 관리 툴과 애플리케이션 통합을 통해 Epic의 모든 과제를 해결할 수 있습니다. 솔루션의 격차를 줄이기 위해 다양한 타사 툴을 구매할 필요가 없습니다.</block>
-  <block id="54fed3d17b1233bcc7ab7b0d3f6eddca" category="paragraph">많은 스토리지 공급업체가 전통적이고 안정적이며 빠른 블록 스토리지를 제공합니다. 원활하게 작동하지만 일반적으로 운영, 보고서, 명확성, VDI, VMware 및 NAS와 같은 단일 워크로드를 실행하기 위해 사일로에 구축됩니다. 이러한 사일로마다 하드웨어와 관리 툴이 다르고 일반적으로 서로 다른 IT 그룹에서 관리됩니다. 이러한 전통적인 접근 방식은 오늘날 의료의 가장 큰 문제인 복잡성을 가중시킵니다.</block>
-  <block id="58ad32957aed88a3c14ef81e5f254bd3" category="paragraph">NetApp을 사용하면 데이터를 더 쉽고 효율적으로 관리할 수 있습니다. ONTAP는 너무 큰 사일로로 인해 비용을 낭비하는 대신, 혁신과 기술을 사용하여 통합 데이터 보호를 통해 모든 프로토콜에서 단일 플랫폼에서 각 워크로드에 대해 일관되고 보장된 SLA를 구현할 수 있습니다. 이러한 기능과 툴은 아래 그림과 같이 원하는 클라우드로 확장할 수도 있습니다.</block>
-  <block id="0d9c98d3832defc892b59655abcfacfc" category="inline-image-macro">ONTAP을 통한 의료 환경의 확장성 및 단순성</block>
-  <block id="4277ed476100dc05b0a4e0e837c3d9b9" category="paragraph"><block ref="4277ed476100dc05b0a4e0e837c3d9b9" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="63cc4e5664cd9022b0fc1580682f9995" category="summary">뛰어난 ONTAP 성능</block>
-  <block id="6762c0b102338c245945f7d09da83fa4" category="paragraph">ONTAP은 2009년에 플래시 기술을 도입했으며 2010년부터 SSD를 지원했습니다. 플래시 스토리지 분야의 오랜 경험을 통해 NetApp는 ONTAP 기능을 조정하여 SSD 성능을 최적화하고 플래시 미디어 내구성을 향상하는 동시에 ONTAP의 풍부한 기능을 유지할 수 있습니다.</block>
-  <block id="8e0c14b7c96a8748c07c3916510ebd8b" category="paragraph">2020년 이후에는 모든 Epic ODB 워크로드가 All-Flash 스토리지에 있어야 합니다. Epic 워크로드는 일반적으로 스토리지 테라바이트당 약 1,000~2,000 IOP(8,000 블록, 75%/25% 읽기 및 쓰기 비율, 100% 랜덤)로 작동합니다. EPIC는 지연 시간에 매우 민감하며, 높은 지연 시간은 보고서 실행, 백업, 무결성 확인, 환경 업데이트 시간 등의 운영 작업뿐 아니라 최종 사용자 경험에 가시적인 영향을 미칩니다.</block>
-  <block id="4a9928f04affb2a4fe321fb9e2b003fd" category="list-text">All-Flash 어레이의 제한 요인은 드라이브가 아니라 컨트롤러의 활용도입니다.</block>
-  <block id="11a9dfbe9a015ca567ecd5f77959dc1f" category="list-text">ONTAP는 액티브-액티브 아키텍처를 사용합니다. 성능을 위해 HA 쌍의 2개 노드가 드라이브에 쓰입니다.</block>
-  <block id="3a5c5db6ac361794af4c29a626c584f5" category="list-text">그 결과 CPU 활용률이 극대화되었으며, 이는 NetApp가 업계 최고의 Epic 성능을 게시할 수 있는 가장 중요한 한 가지 요소입니다.</block>
-  <block id="2f6b137b593d6a732992bc619827ee36" category="list-text">NetApp RAID DP, ADP(고급 디스크 파티셔닝) 및 WAFL 기술은 모든 Epic 요구사항을 충족합니다. 모든 워크로드는 모든 디스크에 입출력을 분산합니다. 병목 현상 없음.</block>
-  <block id="0ce3d3de991180e05a5a0818efc312ef" category="list-text">ONTAP는 쓰기 최적화되었으며, 쓰기가 미러링된 NVRAM에 기록된 후 인라인 메모리 속도로 디스크에 기록되기 전에 확인됩니다.</block>
-  <block id="ca65639a4e206f319202179e1d9a4ff4" category="list-text">NetApp는 WAFL, NVRAM 및 모듈식 아키텍처를 통해 소프트웨어를 사용하여 인라인 효율성, 암호화 및 성능으로 혁신할 수 있습니다. 또한, NetApp은 성능에 영향을 주지 않고 새로운 기능을 도입할 수 있도록 지원합니다.</block>
-  <block id="f13349f1404495d87711104e964b1cef" category="list-text">역사적으로 ONTAP의 새로운 버전마다 성능과 효율성이 30~50%의 범위에서 향상되었습니다. ONTAP를 통해 최신 상태를 유지할 때 성능이 최적입니다.</block>
-  <block id="70d9e3c68d42d6ec42ab792e06c44357" category="section-title">NVMe를 참조하십시오</block>
-  <block id="42fa4afed0f941a60ea00e82671c421d" category="paragraph">성능이 매우 중요한 경우, NetApp는 차세대 FC SAN 프로토콜인 NVMe/FC도 지원합니다.</block>
-  <block id="1e4d4890d3f90b04841095b53183f782" category="paragraph">아래 그림에서 볼 수 있듯이, FC 프로토콜에 비해 NVMe/FC 프로토콜을 사용하여 Genio 테스트에서 IOPS를 훨씬 더 많이 달성했습니다. NVMe/FC 연결 솔루션은 45초 쓰기 주기 임계값을 초과하기 전에 700K 이상의 IOPS를 달성했습니다. SCSI 명령을 NVMe로 대체하여 호스트의 활용률도 크게 감소시킬 수 있습니다.</block>
-  <block id="0b336e7e203efd55d17ecfaa03c134f5" category="inline-image-macro">EPIC Genio 그래프</block>
-  <block id="293e47073bb00e514b986ef28fbbb2e1" category="paragraph"><block ref="293e47073bb00e514b986ef28fbbb2e1" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="9ff8735576a58daba5ba20974f92a584" category="summary">ONTAP 기반 Epic 확장성</block>
-  <block id="1027782bab261904e6adf43f2b137951" category="paragraph">Epic 하드웨어 구성 가이드는 3년 동안 연간 최대 20%의 성장률을 달성합니다. 그러나 환경은 예기치 않게 확장될 수도 있습니다.</block>
-  <block id="39e52e339ff39b5620d48036812e09ec" category="paragraph">NetApp는 NAS, SAN 및 오브젝트 클러스터에 대해 최대 12개 노드까지 성능과 용량을 원활하게 확장할 수 있습니다. 따라서 비즈니스의 성장에 따라 무중단으로 스케일업 및 스케일아웃할 수 있습니다.</block>
-  <block id="49c5cdfe08202e574deefaa3d26c332a" category="inline-link-macro">NetApp 검증 아키텍처 Epic on Modern SAN</block>
-  <block id="12cb4beeba752f647712c749e3076fbf" category="paragraph">EPIC Iris는 추가적인 스케일링 기능을 제공합니다. 여러 Epic 인스턴스를 보유한 대규모 고객은 단일 인스턴스로 통합할 수 있습니다. 이 <block ref="5d13d58e489e8fe43bb727515c1d9ff2" category="inline-link-macro-rx"></block>문서는 Epic이 단일 HA에서 통합된 워크로드를 720K IOPS로 원활하게 확장하고 클러스터에서 4M IOPS 이상으로 스케일아웃할 수 있음을 보여줍니다. 컨트롤러를 업그레이드하거나 디스크를 기존 클러스터에 추가하여 중단 없이 스케일업할 수 있습니다.</block>
-  <block id="196097993185ddccf60443ac3f86e89f" category="paragraph">또한 NAS, SAN 및 오브젝트 데이터에는 클러스터의 노드 간에 중단 없이 이동할 수 있는 기능이 있습니다. 클러스터의 각 HA 쌍은 ONTAP FAS 및 AFF 시스템 유형과 크기를 조합하여 사용할 수 있습니다. 단일 클러스터 전체에서 워크로드의 균형을 유지하여 스토리지 투자를 극대화할 수 있습니다.</block>
-  <block id="6abd4957b4615c500bd2a32425316211" category="paragraph">또한, ONTAP은 StorageGRID 또는 클라우드의 오브젝트 스토리지를 백업 타겟으로 사용하거나 자동 콜드 스토리지 계층화 타겟으로 사용할 수 있는 옵션을 제공합니다. 이 기능을 사용하면 고가의 All-Flash 디스크를 확보하고, 스냅샷 및 콜드 데이터를 Object에 자동으로 계층화할 수 있습니다.</block>
-  <block id="8d3f76f475a5e81f188f700429c71a9e" category="paragraph">그 결과 Epic은 NetApp 제품 포트폴리오에서 ONTAP, 다중 프로토콜, StorageGRID, 고객이 선택한 클라우드를 활용하여 더욱 효율적으로 실행됩니다. 이러한 제품은 재해 복구, 아카이브, 분석, 계층화 등에 대한 옵션을 제공합니다.</block>
-  <block id="1e3ccee88df9552e4751ba4ad173de96" category="summary">ONTAP 보안 상의 Epic</block>
-  <block id="32e1bf49ff775c9283c882fe7f3ec873" category="paragraph">오늘날 기업 및 의료 임원이 가장 중요하게 생각하는 것은 보안입니다. 관리하는 것이 그 어느 때보다 어려워졌으며 조직은 규정 준수, 데이터 거버넌스, 바이러스 백신 보호 및 랜섬웨어에 대응해야 합니다.</block>
-  <block id="0d6ce08690a300cb8ce00d77e1c31a5e" category="inline-link-macro">ONTAP 보안 강화 가이드 를 참조하십시오</block>
-  <block id="40e97866feb53c48881b34e5f97ca61f" category="paragraph">Epic 및 스토리지 보안에 대한 전체 가이드는 본 문서에서 다루지 않지만, <block ref="471b0f2cfbad0f2ec4e54df06500d580" category="inline-link-macro-rx"></block>ONTAP에서 사용할 수 있는 광범위하고 고급 보안 기능에 대한 자세한 내용은 자세히 설명합니다.</block>
-  <block id="1408f921f799efe0e585aeba5fa9ed58" category="inline-link-macro">TR-4569 를 참조하십시오</block>
-  <block id="f87d3f3c7c3e6e9ab1153c53d78b40b1" category="paragraph">NetApp Active IQ Unified Manager는 에 포함된 정보를 기반으로 보안 위반을 <block ref="1b2ca6a48e0bf52cc6351680c5ee6170" category="inline-link-macro-rx"></block>모니터링하고 이를 대시보드에 보고하여 보안 관리를 간소화합니다. 이러한 도구는 조직이 보안 목표를 충족하여 공격을 보호, 감지 및 해결하는 데 도움이 될 수 있습니다.</block>
-  <block id="a1fbc1f9fe3c77416c96f491ba933c4a" category="inline-link-macro">NetApp FPolicy를 사용해 보십시오</block>
-  <block id="96f76ddccc0adcaf0fc9a2fc6c834374" category="inline-link-macro">다단계(MFA) 인증</block>
-  <block id="a754af2f708573321f76c2d36bea9f02" category="paragraph">또한 NetApp는 보안 공급업체와 협력하여 소프트웨어를 통한 통합을 <block ref="48fae993b7aeb9944f39dadc4618e2b6" category="inline-link-macro-rx"></block>제공하여 보안 오퍼링을 개선합니다. 또한, 유출된 자격 증명으로 인한 무단 액세스로부터 Epic 환경을 보호하기 위해 을 <block ref="b5ae90d3a2df9b77f2db834fe0dc7b7d" category="inline-link-macro-rx"></block>추가할 수 있습니다.</block>
-  <block id="91d998bab304adb0fd27858a4295dcac" category="inline-link-macro">ONTAP 사이버 소산</block>
-  <block id="e9c1c7d4ca860adb553d87c2c1d9ef35" category="inline-link-macro">랜섬웨어용 NetApp 솔루션</block>
-  <block id="63ab8aaa1f35361bdf5c84b3d1dd4765" category="inline-link-macro">NetApp와 제로 트러스트</block>
-  <block id="a67fe844bc4d3e5cf5ebac11dea00b01" category="paragraph">마지막으로 ONTAP 네이티브 스냅샷 복사본 및 변경 불가능한 SnapLock 기술은 <block ref="79305a8b61b53acc892506e6bcd6f49f" category="inline-link-macro-rx"></block>랜섬웨어로부터 환자 기록을 보호하는 고유한 공극 기능을 제공합니다. 의 NetApp 설명서를 <block ref="910d0617bba4ff1a9d41b4b330096d85" category="inline-link-macro-rx"></block>참조하십시오. 보안에 대한 보다 전략적인 접근 방법은 을 참조하십시오<block ref="aaf21a490837c9b392e59c6c9110165d" category="inline-link-macro-rx"></block>.</block>
-  <block id="28caba838e7a7ff7ff218bae8235208a" category="summary">Epic 스냅샷 및 클로닝</block>
-  <block id="8ad0c394ef79d2b18983fabe84f658fc" category="paragraph">스냅샷은 읽기 전용인 볼륨의 특정 시점 복사본입니다.</block>
-  <block id="568043eed0b44992a4b4a1cc21f8b633" category="paragraph">스냅샷은 액티브 파일 시스템의 모든 블록에 논리적 잠금을 설정합니다. NetApp ONTAP 스냅샷 복사본은 거의 즉각적으로 만들어지며 추가 스토리지를 사용하지 않습니다.</block>
-  <block id="04a00b93a2db41946dc3d263cf6c294c" category="paragraph">WAFL(Write Anwhere File Layout)은 쓰기 전용 파일 시스템이며, 덮어 쓰기 전에 스냅샷 보호 블록에 데이터를 복사하는 등의 추가 입출력을 수행하지 않습니다. 데이터는 이동되지 않으므로 스냅샷은 스토리지 용량이나 성능에 영향을 미치지 않습니다. 스냅샷은 스토리지를 크게 절감하는 동시에 백업 솔루션을 보완합니다.</block>
-  <block id="a701f5d044348085ee4f97fef6636845" category="section-title">플랙스클론</block>
-  <block id="16f57611d3d44b74ce1c1b134cb8e798" category="paragraph">NetApp ONTAP FlexClone 볼륨은 기존 볼륨의 클론 또는 기존 볼륨의 스냅샷입니다. 그 외의 ONTAP 볼륨은 다른 볼륨과 마찬가지로 클론 복제되고 스냅샷을 통해 보호되며 QoS 정책을 사용하여 구성할 수 있습니다.</block>
-  <block id="e0c3236990160654182a79c89baab29f" category="paragraph">스냅샷과 마찬가지로, FlexClone 볼륨은 생성 시 추가 공간이 필요하지 않습니다. 클론에 대한 변경 사항에만 추가 용량이 필요합니다.</block>
-  <block id="9a9ff90c24c36543bf54b1f2136fd9e0" category="paragraph">EPIC는 스트리밍 백업, 무결성 검사, 스테이징 업그레이드 환경 등의 다양한 운영 요구 사항을 충족하기 위해 운영 데이터베이스의 10 - 30개의 복제본을 필요로 합니다. 보다 빈번한 업그레이드로 전환되면서 FlexClone 볼륨을 기반으로 구축된 솔루션의 필요성이 증가했습니다.</block>
-  <block id="dad816f366caa0b8cae67daaeb85deb0" category="admonition">NetApp은 완전 자동화된 Epic 백업 솔루션 및 Epic 업데이트 솔루션을 Ansible 및 기본 NetApp 툴을 사용하여 솔루션의 일부로 제공합니다.</block>
-  <block id="53f102b306ab1aba43e9e20701dc32f2" category="doc">ONTAP에서 성공</block>
-  <block id="3bfc8ddd725eed5b674d1a480bc650d2" category="paragraph">디지털 혁신의 핵심은 데이터를 더 많이 활용하는 것입니다.</block>
-  <block id="2b82426bc0bfa4ea3efb779d165629a4" category="admonition">이 문서는 이전에 게시된 기술 보고서_TR-3923: Epic_에 대한 NetApp 모범 사례 를 대체합니다.</block>
-  <block id="fdf0f3f3a2bae0d66ca5ecb45e1f3d85" category="paragraph">병원에서는 디지털 전환을 시작하려면 많은 양의 데이터가 필요합니다. 환자 치료, 직원 일정 및 의료 자원을 관리하는 프로세스의 일환으로 정보를 수집하고 처리합니다. 그러나 많은 작업이 수동으로 또는 오래된 시스템을 통해 수행됩니다. 한 가지 상수 중 하나는 데이터의 양이 계속해서 기하급수적으로 증가하므로 관리가 점점 더 어려워지고 있다는 것입니다.</block>
-  <block id="74090662bfdb94e49dfc286a6946cc5c" category="paragraph">이 문제의 주요 원인은 병원 데이터가 데이터 사일로에 저장되는 경우가 많기 때문입니다. 수동 입력 및 업데이트에 너무 많은 시간이 소요되어 소모와 오류가 발생합니다. 이 문서는 의료 데이터의 한 부분인 Epic EHR(Electronic Health Records)에 관한 것입니다. 하지만 여기에서 다루는 데이터 관리 전략은 모든 의료 데이터에 적용될 수 있으며 적용되어야 합니다. NetApp은 디지털 인프라를 현대화 및 단순화하는 입증된 이력을 보유하고 있습니다. NetApp의 지능형 데이터 인프라는 디지털 혁신의 기반을 형성합니다.</block>
-  <block id="b68a1112138fe0c0c1beafc2aea18949" category="paragraph">NetApp은 모든 의료 요구사항에 맞는 단일 데이터 관리 솔루션을 제공하며, 디지털 혁신을 향한 여정을 안내할 수 있습니다. 구조 및 스마트 솔루션을 갖춘 기반을 구축함으로써 헬스케어는 이 소중한 정보의 모든 가치를 끌어낼 수 있습니다. 이 프레임워크는 의료 제공자가 질병을 보다 신속하게 진단하고 응급 상황에서 의사 결정 프로세스를 보다 효과적으로 지원할 수 있는 개별화된 치료 계획을 개발하는 데 도움이 될 수 있습니다. 또한 지능형 데이터 인프라를 구축하고 병원에서 데이터 사일로를 활용하며 데이터 상호 운용성을 지원하며 중요한 환자 정보를 보호할 수 있습니다.</block>
-  <block id="6b5a360f7d15046cfd935db963e3da66" category="paragraph">이 문서를 Epic EHR을 성공적으로 구성 및 구현하기 위한 가이드로 활용합니다. 여러 Epic 사일로를 구축하는 대신 단일 Epic 데이터 인프라를 구축하고 병원을 혁신하십시오.</block>
-  <block id="261addf78c7b2c961032b3dd08ba0b1f" category="section-title">목적</block>
-  <block id="b8954f46b76dae4370058c7bd9ae0c97" category="paragraph">이 문서에서는 NetApp 스토리지를 Epic 소프트웨어 환경에 통합하기 위한 모범 사례를 설명합니다. 다음 섹션으로 구성되어 있습니다.</block>
-  <block id="6c5022fa1197168f37c42e56f80d36aa" category="list-text">다양한 구성의 Epic 소프트웨어 환경 및 스토리지 요구사항에 대한 기술적 이해</block>
-  <block id="a9da176a5abe5a618e8ed6a88bdbf21b" category="list-text">Epic 스토리지의 고려 사항, Epic 솔루션의 중요한 의사 결정 요소 설명</block>
-  <block id="8b3f0902644adbb7e0435ae9c9a284e2" category="list-text">스토리지 권장 사항에 NetApp 스토리지 요구사항을 충족하기 위한 NetApp 스토리지 구성 모범 사례 설명</block>
-  <block id="5d113f2038d289f391614c39043629e8" category="section-title">범위</block>
-  <block id="217eb7cf1ad7503a42f61ad3cffb47fb" category="paragraph">이 문서에서는 다음 주제를 다루지 않습니다.</block>
-  <block id="f900b8ede5ddf3a0471176dab052001d" category="list-text">(NetApp 로그인 필요)에서 설명하는 정량적 성능 요구사항 및 사이징 지침<block ref="81c36a9e6d224e9d42c9630dffaa9434" category="inline-link-rx"></block></block>
-  <block id="ef1e6887c579ba81dcedc3f4e3793cd2" category="section-title">대상</block>
-  <block id="2f215f5ba67ae7978ce4846a4a1cdc08" category="paragraph">NetApp은 독자가 다음과 같은 배경 지식을 가지고 있다고 가정합니다.</block>
-  <block id="6cfde17644914efa6d0a4d0c21a8f9db" category="list-text">SAN 및 NAS 개념을 확실하게 이해합니다</block>
-  <block id="c86456e4299d4b0ad43e030d0fdd0af5" category="list-text">ONTAP 스토리지 시스템에 대한 기술적 숙련도</block>
-  <block id="59eba43c04b655e21f087af920398a2a" category="list-text">ONTAP 구성 및 관리에 대한 기술적 숙련도</block>
   <block id="b7c45da218d2e29ec939a31cdd81f2be" category="paragraph">ONTAP을 실행하는 NetApp 스토리지 컨트롤러는 Windows Server 환경에서 다음과 같은 워크로드를 지원할 수 있습니다.</block>
   <block id="f43e8d35e63b48bc73d5dc074df829ae" category="paragraph">복제 오프로드라고도 하는 Microsoft ODX는 호스트 컴퓨터를 통해 데이터를 전송하지 않고도 스토리지 디바이스 내에서 또는 호환되는 스토리지 디바이스 간에 데이터를 직접 전송할 수 있도록 합니다. ONTAP은 CIFS 및 SAN 프로토콜에 대해 ODX 기능을 지원합니다. ODX는 복제본이 동일한 볼륨 내에 있을 경우 성능이 향상될 수 있으며 클라이언트의 CPU 및 메모리 활용률을 줄이고 네트워크 I/O 대역폭 사용률을 줄일 수 있습니다.</block>
   <block id="72960f8df48c0debc035454921c1b5d3" category="list-text">공유 실시간 마이그레이션에서는 VM이 SMB 공유에 저장됩니다. 따라서 VM을 라이브 마이그레이션할 때 VM의 스토리지는 아래 그림과 같이 중앙 SMB 공유로 유지되어 다른 노드가 즉시 액세스할 수 있습니다.</block>
@@ -4863,20 +4499,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="14d627875de76f84985b8a3b27c96633" category="list-text">이 기간 동안에는 가상 머신 입출력 작업에 영향을 주지 않지만 ISL 링크를 통해 원격 디스크 셸프에서 데이터에 액세스하므로 성능이 저하됩니다.</block>
   <block id="290cbdcb6abb203d45786213f3c43662" category="admonition">이 기간 동안 가상 머신은 실행 중인 상태로 유지되며 이 시나리오에서는 MetroCluster 동작이 변경되지 않습니다. 모든 데이터 저장소는 해당 사이트에서 그대로 유지됩니다.</block>
   <block id="9a18dc3c2c9a217a632ca45b5b93a004" category="admonition">HA 마스터는 배치 관리자가 적합한 스토리지를 찾을 때까지 재시작 시도를 시작하지 않으므로, 전체 사이트 장애가 발생한 경우 전환이 수행된 후에 다시 시작합니다.</block>
-  <block id="e3f530e977d74053c6d70eb84886e756" category="sidebar">대단한</block>
-  <block id="faeaec9eda6bc4c8cb6e1a9156a858be" category="sidebar">가용성</block>
-  <block id="4289ad5c614f8037a8810e869b56facd" category="sidebar">통합</block>
-  <block id="bc967dc2d57e6eff184a821bf7577a80" category="sidebar">확장</block>
-  <block id="86a69bd2f501f95ed83bb7014fac7e30" category="sidebar">스냅샷 및 클론 복제</block>
-  <block id="58bc025e75c4b3fd1adf3ea672dd4424" category="sidebar">탁월한 아키텍처 및 설계</block>
-  <block id="92672a7a2b909945fbfa9f44f057c7a1" category="sidebar">사이징</block>
-  <block id="41b36522e1e1020bad35b072e2f4caeb" category="sidebar">구축하는 것이었습니다</block>
-  <block id="ddb04c3c1835c48b34dced1c453450e9" category="sidebar">구성 및 모범 사례</block>
-  <block id="3e23b54348b2b8424e24a426570dc9f2" category="sidebar">Host Utilities(호스트 유틸리티)</block>
-  <block id="6e19e43ad6dccde81e8d288a0c9ce380" category="sidebar">LUN 및 볼륨 구성</block>
-  <block id="a2ddb4431dcf2a898d386c1f3b82c926" category="sidebar">파일 서비스</block>
-  <block id="9985b4390c40137573e6da05caf85874" category="sidebar">프로토콜</block>
-  <block id="894445e8ea6df545bfbc4247797a2162" category="sidebar">스토리지 사이징</block>
   <block id="051c025eb3cc7303bf3116bffdb7e95d" category="sidebar">MetroCluster 아키텍처</block>
   <block id="a1930436e8ea74adaf54ff76d868829b" category="sidebar">MetroCluster이 포함된 SQL Server</block>
   <block id="33673f825b847c6610f7c7115da0bbde" category="sidebar">기본 사이트</block>
@@ -4988,16 +4610,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="acf5662e9defb6f8df644e0d8b4caa28" category="doc">초기화 매개 변수</block>
   <block id="03095e209912bbf8e40f883c88befe49" category="searchtitle">PostgreSQL 네이티브 데이터 보호</block>
   <block id="1c3ee6977dcad0709502549dd7b111f3" category="sidebar">MetroCluster을 사용한 Oracle DR</block>
-  <block id="662637dadb14be675de52ed993629bcd" category="paragraph">서버 OS 대기열 길이를 고려하려면 데이터베이스에 최소 8개의 LUN(볼륨당 1개의 LUN)을 사용합니다. ONTAP 클러스터의 노드 수보다 LUN 수가 더 많이 증가합니다. 예를 들어, 4노드(2개의 HA 쌍) 클러스터를 사용할 때 LUN 4개를 추가합니다. 대규모 환경에서는 더 많은 LUN이 필요할 수 있습니다. 동일한 볼륨 수(총 8개, 스토리지 노드에 분산)를 사용하고 클러스터 노드 및 볼륨에 LUN을 2의 배수로 추가해야 합니다. 이 접근 방식을 통해 Epic 환경을 쉽게 확장할 수 있습니다.</block>
-  <block id="f73f987e4ea887ccfd1bf297bad46e22" category="paragraph">* 예 1:2 노드 ONTAP 클러스터 *</block>
-  <block id="f08ea6531fe21723a28ec9f89ea3e451" category="paragraph">노드 2개, HA 쌍 1개, 노드당 볼륨 4개, LUN 8개, 볼륨당 LUN 1개, LUN 2개 추가 추가, 볼륨 01의 node01에 1개, 볼륨02의 node02에 1개</block>
-  <block id="fd52d4fb0b6e3cfb46cae3e012d26c20" category="paragraph">* 예 2:4 노드 ONTAP 클러스터 *</block>
-  <block id="489d5412107ca7c901de568b7c7dcce3" category="paragraph">노드 4개, HA 쌍 2개, 노드당 볼륨 2개, LUN 8개, 볼륨당 LUN 1개, 볼륨당 LUN 4개 추가, 볼륨당 1개, 볼륨 01의 node01에 1개, 볼륨02의 node03에 1개, 볼륨04의 node04에 1개</block>
-  <block id="2feec0f4e37d9566d4cf292116430adb" category="paragraph">서버에 더 많은 스토리지가 필요한 경우 가장 쉬운 방법은 볼륨이 포함된 LUN을 확장하는 것입니다. 두 번째 옵션은 한 번에 2의 배수로 볼륨 그룹에 LUN을 추가하는 것입니다(노드당 볼륨당 1개).</block>
-  <block id="c338b7a4eb0c6f0bb88b444f6c195b01" category="admonition">대규모 환경에서 4개 또는 8개 이상의 LUN이 필요한 경우 Epic 제휴 팀에 문의하여 LUN 설계를 확인하십시오. 이 팀은 epic @NetApp.com에서 연락할 수 있습니다.</block>
-  <block id="e9afc81d3b8e2990f966bb247fa75a6b" category="list-text">8개 볼륨의 LUN 8개를 사용하여 클러스터의 모든 노드에 대해 한 번에 2개의 LUN을 추가합니다.</block>
-  <block id="eb75aeb3b4b2b9734ba3e52f5483f0b2" category="inline-link-macro">ONTAP 설명서</block>
-  <block id="c5432110ad66f4e2e624118b88a48126" category="list-text">3년 동안 증가할 것으로 예상되는 크기의 LUN을 생성합니다. 최대 LUN 크기는 를 <block ref="2a57767dbf71d600f009b2fefab6360d" category="inline-link-macro-rx"></block>참조하십시오.</block>
   <block id="4631d10aa7c8cd31e9dcf52425c327ee" category="paragraph">VMware vSphere를 ONTAP를 실행하는 시스템의 데이터 저장소에 연결하는 데 사용되는 6가지 프로토콜이 다음과 같습니다.</block>
   <block id="4dc791031dce7528180b933655b6f73e" category="paragraph">FCP, NVMe/FC, NVMe/TCP 및 iSCSI는 vSphere VMFS(가상 머신 파일 시스템)를 사용하여 ONTAP FlexVol volume에 포함된 ONTAP LUN 또는 NVMe 네임스페이스 내에 VM을 저장하는 블록 프로토콜입니다. NFS는 VMFS 없이 VM을 데이터 저장소(단순한 ONTAP 볼륨)에 배치하는 파일 프로토콜입니다. SMB(CIFS), iSCSI, NVMe/TCP 또는 NFS를 게스트 OS에서 ONTAP로 직접 사용할 수도 있습니다.</block>
   <block id="6b8f0029ce30f9b4d5fe0def33875511" category="cell">FC</block>
@@ -5687,7 +5299,6 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="617275a68b9e63b5c1bdbaedd18295fb" category="list-text">vCenter 내에서 멀티테넌트 SVM을 사용하지 않는 경우:</block>
   <block id="618f681cdba2c4c2fc4bbcbf50528810" category="paragraph">ONTAP 아키텍처는 데이터 저장소에 대한 SAN(FCP, iSCSI, NVMe-oF) 및 NAS(NFS v3 및 v4.1) 서비스를 제공하는 유연하고 확장 가능한 스토리지 플랫폼입니다. NetApp AFF, ASA 및 FAS 스토리지 시스템은 ONTAP 운영 체제를 사용하여 S3 및 SMB/CIFS와 같은 게스트 스토리지 액세스를 위한 추가 프로토콜을 제공합니다.</block>
   <block id="dece980ac7b814fce6a3ac5ab9c2c18d" category="paragraph">vSphere Metro Storage Cluster(vMSC)는 가상 머신(VM)과 컨테이너를 장애로부터 보호하는 인증된 구성입니다. 이는 랙, 건물, 캠퍼스, 심지어 도시와 같은 다양한 장애 도메인에 분산된 ESXi 호스트 클러스터와 함께 확장 스토리지 개념을 사용하여 달성됩니다. NetApp MetroCluster 및 SnapMirror Active Sync 스토리지 기술은 호스트 클러스터에 RPO(복구 지점 목표)=0 보호를 제공하는 데 사용됩니다. vMSC 구성은 전체 물리적 또는 논리적 "사이트"에 장애가 발생하더라도 항상 데이터를 사용할 수 있도록 설계되었습니다. vMSC 구성의 일부인 저장 장치는 성공적인 vMSC 인증 프로세스를 거친 후 인증을 받아야 합니다. 지원되는 모든 저장 장치는 다음에서 찾을 수 있습니다.<block ref="34bc39e238eb497134ec6f46ab689fb0" category="inline-link-rx"></block>.</block>
-  <block id="fd480a9146da7f38fc6111c24d64620e" category="paragraph">NetApp 고객은 Azure 클라우드에서 모든 Epic 워크로드를 성공적으로 실행했습니다.  AWS와 Google Cloud도 Epic 워크로드를 실행할 수 있습니다.  NetApp 클라우드에서 Epic을 효과적으로 실행하는 데 필요한 엔터프라이즈급 기능과 성능을 제공합니다.  NetApp 클라우드 옵션은 iSCSI를 통한 블록 전송과 NFS 또는 SMB를 통한 파일 전송을 제공합니다.</block>
   <block id="c4a18a844b0430569f6e8b2d7bfc02b5" category="list-text">*1차 제공.* Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes 및 Azure NetApp Files 주요 퍼블릭 클라우드 환경에서 고성능의 다중 프로토콜 관리형 스토리지 서비스를 제공합니다. 이러한 스토리지는 VMware Cloud on AWS(VMC on AWS), Azure VMware Solution(AVS), Google Cloud VMware Engine(GCVE)에서 게스트 운영 체제(GOS) 및 컴퓨팅 인스턴스의 데이터 저장소 또는 스토리지로 직접 사용할 수 있습니다.</block>
   <block id="e465d3a307ef6903982ceaea5de22f9a" category="list-text">*클라우드 서비스.* 퍼블릭 클라우드 스토리지를 사용하여 온프레미스 시스템의 데이터를 보호하려면 NetApp Backup and Recovery 또는 SnapMirror Cloud를 사용하세요. NetApp Copy and Sync NAS와 개체 저장소에서 데이터를 마이그레이션하고 동기화하는 데 도움이 됩니다. NetApp Disaster Recovery 클라우드 재해 복구, 온프레미스 재해 복구, 온프레미스 간 재해 복구를 위한 강력하고 유능한 재해 복구 솔루션의 기반으로 NetApp 기술을 활용하는 비용 효과적이고 효율적인 솔루션을 제공합니다.</block>
   <block id="1e8675e287bf96049d13eb5bf5b6fac6" category="inline-link-macro">Azure NetApp Files 무엇인가요?</block>
@@ -5954,4 +5565,16 @@ HTTPS 연결을 통한 SOAP에 사용됩니다</block>
   <block id="8f459734c1d38bc944055a15326ea68d" category="paragraph">vSphere Metro Storage Cluster의 설계 지침에 대한 자세한 내용은 다음 솔루션 가이드를 참조하십시오.</block>
   <block id="34fd97d0487efaacb8dc98024d287c11" category="inline-link">VMware vSphere Metro Storage Cluster with SnapMirror 활성 동기화</block>
   <block id="f9cfc4ca20b8bdb426e6898a32e2f8f3" category="list-text"><block ref="f9cfc4ca20b8bdb426e6898a32e2f8f3" category="inline-link-rx"></block></block>
+  <block id="32fc3dba9c13d916e5e08037690feef2" category="paragraph">NFS 세션 슬롯은 NFSv3 슬롯 테이블에 해당하는 NFSv4.X 버전입니다. 기본값은 일반적으로 64입니다. ONTAP의 세션 제한과 일치하므로 180이 최적의 값입니다.</block>
+  <block id="ca5774a0ab925e8386ad63e7f2d14e8c" category="paragraph">max_session_slots 매개변수 설정 예시:</block>
+  <block id="3a52063b895cc7bd97e97721973eb6ea" category="paragraph">이 매개변수는 시작 시 로드되는 커널 모듈에서 사용됩니다. NFSv3 슬롯 테이블 매개변수와 달리 동적이지 않습니다. 이 변경 사항을 적용하려면 재부팅해야 합니다.</block>
+  <block id="0344ac3ce065f42f1eeb3421a671297e" category="admonition">이 매개변수를 설정하지 않으면 성능에 상당한 영향을 미칠 수 있습니다. linux OS가 충분한 I/O를 발생시키지 않아 성능이 크게 제한될 수 있습니다.</block>
+  <block id="f385813d3c4360ade78e8e1f498f53bd" category="section-title">Linux NFSv4.X 세션 슬롯</block>
+  <block id="a571215740ee91cedae28406e2e41ed5" category="cell"><block ref="6bd60c24e7a90af2af0c60e128122e06" prefix="" category="inline-code"></block></block>
+  <block id="5eca0b76ab405f3330bc5dc4cd4ddcfc" category="cell"><block ref="8b5839160b655356a0c8e097c2edd349" prefix="" category="inline-code"></block></block>
+  <block id="bb0fc0de24da5f7976510a315e4b7120" category="section-title">nconnect</block>
+  <block id="5cc0b02a2901e6e33efb077352cdb494" category="paragraph">nconnect는 비교적 새로운 마운트 옵션입니다. NFS 클라이언트가 특정 마운트 지점에 대해 여러 개의 독립적인 TCP/IP 연결을 열고 I/O를 다중화할 수 있도록 합니다. 이를 통해 동시 작업량이 증가하여 특히 고대역폭 네트워크에서 성능이 향상됩니다. Linux에서 지원되는 최대값은 16이지만, NetApp은 4~8 사이의 값을 권장합니다. 이렇게 하면 단일 경로로 구성된 dNFS 클라이언트와 유사한 단일 인스턴스 성능을 얻을 수 있습니다. dNFS와 달리 nconnect는 여러 IP 주소 및 TCP/IP 링크에 걸쳐 다중화하도록 구성할 수 없습니다.</block>
+  <block id="47abdab1773df8a393141d0e86b7caa8" category="paragraph">RAC 환경에서 nconnect는 추가적인 메타데이터 트래픽으로 인해 dNFS보다 성능 오버헤드가 더 큽니다. 자세한 내용은 link:#Linux%20Direct%20NFS%20and Oracle %20AC[Linux Direct NFS and Oracle RAC]를 참조하십시오.</block>
+  <block id="b55a97328a5e6525f7af0bd91795aba2" category="paragraph">Linux는 노드 간 일관성을 위해 RAC에 필요한 직접 I/O를 강제하는 방법이 없기 때문에 Linux OS에서 Oracle RAC에 DNFS를 사용하면 특별한 성능 이점이 있습니다. 해결 방법으로 Linux는 <block ref="3504e2b0e7c968444314433be465518d" prefix=" " category="inline-code"></block> 마운트 옵션을 사용해야 하며, 이로 인해 파일 데이터가 OS 캐시에서 즉시 만료됩니다. 이 옵션은 결과적으로 Linux NFS 클라이언트가 속성 데이터를 지속적으로 다시 읽도록 강제하여 지연 시간을 늘리고 스토리지 컨트롤러의 부하를 증가시킵니다.</block>
+  <block id="97481f9423f2fb70412672eaf2f5cc58" category="paragraph">DNFS를 활성화하면 호스트 NFS 클라이언트를 우회하여 이 문제를 방지할 수 있습니다. 여러 고객이 DNFS를 활성화했을 때 RAC 클러스터의 성능이 크게 향상되고 ONTAP 부하(특히 다른 IOPS 대비)가 크게 감소했다고 보고했습니다.</block>
 </blocks>

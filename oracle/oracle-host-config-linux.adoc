@@ -35,6 +35,24 @@ CAUTION: 이러한 매개 변수를 설정하지 않으면 성능에 상당한 �
 
 
 
+[[linux-nfsv4-x-session-slots]]
+== Linux NFSv4.X 세션 슬롯
+
+NFS 세션 슬롯은 NFSv3 슬롯 테이블에 해당하는 NFSv4.X 버전입니다. 기본값은 일반적으로 64입니다. ONTAP의 세션 제한과 일치하므로 180이 최적의 값입니다.
+
+max_session_slots 매개변수 설정 예시:
+
+....
+# cat /etc/modprobe.d/nfsclient.conf
+ options nfs max_session_slots=180
+....
+이 매개변수는 시작 시 로드되는 커널 모듈에서 사용됩니다. NFSv3 슬롯 테이블 매개변수와 달리 동적이지 않습니다. 이 변경 사항을 적용하려면 재부팅해야 합니다.
+
+
+CAUTION: 이 매개변수를 설정하지 않으면 성능에 상당한 영향을 미칠 수 있습니다. linux OS가 충분한 I/O를 발생시키지 않아 성능이 크게 제한될 수 있습니다.
+
+
+
 [[linux-nfs-mount-options]]
 == Linux NFS 마운트 옵션
 
@@ -52,7 +70,7 @@ timeo=600,rsize=262144,wsize=262144`
 데이터 파일
 다시 실행 로그 | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
 timeo=600,rsize=262144,wsize=262144,
-nointr` 
+nointr,[nconnect=]` 
 
 
 | ORACLE_HOME | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
@@ -74,7 +92,7 @@ actimeo=0`
 데이터 파일
 다시 실행 로그 | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
 timeo=600,rsize=262144,wsize=262144,
-nointr,actimeo=0` 
+nointr,actimeo=0,[nconnect=]` 
 
 
 | CRS/투표 | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
@@ -105,6 +123,15 @@ ACCESS 및 GETATTR 같은 극히 높은 레벨의 기타 IOPS가 워크로드를
 
 
 
+[[nconnect]]
+=== nconnect
+
+nconnect는 비교적 새로운 마운트 옵션입니다. NFS 클라이언트가 특정 마운트 지점에 대해 여러 개의 독립적인 TCP/IP 연결을 열고 I/O를 다중화할 수 있도록 합니다. 이를 통해 동시 작업량이 증가하여 특히 고대역폭 네트워크에서 성능이 향상됩니다. Linux에서 지원되는 최대값은 16이지만, NetApp은 4~8 사이의 값을 권장합니다. 이렇게 하면 단일 경로로 구성된 dNFS 클라이언트와 유사한 단일 인스턴스 성능을 얻을 수 있습니다. dNFS와 달리 nconnect는 여러 IP 주소 및 TCP/IP 링크에 걸쳐 다중화하도록 구성할 수 없습니다.
+
+RAC 환경에서 nconnect는 추가적인 메타데이터 트래픽으로 인해 dNFS보다 성능 오버헤드가 더 큽니다. 자세한 내용은 link:#Linux%20Direct%20NFS%20and Oracle %20AC[Linux Direct NFS and Oracle RAC]를 참조하십시오.
+
+
+
 [[linux-direct-nfs]]
 === Linux 직접 NFS
 
@@ -117,9 +144,9 @@ OS는  `/oracle` 및  `/oracle/home`가 동일한 NFS 공유, 즉 동일한 소�
 [[linux-direct-nfs-and-oracle-rac]]
 === Linux Direct NFS 및 Oracle RAC
 
-Linux에는 노드 전체에 걸친 일관성을 위해 RAC에 필요한 직접 I/O를 강제 적용할 방법이 없기 때문에 DNFS를 사용하면 Linux 운영 체제 기반 Oracle RAC에서 특별한 성능 이점을 얻을 수 있습니다. 이를 해결하려면 Linux에서 를 사용해야 합니다 `actimeo=0` 마운트 옵션을 사용하면 운영 체제 캐시에서 파일 데이터가 즉시 만료됩니다 그러면 이 옵션은 Linux NFS 클라이언트가 특성 데이터를 계속 다시 읽게 강제 적용합니다. 이는 지연 시간을 저하시키고 스토리지 컨트롤러의 로드를 증가시킵니다.
+Linux는 노드 간 일관성을 위해 RAC에 필요한 직접 I/O를 강제하는 방법이 없기 때문에 Linux OS에서 Oracle RAC에 DNFS를 사용하면 특별한 성능 이점이 있습니다. 해결 방법으로 Linux는  `actimeo=0` 마운트 옵션을 사용해야 하며, 이로 인해 파일 데이터가 OS 캐시에서 즉시 만료됩니다. 이 옵션은 결과적으로 Linux NFS 클라이언트가 속성 데이터를 지속적으로 다시 읽도록 강제하여 지연 시간을 늘리고 스토리지 컨트롤러의 부하를 증가시킵니다.
 
-DNFS를 활성화하면 호스트 NFS 클라이언트가 우회되어 이러한 저하가 일어나지 않습니다. 여러 고객의 보고에 따르면, DNFS를 활성화했을 때 RAC 클러스터에서의 성능이 상당히 개선되었고 특히 IOPS와 관련하여 ONTAP 로드가 크게 감소하였다고 합니다.
+DNFS를 활성화하면 호스트 NFS 클라이언트를 우회하여 이 문제를 방지할 수 있습니다. 여러 고객이 DNFS를 활성화했을 때 RAC 클러스터의 성능이 크게 향상되고 ONTAP 부하(특히 다른 IOPS 대비)가 크게 감소했다고 보고했습니다.
 
 
 
